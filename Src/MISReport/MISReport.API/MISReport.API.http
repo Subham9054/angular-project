@@ -1,0 +1,6 @@
+@MISReport.API_HostAddress = http://localhost:5283
+
+GET {{MISReport.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

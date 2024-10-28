@@ -1,0 +1,26 @@
+[
+  {
+    "SPName": "MANAGE_CATEGORYMASTER",
+    "DataBase_Name": "db_PHED_CGRC"
+  },
+  {
+    "SPName": "MANAGE_COMPLAINTDETAILS_CONFIG",
+    "DataBase_Name": "db_PHED_CGRC"
+  },
+  {
+    "SPName": "MANAGE_ESCALATION_CONFIGDETAILS",
+    "DataBase_Name": "db_PHED_CGRC"
+  },
+  {
+    "SPName": "MANAGE_HOLIDAYSLIST_CONFIG",
+    "DataBase_Name": "db_PHED_CGRC"
+  },
+  {
+    "SPName": "MANAGE_SUBCATEGORYMASTER",
+    "DataBase_Name": "db_PHED_CGRC"
+  },
+  {
+    "SPName": "USP_GETERRORINFO",
+    "DataBase_Name": "db_PHED_CGRC"
+  }
+]

@@ -1,0 +1,47 @@
+public class VIEWMANAGE_COMPLAINTDETAILS_CONFIG
+{
+    public string ComplaintId { get; set; }
+    public string CategoryId { get; set; }
+    public string SubCategoryId { get; set; }
+    public string HeirachyId { get; set; }
+    public string CompalintLogType { get; set; }
+    public string ComplaintPriority { get; set; }
+    public string Gender { get; set; }
+    public string ProoftypeId { get; set; }
+    public string IdProof { get; set; }
+    public string TokenNo { get; set; }
+    public string ComplaintName { get; set; }
+    public string ContactNo { get; set; }
+    public string Email { get; set; }
+    public string IdproofType { get; set; }
+    public string DistId { get; set; }
+    public string Address { get; set; }
+    public string Landmark { get; set; }
+    public string Longitude { get; set; }
+    public string Latitude { get; set; }
+    public string ComplaintAgainstType { get; set; }
+    public string ComplaintAgainstCode { get; set; }
+    public string ComplaintAgainstName { get; set; }
+    public string ComplaintImage { get; set; }
+    public string ComplaintFile { get; set; }
+    public string ComplaintFile1 { get; set; }
+    public string Docnature { get; set; }
+    public string Docnature1 { get; set; }
+    public string ComplaintDeatils { get; set; }
+    public string ComplaintStatusId { get; set; }
+    public string PendingWith { get; set; }
+    public string Level { get; set; }
+    public string EscaltionDate { get; set; }
+    public string NextAta { get; set; }
+    public string LastUpdatedDate { get; set; }
+    public string ApproxResDate { get; set; }
+    public string Remark { get; set; }
+    public string ActionFile { get; set; }
+    public string UserId { get; set; }
+    public string CreatedOn { get; set; }
+    public string UpdatedOn { get; set; }
+    public string DeletedFlag { get; set; }
+    public string Block { get; set; }
+    public string Panchayat { get; set; }
+    public string Village { get; set; }
+}

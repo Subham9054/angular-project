@@ -1,0 +1,26 @@
+[
+  {
+    "TableName": "M_GMS_CATEGORY",
+    "DataBase_Name": "db_PHED_CGRC"
+  },
+  {
+    "TableName": "M_GMS_HOLIDAYS_LIST",
+    "DataBase_Name": "db_PHED_CGRC"
+  },
+  {
+    "TableName": "M_GMS_SUB_CATEGORY",
+    "DataBase_Name": "db_PHED_CGRC"
+  },
+  {
+    "TableName": "M_PHED_SUCCESSMESSAGE",
+    "DataBase_Name": "db_PHED_CGRC"
+  },
+  {
+    "TableName": "T_GMS_COMPLAINT_DETAILS",
+    "DataBase_Name": "db_PHED_CGRC"
+  },
+  {
+    "TableName": "T_GMS_ESCALATION_CONFIG",
+    "DataBase_Name": "db_PHED_CGRC"
+  }
+]

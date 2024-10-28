@@ -1,0 +1,283 @@
+
+@{
+ViewData["Title"] = "ViewMANAGE_COMPLAINTDETAILS_CONFIG";
+}
+<div class="row">
+		@Html.AntiForgeryToken()
+			@*Write code here*@
+</div><div>
+    <ul class="nav nav-tabs nav-fill" role="tablist">
+        <a class="nav-item nav-link " asp-controller="MANAGE_COMPLAINTDETAILS_CONFIG" asp-action="MANAGE_COMPLAINTDETAILS_CONFIG">Add</a>
+        <a class="nav-item nav-link active" asp-controller="MANAGE_COMPLAINTDETAILS_CONFIG" asp-action=ViewMANAGE_COMPLAINTDETAILS_CONFIG>View</a>
+    </ul>
+</div>
+<br />
+<br />
+<br />
+<div>
+
+		 <br/>
+ <table class="table" id="tbl">
+			<thead>
+				<tr>
+					<th>
+						CategoryId
+					</th>
+					 <th>
+						SubCategoryId
+					</th>
+					 <th>
+						HeirachyId
+					</th>
+					 <th>
+						CompalintLogType
+					</th>
+					 <th>
+						ComplaintPriority
+					</th>
+					 <th>
+						Gender
+					</th>
+					 <th>
+						ProoftypeId
+					</th>
+					 <th>
+						IdProof
+					</th>
+					 <th>
+						TokenNo
+					</th>
+					 <th>
+						ComplaintName
+					</th>
+					 <th>
+						ContactNo
+					</th>
+					 <th>
+						Email
+					</th>
+					 <th>
+						IdproofType
+					</th>
+					 <th>
+						DistId
+					</th>
+					 <th>
+						Address
+					</th>
+					 <th>
+						Landmark
+					</th>
+					 <th>
+						Longitude
+					</th>
+					 <th>
+						Latitude
+					</th>
+					 <th>
+						ComplaintAgainstType
+					</th>
+					 <th>
+						ComplaintAgainstCode
+					</th>
+					 <th>
+						ComplaintAgainstName
+					</th>
+					 <th>
+						ComplaintImage
+					</th>
+					 <th>
+						ComplaintFile
+					</th>
+					 <th>
+						ComplaintFile1
+					</th>
+					 <th>
+						Docnature
+					</th>
+					 <th>
+						Docnature1
+					</th>
+					 <th>
+						ComplaintDeatils
+					</th>
+					 <th>
+						ComplaintStatusId
+					</th>
+					 <th>
+						PendingWith
+					</th>
+					 <th>
+						Level
+					</th>
+					 <th>
+						EscaltionDate
+					</th>
+					 <th>
+						NextAta
+					</th>
+					 <th>
+						LastUpdatedDate
+					</th>
+					 <th>
+						ApproxResDate
+					</th>
+					 <th>
+						Remark
+					</th>
+					 <th>
+						ActionFile
+					</th>
+					 <th>
+						UserId
+					</th>
+					 <th>
+						CreatedOn
+					</th>
+					 <th>
+						UpdatedOn
+					</th>
+					 <th>
+						DeletedFlag
+					</th>
+					 <th>
+						Block
+					</th>
+					 <th>
+						Panchayat
+					</th>
+					 <th>
+						Village
+					</th>
+					 
+			<th> Action </th>
+				</tr>
+			</thead>
+			<tbody>
+
+
+			</tbody>
+		</table>
+	</div>
+
+	
+	<script>
+$(document).ready(function(){
+	Get_MANAGE_COMPLAINTDETAILS_CONFIG();
+	});
+    function encryptData(data) {
+        // Convert the integer data to a string
+        var dataString = String(data);
+
+        // Encrypt the data using CryptoJS
+        var encryptedData = CryptoJS.AES.encrypt(JSON.stringify({ data: dataString }), 'secret_key').toString();
+
+        return encryptedData;
+    }
+	function Get_MANAGE_COMPLAINTDETAILS_CONFIG() {
+		$.ajax ({
+		 type:'Get',
+		 dataType: 'Json',
+		 contentType: 'application/json; charset=utf-8',
+		 data: { },
+			url: "@Url.Action("Get_MANAGE_COMPLAINTDETAILS_CONFIG","MANAGE_COMPLAINTDETAILS_CONFIG")",
+			success: function (result) {
+				var data1 = JSON.parse(result);
+				if (data1.length > 0) {
+				$('#tbl.tbody').empty();
+					$.each(data1, function (i, data) {
+					
+                    var encryptedID = encryptData(data.ComplaintId);var trows ="<tr>";
+					trows = trows +"<td>"+ data.CategoryId +"</td>";
+					trows = trows +"<td>"+ data.SubCategoryId +"</td>";
+					trows = trows +"<td>"+ data.HeirachyId +"</td>";
+					trows = trows +"<td>"+ data.CompalintLogType +"</td>";
+					trows = trows +"<td>"+ data.ComplaintPriority +"</td>";
+					trows = trows +"<td>"+ data.Gender +"</td>";
+					trows = trows +"<td>"+ data.ProoftypeId +"</td>";
+					trows = trows +"<td>"+ data.IdProof +"</td>";
+					trows = trows +"<td>"+ data.TokenNo +"</td>";
+					trows = trows +"<td>"+ data.ComplaintName +"</td>";
+					trows = trows +"<td>"+ data.ContactNo +"</td>";
+					trows = trows +"<td>"+ data.Email +"</td>";
+					trows = trows +"<td>"+ data.IdproofType +"</td>";
+					trows = trows +"<td>"+ data.DistId +"</td>";
+					trows = trows +"<td>"+ data.Address +"</td>";
+					trows = trows +"<td>"+ data.Landmark +"</td>";
+					trows = trows +"<td>"+ data.Longitude +"</td>";
+					trows = trows +"<td>"+ data.Latitude +"</td>";
+					trows = trows +"<td>"+ data.ComplaintAgainstType +"</td>";
+					trows = trows +"<td>"+ data.ComplaintAgainstCode +"</td>";
+					trows = trows +"<td>"+ data.ComplaintAgainstName +"</td>";
+					trows = trows +"<td>"+ data.ComplaintImage +"</td>";
+					trows = trows +"<td>"+ data.ComplaintFile +"</td>";
+					trows = trows +"<td>"+ data.ComplaintFile1 +"</td>";
+					trows = trows +"<td>"+ data.Docnature +"</td>";
+					trows = trows +"<td>"+ data.Docnature1 +"</td>";
+					trows = trows +"<td>"+ data.ComplaintDeatils +"</td>";
+					trows = trows +"<td>"+ data.ComplaintStatusId +"</td>";
+					trows = trows +"<td>"+ data.PendingWith +"</td>";
+					trows = trows +"<td>"+ data.Level +"</td>";
+					trows = trows +"<td>"+ data.EscaltionDate +"</td>";
+					trows = trows +"<td>"+ data.NextAta +"</td>";
+					trows = trows +"<td>"+ data.LastUpdatedDate +"</td>";
+					trows = trows +"<td>"+ data.ApproxResDate +"</td>";
+					trows = trows +"<td>"+ data.Remark +"</td>";
+					trows = trows +"<td>"+ data.ActionFile +"</td>";
+					trows = trows +"<td>"+ data.UserId +"</td>";
+					trows = trows +"<td>"+ data.CreatedOn +"</td>";
+					trows = trows +"<td>"+ data.UpdatedOn +"</td>";
+					trows = trows +"<td>"+ data.DeletedFlag +"</td>";
+					trows = trows +"<td>"+ data.Block +"</td>";
+					trows = trows +"<td>"+ data.Panchayat +"</td>";
+					trows = trows +"<td>"+ data.Village +"</td>";
+					trows=trows + "<td>" + "<a class='btn-primary' href='/MANAGE_COMPLAINTDETAILS_CONFIG/MANAGE_COMPLAINTDETAILS_CONFIG?strid="+ encryptedID+"'>Edit</a>&nbsp;<button class='btn-danger' onclick='Delete_MANAGE_COMPLAINTDETAILS_CONFIG("+ data.ComplaintId +")'>Delete</button>" + "</td>";
+					trows = trows + "</tr>";
+					$('#tbl').append(trows);
+					});
+				}
+			},
+		error: function (Message) {
+		alert(Message);
+			}
+		});
+		}
+	
+     function Delete_MANAGE_COMPLAINTDETAILS_CONFIG(id) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                  $.ajax({
+                    type: "Delete",
+                    dataType: "json",
+                    url: "@Url.Action("Delete_MANAGE_COMPLAINTDETAILS_CONFIG","MANAGE_COMPLAINTDETAILS_CONFIG")",
+			
+                    data: { "Id": id },
+                      success: function (response) {
+                          Swal.fire(
+                              'Deleted!',
+                              'Data Deleted Successfully!',
+                              'success'
+                        ).then((result) => {
+                            if (result.isConfirmed) {
+                                location.href = "/MANAGE_COMPLAINTDETAILS_CONFIG/ViewMANAGE_COMPLAINTDETAILS_CONFIG";
+                            }
+                            else if (result.isDenied) {
+                                Swal.fire('Changes are not saved', '', 'info')
+                            }
+                        })
+                    }
+                });
+
+            }
+            return false;
+        })
+    }	
+</script>

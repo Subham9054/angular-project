@@ -1,0 +1,166 @@
+
+@{
+ViewData["Title"] = "MANAGE_CATEGORYMASTER";
+}
+<div class="row">
+		@Html.AntiForgeryToken()
+			@*Write code here*@
+</div><div>
+    <ul class="nav nav-tabs nav-fill" role="tablist">
+        <a class="nav-item nav-link active" asp-controller="MANAGE_CATEGORYMASTER" asp-action="MANAGE_CATEGORYMASTER">Add</a>
+        <a class="nav-item nav-link" asp-controller="MANAGE_CATEGORYMASTER" asp-action=ViewMANAGE_CATEGORYMASTER>View</a>
+    </ul>
+</div>
+<br />
+<br />
+<br />
+<form id="form">
+
+	<div class="form-group row">
+			<label class="col-12 col-md-2 col-xl-2 mb-3 control-label" for="demo-text-input">categorye<span class="m-2">:</span></label>
+			<div class="col-12 col-md-6 col-xl-8 mb-3">
+				<input type="text" id="CategoryE" name="CategoryE" class="form-control">
+			</div>
+	</div>
+	<div class="form-group row">
+			<label class="col-12 col-md-2 col-xl-2 mb-3 control-label" for="demo-text-input">categoryh<span class="m-2">:</span></label>
+			<div class="col-12 col-md-6 col-xl-8 mb-3">
+				<input type="text" id="CategoryH" name="CategoryH" class="form-control">
+			</div>
+	</div>
+	<div class="form-group row">
+			<label class="col-12 col-md-2 col-xl-2 mb-3 control-label" for="demo-text-input">userid<span class="m-2">:</span></label>
+			<div class="col-12 col-md-6 col-xl-8 mb-3">
+				<input type="text" id="UserId" name="UserId" class="form-control">
+			</div>
+	</div>
+	<div class="form-group">
+		<label class="col-12 col-md-2 col-xl-2 control-label" for="demo-text-input"></label>
+<br/>
+		<div class="col-12 col-md-8 col-xl-12">
+			<input type="button" value="Submit" id="btn_Submit" class="btn btn-primary" onclick="Save_MANAGE_CATEGORYMASTER()"/>
+		</div>
+	</div>
+<input id="hdnMANAGE_CATEGORYMASTER" type="hidden" value="0" />
+</form>
+	
+	<script>
+$(document).ready(function () {
+        function getUrlVars() {
+            var vars = {};
+            var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
+                vars[key] = decodeURIComponent(value);
+            });
+            return vars;
+        }
+        var id = getUrlVars()["strid"];
+
+        if (id != undefined || id != null) {
+            Edit_MANAGE_CATEGORYMASTER(decryptData(id));
+         }
+    });
+
+        function decryptData(encryptedData) {
+            var decryptedBytes = CryptoJS.AES.decrypt(encryptedData, 'secret_key');
+            var decryptedString = decryptedBytes.toString(CryptoJS.enc.Utf8);
+            var decryptedObject = JSON.parse(decryptedString);
+            var originalData = decryptedObject.data;
+            var decryptedInteger = parseInt(originalData, 10);
+            return decryptedInteger;
+        }function Edit_MANAGE_CATEGORYMASTER(id) {
+        $.ajax({
+            type: "Get",
+            dataType: "json",
+            url: '@Url.Action("EDIT_MANAGE_CATEGORYMASTER", "MANAGE_CATEGORYMASTER")',
+            data: { "Id": id },
+            success: function (Result) {
+                var data1 = JSON.parse(Result);
+   $("#hdnMANAGE_CATEGORYMASTER").val(data1.CategoryId);
+             $('#CategoryE').val(data1.CategoryE);
+					$('#CategoryH').val(data1.CategoryH);
+					$('#UserId').val(data1.UserId);
+					
+            },
+            error: function (Message) {
+                alert(Message);
+            }
+        });
+    }        $("#form").validate({
+            rules: {
+                CategoryE: {
+                    required: true
+                },
+                CategoryH: {
+                    required: true
+                },
+                UserId: {
+                    required: true
+                },
+                            },
+            messages: {
+                CategoryE: {
+                    required: "Please enter CategoryE"
+                 },
+                CategoryH: {
+                    required: "Please enter CategoryH"
+                 },
+                UserId: {
+                    required: "Please enter UserId"
+                 },
+                
+           },
+            	
+            highlight: function (element) {	
+                $(element).removeClass("is-valid")		
+                $(element).parent().addClass('error')		
+                $(element).addClass("is-invalid")	
+            },	
+            unhighlight: function (element) {	
+                $(element).parent().removeClass('error')	
+                $(element).removeClass("is-invalid");	
+                $(element).addClass("is-valid")	
+            }	
+        });
+			function Save_MANAGE_CATEGORYMASTER() {
+			if ($("#form").valid()) {
+					
+					var MANAGE_CATEGORYMASTER ={ 
+			
+					 CategoryId:$('#hdnMANAGE_CATEGORYMASTER').val(),
+CategoryE:$("#CategoryE").val(),
+					CategoryH:$("#CategoryH").val(),
+					UserId:$("#UserId").val(),
+					
+				};
+			$.ajax({
+				type: "POST",
+				url: "/MANAGE_CATEGORYMASTER/MANAGE_CATEGORYMASTER",
+			beforeSend: function (xhr) {
+					xhr.setRequestHeader("XSRF-TOKEN",
+						$('input:hidden[name="__RequestVerificationToken"]').val());
+				},
+			data:MANAGE_CATEGORYMASTER,
+			content: 'application/json;charset=utf-8',
+			dataType: "json",
+			success: function (result) {
+						Swal.fire({
+							icon: 'success',
+							title: result.responseText,
+							text: result.responseMessage,
+						}).then((result) => {
+							if (result.isConfirmed) {
+								location.href ="/MANAGE_CATEGORYMASTER/ViewMANAGE_CATEGORYMASTER";
+							}
+						})
+			},
+			error: function (result) {
+						Swal.fire({
+							icon: 'error',
+							title: result.responseText,
+							text: result.responseMessage,
+						});
+					}, 
+			});
+			}
+		}
+	</script>

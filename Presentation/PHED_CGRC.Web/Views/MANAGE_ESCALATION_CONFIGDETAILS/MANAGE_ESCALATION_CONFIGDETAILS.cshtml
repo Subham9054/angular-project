@@ -1,0 +1,194 @@
+
+@{
+ViewData["Title"] = "MANAGE_ESCALATION_CONFIGDETAILS";
+}
+<div class="row">
+		@Html.AntiForgeryToken()
+			@*Write code here*@
+</div><div>
+    <ul class="nav nav-tabs nav-fill" role="tablist">
+        <a class="nav-item nav-link active" asp-controller="MANAGE_ESCALATION_CONFIGDETAILS" asp-action="MANAGE_ESCALATION_CONFIGDETAILS">Add</a>
+        <a class="nav-item nav-link" asp-controller="MANAGE_ESCALATION_CONFIGDETAILS" asp-action=ViewMANAGE_ESCALATION_CONFIGDETAILS>View</a>
+    </ul>
+</div>
+<br />
+<br />
+<br />
+<form id="form">
+
+	<div class="form-group row">
+			<label class="col-12 col-md-2 col-xl-2 mb-3 control-label" for="demo-text-input">subcategoryid<span class="m-2">:</span></label>
+			<div class="col-12 col-md-6 col-xl-8 mb-3">
+				<input type="text" id="SubCategoryId" name="SubCategoryId" class="form-control">
+			</div>
+	</div>
+	<div class="form-group row">
+			<label class="col-12 col-md-2 col-xl-2 mb-3 control-label" for="demo-text-input">escalationno<span class="m-2">:</span></label>
+			<div class="col-12 col-md-6 col-xl-8 mb-3">
+				<input type="text" id="EscalationNo" name="EscalationNo" class="form-control">
+			</div>
+	</div>
+	<div class="form-group row">
+			<label class="col-12 col-md-2 col-xl-2 mb-3 control-label" for="demo-text-input">userid<span class="m-2">:</span></label>
+			<div class="col-12 col-md-6 col-xl-8 mb-3">
+				<input type="text" id="UserId" name="UserId" class="form-control">
+			</div>
+	</div>
+	<div class="form-group row">
+			<label class="col-12 col-md-2 col-xl-2 mb-3 control-label" for="demo-text-input">createdon<span class="m-2">:</span></label>
+			<div class="col-12 col-md-6 col-xl-8 mb-3">
+				<input type="text" id="CreatedOn" name="CreatedOn" class="form-control">
+			</div>
+	</div>
+	<div class="form-group row">
+			<label class="col-12 col-md-2 col-xl-2 mb-3 control-label" for="demo-text-input">updatedon<span class="m-2">:</span></label>
+			<div class="col-12 col-md-6 col-xl-8 mb-3">
+				<input type="text" id="UpdatedOn" name="UpdatedOn" class="form-control">
+			</div>
+	</div>
+	<div class="form-group">
+		<label class="col-12 col-md-2 col-xl-2 control-label" for="demo-text-input"></label>
+<br/>
+		<div class="col-12 col-md-8 col-xl-12">
+			<input type="button" value="Submit" id="btn_Submit" class="btn btn-primary" onclick="Save_MANAGE_ESCALATION_CONFIGDETAILS()"/>
+		</div>
+	</div>
+<input id="hdnMANAGE_ESCALATION_CONFIGDETAILS" type="hidden" value="0" />
+</form>
+	
+	<script>
+$(document).ready(function () {
+        function getUrlVars() {
+            var vars = {};
+            var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
+                vars[key] = decodeURIComponent(value);
+            });
+            return vars;
+        }
+        var id = getUrlVars()["strid"];
+
+        if (id != undefined || id != null) {
+            Edit_MANAGE_ESCALATION_CONFIGDETAILS(decryptData(id));
+         }
+    });
+
+        function decryptData(encryptedData) {
+            var decryptedBytes = CryptoJS.AES.decrypt(encryptedData, 'secret_key');
+            var decryptedString = decryptedBytes.toString(CryptoJS.enc.Utf8);
+            var decryptedObject = JSON.parse(decryptedString);
+            var originalData = decryptedObject.data;
+            var decryptedInteger = parseInt(originalData, 10);
+            return decryptedInteger;
+        }function Edit_MANAGE_ESCALATION_CONFIGDETAILS(id) {
+        $.ajax({
+            type: "Get",
+            dataType: "json",
+            url: '@Url.Action("EDIT_MANAGE_ESCALATION_CONFIGDETAILS", "MANAGE_ESCALATION_CONFIGDETAILS")',
+            data: { "Id": id },
+            success: function (Result) {
+                var data1 = JSON.parse(Result);
+   $("#hdnMANAGE_ESCALATION_CONFIGDETAILS").val(data1.ConfigId);
+             $('#SubCategoryId').val(data1.SubCategoryId);
+					$('#EscalationNo').val(data1.EscalationNo);
+					$('#UserId').val(data1.UserId);
+					$('#CreatedOn').val(data1.CreatedOn);
+					$('#UpdatedOn').val(data1.UpdatedOn);
+					
+            },
+            error: function (Message) {
+                alert(Message);
+            }
+        });
+    }        $("#form").validate({
+            rules: {
+                SubCategoryId: {
+                    required: true
+                },
+                EscalationNo: {
+                    required: true
+                },
+                UserId: {
+                    required: true
+                },
+                CreatedOn: {
+                    required: true
+                },
+                UpdatedOn: {
+                    required: true
+                },
+                            },
+            messages: {
+                SubCategoryId: {
+                    required: "Please enter SubCategoryId"
+                 },
+                EscalationNo: {
+                    required: "Please enter EscalationNo"
+                 },
+                UserId: {
+                    required: "Please enter UserId"
+                 },
+                CreatedOn: {
+                    required: "Please enter CreatedOn"
+                 },
+                UpdatedOn: {
+                    required: "Please enter UpdatedOn"
+                 },
+                
+           },
+            	
+            highlight: function (element) {	
+                $(element).removeClass("is-valid")		
+                $(element).parent().addClass('error')		
+                $(element).addClass("is-invalid")	
+            },	
+            unhighlight: function (element) {	
+                $(element).parent().removeClass('error')	
+                $(element).removeClass("is-invalid");	
+                $(element).addClass("is-valid")	
+            }	
+        });
+			function Save_MANAGE_ESCALATION_CONFIGDETAILS() {
+			if ($("#form").valid()) {
+					
+					var MANAGE_ESCALATION_CONFIGDETAILS ={ 
+			
+					 ConfigId:$('#hdnMANAGE_ESCALATION_CONFIGDETAILS').val(),
+SubCategoryId:$("#SubCategoryId").val(),
+					EscalationNo:$("#EscalationNo").val(),
+					UserId:$("#UserId").val(),
+					CreatedOn:$("#CreatedOn").val(),
+					UpdatedOn:$("#UpdatedOn").val(),
+					
+				};
+			$.ajax({
+				type: "POST",
+				url: "/MANAGE_ESCALATION_CONFIGDETAILS/MANAGE_ESCALATION_CONFIGDETAILS",
+			beforeSend: function (xhr) {
+					xhr.setRequestHeader("XSRF-TOKEN",
+						$('input:hidden[name="__RequestVerificationToken"]').val());
+				},
+			data:MANAGE_ESCALATION_CONFIGDETAILS,
+			content: 'application/json;charset=utf-8',
+			dataType: "json",
+			success: function (result) {
+						Swal.fire({
+							icon: 'success',
+							title: result.responseText,
+							text: result.responseMessage,
+						}).then((result) => {
+							if (result.isConfirmed) {
+								location.href ="/MANAGE_ESCALATION_CONFIGDETAILS/ViewMANAGE_ESCALATION_CONFIGDETAILS";
+							}
+						})
+			},
+			error: function (result) {
+						Swal.fire({
+							icon: 'error',
+							title: result.responseText,
+							text: result.responseMessage,
+						});
+					}, 
+			});
+			}
+		}
+	</script>

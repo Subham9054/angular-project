@@ -1,0 +1,264 @@
+
+@{
+ViewData["Title"] = "MANAGE_HOLIDAYSLIST_CONFIG";
+}
+<div class="row">
+		@Html.AntiForgeryToken()
+			@*Write code here*@
+</div><div>
+    <ul class="nav nav-tabs nav-fill" role="tablist">
+        <a class="nav-item nav-link active" asp-controller="MANAGE_HOLIDAYSLIST_CONFIG" asp-action="MANAGE_HOLIDAYSLIST_CONFIG">Add</a>
+        <a class="nav-item nav-link" asp-controller="MANAGE_HOLIDAYSLIST_CONFIG" asp-action=ViewMANAGE_HOLIDAYSLIST_CONFIG>View</a>
+    </ul>
+</div>
+<br />
+<br />
+<br />
+<form id="form">
+
+	<div class="form-group row">
+			<label class="col-12 col-md-2 col-xl-2 mb-3 control-label" for="demo-text-input">fromdate<span class="m-2">:</span></label>
+			<div class="col-12 col-md-6 col-xl-8 mb-3">
+				<input type="text" id="FromDate" name="FromDate" class="form-control">
+			</div>
+	</div>
+	<div class="form-group row">
+			<label class="col-12 col-md-2 col-xl-2 mb-3 control-label" for="demo-text-input">todate<span class="m-2">:</span></label>
+			<div class="col-12 col-md-6 col-xl-8 mb-3">
+				<input type="text" id="ToDate" name="ToDate" class="form-control">
+			</div>
+	</div>
+	<div class="form-group row">
+			<label class="col-12 col-md-2 col-xl-2 mb-3 control-label" for="demo-text-input">totaldays<span class="m-2">:</span></label>
+			<div class="col-12 col-md-6 col-xl-8 mb-3">
+				<input type="text" id="TotalDays" name="TotalDays" class="form-control">
+			</div>
+	</div>
+	<div class="form-group row">
+			<label class="col-12 col-md-2 col-xl-2 mb-3 control-label" for="demo-text-input">holidaynamee<span class="m-2">:</span></label>
+			<div class="col-12 col-md-6 col-xl-8 mb-3">
+				<input type="text" id="HolidayNameE" name="HolidayNameE" class="form-control">
+			</div>
+	</div>
+	<div class="form-group row">
+			<label class="col-12 col-md-2 col-xl-2 mb-3 control-label" for="demo-text-input">holidaynameh<span class="m-2">:</span></label>
+			<div class="col-12 col-md-6 col-xl-8 mb-3">
+				<input type="text" id="HolidayNameH" name="HolidayNameH" class="form-control">
+			</div>
+	</div>
+	<div class="form-group row">
+			<label class="col-12 col-md-2 col-xl-2 mb-3 control-label" for="demo-text-input">description<span class="m-2">:</span></label>
+			<div class="col-12 col-md-6 col-xl-8 mb-3">
+				<input type="text" id="Description" name="Description" class="form-control">
+			</div>
+	</div>
+	<div class="form-group row">
+			<label class="col-12 col-md-2 col-xl-2 mb-3 control-label" for="demo-text-input">createdby<span class="m-2">:</span></label>
+			<div class="col-12 col-md-6 col-xl-8 mb-3">
+				<input type="text" id="CreatedBy" name="CreatedBy" class="form-control">
+			</div>
+	</div>
+	<div class="form-group row">
+			<label class="col-12 col-md-2 col-xl-2 mb-3 control-label" for="demo-text-input">updatedby<span class="m-2">:</span></label>
+			<div class="col-12 col-md-6 col-xl-8 mb-3">
+				<input type="text" id="UpdatedBy" name="UpdatedBy" class="form-control">
+			</div>
+	</div>
+	<div class="form-group row">
+			<label class="col-12 col-md-2 col-xl-2 mb-3 control-label" for="demo-text-input">userid<span class="m-2">:</span></label>
+			<div class="col-12 col-md-6 col-xl-8 mb-3">
+				<input type="text" id="UserId" name="UserId" class="form-control">
+			</div>
+	</div>
+	<div class="form-group row">
+			<label class="col-12 col-md-2 col-xl-2 mb-3 control-label" for="demo-text-input">deletedflag<span class="m-2">:</span></label>
+			<div class="col-12 col-md-6 col-xl-8 mb-3">
+				<input type="text" id="DeletedFlag" name="DeletedFlag" class="form-control">
+			</div>
+	</div>
+	<div class="form-group">
+		<label class="col-12 col-md-2 col-xl-2 control-label" for="demo-text-input"></label>
+<br/>
+		<div class="col-12 col-md-8 col-xl-12">
+			<input type="button" value="Submit" id="btn_Submit" class="btn btn-primary" onclick="Save_MANAGE_HOLIDAYSLIST_CONFIG()"/>
+		</div>
+	</div>
+<input id="hdnMANAGE_HOLIDAYSLIST_CONFIG" type="hidden" value="0" />
+</form>
+	
+	<script>
+$(document).ready(function () {
+        function getUrlVars() {
+            var vars = {};
+            var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
+                vars[key] = decodeURIComponent(value);
+            });
+            return vars;
+        }
+        var id = getUrlVars()["strid"];
+
+        if (id != undefined || id != null) {
+            Edit_MANAGE_HOLIDAYSLIST_CONFIG(decryptData(id));
+         }
+    });
+
+        function decryptData(encryptedData) {
+            var decryptedBytes = CryptoJS.AES.decrypt(encryptedData, 'secret_key');
+            var decryptedString = decryptedBytes.toString(CryptoJS.enc.Utf8);
+            var decryptedObject = JSON.parse(decryptedString);
+            var originalData = decryptedObject.data;
+            var decryptedInteger = parseInt(originalData, 10);
+            return decryptedInteger;
+        }function Edit_MANAGE_HOLIDAYSLIST_CONFIG(id) {
+        $.ajax({
+            type: "Get",
+            dataType: "json",
+            url: '@Url.Action("EDIT_MANAGE_HOLIDAYSLIST_CONFIG", "MANAGE_HOLIDAYSLIST_CONFIG")',
+            data: { "Id": id },
+            success: function (Result) {
+                var data1 = JSON.parse(Result);
+   $("#hdnMANAGE_HOLIDAYSLIST_CONFIG").val(data1.HolidayId);
+             $('#FromDate').val(data1.FromDate);
+					$('#ToDate').val(data1.ToDate);
+					$('#TotalDays').val(data1.TotalDays);
+					$('#HolidayNameE').val(data1.HolidayNameE);
+					$('#HolidayNameH').val(data1.HolidayNameH);
+					$('#Description').val(data1.Description);
+					$('#CreatedBy').val(data1.CreatedBy);
+					$('#UpdatedBy').val(data1.UpdatedBy);
+					$('#UserId').val(data1.UserId);
+					$('#DeletedFlag').val(data1.DeletedFlag);
+					
+            },
+            error: function (Message) {
+                alert(Message);
+            }
+        });
+    }        $("#form").validate({
+            rules: {
+                FromDate: {
+                    required: true
+                },
+                ToDate: {
+                    required: true
+                },
+                TotalDays: {
+                    required: true
+                },
+                HolidayNameE: {
+                    required: true
+                },
+                HolidayNameH: {
+                    required: true
+                },
+                Description: {
+                    required: true
+                },
+                CreatedBy: {
+                    required: true
+                },
+                UpdatedBy: {
+                    required: true
+                },
+                UserId: {
+                    required: true
+                },
+                DeletedFlag: {
+                    required: true
+                },
+                            },
+            messages: {
+                FromDate: {
+                    required: "Please enter FromDate"
+                 },
+                ToDate: {
+                    required: "Please enter ToDate"
+                 },
+                TotalDays: {
+                    required: "Please enter TotalDays"
+                 },
+                HolidayNameE: {
+                    required: "Please enter HolidayNameE"
+                 },
+                HolidayNameH: {
+                    required: "Please enter HolidayNameH"
+                 },
+                Description: {
+                    required: "Please enter Description"
+                 },
+                CreatedBy: {
+                    required: "Please enter CreatedBy"
+                 },
+                UpdatedBy: {
+                    required: "Please enter UpdatedBy"
+                 },
+                UserId: {
+                    required: "Please enter UserId"
+                 },
+                DeletedFlag: {
+                    required: "Please enter DeletedFlag"
+                 },
+                
+           },
+            	
+            highlight: function (element) {	
+                $(element).removeClass("is-valid")		
+                $(element).parent().addClass('error')		
+                $(element).addClass("is-invalid")	
+            },	
+            unhighlight: function (element) {	
+                $(element).parent().removeClass('error')	
+                $(element).removeClass("is-invalid");	
+                $(element).addClass("is-valid")	
+            }	
+        });
+			function Save_MANAGE_HOLIDAYSLIST_CONFIG() {
+			if ($("#form").valid()) {
+					
+					var MANAGE_HOLIDAYSLIST_CONFIG ={ 
+			
+					 HolidayId:$('#hdnMANAGE_HOLIDAYSLIST_CONFIG').val(),
+FromDate:$("#FromDate").val(),
+					ToDate:$("#ToDate").val(),
+					TotalDays:$("#TotalDays").val(),
+					HolidayNameE:$("#HolidayNameE").val(),
+					HolidayNameH:$("#HolidayNameH").val(),
+					Description:$("#Description").val(),
+					CreatedBy:$("#CreatedBy").val(),
+					UpdatedBy:$("#UpdatedBy").val(),
+					UserId:$("#UserId").val(),
+					DeletedFlag:$("#DeletedFlag").val(),
+					
+				};
+			$.ajax({
+				type: "POST",
+				url: "/MANAGE_HOLIDAYSLIST_CONFIG/MANAGE_HOLIDAYSLIST_CONFIG",
+			beforeSend: function (xhr) {
+					xhr.setRequestHeader("XSRF-TOKEN",
+						$('input:hidden[name="__RequestVerificationToken"]').val());
+				},
+			data:MANAGE_HOLIDAYSLIST_CONFIG,
+			content: 'application/json;charset=utf-8',
+			dataType: "json",
+			success: function (result) {
+						Swal.fire({
+							icon: 'success',
+							title: result.responseText,
+							text: result.responseMessage,
+						}).then((result) => {
+							if (result.isConfirmed) {
+								location.href ="/MANAGE_HOLIDAYSLIST_CONFIG/ViewMANAGE_HOLIDAYSLIST_CONFIG";
+							}
+						})
+			},
+			error: function (result) {
+						Swal.fire({
+							icon: 'error',
+							title: result.responseText,
+							text: result.responseMessage,
+						});
+					}, 
+			});
+			}
+		}
+	</script>
