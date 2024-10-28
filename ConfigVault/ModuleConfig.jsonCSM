@@ -1,0 +1,42 @@
+[
+  {
+    "PageName": "MANAGE_CATEGORYMASTER",
+    "ModuleName": "CommonMaster",
+    "StoreProcedureName": "MANAGE_CATEGORYMASTER",
+    "Actions": "INSERT/VIEW",
+    "PageType": "MANAGE_CATEGORYMASTER/ViewMANAGE_CATEGORYMASTER",
+    "Profile": "db_PHED_CGRC"
+  },
+  {
+    "PageName": "MANAGE_SUBCATEGORYMASTER",
+    "ModuleName": "CommonMaster",
+    "StoreProcedureName": "MANAGE_SUBCATEGORYMASTER",
+    "Actions": "INSERT/VIEW",
+    "PageType": "MANAGE_SUBCATEGORYMASTER/ViewMANAGE_SUBCATEGORYMASTER",
+    "Profile": "db_PHED_CGRC"
+  },
+  {
+    "PageName": "MANAGE_COMPLAINTDETAILS_CONFIG",
+    "ModuleName": "GMS",
+    "StoreProcedureName": "MANAGE_COMPLAINTDETAILS_CONFIG",
+    "Actions": "INSERT/VIEW",
+    "PageType": "MANAGE_COMPLAINTDETAILS_CONFIG/ViewMANAGE_COMPLAINTDETAILS_CONFIG",
+    "Profile": "db_PHED_CGRC"
+  },
+  {
+    "PageName": "MANAGE_ESCALATION_CONFIGDETAILS",
+    "ModuleName": "Config",
+    "StoreProcedureName": "MANAGE_ESCALATION_CONFIGDETAILS",
+    "Actions": "INSERT/VIEW",
+    "PageType": "MANAGE_ESCALATION_CONFIGDETAILS/ViewMANAGE_ESCALATION_CONFIGDETAILS",
+    "Profile": "db_PHED_CGRC"
+  },
+  {
+    "PageName": "MANAGE_HOLIDAYSLIST_CONFIG",
+    "ModuleName": "MISReport",
+    "StoreProcedureName": "MANAGE_HOLIDAYSLIST_CONFIG",
+    "Actions": "INSERT/VIEW",
+    "PageType": "MANAGE_HOLIDAYSLIST_CONFIG/ViewMANAGE_HOLIDAYSLIST_CONFIG",
+    "Profile": "db_PHED_CGRC"
+  }
+]

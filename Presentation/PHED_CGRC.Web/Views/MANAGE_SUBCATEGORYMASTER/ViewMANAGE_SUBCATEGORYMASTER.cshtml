@@ -1,0 +1,155 @@
+
+@{
+ViewData["Title"] = "ViewMANAGE_SUBCATEGORYMASTER";
+}
+<div class="row">
+		@Html.AntiForgeryToken()
+			@*Write code here*@
+</div><div>
+    <ul class="nav nav-tabs nav-fill" role="tablist">
+        <a class="nav-item nav-link " asp-controller="MANAGE_SUBCATEGORYMASTER" asp-action="MANAGE_SUBCATEGORYMASTER">Add</a>
+        <a class="nav-item nav-link active" asp-controller="MANAGE_SUBCATEGORYMASTER" asp-action=ViewMANAGE_SUBCATEGORYMASTER>View</a>
+    </ul>
+</div>
+<br />
+<br />
+<br />
+<div>
+
+		 <br/>
+ <table class="table" id="tbl">
+			<thead>
+				<tr>
+					<th>
+						CategoryId
+					</th>
+					 <th>
+						SubCategoryE
+					</th>
+					 <th>
+						SubCategoryH
+					</th>
+					 <th>
+						ComplaintPriority
+					</th>
+					 <th>
+						EscalationLevel
+					</th>
+					 <th>
+						CreatedBy
+					</th>
+					 <th>
+						UpdatedBy
+					</th>
+					 <th>
+						CreatedOn
+					</th>
+					 <th>
+						UpdatedOn
+					</th>
+					 <th>
+						DeletedFlag
+					</th>
+					 <th>
+						SubCategoryIdOld
+					</th>
+					 
+			<th> Action </th>
+				</tr>
+			</thead>
+			<tbody>
+
+
+			</tbody>
+		</table>
+	</div>
+
+	
+	<script>
+$(document).ready(function(){
+	Get_MANAGE_SUBCATEGORYMASTER();
+	});
+    function encryptData(data) {
+        // Convert the integer data to a string
+        var dataString = String(data);
+
+        // Encrypt the data using CryptoJS
+        var encryptedData = CryptoJS.AES.encrypt(JSON.stringify({ data: dataString }), 'secret_key').toString();
+
+        return encryptedData;
+    }
+	function Get_MANAGE_SUBCATEGORYMASTER() {
+		$.ajax ({
+		 type:'Get',
+		 dataType: 'Json',
+		 contentType: 'application/json; charset=utf-8',
+		 data: { },
+			url: "@Url.Action("Get_MANAGE_SUBCATEGORYMASTER","MANAGE_SUBCATEGORYMASTER")",
+			success: function (result) {
+				var data1 = JSON.parse(result);
+				if (data1.length > 0) {
+				$('#tbl.tbody').empty();
+					$.each(data1, function (i, data) {
+					
+                    var encryptedID = encryptData(data.SubCategoryId);var trows ="<tr>";
+					trows = trows +"<td>"+ data.CategoryId +"</td>";
+					trows = trows +"<td>"+ data.SubCategoryE +"</td>";
+					trows = trows +"<td>"+ data.SubCategoryH +"</td>";
+					trows = trows +"<td>"+ data.ComplaintPriority +"</td>";
+					trows = trows +"<td>"+ data.EscalationLevel +"</td>";
+					trows = trows +"<td>"+ data.CreatedBy +"</td>";
+					trows = trows +"<td>"+ data.UpdatedBy +"</td>";
+					trows = trows +"<td>"+ data.CreatedOn +"</td>";
+					trows = trows +"<td>"+ data.UpdatedOn +"</td>";
+					trows = trows +"<td>"+ data.DeletedFlag +"</td>";
+					trows = trows +"<td>"+ data.SubCategoryIdOld +"</td>";
+					trows=trows + "<td>" + "<a class='btn-primary' href='/MANAGE_SUBCATEGORYMASTER/MANAGE_SUBCATEGORYMASTER?strid="+ encryptedID+"'>Edit</a>&nbsp;<button class='btn-danger' onclick='Delete_MANAGE_SUBCATEGORYMASTER("+ data.SubCategoryId +")'>Delete</button>" + "</td>";
+					trows = trows + "</tr>";
+					$('#tbl').append(trows);
+					});
+				}
+			},
+		error: function (Message) {
+		alert(Message);
+			}
+		});
+		}
+	
+     function Delete_MANAGE_SUBCATEGORYMASTER(id) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                  $.ajax({
+                    type: "Delete",
+                    dataType: "json",
+                    url: "@Url.Action("Delete_MANAGE_SUBCATEGORYMASTER","MANAGE_SUBCATEGORYMASTER")",
+			
+                    data: { "Id": id },
+                      success: function (response) {
+                          Swal.fire(
+                              'Deleted!',
+                              'Data Deleted Successfully!',
+                              'success'
+                        ).then((result) => {
+                            if (result.isConfirmed) {
+                                location.href = "/MANAGE_SUBCATEGORYMASTER/ViewMANAGE_SUBCATEGORYMASTER";
+                            }
+                            else if (result.isDenied) {
+                                Swal.fire('Changes are not saved', '', 'info')
+                            }
+                        })
+                    }
+                });
+
+            }
+            return false;
+        })
+    }	
+</script>
