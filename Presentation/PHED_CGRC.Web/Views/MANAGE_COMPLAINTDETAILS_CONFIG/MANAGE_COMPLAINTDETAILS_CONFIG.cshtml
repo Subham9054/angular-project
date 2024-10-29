@@ -1,0 +1,726 @@
+
+@{
+ViewData["Title"] = "MANAGE_COMPLAINTDETAILS_CONFIG";
+}
+<div class="row">
+		@Html.AntiForgeryToken()
+			@*Write code here*@
+</div><div>
+    <ul class="nav nav-tabs nav-fill" role="tablist">
+        <a class="nav-item nav-link active" asp-controller="MANAGE_COMPLAINTDETAILS_CONFIG" asp-action="MANAGE_COMPLAINTDETAILS_CONFIG">Add</a>
+        <a class="nav-item nav-link" asp-controller="MANAGE_COMPLAINTDETAILS_CONFIG" asp-action=ViewMANAGE_COMPLAINTDETAILS_CONFIG>View</a>
+    </ul>
+</div>
+<br />
+<br />
+<br />
+<form id="form">
+
+	<div class="form-group row">
+			<label class="col-12 col-md-2 col-xl-2 mb-3 control-label" for="demo-text-input">categoryid<span class="m-2">:</span></label>
+			<div class="col-12 col-md-6 col-xl-8 mb-3">
+				<input type="text" id="CategoryId" name="CategoryId" class="form-control">
+			</div>
+	</div>
+	<div class="form-group row">
+			<label class="col-12 col-md-2 col-xl-2 mb-3 control-label" for="demo-text-input">subcategoryid<span class="m-2">:</span></label>
+			<div class="col-12 col-md-6 col-xl-8 mb-3">
+				<input type="text" id="SubCategoryId" name="SubCategoryId" class="form-control">
+			</div>
+	</div>
+	<div class="form-group row">
+			<label class="col-12 col-md-2 col-xl-2 mb-3 control-label" for="demo-text-input">heirachyid<span class="m-2">:</span></label>
+			<div class="col-12 col-md-6 col-xl-8 mb-3">
+				<input type="text" id="HeirachyId" name="HeirachyId" class="form-control">
+			</div>
+	</div>
+	<div class="form-group row">
+			<label class="col-12 col-md-2 col-xl-2 mb-3 control-label" for="demo-text-input">compalintlogtype<span class="m-2">:</span></label>
+			<div class="col-12 col-md-6 col-xl-8 mb-3">
+				<input type="text" id="CompalintLogType" name="CompalintLogType" class="form-control">
+			</div>
+	</div>
+	<div class="form-group row">
+			<label class="col-12 col-md-2 col-xl-2 mb-3 control-label" for="demo-text-input">complaintpriority<span class="m-2">:</span></label>
+			<div class="col-12 col-md-6 col-xl-8 mb-3">
+				<input type="text" id="ComplaintPriority" name="ComplaintPriority" class="form-control">
+			</div>
+	</div>
+	<div class="form-group row">
+			<label class="col-12 col-md-2 col-xl-2 mb-3 control-label" for="demo-text-input">gender<span class="m-2">:</span></label>
+			<div class="col-12 col-md-6 col-xl-8 mb-3">
+				<input type="text" id="Gender" name="Gender" class="form-control">
+			</div>
+	</div>
+	<div class="form-group row">
+			<label class="col-12 col-md-2 col-xl-2 mb-3 control-label" for="demo-text-input">prooftypeid<span class="m-2">:</span></label>
+			<div class="col-12 col-md-6 col-xl-8 mb-3">
+				<input type="text" id="ProoftypeId" name="ProoftypeId" class="form-control">
+			</div>
+	</div>
+	<div class="form-group row">
+			<label class="col-12 col-md-2 col-xl-2 mb-3 control-label" for="demo-text-input">idproof<span class="m-2">:</span></label>
+			<div class="col-12 col-md-6 col-xl-8 mb-3">
+				<input type="text" id="IdProof" name="IdProof" class="form-control">
+			</div>
+	</div>
+	<div class="form-group row">
+			<label class="col-12 col-md-2 col-xl-2 mb-3 control-label" for="demo-text-input">tokenno<span class="m-2">:</span></label>
+			<div class="col-12 col-md-6 col-xl-8 mb-3">
+				<input type="text" id="TokenNo" name="TokenNo" class="form-control">
+			</div>
+	</div>
+	<div class="form-group row">
+			<label class="col-12 col-md-2 col-xl-2 mb-3 control-label" for="demo-text-input">complaintname<span class="m-2">:</span></label>
+			<div class="col-12 col-md-6 col-xl-8 mb-3">
+				<input type="text" id="ComplaintName" name="ComplaintName" class="form-control">
+			</div>
+	</div>
+	<div class="form-group row">
+			<label class="col-12 col-md-2 col-xl-2 mb-3 control-label" for="demo-text-input">contactno<span class="m-2">:</span></label>
+			<div class="col-12 col-md-6 col-xl-8 mb-3">
+				<input type="text" id="ContactNo" name="ContactNo" class="form-control">
+			</div>
+	</div>
+	<div class="form-group row">
+			<label class="col-12 col-md-2 col-xl-2 mb-3 control-label" for="demo-text-input">email<span class="m-2">:</span></label>
+			<div class="col-12 col-md-6 col-xl-8 mb-3">
+				<input type="text" id="Email" name="Email" class="form-control">
+			</div>
+	</div>
+	<div class="form-group row">
+			<label class="col-12 col-md-2 col-xl-2 mb-3 control-label" for="demo-text-input">idprooftype<span class="m-2">:</span></label>
+			<div class="col-12 col-md-6 col-xl-8 mb-3">
+				<input type="text" id="IdproofType" name="IdproofType" class="form-control">
+			</div>
+	</div>
+	<div class="form-group row">
+			<label class="col-12 col-md-2 col-xl-2 mb-3 control-label" for="demo-text-input">distid<span class="m-2">:</span></label>
+			<div class="col-12 col-md-6 col-xl-8 mb-3">
+				<input type="text" id="DistId" name="DistId" class="form-control">
+			</div>
+	</div>
+	<div class="form-group row">
+			<label class="col-12 col-md-2 col-xl-2 mb-3 control-label" for="demo-text-input">address<span class="m-2">:</span></label>
+			<div class="col-12 col-md-6 col-xl-8 mb-3">
+				<input type="text" id="Address" name="Address" class="form-control">
+			</div>
+	</div>
+	<div class="form-group row">
+			<label class="col-12 col-md-2 col-xl-2 mb-3 control-label" for="demo-text-input">landmark<span class="m-2">:</span></label>
+			<div class="col-12 col-md-6 col-xl-8 mb-3">
+				<input type="text" id="Landmark" name="Landmark" class="form-control">
+			</div>
+	</div>
+	<div class="form-group row">
+			<label class="col-12 col-md-2 col-xl-2 mb-3 control-label" for="demo-text-input">longitude<span class="m-2">:</span></label>
+			<div class="col-12 col-md-6 col-xl-8 mb-3">
+				<input type="text" id="Longitude" name="Longitude" class="form-control">
+			</div>
+	</div>
+	<div class="form-group row">
+			<label class="col-12 col-md-2 col-xl-2 mb-3 control-label" for="demo-text-input">latitude<span class="m-2">:</span></label>
+			<div class="col-12 col-md-6 col-xl-8 mb-3">
+				<input type="text" id="Latitude" name="Latitude" class="form-control">
+			</div>
+	</div>
+	<div class="form-group row">
+			<label class="col-12 col-md-2 col-xl-2 mb-3 control-label" for="demo-text-input">complaintagainsttype<span class="m-2">:</span></label>
+			<div class="col-12 col-md-6 col-xl-8 mb-3">
+				<input type="text" id="ComplaintAgainstType" name="ComplaintAgainstType" class="form-control">
+			</div>
+	</div>
+	<div class="form-group row">
+			<label class="col-12 col-md-2 col-xl-2 mb-3 control-label" for="demo-text-input">complaintagainstcode<span class="m-2">:</span></label>
+			<div class="col-12 col-md-6 col-xl-8 mb-3">
+				<input type="text" id="ComplaintAgainstCode" name="ComplaintAgainstCode" class="form-control">
+			</div>
+	</div>
+	<div class="form-group row">
+			<label class="col-12 col-md-2 col-xl-2 mb-3 control-label" for="demo-text-input">complaintagainstname<span class="m-2">:</span></label>
+			<div class="col-12 col-md-6 col-xl-8 mb-3">
+				<input type="text" id="ComplaintAgainstName" name="ComplaintAgainstName" class="form-control">
+			</div>
+	</div>
+	<div class="form-group row">
+			<label class="col-12 col-md-2 col-xl-2 mb-3 control-label" for="demo-text-input">complaintimage<span class="m-2">:</span></label>
+			<div class="col-12 col-md-6 col-xl-8 mb-3">
+				<input type="text" id="ComplaintImage" name="ComplaintImage" class="form-control">
+			</div>
+	</div>
+	<div class="form-group row">
+			<label class="col-12 col-md-2 col-xl-2 mb-3 control-label" for="demo-text-input">complaintfile<span class="m-2">:</span></label>
+			<div class="col-12 col-md-6 col-xl-8 mb-3">
+				<input type="text" id="ComplaintFile" name="ComplaintFile" class="form-control">
+			</div>
+	</div>
+	<div class="form-group row">
+			<label class="col-12 col-md-2 col-xl-2 mb-3 control-label" for="demo-text-input">complaintfile1<span class="m-2">:</span></label>
+			<div class="col-12 col-md-6 col-xl-8 mb-3">
+				<input type="text" id="ComplaintFile1" name="ComplaintFile1" class="form-control">
+			</div>
+	</div>
+	<div class="form-group row">
+			<label class="col-12 col-md-2 col-xl-2 mb-3 control-label" for="demo-text-input">docnature<span class="m-2">:</span></label>
+			<div class="col-12 col-md-6 col-xl-8 mb-3">
+				<input type="text" id="Docnature" name="Docnature" class="form-control">
+			</div>
+	</div>
+	<div class="form-group row">
+			<label class="col-12 col-md-2 col-xl-2 mb-3 control-label" for="demo-text-input">docnature1<span class="m-2">:</span></label>
+			<div class="col-12 col-md-6 col-xl-8 mb-3">
+				<input type="text" id="Docnature1" name="Docnature1" class="form-control">
+			</div>
+	</div>
+	<div class="form-group row">
+			<label class="col-12 col-md-2 col-xl-2 mb-3 control-label" for="demo-text-input">complaintdeatils<span class="m-2">:</span></label>
+			<div class="col-12 col-md-6 col-xl-8 mb-3">
+				<input type="text" id="ComplaintDeatils" name="ComplaintDeatils" class="form-control">
+			</div>
+	</div>
+	<div class="form-group row">
+			<label class="col-12 col-md-2 col-xl-2 mb-3 control-label" for="demo-text-input">complaintstatusid<span class="m-2">:</span></label>
+			<div class="col-12 col-md-6 col-xl-8 mb-3">
+				<input type="text" id="ComplaintStatusId" name="ComplaintStatusId" class="form-control">
+			</div>
+	</div>
+	<div class="form-group row">
+			<label class="col-12 col-md-2 col-xl-2 mb-3 control-label" for="demo-text-input">pendingwith<span class="m-2">:</span></label>
+			<div class="col-12 col-md-6 col-xl-8 mb-3">
+				<input type="text" id="PendingWith" name="PendingWith" class="form-control">
+			</div>
+	</div>
+	<div class="form-group row">
+			<label class="col-12 col-md-2 col-xl-2 mb-3 control-label" for="demo-text-input">level<span class="m-2">:</span></label>
+			<div class="col-12 col-md-6 col-xl-8 mb-3">
+				<input type="text" id="Level" name="Level" class="form-control">
+			</div>
+	</div>
+	<div class="form-group row">
+			<label class="col-12 col-md-2 col-xl-2 mb-3 control-label" for="demo-text-input">escaltiondate<span class="m-2">:</span></label>
+			<div class="col-12 col-md-6 col-xl-8 mb-3">
+				<input type="text" id="EscaltionDate" name="EscaltionDate" class="form-control">
+			</div>
+	</div>
+	<div class="form-group row">
+			<label class="col-12 col-md-2 col-xl-2 mb-3 control-label" for="demo-text-input">nextata<span class="m-2">:</span></label>
+			<div class="col-12 col-md-6 col-xl-8 mb-3">
+				<input type="text" id="NextAta" name="NextAta" class="form-control">
+			</div>
+	</div>
+	<div class="form-group row">
+			<label class="col-12 col-md-2 col-xl-2 mb-3 control-label" for="demo-text-input">lastupdateddate<span class="m-2">:</span></label>
+			<div class="col-12 col-md-6 col-xl-8 mb-3">
+				<input type="text" id="LastUpdatedDate" name="LastUpdatedDate" class="form-control">
+			</div>
+	</div>
+	<div class="form-group row">
+			<label class="col-12 col-md-2 col-xl-2 mb-3 control-label" for="demo-text-input">approxresdate<span class="m-2">:</span></label>
+			<div class="col-12 col-md-6 col-xl-8 mb-3">
+				<input type="text" id="ApproxResDate" name="ApproxResDate" class="form-control">
+			</div>
+	</div>
+	<div class="form-group row">
+			<label class="col-12 col-md-2 col-xl-2 mb-3 control-label" for="demo-text-input">remark<span class="m-2">:</span></label>
+			<div class="col-12 col-md-6 col-xl-8 mb-3">
+				<input type="text" id="Remark" name="Remark" class="form-control">
+			</div>
+	</div>
+	<div class="form-group row">
+			<label class="col-12 col-md-2 col-xl-2 mb-3 control-label" for="demo-text-input">actionfile<span class="m-2">:</span></label>
+			<div class="col-12 col-md-6 col-xl-8 mb-3">
+				<input type="text" id="ActionFile" name="ActionFile" class="form-control">
+			</div>
+	</div>
+	<div class="form-group row">
+			<label class="col-12 col-md-2 col-xl-2 mb-3 control-label" for="demo-text-input">userid<span class="m-2">:</span></label>
+			<div class="col-12 col-md-6 col-xl-8 mb-3">
+				<input type="text" id="UserId" name="UserId" class="form-control">
+			</div>
+	</div>
+	<div class="form-group row">
+			<label class="col-12 col-md-2 col-xl-2 mb-3 control-label" for="demo-text-input">createdon<span class="m-2">:</span></label>
+			<div class="col-12 col-md-6 col-xl-8 mb-3">
+				<input type="text" id="CreatedOn" name="CreatedOn" class="form-control">
+			</div>
+	</div>
+	<div class="form-group row">
+			<label class="col-12 col-md-2 col-xl-2 mb-3 control-label" for="demo-text-input">updatedon<span class="m-2">:</span></label>
+			<div class="col-12 col-md-6 col-xl-8 mb-3">
+				<input type="text" id="UpdatedOn" name="UpdatedOn" class="form-control">
+			</div>
+	</div>
+	<div class="form-group row">
+			<label class="col-12 col-md-2 col-xl-2 mb-3 control-label" for="demo-text-input">deletedflag<span class="m-2">:</span></label>
+			<div class="col-12 col-md-6 col-xl-8 mb-3">
+				<input type="text" id="DeletedFlag" name="DeletedFlag" class="form-control">
+			</div>
+	</div>
+	<div class="form-group row">
+			<label class="col-12 col-md-2 col-xl-2 mb-3 control-label" for="demo-text-input">block<span class="m-2">:</span></label>
+			<div class="col-12 col-md-6 col-xl-8 mb-3">
+				<input type="text" id="Block" name="Block" class="form-control">
+			</div>
+	</div>
+	<div class="form-group row">
+			<label class="col-12 col-md-2 col-xl-2 mb-3 control-label" for="demo-text-input">panchayat<span class="m-2">:</span></label>
+			<div class="col-12 col-md-6 col-xl-8 mb-3">
+				<input type="text" id="Panchayat" name="Panchayat" class="form-control">
+			</div>
+	</div>
+	<div class="form-group row">
+			<label class="col-12 col-md-2 col-xl-2 mb-3 control-label" for="demo-text-input">village<span class="m-2">:</span></label>
+			<div class="col-12 col-md-6 col-xl-8 mb-3">
+				<input type="text" id="Village" name="Village" class="form-control">
+			</div>
+	</div>
+	<div class="form-group">
+		<label class="col-12 col-md-2 col-xl-2 control-label" for="demo-text-input"></label>
+<br/>
+		<div class="col-12 col-md-8 col-xl-12">
+			<input type="button" value="Submit" id="btn_Submit" class="btn btn-primary" onclick="Save_MANAGE_COMPLAINTDETAILS_CONFIG()"/>
+		</div>
+	</div>
+<input id="hdnMANAGE_COMPLAINTDETAILS_CONFIG" type="hidden" value="0" />
+</form>
+	
+	<script>
+$(document).ready(function () {
+        function getUrlVars() {
+            var vars = {};
+            var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
+                vars[key] = decodeURIComponent(value);
+            });
+            return vars;
+        }
+        var id = getUrlVars()["strid"];
+
+        if (id != undefined || id != null) {
+            Edit_MANAGE_COMPLAINTDETAILS_CONFIG(decryptData(id));
+         }
+    });
+
+        function decryptData(encryptedData) {
+            var decryptedBytes = CryptoJS.AES.decrypt(encryptedData, 'secret_key');
+            var decryptedString = decryptedBytes.toString(CryptoJS.enc.Utf8);
+            var decryptedObject = JSON.parse(decryptedString);
+            var originalData = decryptedObject.data;
+            var decryptedInteger = parseInt(originalData, 10);
+            return decryptedInteger;
+        }function Edit_MANAGE_COMPLAINTDETAILS_CONFIG(id) {
+        $.ajax({
+            type: "Get",
+            dataType: "json",
+            url: '@Url.Action("EDIT_MANAGE_COMPLAINTDETAILS_CONFIG", "MANAGE_COMPLAINTDETAILS_CONFIG")',
+            data: { "Id": id },
+            success: function (Result) {
+                var data1 = JSON.parse(Result);
+   $("#hdnMANAGE_COMPLAINTDETAILS_CONFIG").val(data1.ComplaintId);
+             $('#CategoryId').val(data1.CategoryId);
+					$('#SubCategoryId').val(data1.SubCategoryId);
+					$('#HeirachyId').val(data1.HeirachyId);
+					$('#CompalintLogType').val(data1.CompalintLogType);
+					$('#ComplaintPriority').val(data1.ComplaintPriority);
+					$('#Gender').val(data1.Gender);
+					$('#ProoftypeId').val(data1.ProoftypeId);
+					$('#IdProof').val(data1.IdProof);
+					$('#TokenNo').val(data1.TokenNo);
+					$('#ComplaintName').val(data1.ComplaintName);
+					$('#ContactNo').val(data1.ContactNo);
+					$('#Email').val(data1.Email);
+					$('#IdproofType').val(data1.IdproofType);
+					$('#DistId').val(data1.DistId);
+					$('#Address').val(data1.Address);
+					$('#Landmark').val(data1.Landmark);
+					$('#Longitude').val(data1.Longitude);
+					$('#Latitude').val(data1.Latitude);
+					$('#ComplaintAgainstType').val(data1.ComplaintAgainstType);
+					$('#ComplaintAgainstCode').val(data1.ComplaintAgainstCode);
+					$('#ComplaintAgainstName').val(data1.ComplaintAgainstName);
+					$('#ComplaintImage').val(data1.ComplaintImage);
+					$('#ComplaintFile').val(data1.ComplaintFile);
+					$('#ComplaintFile1').val(data1.ComplaintFile1);
+					$('#Docnature').val(data1.Docnature);
+					$('#Docnature1').val(data1.Docnature1);
+					$('#ComplaintDeatils').val(data1.ComplaintDeatils);
+					$('#ComplaintStatusId').val(data1.ComplaintStatusId);
+					$('#PendingWith').val(data1.PendingWith);
+					$('#Level').val(data1.Level);
+					$('#EscaltionDate').val(data1.EscaltionDate);
+					$('#NextAta').val(data1.NextAta);
+					$('#LastUpdatedDate').val(data1.LastUpdatedDate);
+					$('#ApproxResDate').val(data1.ApproxResDate);
+					$('#Remark').val(data1.Remark);
+					$('#ActionFile').val(data1.ActionFile);
+					$('#UserId').val(data1.UserId);
+					$('#CreatedOn').val(data1.CreatedOn);
+					$('#UpdatedOn').val(data1.UpdatedOn);
+					$('#DeletedFlag').val(data1.DeletedFlag);
+					$('#Block').val(data1.Block);
+					$('#Panchayat').val(data1.Panchayat);
+					$('#Village').val(data1.Village);
+					
+            },
+            error: function (Message) {
+                alert(Message);
+            }
+        });
+    }        $("#form").validate({
+            rules: {
+                CategoryId: {
+                    required: true
+                },
+                SubCategoryId: {
+                    required: true
+                },
+                HeirachyId: {
+                    required: true
+                },
+                CompalintLogType: {
+                    required: true
+                },
+                ComplaintPriority: {
+                    required: true
+                },
+                Gender: {
+                    required: true
+                },
+                ProoftypeId: {
+                    required: true
+                },
+                IdProof: {
+                    required: true
+                },
+                TokenNo: {
+                    required: true
+                },
+                ComplaintName: {
+                    required: true
+                },
+                ContactNo: {
+                    required: true
+                },
+                Email: {
+                    required: true
+                },
+                IdproofType: {
+                    required: true
+                },
+                DistId: {
+                    required: true
+                },
+                Address: {
+                    required: true
+                },
+                Landmark: {
+                    required: true
+                },
+                Longitude: {
+                    required: true
+                },
+                Latitude: {
+                    required: true
+                },
+                ComplaintAgainstType: {
+                    required: true
+                },
+                ComplaintAgainstCode: {
+                    required: true
+                },
+                ComplaintAgainstName: {
+                    required: true
+                },
+                ComplaintImage: {
+                    required: true
+                },
+                ComplaintFile: {
+                    required: true
+                },
+                ComplaintFile1: {
+                    required: true
+                },
+                Docnature: {
+                    required: true
+                },
+                Docnature1: {
+                    required: true
+                },
+                ComplaintDeatils: {
+                    required: true
+                },
+                ComplaintStatusId: {
+                    required: true
+                },
+                PendingWith: {
+                    required: true
+                },
+                Level: {
+                    required: true
+                },
+                EscaltionDate: {
+                    required: true
+                },
+                NextAta: {
+                    required: true
+                },
+                LastUpdatedDate: {
+                    required: true
+                },
+                ApproxResDate: {
+                    required: true
+                },
+                Remark: {
+                    required: true
+                },
+                ActionFile: {
+                    required: true
+                },
+                UserId: {
+                    required: true
+                },
+                CreatedOn: {
+                    required: true
+                },
+                UpdatedOn: {
+                    required: true
+                },
+                DeletedFlag: {
+                    required: true
+                },
+                Block: {
+                    required: true
+                },
+                Panchayat: {
+                    required: true
+                },
+                Village: {
+                    required: true
+                },
+                            },
+            messages: {
+                CategoryId: {
+                    required: "Please enter CategoryId"
+                 },
+                SubCategoryId: {
+                    required: "Please enter SubCategoryId"
+                 },
+                HeirachyId: {
+                    required: "Please enter HeirachyId"
+                 },
+                CompalintLogType: {
+                    required: "Please enter CompalintLogType"
+                 },
+                ComplaintPriority: {
+                    required: "Please enter ComplaintPriority"
+                 },
+                Gender: {
+                    required: "Please enter Gender"
+                 },
+                ProoftypeId: {
+                    required: "Please enter ProoftypeId"
+                 },
+                IdProof: {
+                    required: "Please enter IdProof"
+                 },
+                TokenNo: {
+                    required: "Please enter TokenNo"
+                 },
+                ComplaintName: {
+                    required: "Please enter ComplaintName"
+                 },
+                ContactNo: {
+                    required: "Please enter ContactNo"
+                 },
+                Email: {
+                    required: "Please enter Email"
+                 },
+                IdproofType: {
+                    required: "Please enter IdproofType"
+                 },
+                DistId: {
+                    required: "Please enter DistId"
+                 },
+                Address: {
+                    required: "Please enter Address"
+                 },
+                Landmark: {
+                    required: "Please enter Landmark"
+                 },
+                Longitude: {
+                    required: "Please enter Longitude"
+                 },
+                Latitude: {
+                    required: "Please enter Latitude"
+                 },
+                ComplaintAgainstType: {
+                    required: "Please enter ComplaintAgainstType"
+                 },
+                ComplaintAgainstCode: {
+                    required: "Please enter ComplaintAgainstCode"
+                 },
+                ComplaintAgainstName: {
+                    required: "Please enter ComplaintAgainstName"
+                 },
+                ComplaintImage: {
+                    required: "Please enter ComplaintImage"
+                 },
+                ComplaintFile: {
+                    required: "Please enter ComplaintFile"
+                 },
+                ComplaintFile1: {
+                    required: "Please enter ComplaintFile1"
+                 },
+                Docnature: {
+                    required: "Please enter Docnature"
+                 },
+                Docnature1: {
+                    required: "Please enter Docnature1"
+                 },
+                ComplaintDeatils: {
+                    required: "Please enter ComplaintDeatils"
+                 },
+                ComplaintStatusId: {
+                    required: "Please enter ComplaintStatusId"
+                 },
+                PendingWith: {
+                    required: "Please enter PendingWith"
+                 },
+                Level: {
+                    required: "Please enter Level"
+                 },
+                EscaltionDate: {
+                    required: "Please enter EscaltionDate"
+                 },
+                NextAta: {
+                    required: "Please enter NextAta"
+                 },
+                LastUpdatedDate: {
+                    required: "Please enter LastUpdatedDate"
+                 },
+                ApproxResDate: {
+                    required: "Please enter ApproxResDate"
+                 },
+                Remark: {
+                    required: "Please enter Remark"
+                 },
+                ActionFile: {
+                    required: "Please enter ActionFile"
+                 },
+                UserId: {
+                    required: "Please enter UserId"
+                 },
+                CreatedOn: {
+                    required: "Please enter CreatedOn"
+                 },
+                UpdatedOn: {
+                    required: "Please enter UpdatedOn"
+                 },
+                DeletedFlag: {
+                    required: "Please enter DeletedFlag"
+                 },
+                Block: {
+                    required: "Please enter Block"
+                 },
+                Panchayat: {
+                    required: "Please enter Panchayat"
+                 },
+                Village: {
+                    required: "Please enter Village"
+                 },
+                
+           },
+            	
+            highlight: function (element) {	
+                $(element).removeClass("is-valid")		
+                $(element).parent().addClass('error')		
+                $(element).addClass("is-invalid")	
+            },	
+            unhighlight: function (element) {	
+                $(element).parent().removeClass('error')	
+                $(element).removeClass("is-invalid");	
+                $(element).addClass("is-valid")	
+            }	
+        });
+			function Save_MANAGE_COMPLAINTDETAILS_CONFIG() {
+			if ($("#form").valid()) {
+					
+					var MANAGE_COMPLAINTDETAILS_CONFIG ={ 
+			
+					 ComplaintId:$('#hdnMANAGE_COMPLAINTDETAILS_CONFIG').val(),
+CategoryId:$("#CategoryId").val(),
+					SubCategoryId:$("#SubCategoryId").val(),
+					HeirachyId:$("#HeirachyId").val(),
+					CompalintLogType:$("#CompalintLogType").val(),
+					ComplaintPriority:$("#ComplaintPriority").val(),
+					Gender:$("#Gender").val(),
+					ProoftypeId:$("#ProoftypeId").val(),
+					IdProof:$("#IdProof").val(),
+					TokenNo:$("#TokenNo").val(),
+					ComplaintName:$("#ComplaintName").val(),
+					ContactNo:$("#ContactNo").val(),
+					Email:$("#Email").val(),
+					IdproofType:$("#IdproofType").val(),
+					DistId:$("#DistId").val(),
+					Address:$("#Address").val(),
+					Landmark:$("#Landmark").val(),
+					Longitude:$("#Longitude").val(),
+					Latitude:$("#Latitude").val(),
+					ComplaintAgainstType:$("#ComplaintAgainstType").val(),
+					ComplaintAgainstCode:$("#ComplaintAgainstCode").val(),
+					ComplaintAgainstName:$("#ComplaintAgainstName").val(),
+					ComplaintImage:$("#ComplaintImage").val(),
+					ComplaintFile:$("#ComplaintFile").val(),
+					ComplaintFile1:$("#ComplaintFile1").val(),
+					Docnature:$("#Docnature").val(),
+					Docnature1:$("#Docnature1").val(),
+					ComplaintDeatils:$("#ComplaintDeatils").val(),
+					ComplaintStatusId:$("#ComplaintStatusId").val(),
+					PendingWith:$("#PendingWith").val(),
+					Level:$("#Level").val(),
+					EscaltionDate:$("#EscaltionDate").val(),
+					NextAta:$("#NextAta").val(),
+					LastUpdatedDate:$("#LastUpdatedDate").val(),
+					ApproxResDate:$("#ApproxResDate").val(),
+					Remark:$("#Remark").val(),
+					ActionFile:$("#ActionFile").val(),
+					UserId:$("#UserId").val(),
+					CreatedOn:$("#CreatedOn").val(),
+					UpdatedOn:$("#UpdatedOn").val(),
+					DeletedFlag:$("#DeletedFlag").val(),
+					Block:$("#Block").val(),
+					Panchayat:$("#Panchayat").val(),
+					Village:$("#Village").val(),
+					
+				};
+			$.ajax({
+				type: "POST",
+				url: "/MANAGE_COMPLAINTDETAILS_CONFIG/MANAGE_COMPLAINTDETAILS_CONFIG",
+			beforeSend: function (xhr) {
+					xhr.setRequestHeader("XSRF-TOKEN",
+						$('input:hidden[name="__RequestVerificationToken"]').val());
+				},
+			data:MANAGE_COMPLAINTDETAILS_CONFIG,
+			content: 'application/json;charset=utf-8',
+			dataType: "json",
+			success: function (result) {
+						Swal.fire({
+							icon: 'success',
+							title: result.responseText,
+							text: result.responseMessage,
+						}).then((result) => {
+							if (result.isConfirmed) {
+								location.href ="/MANAGE_COMPLAINTDETAILS_CONFIG/ViewMANAGE_COMPLAINTDETAILS_CONFIG";
+							}
+						})
+			},
+			error: function (result) {
+						Swal.fire({
+							icon: 'error',
+							title: result.responseText,
+							text: result.responseMessage,
+						});
+					}, 
+			});
+			}
+		}
+	</script>

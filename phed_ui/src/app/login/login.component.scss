@@ -1,0 +1,312 @@
+@import "../../assets/scss/variables";
+
+.login-wrapp {
+    background: url(../../assets/img/login-bg.png) center / cover no-repeat;
+
+    .login-container {
+        background: transparent linear-gradient(116deg, #00000000 0%, #0000001F 54%, #00000045 70%, #000000C4 100%) 0% 0% no-repeat padding-box;
+    }
+}
+
+.login-box {
+    border-radius: 1rem;
+    padding: 3rem;
+    margin-left: 4rem;
+
+    @media (max-width:1366px) {
+        margin-left: 0rem;
+    }
+
+    @media (max-width:630px) {
+        padding: 2.5rem;
+    }
+    @media (max-width:375px) {
+        padding: 2rem;
+    }
+    img {
+        height: 4.5rem;
+        @media (max-width:576px){
+            height: 4rem;
+        }
+    }
+
+    h1 {
+        font-size: 1.8rem;
+        font-weight: bold;
+        margin-bottom: 0;
+
+        @media (max-width:576px) {
+            font-size: 1.3rem !important;
+        }
+        @media (max-width:375px){
+            font-size: 1.4rem !important;
+        }
+    }
+
+    h4 {
+        position: relative;
+        padding-bottom: 1rem;
+        font-size: 1.6rem;
+        font-weight: 500;
+        margin-bottom: 1.5rem;
+        @media (max-width:576px){
+            margin-bottom: 1rem;  
+        }
+        &::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            width: 4rem;
+            height: 0.1rem;
+            left: 0;
+            background-color: rgba($black, 0.5);
+
+        }
+    }
+
+    .form-label {
+        font-weight: 600;
+    }
+
+    .form-control {
+        padding: 0.8rem 1rem 0.8rem 1.3rem;
+        border-radius: $custom-radius;
+        line-height: inherit;
+
+        &:focus {
+            box-shadow: none;
+        }
+    }
+
+    .iconinput {
+        position: relative;
+
+        >label {
+            position: absolute;
+            left: 1rem;
+            display: inline-block;
+            color: $black;
+            transition: .3s;
+            letter-spacing: .5px;
+            top: -12px;
+            z-index: 0;
+            font-size: .9rem;
+            background-color: #fff;
+            padding: 2px 5px;
+        }
+
+        input {
+            &::placeholder {
+                color: #ddd;
+            }
+        }
+
+        &.password {
+            i {
+                font-size: 1.4rem;
+                top: 0.7rem;
+            }
+        }
+
+        a {
+            &.enablebtn {
+                position: absolute;
+                padding: 0 0.5rem;
+                right: 0.5rem;
+                top: 0.8rem;
+                color: $icon-color;
+            }
+        }
+    }
+
+    .btn-login {
+        background: transparent linear-gradient(103deg, #097CC5 0%, #128FE0 100%) 0% 0% no-repeat padding-box;
+        color: $white;
+        padding: 0.7rem 0.6rem;
+    }
+}
+
+a:not(.btn) {
+    color: $blue;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+@media (max-width:768px) {
+    .login-wrapp {
+        .col-md-6 {
+            width: 65%;
+        }
+    }
+}
+
+@media (max-width:630px) {
+    .login-wrapp {
+        .col-md-6 {
+            width: 90%;
+        }
+    }
+}
+
+@media (max-width:576px) {
+    .login-box {
+        .mb-5 {
+            margin-bottom: 2.5rem !important;
+        }
+    }
+}
+
+@media (max-width:530px) {
+    .login-wrapp {
+        .col-md-6 {
+            width: 100%;
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// @import "../../assets/scss/variables";
+
+// .login-wrapp {
+//     background-color: $gray-200;
+// }
+
+// .login-box {
+//     border-radius: 1rem;
+
+//     img {
+//         height: 4.5rem;
+//     }
+
+//     h1 {
+//         font-size: 1.8rem;
+//         font-weight: bold;
+//     }
+
+//     h4 {
+//         position: relative;
+//         padding-bottom: 0.5rem;
+
+//         &::after {
+//             content: "";
+//             position: absolute;
+//             bottom: 0;
+//             width: 4rem;
+//             height: 0.2rem;
+//             left: 0;
+//             //transform: translate(-220%, 50%);
+//             background-color: rgba($link-color, 0.7);
+//         }
+//     }
+
+//     .form-label {
+//         font-weight: 600;
+//     }
+
+//     .form-control {
+//         padding: 0.7rem 1rem 0.7rem 3.2rem;
+//         border-radius: $custom-radius;
+//         line-height: inherit;
+//     }
+
+//     .iconinput {
+//         position: relative;
+
+//         & > i {
+//             position: absolute;
+//             top: 0.4rem;
+//             left: 0.8rem;
+//             top: 0.6rem;
+//             color: rgba($link-color, 0.8);
+//         }
+
+//         &.password {
+//             i {
+//                 font-size: 1.4rem;
+//                 top: 0.7rem;
+//             }
+//         }
+
+//         a {
+//             &.enablebtn {
+//                 position: absolute;
+//                 padding: 0 0.5rem;
+//                 right: 0.5rem;
+//                 top: 0.6rem;
+//             }
+//         }
+//     }
+// }
+
+// a:not(.btn) {
+//     color: $blue;
+
+//     &:hover {
+//         text-decoration: underline;
+//     }
+// }
+
+// @media screen and (max-width:576px) {
+//     .login-box {
+//         img {
+//             height: 3.2rem;
+//         }
+
+//         h1 {
+//             font-size: 2.5rem;
+//             font-weight: bold;
+//         }
+//     }
+// }

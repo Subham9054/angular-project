@@ -1,0 +1,97 @@
+<div class="form-cointainer">
+  <div class="main-tab">
+    <div class="row justify-content-between">
+      <div class="col-xxl-3 col-lg-4 col-md-6 col-sm-3">
+        <ul class="nav nav-tabs" routerLinkActive="active">
+          <li class="nav-item">
+            <a routerLink="/application/complaintcategory" class="nav-link active">Add</a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/application/complaintcategory-view" class="nav-link">View</a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-9">
+        <div class="utilite float-end mb-1">
+          <ul class="mb-0">
+            <li class="bg-transparent border-0">
+              <span class="text-danger small"><b>(*)</b> Indicate mandatory</span>
+            </li>
+            <li>
+              <a href="javascript:void(0)" ngbTooltip="Click to Print"><i class="bi bi-printer"></i></a>
+            </li>
+            <li>
+              <a href="javascript:void(0)" ngbTooltip="Delete Record"><i class="bi bi-trash"></i></a>
+            </li>
+            <li>
+              <a href="javascript:void(0)" ngbTooltip="Download"><i class="bi bi-download"></i></a>
+            </li>
+            <li>
+              <a href="javascript:void(0)" ngbTooltip="Go to Previous"><i class="bi bi-arrow-left"></i></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-box content-area pb-1">
+    <div class="form-section">
+
+      <form *ngIf="!isUpdateMode" (ngSubmit)="submitComplaint()" #complaintForm="ngForm">
+        <div class="row">
+
+          <div class="col-xl-3 col-lg-4 custom-col">
+            <div class="mb-3">
+              <label for="complaintCategoryE" class="form-label">Complaint Category (English)</label>
+              <input id="complaintCategoryE" class="form-control" [(ngModel)]="VCH_CATEGORY" name="complaintCategoryE"
+                 required />
+            </div>
+          </div>
+
+          <div class="col-xl-3 col-lg-4 custom-col">
+            <div class="mb-3">
+              <label for="complaintCategoryH" class="form-label">Complaint Category (Hindi)</label>
+              <input id="complaintCategoryH" class="form-control" [(ngModel)]="NVCH_CATEGORY" name="complaintCategoryH"
+                 required />
+            </div>
+          </div>
+
+          <div class="col-xl-3 col-lg-4 btn-col">
+            <label class="form-label d-md-block d-none">&nbsp;&nbsp;</label>
+            <div class="form-btn">
+              <button type="submit" class="btn btn-primary">Submit</button>
+              <button type="button" class="btn btn-danger" (click)="resetForm()">Reset</button>
+            </div>
+          </div>
+        </div>
+
+      </form>
+
+      <form *ngIf="isUpdateMode" (ngSubmit)="updateComplaint()" #updateForm="ngForm">
+        <div class="col-xl-3 col-lg-4 custom-col">
+          <div class="mb-3">
+            <label for="complaintCategoryE" class="form-label">Complaint Category (English)</label>
+            <input id="complaintCategoryE" class="form-control" [(ngModel)]="VCH_CATEGORY" name="complaintCategoryE"
+              placeholder="Enter Complaint Category (E)" required />
+          </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 custom-col">
+          <div class="mb-3">
+            <label for="complaintCategoryH" class="form-label">Complaint Category (Hindi)</label>
+            <input id="complaintCategoryH" class="form-control" [(ngModel)]="NVCH_CATEGORY" name="complaintCategoryH"
+              placeholder="Enter Complaint Category (H)" required />
+          </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 btn-col">
+          <label class="form-label d-md-block d-none">&nbsp;&nbsp;</label>
+          <div class="form-btn">
+            <button type="submit" class="btn btn-primary">Update</button>
+            <button type="button" class="btn btn-secondary" (click)="resetForm()">Reset</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+

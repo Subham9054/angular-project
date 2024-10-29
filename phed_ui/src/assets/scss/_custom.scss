@@ -1,0 +1,418 @@
+@import "../../assets/scss/variables";
+
+.modal {
+    .modal-logo {
+        display: flex;
+        align-items: center;
+
+        img {
+            height: 4.5rem;
+        }
+
+        h1 {
+            font-size: 1.2rem;
+            margin-bottom: 0.2rem;
+            text-transform: uppercase;
+        }
+
+        p {
+            margin-bottom: 0;
+            line-height: 1.2;
+        }
+
+        small {
+            opacity: 0.6;
+        }
+    }
+
+    .modal-title-part {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 1.5rem;
+        border-bottom: 1px solid #ddd;
+
+        h5 {
+            font-size: 1.5rem;
+        }
+    }
+
+    .subtitle {
+        color: $link-color;
+    }
+}
+
+.view-form {
+    .form-label {
+        color: #939393;
+        margin-bottom: 0.1rem;
+    }
+
+    .form-value {
+        font-weight: 500;
+        display: block;
+    }
+}
+
+.table-responsive {
+    &::-webkit-scrollbar {
+        height: 10px;
+        border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 0px rgba(0, 0, 0, 0.233);
+        background-color: rgba(0, 0, 0, 0.0352941176);
+        width: 5px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: rgba(0, 0, 0, 0.295);
+        border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        background-color: rgba(0, 0, 0, 0.233);
+    }
+
+}
+
+// Pagination Design Start
+.pagination {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1rem;
+
+    .page-item {
+        margin-left: 0.4rem;
+
+        .page-link {
+            margin-left: 0.15rem;
+            padding: 0.2rem 0.5rem;
+            line-height: 20px;
+            border-radius: 0.4rem;
+            &.active{
+                background-color: $blue-dark;
+                color: $white;
+            }
+        }
+    }
+}
+
+// Pagination Design End
+
+// // Breadcrumb design Start
+// .breadcrumb {
+//     margin-bottom: 0rem;
+//     margin-left: 1rem;
+
+//     @media (max-width:630px) {
+//         display: none;
+//     }
+
+//     .breadcrumb-item {
+//         a {
+//             color: $gray-700;
+//         }
+
+//         &.active {
+//             font-weight: 500;
+//             color: #000;
+//         }
+//     }
+// }
+
+// // Breadcrumb Design End
+
+.content-area {
+    .table {
+        .badge {
+            font-weight: 300;
+        }
+    }
+}
+
+.upload-doc {
+    position: relative;
+
+    .dom-upload {
+        position: absolute;
+        right: -45px;
+        top: 31px;
+
+    }
+}
+
+// Table-fixed
+.custom-table {
+    height: 42vh;
+    overflow-y: auto;
+    position: relative;
+
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+
+    thead {
+        tr {
+            th {
+                position: sticky;
+                top: 0;
+                left: 0;
+                right: 0;
+            }
+        }
+    }
+
+    &::-webkit-scrollbar {
+        width: 10px;
+        border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 0px rgba(0, 0, 0, 0.233);
+        background-color: rgba(0, 0, 0, 0.0352941176);
+
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: rgba(0, 0, 0, 0.295);
+        border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        background-color: rgba(0, 0, 0, 0.233);
+    }
+}
+
+// Ck editor
+.ck-content {
+    height: 20vh;
+}
+
+.ck .ck-powered-by {
+    display: none;
+}
+
+.info-dashboad {
+    .dashboard-card {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 1rem;
+    }
+
+    .card {
+        position: relative;
+
+        .media {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+
+            .avatar {
+                border-radius: 50%;
+                height: 70px;
+                width: 70px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                i {
+                    font-size: 2.3rem;
+                }
+            }
+
+
+        }
+
+        .card-link {
+            position: absolute;
+            right: 0;
+            left: 0;
+            bottom: 0;
+            top: 0;
+        }
+    }
+
+    .bg-pending {
+        background-color: #ff9f60;
+        color: #ffffff;
+    }
+
+    .pending {
+        border: 1px solid #ff9f60;
+    }
+
+    .pending{
+        &:hover{
+            background-color: #ff9f60;
+            .bg-pending {
+                background-color: #ffffff;
+                color: #ff9f60;
+            } 
+        }
+    }
+
+    .bg-received {
+        background-color: rgb(67 116 231);
+        color: #f7f7f7;
+    }
+
+    .received {
+        border: 1px solid #4374e7;
+    }
+   .received{
+        &:hover{
+            background-color: #5580e6;
+            .bg-received {
+                background-color: #ffffff;
+                color: #4374e7;
+            } 
+        }
+    }
+
+
+    .bg-resolved {
+        background-color: #008000;
+        color: #ffffff;
+    }
+
+    .resolved {
+        border: 1px solid #008000;
+    }
+    .resolved{
+        &:hover{
+            background-color: #008000c2;
+            .bg-resolved {
+                background-color: #ffffff;
+                color: #008000;
+            } 
+        }
+    }
+
+
+    .bg-non-resolved {
+        background-color: #dc3545;
+        color: #ffffff;
+    }
+
+    .non-resolved {
+        border: 1px solid #dc3545;
+    }
+    .non-resolved{
+        &:hover{
+            background-color:#df616d;
+            .bg-non-resolved {
+                background-color: #ffffff;
+                color: #dc3545;
+            } 
+        }
+    }
+
+
+    .bg-verify {
+        background-color: #0dcaf0;
+        color: #ffffff;
+    }
+
+    .verify {
+        border: 1px solid #0dcaf0;
+    }
+    .verify{
+        &:hover{
+            background-color:#60dbf3;
+            .bg-verify {
+                background-color: #ffffff;
+                color: #0dcaf0;
+            } 
+        }
+    }
+
+
+
+    h3,
+    p {
+        margin-bottom: 0;
+    }
+
+}
+.custom-header{
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 1rem;
+    .left-section {
+        display: flex;
+        flex-basis: 40%;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1rem;
+        h5{
+            flex-basis: inherit;
+            margin-bottom: 0;
+        }
+        .form-select{
+            flex-basis: 15%;
+        }
+    }
+    
+    .custom-tab{
+        margin-left: auto;
+        .nav-tabs{
+            margin-bottom: -0.5rem;
+            .nav-link{
+                background-color: $blue-dark;
+                color: $white;
+                &:hover{
+                    background-color:$link-color;
+                    color: $white;
+                }
+                &.active{
+                    background-color: $white;
+                    color: $black;
+                }
+            }
+        }
+    }
+}
+
+.form-btn{
+    display: flex;
+    gap: 0.4rem;
+}
+
+@media (max-width:1024px){
+    .form-btn{
+        justify-content: end;
+    }
+    .custom-col{
+        width: 37% !important;
+    }
+    .btn-col{
+        width: 24% !important;
+    }
+}
+@media (max-width: 530px) {
+    .utilite {
+      margin-top: 1rem;
+      text-align: center;
+    }
+  }
+@media (max-width:630px){
+    .form-btn{
+        justify-content: start;
+        margin-bottom: 1rem;
+    }
+    .custom-col,  .btn-col{
+        width: 100% !important;
+    }
+   .upload-doc{
+    input{
+        width: 90%;
+    }
+    .dom-upload {
+        right: 0px;
+    }
+   }
+}

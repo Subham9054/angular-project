@@ -1,0 +1,139 @@
+
+@{
+ViewData["Title"] = "ViewMANAGE_CATEGORYMASTER";
+}
+<div class="row">
+		@Html.AntiForgeryToken()
+			@*Write code here*@
+</div><div>
+    <ul class="nav nav-tabs nav-fill" role="tablist">
+        <a class="nav-item nav-link " asp-controller="MANAGE_CATEGORYMASTER" asp-action="MANAGE_CATEGORYMASTER">Add</a>
+        <a class="nav-item nav-link active" asp-controller="MANAGE_CATEGORYMASTER" asp-action=ViewMANAGE_CATEGORYMASTER>View</a>
+    </ul>
+</div>
+<br />
+<br />
+<br />
+<div>
+
+		 <br/>
+ <table class="table" id="tbl">
+			<thead>
+				<tr>
+					<th>
+						CategoryE
+					</th>
+					 <th>
+						CategoryH
+					</th>
+					 <th>
+						CreatedBy
+					</th>
+					 <th>
+						CreatedOn
+					</th>
+					 <th>
+						UpdatedBy
+					</th>
+					 <th>
+						UpdatedOn
+					</th>
+					 <th>
+						DeletedFlag
+					</th>
+					 
+			<th> Action </th>
+				</tr>
+			</thead>
+			<tbody>
+
+
+			</tbody>
+		</table>
+	</div>
+
+	
+	<script>
+$(document).ready(function(){
+	Get_MANAGE_CATEGORYMASTER();
+	});
+    function encryptData(data) {
+        // Convert the integer data to a string
+        var dataString = String(data);
+
+        // Encrypt the data using CryptoJS
+        var encryptedData = CryptoJS.AES.encrypt(JSON.stringify({ data: dataString }), 'secret_key').toString();
+
+        return encryptedData;
+    }
+	function Get_MANAGE_CATEGORYMASTER() {
+		$.ajax ({
+		 type:'Get',
+		 dataType: 'Json',
+		 contentType: 'application/json; charset=utf-8',
+		 data: { },
+			url: "@Url.Action("Get_MANAGE_CATEGORYMASTER","MANAGE_CATEGORYMASTER")",
+			success: function (result) {
+				var data1 = JSON.parse(result);
+				if (data1.length > 0) {
+				$('#tbl.tbody').empty();
+					$.each(data1, function (i, data) {
+					
+                    var encryptedID = encryptData(data.CategoryId);var trows ="<tr>";
+					trows = trows +"<td>"+ data.CategoryE +"</td>";
+					trows = trows +"<td>"+ data.CategoryH +"</td>";
+					trows = trows +"<td>"+ data.CreatedBy +"</td>";
+					trows = trows +"<td>"+ data.CreatedOn +"</td>";
+					trows = trows +"<td>"+ data.UpdatedBy +"</td>";
+					trows = trows +"<td>"+ data.UpdatedOn +"</td>";
+					trows = trows +"<td>"+ data.DeletedFlag +"</td>";
+					trows=trows + "<td>" + "<a class='btn-primary' href='/MANAGE_CATEGORYMASTER/MANAGE_CATEGORYMASTER?strid="+ encryptedID+"'>Edit</a>&nbsp;<button class='btn-danger' onclick='Delete_MANAGE_CATEGORYMASTER("+ data.CategoryId +")'>Delete</button>" + "</td>";
+					trows = trows + "</tr>";
+					$('#tbl').append(trows);
+					});
+				}
+			},
+		error: function (Message) {
+		alert(Message);
+			}
+		});
+		}
+	
+     function Delete_MANAGE_CATEGORYMASTER(id) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                  $.ajax({
+                    type: "Delete",
+                    dataType: "json",
+                    url: "@Url.Action("Delete_MANAGE_CATEGORYMASTER","MANAGE_CATEGORYMASTER")",
+			
+                    data: { "Id": id },
+                      success: function (response) {
+                          Swal.fire(
+                              'Deleted!',
+                              'Data Deleted Successfully!',
+                              'success'
+                        ).then((result) => {
+                            if (result.isConfirmed) {
+                                location.href = "/MANAGE_CATEGORYMASTER/ViewMANAGE_CATEGORYMASTER";
+                            }
+                            else if (result.isDenied) {
+                                Swal.fire('Changes are not saved', '', 'info')
+                            }
+                        })
+                    }
+                });
+
+            }
+            return false;
+        })
+    }	
+</script>

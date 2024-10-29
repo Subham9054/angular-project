@@ -1,0 +1,164 @@
+<div class="login-wrapp h-100">
+    <div class="login-container h-100">
+        <div class="container h-100">
+            <div class="row justify-content-xl-end justify-content-sm-center align-items-center h-100">
+                <div class="col-xl-5 col-xxl-5 col-md-6">
+                    <div class="login-box bg-white shadow">
+                        <form (ngSubmit)="Submit()">
+                            <div class="d-flex flex-column justify-content-center mb-3">
+                                <div class="d-flex align-items-center mb-4 pb-xl-1">
+                                    <img src="./assets/img/bihar-logo-black.png" alt="Government of Bihar"
+                                        class="pe-3">
+                                    <div>
+                                        <h1>NEER NIRMAL SEVA</h1>
+                                        <p class="mb-0">Public Health Engineering Department</p>
+                                        <small class="text-muted"> Government of Bihar</small>
+                                    </div>
+                                </div>
+                                <h4>Access Your Portal</h4>
+                            </div>
+                            <div class="mb-3">
+                                <div class="iconinput">
+                                    <input type="text" class="form-control usertext userinput" id="username"
+                                        [(ngModel)]="vchUserName" name="username" placeholder="Enter your User Name"
+                                        autocomplete="off">
+                                    <label for="username">User Name <span class="text-danger">*</span></label>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <div class="iconinput password">
+                                    <input type="{{toggletype}}" class="form-control passwordinput" id="password"
+                                        [(ngModel)]="vchPassWord" name="password" placeholder="Enter your Password"
+                                        autocomplete="off">
+                                    <a href="javascript:void(0);" (click)="enableDisableBtn()" class="enablebtn"><i
+                                            class="bi" [ngClass]="showpassword ? 'bi bi-eye' : 'bi-eye-slash' "></i></a>
+                                    <label for="password">Password <span class="text-danger">*</span></label>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-sm-7">
+                                    <label class="pt-3">Solve this <strong class="pl-3">{{ randomNumber1 }} + {{ randomNumber2 }} = ?</strong> </label>
+                                </div>
+                                <div class="col-sm-5">
+                                    <input type="number" [(ngModel)]="userAnswer" class="form-control ps-3" placeholder="Answer"
+                                        autocomplete="off" name="addition">
+                                    <small *ngIf="showError" class="text-danger">Incorrect answer. Please try again.</small>
+                                </div>
+                            </div>
+                            <p class="small text-end mb-3 mt-1">
+                                <a routerLink="/forgotpassword" class="text-muted">Forgot Password?</a>
+                            </p>
+                            <div class="row">
+                                <div class="col d-grid">
+                                    <button type="submit" class="btn btn-login">LOGIN</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <!-- <div class="login-wrapp h-100">
+    <div class="container h-100">
+        <div class="row justify-content-center align-items-center h-100">
+            <div class="col-xl-5 col-xxl-5">
+                <div class="login-box bg-white shadow mx-xxl-3 p-4 p-xxl-5">
+                    <form (ngSubmit)="Submit()">
+                        <div class="d-flex flex-column justify-content-center mb-3 mb-xl-3">
+                            <div class="d-flex align-items-center mb-3 mb-xl-4 pb-xl-1">
+                                <img src="./assets/img/bihar-logo-black.png" alt="Government of Bihar" class="pe-2 me-2 pe-lg-3 me-lg-3 border-end">
+                                <div>
+                                    <h1> Neer Nirmal Seva</h1>
+                                    <p class="mb-0">Public Health Engineering Department</p>
+                                    <small> Government of Bihar</small>
+                                </div>
+                            </div>
+                            <h4>Login Here</h4>
+                        </div>
+                        <div class="mb-4">
+                            <div class="iconinput">
+                                <input type="text" class="form-control usertext userinput" id="username" [(ngModel)]="vchUserName"
+                                    name="username" placeholder="User Name" autocomplete="off">
+                                <i class="bi bi-person fs-4"></i>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <div class="iconinput password">
+                                <input type="{{toggletype}}" class="form-control passwordinput" id="password" [(ngModel)]="vchPassWord"
+                                    name="password" placeholder="Password" autocomplete="off">
+                                <i class="bi bi-unlock"></i>
+                                <a href="javascript:void(0);" (click)="enableDisableBtn()" class="enablebtn"><i
+                                    class="bi" [ngClass]="showpassword ? 'bi bi-eye' : 'bi-eye-slash' "></i></a>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-sm-7">
+                                <label class="pt-3">Solve this <strong class="pl-3">{{ randomNumber1 }} + {{ randomNumber2 }} = ?</strong> </label>
+                            </div>
+                            <div class="col-sm-5">
+                                <input type="number" [(ngModel)]="userAnswer" class="form-control ps-3" placeholder="Answer"
+                                    autocomplete="off" name="addition">
+                                <small *ngIf="showError" class="text-danger">Incorrect answer. Please try again.</small>
+                            </div>
+                        </div>
+                        <p class="small text end">
+                            <a href="/complaintregistration">Register Here</a>
+                        </p>
+                        <p class="small text-end">
+                            <a routerLink="/forgotpassword">Forgot Password?</a>
+                        </p>
+                        <div class="row">
+                            <div class="col d-grid">
+                                <button type="submit" class="btn btn-primary px-xl-4 py-xl-2">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    
+</div>  -->
