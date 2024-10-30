@@ -21,7 +21,7 @@ namespace GMS.API
 
             _hostingEnvironment = hostingEnvironment;
         }
-        [HttpPost("DetailcomplaintRegistration")]
+        [HttpPost("CreateMANAGE_COMPLAINTDETAILS_CONFIG")]
         public IActionResult MANAGE_COMPLAINTDETAILS_CONFIG(MANAGE_COMPLAINTDETAILS_CONFIG_Model TBL)
         {
 
@@ -29,7 +29,9 @@ namespace GMS.API
             {
                 if (!ModelState.IsValid)
                 {
-                    var message = string.Join(" | ", ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage));
+                    var message = string.Join(" | ", ModelState.Values
+                                  .SelectMany(v => v.Errors)
+                                  .Select(e => e.ErrorMessage));
                     return Ok(new { sucess = false, responseMessage = message, responseText = "Model State is invalid", data = "" });
                 }
                 else
@@ -38,6 +40,7 @@ namespace GMS.API
                     {
                         var data = _MANAGE_COMPLAINTDETAILS_CONFIGRepository.INSERT_MANAGE_COMPLAINTDETAILS_CONFIG(TBL);
                         return Ok(new { sucess = true, responseMessage = "Inserted Successfully.", responseText = "Success", data = data });
+
                     }
                     else
                     {
@@ -53,12 +56,14 @@ namespace GMS.API
                 throw;
             }
         }
-        [HttpGet("complaintregistrationupdate")]
+        [HttpGet("GetMANAGE_COMPLAINTDETAILS_CONFIG")]
         public async Task<IActionResult> Get_MANAGE_COMPLAINTDETAILS_CONFIG()
         {
             if (!ModelState.IsValid)
             {
-                var message = string.Join(" | ", ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage));
+                var message = string.Join(" | ", ModelState.Values
+     .SelectMany(v => v.Errors)
+    .Select(e => e.ErrorMessage));
                 return Ok(new { sucess = false, responseMessage = message, responseText = "Model State is invalid", data = "" });
             }
             else
@@ -72,13 +77,15 @@ namespace GMS.API
 
         }
 
-        [HttpDelete("complaintregistrationdelete")]
+        [HttpDelete("DeleteMANAGE_COMPLAINTDETAILS_CONFIG")]
 
         public async Task<IActionResult> Delete_MANAGE_COMPLAINTDETAILS_CONFIG(int Id)
         {
             if (!ModelState.IsValid)
             {
-                var message = string.Join(" | ", ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage));
+                var message = string.Join(" | ", ModelState.Values
+                    .SelectMany(v => v.Errors)
+                    .Select(e => e.ErrorMessage));
                 return Ok(new { sucess = false, responseMessage = message, responseText = "Model State is invalid", data = "" });
             }
             else
@@ -96,7 +103,9 @@ namespace GMS.API
         {
             if (!ModelState.IsValid)
             {
-                var message = string.Join(" | ", ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage));
+                var message = string.Join(" | ", ModelState.Values
+                    .SelectMany(v => v.Errors)
+                    .Select(e => e.ErrorMessage));
                 return Ok(new { sucess = false, responseMessage = message, responseText = "Model State is invalid", data = "" });
             }
             else

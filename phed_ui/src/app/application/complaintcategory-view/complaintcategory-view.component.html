@@ -1,0 +1,90 @@
+<div class="form-cointainer">
+    <div class="main-tab">
+        <div class="row justify-content-between align-items-center">
+            <div class="col-lg-4">
+                <ul class="nav nav-tabs" routerLinkActive="active">
+                    <li class="nav-item">
+                        <a routerLink="/application/complaintregistration" class="nav-link">Add</a>
+                    </li>
+                    <li class="nav-item">
+                        <a routerLink="/application/complaintcategory-view" class="nav-link active">View</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- <div class="col-lg-6">
+                <div class="utilite float-end mb-1">
+                    <ul class="mb-0 d-flex list-unstyled">
+                        <span class="text-danger small"><b>(*)</b> Indicate mandatory</span>
+                        <li class="me-2">
+                            
+                            <a href="javascript:void(0)" ngbTooltip="Click to Print">
+                                <i class="bi bi-printer"></i>
+                            </a>
+                        </li>
+                        <li class="me-2">
+                            <a href="javascript:void(0)" ngbTooltip="Delete Record">
+                                <i class="bi bi-trash"></i>
+                            </a>
+                        </li>
+                        <li class="me-2">
+                            <a href="javascript:void(0)" ngbTooltip="Download">
+                                <i class="bi bi-download"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" ngbTooltip="Go to Previous">
+                                <i class="bi bi-arrow-left"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div> -->
+        </div>
+    </div>
+
+    <div class="content-box content-area p-0">
+        <div class="form-section">
+            <div class="table-responsive mb-0">
+                <table *ngIf="complaints.length > 0" class="table table-striped mb-0">
+                    <thead>
+                        <tr>
+                            <th width="30px"> <input type="checkbox" /></th>
+                            <th width="40px">Sl#</th>
+                            <th>Category E</th>
+                            <th>Category H</th>
+                            <th width="100px">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let complaint of complaints; let i = index">
+                            <td> <input type="checkbox" /></td>
+                            <td>{{ i + 1 }}</td>
+                            <td>
+                                {{ complaint.vcH_CATEGORY }}
+                                <input type="hidden" [value]="complaint.inT_CATEGORY_ID" />
+                            </td>
+                            <td>{{ complaint.nvcH_CATEGORY }}</td>
+                            <td>
+                                <div class="d-flex gap-1">
+                                    <a (click)="updateComplaint(complaint)" class="btn btn-outline-primary btn-sm" title="Edit">
+                                        <i class="bi bi-pencil"></i>
+                                    </a>
+
+                                    <a (click)="deleteComplaint(complaint.inT_CATEGORY_ID)"
+                                        class="btn btn-outline-danger btn-sm" title="Delete">
+                                        <i class="bi bi-trash3"></i>
+                                    </a>
+
+                                 
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div *ngIf="complaints.length === 0" class="text-center mt-3">
+                <p class="text-muted">No complaints found.</p>
+            </div>
+        </div>
+    </div>
+</div>

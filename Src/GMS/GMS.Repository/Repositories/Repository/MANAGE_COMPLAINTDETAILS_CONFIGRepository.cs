@@ -18,7 +18,7 @@ namespace GMS.Repository.Repositories.Interfaces.MANAGE_COMPLAINTDETAILS_CONFIG
         public async Task<int> INSERT_MANAGE_COMPLAINTDETAILS_CONFIG(MANAGE_COMPLAINTDETAILS_CONFIG_Model TBL)
         {
             var p = new DynamicParameters();
-            //p.Add("@Action", "INSERT");
+            p.Add("@Action", "INSERT");
             p.Add("@ComplaintId", TBL.ComplaintId);
             p.Add("@CategoryId", TBL.CategoryId);
             p.Add("@SubCategoryId", TBL.SubCategoryId);
@@ -31,11 +31,11 @@ namespace GMS.Repository.Repositories.Interfaces.MANAGE_COMPLAINTDETAILS_CONFIG
             p.Add("@TokenNo", TBL.TokenNo);
             p.Add("@ComplaintName", TBL.ComplaintName);
             p.Add("@ContactNo", TBL.ContactNo);
-           // p.Add("@Email", TBL.Email);
+            p.Add("@Email", TBL.Email);
             p.Add("@IdproofType", TBL.IdproofType);
             p.Add("@DistId", TBL.DistId);
             p.Add("@Address", TBL.Address);
-            //p.Add("@Landmark", TBL.Landmark);
+            p.Add("@Landmark", TBL.Landmark);
             p.Add("@Longitude", TBL.Longitude);
             p.Add("@Latitude", TBL.Latitude);
             p.Add("@ComplaintAgainstType", TBL.ComplaintAgainstType);
@@ -52,14 +52,14 @@ namespace GMS.Repository.Repositories.Interfaces.MANAGE_COMPLAINTDETAILS_CONFIG
             p.Add("@Level", TBL.Level);
             p.Add("@EscaltionDate", TBL.EscaltionDate);
             p.Add("@NextAta", TBL.NextAta);
-            //p.Add("@LastUpdatedDate", TBL.LastUpdatedDate);
+            p.Add("@LastUpdatedDate", TBL.LastUpdatedDate);
             p.Add("@ApproxResDate", TBL.ApproxResDate);
             p.Add("@Remark", TBL.Remark);
             p.Add("@ActionFile", TBL.ActionFile);
             p.Add("@UserId", TBL.UserId);
             p.Add("@CreatedOn", TBL.CreatedOn);
-            //p.Add("@UpdatedOn", TBL.UpdatedOn);
-            p.Add("@DeletedFlag", 0);
+            p.Add("@UpdatedOn", TBL.UpdatedOn);
+            p.Add("@DeletedFlag", TBL.DeletedFlag);
             p.Add("@Block", TBL.Block);
             p.Add("@Panchayat", TBL.Panchayat);
             p.Add("@Village", TBL.Village);

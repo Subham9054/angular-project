@@ -1,0 +1,12 @@
+@import '../../../../assets/scss/variables';
+footer {
+    width: 100%;
+    background-color: rgba($black,.1);
+}
+.fixed-bottom {
+    position: inherit;
+}
+
+p {
+    color: $icon-color;
+}

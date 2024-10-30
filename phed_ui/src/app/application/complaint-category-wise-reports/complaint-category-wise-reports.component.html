@@ -1,0 +1,147 @@
+<div class="form-cointainer">
+    <div class="main-tab">
+        <div class="row justify-content-between">
+            <div class="col-xxl-3 col-lg-4 col-md-6">
+                <ul class="nav nav-tabs" routerLinkActive="active">
+                    <li class="nav-item">
+                        <a routerLink="/application/demo/view" class="nav-link active">View</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <div class="utilite float-end mb-1">
+                    <ul class="mb-0">
+                        <li>
+                            <a href="javascript:void(0)" ngbTooltip="Click to Print"><i class="bi bi-printer"></i></a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" ngbTooltip="Delete Record"><i class="bi bi-file-earmark-excel"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div  id="collapseExample" class="collapse">
+    <div class="content-box search-box">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="mb-3">
+                    <label class="form-label">Complaint  Category</label>
+                    <select class="form-select">
+                        <option selected>-Select-</option>
+                        <option value="1">Handpump Tubewell Related</option>
+                        <option value="2">Miscellaneous</option>
+                        <option value="3">Piped Water Supply Related</option>
+                        <option value="3">Water Quality Related</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="mb-3" >
+                    <label class="form-label">Date From</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control  datepicker" id="datepicker">
+                        <label class="input-group-text bg-transparent" for="datepicker">
+                            <i class="bi bi-calendar-week"></i> </label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="mb-3">
+                    <label class="form-label">Date To</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control datepicker" id="datepicker1">
+                        <label class="input-group-text bg-transparent" for="datepicker1">
+                            <i class="bi bi-calendar-week"></i> </label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <label class="form-label d-md-block d-none">&nbsp;</label>
+                <button type="submit" class="btn btn-success">Search</button>
+            </div>
+
+        </div>
+    </div></div>
+  <div class="search-btn">
+        <a data-bs-toggle="collapse" href="#collapseExample">
+          <span class="collapse-on">Search Open <i class="bi bi-arrow-down"></i></span> <span class="collapse-off">Search Close <i class="bi bi-arrow-up"></i></span>
+        </a>
+    </div>
+
+    <div class="content-box content-area p-0">
+       <div class="table-responsive">
+        <table class="table table-striped mb-0">
+            <thead>
+                <tr>
+                    <th width="50">Sl#</th>
+                    <th>Complaint Category</th>
+                    <th class="text-end">Total Received (in #)</th>
+                    <th class="text-end">Total Solved (in #)</th>
+                    <th class="text-end">Total Pending (in #)</th>
+                    <th class="text-end">Total Attended & Can`t be resolved (in #)</th>
+                    <th class="text-end">Total Verified (in #)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Handpump Tubewell Related</td>
+                    <td class="text-end">209</td>
+                    <td class="text-end">103</td>
+                    <td class="text-end">209</td>
+                    <td class="text-end">103</td>
+                    <td class="text-end">103</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Piped Water Supply Related</td>
+                    <td class="text-end">209</td>
+                    <td class="text-end">103</td>
+                    <td class="text-end">209</td>
+                    <td class="text-end">103</td>
+                    <td class="text-end">103</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Water Quality Related</td>
+                    <td class="text-end">209</td>
+                    <td class="text-end">103</td>
+                    <td class="text-end">209</td>
+                    <td class="text-end">103</td>
+                    <td class="text-end">103</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Swachh Bharat Mission</td>
+                    <td class="text-end">209</td>
+                    <td class="text-end">103</td>
+                    <td class="text-end">209</td>
+                    <td class="text-end">103</td>
+                    <td class="text-end">103</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Miscellaneous</td>
+                    <td class="text-end">209</td>
+                    <td class="text-end">103</td>
+                    <td class="text-end">209</td>
+                    <td class="text-end">103</td>
+                    <td class="text-end">103</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th colspan="2" class="text-end">Total</th>
+                    <th class="text-end">4019</th>
+                    <th class="text-end">2124</th>
+                    <th class="text-end">1595</th>
+                    <th class="text-end">300</th>
+                    <th class="text-end">926</th>
+                </tr>
+            </tfoot>
+        </table>
+       </div>
+    </div>
+</div>

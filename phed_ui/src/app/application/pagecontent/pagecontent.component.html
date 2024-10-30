@@ -1,0 +1,66 @@
+<div class="form-cointainer">
+    <div class="main-tab">
+        <div class="row justify-content-between align-items-center">
+            <div class="col-xxl-3 col-lg-4 col-md-6">
+                <ul class="nav nav-tabs" routerLinkActive="active">
+                    <li class="nav-item">
+                        <a routerLink="/application/pagecontent" class="nav-link active">Add</a>
+                    </li>
+                    <li class="nav-item">
+                        <a routerLink="/application/pagecontent-view" class="nav-link">View</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <div class="utilite float-end">
+                    <ul class="mb-0">
+                        <li class="bg-transparent border-0">
+                            <span class="text-danger small"><b>(*)</b> Indicate mandatory</span>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content-box content-area pb-1">
+        <div class="form-section">
+            <div class="row">
+
+                <div class="col-xxl-3 col-lg-4">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Page Name</label>
+                        <select class="form-select">
+                            <option selected>-Select-</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-xl-9 col-lg-9">
+                  
+                </div>
+
+                <div class="col-xxl-6 col-lg-6">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Content</label>
+                        <ckeditor [editor]="editor" [data]="data"></ckeditor>
+                    </div>
+                </div>
+
+                <div class="col-xl-6 col-lg-6">
+                  
+                </div>
+
+                <div class="col-xxl-3 col-lg-4">
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-success me-2">View</button>
+                        <button type="reset" class="btn btn-danger">Reset</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

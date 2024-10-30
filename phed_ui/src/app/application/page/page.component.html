@@ -1,0 +1,100 @@
+<div class="form-cointainer">
+    <div class="main-tab">
+        <div class="row justify-content-between align-items-center">
+            <div class="col-xxl-3 col-lg-4 col-md-6">
+                <ul class="nav nav-tabs" routerLinkActive="active">
+                    <li class="nav-item">
+                        <a routerLink="/application/page" class="nav-link active">Add</a>
+                    </li>
+                    <li class="nav-item">
+                        <a routerLink="/application/page-view" class="nav-link">View</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <div class="utilite float-end">
+                    <ul class="mb-0">
+                        <li class="bg-transparent border-0">
+                            <span class="text-danger small"><b>(*)</b> Indicate mandatory</span>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content-box content-area pb-1">
+        <div class="form-section">
+            <div class="row">
+
+                <div class="col-xxl-3 col-lg-4 col-sm-6">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="name">
+                    </div>
+                </div>
+
+                <div class="col-xxl-3 col-lg-4 col-sm-6">
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Title</label>
+                        <input type="text" class="form-control" id="title">
+                    </div>
+                </div>
+
+                <div class="col-xxl-3 col-lg-4 col-sm-6">
+                    <div class="mb-3">
+                        <label for="txtRegdDt" class="form-label d-block">Is Sub Menu</label>
+                        <div class="form-check form-check-inline mt-2">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
+                                value="option1" (click)="toggleSubMenu(true)">
+                            <label class="form-check-label" for="inlineRadio1">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline mt-2">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
+                                value="option2" checked>
+                            <label class="form-check-label" for="inlineRadio2">No</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xxl-3 col-lg-4 col-sm-6" *ngIf="isSubMenu">
+                    <div class="mb-3">
+                        <label for="submanuname" class="form-label">Sub Menu Name</label>
+                        <input type="text" class="form-control" id="submanuname">
+                    </div>
+                </div>
+
+                <div class="col-xxl-3 col-lg-4 col-sm-6" *ngIf="isSubMenu">
+                    <div class="mb-3">
+                        <label for="submanutitle" class="form-label">Sub Menu Title</label>
+                        <input type="text" class="form-control" id="submanutitle">
+                    </div>
+                </div>
+
+                <div class="col-xxl-3 col-lg-4 col-sm-6" *ngIf="isSubMenu">
+                    <div class="mb-3">
+                        <label for="txtRegdDt" class="form-label d-block">Page Date</label>
+                        <div class="form-check form-check-inline mt-2">
+                            <input class="form-check-input" type="radio" name="pagedate" id="pagedate1"
+                                value="option1">
+                            <label class="form-check-label" for="pagedate1">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline mt-2">
+                            <input class="form-check-input" type="radio" name="pagedate" id="pagedate2"
+                                value="option2" checked>
+                            <label class="form-check-label" for="pagedate2">No</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xxl-3 col-lg-4 col-sm-6">
+                    <div class="mb-3">
+                        <label class="form-label d-xxl-block d-lg-none d-md-block">&nbsp;</label>
+                        <button type="submit" class="btn btn-success me-2">View</button>
+                        <button type="reset" class="btn btn-danger">Reset</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

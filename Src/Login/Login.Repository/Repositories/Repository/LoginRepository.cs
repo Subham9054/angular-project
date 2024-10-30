@@ -27,13 +27,33 @@ namespace Login.Repository.Repositories.Repository
                 parameters.Add("@Action", "LI");
                 parameters.Add("@username", user.vchUserName);
                 parameters.Add("@password", user.vchPassWord);
-                var users = await Connection.QueryFirstOrDefaultAsync<Users>("USP_Registration", parameters, commandType: CommandType.StoredProcedure);
+                var users = await Connection.QueryFirstOrDefaultAsync<Users>("Login_Registration", parameters, commandType: CommandType.StoredProcedure);
                 return users;
             }
             catch (Exception ex)
             {
                 throw;
             }
-        }      
+        }
+
+        //public async Task<LoginEntity> login(LoginEntity user)
+        //{
+        //    try
+        //    {
+        //        //var password = Md5Encryption.MD5Encryption(user.vchPassWord);
+        //        var parameters = new DynamicParameters();
+        //        parameters.Add("@Action", "LI");
+        //        parameters.Add("@username", user.vchUserName);
+        //        parameters.Add("@password", user.vchPassWord);
+        //        LoginEntity users = await Connection.QueryFirstOrDefaultAsync<LoginEntity>("USP_Registration", parameters, commandType: CommandType.StoredProcedure);
+        //        return users;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw;
+        //    }
+        //}
+
+      
     }
 }

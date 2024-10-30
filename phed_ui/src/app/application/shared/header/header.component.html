@@ -1,0 +1,101 @@
+<nav class="navbar navbar-expand navbar-light navbar-bg"  >
+    <a class="sidebar-toggle js-sidebar-toggle" [ngClass]="{'active': toggleLayoutBtn }" >
+        <i class="bi bi-list" [class.bi-x-lg]="toggleLayoutBtn"></i> <span class="d-md-none ps-2">Menu</span>
+    </a>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-0 ms-3">
+          <li class="breadcrumb-item">
+              <a routerLink="/application/dashboard" title="Home"><i class="bi bi-house-door"></i></a>
+          </li>
+          <li class="breadcrumb-item">
+             <a href="#" class="text-decoration-none text-muted">GMS</a>
+          </li>
+          <li class="breadcrumb-item active fw-bold" aria-current="page">Register Complaint</li>
+        </ol>
+      </nav>
+    <!-- <div class="title-bar d-md-flex align-items-center ps-xl-2" (click)="$event.stopPropagation();">
+        <a routerLink="/application/hospital-dashboard" title="Home"><i class="bi bi-house-door"></i></a>
+        <span class="px-2">/</span>
+        <h5 class="mb-0 d-md-block d-none"> Demo</h5>
+    </div> -->
+    
+    <div class="navbar-collapse collapse" (click)="$event.stopPropagation();">
+        <ul class="navbar-nav navbar-align d-flex align-items-center">
+            <li class="nav-item">
+               <a href="javascript:void(0);" class="btn btn-outline-secondary btn-sm" (click)="toggleText()">{{ buttonText }}</a>   
+            </li>
+            <li class="nav-item dropdown second-li">
+                <a class="nav-icon dropdown-toggle" href="javascript:void(0);" id="alertsDropdown" data-bs-toggle="dropdown">
+                    <div class="position-relative">
+                        <i class="bi bi-bell"></i>
+                        <span class="indicator">4</span>
+                    </div>
+                </a>
+                <div class="dropdown-menu dropdown-menu-lg shadow border-0 dropdown-menu-end py-0" aria-labelledby="alertsDropdown">
+                    <div class="dropdown-menu-header">
+                        2 New Notifications
+                    </div>
+                    <div class="list-group">
+                        <a href="#" class="list-group-item">
+                            <div class="row g-0 align-items-center">
+                                <div class="col-2">
+                                    <i class="bi bi-chat-left-text"></i>
+                                </div>
+                                <div class="col-10">
+                                    <div class="text-dark">Update completed</div>
+                                    <div class="text-muted small mt-1">In publishing and graphic design, Lorem ipsum is a placeholder.</div>
+                                    <div class="text-muted small mt-1">30m ago</div>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <div class="row g-0 align-items-center">
+                                <div class="col-2">
+                                    <i class="bi bi-chat-left-text"></i>
+                                </div>
+                                <div class="col-10">
+                                    <div class="text-dark">Lorem ipsum</div>
+                                    <div class="text-muted small mt-1">In publishing and graphic design, Lorem ipsum is a placeholder.</div>
+                                    <div class="text-muted small mt-1">2h ago</div>
+                                </div>
+                            </div>
+                        </a>
+                       
+                    </div>
+                    <div class="dropdown-menu-footer">
+                        <a href="#" class="text-muted">Show all notifications</a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item dropdown d-flex align-items-center third-li">
+                <a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-bs-toggle="dropdown">
+                    <i class="bi bi-gear"></i>
+                </a>
+                <a class="nav-link d-none d-sm-inline-flex" href="#" data-bs-toggle="dropdown">
+                    <img src="./assets/img/male-profile.jpg" class="avatar img-fluid rounded-circle me-2 " alt="Charles Hall" />
+                    <p class="text-dark mb-0 lh-sm"><small class="d-block text-muted">Welcome</small> <span>Adminstrator</span></p>
+                </a>
+                <div class="dropdown-menu dropdown-menu-end shadow border-0 dropdown-success">
+                    <!-- <a class="dropdown-item" href="javascript:void(0);"> <i class="bi bi-person me-2"></i> Profile</a>
+                    <div class="dropdown-divider"></div> -->
+                    <a class="dropdown-item" routerLink="/login"><i class="bi bi-box-arrow-right me-2"></i> Logout</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-icon" href="javascript:void(0);" (click)="logout()">
+                    <i class="bi bi-box-arrow-right"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container-fluid" >
+    <!-- <nav aria-label="breadcrumb" class="py-3 px-2" >
+        <ol class="breadcrumb mb-0" (click)="$event.stopPropagation();">
+          <li class="breadcrumb-item"><a href="#">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">{{ pagetitle }}</li>
+        </ol>
+      </nav> -->
+<!-- <app-breadcrumb></app-breadcrumb> -->
+      
+</div>
