@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/auth.service';
 import * as CryptoJS from 'crypto-js';
 
+
 @Component({
   selector: 'app-complaintcategory',
   templateUrl: './complaintcategory.component.html',
