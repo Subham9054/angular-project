@@ -26,7 +26,7 @@
     <div class="content-box content-area pb-1">
         <div class="form-section">
             <div class="row">
-                <div class="col-xl-3 col-lg-4 col-sm-6">
+                <div class="col-xl-4 col-lg-4 col-sm-6">
                     <div class="mb-3">
                         <label for="txtRegdDt" class="form-label">Complaint Category</label>
                         <select class="form-select">
@@ -37,7 +37,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-xl-3 col-lg-4 col-sm-6">
+                <div class="col-xl-4 col-lg-4 col-sm-6">
                     <div class="mb-3">
                         <label for="txtRegdDt" class="form-label">Complaint Sub Category</label>
                         <select class="form-select">
@@ -48,88 +48,57 @@
                     </div>
                 </div>
             </div>
+
+          
+
             <div class="row">
-                <div class="col-xl-3 col-lg-4 col-sm-6">
+                <div class="col-xl-4 col-lg-4 col-sm-6">
                     <div class="mb-3">
                         <label for="exlabel" class="form-label">Escalation level</label>
-                        <input type="text" class="form-control" id="exlabel">
+                        <input type="number" class="form-control" id="exlabel" [(ngModel)]="escalationLevel"
+                            (input)="generateRows()">
                     </div>
                 </div>
-                <div class="col-xl-12">
-                    <div class="table-responsive mb-0">
-                        <table class="table table-striped mb-0">
+
+                <div class="col-xl-9 col-lg-9 col-sm-6"></div>
+
+                <div class="col-xl-8" *ngIf="escalationLevel > 0">
+                    <div class="table-responsive mb-0 time-visible">
+                        <table class="table table-bordered">
                             <thead>
                                 <tr>
                                     <th width="40px">Sl#</th>
-                                    <th>level</th>
                                     <th>Designation</th>
+                                    <th>Level Name</th>
+                                    <th>Hours</th>
+                                    <th width="80px">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Handpump Tubewell Related</td>
-                                    <td>Repairing of Public Handpump</td>
-                                    <td>3</td>
-                                    <td>JE</td>
+                                <tr *ngFor="let row of rows; let i = index">
+                                    <td>{{ i + 1 }}</td>
                                     <td>
-                                        <div class="d-flex gap-1">
-                                            <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View">
-                                                <i class="bi bi-eye"></i>
-                                            </a>
-                                            <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
-                                                <i class="bi bi-pencil"></i>
-                                            </a>
+                                        <select class="form-select">
+                                            <option selected>-Select-</option>
+                                            <option value="1">JE</option>
+                                            <option value="2">EE</option>
+                                            <option value="3">OE</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control">
+                                    </td>
+                                    <td>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control timepicker" id="inputTime">
+                                            <label class="input-group-text" for="inputTime"><i class="bi bi-clock"></i></label>
                                         </div>
                                     </td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Handpump Tubewell Related</td>
-                                    <td>Repairing of Private Handpump</td>
-                                    <td>3</td>
-                                    <td>JE</td>
                                     <td>
                                         <div class="d-flex gap-1">
-                                            <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View">
-                                                <i class="bi bi-eye"></i>
-                                            </a>
-                                            <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
-                                                <i class="bi bi-pencil"></i>
-                                            </a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Piped Water Supply Related</td>
-                                    <td>Water is not coming from Standpost</td>
-                                    <td>3</td>
-                                    <td>JE</td>
-                                    <td>
-                                        <div class="d-flex gap-1">
-                                            <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View">
-                                                <i class="bi bi-eye"></i>
-                                            </a>
-                                            <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
-                                                <i class="bi bi-pencil"></i>
-                                            </a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td>Piped Water Supply Related</td>
-                                    <td>Motor Burnt</td>
-                                    <td>3</td>
-                                    <td>JE</td>
-                                    <td>
-                                        <div class="d-flex gap-1">
-                                            <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View">
-                                                <i class="bi bi-eye"></i>
-                                            </a>
-                                            <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
-                                                <i class="bi bi-pencil"></i>
+                                            <a href="javascript:void(0);" title="Delete"
+                                                class="btn btn-outline-danger" (click)="removeRow(i)">
+                                                <i class="bi bi-trash3"></i>
                                             </a>
                                         </div>
                                     </td>
@@ -138,7 +107,10 @@
                         </table>
                     </div>
                 </div>
+
             </div>
+
+
             <div class="row">
                 <div class="col-xxl-3 col-lg-4 col-sm-6">
                     <div class="mb-3">

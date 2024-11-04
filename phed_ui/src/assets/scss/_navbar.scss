@@ -27,6 +27,15 @@
 
   .dropdown-menu {
     margin-top: 0.9rem;
+    a{
+      &:hover{
+        background-color: transparent;
+        color:$blue-dark;
+        i{
+          color:$blue-dark !important;
+        }
+      }
+    }
   }
 
   .dropdown-menu-lg {
@@ -83,31 +92,35 @@
     font-size: 1.5rem;
     color: $gray-600;
     line-height: 1.4;
+
     // padding-top: 0.5rem;
-   @media (max-width:320px){
-    padding: 0.1rem 0.4rem;
-   }
+    @media (max-width:320px) {
+      padding: 0.1rem 0.4rem;
+    }
+
     &:after {
       display: none !important;
     }
 
     &:hover,
     &.active {
-      color: $green;
+      color: $blue-dark;
+      // color: $green;
     }
 
   }
 }
-.navbar-collapse{
+
+.navbar-collapse {
   .nav-item {
     .nav-link {
       &:hover {
         p {
-          color: $blue  !important;
+          color: $blue !important;
         }
       }
     }
-  
+
     .indicator {
       background: $red;
       box-shadow: $box-shadow;
@@ -124,11 +137,11 @@
       font-size: 0.675rem;
       color: $white;
     }
-  
+
     &:hover .indicator {
       top: -4px;
     }
-  
+
     a:focus {
       outline: 0;
     }
@@ -138,24 +151,25 @@
 
 .logout-btn {
 
-  a {
-    background-color: rgba($green, .12);
-    color: $green;
-    line-height: 1rem;
-    font-weight: bold;
+  padding: 0.1rem 0.8rem;
+  display: block;
+  font-size: 1.5rem;
+  line-height: 1.4;
+  color: $red;
+  font-weight: bold;
 
-    &:hover {
-      background-color: rgba($green, .3);
-      color: $green;
-    }
+  &:hover {
+    color: $blue-dark;
   }
+
 }
 
 
-.second-li{
+.second-li {
   position: relative;
   margin: 0 0.4rem;
-  &::after{
+
+  &::after {
     position: absolute;
     content: "";
     right: -4px;
@@ -165,10 +179,12 @@
     top: 0px;
   }
 }
-.third-li{
+
+.third-li {
   position: relative;
   margin: 0 0.4rem;
-  &::after{
+
+  &::after {
     position: absolute;
     content: "";
     right: -4px;
@@ -176,11 +192,13 @@
     height: 39px;
     background-color: #e8eef59c;
     top: 9px;
-    @media (max-width:530px){
+
+    @media (max-width:530px) {
       top: -1px;
     }
   }
 }
+
 .nav-flag {
   img {
     border-radius: 50%;
@@ -203,11 +221,13 @@
     z-index: 9;
     top: 0;
     width: 100%;
+
     .dropdown-menu-lg {
       min-width: 18rem;
       right: -132%;
     }
   }
+
   .nav-icon {
     padding: 0.1rem 0.75rem;
   }
@@ -220,12 +240,14 @@
     display: none;
   }
 }
-.navbar{
+
+.navbar {
   position: fixed !important;
-  top:0;
+  top: 0;
   right: 0;
-  width:calc(100% - 279px);
-  @media (max-width:768px){
+  width: calc(100% - 279px);
+
+  @media (max-width:768px) {
     width: 100%;
   }
 }
