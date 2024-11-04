@@ -150,16 +150,21 @@
 
 
 .logout-btn {
-
-  padding: 0.1rem 0.8rem;
-  display: block;
-  font-size: 1.5rem;
-  line-height: 1.4;
-  color: $red;
-  font-weight: bold;
-
+    display: block;
+    font-size: 1.35rem;
+    line-height: 1.4;
+    color: #fff;
+    font-weight: bold;
+    background-color: $red;
+    border-radius: 50%;
+    height: 2.5rem;
+    width: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin:0rem 0.8rem;
   &:hover {
-    color: $blue-dark;
+    background-color: rgba($red, 0.9);
   }
 
 }

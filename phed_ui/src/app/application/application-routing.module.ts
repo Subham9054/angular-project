@@ -50,23 +50,34 @@ const routes: Routes = [{
     {path:'complaint-category-wise-reports',component:ComplaintCategoryWiseReportsComponent},
     {path:'demographymapping',component:DemographymappingComponent},
     {path:'demographymapping-view',component:DemographymappingViewComponent},
+
     {path:'page',component:PageComponent},
-    {path:'pagecontent',component:PagecontentComponent},
     {path:'page-view',component:PageViewComponent},
+
+    {path:'pagecontent',component:PagecontentComponent},
     {path:'pagecontent-view',component:PagecontentViewComponent},
+
     {path:'minister-profile',component:MinisterProfileComponent},
+
     {path:'mngbanner',component:MngbannerComponent},
+
     {path:'mngfaq',component:MngfaqComponent},
-    {path:'mnggallery',component:MnggalleryComponent},
-    {path:'mnglogo',component:MnglogoComponent},
-    {path:'mngmenu',component:MngmenuComponent},
-    {path:'newsevent',component:NewseventComponent},
-    {path:'whatsnew',component:WhatsnewComponent},
-    {path:'newsevent-view',component:NewseventViewComponent},
     {path:'mngfaq-view',component:MngfaqViewComponent},
-    {path:'whatnew-view',component:WhatnewViewComponent},
+    
+    {path:'mnggallery',component:MnggalleryComponent},
     {path:'mnggallery-view',component:MnggalleryViewComponent},
+
+    {path:'mnglogo',component:MnglogoComponent},
+
+    {path:'mngmenu',component:MngmenuComponent},
     {path:'mngmenu-view',component:MngmenuViewComponent},
+
+    {path:'newsevent',component:NewseventComponent},
+    {path:'newsevent-view',component:NewseventViewComponent},
+
+    {path:'whatsnew',component:WhatsnewComponent},
+    {path:'whatnew-view',component:WhatnewViewComponent},
+
     {path:'mngcontact',component:MngcontactComponent},
     {path:'mngcontact-view',component:MngcontactViewComponent},
   ]

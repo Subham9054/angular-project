@@ -106,6 +106,7 @@ export class LoginComponent implements OnInit {
 
                 // Navigate to the complaint registration page
                 this.router.navigate(['/application/dashboard']);
+                
             });
         },
         (error) => {

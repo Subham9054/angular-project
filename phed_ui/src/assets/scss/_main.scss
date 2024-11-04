@@ -75,7 +75,6 @@ a {
     background-color: $white;
     padding: 1.2rem;
     border: solid 1px $gray-200;
-    border-radius: $custom-radius;
     box-shadow: 0px 0px 5px rgb(0 0 0 / 9%);
     // overflow: hidden;
     @include box-shadow(0 0.125rem 0.25rem rgba($black, .2));
@@ -83,8 +82,10 @@ a {
     &.search-box {
       // margin-bottom: 1rem;
       padding: 1rem 1.2rem 0.2rem 1.2rem;
-      background-color: $gray-100;
+      background-color: $blue-light;
       transition: max-height 0.5s ease, opacity 0.5s ease, padding 0.5s ease;
+      border:0 !important;
+      border-radius: 5px !important;
     }
   }
 
@@ -95,7 +96,7 @@ a {
     a {
       box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.09);
       padding: 0.3rem 0.9rem;
-      background-color: #f8f9fa;
+      background-color: $blue-light;
       color: #000;
       position: relative;
       display: inline-block;

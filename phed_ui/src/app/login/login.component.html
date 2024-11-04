@@ -42,11 +42,13 @@
                                 <div class="col-sm-5">
                                     <input type="number" [(ngModel)]="userAnswer" class="form-control ps-3" placeholder="Answer"
                                         autocomplete="off" name="addition">
-                                    <small *ngIf="showError" class="text-danger">Incorrect answer. Please try again.</small>
+                                </div>
+                                <div class="col-sm-12">
+                                    <p *ngIf="showError" class="text-danger text-end d-block small mb-1">Incorrect answer. Please try again.</p>
                                 </div>
                             </div>
-                            <p class="small text-end mb-5 mt-1">
-                                <a routerLink="/forgotpassword" class="text-muted">Forgot Password?</a>
+                            <p class="small text-end mb-4">
+                                <a routerLink="/forgotpassword" class="text-forgot">Forgot Password?</a>
                             </p>
                             <div class="row">
                                 <div class="col d-grid">

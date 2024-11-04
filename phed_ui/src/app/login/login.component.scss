@@ -1,5 +1,7 @@
 @import "../../assets/scss/variables";
-
+body{
+    height: 100% !important;
+}
 .login-wrapp {
     background: url(../../assets/img/login-bg.png) center / cover no-repeat;
 
@@ -165,13 +167,19 @@
     }
 }
 
-a:not(.btn) {
-    color: $blue;
-
-    &:hover {
-        text-decoration: underline;
+.text-forgot{
+    color:$gray-600;
+    &:hover{
+        color:$blue-dark;
     }
 }
+// a:not(.btn) {
+//     color: $blue;
+
+//     &:hover {
+//         text-decoration: underline;
+//     }
+// }
 
 @media (max-width:768px) {
     .login-wrapp {
