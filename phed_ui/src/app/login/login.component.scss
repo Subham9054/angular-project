@@ -20,14 +20,23 @@
     @media (max-width:630px) {
         padding: 2.5rem;
     }
-    @media (max-width:375px) {
-        padding: 2rem;
+
+    @media (max-width:480px) {
+        padding: 1.5rem;
     }
+
+    @media (max-width:320px) {
+        padding: 1rem;
+    }
+
     img {
         height: 4.5rem;
-        @media (max-width:576px){
+
+        @media (max-width:576px) {
             height: 4rem;
         }
+
+      
     }
 
     h1 {
@@ -36,10 +45,16 @@
         margin-bottom: 0;
 
         @media (max-width:576px) {
-            font-size: 1.3rem !important;
+            font-size: 1.3rem;
         }
-        @media (max-width:375px){
-            font-size: 1.4rem !important;
+
+        @media (max-width:375px) {
+            font-size: 1.4rem;
+        }
+
+        @media (max-width:320px) {
+            font-size: 1.3rem;
+            line-height: 20px;
         }
     }
 
@@ -49,9 +64,22 @@
         font-size: 1.6rem;
         font-weight: 500;
         margin-bottom: 1.5rem;
-        @media (max-width:576px){
-            margin-bottom: 1rem;  
+
+        @media (max-width:576px) {
+            margin-bottom: 1rem;
         }
+
+        @media (max-width:480px) {
+            margin-bottom: 0.5rem;
+            padding-bottom: 0.6rem;
+        }
+
+        @media (max-width:375px) {
+            margin-bottom: 0.5rem;
+            padding-bottom: 0.4rem;
+            font-size: 1.3rem;
+        }
+
         &::after {
             content: "";
             position: absolute;
@@ -61,6 +89,13 @@
             left: 0;
             background-color: rgba($black, 0.5);
 
+        }
+    }
+
+    @media (max-width:425px) {
+        p {
+            font-size: 0.7rem;
+            line-height: 17px;
         }
     }
 
@@ -123,6 +158,10 @@
         background: transparent linear-gradient(103deg, #097CC5 0%, #128FE0 100%) 0% 0% no-repeat padding-box;
         color: $white;
         padding: 0.7rem 0.6rem;
+
+        &:hover {
+            background: transparent linear-gradient(103deg, #128FE0 0%, #1aa3ff 100%) 0% 0% no-repeat padding-box;
+        }
     }
 }
 
@@ -156,16 +195,28 @@ a:not(.btn) {
             margin-bottom: 2.5rem !important;
         }
     }
+    .login-wrapp{
+     .col-md-6 {
+        width: 80%;
+    }
+   } 
 }
 
-@media (max-width:530px) {
-    .login-wrapp {
-        .col-md-6 {
-            width: 100%;
+@media (max-width:425px) {
+    .login-box {
+        .mb-5 {
+            margin-bottom: 1.2rem !important;
         }
     }
 }
 
+@media (max-width:375px) {
+    .login-wrapp{
+     .col-md-6 {
+        width: 100%;
+    }
+   } 
+}
 
 
 

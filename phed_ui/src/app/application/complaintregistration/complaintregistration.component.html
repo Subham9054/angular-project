@@ -17,12 +17,6 @@
                         <li class="bg-transparent border-0">
                             <span class="text-danger small"><b>(*)</b> Indicate mandatory</span>
                         </li>
-                        <!-- <li><a href="javascript:void(0)" ngbTooltip="Click to Print"><i class="bi bi-printer"></i></a>
-                        </li>
-                        <li><a href="javascript:void(0)" ngbTooltip="Delete Record"><i class="bi bi-trash"></i></a></li>
-                        <li><a href="javascript:void(0)" ngbTooltip="Download"><i class="bi bi-download"></i></a></li>
-                        <li><a href="javascript:void(0)" ngbTooltip="Go to Previous"><i
-                                    class="bi bi-arrow-left"></i></a></li> -->
                     </ul>
                 </div>
             </div>
@@ -33,14 +27,14 @@
             <div class="row">
                 <div class="col-lg-12 col-xxl-12">
                     <div class="row">
-                        <div class="col-xxl-3 col-lg-4 col-md-6">
+                        <div class="col-xl-3 col-md-6">
                             <div class="mb-3">
                                 <label for="txtRegdDt" class="form-label">Registration Date</label>
                                 <input name="txtRegdDt" type="text" [(ngModel)]="currentDate" readonly id="txtRegdDt"
                                     class="form-control" />
                             </div>
                         </div>
-                        <div class="col-xxl-3 col-lg-4 col-md-6">
+                        <div class="col-xl-3 col-md-6">
                             <div class="mb-3">
                                 <label for="ddlRecvBy" class="form-label">Mode of Complaint</label>
                                 <select name="ddlRecievemode" [(ngModel)]="formData.ddlComplainttype"
@@ -54,97 +48,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-xxl-3 col-lg-4 col-md-6">
-                            <div class="mb-3">
-                                <label for="txtName" class="form-label">Name <span class="text-danger">*</span></label>
-                                <input name="txtName" type="text" id="txtName" [(ngModel)]="formData.txtName" required
-                                    class="form-control" maxlength="100" />
-                                <p class="text-danger text-end fw-lighter small mb-0">(Maximum <span class="fw-bold">100</span>
-                                    Characters)</p>
-                            </div>
-                        </div>
-
-                        <div class="col-xxl-3 col-lg-4 col-md-6">
-                            <div class="mb-3">
-                                <label for="txtPhone" class="form-label">Phone</label>
-                                <input name="txtPhone" type="text" maxlength="10" id="txtPhone"
-                                    [(ngModel)]="formData.txtPhone" class="form-control" />
-                            </div>
-                        </div>
-                        <div class="col-xxl-3 col-lg-4 col-md-6">
-                            <div class="mb-3">
-                                <label for="txtAddress" class="form-label">Address</label>
-                                <textarea name="txtAddress" rows="2" id="txtAddress"
-                                    [(ngModel)]="formData.txtAddress" class="form-control"></textarea>
-                             
-                                    <p class="text-danger text-end fw-lighter small mb-0">(Maximum <span class="fw-bold">200</span>
-                                        Characters)</p>
-                            </div>
-                        </div>
-                        <div class="col-xxl-3 col-lg-4 col-md-6">
-                            <div class="mb-3">
-                                <label for="ddlDistrict" class="form-label">District</label>
-                                <select name="ddlDistrict" id="ddlDistrict" [(ngModel)]="formData.ddlDistrict"
-                                    (change)="onDistrictChange($event)" class="form-select">
-                                    <option selected value="0">-Select-</option>
-                                    <option *ngFor="let district of districts" [value]="district.inT_DIST_ID">
-                                        {{ district.vcH_DIST_NAME }}
-                                    </option>
-                                </select>
-                            </div>
-                        </div>
-                        <!-- <div class="col-xxl-3 col-lg-4 col-md-6">
-                            <div class="mb-3">
-                                <label for="ddllanguage" class="form-label">Select Language</label>
-                                <select name="ddllanguage" id="ddllanguage" class="form-select"
-                                    [(ngModel)]="formData.ddllanguage" style="width: 150px;">
-                                    <option value="1">English</option>
-                                    <option value="2">Hindi</option>
-                                </select>
-                            </div>
-                        </div> -->
-                    
-                     
-                        <div class="col-xxl-3 col-lg-4 col-md-6">
-                            <div class="mb-3">
-                                <label for="ddlBlock" class="form-label">Block</label>
-                                <select name="ddlBlock" id="ddlBlock" [(ngModel)]="formData.ddlBlock"
-                                    (change)="onBlockChange($event)" class="form-select">
-                                    <option value="0">-Select-</option>
-                                    <option *ngFor="let block of blocks" [value]="block.inT_BLOCK_ID">{{
-                                        block.vcH_BLOCK_NAME }}
-                                    </option>
-                                </select>
-                            </div>
-                        </div>
-                   
-                      
-                        <div class="col-xxl-3 col-lg-4 col-md-6">
-                            <div class="mb-3">
-                                <label for="ddlGp" class="form-label">Gram Panchayat</label>
-                                <select name="ddlGp" id="ddlGp" [(ngModel)]="formData.ddlPanchayat"
-                                    (change)="onGpChange($event)" class="form-select">
-                                    <option value="0">-Select-</option>
-                                    <option *ngFor="let gp of gps" [value]="gp.inT_GP_ID">{{ gp.vcH_GP_NAME }}</option>
-                                </select>
-                            </div>
-                        </div>
-                   
-                       
-                        <div class="col-xxl-3 col-lg-4 col-md-6">
-                            <div class="mb-3">
-                                <label for="ddlVillage" class="form-label">Village</label>
-                                <select name="ddlVillage" id="ddlVillage" [(ngModel)]="formData.ddlVillage"
-                                    class="form-select">
-                                    <option value="0">-Select-</option>
-                                    <option *ngFor="let village of villages" [value]="village.inT_VILLAGE_ID">{{
-                                        village.vcH_VILLAGE_NAME }}</option>
-                                </select>
-                            </div>
-                        </div>
-                   
-                       
-                        <div class="col-xxl-3 col-lg-4 col-md-6">
+                        <div class="col-xl-3 col-md-6">
                             <div class="mb-3">
                                 <label for="ddlComplaintCategory" class="form-label">Complaint Category</label>
                                 <select name="ddlComplaintCategory" id="ddlComplaintCategory"
@@ -157,7 +61,8 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-xxl-3 col-lg-4 col-md-6">
+                        
+                        <div class="col-xl-3 col-md-6">
                             <div class="mb-3">
                                 <label for="ddlSubCategory" class="form-label">Complaint Sub-Category</label>
                                 <select name="ddlSubCategory" id="ddlSubCategory"
@@ -171,8 +76,26 @@
                             </div>
                         </div>
 
-              
-                        <div class="col-xxl-3 col-lg-4 col-md-6">
+
+                        <div class="col-xl-3 col-md-6">
+                            <div class="mb-3">
+                                <label for="txtName" class="form-label">Name <span class="text-danger">*</span></label>
+                                <input name="txtName" type="text" id="txtName" [(ngModel)]="formData.txtName" required
+                                    class="form-control" maxlength="100" />
+                                <p class="text-danger text-end fw-lighter small mb-0">(Maximum <span class="fw-bold">100</span>
+                                    Characters)</p>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-3 col-md-6">
+                            <div class="mb-3">
+                                <label for="txtPhone" class="form-label">Phone</label>
+                                <input name="txtPhone" type="text" maxlength="10" id="txtPhone"
+                                    [(ngModel)]="formData.txtPhone" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-xxl-6 col-lg-6 col-md-6"></div>
+                        <div class="col-xl-3 col-md-6">
                             <div class="mb-3">
                                 <label for="txtDocument" class="form-label">Nature of Document</label>
                                 <input name="txtDocument" type="text" id="txtDocument"
@@ -181,7 +104,7 @@
                         </div>
                         
                    
-                        <div class="col-xxl-3 col-lg-4 col-md-6">
+                        <div class="col-xl-3 col-md-6">
                             <div class="mb-3 upload-doc">
                                 <label for="FileUpload1" class="form-label">Upload Document</label>
                                 <input type="file" name="FileUpload1" id="FileUpload1"
@@ -192,11 +115,78 @@
                                     <p class="mb-0 small text-danger text-end fw-lighter">Supported File Format(<span class="fw-bold">pdf,doc,docx,xls,xlsx</span>)</p>
                             </div>
                         </div>
+                        <div class="col-xxl-6 col-lg-6 col-md-6"></div>
+                       
+                        <div class="col-xl-3 col-md-6">
+                            <div class="mb-3">
+                                <label for="ddlDistrict" class="form-label">District</label>
+                                <select name="ddlDistrict" id="ddlDistrict" [(ngModel)]="formData.ddlDistrict"
+                                    (change)="onDistrictChange($event)" class="form-select">
+                                    <option selected value="0">-Select-</option>
+                                    <option *ngFor="let district of districts" [value]="district.inT_DIST_ID">
+                                        {{ district.vcH_DIST_NAME }}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+
                         
+                     
+                        <div class="col-xl-3 col-md-6">
+                            <div class="mb-3">
+                                <label for="ddlBlock" class="form-label">Block</label>
+                                <select name="ddlBlock" id="ddlBlock" [(ngModel)]="formData.ddlBlock"
+                                    (change)="onBlockChange($event)" class="form-select">
+                                    <option value="0">-Select-</option>
+                                    <option *ngFor="let block of blocks" [value]="block.inT_BLOCK_ID">{{
+                                        block.vcH_BLOCK_NAME }}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                   
+                      
+                        <div class="col-xl-3 col-md-6">
+                            <div class="mb-3">
+                                <label for="ddlGp" class="form-label">Gram Panchayat</label>
+                                <select name="ddlGp" id="ddlGp" [(ngModel)]="formData.ddlPanchayat"
+                                    (change)="onGpChange($event)" class="form-select">
+                                    <option value="0">-Select-</option>
+                                    <option *ngFor="let gp of gps" [value]="gp.inT_GP_ID">{{ gp.vcH_GP_NAME }}</option>
+                                </select>
+                            </div>
+                        </div>
+                   
+                       
+                        <div class="col-xl-3 col-md-6">
+                            <div class="mb-3">
+                                <label for="ddlVillage" class="form-label">Village</label>
+                                <select name="ddlVillage" id="ddlVillage" [(ngModel)]="formData.ddlVillage"
+                                    class="form-select">
+                                    <option value="0">-Select-</option>
+                                    <option *ngFor="let village of villages" [value]="village.inT_VILLAGE_ID">{{
+                                        village.vcH_VILLAGE_NAME }}</option>
+                                </select>
+                            </div>
+                        </div>
                         
                     </div>
+
                     <div class="row">
-                        <div class="col-xxl-6 col-lg-8">
+                        <div class="col-xxl-6 col-lg-6">
+                            <div class="mb-3">
+                                <label for="txtAddress" class="form-label">Address</label>
+                                <textarea name="txtAddress" rows="3" id="txtAddress"
+                                    [(ngModel)]="formData.txtAddress" class="form-control"></textarea>
+                             
+                                    <p class="text-danger text-end fw-lighter small mb-0">(Maximum <span class="fw-bold">200</span>
+                                        Characters)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xxl-6 col-lg-6">
                             <div class="mb-3">
                                 <label for="txtDetailsE" class="form-label">Complaint Description in
                                     Brief</label>

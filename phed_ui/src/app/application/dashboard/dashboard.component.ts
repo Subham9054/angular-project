@@ -46,19 +46,19 @@ export class DashboardComponent {
         type: 'column',
         name: 'Received',
         data: [5, 3, 4, 5, 7, 6, 5, 3, 4, 5, 7, 6, 5, 3, 4, 5, 7, 6, 5, 3, 4, 5, 7, 6, 5, 3, 4, 5, 7, 6, 5, 3, 4, 5, 7, 6, 8, 9],
-        color: '#7cb5ec',
+        color: '#4374e7',
       },
       {
         type: 'column',
         name: 'Pending',
         data: [2, 4, 6, 3, 4, 7, 2, 4, 6, 3, 4, 7, 2, 4, 6, 3, 4, 7, 2, 4, 6, 3, 4, 7, 2, 4, 6, 3, 4, 7, 2, 4, 6, 3, 4, 7, 8, 9],
-        color: '#434348',
+        color: '#ff9f60',
       },
       {
         type: 'column',
         name: 'Resolved',
         data: [3, 5, 7, 4, 5, 4, 3, 5, 7, 4, 5, 4, 3, 5, 7, 4, 5, 4, 3, 5, 7, 4, 5, 4, 3, 5, 7, 4, 5, 4, 3, 5, 7, 4, 5, 4, 9, 10],
-        color: '#90ed7d',
+        color: '#008000',
       },
     ],
     credits: {
@@ -71,6 +71,9 @@ export class DashboardComponent {
     credits: {
       enabled: false,
     },
+    chart: {
+      type: 'column',
+    },
     xAxis: {
       categories: [
         'Handpump Tubewell Related',
@@ -82,6 +85,7 @@ export class DashboardComponent {
     },
     yAxis: {
       min: 0,
+      max:50,
       title: {
         text: 'Number of Complaints',
       },
@@ -91,31 +95,22 @@ export class DashboardComponent {
     },
     series: [{
       name: 'Recieved',
-      type: 'line',
-      color: '#7cb5ec',
+      type: 'column',
+      color: '#4374e7',
       data: [5, 8, 12, 3, 28], 
-      marker: {
-        enabled: true,
-        radius: 6,
-      },
+     
     }, {
       name: 'Pending',
-      type: 'line',
-      color: '#434348',
-      data: [15, 20, 30, 5, 70], 
-      marker: {
-        enabled: true,
-        radius: 6,
-      },
+      type: 'column',
+      color: '#ff9f60',
+      data: [15, 20, 30, 5, 50], 
+      
     }, {
       name: 'Resolved',
-      type: 'line',
-      color: '#90ed7d',
+      type: 'column',
+      color: '#008000',
       data: [10, 12, 15, 2, 40], 
-      marker: {
-        enabled: true,
-        radius: 6,
-      },
+     
     }],
 
   }

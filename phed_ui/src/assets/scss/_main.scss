@@ -45,23 +45,23 @@ a {
 }
 
 .content {
-  padding: $content-padding-mobile;
+  // padding: $content-padding-mobile;
   flex: 1;
   width: 100vw;
   max-width: 100vw;
   direction: ltr;
   margin-top: 4rem;
-
+  padding: $content-padding-desktop;
   @include media-breakpoint-up(md) {
     width: auto;
     max-width: auto;
-    padding: $content-padding-desktop;
+    // padding: $content-padding-desktop;
 
   }
 
-  @include media-breakpoint-up(lg) {
-    padding: $content-padding-desktop;
-  }
+  // @include media-breakpoint-up(lg) {
+  //   padding: $content-padding-desktop;
+  // }
 
   @media (max-width:768px) {
     margin-top: 2.5rem;
@@ -91,7 +91,7 @@ a {
   .search-btn {
     text-align: center;
     margin-bottom: 1rem;
-
+    margin-top: -0.1rem;
     a {
       box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.09);
       padding: 0.3rem 0.9rem;
@@ -216,14 +216,13 @@ a {
   th {
     background-color: $blue-light !important;
     text-wrap: nowrap;
-    // &:first-child {
-    //   @include border-radius(.4rem 0 0 0)
-    // }
-    // &:last-child {
-    //     @include border-radius(0 .4rem 0 0)
-    // }
   }
-
+  tfoot{
+    td{
+      font-weight: bold;
+      background-color: rgba($blue-light, .2);
+    }
+  }
   a:not(.btn) {
     color: $blue;
     text-decoration: auto;
@@ -233,19 +232,21 @@ a {
     }
   }
 }
-
-.card {
-  @include border-radius(.4rem);
-
-  &-title {
-    margin-bottom: 1rem;
-  }
-
-  &-header {
-    padding-top: $card-padding-y;
-    padding-bottom: $card-padding-y;
+.dash-card{
+  .card {
+    background-color: #fff;
+    border: solid 1px #e9ecef;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.09);
+    height: 100%;
+    &-header {
+      padding-top: $card-padding-y;
+      padding-bottom: $card-padding-y;
+      border-bottom:solid 1px #e9ecef;
+    }
   }
 }
+
 
 .no-record {
   color: $gray-500;
@@ -528,12 +529,200 @@ table {
 
 // Breadcrumb Design End
 
+// Dashboard Design  Start
+.info-dashboad {
+  @media (max-width:768px){
+    margin-top: 0.5rem;
+  }
+  .dashboard-card {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1rem;
+      @media (max-width:1024px){
+        grid-template-columns: repeat(3, 1fr);
+      }
+      @media (max-width:576px){
+        grid-template-columns: repeat(2, 1fr);
+      }
+      @media (max-width:480px){
+        grid-template-columns: repeat(1, 1fr);
+      }
+  }
 
+  .card {
+      position: relative;
+
+      .media {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+
+          .avatar {
+              border-radius: 50%;
+              height: 55px;
+              width: 55px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+
+              i {
+                  font-size: 2rem;
+              }
+          }
+
+
+      }
+
+      .card-link {
+          position: absolute;
+          right: 0;
+          left: 0;
+          bottom: 0;
+          top: 0;
+      }
+  }
+
+  .bg-pending {
+      background-color: #ff9f60;
+      color: #ffffff;
+  }
+
+  .pending {
+      border: 1px solid #ff9f60;
+  }
+
+  .pending {
+      &:hover {
+          background-color: #ff9f60;
+          color:$white;
+          .bg-pending {
+              background-color: #ffffff;
+              color: #ff9f60;
+          }
+      }
+  }
+
+  .bg-received {
+      background-color: rgb(67 116 231);
+      color: #f7f7f7;
+  }
+
+  .received {
+      border: 1px solid #4374e7;
+  }
+
+  .received {
+      &:hover {
+          background-color: #5580e6;
+          color:$white;
+          .bg-received {
+              background-color: #ffffff;
+              color: #4374e7;
+          }
+      }
+  }
+
+
+  .bg-resolved {
+      background-color: #008000;
+      color: #ffffff;
+  }
+
+  .resolved {
+      border: 1px solid #008000;
+  }
+
+  .resolved {
+      &:hover {
+          background-color: #008000c2;
+          color:$white;
+          .bg-resolved {
+              background-color: #ffffff;
+              color: #008000;
+          }
+      }
+  }
+
+
+  .bg-non-resolved {
+      background-color: #dc3545;
+      color: #ffffff;
+  }
+
+  .non-resolved {
+      border: 1px solid #dc3545;
+  }
+
+  .non-resolved {
+      &:hover {
+          background-color: #df616d;
+          color:$white;
+          .bg-non-resolved {
+              background-color: #ffffff;
+              color: #dc3545;
+          }
+      }
+  }
+
+
+  .bg-verify {
+      background-color: #0dcaf0;
+      color: #ffffff;
+  }
+
+  .verify {
+      border: 1px solid #0dcaf0;
+  }
+
+  .verify {
+      &:hover {
+          background-color: #60dbf3;
+          color:$white;
+          .bg-verify {
+              background-color: #ffffff;
+              color: #0dcaf0;
+          }
+      }
+  }
+
+
+
+  h3,
+  p {
+      margin-bottom: 0;
+  }
+
+}
+.custom-tab {
+  margin-left: auto;
+
+  .nav-tabs {
+    margin-bottom: -0.9rem;
+      .nav-link {
+          background-color: $blue-dark;
+          color: $white;
+
+          &:hover {
+              background-color: $link-color;
+              color: $white;
+          }
+
+          &.active {
+              background-color: $white;
+              color: $black;
+          }
+      }
+  }
+}
+// Dashboard Design end
+// Graph Design
+// .graph-wrapper{
+//   height: 300px;
+// }
 @media (max-width:630px) {
   .breadcrumb {
     display: none !important;
   }
-  .content {
-    margin-top: 2.5rem;
+
 }
-}
+

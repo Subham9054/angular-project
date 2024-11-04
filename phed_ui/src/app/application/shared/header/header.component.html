@@ -4,26 +4,26 @@
     </a>
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb mb-0 ms-3">
-          <li class="breadcrumb-item">
-              <a routerLink="/application/dashboard" title="Home"><i class="bi bi-house-door"></i></a>
-          </li>
-          <li class="breadcrumb-item">
-             <a href="#" class="text-decoration-none text-muted">GMS</a>
-          </li>
-          <li class="breadcrumb-item active fw-bold" aria-current="page">Register Complaint</li>
+            <li class="breadcrumb-item">
+                <a routerLink="/application/dashboard" title="Home"><i class="bi bi-house-door"></i></a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="#" class="text-decoration-none text-muted">GMS</a>
+            </li>
+            <li class="breadcrumb-item active fw-bold" aria-current="page">Register Complaint</li>
         </ol>
-      </nav>
-    <!-- <div class="title-bar d-md-flex align-items-center ps-xl-2" (click)="$event.stopPropagation();">
-        <a routerLink="/application/hospital-dashboard" title="Home"><i class="bi bi-house-door"></i></a>
-        <span class="px-2">/</span>
-        <h5 class="mb-0 d-md-block d-none"> Demo</h5>
-    </div> -->
+    </nav>
+  
     
     <div class="navbar-collapse collapse" (click)="$event.stopPropagation();">
         <ul class="navbar-nav navbar-align d-flex align-items-center">
             <li class="nav-item">
-               <a href="javascript:void(0);" class="btn btn-outline-secondary btn-sm" (click)="toggleText()">{{ buttonText }}</a>   
-            </li>
+                <a  href="javascript:void(0);" class="btn btn-outline-secondary btn-sm" (click)="toggleText()" 
+                  [title]="buttonText === 'हिंदी' ? 'Click for Hindi' : 'Click for English'">
+                  {{ buttonText }}
+                </a>
+              </li>
+              
             <li class="nav-item dropdown second-li">
                 <a class="nav-icon dropdown-toggle" href="javascript:void(0);" id="alertsDropdown" data-bs-toggle="dropdown">
                     <div class="position-relative">
@@ -76,8 +76,6 @@
                     <p class="text-dark mb-0 lh-sm"><small class="d-block text-muted">Welcome</small> <span>Adminstrator</span></p>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end shadow border-0 dropdown-success">
-                    <!-- <a class="dropdown-item" href="javascript:void(0);"> <i class="bi bi-person me-2"></i> Profile</a>
-                    <div class="dropdown-divider"></div> -->
                     <a class="dropdown-item" routerLink="/login"><i class="bi bi-box-arrow-right me-2"></i> Logout</a>
                 </div>
             </li>
@@ -88,14 +86,5 @@
             </li>
         </ul>
     </div>
+
 </nav>
-<div class="container-fluid" >
-    <!-- <nav aria-label="breadcrumb" class="py-3 px-2" >
-        <ol class="breadcrumb mb-0" (click)="$event.stopPropagation();">
-          <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item active" aria-current="page">{{ pagetitle }}</li>
-        </ol>
-      </nav> -->
-<!-- <app-breadcrumb></app-breadcrumb> -->
-      
-</div>

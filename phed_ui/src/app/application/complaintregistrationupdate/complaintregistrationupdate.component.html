@@ -90,7 +90,8 @@
                         <select name="ddlStatusSearch" [(ngModel)]="formData.ddlComplaintsts" id="ddlStatusSearch"
                             class="form-select">
                             <option value="0">-Select Status-</option>
-                            <option *ngFor="let complaint of complaintstatus" [value]="complaint.inT_COMPLIANT_STATUS_ID">{{
+                            <option *ngFor="let complaint of complaintstatus"
+                                [value]="complaint.inT_COMPLIANT_STATUS_ID">{{
                                 complaint.vcH_COMPLIANT_STATUS }}</option>
                         </select>
                     </div>
@@ -101,7 +102,8 @@
                         <select name="ddlRecievemode" [(ngModel)]="formData.ddlComplainttype" id="ddlRecievemode"
                             class="form-select">
                             <option value="0">-Select-</option>
-                            <option *ngFor="let complaintp of complainttype" [value]="complaintp.inT_COMPLIANT_LOG_TYPE_ID">
+                            <option *ngFor="let complaintp of complainttype"
+                                [value]="complaintp.inT_COMPLIANT_LOG_TYPE_ID">
                                 {{ complaintp.vcH_COMPLIANT_LOG_TYPE }}</option>
                         </select>
                     </div>
@@ -111,7 +113,8 @@
                         <label class="form-label">Registration Date</label>
                         <div class="input-group">
                             <input type="text" class="form-control datepicker" id="Regddatepicker">
-                            <label class="input-group-text" for="Regddatepicker"><i class="bi bi-calendar-week"></i></label>
+                            <label class="input-group-text" for="Regddatepicker"><i
+                                    class="bi bi-calendar-week"></i></label>
                         </div>
                     </div>
                 </div>
@@ -120,14 +123,15 @@
                         <label class="form-label">Registration Date</label>
                         <div class="input-group">
                             <input type="text" class="form-control datepicker" id="todatepicker">
-                            <label class="input-group-text" for="todatepicker"><i class="bi bi-calendar-week"></i></label>
+                            <label class="input-group-text" for="todatepicker"><i
+                                    class="bi bi-calendar-week"></i></label>
                         </div>
                     </div>
                 </div>
                 <div class="col-xxl-3 col-lg-4 col-md-6 col-sm-6">
                     <div class="mb-3">
                         <label class="form-label d-sm-block d-none">&nbsp;</label>
-                        <button type="submit" class="btn btn-success me-2">View</button>
+                        <button type="submit" class="btn btn-primary me-2">Search</button>
                         <button type="reset" class="btn btn-danger">Reset</button>
                     </div>
                 </div>
@@ -136,14 +140,11 @@
     </div>
     <div class="search-btn">
         <a data-bs-toggle="collapse" href="#collapseExample">
-            <span class="collapse-on">Search Open <i class="bi bi-arrow-down"></i></span> <span class="collapse-off">Search
+            <span class="collapse-on">Search Open <i class="bi bi-arrow-down"></i></span> <span
+                class="collapse-off">Search
                 Close <i class="bi bi-arrow-up"></i></span>
         </a>
     </div>
-
-    <!-- <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Tooltip on top">
-        Tooltip on top
-      </button> -->
     <div class="content-box content-area p-0">
         <div class="table-responsive mb-0">
             <table class="table table-striped mb-0">
@@ -173,7 +174,7 @@
                         <td>John Smith</td>
                         <td>
                             <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="View"
+                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"
                                     data-bs-toggle="modal" data-bs-target="#details">
                                     <i class="bi bi-eye"></i>
                                 </a>
@@ -195,7 +196,7 @@
                         <td>Jane Smith</td>
                         <td>
                             <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="View"
+                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"
                                     data-bs-toggle="modal" data-bs-target="#details">
                                     <i class="bi bi-eye"></i>
                                 </a>
@@ -217,7 +218,7 @@
                         <td>Robert Brown</td>
                         <td>
                             <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="View"
+                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"
                                     data-bs-toggle="modal" data-bs-target="#details">
                                     <i class="bi bi-eye"></i>
                                 </a>
@@ -239,7 +240,7 @@
                         <td>Emily White</td>
                         <td>
                             <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="View"
+                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"
                                     data-bs-toggle="modal" data-bs-target="#details">
                                     <i class="bi bi-eye"></i>
                                 </a>
@@ -261,7 +262,7 @@
                         <td>Mark Wilson</td>
                         <td>
                             <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="View"
+                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"
                                     data-bs-toggle="modal" data-bs-target="#details">
                                     <i class="bi bi-eye"></i>
                                 </a>
@@ -283,13 +284,9 @@
     <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header justify-content-between">
-                <h1 class="modal-title fs-5" id="tokenLabel">Status of Registered Complaint</h1>
-                <div class="d-flex gap-2">
-                    <a href="javascript:void(0)" ngbTooltip="Click to Print" class="btn btn-outline-danger btn-sm"><i
-                            class="bi bi-printer"></i></a>
-                    <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-dismiss="modal"
-                        aria-label="Close"><i class="bi bi-x-lg"></i></button>
-                </div>
+                <h1 class="modal-title fs-4" id="tokenLabel">Status of Registered Complaint</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
             </div>
             <div class="modal-body view-form">
                 <div class="modal-logo">
@@ -299,13 +296,17 @@
                         <p>Public Health Engineering Department</p>
                         <small>Government of Bihar </small>
                     </div>
+                    <div class="ms-auto">
+                        <a href="javascript:void(0)" ngbTooltip="Click to Print"
+                            class="btn btn-outline-danger btn-sm"><i class="bi bi-printer me-1"></i>Print</a>
+                    </div>
                 </div>
                 <div class="modal-title-part">
                     <h5>Status of Registered Complaint</h5>
                 </div>
                 <div class="row">
                     <div class="col-xl-12">
-                        <h5 class="mt-2 subtitle">General Information</h5>
+                        <h5 class="subtitle">General Information</h5>
                     </div>
                     <div class="col-xl-12">
                         <div class="row">
@@ -457,7 +458,7 @@
                                         <th width="40px">Sl#</th>
                                         <th>Action Taken By</th>
                                         <th>Action Taken On</th>
-                                        <th width="150px">Status</th>
+                                        <th width="190px">Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -548,10 +549,6 @@
                     </div>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
         </div>
     </div>
 </div>
@@ -563,101 +560,104 @@
         <div class="modal-content">
             <div class="modal-header justify-content-between">
                 <h1 class="modal-title fs-5" id="tokenLabel">Complaint Details</h1>
-                <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-dismiss="modal"
-                aria-label="Close"><i class="bi bi-x-lg"></i></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="row">
                     <div class="col-xl-12 view-form">
+                        <div class="bg-light p-3 pb-0 mb-4">
+                            <div class="row">
+                                <div class="col-xl-3 col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Token No</label>
+                                        <label class="form-value">202410230124</label>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Registration Date</label>
+                                        <label class="form-value">23-Oct-2024</label>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Complainant Name</label>
+                                        <label class="form-value">Krishanumar</label>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label"> Location</label>
+                                        <label class="form-value">NA</label>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Complaint Category</label>
+                                        <label class="form-value">Piped Water Supply Related </label>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Complaint Sub-Category</label>
+                                        <label class="form-value">Operator does not runs the motor</label>
+                                    </div>
+                                </div>
+                
+                
+                                <div class="col-xl-3 col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Current Status</label>
+                                        <label class="form-value">Registered & Open</label>
+                                    </div>
+                                </div>
+                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-8">
                         <div class="row">
-                            <div class="col-xl-3 col-md-6">
+                            <div class="col-xl-6 col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label">Token No</label>
-                                    <label class="form-value">202410230124</label>
+                                    <label for="ddlDistrict" class="form-label">Status</label>
+                                    <select class="form-select">
+                                        <option selected>-Select-</option>
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select>
                                 </div>
                             </div>
-                            <div class="col-xl-3 col-md-6">
+                            <div class="col-xl-6 col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label">Registration Date</label>
-                                    <label class="form-value">23-Oct-2024</label>
+                                    <label for="ddlDistrict" class="form-label">Reference Document</label>
+                                    <input class="form-control" type="file" id="formFile">
+                                    <p class="text-danger text-end fw-lighter small mb-0"> Only <span class="fw-bold">.jpeg, .jpg, .png,
+                                            .gif, .doc, .xls, .pdf</span> files
+                                        allowed</p>
                                 </div>
                             </div>
-                            <div class="col-xl-3 col-md-6">
+                            <div class="col-xl-12">
                                 <div class="mb-3">
-                                    <label class="form-label">Complainant Name</label>
-                                    <label class="form-value">Krishanumar</label>
+                                    <label for="ddlDistrict" class="form-label">Remarks</label>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                    <p class="text-danger text-end fw-lighter small mb-0">(Maximum <span class="fw-bold">100</span>
+                                        Characters)</p>
                                 </div>
                             </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label"> Location</label>
-                                    <label class="form-value">NA</label>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label">Complaint Category</label>
-                                    <label class="form-value">Piped Water Supply Related </label>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label">Complaint Sub-Category</label>
-                                    <label class="form-value">Operator does not runs the motor</label>
-                                </div>
-                            </div>
-
-
-                            <div class="col-xl-3 col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label">Current Status</label>
-                                    <label class="form-value">Registered & Open</label>
-                                </div>
-                            </div>
-
                         </div>
                     </div>
                     <div class="col-xl-12">
-                        <div class="bg-light p-3 pb-0">
-                            <div class="row">
-                                <div class="col-xl-4">
-                                    <div class="mb-3">
-                                        <label for="ddlDistrict" class="form-label">Status</label>
-                                        <select class="form-select">
-                                            <option selected>-Select-</option>
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-xl-4">
-                                    <div class="mb-3">
-                                        <label for="ddlDistrict" class="form-label">Remarks</label>
-                                        <textarea class="form-control" id="exampleFormControlTextarea1"
-                                            rows="3"></textarea>
-                                        <p class="text-danger text-end fw-lighter small mb-0">(Maximum <span
-                                                class="fw-bold">100</span>
-                                            Characters)</p>
-                                    </div>
-                                </div>
-                                <div class="col-xl-4">
-                                    <div class="mb-3">
-                                        <label for="ddlDistrict" class="form-label">Reference Document</label>
-                                        <input class="form-control" type="file" id="formFile">
-                                        <p class="text-danger text-end fw-lighter small mb-0"> Only <span
-                                                class="fw-bold">.jpeg, .jpg, .png, .gif, .doc, .xls, .pdf</span> files
-                                            allowed</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                       <div class="row">
+                          <div class="col-xl-5">
+                             <div class="d-flex gap-1">
+                                <a href="javascript:void(0);" class="btn btn-primary">Submit</a>
+                                <a href="javascript:void(0);" class="btn btn-danger">Reset</a>
+                             </div>
+                          </div>
+                       </div>
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
             </div>
         </div>
     </div>

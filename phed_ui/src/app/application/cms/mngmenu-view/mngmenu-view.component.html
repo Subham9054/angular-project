@@ -1,0 +1,179 @@
+<div class="form-cointainer">
+    <div class="main-tab">
+        <div class="row justify-content-between align-items-center">
+            <div class="col-lg-4">
+                <ul class="nav nav-tabs" routerLinkActive="active">
+                    <li class="nav-item">
+                        <a routerLink="/application/mngmenu" class="nav-link">Add</a>
+                    </li>
+                    <li class="nav-item">
+                        <a routerLink="/application/mngmenu-view" class="nav-link active">View</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="collapseExample" class="collapse">
+        <div class="content-box search-box">
+            <div class="row">
+                <div class="col-xxl-3 col-lg-4 col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label" for="manutype">Menu Type</label>
+                        <select class="form-select" id="manutype">
+                            <option selected>-Select-</option>
+                            <option value="1">Main Menu</option>
+                            <option value="2">Footer Menu</option>
+                            <option value="3">Footer Bottom Menu</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-xxl-3 col-lg-4 col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label" for="parentmanu">Parent Menu</label>
+                            <select class="form-select" id="parentmanu">
+                                <option selected>-Select-</option>
+                                <option value="1">FAQ</option>
+                                <option value="2">Feedback</option>
+                                <option value="3">Contact</option>
+                            </select>
+                    </div>
+                </div>
+                <div class="col-xxl-3 col-lg-4 col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label" for="menuen">Menu Name</label>
+                        <input type="text" class="form-control" id="menuen">
+                    </div>
+                </div>
+                <div class="col-xxl-3 col-lg-4 col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label d-xxl-block d-none">&nbsp;</label>
+                        <button type="submit" class="btn btn-primary me-2">Search</button>
+                        <button type="reset" class="btn btn-danger">Reset</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="search-btn">
+        <a data-bs-toggle="collapse" href="#collapseExample">
+            <span class="collapse-on">Search Open <i class="bi bi-arrow-down"></i></span> <span
+                class="collapse-off">Search Close <i class="bi bi-arrow-up"></i></span>
+        </a>
+    </div>
+    <div class="content-box content-area p-0">
+        <div class="table-responsive mb-0">
+            <table class="table table-striped mb-0">
+                <thead>
+                    <tr>
+                        <th width="40px">Sl#</th>
+                        <th>Menu Type</th>
+                        <th>Link Type</th>
+                        <th>Parent Menu</th>
+                        <th>Menu Name</th>
+                        <th>Created On</th>
+                        <th>Status</th>
+                        <th width="70px">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Footer Bottom Menu</td>
+                        <td>Global Link</td>
+                        <td>-</td>
+                        <td>RTI</td>
+                        <td>14-Mar-2024</td>
+                        <td></td>
+                        <td>
+                            <div class="d-flex gap-1">
+                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View">
+                                    <i class="bi bi-eye"></i></a>
+                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
+                                    <i class="bi bi-pencil"></i></a>
+                                <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" title="Delete">
+                                    <i class="bi bi-trash3"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Footer Bottom Menu</td>
+                        <td>Global Link</td>
+                        <td>-</td>
+                        <td>Place to Visit</td>
+                        <td>14-Mar-2024</td>
+                        <td></td>
+                        <td>
+                            <div class="d-flex gap-1">
+                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View">
+                                    <i class="bi bi-eye"></i></a>
+                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
+                                    <i class="bi bi-pencil"></i></a>
+                                <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" title="Delete">
+                                    <i class="bi bi-trash3"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Footer Bottom Menu</td>
+                        <td>Global Link</td>
+                        <td>-</td>
+                        <td>City Events</td>
+                        <td>14-Mar-2024</td>
+                        <td></td>
+                        <td>
+                            <div class="d-flex gap-1">
+                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View">
+                                    <i class="bi bi-eye"></i></a>
+                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
+                                    <i class="bi bi-pencil"></i></a>
+                                <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" title="Delete">
+                                    <i class="bi bi-trash3"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>4</td>
+                        <td>Footer Bottom Menu</td>
+                        <td>Global Link</td>
+                        <td>-</td>
+                        <td>City Map</td>
+                        <td>14-Mar-2024</td>
+                        <td></td>
+                        <td>
+                            <div class="d-flex gap-1">
+                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View">
+                                    <i class="bi bi-eye"></i></a>
+                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
+                                    <i class="bi bi-pencil"></i></a>
+                                <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" title="Delete">
+                                    <i class="bi bi-trash3"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Footer Bottom Menu</td>
+                        <td>Global Link</td>
+                        <td>-</td>
+                        <td>Citizen Services</td>
+                        <td>14-Mar-2024</td>
+                        <td></td>
+                        <td>
+                            <div class="d-flex gap-1">
+                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View">
+                                    <i class="bi bi-eye"></i></a>
+                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
+                                    <i class="bi bi-pencil"></i></a>
+                                <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" title="Delete">
+                                    <i class="bi bi-trash3"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

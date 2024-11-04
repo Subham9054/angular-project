@@ -1,5 +1,186 @@
 <div class="form-cointainer">
     <div class="main-tab">
+        <div class="row justify-content-between">
+            <div class="col-lg-4">
+                <ul class="nav nav-tabs" routerLinkActive="active">
+                    <li class="nav-item">
+                        <a routerLink="/application/pagecontent" class="nav-link active">Add</a>
+                    </li>
+                    <li class="nav-item">
+                        <a routerLink="/application/pagecontent-view" class="nav-link">View</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-6 ">
+                <div class="utilite float-end mb-1">
+                    <ul class="mb-0">
+                        <li class="bg-transparent border-0">
+                            <span class="text-danger small"><b>(*)</b> Indicate mandatory </span>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" ngbTooltip="Click to Print"><i class="bi bi-printer"></i></a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" ngbTooltip="Delete Record"><i class="bi bi-trash"></i></a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" ngbTooltip="Download"><i class="bi bi-download"></i></a>
+                        </li>
+                        <li><a href="javascript:void(0)" ngbTooltip="Go to Previous"><i
+                                    class="bi bi-arrow-left"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-box content-area">
+        <div class="row">
+            <div class="col-xl-9 col-md-12 border-end">
+                <div class="row">
+                    <div class="col-xl-6">
+                        <div class="mb-3">
+                            <label class="form-label" for="patitle">Page Title in English </label>
+                            <input class="form-control" type="text" id="patitle">
+                        </div>
+                    </div>
+           
+                    <div class="col-xl-6">
+                        <div class="mb-3">
+                            <label class="form-label" for="patitlehn">Page Title in Hindi</label>
+                            <input type="text" class="form-control" id="patitlehn">
+                        </div>
+                    </div>
+
+                    <div class="col-xl-6">
+                        <div class="mb-3">
+                            <label class="form-label" for="pagealias">Page Alias in English</label>
+                            <input class="form-control" type="text" id="pagealias">
+                        </div>
+                    </div>
+
+                    <div class="col-xl-6">
+                        <div class="mb-3">
+                            <label class="form-label" for="pagealiashn">Page Alias in Hindi</label>
+                            <input class="form-control" type="text" id="pagealiashn">
+                        </div>
+                    </div>
+
+                    <div class="col-xl-6">
+                        <div class="mb-3">
+                            <label class="form-label d-block" for="linktype">Link Type</label>
+                            <div class="form-check form-check-inline mt-1">
+                                <input class="form-check-input" type="radio" name="link type" id="link1" value="option1" checked>
+                                <label class="form-check-label" for="link1">Internal</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="link type" id="link2" value="option2">
+                                <label class="form-check-label" for="link2">External</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-6">
+                        <div class="mb-3">
+                            <label class="form-label d-block" for="uploadfile">Open in Window</label>
+                            <div class="form-check form-check-inline mt-1">
+                                <input class="form-check-input" type="radio" name="Window Status" id="status1" value="option1">
+                                <label class="form-check-label" for="status1">Same Window</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="Window Status" id="status2" value="option2" checked>
+                                <label class="form-check-label" for="status2">New Window</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-6">
+                        <div class="mb-3">
+                            <label class="form-label" for="snipeng">Snippet in English</label>
+                            <textarea class="form-control" id="snipeng" rows="3"></textarea>
+                        </div>
+                    </div> 
+
+                    <div class="col-xl-6">
+                        <div class="mb-3">
+                            <label class="form-label" for="snipenghn">Snippet in Hindi</label>
+                            <textarea class="form-control" id="snipenghn" rows="3"></textarea>
+                        </div>
+                    </div> 
+
+                    <div class="col-xl-6">
+                        <div class="mb-3">
+                            <label class="form-label">Content in English</label>
+                            <ckeditor [editor]="editor" [data]="data"></ckeditor>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-6">
+                        <div class="mb-3">
+                            <label class="form-label">Content in Hindi</label>
+                            <ckeditor [editor]="editor" [data]="data"></ckeditor>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-6">
+                        <div class="mb-3 upload-doc">
+                            <label class="form-label" for="uploadfile">Feature Image</label>
+                            <input class="form-control" type="file" id="uploadfile">
+                            <div class="dom-upload">
+                                <a href="javascript:void(0);" class="btn btn-outline-danger"><span class="bi bi-download"></span></a>
+                            </div>
+                            <p class="small mb-0 text-end text-danger">Max file Size <span class="fw-bold">1 mb</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-12">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="mb-3">
+                            <label class="form-label" for="metatitle">Meta Title</label>
+                            <input class="form-control" type="text" id="metatitle">
+                        </div>
+                    </div>
+                    <div class="col-xl-12">
+                        <div class="mb-3">
+                            <label class="form-label" for="metekeyword">Meta Keyword</label>
+                            <input class="form-control" type="text" id="metekeyword">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="reset" class="btn btn-danger">Reset</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="form-cointainer">
+    <div class="main-tab">
         <div class="row justify-content-between align-items-center">
             <div class="col-xxl-3 col-lg-4 col-md-6">
                 <ul class="nav nav-tabs" routerLinkActive="active">
@@ -56,11 +237,11 @@
 
                 <div class="col-xxl-3 col-lg-4">
                     <div class="mb-3">
-                        <button type="submit" class="btn btn-success me-2">View</button>
+                        <button type="submit" class="btn btn-primary me-2">Submit</button>
                         <button type="reset" class="btn btn-danger">Reset</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</div> -->

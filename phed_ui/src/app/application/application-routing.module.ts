@@ -18,6 +18,21 @@ import { PageComponent } from './page/page.component';
 import { PagecontentComponent } from './pagecontent/pagecontent.component';
 import { PageViewComponent } from './page-view/page-view.component';
 import { PagecontentViewComponent } from './pagecontent-view/pagecontent-view.component';
+import { MinisterProfileComponent } from './cms/minister-profile/minister-profile.component';
+import { MngbannerComponent } from './cms/mngbanner/mngbanner.component';
+import { MngfaqComponent } from './cms/mngfaq/mngfaq.component';
+import { MnggalleryComponent } from './cms/mnggallery/mnggallery.component';
+import { MnglogoComponent } from './cms/mnglogo/mnglogo.component';
+import { MngmenuComponent } from './cms/mngmenu/mngmenu.component';
+import { NewseventComponent } from './cms/newsevent/newsevent.component';
+import { WhatsnewComponent } from './cms/whatsnew/whatsnew.component';
+import { NewseventViewComponent } from './cms/newsevent-view/newsevent-view.component';
+import { MngfaqViewComponent } from './cms/mngfaq-view/mngfaq-view.component';
+import { WhatnewViewComponent } from './cms/whatnew-view/whatnew-view.component';
+import { MnggalleryViewComponent } from './cms/mnggallery-view/mnggallery-view.component';
+import { MngmenuViewComponent } from './cms/mngmenu-view/mngmenu-view.component';
+import { MngcontactComponent } from './cms/mngcontact/mngcontact.component';
+import { MngcontactViewComponent } from './cms/mngcontact-view/mngcontact-view.component';
 
 
 const routes: Routes = [{
@@ -39,6 +54,21 @@ const routes: Routes = [{
     {path:'pagecontent',component:PagecontentComponent},
     {path:'page-view',component:PageViewComponent},
     {path:'pagecontent-view',component:PagecontentViewComponent},
+    {path:'minister-profile',component:MinisterProfileComponent},
+    {path:'mngbanner',component:MngbannerComponent},
+    {path:'mngfaq',component:MngfaqComponent},
+    {path:'mnggallery',component:MnggalleryComponent},
+    {path:'mnglogo',component:MnglogoComponent},
+    {path:'mngmenu',component:MngmenuComponent},
+    {path:'newsevent',component:NewseventComponent},
+    {path:'whatsnew',component:WhatsnewComponent},
+    {path:'newsevent-view',component:NewseventViewComponent},
+    {path:'mngfaq-view',component:MngfaqViewComponent},
+    {path:'whatnew-view',component:WhatnewViewComponent},
+    {path:'mnggallery-view',component:MnggalleryViewComponent},
+    {path:'mngmenu-view',component:MngmenuViewComponent},
+    {path:'mngcontact',component:MngcontactComponent},
+    {path:'mngcontact-view',component:MngcontactViewComponent},
   ]
 }];
 

@@ -24,6 +24,21 @@ import { PageViewComponent } from './page-view/page-view.component';
 import { PagecontentViewComponent } from './pagecontent-view/pagecontent-view.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { HighchartsChartModule } from 'highcharts-angular';
+import { MnglogoComponent } from './cms/mnglogo/mnglogo.component';
+import { MngmenuComponent } from './cms/mngmenu/mngmenu.component';
+import { MngbannerComponent } from './cms/mngbanner/mngbanner.component';
+import { WhatsnewComponent } from './cms/whatsnew/whatsnew.component';
+import { MinisterProfileComponent } from './cms/minister-profile/minister-profile.component';
+import { NewseventComponent } from './cms/newsevent/newsevent.component';
+import { MnggalleryComponent } from './cms/mnggallery/mnggallery.component';
+import { MngfaqComponent } from './cms/mngfaq/mngfaq.component';
+import { NewseventViewComponent } from './cms/newsevent-view/newsevent-view.component';
+import { MngfaqViewComponent } from './cms/mngfaq-view/mngfaq-view.component';
+import { WhatnewViewComponent } from './cms/whatnew-view/whatnew-view.component';
+import { MnggalleryViewComponent } from './cms/mnggallery-view/mnggallery-view.component';
+import { MngmenuViewComponent } from './cms/mngmenu-view/mngmenu-view.component';
+import { MngcontactComponent } from './cms/mngcontact/mngcontact.component';
+import { MngcontactViewComponent } from './cms/mngcontact-view/mngcontact-view.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +61,22 @@ import { HighchartsChartModule } from 'highcharts-angular';
     PageComponent,
     PagecontentComponent,
     PageViewComponent,
-    PagecontentViewComponent
+    PagecontentViewComponent,
+    MnglogoComponent,
+    MngmenuComponent,
+    MngbannerComponent,
+    WhatsnewComponent,
+    MinisterProfileComponent,
+    NewseventComponent,
+    MnggalleryComponent,
+    MngfaqComponent,
+    NewseventViewComponent,
+    MngfaqViewComponent,
+    WhatnewViewComponent,
+    MnggalleryViewComponent,
+    MngmenuViewComponent,
+    MngcontactComponent,
+    MngcontactViewComponent
   ],
   imports: [
     CommonModule,
