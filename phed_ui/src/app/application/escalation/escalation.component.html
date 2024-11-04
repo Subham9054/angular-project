@@ -28,22 +28,27 @@
             <div class="row">
                 <div class="col-xl-4 col-lg-4 col-sm-6">
                     <div class="mb-3">
-                        <label for="txtRegdDt" class="form-label">Complaint Category</label>
-                        <select class="form-select">
-                            <option selected>-Select-</option>
-                            <option value="1">Handpump Tubewell Related</option>
-                            <option value="2">Miscellaneous</option>
-                            <option value="3">Piped Water Supply Related</option>
+                        <label for="ddlComplaintCategory" class="form-label">Complaint Category</label>
+                        <select name="ddlComplaintCategory" id="ddlComplaintCategory"
+                            [(ngModel)]="formData.ddlComplaintCategory"
+                            (change)="onCategoryChange($event)" class="form-select">
+                            <option selected value="0">-Select-</option>
+                            <option *ngFor="let category of categories"
+                                [value]="category.inT_CATEGORY_ID">{{ category.vcH_CATEGORY }}
+                            </option>
                         </select>
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-4 col-sm-6">
                     <div class="mb-3">
-                        <label for="txtRegdDt" class="form-label">Complaint Sub Category</label>
-                        <select class="form-select">
-                            <option selected>-Select-</option>
-                            <option value="1">Repairing of Public Handpump</option>
-                            <option value="2">Repairing of Private Handpump</option>
+                        <label for="ddlSubCategory" class="form-label">Complaint Sub-Category</label>
+                        <select name="ddlSubCategory" id="ddlSubCategory"
+                            [(ngModel)]="formData.ddlSubCategory" class="form-select">
+                            <option value="0">-Select-</option>
+                            <option *ngFor="let subcategory of subcategories"
+                                [value]="subcategory.inT_SUB_CATEGORY_ID">{{
+                                subcategory.vcH_SUB_CATEGORY }}
+                            </option>
                         </select>
                     </div>
                 </div>
@@ -69,8 +74,8 @@
                                 <tr>
                                     <th width="40px">Sl#</th>
                                     <th>Designation</th>
-                                    <th>Level Name</th>
-                                    <th>Hours</th>
+                                    <th>Location Level</th>
+                                    <th>Standard Action Taking Hours</th>
                                     <th width="80px">Action</th>
                                 </tr>
                             </thead>
@@ -78,21 +83,27 @@
                                 <tr *ngFor="let row of rows; let i = index">
                                     <td>{{ i + 1 }}</td>
                                     <td>
-                                        <select class="form-select">
-                                            <option selected>-Select-</option>
-                                            <option value="1">JE</option>
-                                            <option value="2">EE</option>
-                                            <option value="3">OE</option>
+                                        <select name="ddlDesignation" [id]="'ddlDesignation' + i"
+                                            [(ngModel)]="formData.ddlDesignation[i]" class="form-select">
+                                            <option value="0" selected>-Select-</option>
+                                            <option *ngFor="let designation of designations"
+                                                [value]="designation.inT_DESIG_ID">
+                                                {{ designation.nvcH_DESIG_NAME }}
+                                            </option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select name="ddlLocLevel" [id]="'ddlLocLevel' + i"
+                                            [(ngModel)]="formData.ddlLocLevel[i]" class="form-select">
+                                            <option value="0" selected>-Select-</option>
+                                            <option *ngFor="let locationlevel of locationlevels"
+                                                [value]="locationlevel.inT_LEVEL_ID">
+                                                {{ locationlevel.inT_LEVEL_ID }}
+                                            </option>
                                         </select>
                                     </td>
                                     <td>
                                         <input type="text" class="form-control">
-                                    </td>
-                                    <td>
-                                        <div class="input-group">
-                                            <input type="text" class="form-control timepicker" id="inputTime">
-                                            <label class="input-group-text" for="inputTime"><i class="bi bi-clock"></i></label>
-                                        </div>
                                     </td>
                                     <td>
                                         <div class="d-flex gap-1">
@@ -104,12 +115,11 @@
                                     </td>
                                 </tr>
                             </tbody>
+                            
                         </table>
                     </div>
                 </div>
-
             </div>
-
 
             <div class="row">
                 <div class="col-xxl-3 col-lg-4 col-sm-6">

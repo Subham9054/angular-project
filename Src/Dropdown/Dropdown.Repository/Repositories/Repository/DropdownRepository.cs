@@ -50,15 +50,14 @@ namespace Dropdown.Repository.Repositories.Repository
                 throw;
             }
         }
-        public async Task<List<GP>> GetGp(int distid, int blockid)
+        public async Task<List<GP>> GetGp(int blockid)
         {
             try
             {
                 {
                     DynamicParameters dynamicParameters = new DynamicParameters();
-                    dynamicParameters.Add("@distid", distid);
                     dynamicParameters.Add("@blockid", blockid);
-                    var gps = await Connection.QueryAsync<GP>("GetActiveGPByDistrictAndBlock", dynamicParameters, commandType: CommandType.StoredProcedure);
+                    var gps = await Connection.QueryAsync<GP>("GetActiveGPByBlock", dynamicParameters, commandType: CommandType.StoredProcedure);
                     return gps.ToList();
                 }
             }
@@ -67,16 +66,14 @@ namespace Dropdown.Repository.Repositories.Repository
                 throw;
             }
         }
-        public async Task<List<Village>> Getvillage(int distid, int blockid, int gpid)
+        public async Task<List<Village>> Getvillage(int gpid)
         {
             try
             {
                 {
                     DynamicParameters dynamicParameters = new DynamicParameters();
-                    dynamicParameters.Add("@distid", distid);
-                    dynamicParameters.Add("@blockid", blockid);
                     dynamicParameters.Add("@gpid", gpid);
-                    var villages = await Connection.QueryAsync<Village>("GetActiveVillagesByDistrictBlockGP", dynamicParameters, commandType: CommandType.StoredProcedure);
+                    var villages = await Connection.QueryAsync<Village>("GetActiveVillagesByGP", dynamicParameters, commandType: CommandType.StoredProcedure);
                     return villages.ToList();
                 }
             }
@@ -89,7 +86,7 @@ namespace Dropdown.Repository.Repositories.Repository
         {
             try
             {
-
+             
                 {
                     DynamicParameters dynamicParameters = new DynamicParameters();
                     var complaints = await Connection.QueryAsync<ComplaintStatus>("GetComplaintStatus", dynamicParameters, commandType: CommandType.StoredProcedure);
@@ -105,11 +102,71 @@ namespace Dropdown.Repository.Repositories.Repository
         {
             try
             {
-
                 {
                     DynamicParameters dynamicParameters = new DynamicParameters();
                     var complaintslog = await Connection.QueryAsync<Complaintlogtype>("GetComplaintlogtype", dynamicParameters, commandType: CommandType.StoredProcedure);
                     return complaintslog.ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+        public async Task<List<Category>> GetCategories()
+        {
+            try
+            {
+                {
+                    DynamicParameters dynamicParameters = new DynamicParameters();
+                    var categories = await Connection.QueryAsync<Category>("GetActiveCategories", dynamicParameters, commandType: CommandType.StoredProcedure);
+                    return categories.ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+        public async Task<List<subCategory>> GetSubCategories(int catid)
+        {
+            try
+            {
+                {
+                    DynamicParameters dynamicParameters = new DynamicParameters();
+                    dynamicParameters.Add("@catid", catid);
+                    var subcategories = await Connection.QueryAsync<subCategory>("GetActivesubCategories", dynamicParameters, commandType: CommandType.StoredProcedure);
+                    return subcategories.ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+        public async Task<List<Designation>> getDesignation()
+        {
+            try
+            {
+                {
+                    DynamicParameters dynamicParameters = new DynamicParameters();
+                    var designations = await Connection.QueryAsync<Designation>("GetDesignation", dynamicParameters, commandType: CommandType.StoredProcedure);
+                    return designations.ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+        public async Task<List<Location>> getLocation()
+        {
+            try
+            {
+                {
+                    DynamicParameters dynamicParameters = new DynamicParameters();
+                    var designations = await Connection.QueryAsync<Location>("GetLoclvl", dynamicParameters, commandType: CommandType.StoredProcedure);
+                    return designations.ToList();
                 }
             }
             catch (Exception ex)

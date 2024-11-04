@@ -22,15 +22,17 @@ export class AuthService {
   private updateComplaintApiUrl = 'http://172.27.32.0:8085/api/Complaint/UpdateComplaint';
   private getComplaintByIdApiUrl = 'http://172.27.32.0:8085/api/Complaint/GetComplaintById';
   private deleteapiurl = 'http://172.27.32.0:8085/api/Complaint/deleteComplaintbyid';
-  private districturl = 'http://172.27.32.0:8085/api/ComplaintsRegistration/GetDistricts';  
-  private blockurl = 'http://172.27.32.0:8085/api/ComplaintsRegistration/GetBlocks';
-  private gpurl = 'http://172.27.32.0:8085/api/ComplaintsRegistration/GetGp';
-  private villageurl = 'http://172.27.32.0:8085/api/ComplaintsRegistration/GetVillages';
-  private categoryUrl = 'http://172.27.32.0:8085/api/ComplaintsRegistration/GetCategory';
-  private subcategoryUrl = 'http://172.27.32.0:8085/api/ComplaintsRegistration/GetSubCategories';
+  private districturl = 'https://localhost:7225/api/Dropdown/GetDistricts';  
+  private blockurl = 'https://localhost:7225/api/Dropdown/GetBlocks';
+  private gpurl = 'https://localhost:7225/api/Dropdown/GetGp';
+  private villageurl = 'https://localhost:7225/api/Dropdown/GetVillages';
+  private categoryUrl = 'https://localhost:7225/api/Dropdown/GetCategory';
+  private subcategoryUrl = 'https://localhost:7225/api/Dropdown/GetSubCategories';
   private fileUploadUrl = 'http://172.27.32.0:8085/api/ComplaintsRegistration/UploadFile';
   private complaintstatusUrl = 'http://172.27.32.0:8085/api/ComplaintsRegistration/GetComplaints';
-  private complainttypeurl = 'http://172.27.32.0:8085/api/ComplaintsRegistration/GetComplaintstype';
+  private complainttypeurl = 'https://localhost:7225/api/Dropdown/GetComplaintstype';
+  private getdesignationurl='https://localhost:7225/api/Dropdown/GetDesignation';
+  private getloclevel='https://localhost:7225/api/Dropdown/GetLocationLevel';
  
   constructor(private http: HttpClient, private router: Router) { }
  
@@ -177,7 +179,17 @@ export class AuthService {
     return this.http.get(`${this.getComplaintByIdApiUrl}/${id}`)
       .pipe(catchError(this.handleError));
   }
+  getDesignation():Observable<any>{
+    return this.http.get(this.getdesignationurl).pipe(
+      catchError(this.handleError)
+    );
+  }
 
+  getLocation():Observable<any>{
+    return this.http.get(this.getloclevel).pipe(
+      catchError(this.handleError)
+    );
+  }
   // Error handling logic
   private handleError(error: any) {
     console.error('An error occurred:', error);
