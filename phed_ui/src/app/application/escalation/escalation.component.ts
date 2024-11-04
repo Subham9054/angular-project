@@ -101,6 +101,7 @@ export class EscalationComponent implements OnInit, AfterViewInit, AfterViewChec
       daysOfWeekDisabled: [0, 6]
     });
   }
+  
 
   onCategoryChange(event: any) {
     const catid = parseInt(event.target.value, 10);
