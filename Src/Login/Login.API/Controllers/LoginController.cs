@@ -50,43 +50,38 @@ namespace Login.API.Controllers
 
         //}
 
-        private async Task<string> Authenticatedusers(Users user)
+        private async Task<Users> Authenticatedusers(Users user)
         {
             user.vchPassWord = Md5Encryption.MD5Encryption(user.vchPassWord);
             Users _user = await _loginRepository.login(user);
-            if (_user != null)
+            if (_user != null && user.vchUserName == _user.vchUserName && user.vchPassWord == _user.vchPassWord)
             {
-                if (user.vchUserName == _user.vchUserName && user.vchPassWord == _user.vchPassWord)
-                {
-                    return "User found and authenticated";
-                }
-                else
-                {
-                    return "Invalid username or password";
-                }
+                return _user;
             }
-            else
-            {
-                return "User not found";
-            }
+            return null;
         }
+
         private string GenerateToken(Users user)
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+
+            // Include necessary claims
             var claims = new[]
             {
-                new Claim(JwtRegisteredClaimNames.Name, user.vchUserName),
-                new Claim(ClaimTypes.Role, user.Role),  
-               // new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())  
+                new Claim(JwtRegisteredClaimNames.Name, user.vchFullName),
+                new Claim(ClaimTypes.Sid, user.intUserId.ToString()),
+                new Claim(ClaimTypes.Role, user.vchUserName),
             };
+
             var token = new JwtSecurityToken(
                 issuer: _configuration["Jwt:Issuer"],
                 audience: _configuration["Jwt:Audience"],
                 claims: claims,
-                expires: DateTime.Now.AddMinutes(1),  // Set a suitable token expiration time
+                expires: DateTime.Now.AddMinutes(60),
                 signingCredentials: credentials
             );
+
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
@@ -94,46 +89,30 @@ namespace Login.API.Controllers
         [HttpPost("Login")]
         public async Task<IActionResult> Login([FromBody] Users user)
         {
-            if (!string.IsNullOrEmpty(user.vchUserName) && !string.IsNullOrEmpty(user.vchPassWord))
-            {
-                ActionResult response = Unauthorized();
-                string authMessage = await Authenticatedusers(user);
-                if (authMessage == "User found and authenticated")
-                {
-                    var token = GenerateToken(user);
-                    string message = "Login successful! Welcome " + user.vchUserName;
-                    response = Ok(new { token = token, message = message, role = user.Role });
-                }
-                else
-                {
-                    response = Unauthorized(new { message = authMessage });
-                }
-                return response;
-            }
+            IActionResult response = Unauthorized();
 
+            // Authenticate user and fetch the user details
+            var authenticatedUser = await Authenticatedusers(user);
+
+            if (authenticatedUser != null)
+            {
+                var token = GenerateToken(authenticatedUser);
+                string message = "Login successful";
+
+                response = Ok(new
+                {
+                    token = token,
+                    message = message,
+                    role = authenticatedUser.vchUserName,
+                    fullName = authenticatedUser.vchFullName
+                });
+            }
             else
             {
-                // Handle missing username or password
-                return BadRequest(new { message = "Username or password cannot be null or empty." });
+                response = Unauthorized(new { message = "Invalid username or password" });
             }
-            //public async Task<IActionResult> Login([FromBody] Users user)
-            //{
-            //    IActionResult response = Unauthorized();
-            //    string authMessage = await Authenticatedusers(user);
-            //    if (authMessage == "User found and authenticated")
-            //    {
-            //        var token = GenerateToken(user);
-            //        string message = "Login successful! Welcome " + user.vchUserName;
-            //        response = Ok(new { token = token, message = message });
-            //    }
-            //    else
-            //    {
-            //        response = Unauthorized(new { message = authMessage });
-            //    }
-            //    return response;
-            //}
 
-
+            return response;
         }
     }
 }

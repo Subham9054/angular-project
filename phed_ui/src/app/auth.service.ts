@@ -15,7 +15,7 @@ export class AuthService {
   private baseUrl: string = 'http://localhost:8085/api';
   
 
-  private apiUrl = 'http://172.27.32.0:8085/api/Login'; // Your API URL for login
+  private apiUrl = 'https://localhost:7199/Login'; // Your API URL for login
   private registrationApiUrl = 'http://172.27.32.0:8085/api/ComplaintsRegistration/DetailcomplaintRegistration';
   private complaintApiUrl = 'http://172.27.32.0:8085/api/Complaint/ComplaintCategory';
   private getComplaintApiUrl = 'http://172.27.32.0:8085/api/Complaint/GetallComplaint';
