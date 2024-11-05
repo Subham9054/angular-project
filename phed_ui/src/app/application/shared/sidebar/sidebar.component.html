@@ -10,41 +10,72 @@
     </div>
     <div class="sidebar-content py-2 scrollsidebar">
         <ul class="sidebar-nav">
-            <li class="sidebar-item" routerLinkActive="active">
+            <li class="sidebar-item">
                 <a class="sidebar-link" routerLink="dashboard">
                     <i class="bi bi-speedometer2"></i> <span class="align-middle">Dashboard</span>
                 </a>
             </li>
 
-            <li class="sidebar-item" routerLinkActive="active">
+            <li class="sidebar-item">
                 <a class="sidebar-link" routerLink="demo">
                     <i class="bi bi-speedometer2"></i> <span class="align-middle">Demo</span>
                 </a>
             </li>
-
-            <li class="sidebar-item" routerLinkActive="active">
-                <a data-bs-target="#mngMaster" data-bs-toggle="collapse" class="sidebar-link collapsed" routerLinkActive="active"
+            <li class="sidebar-item" [class.active]="isActive('/application/complaintcategory')">
+                <a data-bs-target="#mngMaster" data-bs-toggle="collapse" class="sidebar-link collapsed" routerLink="Common"
+                    (click)="$event.stopPropagation();">
+                    <i class="bi bi-journal-check"></i> <span class="align-middle">Common Master</span>
+                </a>
+                <ul id="mngMaster" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                    <li class="sidebar-item" [class.active]="isActive('/application/complaintcategory')">
+                        <a class="sidebar-link" routerLink="/application/complaintcategory">Complaint Category</a>
+                    </li>
+                    <li class="sidebar-item" [class.active]="isActive('pending')">
+                        <a class="sidebar-link" routerLink="pending">Complaint Sub-Category</a>
+                    </li>
+                </ul>
+            </li>
+            
+            <!-- <li class="sidebar-item" routerLinkActive="active">
+                <a data-bs-target="#mngMaster" data-bs-toggle="collapse" class="sidebar-link collapsed" routerLink="Common"
                     (click)="$event.stopPropagation();">
                     <i class="bi bi-journal-check"></i> <span class="align-middle">Common Master</span> </a>
                 <ul id="mngMaster" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                    <li class="sidebar-item"><a class="sidebar-link" routerLink="/application/complaintcategory"
-                            routerLinkActive="active">Complaint Category </a></li>
-                    <li class="sidebar-item"><a class="sidebar-link" routerLink="pending" routerLinkActive="active">
-                        Complaint Sub-Category </a></li>
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" routerLink="/application/complaintcategory">Complaint Category </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" routerLink="pending">
+                        Complaint Sub-Category </a>
+                    </li>
+                </ul>
+            </li> -->
+            <li class="sidebar-item" [class.active]="isActive('/application/escalation')">
+                <a data-bs-target="#mngConfig" data-bs-toggle="collapse" class="sidebar-link collapsed"
+                    routerLinkActive="active" (click)="$event.stopPropagation();">
+                    <i class="bi bi-gear"></i> 
+                    <span class="align-middle">Config</span>
+                 </a>
+                <ul id="mngConfig" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" [class.active]="isActive('/application/escalation')" routerLink="/application/escalation">Escalation</a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" [class.active]="isActive('/application/demographymapping')" routerLink="/application/demographymapping">Demography Mapping</a>
+                    </li>
                 </ul>
             </li>
-
-            <li class="sidebar-item" routerLinkActive="active">
+            <!-- <li class="sidebar-item" routerLinkActive="active">
                 <a data-bs-target="#mngConfig" data-bs-toggle="collapse" class="sidebar-link collapsed"
                     routerLinkActive="active" (click)="$event.stopPropagation();">
                     <i class="bi bi-gear"></i> <span class="align-middle">Config</span> </a>
                 <ul id="mngConfig" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                     <li class="sidebar-item"><a class="sidebar-link" routerLink="/application/escalation"
                             routerLinkActive="active">Escalation</a></li>
-                    <li class="sidebar-item"><a class="sidebar-link" routerLink="/application/escalation-view"
+                    <li class="sidebar-item"><a class="sidebar-link" routerLink="/application/demographymapping"
                             routerLinkActive="active">Demography Mapping</a></li>
                 </ul>
-            </li>
+            </li> -->
 
             <li class="sidebar-item" routerLinkActive="active">
                 <a data-bs-target="#mngGMS" data-bs-toggle="collapse" class="sidebar-link collapsed"

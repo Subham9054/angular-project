@@ -134,9 +134,15 @@
                     <div class="col-xl-6">
                         <div class="mb-3 upload-doc">
                             <label class="form-label" for="uploadfile">Feature Image</label>
-                            <input class="form-control" type="file" id="uploadfile">
-                            <div class="dom-upload">
-                                <a href="javascript:void(0);" class="btn btn-outline-danger"><span class="bi bi-download"></span></a>
+                            <div class="custom-dropzone photoUpload" ngx-dropzone [accept]="'image/*'" (change)="onSelect($event)">
+                                <ngx-dropzone-label>
+                                    <div>
+                                        <h2>Drag and Drop <span class="d-block">or</span>Click to upload here</h2>
+                                    </div>
+                                </ngx-dropzone-label>
+                                <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f" [removable]="true" (removed)="onRemove(f)">
+                                    <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                                </ngx-dropzone-image-preview>
                             </div>
                             <p class="small mb-0 text-end text-danger">Max file Size <span class="fw-bold">1 mb</span></p>
                         </div>
