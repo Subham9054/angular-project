@@ -15,13 +15,13 @@ export class AuthService {
   private baseUrl: string = 'http://localhost:8085/api';
   
 
-  private apiUrl = 'http://172.27.32.0:8085/api/Login'; // Your API URL for login
+  private apiUrl = 'https://localhost:7199/Login'; // Your API URL for login
   private registrationApiUrl = 'http://172.27.32.0:8085/api/ComplaintsRegistration/DetailcomplaintRegistration';
-  private complaintApiUrl = 'http://172.27.32.0:8085/api/Complaint/ComplaintCategory';
-  private getComplaintApiUrl = 'http://172.27.32.0:8085/api/Complaint/GetallComplaint';
-  private updateComplaintApiUrl = 'http://172.27.32.0:8085/api/Complaint/UpdateComplaint';
+  private complaintApiUrl = 'https://localhost:7010/Api/MANAGE_CATEGORYMASTER/ComplaintCategory';
+  private getComplaintApiUrl = 'https://localhost:7010/Api/MANAGE_CATEGORYMASTER/GetallComplaint';
+  private updateComplaintApiUrl = 'https://localhost:7010/Api/MANAGE_CATEGORYMASTER/UpdateComplaint';
   private getComplaintByIdApiUrl = 'http://172.27.32.0:8085/api/Complaint/GetComplaintById';
-  private deleteapiurl = 'http://172.27.32.0:8085/api/Complaint/deleteComplaintbyid';
+  private deleteapiurl = 'https://localhost:7010/Api/MANAGE_CATEGORYMASTER/deleteComplaintbyid';
   private districturl = 'https://localhost:7225/api/Dropdown/GetDistricts';  
   private blockurl = 'https://localhost:7225/api/Dropdown/GetBlocks';
   private gpurl = 'https://localhost:7225/api/Dropdown/GetGp';

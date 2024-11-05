@@ -8,9 +8,10 @@ namespace Login.Model.Entities.LoginEntity
 {
     public class Users
     {
-        
-        public string? vchUserName { get; set; }
-        public string? vchPassWord { get; set; }
-        public string Role { get; set; } = null;
+        public string vchUserName { get; set; }
+        public string vchPassWord { get; set; }
+        public string Role { get; set; }
+        public int intUserId { get; set; }
+        public string vchFullName { get; set; }
     }
 }

@@ -33,6 +33,8 @@ import { MnggalleryViewComponent } from './cms/mnggallery-view/mnggallery-view.c
 import { MngmenuViewComponent } from './cms/mngmenu-view/mngmenu-view.component';
 import { MngcontactComponent } from './cms/mngcontact/mngcontact.component';
 import { MngcontactViewComponent } from './cms/mngcontact-view/mngcontact-view.component';
+import { MngbannerViewComponent } from './cms/mngbanner-view/mngbanner-view.component';
+import { MinisterProfileViewComponent } from './cms/minister-profile-view/minister-profile-view.component';
 
 
 const routes: Routes = [{
@@ -50,34 +52,34 @@ const routes: Routes = [{
     {path:'complaint-category-wise-reports',component:ComplaintCategoryWiseReportsComponent},
     {path:'demographymapping',component:DemographymappingComponent},
     {path:'demographymapping-view',component:DemographymappingViewComponent},
-
     {path:'page',component:PageComponent},
     {path:'page-view',component:PageViewComponent},
-
     {path:'pagecontent',component:PagecontentComponent},
     {path:'pagecontent-view',component:PagecontentViewComponent},
 
-    {path:'minister-profile',component:MinisterProfileComponent},
+    
+    {path:'mnglogo',component:MnglogoComponent},
 
+    {path:'minister-profile',component:MinisterProfileComponent},
     {path:'mngbanner',component:MngbannerComponent},
+    {path:'mngbanner-view',component:MngbannerViewComponent},
+
+    {path:'minister-profile',component:MinisterProfileComponent},
+    {path:'minister-profile-view',component:MinisterProfileViewComponent},
 
     {path:'mngfaq',component:MngfaqComponent},
     {path:'mngfaq-view',component:MngfaqViewComponent},
-    
     {path:'mnggallery',component:MnggalleryComponent},
     {path:'mnggallery-view',component:MnggalleryViewComponent},
 
+    
     {path:'mnglogo',component:MnglogoComponent},
-
     {path:'mngmenu',component:MngmenuComponent},
     {path:'mngmenu-view',component:MngmenuViewComponent},
-
     {path:'newsevent',component:NewseventComponent},
     {path:'newsevent-view',component:NewseventViewComponent},
-
     {path:'whatsnew',component:WhatsnewComponent},
     {path:'whatnew-view',component:WhatnewViewComponent},
-
     {path:'mngcontact',component:MngcontactComponent},
     {path:'mngcontact-view',component:MngcontactViewComponent},
   ]

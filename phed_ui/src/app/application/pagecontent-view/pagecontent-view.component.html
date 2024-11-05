@@ -13,29 +13,57 @@
             </div>
         </div>
     </div>
+    <div id="collapseExample" class="collapse show">
+        <div class="content-box search-box">
+            <div class="row">
+                <div class="col-xxl-3 col-lg-4 col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label" for="patitle">Page Title</label>
+                        <input class="form-control" type="text" id="patitle">
+                    </div>
+                </div>
+              
+                
+                <div class="col-xxl-3 col-lg-4 col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label d-xxl-block d-lg-none d-md-block d-none">&nbsp;</label>
+                        <button type="submit" class="btn btn-primary me-2">Search</button>
+                        <button type="reset" class="btn btn-danger">Reset</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="search-btn">
+        <a data-bs-toggle="collapse" href="#collapseExample">
+            <span class="collapse-on">Search Open <i class="bi bi-arrow-down"></i></span> <span
+                class="collapse-off">Search Close <i class="bi bi-arrow-up"></i></span>
+        </a>
+    </div>
     <div class="content-box content-area p-0">
         <div class="table-responsive mb-0">
             <table class="table table-striped mb-0">
                 <thead>
                     <tr>
                         <th width="40px">Sl#</th>
-                        <th>Page Title in English</th>
+                        <th>Page Title</th>
                         <th>Page Title in Hindi</th>
-                        <th>Page Alias in English</th>
-                        <th>Page Alias in Hindi</th>
+                        <th>Snippet</th>
+                        <th>Snippet in Hindi</th>
                         <th width="90px">Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>1</td>
-                        <td>Device List</td>
-                        <td>Device List</td>
-                        <td>Device List</td>
-                        <td>Device List</td>
+                        <td>Parking Lots</td>
+                        <td>पार्किंग स्थल</td>
+                        <td>The Public Health Engineering Department (PHED), Govt of Bihar has the overall responsibility of managing and monitoring activities to enhance public health in the state of Bihar</td>
+                        <td>बिहार सरकार का लोक स्वास्थ्य अभियंत्रण विभाग (PHED) राज्य में सार्वजनिक स्वास्थ्य को बढ़ावा देने के लिए गतिविधियों का प्रबंधन और निगरानी करने की पूरी जिम्मेदारी निभाता है।</td>
                         <td>
                             <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View">
+                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"
+                                data-bs-toggle="modal" data-bs-target="#viewmodal">
                                     <i class="bi bi-eye"></i></a>
                                 <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
                                     <i class="bi bi-pencil"></i></a>
@@ -46,13 +74,13 @@
                     </tr>
                     <tr>
                         <td>2</td>
-                        <td>Device List</td>
-                        <td>Device List</td>
-                        <td>Device List</td>
-                        <td>Device List</td>
+                        <td>Parking Lots</td>
+                        <td>पार्किंग स्थल</td>
+                        <td>The Public Health Engineering Department (PHED), Govt of Bihar has the overall responsibility of managing and monitoring activities to enhance public health in the state of Bihar</td>
+                        <td>बिहार सरकार का लोक स्वास्थ्य अभियंत्रण विभाग (PHED) राज्य में सार्वजनिक स्वास्थ्य को बढ़ावा देने के लिए गतिविधियों का प्रबंधन और निगरानी करने की पूरी जिम्मेदारी निभाता है।</td>
                         <td>
                             <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View">
+                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"  data-bs-toggle="modal" data-bs-target="#viewmodal">
                                     <i class="bi bi-eye"></i></a>
                                 <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
                                     <i class="bi bi-pencil"></i></a>
@@ -63,13 +91,13 @@
                     </tr>
                     <tr>
                         <td>3</td>
-                        <td>Device List</td>
-                        <td>Device List</td>
-                        <td>Device List</td>
-                        <td>Device List</td>
+                        <td>Parking Lots</td>
+                        <td>पार्किंग स्थल</td>
+                        <td>The Public Health Engineering Department (PHED), Govt of Bihar has the overall responsibility of managing and monitoring activities to enhance public health in the state of Bihar</td>
+                        <td>बिहार सरकार का लोक स्वास्थ्य अभियंत्रण विभाग (PHED) राज्य में सार्वजनिक स्वास्थ्य को बढ़ावा देने के लिए गतिविधियों का प्रबंधन और निगरानी करने की पूरी जिम्मेदारी निभाता है।</td>
                         <td>
                             <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View">
+                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"  data-bs-toggle="modal" data-bs-target="#viewmodal">
                                     <i class="bi bi-eye"></i></a>
                                 <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
                                     <i class="bi bi-pencil"></i></a>
@@ -81,13 +109,13 @@
 
                     <tr>
                         <td>4</td>
-                        <td>Device List</td>
-                        <td>Device List</td>
-                        <td>Device List</td>
-                        <td>Device List</td>
+                        <td>Parking Lots</td>
+                        <td>पार्किंग स्थल</td>
+                        <td>The Public Health Engineering Department (PHED), Govt of Bihar has the overall responsibility of managing and monitoring activities to enhance public health in the state of Bihar</td>
+                        <td>बिहार सरकार का लोक स्वास्थ्य अभियंत्रण विभाग (PHED) राज्य में सार्वजनिक स्वास्थ्य को बढ़ावा देने के लिए गतिविधियों का प्रबंधन और निगरानी करने की पूरी जिम्मेदारी निभाता है।</td>
                         <td>
                             <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View">
+                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"  data-bs-toggle="modal" data-bs-target="#viewmodal">
                                     <i class="bi bi-eye"></i></a>
                                 <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
                                     <i class="bi bi-pencil"></i></a>
@@ -98,13 +126,13 @@
                     </tr>
                     <tr>
                         <td>5</td>
-                        <td>Device List</td>
-                        <td>Device List</td>
-                        <td>Device List</td>
-                        <td>Device List</td>
+                        <td>Parking Lots</td>
+                        <td>पार्किंग स्थल</td>
+                        <td>The Public Health Engineering Department (PHED), Govt of Bihar has the overall responsibility of managing and monitoring activities to enhance public health in the state of Bihar</td>
+                        <td>बिहार सरकार का लोक स्वास्थ्य अभियंत्रण विभाग (PHED) राज्य में सार्वजनिक स्वास्थ्य को बढ़ावा देने के लिए गतिविधियों का प्रबंधन और निगरानी करने की पूरी जिम्मेदारी निभाता है।</td>
                         <td>
                             <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View">
+                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"  data-bs-toggle="modal" data-bs-target="#viewmodal">
                                     <i class="bi bi-eye"></i></a>
                                 <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
                                     <i class="bi bi-pencil"></i></a>
@@ -115,6 +143,110 @@
                     </tr>
                 </tbody>
             </table>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal View  -->
+<div class="modal fade" id="viewmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Content Details</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body view-form">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="row">
+                            <div class="col-xl-4 col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label d-block">Page Title</label>
+                                    <label class="form-value">Parking Lots</label>
+                                </div>
+                            </div>
+                
+                            <div class="col-xl-4 col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Page Title in Hindi</label>
+                                    <label class="form-value">पार्किंग स्थल</label>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-4 col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Page Alias</label>
+                                    <label class="form-value">Parking-Lots</label>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-4 col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Read More</label>
+                                    <label class="form-value">--</label>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Link Type</label>
+                                    <label class="form-value">Internal</label>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-4 col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Open in Window</label>
+                                    <label class="form-value">New Window</label>
+                                </div>
+                            </div>
+                        </div>
+                
+                        <div class="row">
+                            <div class="col-xl-12 col-md-12">
+                                <div class="mb-3">
+                                    <label class="form-label">Snippet</label>
+                                    <label class="form-value">The Public Health Engineering Department (PHED), Govt of Bihar has the overall responsibility of managing and monitoring activities to enhance public health in the state of Bihar.</label>
+                                </div>
+                            </div>
+                
+                            <div class="col-xl-12 col-md-12">
+                                <div class="mb-3">
+                                    <label class="form-label">Snippet in Hindi</label>
+                                    <label class="form-value">बिहार सरकार का लोक स्वास्थ्य अभियंत्रण विभाग (PHED) राज्य में सार्वजनिक स्वास्थ्य को बढ़ावा देने के लिए गतिविधियों का प्रबंधन और निगरानी करने की पूरी जिम्मेदारी निभाता है।</label>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-xl-12 col-md-12">
+                                <div class="mb-3">
+                                    <label class="form-label">Content</label>
+                                    <label class="form-value">The Public Health Engineering Department (PHED), Govt of Bihar has the overall responsibility of managing and monitoring activities to enhance public health in the state of Bihar.</label>
+                                </div>
+                            </div>
+                
+                            <div class="col-xl-12 col-md-12">
+                                <div class="mb-3">
+                                    <label class="form-label">Content in Hindi</label>
+                                    <label class="form-value">बिहार सरकार का लोक स्वास्थ्य अभियंत्रण विभाग (PHED) राज्य में सार्वजनिक स्वास्थ्य को बढ़ावा देने के लिए गतिविधियों का प्रबंधन और निगरानी करने की पूरी जिम्मेदारी निभाता है।</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xl-4">
+                                <div class="mb-3">
+                                    <label class="form-label d-block mb-2">Feature Image</label>
+                                    <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" title="View Image"><i class="bi bi-download"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
