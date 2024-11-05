@@ -4,10 +4,10 @@
             <div class="col-lg-4">
                 <ul class="nav nav-tabs" routerLinkActive="active">
                     <li class="nav-item">
-                        <a routerLink="/application/mngmenu" class="nav-link">Add</a>
+                        <a routerLink="/application/mngbanner" class="nav-link">Add</a>
                     </li>
                     <li class="nav-item">
-                        <a routerLink="/application/mngmenu-view" class="nav-link active">View</a>
+                        <a routerLink="/application/mngbanner-view" class="nav-link active">View</a>
                     </li>
                 </ul>
             </div>
@@ -18,30 +18,8 @@
             <div class="row">
                 <div class="col-xxl-3 col-lg-4 col-md-6">
                     <div class="mb-3">
-                        <label class="form-label" for="manutype">Menu Type</label>
-                        <select class="form-select" id="manutype">
-                            <option selected>-Select-</option>
-                            <option value="1">Main Menu</option>
-                            <option value="2">Footer Menu</option>
-                            <option value="3">Footer Bottom Menu</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-xxl-3 col-lg-4 col-md-6">
-                    <div class="mb-3">
-                        <label class="form-label" for="parentmanu">Parent Menu</label>
-                            <select class="form-select" id="parentmanu">
-                                <option selected>-Select-</option>
-                                <option value="1">FAQ</option>
-                                <option value="2">Feedback</option>
-                                <option value="3">Contact</option>
-                            </select>
-                    </div>
-                </div>
-                <div class="col-xxl-3 col-lg-4 col-md-6">
-                    <div class="mb-3">
-                        <label class="form-label" for="menuen">Menu Name</label>
-                        <input type="text" class="form-control" id="menuen">
+                        <label class="form-label" for="serialno">Serial No.</label>
+                        <input type="text" class="form-control" id="serialno">
                     </div>
                 </div>
                 <div class="col-xxl-3 col-lg-4 col-md-6">
@@ -101,10 +79,9 @@
                             <input type="checkbox">
                         </th>
                         <th width="40px">Sl#</th>
-                        <th>Menu Type</th>
-                        <th>Link Type</th>
-                        <th>Parent Menu</th>
-                        <th>Menu Name</th>
+                        <th>Banner Text 1 </th>
+                        <th>Banner Text 1 in Hindi</th>
+                        <th>Image</th>
                         <th width="70px" class="text-center">Action</th>
                     </tr>
                 </thead>
@@ -112,10 +89,13 @@
                     <tr>
                         <td class="border-left-2 border-left-success"><input type="checkbox"></td>
                         <td>1</td>
-                        <td>Footer Bottom Menu</td>
-                        <td>Global Link</td>
-                        <td>-</td>
-                        <td>RTI</td>
+                        <td>Ensuring Clean Water</td>
+                        <td>स्वच्छ पानी सुनिश्चित करना</td>
+                        <td>
+                            <a href="javascript:void(0);" class="img-banner">
+                                <img src="./assets/img/login-bg.png" alt="Banner text">
+                            </a>
+                        </td>
                         <td>
                             <div class="d-flex gap-1">
                                 <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View" data-bs-toggle="modal" data-bs-target="#viewmodal">
@@ -130,13 +110,16 @@
                     <tr>
                         <td class="border-left-2 border-left-success"><input type="checkbox"></td>
                         <td>2</td>
-                        <td>Footer Bottom Menu</td>
-                        <td>Global Link</td>
-                        <td>-</td>
-                        <td>Place to Visit</td>
+                        <td>Ensuring Clean Water</td>
+                        <td>स्वच्छ पानी सुनिश्चित करना</td>
+                        <td>
+                            <a href="javascript:void(0);" class="img-banner">
+                                <img src="./assets/img/login-bg.png" alt="Banner text">
+                            </a>
+                        </td>
                         <td>
                             <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View">
+                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View" data-bs-toggle="modal" data-bs-target="#viewmodal">
                                     <i class="bi bi-eye"></i></a>
                                 <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
                                     <i class="bi bi-pencil"></i></a>
@@ -148,13 +131,16 @@
                     <tr>
                         <td class="border-left-2 border-left-success"><input type="checkbox"></td>
                         <td>3</td>
-                        <td>Footer Bottom Menu</td>
-                        <td>Global Link</td>
-                        <td>-</td>
-                        <td>City Events</td>
+                        <td>Ensuring Clean Water</td>
+                        <td>स्वच्छ पानी सुनिश्चित करना</td>
+                        <td>
+                            <a href="javascript:void(0);" class="img-banner">
+                                <img src="./assets/img/login-bg.png" alt="Banner text">
+                            </a>
+                        </td>
                         <td>
                             <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View">
+                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View" data-bs-toggle="modal" data-bs-target="#viewmodal">
                                     <i class="bi bi-eye"></i></a>
                                 <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
                                     <i class="bi bi-pencil"></i></a>
@@ -167,13 +153,16 @@
                     <tr>
                         <td class="border-left-2 border-left-success"><input type="checkbox"></td>
                         <td>4</td>
-                        <td>Footer Bottom Menu</td>
-                        <td>Global Link</td>
-                        <td>-</td>
-                        <td>City Map</td>
+                        <td>Ensuring Clean Water</td>
+                        <td>स्वच्छ पानी सुनिश्चित करना</td>
+                        <td>
+                            <a href="javascript:void(0);" class="img-banner">
+                                <img src="./assets/img/login-bg.png" alt="Banner text">
+                            </a>
+                        </td>
                         <td>
                             <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View">
+                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View" data-bs-toggle="modal" data-bs-target="#viewmodal">
                                     <i class="bi bi-eye"></i></a>
                                 <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
                                     <i class="bi bi-pencil"></i></a>
@@ -185,13 +174,16 @@
                     <tr>
                         <td class="border-left-2 border-left-danger"><input type="checkbox"></td>
                         <td>5</td>
-                        <td>Footer Bottom Menu</td>
-                        <td>Global Link</td>
-                        <td>-</td>
-                        <td>Citizen Services</td>
+                        <td>Ensuring Clean Water</td>
+                        <td>स्वच्छ पानी सुनिश्चित करना</td>
+                        <td>
+                            <a href="javascript:void(0);" class="img-banner">
+                                <img src="./assets/img/login-bg.png" alt="Banner text">
+                            </a>
+                        </td>
                         <td>
                             <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View">
+                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View" data-bs-toggle="modal" data-bs-target="#viewmodal">
                                     <i class="bi bi-eye"></i></a>
                                 <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
                                     <i class="bi bi-pencil"></i></a>
@@ -209,10 +201,10 @@
 
 <!-- Modal View  -->
 <div class="modal fade" id="viewmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable">
+    <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">View Menu</h1>
+          <h1 class="modal-title fs-5" id="exampleModalLabel">View Banner</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body view-form">
@@ -222,52 +214,54 @@
                     <div class="row">
                         <div class="col-xl-3 col-md-6">
                             <div class="mb-3">
-                                <label class="form-label">Menu Type</label>
-                                <label class="form-value">Main Menu</label>
+                                <label class="form-label d-block">Banner Image</label>
+                                <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm"><i class="bi bi-download"></i></a>
                             </div>
                         </div>
-                        <div class="col-xl-3 col-md-6">
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xl-6 col-md-6">
                             <div class="mb-3">
-                                <label class="form-label">Link Type</label>
-                                <label class="form-value">Primary Link</label>
+                                <label class="form-label">Banner Text 1</label>
+                                <label class="form-value">Ensuring Clean Water</label>
                             </div>
                         </div>
 
-                        <div class="col-xl-3 col-md-6">
+                        <div class="col-xl-6 col-md-6">
                             <div class="mb-3">
-                                <label class="form-label">Parent Menu</label>
-                                <label class="form-value">FAQ</label>
+                                <label class="form-label">Banner Text 1 in Hindi</label>
+                                <label class="form-value">स्वच्छ पानी सुनिश्चित करना</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xl-6 col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Banner Text 2</label>
+                                <label class="form-value">Welcome to Neer Nirmal Seva</label>
                             </div>
                         </div>
 
-                        <div class="col-xl-3 col-md-6">
+                        <div class="col-xl-6 col-md-6">
                             <div class="mb-3">
-                                <label class="form-label">Menu Name</label>
-                                <label class="form-value">Place to Visit</label>
+                                <label class="form-label">Banner Text 2 in Hindi</label>
+                                <label class="form-value">नीर निर्मल सेवा में आपका स्वागत है</label>
                             </div>
                         </div>
+                        
+                    </div>
 
-                        <div class="col-xl-3 col-md-6">
+                    <div class="row">
+                        <div class="col-xl-6 col-md-6">
                             <div class="mb-3">
-                                <label class="form-label">Menu Name in Hindi</label>
-                                <label class="form-value">घूमने की जगह</label>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-md-6">
-                            <div class="mb-3">
-                                <label class="form-label">Menu Link</label>
-                                <label class="form-value">---</label>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-md-6">
-                            <div class="mb-3">
-                                <label class="form-label">Menu Serial</label>
+                                <label class="form-label">Serial No.</label>
                                 <label class="form-value">2</label>
                             </div>
                         </div>
-
-                        
                     </div>
+
                 </div>
 
             </div>
