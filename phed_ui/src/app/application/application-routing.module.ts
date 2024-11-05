@@ -47,8 +47,10 @@ const routes: Routes = [{
     {path:'complaintregistration',component:ComplaintregistrationComponent},
     {path:'complaintregistrationupdate',component:ComplaintregistrationupdateComponent},
     {path:'complaintregistrationdelete',component:ComplaintregistrationdeleteComponent},
+
     {path:'escalation',component:EscalationComponent},
     {path:'escalation-view',component:EscalationViewComponent},
+    
     {path:'complaint-category-wise-reports',component:ComplaintCategoryWiseReportsComponent},
     {path:'demographymapping',component:DemographymappingComponent},
     {path:'demographymapping-view',component:DemographymappingViewComponent},

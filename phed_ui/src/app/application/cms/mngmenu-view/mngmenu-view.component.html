@@ -13,7 +13,7 @@
             </div>
         </div>
     </div>
-    <div id="collapseExample" class="collapse">
+    <div id="collapseExample" class="collapse show">
         <div class="content-box search-box">
             <div class="row">
                 <div class="col-xxl-3 col-lg-4 col-md-6">
@@ -30,12 +30,12 @@
                 <div class="col-xxl-3 col-lg-4 col-md-6">
                     <div class="mb-3">
                         <label class="form-label" for="parentmanu">Parent Menu</label>
-                            <select class="form-select" id="parentmanu">
-                                <option selected>-Select-</option>
-                                <option value="1">FAQ</option>
-                                <option value="2">Feedback</option>
-                                <option value="3">Contact</option>
-                            </select>
+                        <select class="form-select" id="parentmanu">
+                            <option selected>-Select-</option>
+                            <option value="1">FAQ</option>
+                            <option value="2">Feedback</option>
+                            <option value="3">Contact</option>
+                        </select>
                     </div>
                 </div>
                 <div class="col-xxl-3 col-lg-4 col-md-6">
@@ -105,7 +105,7 @@
                         <th>Link Type</th>
                         <th>Parent Menu</th>
                         <th>Menu Name</th>
-                        <th width="70px" class="text-center">Action</th>
+                        <th width="70px">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -118,7 +118,8 @@
                         <td>RTI</td>
                         <td>
                             <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View" data-bs-toggle="modal" data-bs-target="#viewmodal">
+                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"
+                                    data-bs-toggle="modal" data-bs-target="#viewmodal">
                                     <i class="bi bi-eye"></i></a>
                                 <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
                                     <i class="bi bi-pencil"></i></a>
@@ -209,69 +210,71 @@
 
 <!-- Modal View  -->
 <div class="modal fade" id="viewmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">View Menu</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body view-form">
-            <div class="row">
+    <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Menu Details</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body view-form">
+                <div class="row">
+                    <div class="col-xl-12">
 
-                <div class="col-xl-12">
-                    <div class="row">
-                        <div class="col-xl-3 col-md-6">
-                            <div class="mb-3">
-                                <label class="form-label">Menu Type</label>
-                                <label class="form-value">Main Menu</label>
+                        <div class="row">
+                            <div class="col-xl-4 col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Menu Type</label>
+                                    <label class="form-value">Main Menu</label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-xl-3 col-md-6">
-                            <div class="mb-3">
-                                <label class="form-label">Link Type</label>
-                                <label class="form-value">Primary Link</label>
+                            <div class="col-xl-4 col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Link Type</label>
+                                    <label class="form-value">Primary Link</label>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="col-xl-3 col-md-6">
-                            <div class="mb-3">
-                                <label class="form-label">Parent Menu</label>
-                                <label class="form-value">FAQ</label>
-                            </div>
-                        </div>
-
-                        <div class="col-xl-3 col-md-6">
-                            <div class="mb-3">
-                                <label class="form-label">Menu Name</label>
-                                <label class="form-value">Place to Visit</label>
+                            <div class="col-xl-4 col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Parent Menu</label>
+                                    <label class="form-value">FAQ</label>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="col-xl-3 col-md-6">
-                            <div class="mb-3">
-                                <label class="form-label">Menu Name in Hindi</label>
-                                <label class="form-value">घूमने की जगह</label>
+                        <div class="row">
+                            <div class="col-xl-4 col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Menu Name</label>
+                                    <label class="form-value">Place to Visit</label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-xl-3 col-md-6">
-                            <div class="mb-3">
-                                <label class="form-label">Menu Link</label>
-                                <label class="form-value">---</label>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-md-6">
-                            <div class="mb-3">
-                                <label class="form-label">Menu Serial</label>
-                                <label class="form-value">2</label>
+
+                            <div class="col-xl-4 col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Menu Name in Hindi</label>
+                                    <label class="form-value">घूमने की जगह</label>
+                                </div>
                             </div>
                         </div>
 
-                        
+                        <div class="row">
+                            <div class="col-xl-4 col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Menu Link</label>
+                                    <label class="form-value">---</label>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Menu Serial</label>
+                                    <label class="form-value">2</label>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
             </div>
         </div>
-      </div>
     </div>
-  </div>
+</div>

@@ -41,6 +41,7 @@ import { MngcontactComponent } from './cms/mngcontact/mngcontact.component';
 import { MngcontactViewComponent } from './cms/mngcontact-view/mngcontact-view.component';
 import { MngbannerViewComponent } from './cms/mngbanner-view/mngbanner-view.component';
 import { MinisterProfileViewComponent } from './cms/minister-profile-view/minister-profile-view.component';
+import { NgxDropzoneModule } from 'ngx-dropzone';
 
 @NgModule({
   declarations: [
@@ -87,7 +88,8 @@ import { MinisterProfileViewComponent } from './cms/minister-profile-view/minist
     ApplicationRoutingModule,
     FormsModule,
     CKEditorModule,
-    HighchartsChartModule
+    HighchartsChartModule,
+    NgxDropzoneModule
   ],
   exports: [ 
     ApplicationComponent,

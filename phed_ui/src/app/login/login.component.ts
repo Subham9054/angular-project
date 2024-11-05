@@ -45,7 +45,8 @@ export class LoginComponent implements OnInit {
         Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: 'Incorrect answer to the challenge. Please try again.'
+            text: 'Incorrect answer to the challenge. Please try again.',
+            heightAuto: false
         });
         
         // Regenerate the random numbers for the next challenge
@@ -70,7 +71,8 @@ export class LoginComponent implements OnInit {
         Swal.fire({
             icon: 'warning',
             title: 'Warning',
-            text: 'Username and password are required'
+            text: 'Username and password are required',
+            heightAuto: false
         });
         return;
     }
@@ -100,6 +102,7 @@ export class LoginComponent implements OnInit {
             Swal.fire({
                 icon: 'success',
                 title: 'Login Successful!',
+                heightAuto: false
             }).then(() => {
                 // Clear input fields
                 this.clearFields();
@@ -118,13 +121,15 @@ export class LoginComponent implements OnInit {
                 Swal.fire({
                     icon: 'error',
                     title: 'Validation Error',
-                    text: errorMessages
+                    text: errorMessages,
+                    heightAuto: false
                 });
             } else {
                 Swal.fire({
                     icon: 'error',
                     title: 'Login Failed',
-                    text: 'Please check your credentials.'
+                    text: 'Please check your credentials.',
+                    heightAuto: false
                 });
             }
         }
