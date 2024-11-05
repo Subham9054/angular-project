@@ -1,122 +1,112 @@
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
-using PHED_CGRC.MANAGE_CATEGORYMASTER ;
+using PHED_CGRC.MANAGE_CATEGORYMASTER;
 using CommonMaster.Repository.Interfaces.MANAGE_CATEGORYMASTER;
+using CommonMaster.Model.Entities.CommonMaster;
 namespace CommonMaster.API
 {
-
- [ApiController]
- [Route("Api/[controller]")]
- public class MANAGE_CATEGORYMASTERController : ControllerBase
- {
- 	 
-		public IConfiguration Configuration;
-		private readonly IMANAGE_CATEGORYMASTERRepository _MANAGE_CATEGORYMASTERRepository;
+    [ApiController]
+    [Route("Api/[controller]")]
+    public class MANAGE_CATEGORYMASTERController : ControllerBase
+    {
+        public IConfiguration Configuration;
+        private readonly IMANAGE_CATEGORYMASTERRepository _MANAGE_CATEGORYMASTERRepository;
         private IWebHostEnvironment _hostingEnvironment;
-		public MANAGE_CATEGORYMASTERController(IConfiguration configuration,IMANAGE_CATEGORYMASTERRepository MANAGE_CATEGORYMASTERRepository,IWebHostEnvironment hostingEnvironment)
-		{
-		Configuration = configuration;
-	_MANAGE_CATEGORYMASTERRepository = MANAGE_CATEGORYMASTERRepository;
-		
-            _hostingEnvironment = hostingEnvironment;}
-  [HttpPost("CreateMANAGE_CATEGORYMASTER")]
-  public IActionResult MANAGE_CATEGORYMASTER(MANAGE_CATEGORYMASTER_Model TBL)
-      {
-     
+        public MANAGE_CATEGORYMASTERController(IConfiguration configuration, IMANAGE_CATEGORYMASTERRepository MANAGE_CATEGORYMASTERRepository, IWebHostEnvironment hostingEnvironment)
+        {
+            Configuration = configuration;
+            _MANAGE_CATEGORYMASTERRepository = MANAGE_CATEGORYMASTERRepository;
+
+            _hostingEnvironment = hostingEnvironment;
+        }
+        [HttpPost("ComplaintCategory")]
+        public async Task<IActionResult> Complaintcatagory([FromBody] ComplaintCategory complaintCategory)
+        {
+
+            if (complaintCategory == null)
+            {
+                return BadRequest("Provide All The Data");
+            }
+
             try
             {
-                       if (!ModelState.IsValid)
-  {
-   var message = string.Join(" | ", ModelState.Values
-                 .SelectMany(v => v.Errors)
-                 .Select(e => e.ErrorMessage));
-                return Ok(new { sucess = false, responseMessage = message, responseText = "Model State is invalid", data = "" });
+                var catagory = await _MANAGE_CATEGORYMASTERRepository.ComplaintCatagory(complaintCategory);
+                return Ok(catagory);
             }
-            else
-            {
-                if (TBL.CategoryId == 0 || TBL.CategoryId == null)
-                {
-                    var data = _MANAGE_CATEGORYMASTERRepository.INSERT_MANAGE_CATEGORYMASTER(TBL);
-                    return Ok(new { sucess = true, responseMessage = "Inserted Successfully.", responseText = "Success", data = data });
-
-                }
-                else
-                {
-                    var data = _MANAGE_CATEGORYMASTERRepository.UPDAE_MANAGE_CATEGORYMASTER(TBL);
-                    return Ok(new { sucess = true, responseMessage = "Updated Successfully.", responseText = "Success", data = data });
-
-                }
-            }
-   
-            }
-            catch (Exception)
+            catch (Exception ex)
             {
                 throw;
             }
-          }
-		[HttpGet("GetMANAGE_CATEGORYMASTER")]
-		public async Task<IActionResult> Get_MANAGE_CATEGORYMASTER()
-		{
-		if (!ModelState.IsValid)
-		{
-			var message = string.Join(" | ", ModelState.Values
- .SelectMany(v => v.Errors)
-.Select(e => e.ErrorMessage));
-			return Ok(new { sucess = false, responseMessage = message, responseText = "Model State is invalid", data = "" });
-		}
-		else
-		{
-			List<VIEWMANAGE_CATEGORYMASTER>	lst =await 	_MANAGE_CATEGORYMASTERRepository.VIEW_MANAGE_CATEGORYMASTER(new MANAGE_CATEGORYMASTER_Model());
-		var jsonres = JsonConvert.SerializeObject(lst);
-		
-		return Ok(jsonres);
-		
-}
-		
-}   
-
-   [HttpDelete("DeleteMANAGE_CATEGORYMASTER")]
-       
-        public async Task<IActionResult>Delete_MANAGE_CATEGORYMASTER(int Id)
-        {
-            if (!ModelState.IsValid)
-            {
-                var message = string.Join(" | ", ModelState.Values
-                    .SelectMany(v => v.Errors)
-                    .Select(e => e.ErrorMessage));
-                return Ok(new { sucess = false, responseMessage = message, responseText = "Model State is invalid", data = "" });
-            }
-            else
-            {
-                 MANAGE_CATEGORYMASTER_Model ob = new MANAGE_CATEGORYMASTER_Model();
-                ob.CategoryId = Id;
-
-                var data =await _MANAGE_CATEGORYMASTERRepository.DELETE_MANAGE_CATEGORYMASTER(ob);
-                return Ok(new { sucess = true, responseMessage = "Action taken Successfully.", responseText = "Success", data = data });
-            }
-        }        [HttpGet("GetByIDMANAGE_CATEGORYMASTER")]
-
-        public async Task<IActionResult>EDIT_MANAGE_CATEGORYMASTER(int Id)
-        {
-            if (!ModelState.IsValid)
-            {
-                var message = string.Join(" | ", ModelState.Values
-                    .SelectMany(v => v.Errors)
-                    .Select(e => e.ErrorMessage));
-                return Ok(new { sucess = false, responseMessage = message, responseText = "Model State is invalid", data = "" });
-            }
-            else
-          {
-
-             MANAGE_CATEGORYMASTER_Model ob = new MANAGE_CATEGORYMASTER_Model();
-                ob.CategoryId = Id;
-                List<EDITMANAGE_CATEGORYMASTER> lst = await _MANAGE_CATEGORYMASTERRepository.EDIT_MANAGE_CATEGORYMASTER(ob);
-                var jsonres = JsonConvert.SerializeObject(lst?.FirstOrDefault());
-                return Ok(jsonres);
-            }
-
         }
- 
-}
+        [HttpGet("GetallComplaint")]
+        public async Task<IActionResult> GetAllComplaints()
+        {
+            try
+            {
+                var complaints = await _MANAGE_CATEGORYMASTERRepository.getCatagory();
+                if (complaints == null || !complaints.Any())
+                {
+                    return Ok(new List<ComplaintCategory>()); // Return an empty list instead of NoContent
+                }
+                return Ok(complaints);
+            }
+            catch (Exception ex)
+            {
+                // Log exception details if needed
+                return StatusCode(StatusCodes.Status500InternalServerError, "Internal server error"); // Return a meaningful error message
+            }
+        }
+
+        [HttpPost("UpdateComplaint/{id}")]
+        public async Task<IActionResult> UpdateComplaint([FromRoute] int id, [FromBody] ComplaintCategory complaintCategory)
+        {
+            if (complaintCategory == null)
+            {
+                return BadRequest(new { message = "Complaint category data is missing." });
+            }
+            if (id <= 0)
+            {
+                return BadRequest(new { message = "Invalid ID." });
+            }
+            try
+            {
+                var isUpdated = await _MANAGE_CATEGORYMASTERRepository.UpdateComplaintCatagory(id, complaintCategory);
+
+                if (isUpdated)
+                {
+                    return Ok(new { message = "Complaint category updated successfully." });
+                }
+                else
+                {
+                    return NotFound(new { message = "Update failed. Category not found or no changes made." });
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log exception details if needed
+                return StatusCode(StatusCodes.Status500InternalServerError, new { message = "Internal server error.", details = ex.Message });
+            }
+        }
+
+        [HttpDelete("deleteComplaintbyid/{id}")]
+        public async Task<IActionResult> GetComplaintdeletebyid(int id)
+        {
+            try
+            {
+                var complaints = await _MANAGE_CATEGORYMASTERRepository.getdeleteCatagorybyid(id);
+                if (complaints <= 0)
+                {
+                    return NoContent(); // Use NoContent for an empty result
+                }
+                return Ok(complaints);
+            }
+            catch (Exception ex)
+            {
+
+                return StatusCode(500, "Internal server error"); // Return a meaningful error message
+            }
+        }
+
+    }
 }
