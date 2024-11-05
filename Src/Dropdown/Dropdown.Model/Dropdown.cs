@@ -66,4 +66,13 @@ namespace Dropdown.Model
         public int INT_COMPLIANT_LOG_TYPE_ID { get; set; }
         public string VCH_COMPLIANT_LOG_TYPE { get; set; }
     }
+    public class Designation
+    {
+        public int INT_DESIG_ID { get; set; }
+        public string NVCH_DESIG_NAME { get; set; }
+    }
+    public class Location
+    {
+        public int INT_LEVEL_ID { get; set; }
+    }
 }

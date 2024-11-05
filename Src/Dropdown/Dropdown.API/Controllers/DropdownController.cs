@@ -45,11 +45,11 @@ namespace Dropdown.API.Controllers
             }
         }
         [HttpGet("GetGp")]
-        public async Task<IActionResult> getGps(int distid, int blockid)
+        public async Task<IActionResult> getGps(int blockid)
         {
             try
             {
-                var gps = await _dropdownRepository.GetGp(distid, blockid);
+                var gps = await _dropdownRepository.GetGp(blockid);
                 return Ok(gps);
             }
             catch
@@ -58,11 +58,11 @@ namespace Dropdown.API.Controllers
             }
         }
         [HttpGet("GetVillages")]
-        public async Task<IActionResult> getVillages(int distid, int blockid, int gpid)
+        public async Task<IActionResult> getVillages(int gpid)
         {
             try
             {
-                var villages = await _dropdownRepository.Getvillage(distid, blockid, gpid);
+                var villages = await _dropdownRepository.Getvillage(gpid);
                 return Ok(villages);
             }
             catch
@@ -140,6 +140,58 @@ namespace Dropdown.API.Controllers
             catch
             {
                 return BadRequest("Error in fetching Complaints Type");
+            }
+        }
+        [HttpGet("GetCategory")]
+        public async Task<IActionResult> getCategoriess()
+        {
+            try
+            {
+                var categories = await _dropdownRepository.GetCategories();
+                return Ok(categories);
+            }
+            catch
+            {
+                return BadRequest("Error in fetching Categories");
+            }
+        }
+        [HttpGet("GetSubCategories")]
+        public async Task<IActionResult> getSubCategories(int catid)
+        {
+            try
+            {
+                var subCategories = await _dropdownRepository.GetSubCategories(catid);
+                return Ok(subCategories);
+            }
+            catch
+            {
+                return BadRequest("Error in fetching Subcategories");
+            }
+        }
+        [HttpGet("GetDesignation")]
+        public async Task<IActionResult> getDesignation()
+        {
+            try
+            {
+                var designations = await _dropdownRepository.getDesignation();
+                return Ok(designations);
+            }
+            catch
+            {
+                return BadRequest("Error in fetching designations");
+            }
+        }
+        [HttpGet("GetLocationLevel")]
+        public async Task<IActionResult> getLocationLevel()
+        {
+            try
+            {
+                var locations = await _dropdownRepository.getLocation();
+                return Ok(locations);
+            }
+            catch
+            {
+                return BadRequest("Error in fetching designations");
             }
         }
     }

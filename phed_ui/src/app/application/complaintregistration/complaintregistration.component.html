@@ -122,7 +122,7 @@
                                 <label for="ddlDistrict" class="form-label">District</label>
                                 <select name="ddlDistrict" id="ddlDistrict" [(ngModel)]="formData.ddlDistrict"
                                     (change)="onDistrictChange($event)" class="form-select">
-                                    <option selected value="0">-Select-</option>
+                                    <option selected value="0">-Select District-</option>
                                     <option *ngFor="let district of districts" [value]="district.inT_DIST_ID">
                                         {{ district.vcH_DIST_NAME }}
                                     </option>

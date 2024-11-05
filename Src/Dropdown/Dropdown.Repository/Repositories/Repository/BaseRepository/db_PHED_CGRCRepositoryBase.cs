@@ -19,7 +19,7 @@ namespace Dropdown.Repository.Repositories.Repository.BaseRepository
         /// <summary>
         /// The disposed
         /// </summary>
-        private bool _disposed;
+        private bool _disposed; 
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RepositoryBase{TEntity}"/> class.
