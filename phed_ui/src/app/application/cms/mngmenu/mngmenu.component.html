@@ -1,7 +1,7 @@
 <div class="form-cointainer">
     <div class="main-tab">
         <div class="row justify-content-between">
-            <div class="col-lg-4">
+            <div class="col-lg-4 col-md-6">
                 <ul class="nav nav-tabs" routerLinkActive="active">
                     <li class="nav-item">
                         <a routerLink="/application/mngmenu" class="nav-link active">Add</a>
@@ -28,7 +28,7 @@
             <div class="col-xxl-10 col-lg-12">
 
                 <div class="row">
-                    <div class="col-lg-4">
+                    <div class="col-lg-4 col-md-6">
                         <div class="mb-3">
                             <label class="form-label" for="manutype">Menu Type</label>
                             <select class="form-select" id="manutype">
@@ -40,7 +40,7 @@
                         </div>
                     </div>
            
-                    <div class="col-lg-4">
+                    <div class="col-lg-4 col-md-6">
                         <div class="mb-3">
                             <label class="form-label" for="linktype">Link Type</label>
                             <select class="form-select" id="linktype" [(ngModel)]="selectedLinkType" (change)="onLinkTypeChange()">
@@ -52,7 +52,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-4" *ngIf="showParentMenu">
+                    <div class="col-lg-4 col-md-6" *ngIf="showParentMenu">
                         <div class="mb-3">
                             <label class="form-label" for="parentmanu">Parent Menu</label>
                             <select class="form-select" id="parentmanu">
@@ -66,14 +66,14 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-lg-4">
+                    <div class="col-lg-4 col-md-6">
                         <div class="mb-3">
                             <label class="form-label" for="menuen">Menu Name</label>
                             <input type="text" class="form-control" id="menuen">
                         </div>
                     </div>
                    
-                    <div class="col-lg-4">
+                    <div class="col-lg-4 col-md-6">
                         <div class="mb-3">
                             <label class="form-label" for="menuhn">Menu Name in Hindi</label>
                             <input type="text" class="form-control" id="menuhn">
@@ -82,14 +82,14 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-lg-4">
+                    <div class="col-lg-4 col-md-6">
                         <div class="mb-3">
                             <label class="form-label" for="menulink">Menu Link</label>
                             <input type="text" class="form-control" id="menulink">
                         </div>
                     </div>
 
-                    <div class="col-lg-4">
+                    <div class="col-lg-4 col-md-6">
                         <div class="mb-3">
                             <label class="form-label" for="menuserila">Menu Serial</label>
                             <input type="text" class="form-control" id="menuserila">
@@ -105,7 +105,7 @@
                         </div>
                     </div>
                 </div>
-                
+
             </div>
         </div>
     </div>

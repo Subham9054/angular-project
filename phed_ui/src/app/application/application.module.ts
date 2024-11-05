@@ -39,6 +39,8 @@ import { MnggalleryViewComponent } from './cms/mnggallery-view/mnggallery-view.c
 import { MngmenuViewComponent } from './cms/mngmenu-view/mngmenu-view.component';
 import { MngcontactComponent } from './cms/mngcontact/mngcontact.component';
 import { MngcontactViewComponent } from './cms/mngcontact-view/mngcontact-view.component';
+import { MngbannerViewComponent } from './cms/mngbanner-view/mngbanner-view.component';
+import { MinisterProfileViewComponent } from './cms/minister-profile-view/minister-profile-view.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +78,9 @@ import { MngcontactViewComponent } from './cms/mngcontact-view/mngcontact-view.c
     MnggalleryViewComponent,
     MngmenuViewComponent,
     MngcontactComponent,
-    MngcontactViewComponent
+    MngcontactViewComponent,
+    MngbannerViewComponent,
+    MinisterProfileViewComponent
   ],
   imports: [
     CommonModule,

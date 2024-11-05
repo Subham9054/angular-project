@@ -33,6 +33,8 @@ import { MnggalleryViewComponent } from './cms/mnggallery-view/mnggallery-view.c
 import { MngmenuViewComponent } from './cms/mngmenu-view/mngmenu-view.component';
 import { MngcontactComponent } from './cms/mngcontact/mngcontact.component';
 import { MngcontactViewComponent } from './cms/mngcontact-view/mngcontact-view.component';
+import { MngbannerViewComponent } from './cms/mngbanner-view/mngbanner-view.component';
+import { MinisterProfileViewComponent } from './cms/minister-profile-view/minister-profile-view.component';
 
 
 const routes: Routes = [{
@@ -57,9 +59,14 @@ const routes: Routes = [{
     {path:'pagecontent',component:PagecontentComponent},
     {path:'pagecontent-view',component:PagecontentViewComponent},
 
-    {path:'minister-profile',component:MinisterProfileComponent},
+    
+    {path:'mnglogo',component:MnglogoComponent},
 
     {path:'mngbanner',component:MngbannerComponent},
+    {path:'mngbanner-view',component:MngbannerViewComponent},
+
+    {path:'minister-profile',component:MinisterProfileComponent},
+    {path:'minister-profile-view',component:MinisterProfileViewComponent},
 
     {path:'mngfaq',component:MngfaqComponent},
     {path:'mngfaq-view',component:MngfaqViewComponent},
@@ -67,8 +74,7 @@ const routes: Routes = [{
     {path:'mnggallery',component:MnggalleryComponent},
     {path:'mnggallery-view',component:MnggalleryViewComponent},
 
-    {path:'mnglogo',component:MnglogoComponent},
-
+    
     {path:'mngmenu',component:MngmenuComponent},
     {path:'mngmenu-view',component:MngmenuViewComponent},
 
