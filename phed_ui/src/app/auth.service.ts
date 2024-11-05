@@ -33,6 +33,7 @@ export class AuthService {
   private complainttypeurl = 'https://localhost:7225/api/Dropdown/GetComplaintstype';
   private getdesignationurl='https://localhost:7225/api/Dropdown/GetDesignation';
   private getloclevel='https://localhost:7225/api/Dropdown/GetLocationLevel';
+  private insertescalationurl="https://localhost:7237/Api/MANAGE_ESCALATION_CONFIGDETAILS/insertescalation";
  
   constructor(private http: HttpClient, private router: Router) { }
  
@@ -190,6 +191,12 @@ export class AuthService {
       catchError(this.handleError)
     );
   }
+
+  submitEscalationData(data: any): Observable<any> {
+    // Ensure the URL is correctly defined
+    return this.http.post(`${this.insertescalationurl}`, data);
+}
+
   // Error handling logic
   private handleError(error: any) {
     console.error('An error occurred:', error);

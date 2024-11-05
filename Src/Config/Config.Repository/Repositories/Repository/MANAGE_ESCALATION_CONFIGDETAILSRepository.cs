@@ -7,6 +7,7 @@ using Config.Repository;
 using PHED_CGRC.MANAGE_ESCALATION_CONFIGDETAILS;
 using Dapper;
 using System.Data;
+using Config.Model.Entities.Config;
 namespace Config.Repository.Repositories.Interfaces.MANAGE_ESCALATION_CONFIGDETAILS
 {
     public class MANAGE_ESCALATION_CONFIGDETAILSRepository : db_PHED_CGRCRepositoryBase, IMANAGE_ESCALATION_CONFIGDETAILSRepository
@@ -15,20 +16,32 @@ namespace Config.Repository.Repositories.Interfaces.MANAGE_ESCALATION_CONFIGDETA
         {
 
         }
-        public async Task<int> INSERT_MANAGE_ESCALATION_CONFIGDETAILS(MANAGE_ESCALATION_CONFIGDETAILS_Model TBL)
+        public async Task<int> InsertEscalation(Escalationinsert request)
         {
-            var p = new DynamicParameters();
-            p.Add("@Action", "INSERT");
-            p.Add("@ConfigId", TBL.ConfigId);
-            p.Add("@SubCategoryId", TBL.SubCategoryId);
-            p.Add("@EscalationNo", TBL.EscalationNo);
-            p.Add("@UserId", TBL.UserId);
-            p.Add("@CreatedOn", TBL.CreatedOn);
-            p.Add("@UpdatedOn", TBL.UpdatedOn);
-            var results = await Connection.ExecuteAsync("MANAGE_ESCALATION_CONFIGDETAILS", p, commandType: CommandType.StoredProcedure);
-            return results;
+            try
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("categoryid", request.INT_CATEGORY_ID, DbType.Int32);
+                parameters.Add("subcategoryid", request.INT_SUB_CATEGORY_ID, DbType.Int32);
+                parameters.Add("escalationid", request.INT_ESCALATION_LEVELID, DbType.Int32);
+                parameters.Add("desiglevelid", request.INT_DESIG_LEVELID, DbType.Int32);
+                parameters.Add("desigid", request.INT_DESIG_ID, DbType.Int32);
+                parameters.Add("stnddays", request.VCH_STANDARD_DAYS, DbType.String);
+                parameters.Add("userid", request.INT_CREATED_BY, DbType.Int32);
+                parameters.Add("datedon", request.DTM_CREATED_ON, DbType.DateTime);
+                parameters.Add("action", "CN");
 
+                // Execute the stored procedure and return the result
+                var result = await Connection.QueryFirstOrDefaultAsync<int>("USP_EscalationInsert", parameters, commandType: CommandType.StoredProcedure);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                // Log the exception or handle it as needed
+                throw new Exception("An error occurred while inserting escalation data.", ex);
+            }
         }
+
         public async Task<int> UPDATE_MANAGE_ESCALATION_CONFIGDETAILS(MANAGE_ESCALATION_CONFIGDETAILS_Model TBL)
         {
             var p = new DynamicParameters();

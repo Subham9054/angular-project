@@ -4,26 +4,40 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 declare let $: any;
 
+interface EscalationDetail {
+  INT_DESIG_ID: string; // Adjust type as necessary
+  INT_DESIG_LEVELID: string; // Adjust type as necessary
+  VCH_STANDARD_DAYS: string;
+  standardDays: string;
+}
+
+interface SubmissionData {
+  INT_CATEGORY_ID: string; // Adjust type based on your requirements
+  INT_SUB_CATEGORY_ID: string; // Adjust type based on your requirements
+  INT_ESCALATION_LEVELID: number;
+  escalationDetails: EscalationDetail[]; // Change to EscalationDetail array
+}
+
 @Component({
   selector: 'app-escalation',
   templateUrl: './escalation.component.html',
   styleUrls: ['./escalation.component.scss']
 })
 export class EscalationComponent implements OnInit, AfterViewInit, AfterViewChecked {
-
+  
   escalationLevel: number = 0;
-  rows: any[] = [];
+  rows: EscalationDetail[] = []; // Use the EscalationDetail type
   isTimePickerInitialized: boolean = false;
   categories: any[] = [];
   subcategories: any[] = [];
   designations: any[] = [];
   locationlevels: any[] = [];
-
+  
   formData: any = { 
     ddlComplaintCategory: '0',
     ddlSubCategory: '0',
     ddlDesignation: [],
-    ddlLocLevel: []
+    ddlLocLevel: [],
   };
 
   constructor(private http: HttpClient, private authService: AuthService, private router: Router) {}
@@ -71,9 +85,17 @@ export class EscalationComponent implements OnInit, AfterViewInit, AfterViewChec
   }
 
   generateRows() {
-    this.rows = Array(this.escalationLevel).fill({});
-    this.formData.ddlDesignation = new Array(this.escalationLevel).fill(0); // Initialize ddlDesignation for each row
-    this.formData.ddlLocLevel = new Array(this.escalationLevel).fill(0); // Initialize ddlLocLevel for each row
+    this.rows = Array.from({ length: this.escalationLevel }, () => ({
+      INT_DESIG_ID: '',
+      INT_DESIG_LEVELID: '',
+      VCH_STANDARD_DAYS: '',
+      standardDays: '' // Initialize the standardDays property
+    }));
+    
+    // Initialize ddlDesignation and ddlLocLevel arrays
+    this.formData.ddlDesignation = new Array(this.escalationLevel).fill('');
+    this.formData.ddlLocLevel = new Array(this.escalationLevel).fill('');
+    
     this.isTimePickerInitialized = false; // Reset to reinitialize time pickers
   }
 
@@ -101,7 +123,6 @@ export class EscalationComponent implements OnInit, AfterViewInit, AfterViewChec
       daysOfWeekDisabled: [0, 6]
     });
   }
-  
 
   onCategoryChange(event: any) {
     const catid = parseInt(event.target.value, 10);
@@ -119,4 +140,40 @@ export class EscalationComponent implements OnInit, AfterViewInit, AfterViewChec
       console.error('Invalid category ID');
     }
   }
+  submitForm() {
+    const submissionData: SubmissionData = {
+        INT_CATEGORY_ID: this.formData.ddlComplaintCategory,
+        INT_SUB_CATEGORY_ID: this.formData.ddlSubCategory,
+        INT_ESCALATION_LEVELID: this.escalationLevel,
+        escalationDetails: this.rows.map((row, index) => ({
+            INT_DESIG_ID: this.formData.ddlDesignation[index],
+            INT_DESIG_LEVELID: this.formData.ddlLocLevel[index],
+            VCH_STANDARD_DAYS: (document.getElementById(`hrtext${index}`) as HTMLInputElement).value,
+            standardDays: '' // Update if needed
+        })).filter(detail => detail.INT_DESIG_ID && detail.INT_DESIG_LEVELID && detail.VCH_STANDARD_DAYS)
+    };
+
+    // Make sure to check if escalationDetails is not empty before calling the API
+    if (submissionData.escalationDetails.length === 0) {
+        alert('No valid escalation details to submit.');
+        return;
+    }
+
+    this.authService.submitEscalationData(submissionData).subscribe(
+        response => {
+            console.log('Data submitted successfully', response);
+            alert('Data submitted successfully');
+        },
+        error => {
+            console.error('Error submitting data', error);
+            if (error.error && error.error.errors) {
+                console.error('Validation Errors:', error.error.errors);
+                alert('Validation Errors: ' + JSON.stringify(error.error.errors));
+            } else {
+                alert('Error submitting data: ' + error.message);
+            }
+        }
+    );
+}
+
 }

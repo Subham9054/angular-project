@@ -1,4 +1,4 @@
-<div class="form-cointainer">
+<div class="form-container">
     <div class="main-tab">
         <div class="row justify-content-between align-items-center">
             <div class="col-xxl-3 col-lg-4 col-md-6">
@@ -17,7 +17,6 @@
                         <li class="bg-transparent border-0">
                             <span class="text-danger small"><b>(*)</b> Indicate mandatory</span>
                         </li>
-
                     </ul>
                 </div>
             </div>
@@ -53,9 +52,6 @@
                     </div>
                 </div>
             </div>
-
-          
-
             <div class="row">
                 <div class="col-xl-4 col-lg-4 col-sm-6">
                     <div class="mb-3">
@@ -103,8 +99,11 @@
                                         </select>
                                     </td>
                                     <td>
-                                        <input type="text" class="form-control">
+                                        <input type="text" [id]="'hrtext' + i" class="form-control">
                                     </td>
+                                    <!-- <td>
+                                        <input type="text" [id]="'vchStandardDays' + i" class="form-control" placeholder="Enter Standard Days">
+                                    </td> -->
                                     <td>
                                         <div class="d-flex gap-1">
                                             <a href="javascript:void(0);" title="Delete"
@@ -115,16 +114,14 @@
                                     </td>
                                 </tr>
                             </tbody>
-                            
                         </table>
                     </div>
                 </div>
             </div>
-
             <div class="row">
                 <div class="col-xxl-3 col-lg-4 col-sm-6">
                     <div class="mb-3">
-                        <button type="submit" class="btn btn-primary me-2">Submit</button>
+                        <button type="submit" class="btn btn-primary me-2" (click)="submitForm()">Submit</button>
                         <button type="reset" class="btn btn-danger">Reset</button>
                     </div>
                 </div>
