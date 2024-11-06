@@ -80,6 +80,24 @@ namespace Config.API
             }
         }
 
+        [HttpGet("check")]
+        public async Task<IActionResult> CheckEscalationExists(int categoryId, int subcategoryId)
+        {
+            try
+            {
+                int result = await _MANAGE_ESCALATION_CONFIGDETAILSRepository.CheckEscalationExist(categoryId, subcategoryId);
+                if (result == 0)
+                {
+                    return NotFound(new { Message = "No record found." });
+                }
+                return Ok(new { Message = result });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { Message = "An error occurred while processing the request.", Details = ex.Message });
+            }
+        }
+
 
         [HttpGet("GetMANAGE_ESCALATION_CONFIGDETAILS")]
         public async Task<IActionResult> Get_MANAGE_ESCALATION_CONFIGDETAILS()
