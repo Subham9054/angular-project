@@ -11,7 +11,7 @@ $gray-900: #212529 ;
 $black: #000 ;
 $yellowlight:#ffff00 ;
 $link-color:#2a68be;
-$icon-color:#dae0e9;
+$icon-color:#cee2f7;
 
 $light-bg: #fbfcff ;
 
@@ -19,7 +19,7 @@ $yellow:#ff9f60;
 $green:#1f723f ;
 $green-dark:#006036;
 $green-light:#dfe9e3;
-$blue:#1953A7 ;
+$blue:#3b76e1 ;
 $blue-dark:#0e3c7c;
 $blue-light:#e8eef5;
 $red:#d13e4a;
@@ -36,7 +36,7 @@ $navbar-brand-color: $gray-100;
 $navbar-border-bottom: 0;
 $navbar-box-shadow: 0 0 2rem 0 rgba($black, .1) ;
 
-$sidebar-bg: $blue-dark !default;
+$sidebar-bg: $blue !default;
 $sidebar-width: 280px !default;
 $sidebar-transition: margin-left .35s ease-in-out, left .35s ease-in-out, margin-right .35s ease-in-out, right .35s ease-in-out !default;
 
@@ -50,7 +50,7 @@ $sidebar-link-hover-color: $gray-100 !default;
 $sidebar-link-hover-border-left-color: transparent !default;
 $sidebar-link-active-color: $gray-100 !default;
 
-$sidebar-link-icon-color: $gray-500 !default;
+$sidebar-link-icon-color: $icon-color !default;
 $sidebar-link-icon-hover-color: #{rgba($gray-200, 0.75)} !default;
 $sidebar-link-icon-active-color: $gray-200 !default;
 

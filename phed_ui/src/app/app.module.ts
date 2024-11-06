@@ -33,6 +33,7 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
     ApplicationModule,
     BrowserAnimationsModule,
     
+    
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true }, // Fix provider syntax here

@@ -1,7 +1,8 @@
 @import '../../../../assets/scss/variables';
 footer {
     width: 100%;
-    background-color: rgba($black,.1);
+    background-color: rgba($black,.05);
+    font-weight: 300;
 }
 .fixed-bottom {
     position: inherit;

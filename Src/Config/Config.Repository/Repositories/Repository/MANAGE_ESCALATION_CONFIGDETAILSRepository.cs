@@ -8,6 +8,8 @@ using PHED_CGRC.MANAGE_ESCALATION_CONFIGDETAILS;
 using Dapper;
 using System.Data;
 using Config.Model.Entities.Config;
+using System.Data.SqlClient;
+using Org.BouncyCastle.Asn1.Ocsp;
 namespace Config.Repository.Repositories.Interfaces.MANAGE_ESCALATION_CONFIGDETAILS
 {
     public class MANAGE_ESCALATION_CONFIGDETAILSRepository : db_PHED_CGRCRepositoryBase, IMANAGE_ESCALATION_CONFIGDETAILSRepository
@@ -40,6 +42,22 @@ namespace Config.Repository.Repositories.Interfaces.MANAGE_ESCALATION_CONFIGDETA
             {
                 // Log the exception or handle it as needed
                 throw new Exception("An error occurred while inserting escalation data.", ex);
+            }
+        }
+
+        public async Task<int> CheckEscalationExist(int INT_CATEGORY_ID, int INT_SUB_CATEGORY_ID)
+        {
+            try
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("categoryid", INT_CATEGORY_ID);
+                parameters.Add("subcategoryid", INT_SUB_CATEGORY_ID);
+                var result = await Connection.QueryAsync<int>("USP_EscalationCheck", parameters, commandType: CommandType.StoredProcedure);
+                return result.FirstOrDefault();
+            }
+            catch (Exception ex) 
+            {
+                throw;
             }
         }
 
