@@ -7,7 +7,7 @@
                         <a routerLink="/application/mngbanner" class="nav-link active">Add</a>
                     </li>
                     <li class="nav-item">
-                        <a routerLink="/application/mngbanner-view" class="nav-link">View</a>
+                        <a routerLink="/application/mngbanner/view" class="nav-link">View</a>
                     </li>
                 </ul>
             </div>
@@ -27,7 +27,7 @@
         <div class="row">
             <div class="col-xxl-10 col-lg-12">
                 <div class="row">
-                    <div class="col-lg-4 col-md-6">
+                    <div class="col-lg-8 col-md-6">
                         <div class="mb-3">
                             <label class="form-label" for="menuen">Upload Banner Image</label>
                             <div class="custom-dropzone photoUpload" ngx-dropzone [accept]="'image/*'" (change)="onSelect($event)">

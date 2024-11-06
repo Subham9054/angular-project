@@ -29,7 +29,7 @@
       height: calc(100vh - ($navbar-hight + 9rem));
     }
     &::-webkit-scrollbar {
-      width: 8px;
+      width: 10px;
     }
 
     &::-webkit-scrollbar-track {
@@ -37,11 +37,11 @@
     }
     
     &::-webkit-scrollbar-thumb {
-      background:$sidebar-link-hover-color;
+      background:#4b59c7;
     }
 
     &::-webkit-scrollbar-thumb:hover {
-      background:rgba(233, 236, 239, 0.6);
+      background:#5566e6;
     }
   }
 
@@ -258,10 +258,12 @@ a.sidebar-link {
 
     &:hover {
       color: rgba($white, 0.8);
+      background-color: transparent;
     }
 
     &.active {
       color: $sidebar-link-active-color;
+      font-weight: 500;
     }
 
     // &.active {

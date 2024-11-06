@@ -7,6 +7,7 @@ import { ComplaintregistrationComponent } from './application/complaintregistrat
 import { AuthGuard } from './auth.guard';
 import { ApplicationComponent } from './application/application.component';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 
 
 const routes: Routes = [
@@ -17,11 +18,11 @@ const routes: Routes = [
   { path: 'complaint-category', component: ComplaintcategoryComponent },
   { path: 'complaintcategory-view', component: ComplaintcategoryViewComponent }, 
   { path: 'complaint-registration', component: ComplaintregistrationComponent },
-  
   {
     path: 'application',
     loadChildren: () => import('./application/application.module').then(m => m.ApplicationModule)
-  }
+  },
+  { path: '**', component: PagenotfoundComponent }
 ];
 
 @NgModule({

@@ -42,6 +42,8 @@ import { MngcontactViewComponent } from './cms/mngcontact-view/mngcontact-view.c
 import { MngbannerViewComponent } from './cms/mngbanner-view/mngbanner-view.component';
 import { MinisterProfileViewComponent } from './cms/minister-profile-view/minister-profile-view.component';
 import { NgxDropzoneModule } from 'ngx-dropzone';
+import { ComplaintSubCategoryComponent } from './complaint-sub-category/complaint-sub-category.component';
+import { ModewiseReportComponent } from './modewise-report/modewise-report.component';
 
 @NgModule({
   declarations: [
@@ -81,7 +83,9 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
     MngcontactComponent,
     MngcontactViewComponent,
     MngbannerViewComponent,
-    MinisterProfileViewComponent
+    MinisterProfileViewComponent,
+    ComplaintSubCategoryComponent,
+    ModewiseReportComponent
   ],
   imports: [
     CommonModule,

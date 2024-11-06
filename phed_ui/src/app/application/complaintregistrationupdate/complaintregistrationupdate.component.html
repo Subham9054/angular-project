@@ -101,7 +101,7 @@
                         <label for="txtComplaintName" class="form-label">Source of Complaint</label>
                         <select name="ddlRecievemode" [(ngModel)]="formData.ddlComplainttype" id="ddlRecievemode"
                             class="form-select">
-                            <option value="0">-Select-</option>
+                            <option value="0">Select</option>
                             <option *ngFor="let complaintp of complainttype"
                                 [value]="complaintp.inT_COMPLIANT_LOG_TYPE_ID">
                                 {{ complaintp.vcH_COMPLIANT_LOG_TYPE }}</option>
@@ -621,7 +621,7 @@
                                 <div class="mb-3">
                                     <label for="ddlDistrict" class="form-label">Status</label>
                                     <select class="form-select">
-                                        <option selected>-Select-</option>
+                                        <option selected>Select</option>
                                         <option value="1">One</option>
                                         <option value="2">Two</option>
                                         <option value="3">Three</option>
