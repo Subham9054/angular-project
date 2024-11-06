@@ -12,7 +12,6 @@ namespace Config.API
     [Route("Api/[controller]")]
     public class MANAGE_ESCALATION_CONFIGDETAILSController : ControllerBase
     {
-
         public IConfiguration Configuration;
         private readonly IMANAGE_ESCALATION_CONFIGDETAILSRepository _MANAGE_ESCALATION_CONFIGDETAILSRepository;
         private IWebHostEnvironment _hostingEnvironment;
