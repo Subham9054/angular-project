@@ -77,7 +77,7 @@ a {
     padding: 1.2rem;
     border: solid 1px $gray-200;
     box-shadow: 0px 0px 5px rgb(0 0 0 / 9%);
-    // overflow: hidden;
+    border-radius: 6px;
     @include box-shadow(0 0.125rem 0.25rem rgba($black, .2));
 
     &.search-box {
@@ -86,7 +86,7 @@ a {
       background-color: $blue-light;
       transition: max-height 0.5s ease, opacity 0.5s ease, padding 0.5s ease;
       border: 0 !important;
-      border-radius: 5px !important;
+      border-radius: 5px ;
     }
   }
 
@@ -146,8 +146,8 @@ a {
       padding-right: 0rem;
       margin-right: 1.5rem;
       border-width: 0 0 3px;
-      font-weight: 500;
-
+      font-weight: 600;
+    font-size: 1.1rem;
       &:hover,
       &:focus {
         border-color: transparent;
