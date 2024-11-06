@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
@@ -10,8 +11,8 @@ import { ApplicationModule } from './application/application.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptorService } from './interceptors/auth-interceptor.service';
-import { EscalationComponent } from './escalation/escalation.component';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 
 
 
@@ -19,8 +20,8 @@ import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.compone
   declarations: [
     AppComponent,
     LoginComponent,
-    EscalationComponent,
     ForgotpasswordComponent,
+    PagenotfoundComponent,
     
   ],
   imports: [
@@ -31,6 +32,7 @@ import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.compone
     LoginModule,
     ApplicationModule,
     BrowserAnimationsModule,
+    
     
   ],
   providers: [

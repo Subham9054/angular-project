@@ -1,0 +1,285 @@
+<div class="form-cointainer">
+    <div class="main-tab">
+        <div class="row justify-content-between align-items-center">
+            <div class="col-lg-4">
+                <ul class="nav nav-tabs" routerLinkActive="active">
+                    <li class="nav-item">
+                        <a routerLink="/application/mngmenu" class="nav-link">Add</a>
+                    </li>
+                    <li class="nav-item">
+                        <a routerLink="/application/mngmenu-view" class="nav-link active">View</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <div class="utilite float-end mb-1">
+                    <ul class="mb-0">
+                        <li class="bg-transparent border-0">
+                            <span class="text-danger small"><b>(*)</b> Indicate mandatory </span>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" ngbTooltip="Click to Print"><i class="bi bi-printer"></i></a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" ngbTooltip="Delete Record"><i class="bi bi-trash"></i></a>
+                        </li>
+                       
+                        <li><a href="javascript:void(0)" ngbTooltip="Go to Previous"><i
+                                    class="bi bi-arrow-left"></i></a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" title="Click to Publish">
+                                <i class="bi bi-volume-up"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" title="Click to Unpublish">
+                                <i class="bi bi-volume-off"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="collapseExample" class="collapse show">
+        <div class="content-box search-box">
+            <div class="row">
+                <div class="col-xxl-3 col-lg-4 col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label" for="manutype">Menu Type</label>
+                        <select class="form-select" id="manutype">
+                            <option selected>Select</option>
+                            <option value="1">Main Menu</option>
+                            <option value="2">Footer Menu</option>
+                            <option value="3">Footer Bottom Menu</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-xxl-3 col-lg-4 col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label" for="parentmanu">Parent Menu</label>
+                        <select class="form-select" id="parentmanu">
+                            <option selected>Select</option>
+                            <option value="1">FAQ</option>
+                            <option value="2">Feedback</option>
+                            <option value="3">Contact</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-xxl-3 col-lg-4 col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label" for="menuen">Menu Name</label>
+                        <input type="text" class="form-control" id="menuen">
+                    </div>
+                </div>
+                <div class="col-xxl-3 col-lg-4 col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label d-xxl-block d-lg-none d-md-block d-none">&nbsp;</label>
+                        <button type="submit" class="btn btn-primary me-2">Search</button>
+                        <button type="reset" class="btn btn-danger">Reset</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="search-btn">
+        <a data-bs-toggle="collapse" href="#collapseExample">
+            <span class="collapse-on">Search Open <i class="bi bi-arrow-down"></i></span> <span
+                class="collapse-off">Search Close <i class="bi bi-arrow-up"></i></span>
+        </a>
+    </div>
+
+    <div class="view-legand">
+        <ul class="legends">
+            <li><span class="bg-success"></span> Publish </li>
+            <li><span class="bg-danger"></span> Unpublish </li>
+        </ul>
+    </div>
+
+    <div class="content-box content-area p-0">
+        <div class="table-responsive mb-0">
+            <table class="table table-striped mb-0">
+                <thead>
+                    <tr>
+                        <th width="30px" class="border-left-head">
+                            <input type="checkbox">
+                        </th>
+                        <th width="40px">Sl#</th>
+                        <th>Menu Type</th>
+                        <th>Link Type</th>
+                        <th>Parent Menu</th>
+                        <th>Menu Name</th>
+                        <th width="70px">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="border-left-2 border-left-success"><input type="checkbox"></td>
+                        <td>1</td>
+                        <td>Footer Bottom Menu</td>
+                        <td>Global Link</td>
+                        <td>-</td>
+                        <td>RTI</td>
+                        <td>
+                            <div class="d-flex gap-1">
+                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"
+                                    data-bs-toggle="modal" data-bs-target="#viewmodal">
+                                    <i class="bi bi-eye"></i></a>
+                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
+                                    <i class="bi bi-pencil"></i></a>
+                                <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" title="Delete">
+                                    <i class="bi bi-trash3"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="border-left-2 border-left-success"><input type="checkbox"></td>
+                        <td>2</td>
+                        <td>Footer Bottom Menu</td>
+                        <td>Global Link</td>
+                        <td>-</td>
+                        <td>Place to Visit</td>
+                        <td>
+                            <div class="d-flex gap-1">
+                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View">
+                                    <i class="bi bi-eye"></i></a>
+                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
+                                    <i class="bi bi-pencil"></i></a>
+                                <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" title="Delete">
+                                    <i class="bi bi-trash3"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="border-left-2 border-left-success"><input type="checkbox"></td>
+                        <td>3</td>
+                        <td>Footer Bottom Menu</td>
+                        <td>Global Link</td>
+                        <td>-</td>
+                        <td>City Events</td>
+                        <td>
+                            <div class="d-flex gap-1">
+                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View">
+                                    <i class="bi bi-eye"></i></a>
+                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
+                                    <i class="bi bi-pencil"></i></a>
+                                <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" title="Delete">
+                                    <i class="bi bi-trash3"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="border-left-2 border-left-success"><input type="checkbox"></td>
+                        <td>4</td>
+                        <td>Footer Bottom Menu</td>
+                        <td>Global Link</td>
+                        <td>-</td>
+                        <td>City Map</td>
+                        <td>
+                            <div class="d-flex gap-1">
+                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View">
+                                    <i class="bi bi-eye"></i></a>
+                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
+                                    <i class="bi bi-pencil"></i></a>
+                                <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" title="Delete">
+                                    <i class="bi bi-trash3"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="border-left-2 border-left-danger"><input type="checkbox"></td>
+                        <td>5</td>
+                        <td>Footer Bottom Menu</td>
+                        <td>Global Link</td>
+                        <td>-</td>
+                        <td>Citizen Services</td>
+                        <td>
+                            <div class="d-flex gap-1">
+                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View">
+                                    <i class="bi bi-eye"></i></a>
+                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
+                                    <i class="bi bi-pencil"></i></a>
+                                <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" title="Delete">
+                                    <i class="bi bi-trash3"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal View  -->
+<div class="modal fade" id="viewmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Menu Details</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body view-form">
+                <div class="row">
+                    <div class="col-xl-12">
+
+                        <div class="row">
+                            <div class="col-xl-4 col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Menu Type</label>
+                                    <label class="form-value">Main Menu</label>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Link Type</label>
+                                    <label class="form-value">Primary Link</label>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-4 col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Parent Menu</label>
+                                    <label class="form-value">FAQ</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xl-4 col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Menu Name</label>
+                                    <label class="form-value">Place to Visit</label>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-4 col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Menu Name in Hindi</label>
+                                    <label class="form-value">घूमने की जगह</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xl-4 col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Menu Link</label>
+                                    <label class="form-value">---</label>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Menu Serial</label>
+                                    <label class="form-value">2</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

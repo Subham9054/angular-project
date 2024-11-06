@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/auth.service';
 import * as CryptoJS from 'crypto-js';
 
+
 @Component({
   selector: 'app-complaintcategory',
   templateUrl: './complaintcategory.component.html',
@@ -87,7 +88,7 @@ export class ComplaintcategoryComponent implements OnInit {
       this.authService.updateComplaint(this.complaintId, complaintData).subscribe(
         (response) => {
           alert('Complaint category updated successfully!');
-          this.router.navigate(['/complaintcategory-view']);
+          this.router.navigate(['/application/complaintcategory/view']);
         },
         (error) => {
           console.error('Error updating complaint', error);

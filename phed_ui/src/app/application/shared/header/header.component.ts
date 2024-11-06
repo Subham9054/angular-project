@@ -65,6 +65,8 @@ export class HeaderComponent {
         }
     });
   }
+
+  // Language change
   buttonText: string = 'हिंदी';
 
   toggleText() {

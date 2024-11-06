@@ -1,0 +1,271 @@
+<div class="form-cointainer">
+    <div class="main-tab">
+        <div class="row justify-content-between align-items-center">
+            <div class="col-lg-4">
+                <ul class="nav nav-tabs" routerLinkActive="active">
+                    <li class="nav-item">
+                        <a routerLink="/application/mngbanner" class="nav-link">Add</a>
+                    </li>
+                    <li class="nav-item">
+                        <a routerLink="/application/mngbanner-view" class="nav-link active">View</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="collapseExample" class="collapse show">
+        <div class="content-box search-box">
+            <div class="row">
+                <div class="col-xxl-3 col-lg-4 col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label" for="serialno">Serial No.</label>
+                        <input type="text" class="form-control" id="serialno">
+                    </div>
+                </div>
+                <div class="col-xxl-3 col-lg-4 col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label d-md-block d-none">&nbsp;</label>
+                        <button type="submit" class="btn btn-primary me-2">Search</button>
+                        <button type="reset" class="btn btn-danger">Reset</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="search-btn">
+        <a data-bs-toggle="collapse" href="#collapseExample">
+            <span class="collapse-on">Search Open <i class="bi bi-arrow-down"></i></span> <span
+                class="collapse-off">Search Close <i class="bi bi-arrow-up"></i></span>
+        </a>
+    </div>
+
+    <div class="view-legand">
+        <ul class="legends">
+            <li><span class="bg-success"></span> Publish </li>
+            <li><span class="bg-danger"></span> Unpublish </li>
+        </ul>
+        <div class="legand-utilite">
+            <ul class="mb-0">
+                <li>
+                    <a href="javascript:void(0)" title="Click to Print" class="btn btn-outline-primary btn-sm">
+                        <i class="bi bi-printer"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)" title="Click to Download" class="btn btn-outline-info btn-sm">
+                        <i class="bi bi-download"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)" title="Click to Publish" class="btn btn-outline-success btn-sm">
+                        <i class="bi bi-volume-up"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)" title="Click to Unpublish" class="btn btn-outline-danger btn-sm">
+                        <i class="bi bi-volume-off"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="content-box content-area p-0">
+        <div class="table-responsive mb-0">
+            <table class="table table-striped mb-0">
+                <thead>
+                    <tr>
+                        <th width="30px" class="border-left-head">
+                            <input type="checkbox">
+                        </th>
+                        <th width="40px">Sl#</th>
+                        <th>Banner Text 1 </th>
+                        <th>Banner Text 1 in Hindi</th>
+                        <th>Image</th>
+                        <th width="70px" class="text-center">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="border-left-2 border-left-success"><input type="checkbox"></td>
+                        <td>1</td>
+                        <td>Ensuring Clean Water</td>
+                        <td>स्वच्छ पानी सुनिश्चित करना</td>
+                        <td>
+                            <a href="javascript:void(0);" class="img-banner">
+                                <img src="./assets/img/login-bg.png" alt="Banner text">
+                            </a>
+                        </td>
+                        <td>
+                            <div class="d-flex gap-1">
+                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View" data-bs-toggle="modal" data-bs-target="#viewmodal">
+                                    <i class="bi bi-eye"></i></a>
+                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
+                                    <i class="bi bi-pencil"></i></a>
+                                <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" title="Delete">
+                                    <i class="bi bi-trash3"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="border-left-2 border-left-success"><input type="checkbox"></td>
+                        <td>2</td>
+                        <td>Ensuring Clean Water</td>
+                        <td>स्वच्छ पानी सुनिश्चित करना</td>
+                        <td>
+                            <a href="javascript:void(0);" class="img-banner">
+                                <img src="./assets/img/login-bg.png" alt="Banner text">
+                            </a>
+                        </td>
+                        <td>
+                            <div class="d-flex gap-1">
+                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View" data-bs-toggle="modal" data-bs-target="#viewmodal">
+                                    <i class="bi bi-eye"></i></a>
+                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
+                                    <i class="bi bi-pencil"></i></a>
+                                <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" title="Delete">
+                                    <i class="bi bi-trash3"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="border-left-2 border-left-success"><input type="checkbox"></td>
+                        <td>3</td>
+                        <td>Ensuring Clean Water</td>
+                        <td>स्वच्छ पानी सुनिश्चित करना</td>
+                        <td>
+                            <a href="javascript:void(0);" class="img-banner">
+                                <img src="./assets/img/login-bg.png" alt="Banner text">
+                            </a>
+                        </td>
+                        <td>
+                            <div class="d-flex gap-1">
+                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View" data-bs-toggle="modal" data-bs-target="#viewmodal">
+                                    <i class="bi bi-eye"></i></a>
+                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
+                                    <i class="bi bi-pencil"></i></a>
+                                <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" title="Delete">
+                                    <i class="bi bi-trash3"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="border-left-2 border-left-success"><input type="checkbox"></td>
+                        <td>4</td>
+                        <td>Ensuring Clean Water</td>
+                        <td>स्वच्छ पानी सुनिश्चित करना</td>
+                        <td>
+                            <a href="javascript:void(0);" class="img-banner">
+                                <img src="./assets/img/login-bg.png" alt="Banner text">
+                            </a>
+                        </td>
+                        <td>
+                            <div class="d-flex gap-1">
+                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View" data-bs-toggle="modal" data-bs-target="#viewmodal">
+                                    <i class="bi bi-eye"></i></a>
+                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
+                                    <i class="bi bi-pencil"></i></a>
+                                <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" title="Delete">
+                                    <i class="bi bi-trash3"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="border-left-2 border-left-danger"><input type="checkbox"></td>
+                        <td>5</td>
+                        <td>Ensuring Clean Water</td>
+                        <td>स्वच्छ पानी सुनिश्चित करना</td>
+                        <td>
+                            <a href="javascript:void(0);" class="img-banner">
+                                <img src="./assets/img/login-bg.png" alt="Banner text">
+                            </a>
+                        </td>
+                        <td>
+                            <div class="d-flex gap-1">
+                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View" data-bs-toggle="modal" data-bs-target="#viewmodal">
+                                    <i class="bi bi-eye"></i></a>
+                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
+                                    <i class="bi bi-pencil"></i></a>
+                                <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" title="Delete">
+                                    <i class="bi bi-trash3"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal View  -->
+<div class="modal fade" id="viewmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Banner Details</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body view-form">
+            <div class="row">
+
+                <div class="col-xl-12">
+                    <div class="row">
+                        <div class="col-xl-3 col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label d-block">Banner Image</label>
+                                <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm"><i class="bi bi-download"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xl-6 col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Banner Text 1</label>
+                                <label class="form-value">Ensuring Clean Water</label>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-6 col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Banner Text 1 in Hindi</label>
+                                <label class="form-value">स्वच्छ पानी सुनिश्चित करना</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xl-6 col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Banner Text 2</label>
+                                <label class="form-value">Welcome to Neer Nirmal Seva</label>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-6 col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Banner Text 2 in Hindi</label>
+                                <label class="form-value">नीर निर्मल सेवा में आपका स्वागत है</label>
+                            </div>
+                        </div>
+                        
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xl-6 col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Serial No.</label>
+                                <label class="form-value">2</label>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>

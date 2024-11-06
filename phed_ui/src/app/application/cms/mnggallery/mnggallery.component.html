@@ -1,0 +1,116 @@
+<div class="form-cointainer">
+    <div class="main-tab">
+        <div class="row justify-content-between">
+            <div class="col-lg-4">
+                <ul class="nav nav-tabs" routerLinkActive="active">
+                    <li class="nav-item">
+                        <a routerLink="/application/mnggallery" class="nav-link active">Add</a>
+                    </li>
+                    <li class="nav-item">
+                        <a routerLink="/application/mnggallery/view" class="nav-link">View</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-6 ">
+                <div class="utilite float-end mb-1">
+                    <ul class="mb-0">
+                        <li class="bg-transparent border-0">
+                            <span class="text-danger small"><b>(*)</b> Indicate mandatory </span>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" ngbTooltip="Click to Print"><i class="bi bi-printer"></i></a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" ngbTooltip="Delete Record"><i class="bi bi-trash"></i></a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" ngbTooltip="Download"><i class="bi bi-download"></i></a>
+                        </li>
+                        <li><a href="javascript:void(0)" ngbTooltip="Go to Previous"><i
+                                    class="bi bi-arrow-left"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-box content-area">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="row">
+
+                    <div class="col-xl-3">
+                        <div class="mb-3">
+                            <label class="form-label" for="type">Type <span class="text-danger">*</span></label>
+                            <select class="form-select" [(ngModel)]="selectedType">
+                                <option value="" selected>-Select-</option>
+                                <option value="photo">Photo</option>
+                                <option value="video">Video</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                   
+                    <div class="col-xl-3" *ngIf="selectedType === 'photo' || selectedType === 'video'">
+                        <div class="mb-3">
+                            <label class="form-label" for="thembimg">Upload Thumb Image <span class="text-danger">*</span></label>
+                            <input class="form-control" type="file" id="thembimg">
+                            <p class="small mb-0 text-end text-danger">Max file Size <span class="fw-bold">1 mb</span></p>
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="col-xl-3" *ngIf="selectedType === 'photo'">
+                        <div class="mb-3">
+                            <label class="form-label" for="upodimg">Upload Image <span class="text-danger">*</span></label>
+                            <input class="form-control" type="file" id="upodimg">
+                            <p class="small mb-0 text-end text-danger">Max file Size <span class="fw-bold">1 mb</span></p>
+                        </div>
+                    </div>
+                    
+                   
+                    <div class="col-xl-3" *ngIf="selectedType === 'video'">
+                        <div class="mb-3">
+                            <label class="form-label d-block" for="linktype">Link Type</label>
+                            <div class="form-check form-check-inline mt-1">
+                                <input class="form-check-input" type="radio" name="linkType" id="link1" value="internal" checked>
+                                <label class="form-check-label" for="link1">Internal</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="linkType" id="link2" value="external">
+                                <label class="form-check-label" for="link2">External</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                      
+                   
+                </div>
+                <div class="row">
+                    <div class="col-xl-6">
+                        <div class="mb-3">
+                            <label class="form-label" for="captionen">Caption in English</label>
+                            <textarea class="form-control" id="captionen" rows="3"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-6">
+                        <div class="mb-3">
+                            <label class="form-label" for="captionhn">Caption in Hindi</label>
+                            <textarea class="form-control" id="captionhn" rows="3"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="reset" class="btn btn-danger">Reset</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

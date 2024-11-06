@@ -4,7 +4,7 @@
             <div class="col-xxl-3 col-lg-4 col-md-6">
                 <ul class="nav nav-tabs" routerLinkActive="active">
                     <li class="nav-item">
-                        <a routerLink="/application/complaintregistration" class="nav-link">Add</a>
+                        <a routerLink="/application/escalation" class="nav-link">Add</a>
                     </li>
                     <li class="nav-item">
                         <a routerLink="/application/escalation-view" class="nav-link active">View</a>
@@ -14,42 +14,47 @@
             <div class="col-lg-6 col-md-6">
                 <div class="utilite float-end">
                     <ul class="mb-0">
-                        <li><a href="javascript:void(0)" ngbTooltip="Click to Print"><i class="bi bi-printer"></i></a></li>
+                        <li><a href="javascript:void(0)" title="Click to Print"><i class="bi bi-printer"></i></a></li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
-<div id="collapseExample" class="collapse">
+<div id="collapseExample" class="collapse show">
     <div class="content-box search-box">
         <div class="row">
 
-            <div class="col-xl-3 col-lg-4">
+            <div class="col-xxl-3 col-lg-4 col-md-6">
                 <div class="mb-3">
-                    <label for="txtRegdDt" class="form-label">Complaint Category</label>
-                    <select class="form-select">
-                        <option selected>-Select-</option>
-                        <option value="1">Handpump Tubewell Related</option>
-                        <option value="2">Miscellaneous</option>
-                        <option value="3">Piped Water Supply Related</option>
+                    <label for="ddlComplaintCategory" class="form-label">Complaint Category</label>
+                    <select name="ddlComplaintCategory" id="ddlComplaintCategory"
+                        [(ngModel)]="formData.ddlComplaintCategory"
+                        (change)="onCategoryChange($event)" class="form-select">
+                        <option selected value="0">-Select-</option>
+                        <option *ngFor="let category of categories"
+                            [value]="category.inT_CATEGORY_ID">{{ category.vcH_CATEGORY }}
+                        </option>
                     </select>
                 </div>
             </div>
 
-            <div class="col-xl-3 col-lg-4">
+            <div class="col-xxl-3 col-lg-4 col-md-6">
                 <div class="mb-3">
-                    <label for="txtRegdDt" class="form-label">Complaint Sub Category</label>
-                    <select class="form-select">
-                        <option selected>-Select-</option>
-                        <option value="1">Repairing of Public Handpump</option>
-                        <option value="2">Repairing of Private Handpump</option>
+                    <label for="ddlSubCategory" class="form-label">Complaint Sub-Category</label>
+                    <select name="ddlSubCategory" id="ddlSubCategory"
+                        [(ngModel)]="formData.ddlSubCategory" class="form-select">
+                        <option value="0">-Select-</option>
+                        <option *ngFor="let subcategory of subcategories"
+                            [value]="subcategory.inT_SUB_CATEGORY_ID">{{
+                            subcategory.vcH_SUB_CATEGORY }}
+                        </option>
                     </select>
                 </div>
             </div>
             <div class="col-xxl-3 col-lg-4">
                 <div class="mb-3">
-                    <label class="form-label d-md-block d-none">&nbsp;</label>
-                    <button type="submit" class="btn btn-success me-2">View</button>
+                    <label class="form-label d-lg-block d-none">&nbsp;</label>
+                    <button type="submit" class="btn btn-primary me-2">Search</button>
                     <button type="reset" class="btn btn-danger">Reset</button>
                 </div>
             </div>
@@ -71,7 +76,7 @@
                         <th>Complaint Sub-Category</th>
                         <th>Level of Escalation</th>
                         <th>Receiving Authority</th>
-                        <th>Action</th>
+                        <th width="100px">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -83,7 +88,7 @@
                         <td>JE</td>
                         <td>
                             <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="View">
+                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View" data-bs-toggle="modal" data-bs-target="#escalationView">
                                     <i class="bi bi-eye"></i>
                                 </a>
                                 <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
@@ -100,7 +105,7 @@
                         <td>JE</td>
                         <td>
                             <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="View">
+                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View" data-bs-toggle="modal" data-bs-target="#escalationView">
                                     <i class="bi bi-eye"></i>
                                 </a>
                                 <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
@@ -117,7 +122,7 @@
                         <td>JE</td>
                         <td>
                             <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="View">
+                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View" data-bs-toggle="modal" data-bs-target="#escalationView">
                                     <i class="bi bi-eye"></i>
                                 </a>
                                 <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
@@ -134,7 +139,7 @@
                         <td>JE</td>
                         <td>
                             <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="View">
+                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View" data-bs-toggle="modal" data-bs-target="#escalationView">
                                     <i class="bi bi-eye"></i>
                                 </a>
                                 <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
@@ -148,3 +153,68 @@
         </div>
     </div>
 </div>
+
+
+<!-- Modal Start::Details -->
+<div class="modal fade" id="escalationView" tabindex="-1" aria-labelledby="escalationView" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header justify-content-between">
+                <h1 class="modal-title fs-5" id="tokenLabel">Escalation Details</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xl-12 view-form">
+                        <div class="row">
+                            <div class="col-xl-6 col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Complaint Category</label>
+                                    <label class="form-value">Handpump Tubewell Related</label>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-6 col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Complaint Sub-Category</label>
+                                    <label class="form-value">Repairing of Public Handpump</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-12">
+                        <div class="table-responsive mt-2">
+                            <table class="table mb-0 table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th width="40px">Sl#</th>
+                                        <th>Authority Level</th>
+                                        <th width="100px">Standard Action Taking Hours</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>JE</td>
+                                        <td>120</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>SDO</td>
+                                        <td>72</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>EE</td>
+                                        <td>168</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal End::Token -->

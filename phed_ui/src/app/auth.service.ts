@@ -15,23 +15,26 @@ export class AuthService {
   private baseUrl: string = 'http://localhost:8085/api';
   
 
-  private apiUrl = 'http://172.27.32.0:8085/api/Login'; // Your API URL for login
+  private apiUrl = 'https://localhost:7199/Login'; // Your API URL for login
   private registrationApiUrl = 'http://172.27.32.0:8085/api/ComplaintsRegistration/DetailcomplaintRegistration';
-  private complaintApiUrl = 'http://172.27.32.0:8085/api/Complaint/ComplaintCategory';
-  private getComplaintApiUrl = 'http://172.27.32.0:8085/api/Complaint/GetallComplaint';
-  private updateComplaintApiUrl = 'http://172.27.32.0:8085/api/Complaint/UpdateComplaint';
+  private complaintApiUrl = 'https://localhost:7010/Api/MANAGE_CATEGORYMASTER/ComplaintCategory';
+  private getComplaintApiUrl = 'https://localhost:7010/Api/MANAGE_CATEGORYMASTER/GetallComplaint';
+  private updateComplaintApiUrl = 'https://localhost:7010/Api/MANAGE_CATEGORYMASTER/UpdateComplaint';
   private getComplaintByIdApiUrl = 'http://172.27.32.0:8085/api/Complaint/GetComplaintById';
-  private deleteapiurl = 'http://172.27.32.0:8085/api/Complaint/deleteComplaintbyid';
-  private districturl = 'http://172.27.32.0:8085/api/ComplaintsRegistration/GetDistricts';  
-  private blockurl = 'http://172.27.32.0:8085/api/ComplaintsRegistration/GetBlocks';
-  private gpurl = 'http://172.27.32.0:8085/api/ComplaintsRegistration/GetGp';
-  private villageurl = 'http://172.27.32.0:8085/api/ComplaintsRegistration/GetVillages';
-  private categoryUrl = 'http://172.27.32.0:8085/api/ComplaintsRegistration/GetCategory';
-  private subcategoryUrl = 'http://172.27.32.0:8085/api/ComplaintsRegistration/GetSubCategories';
+  private deleteapiurl = 'https://localhost:7010/Api/MANAGE_CATEGORYMASTER/deleteComplaintbyid';
+  private districturl = 'https://localhost:7225/api/Dropdown/GetDistricts';  
+  private blockurl = 'https://localhost:7225/api/Dropdown/GetBlocks';
+  private gpurl = 'https://localhost:7225/api/Dropdown/GetGp';
+  private villageurl = 'https://localhost:7225/api/Dropdown/GetVillages';
+  private categoryUrl = 'https://localhost:7225/api/Dropdown/GetCategory';
+  private subcategoryUrl = 'https://localhost:7225/api/Dropdown/GetSubCategories';
   private fileUploadUrl = 'http://172.27.32.0:8085/api/ComplaintsRegistration/UploadFile';
   private complaintstatusUrl = 'http://172.27.32.0:8085/api/ComplaintsRegistration/GetComplaints';
-  private complainttypeurl = 'http://172.27.32.0:8085/api/ComplaintsRegistration/GetComplaintstype';
- 
+  private complainttypeurl = 'https://localhost:7225/api/Dropdown/GetComplaintstype';
+  private getdesignationurl='https://localhost:7225/api/Dropdown/GetDesignation';
+  private getloclevel='https://localhost:7225/api/Dropdown/GetLocationLevel';
+  private insertescalationurl="https://localhost:7237/Api/MANAGE_ESCALATION_CONFIGDETAILS/insertescalation";
+  private checkApiUrl = 'https://localhost:7237/Api/MANAGE_ESCALATION_CONFIGDETAILS/check';
   constructor(private http: HttpClient, private router: Router) { }
  
   // Method for user login
@@ -177,6 +180,30 @@ export class AuthService {
     return this.http.get(`${this.getComplaintByIdApiUrl}/${id}`)
       .pipe(catchError(this.handleError));
   }
+  getDesignation():Observable<any>{
+    return this.http.get(this.getdesignationurl).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  getLocation():Observable<any>{
+    return this.http.get(this.getloclevel).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  submitEscalationData(data: any): Observable<any> {
+    // Ensure the URL is correctly defined
+    return this.http.post(`${this.insertescalationurl}`, data);
+  }
+
+  checkEscalation(INT_CATEGORY_ID: string, INT_SUB_CATEGORY_ID: string): Observable<any> {
+    // Make HTTP request with proper API URL and query parameters
+    return this.http.get<any>(`${this.checkApiUrl}?categoryId=${INT_CATEGORY_ID}&subcategoryId=${INT_SUB_CATEGORY_ID}`).pipe(
+        catchError(this.handleError)
+    );
+  }
+
 
   // Error handling logic
   private handleError(error: any) {

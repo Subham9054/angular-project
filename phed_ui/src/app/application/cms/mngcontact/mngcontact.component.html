@@ -1,0 +1,77 @@
+<div class="form-cointainer">
+    <div class="main-tab">
+        <div class="row justify-content-between">
+            <div class="col-lg-4">
+                <ul class="nav nav-tabs" routerLinkActive="active">
+                    <li class="nav-item">
+                        <a routerLink="/application/mngcontact" class="nav-link active">Add</a>
+                    </li>
+                    <li class="nav-item">
+                        <a routerLink="/application/mngcontact/view" class="nav-link">View</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-6 ">
+                <div class="utilite float-end mb-1">
+                    <ul class="mb-0">
+                        <li class="bg-transparent border-0">
+                            <span class="text-danger small"><b>(*)</b> Indicate mandatory </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-box content-area">
+        <div class="row">
+            <div class="col-xl-10 col-lg-12">
+                <div class="row">
+
+                    <div class="col-xl-6">
+                        <div class="mb-3">
+                            <label class="form-label" for="addeess">Address <span class="text-danger">*</span></label>
+                            <textarea class="form-control" id="addeess" rows="3"></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="col-xl-6">
+                        <div class="mb-3">
+                            <label class="form-label" for="addeesshn">Address in Hindi <span class="text-danger">*</span></label>
+                            <textarea class="form-control" id="addeesshn" rows="3"></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="col-xl-4">
+                        <div class="mb-3">
+                            <label class="form-label" for="mob">Mobile <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="mob">
+                        </div>
+                    </div>
+
+                    <div class="col-xl-4">
+                        <div class="mb-3">
+                            <label class="form-label" for="email">Email <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="email">
+                        </div>
+                    </div>
+                   
+                    <div class="col-xl-4">
+                        <div class="mb-3">
+                            <label class="form-label" for="emburl">Embedded URL <span class="text-danger">*</span></label>
+                            <textarea class="form-control" id="emburl" rows="3"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="reset" class="btn btn-danger">Reset</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

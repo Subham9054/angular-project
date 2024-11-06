@@ -1,19 +1,15 @@
 using System.Collections.Generic;
-
+using CommonMaster.Model.Entities.CommonMaster;
 using PHED_CGRC.MANAGE_CATEGORYMASTER ;
+
 namespace CommonMaster.Repository.Interfaces.MANAGE_CATEGORYMASTER
 {
   public interface IMANAGE_CATEGORYMASTERRepository
   {
-  	 Task<int> INSERT_MANAGE_CATEGORYMASTER(MANAGE_CATEGORYMASTER_Model TBL);
-	
-	 Task<int> UPDAE_MANAGE_CATEGORYMASTER(MANAGE_CATEGORYMASTER_Model TBL);
-	
-	 Task<int> DELETE_MANAGE_CATEGORYMASTER(MANAGE_CATEGORYMASTER_Model TBL);
-	
-	 Task<List<VIEWMANAGE_CATEGORYMASTER>> VIEW_MANAGE_CATEGORYMASTER(MANAGE_CATEGORYMASTER_Model TBL);
-	
-	 Task<List<EDITMANAGE_CATEGORYMASTER>> EDIT_MANAGE_CATEGORYMASTER(MANAGE_CATEGORYMASTER_Model TBL);
-	
-}
+        public Task<bool> ComplaintCatagory(ComplaintCategory complaintCategory);
+        public Task<List<ComplaintCategory>> getCatagory();
+        public Task<bool> UpdateComplaintCatagory(int id, ComplaintCategory complaintCategory);
+        public Task<int> getdeleteCatagorybyid(int id);
+
+    }
 }

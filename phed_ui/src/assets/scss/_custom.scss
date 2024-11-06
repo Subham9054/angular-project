@@ -4,14 +4,17 @@
     .modal-logo {
         display: flex;
         align-items: center;
-
+        padding-bottom: 1rem;
+        background-color: #ececec;
+        padding: 1rem;
+        border-radius: 0.3rem;
         img {
-            height: 4.5rem;
+            height: 4rem;
         }
 
         h1 {
             font-size: 1.2rem;
-            margin-bottom: 0.2rem;
+            margin-bottom: 0.1rem;
             text-transform: uppercase;
         }
 
@@ -30,7 +33,6 @@
         align-items: center;
         justify-content: space-between;
         margin-top: 1.5rem;
-        border-bottom: 1px solid #ddd;
 
         h5 {
             font-size: 1.5rem;
@@ -39,12 +41,13 @@
 
     .subtitle {
         color: $link-color;
+        margin-top: 1rem;
     }
 }
 
 .view-form {
     .form-label {
-        color: #939393;
+        color: #4c4c4c;
         margin-bottom: 0.1rem;
     }
 
@@ -91,9 +94,13 @@
             padding: 0.2rem 0.5rem;
             line-height: 20px;
             border-radius: 0.4rem;
-            &.active{
+
+            &.active {
                 background-color: $blue-dark;
                 color: $white;
+            }
+            &:focus{
+              box-shadow: none;
             }
         }
     }
@@ -164,6 +171,9 @@
             }
         }
     }
+}
+
+.myquere-table , .custom-table{
 
     &::-webkit-scrollbar {
         width: 10px;
@@ -186,6 +196,29 @@
     }
 }
 
+.myquere-table{
+    height: 30vh;
+    overflow-y: auto;
+    position: relative;
+
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+
+    thead {
+        tr {
+            th {
+                position: sticky;
+                top: 0;
+                left: 0;
+                right: 0;
+            }
+        }
+    }
+ 
+}
+
 // Ck editor
 .ck-content {
     height: 20vh;
@@ -195,224 +228,37 @@
     display: none;
 }
 
-.info-dashboad {
-    .dashboard-card {
-        display: grid;
-        grid-template-columns: repeat(5, 1fr);
-        gap: 1rem;
-    }
-
-    .card {
-        position: relative;
-
-        .media {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-
-            .avatar {
-                border-radius: 50%;
-                height: 70px;
-                width: 70px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-
-                i {
-                    font-size: 2.3rem;
-                }
-            }
 
 
-        }
-
-        .card-link {
-            position: absolute;
-            right: 0;
-            left: 0;
-            bottom: 0;
-            top: 0;
-        }
-    }
-
-    .bg-pending {
-        background-color: #ff9f60;
-        color: #ffffff;
-    }
-
-    .pending {
-        border: 1px solid #ff9f60;
-    }
-
-    .pending{
-        &:hover{
-            background-color: #ff9f60;
-            .bg-pending {
-                background-color: #ffffff;
-                color: #ff9f60;
-            } 
-        }
-    }
-
-    .bg-received {
-        background-color: rgb(67 116 231);
-        color: #f7f7f7;
-    }
-
-    .received {
-        border: 1px solid #4374e7;
-    }
-   .received{
-        &:hover{
-            background-color: #5580e6;
-            .bg-received {
-                background-color: #ffffff;
-                color: #4374e7;
-            } 
-        }
-    }
-
-
-    .bg-resolved {
-        background-color: #008000;
-        color: #ffffff;
-    }
-
-    .resolved {
-        border: 1px solid #008000;
-    }
-    .resolved{
-        &:hover{
-            background-color: #008000c2;
-            .bg-resolved {
-                background-color: #ffffff;
-                color: #008000;
-            } 
-        }
-    }
-
-
-    .bg-non-resolved {
-        background-color: #dc3545;
-        color: #ffffff;
-    }
-
-    .non-resolved {
-        border: 1px solid #dc3545;
-    }
-    .non-resolved{
-        &:hover{
-            background-color:#df616d;
-            .bg-non-resolved {
-                background-color: #ffffff;
-                color: #dc3545;
-            } 
-        }
-    }
-
-
-    .bg-verify {
-        background-color: #0dcaf0;
-        color: #ffffff;
-    }
-
-    .verify {
-        border: 1px solid #0dcaf0;
-    }
-    .verify{
-        &:hover{
-            background-color:#60dbf3;
-            .bg-verify {
-                background-color: #ffffff;
-                color: #0dcaf0;
-            } 
-        }
-    }
-
-
-
-    h3,
-    p {
-        margin-bottom: 0;
-    }
-
-}
-.custom-header{
-    display: flex;
-    align-items: center;
-    border-bottom: 1px solid #ddd;
-    margin-bottom: 1rem;
-    .left-section {
-        display: flex;
-        flex-basis: 40%;
-        align-items: center;
-        gap: 1rem;
-        margin-bottom: 1rem;
-        h5{
-            flex-basis: inherit;
-            margin-bottom: 0;
-        }
-        .form-select{
-            flex-basis: 15%;
-        }
-    }
-    
-    .custom-tab{
-        margin-left: auto;
-        .nav-tabs{
-            margin-bottom: -0.5rem;
-            .nav-link{
-                background-color: $blue-dark;
-                color: $white;
-                &:hover{
-                    background-color:$link-color;
-                    color: $white;
-                }
-                &.active{
-                    background-color: $white;
-                    color: $black;
-                }
-            }
-        }
-    }
-}
-
-.form-btn{
+.form-btn {
     display: flex;
     gap: 0.4rem;
 }
 
-@media (max-width:1024px){
-    .form-btn{
-        justify-content: end;
-    }
-    .custom-col{
-        width: 37% !important;
-    }
-    .btn-col{
-        width: 24% !important;
+
+
+
+
+@media (max-width:630px) {
+    .upload-doc {
+        input {
+            width: 90%;
+        }
+
+        .dom-upload {
+            right: 0px;
+        }
     }
 }
-@media (max-width: 530px) {
+
+
+
+@media (max-width: 320px) {
     .utilite {
-      margin-top: 1rem;
-      text-align: center;
+        .bg-transparent {
+            display: block;
+            margin-left: 1rem;
+            margin-bottom: 0.4rem;    
+        }
     }
-  }
-@media (max-width:630px){
-    .form-btn{
-        justify-content: start;
-        margin-bottom: 1rem;
-    }
-    .custom-col,  .btn-col{
-        width: 100% !important;
-    }
-   .upload-doc{
-    input{
-        width: 90%;
-    }
-    .dom-upload {
-        right: 0px;
-    }
-   }
 }
