@@ -34,7 +34,7 @@ export class AuthService {
   private getdesignationurl='https://localhost:7225/api/Dropdown/GetDesignation';
   private getloclevel='https://localhost:7225/api/Dropdown/GetLocationLevel';
   private insertescalationurl="https://localhost:7237/Api/MANAGE_ESCALATION_CONFIGDETAILS/insertescalation";
- 
+  private checkApiUrl = 'https://localhost:7237/Api/MANAGE_ESCALATION_CONFIGDETAILS/check';
   constructor(private http: HttpClient, private router: Router) { }
  
   // Method for user login
@@ -195,7 +195,15 @@ export class AuthService {
   submitEscalationData(data: any): Observable<any> {
     // Ensure the URL is correctly defined
     return this.http.post(`${this.insertescalationurl}`, data);
-}
+  }
+
+  checkEscalation(INT_CATEGORY_ID: string, INT_SUB_CATEGORY_ID: string): Observable<any> {
+    // Make HTTP request with proper API URL and query parameters
+    return this.http.get<any>(`${this.checkApiUrl}?categoryId=${INT_CATEGORY_ID}&subcategoryId=${INT_SUB_CATEGORY_ID}`).pipe(
+        catchError(this.handleError)
+    );
+  }
+
 
   // Error handling logic
   private handleError(error: any) {

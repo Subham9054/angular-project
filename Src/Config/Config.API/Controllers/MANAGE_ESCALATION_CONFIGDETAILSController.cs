@@ -12,7 +12,6 @@ namespace Config.API
     [Route("Api/[controller]")]
     public class MANAGE_ESCALATION_CONFIGDETAILSController : ControllerBase
     {
-
         public IConfiguration Configuration;
         private readonly IMANAGE_ESCALATION_CONFIGDETAILSRepository _MANAGE_ESCALATION_CONFIGDETAILSRepository;
         private IWebHostEnvironment _hostingEnvironment;
@@ -77,6 +76,24 @@ namespace Config.API
             {
                 // Log the exception if needed
                 return StatusCode(500, new { Error = "An error occurred while processing your request.", Details = ex.Message });
+            }
+        }
+
+        [HttpGet("check")]
+        public async Task<IActionResult> CheckEscalationExists(int categoryId, int subcategoryId)
+        {
+            try
+            {
+                int result = await _MANAGE_ESCALATION_CONFIGDETAILSRepository.CheckEscalationExist(categoryId, subcategoryId);
+                if (result == 0)
+                {
+                    return NotFound(new { Message = "No record found." });
+                }
+                return Ok(new { Message = result });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { Message = "An error occurred while processing the request.", Details = ex.Message });
             }
         }
 
