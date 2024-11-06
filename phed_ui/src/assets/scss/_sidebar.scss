@@ -20,12 +20,12 @@
     padding: 0 0.6rem;
 
     @include media-breakpoint-up(sm) {
-      padding:0 0.6rem 0 0.5rem;
+      padding:0 0.8rem 0 0.8rem;
       height: calc(100vh - ($navbar-hight + 7.5rem));
     }
 
     @include media-breakpoint-up(lg) {
-      padding: 0 0.6rem 0 0.5rem;
+      padding: 0 0.8rem 0 0.8rem;
       height: calc(100vh - ($navbar-hight + 9rem));
     }
     &::-webkit-scrollbar {
@@ -92,7 +92,8 @@
 
 .sidebar-item {
   &.active {
-    background-color: #27508959;
+    // background-color: rgba($black, .1);
+    border-radius: 5px;
    ul{
     padding-bottom: 0.1rem;
    }
@@ -101,8 +102,11 @@
     //     border-radius: 0rem;
     // }
     > .sidebar-link {
+      font-weight: 600;
       color: $sidebar-link-active-color;
-      background: $sidebar-link-hover-bg;
+      background-color: #356aca;
+    border-radius: 6px;
+      // background: $sidebar-link-hover-bg;
     }
     // > .sidebar-link,
     // .sidebar-link:hover {
@@ -222,6 +226,9 @@ a.sidebar-link {
   color: rgba($sidebar-link-color, 0.85);
   &.active{
     color: $sidebar-link-hover-color;
+    &:hover {
+      background: transparent;
+    }
   }
   &:hover {
     color: $sidebar-link-hover-color;
@@ -239,22 +246,23 @@ a.sidebar-link {
 
 .sidebar-dropdown {
   .sidebar-link {
-    padding: 0.4rem 0.5rem 0.4rem 2rem;
+    padding: 0.4rem 0.5rem 0.4rem 1.4rem;
     font-weight: 400;
     border-left: 0;
     color: rgba($white, 0.6);
     font-size: 0.9rem;
 
-    &::before {
-      content: "\F138";
-      font-family: "bootstrap-icons";
-      display: inline-block;
-      position: relative;
-      left: -0.6rem;
-      top: 0.1rem;
-      transition: all 0.1s ease;
-      transform: translateX(0);
-    }
+    // &::before {
+    //   content: "\F138";
+    //   font-family: "bootstrap-icons";
+    //   display: inline-block;
+    //   position: relative;
+    //   left: -0.6rem;
+    //   top: 0.15rem;
+    //   transition: all 0.1s ease;
+    //   transform: translateX(0);
+    //   font-size: 0.8rem;
+    // }
 
     &:hover {
       color: rgba($white, 0.8);
@@ -263,7 +271,7 @@ a.sidebar-link {
 
     &.active {
       color: $sidebar-link-active-color;
-      font-weight: 500;
+      // font-weight: 500;
     }
 
     // &.active {
