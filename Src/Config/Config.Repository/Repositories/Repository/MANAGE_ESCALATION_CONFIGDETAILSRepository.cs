@@ -22,6 +22,7 @@ namespace Config.Repository.Repositories.Interfaces.MANAGE_ESCALATION_CONFIGDETA
         {
             try
             {
+
                 var parameters = new DynamicParameters();
                 parameters.Add("categoryid", request.INT_CATEGORY_ID, DbType.Int32);
                 parameters.Add("subcategoryid", request.INT_SUB_CATEGORY_ID, DbType.Int32);
