@@ -41,7 +41,7 @@
                                 <select name="ddlRecievemode" [(ngModel)]="formData.ddlComplainttype"
                                     id="ddlRecievemode" class="form-select chosen-select-width"
                                     style="width: 100%;">
-                                    <option value="0" selected>-Select-</option>
+                                    <option value="0" selected>Select</option>
                                     <option *ngFor="let complaintp of complainttype"
                                         [value]="complaintp.inT_COMPLIANT_LOG_TYPE_ID">{{
                                         complaintp.vcH_COMPLIANT_LOG_TYPE }}
@@ -59,7 +59,7 @@
                                 <select name="ddlComplaintCategory" id="ddlComplaintCategory"
                                     [(ngModel)]="formData.ddlComplaintCategory"
                                     (change)="onCategoryChange($event)" class="form-select">
-                                    <option selected value="0">-Select-</option>
+                                    <option selected value="0">Select</option>
                                     <option *ngFor="let category of categories"
                                         [value]="category.inT_CATEGORY_ID">{{ category.vcH_CATEGORY }}
                                     </option>
@@ -72,7 +72,7 @@
                                 <label for="ddlSubCategory" class="form-label">Complaint Sub-Category</label>
                                 <select name="ddlSubCategory" id="ddlSubCategory"
                                     [(ngModel)]="formData.ddlSubCategory" class="form-select">
-                                    <option value="0">-Select-</option>
+                                    <option value="0">Select</option>
                                     <option *ngFor="let subcategory of subcategories"
                                         [value]="subcategory.inT_SUB_CATEGORY_ID">{{
                                         subcategory.vcH_SUB_CATEGORY }}
@@ -146,7 +146,7 @@
                                 <label for="ddlBlock" class="form-label">Block</label>
                                 <select name="ddlBlock" id="ddlBlock" [(ngModel)]="formData.ddlBlock"
                                     (change)="onBlockChange($event)" class="form-select">
-                                    <option value="0">-Select-</option>
+                                    <option value="0">Select</option>
                                     <option *ngFor="let block of blocks" [value]="block.inT_BLOCK_ID">{{
                                         block.vcH_BLOCK_NAME }}
                                     </option>
@@ -159,7 +159,7 @@
                                 <label for="ddlGp" class="form-label">Gram Panchayat</label>
                                 <select name="ddlGp" id="ddlGp" [(ngModel)]="formData.ddlPanchayat"
                                     (change)="onGpChange($event)" class="form-select">
-                                    <option value="0">-Select-</option>
+                                    <option value="0">Select</option>
                                     <option *ngFor="let gp of gps" [value]="gp.inT_GP_ID">{{ gp.vcH_GP_NAME }}</option>
                                 </select>
                             </div>
@@ -170,7 +170,7 @@
                                 <label for="ddlVillage" class="form-label">Village</label>
                                 <select name="ddlVillage" id="ddlVillage" [(ngModel)]="formData.ddlVillage"
                                     class="form-select">
-                                    <option value="0">-Select-</option>
+                                    <option value="0">Select</option>
                                     <option *ngFor="let village of villages" [value]="village.inT_VILLAGE_ID">{{
                                         village.vcH_VILLAGE_NAME }}</option>
                                 </select>

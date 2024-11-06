@@ -7,7 +7,7 @@
                         <a routerLink="/application/mngmenu" class="nav-link active">Add</a>
                     </li>
                     <li class="nav-item">
-                        <a routerLink="/application/mngmenu-view" class="nav-link">View</a>
+                        <a routerLink="/application/mngmenu/view" class="nav-link">View</a>
                     </li>
                 </ul>
             </div>
@@ -32,7 +32,7 @@
                         <div class="mb-3">
                             <label class="form-label" for="manutype">Menu Type</label>
                             <select class="form-select" id="manutype">
-                                <option selected>-Select-</option>
+                                <option selected>Select</option>
                                 <option value="1">Main Menu</option>
                                 <option value="2">Footer Menu</option>
                                 <option value="3">Footer Bottom Menu</option>
@@ -44,7 +44,7 @@
                         <div class="mb-3">
                             <label class="form-label" for="linktype">Link Type</label>
                             <select class="form-select" id="linktype" [(ngModel)]="selectedLinkType" (change)="onLinkTypeChange()">
-                                <option selected value="">-Select-</option>
+                                <option selected value="">Select</option>
                                 <option value="1">Global Link</option>
                                 <option value="2">Primary Link</option>
                                 <option value="2">Secondary Link</option>
@@ -56,7 +56,7 @@
                         <div class="mb-3">
                             <label class="form-label" for="parentmanu">Parent Menu</label>
                             <select class="form-select" id="parentmanu">
-                                <option selected>-Select-</option>
+                                <option selected>Select</option>
                                 <option value="1">FAQ</option>
                                 <option value="2">Feedback</option>
                                 <option value="3">Contact</option>

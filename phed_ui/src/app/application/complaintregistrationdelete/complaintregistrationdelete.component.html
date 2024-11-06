@@ -19,7 +19,7 @@
                     <label for="ddlDistrict" class="form-label">District</label>
                     <select name="ddlDistrict" id="ddlDistrict" [(ngModel)]="formData.ddlDistrict"
                         (change)="onDistrictChange($event)" class="form-select">
-                        <option selected value="0">-Select-</option>
+                        <option selected value="0">Select</option>
                         <option *ngFor="let district of districts" [value]="district.inT_DIST_ID">
                             {{ district.vcH_DIST_NAME }}
                         </option>
@@ -31,7 +31,7 @@
                     <label for="ddlBlock" class="form-label">Block</label>
                     <select name="ddlBlock" id="ddlBlock" [(ngModel)]="formData.ddlBlock"
                         (change)="onBlockChange($event)" class="form-select">
-                        <option value="0">-Select-</option>
+                        <option value="0">Select</option>
                         <option *ngFor="let block of blocks" [value]="block.inT_BLOCK_ID">{{ block.vcH_BLOCK_NAME }}
                         </option>
                     </select>
@@ -41,7 +41,7 @@
                 <div class="mb-3">
                     <label for="ddlGp" class="form-label">Gram Panchayat</label>
                     <select name="ddlGp" id="ddlGp" [(ngModel)]="formData.ddlPanchayat" class="form-select">
-                        <option value="0">-Select-</option>
+                        <option value="0">Select</option>
                         <option *ngFor="let gp of gps" [value]="gp.inT_GP_ID">{{ gp.vcH_GP_NAME }}</option>
                     </select>
                 </div>
@@ -58,7 +58,7 @@
                     <select name="ddlComplaintCategory" id="ddlComplaintCategory"
                         [(ngModel)]="formData.ddlComplaintCategory" (change)="onCategoryChange($event)"
                         class="form-select">
-                        <option selected value="0">-Select-</option>
+                        <option selected value="0">Select</option>
                         <option *ngFor="let category of categories" [value]="category.inT_CATEGORY_ID">{{
                             category.vcH_CATEGORY }}
                         </option>
@@ -70,7 +70,7 @@
                     <label for="ddlSubCategory" class="form-label">Complaint Sub-Category</label>
                     <select name="ddlSubCategory" id="ddlSubCategory" [(ngModel)]="formData.ddlSubCategory"
                         class="form-select">
-                        <option value="0">-Select-</option>
+                        <option value="0">Select</option>
                         <option *ngFor="let subcategory of subcategories" [value]="subcategory.inT_SUB_CATEGORY_ID">{{
                             subcategory.vcH_SUB_CATEGORY }}
                         </option>
@@ -88,7 +88,7 @@
                     <label for="txtComplaintName" class="form-label">Complaint Status</label>
                     <select name="ddlStatusSearch" [(ngModel)]="formData.ddlComplaintsts" id="ddlStatusSearch"
                         class="form-select">
-                        <option value="0">-Select-</option>
+                        <option value="0">Select</option>
                         <option *ngFor="let complaint of complaintstatus" [value]="complaint.inT_COMPLIANT_STATUS_ID">{{
                             complaint.vcH_COMPLIANT_STATUS }}</option>
                     </select>
@@ -99,7 +99,7 @@
                     <label for="txtComplaintName" class="form-label">Source of Complaint</label>
                     <select name="ddlRecievemode" [(ngModel)]="formData.ddlComplainttype" id="ddlRecievemode"
                         class="form-select">
-                        <option value="0">-Select-</option>
+                        <option value="0">Select</option>
                         <option *ngFor="let complaintp of complainttype" [value]="complaintp.inT_COMPLIANT_LOG_TYPE_ID">
                             {{ complaintp.vcH_COMPLIANT_LOG_TYPE }}</option>
                     </select>
@@ -144,7 +144,7 @@
             <table class="table table-striped mb-0">
                 <thead>
                     <tr>
-                        <th width="50px">Sl#</th>
+                        <th width="40px">Sl#</th>
                         <th>Token No</th>
                         <th>Complainant Name</th>
                         <th>Complaint Details</th>
@@ -571,7 +571,7 @@
                                 <div class="mb-3">
                                     <label for="ddlDistrict" class="form-label">Status</label>
                                     <select class="form-select">
-                                        <option selected>-Select-</option>
+                                        <option selected>Select</option>
                                         <option value="1">One</option>
                                         <option value="2">Two</option>
                                         <option value="3">Three</option>

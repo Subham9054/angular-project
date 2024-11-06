@@ -11,6 +11,35 @@
                     </li>
                 </ul>
             </div>
+            <div class="col-lg-6 col-md-6">
+                <div class="utilite float-end mb-1">
+                    <ul class="mb-0">
+                        <li class="bg-transparent border-0">
+                            <span class="text-danger small"><b>(*)</b> Indicate mandatory </span>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" ngbTooltip="Click to Print"><i class="bi bi-printer"></i></a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" ngbTooltip="Delete Record"><i class="bi bi-trash"></i></a>
+                        </li>
+                       
+                        <li><a href="javascript:void(0)" ngbTooltip="Go to Previous"><i
+                                    class="bi bi-arrow-left"></i></a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" title="Click to Publish">
+                                <i class="bi bi-volume-up"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" title="Click to Unpublish">
+                                <i class="bi bi-volume-off"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
     <div id="collapseExample" class="collapse show">
@@ -20,7 +49,7 @@
                     <div class="mb-3">
                         <label class="form-label" for="manutype">Menu Type</label>
                         <select class="form-select" id="manutype">
-                            <option selected>-Select-</option>
+                            <option selected>Select</option>
                             <option value="1">Main Menu</option>
                             <option value="2">Footer Menu</option>
                             <option value="3">Footer Bottom Menu</option>
@@ -31,7 +60,7 @@
                     <div class="mb-3">
                         <label class="form-label" for="parentmanu">Parent Menu</label>
                         <select class="form-select" id="parentmanu">
-                            <option selected>-Select-</option>
+                            <option selected>Select</option>
                             <option value="1">FAQ</option>
                             <option value="2">Feedback</option>
                             <option value="3">Contact</option>
@@ -66,30 +95,6 @@
             <li><span class="bg-success"></span> Publish </li>
             <li><span class="bg-danger"></span> Unpublish </li>
         </ul>
-        <div class="legand-utilite">
-            <ul class="mb-0">
-                <li>
-                    <a href="javascript:void(0)" title="Click to Print" class="btn btn-outline-primary btn-sm">
-                        <i class="bi bi-printer"></i>
-                    </a>
-                </li>
-                <li>
-                    <a href="javascript:void(0)" title="Click to Download" class="btn btn-outline-info btn-sm">
-                        <i class="bi bi-download"></i>
-                    </a>
-                </li>
-                <li>
-                    <a href="javascript:void(0)" title="Click to Publish" class="btn btn-outline-success btn-sm">
-                        <i class="bi bi-volume-up"></i>
-                    </a>
-                </li>
-                <li>
-                    <a href="javascript:void(0)" title="Click to Unpublish" class="btn btn-outline-danger btn-sm">
-                        <i class="bi bi-volume-off"></i>
-                    </a>
-                </li>
-            </ul>
-        </div>
     </div>
 
     <div class="content-box content-area p-0">
