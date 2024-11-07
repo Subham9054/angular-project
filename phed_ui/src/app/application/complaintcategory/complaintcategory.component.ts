@@ -88,7 +88,7 @@ export class ComplaintcategoryComponent implements OnInit {
       this.authService.updateComplaint(this.complaintId, complaintData).subscribe(
         (response) => {
           alert('Complaint category updated successfully!');
-          this.router.navigate(['/application/complaintcategory-view']);
+          this.router.navigate(['/application/complaintcategory/view']);
         },
         (error) => {
           console.error('Error updating complaint', error);
