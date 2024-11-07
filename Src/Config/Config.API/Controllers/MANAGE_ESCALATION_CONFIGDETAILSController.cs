@@ -96,7 +96,46 @@ namespace Config.API
                 return StatusCode(500, new { Message = "An error occurred while processing the request.", Details = ex.Message });
             }
         }
+        [HttpGet("viewescalation")]
+        public async Task<IActionResult> ViewEscalation(int categoryId, int subcategoryId)
+        {
+            try
+            {
+                var result = await _MANAGE_ESCALATION_CONFIGDETAILSRepository.GetEscalations(categoryId, subcategoryId);
 
+                if (result == null || !result.Any())
+                {
+                    return NotFound("No escalation records found for the specified category and subcategory.");
+                }
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                // Log the exception as needed
+                return StatusCode(500, "An error occurred while retrieving escalations.");
+            }
+        }
+        [HttpGet("viewescalationeye")]
+        public async Task<IActionResult> ViewEscalationeye(int categoryId, int subcategoryId)
+        {
+            try
+            {
+                var result = await _MANAGE_ESCALATION_CONFIGDETAILSRepository.GetEscalationseye(categoryId, subcategoryId);
+
+                if (result == null || !result.Any())
+                {
+                    return NotFound("No escalation records found for the specified category and subcategory.");
+                }
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                // Log the exception as needed
+                return StatusCode(500, "An error occurred while retrieving escalations.");
+            }
+        }
 
         [HttpGet("GetMANAGE_ESCALATION_CONFIGDETAILS")]
         public async Task<IActionResult> Get_MANAGE_ESCALATION_CONFIGDETAILS()
