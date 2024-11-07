@@ -3,9 +3,9 @@
         <div class="row justify-content-between align-items-center">
             <div class="col-xxl-3 col-lg-3 col-md-6">
                 <ul class="nav nav-tabs" routerLinkActive="active">
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a routerLink="/application/complaintregistration" class="nav-link active">Add</a>
-                    </li>
+                    </li> -->
                     <li class="nav-item">
                         <a routerLink="/application/demo/view" class="nav-link">View</a>
                     </li>
@@ -17,6 +17,11 @@
                         <li class="bg-transparent border-0">
                             <span class="text-danger small"><b>(*)</b> Indicate mandatory</span>
                         </li>
+                        <li>
+                            <a href="javascript:void(0)" title="Click to Add" routerLink="/application/complaintregistration">
+                                <i class="bi bi-plus-lg"></i>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -25,7 +30,7 @@
     <div class="content-box content-area">
         <div class="form-section">
             <div class="row">
-                <div class="col-xxl-10 col-lg-12">
+                <div class="col-xxl-12 col-lg-12">
                     <div class="row">
                         <div class="col-lg-3 col-md-6">
                             <div class="mb-3">
@@ -89,7 +94,7 @@
                                 <label for="txtName" class="form-label">Name <span class="text-danger">*</span></label>
                                 <input name="txtName" type="text" id="txtName" [(ngModel)]="formData.txtName" required
                                     class="form-control" maxlength="100" />
-                                <p class="text-danger text-end fw-lighter small mb-0">(Maximum <span class="fw-bold">100</span>
+                                <p class="text-danger text-end small mb-0">(Maximum <span class="fw-bold">100</span>
                                     Characters)</p>
                             </div>
                         </div>
@@ -97,8 +102,12 @@
                         <div class="col-lg-3 col-md-6">
                             <div class="mb-3">
                                 <label for="txtPhone" class="form-label">Phone</label>
+                                <div class="input-group">
+                                    <label class="input-group-text" for="doc">+91</label>
                                 <input name="txtPhone" type="text" maxlength="10" id="txtPhone"
                                     [(ngModel)]="formData.txtPhone" class="form-control" />
+                                  
+                                </div>
                             </div>
                         </div>
                        </div>
@@ -111,20 +120,33 @@
                                     class="form-control" />
                             </div>
                         </div>
-                    
-                    
                         <div class="col-lg-3 col-md-6">
                             <div class="mb-3 upload-doc">
                                 <label for="FileUpload1" class="form-label">Upload Document</label>
+                                <div class="input-group">
+                                  <input type="file" name="FileUpload1" id="FileUpload1" (change)="handleFileInput($event)"
+                                    class="form-control custom-fileupload" />
+                                    <label class="custom-input" for="doc">Upload</label>
+                                    <label class="input-group-text custom-browse" for="doc">Browse</label>
+                                </div>
+                                <p class="mb-0 small text-danger text-end">Supported File Format(<span
+                                        class="fw-bold">pdf,doc,docx,xls,xlsx</span>)</p>
+                            </div>
+                        </div>
+                    
+                        <!-- <div class="col-lg-3 col-md-6">
+                            <div class="mb-3 upload-doc">
+                                <label for="FileUpload1" class="form-label">Upload Document</label>
+
                                 <input type="file" name="FileUpload1" id="FileUpload1" (change)="handleFileInput($event)"
                                     class="form-control" />
                                 <div class="dom-upload">
                                     <a href="javascript:void(0);" class="btn btn-outline-danger disabled"><span class="bi bi-download"></span></a>
                                 </div>
-                                <p class="mb-0 small text-danger text-end fw-lighter">Supported File Format(<span
+                                <p class="mb-0 small text-danger text-end">Supported File Format(<span
                                         class="fw-bold">pdf,doc,docx,xls,xlsx</span>)</p>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                      
                     <div class="row">
@@ -133,7 +155,7 @@
                                 <label for="ddlDistrict" class="form-label">District</label>
                                 <select name="ddlDistrict" id="ddlDistrict" [(ngModel)]="formData.ddlDistrict"
                                     (change)="onDistrictChange($event)" class="form-select">
-                                    <option selected value="0">-Select District-</option>
+                                    <option selected value="0">Select</option>
                                     <option *ngFor="let district of districts" [value]="district.inT_DIST_ID">
                                         {{ district.vcH_DIST_NAME }}
                                     </option>
@@ -186,7 +208,7 @@
                                 <textarea name="txtAddress" rows="3" id="txtAddress"
                                     [(ngModel)]="formData.txtAddress" class="form-control"></textarea>
                              
-                                    <p class="text-danger text-end fw-lighter small mb-0">(Maximum <span class="fw-bold">200</span>
+                                    <p class="text-danger text-end small mb-0">(Maximum <span class="fw-bold">200</span>
                                         Characters)</p>
                             </div>
                         </div>
@@ -197,7 +219,7 @@
                                     Brief</label>
                                 <textarea name="txtDetailsE" rows="3" id="txtDetailsE"
                                     [(ngModel)]="formData.txtDetailsE" class="form-control"></textarea>
-                                <p class="text-danger text-end small mb-0 fw-lighter">(Maximum <span class="fw-bold">500</span>
+                                <p class="text-danger text-end small mb-0">(Maximum <span class="fw-bold">500</span>
                                     Characters)</p>
                                     
                             </div>
@@ -205,7 +227,7 @@
                     </div>
                     <div class="row">
                         <div class="col-xl-5">
-                            <div class="form-actions">
+                            <div class="form-actions mt-lg-3">
                                 <button type="button" name="btnSubmit" class="btn btn-primary me-1"
                                     (click)="onSubmit()">Submit</button>
                                 <button type="button" name="btnReset" class="btn btn-danger"
