@@ -1,0 +1,47 @@
+@import "../../../node_modules/bootstrap/scss/mixins";
+@import "../../../node_modules/bootstrap/scss/functions";
+@import "../../../node_modules/bootstrap/scss/variables";
+.contactus{
+    .card{
+        border-radius: .5rem !important;
+        box-shadow: 2px 2px 24px #0000001a;
+    border: none; 
+    text-align: center;
+    height: auto;
+    margin-bottom: 1.1rem;
+    .card-body{
+        padding: 1.9rem;
+        span{
+            font-size: 2.6rem;
+            color: #fff;
+        }
+        p{
+            margin-bottom: 0;
+            font-size: 1.07rem;
+        }
+        a{
+            opacity: 0.8;
+            font-size: 1.07rem;
+            color: var(--statics-data);
+        }
+    }
+    }
+}
+.contact-icon{
+    background-color: #1290E1;
+    width: 5rem;
+    height: 5rem;
+    border-radius: 100%;
+    padding: 0.8rem 1rem 1rem 1rem;
+    margin: 0 auto 1rem;
+}
+
+@include media-breakpoint-up(lg) {
+    .contactus{
+        .card{
+            margin-bottom: 0rem;
+        height: 100%;
+     
+        }
+    }
+}

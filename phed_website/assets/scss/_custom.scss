@@ -1,0 +1,140 @@
+.know-more {
+  padding: 0.6rem 1.3rem;
+  border-radius: 5px;
+  border: 1px solid var(--know-btn);
+  color: var(--know-btn);
+  font-size: 1.1rem;
+  // background-color: var(--know-btn-bg);
+
+  position: relative;
+  background-color: transparent;
+  overflow: hidden;
+  transition: color 0.35s, border-color 0.35s;
+  &:hover {
+    left: 0;
+    transition: 0.2s ease;
+  }
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(90deg, #ff5733, #ffbd33);
+    transition: left 0.35s ease-in-out;
+    z-index: 1;
+  }
+  span {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+.heading-styletwo {
+  font-size: 1.7rem;
+  margin-bottom: 2.5rem;
+  font-weight: bold;
+  color: var(--heading-styletwo);
+}
+.view-link {
+  color: var(--view-link);
+  transition: color 0.3s ease;
+  display: inline-flex;
+
+  span{
+    transform: translateX(6px); 
+  }
+  &:hover{
+    font-weight: bold;
+    span{
+      transform: translateX(13px); 
+      transition: transform 0.3s ease; 
+    }
+  }
+}
+.view-link {
+  color: var(--view-link);
+  transition: color 0.3s ease;
+  display: inline-flex;
+  align-items: center; // Ensures proper alignment of text and icon
+
+  &.stretched-link {
+    position: relative; // Ensure it has a position for the transform to work
+    overflow: hidden; // Prevents overflow when moving
+
+    span {
+      display: inline-block; // Allows for proper transformation
+      transition: transform 0.3s ease;
+      transform: translateX(6px); // Initial position
+    }
+
+    &:hover {
+      font-weight: bold; // Bold text on hover
+
+      span {
+        transform: translateX(13px); // Move icon on hover
+      }
+    }
+  }
+}
+
+.btnstyle-one {
+  background-color: var(--btnstyle-one);
+  padding: 0.6rem 1.3rem;
+  border-radius: 5px;
+  color: var(--text-white);
+  width: 100%;
+  &:hover {
+    background-color: var( --btn-styleone);
+    color: var(--text-white);
+  }
+}
+.btnstyle-two {
+  background-color: var(--btnstyle-two);
+  padding: 0.6rem 1.6rem;
+  border-radius: 5px;
+  color: var(--btnstyle-two-text);
+  font-size: 1.1rem;
+  width: 100%;
+  &:hover {
+    background-color: #e3e3e3;
+    color: var(--btnstyle-two-text);
+  }
+}
+.btn-login {
+  background: var(--login-btn);
+  border-radius: 5px;
+//   border: 1px solid var( --login-btn-hover);
+  color: var(--text-white);
+  font-size: 1.2rem;
+  &:hover{
+    background: #35a7f1;
+    // border: 1px solid var( --login-btn-hover)!important;
+    // color:var( --login-btn-hover) ;
+    color: var(--text-white);
+  }
+}
+.danger-btn{
+  background-color:  #e11919;
+  padding: 0.6rem 1.3rem;
+    border-radius: 5px;
+    color: var(--text-white);
+    &:hover{
+      background-color: #d11212;
+      color: var(--text-white);
+    }
+}
+
+@include media-breakpoint-up(md) {
+    .heading-styletwo {
+        font-size: 2rem;
+        margin-bottom: 1.8rem;
+    }
+    .btnstyle-one {
+     width: auto;
+    }
+    .btnstyle-two {
+      width: auto;
+    }
+}

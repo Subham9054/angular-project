@@ -14,6 +14,7 @@ import { GalleryComponent } from './gallery/gallery.component';
 import { DetaileventComponent } from './detailevent/detailevent.component';
 import { GallerydetailsComponent } from './gallerydetails/gallerydetails.component';
 import { SitemapComponent } from './sitemap/sitemap.component';
+
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home'},
   { path: 'home', component: HomeComponent },
@@ -33,7 +34,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes, { scrollPositionRestoration: 'top' }) 
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

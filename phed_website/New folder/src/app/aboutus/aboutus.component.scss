@@ -1,0 +1,47 @@
+
+
+.left-img{
+    width: 436px;
+    position: relative;
+    img{
+        width: 100%;
+        object-fit: cover;
+       
+      
+    }
+    &::before{
+        position: absolute;
+        content: "";
+        left: -2.2rem;
+        border: 1px solid rgba(112, 112, 112, 0.4784313725);
+        border-radius: 18px;
+        width: 315px;
+        height: 271px;
+        z-index: -1;
+        top: -2rem;
+   }
+}
+
+
+.objective{
+    margin-top: 2.5rem;
+}
+.objective-patch{
+    display: flex;
+    /* align-items: center; */
+    gap: 1.2rem;
+    margin-bottom: 2rem;
+    .objective-icon{
+        span {
+            font-size: 3.5rem;
+        }
+    }
+ .about_text{
+    h4{
+        font-weight: bold;
+        margin-bottom: 1rem;
+    }
+    
+ }  
+}
+
