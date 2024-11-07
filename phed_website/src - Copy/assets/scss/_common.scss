@@ -1,0 +1,69 @@
+@font-face {
+  font-family: "ClashGrotesk-Regular";
+  src: url("../fonts/ClashGrotesk-Regular.woff2") format("woff2"),
+    url("../fonts/ClashGrotesk-Regular.woff") format("woff"),
+    url("../fonts/ClashGrotesk-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: "ClashGrotesk-Medium";
+  src: url("../fonts/ClashGrotesk-Medium.woff2") format("woff2"),
+    url("../fonts/ClashGrotesk-Medium.woff") format("woff"),
+    url("../fonts/ClashGrotesk-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: "ClashGrotesk-Semibold";
+  src: url("../fonts/ClashGrotesk-Semibold.woff2") format("woff2"),
+    url("../fonts/ClashGrotesk-Semibold.woff") format("woff"),
+    url("../fonts/ClashGrotesk-Semibold.ttf") format("truetype");
+  font-weight: 600;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: "ClashGrotesk-Bold";
+  src: url("../fonts/ClashGrotesk-Bold.woff2") format("woff2"),
+    url("../fonts/ClashGrotesk-Bold.woff") format("woff"),
+    url("../fonts/ClashGrotesk-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+     font-family: 'ClashGrotesk-Variable';
+     src: url('../fonts/ClashGrotesk-Extralight.eot') format('woff2');
+     font-weight: 200 700;
+     font-display: swap;
+     font-style: normal;
+   }
+body {
+  font-family: "ClashGrotesk-Regular";
+  font-size: 1.125rem;
+  background-color: var(--bs-body-bg);
+  // padding-top: 8.5rem;
+ 
+}
+.theme-light .dark-img {
+    
+     display: none;
+
+}
+.theme-dark .light-img {
+    
+     display: none;
+
+}
+a {
+  text-decoration: none;
+}
+
+.websection__content{
+  min-height: 100vh; /* Ensures there's enough height */
+  transition: padding-top 0.3s ease; /* Smooth transition */
+  padding-top: 7.5rem; /* Default padding */
+}

@@ -3,70 +3,60 @@
         <div class="row justify-content-between">
             <div class="col-lg-4">
                 <ul class="nav nav-tabs" routerLinkActive="active">
-                    <!-- <li class="nav-item">
-                        <a routerLink="/application/whatsnew" class="nav-link">Add</a>
-                    </li> -->
                     <li class="nav-item">
-                        <a routerLink="/application/whatsnew/view" class="nav-link active">View</a>
+                        <a routerLink="/application/whatsnew" class="nav-link">Add</a>
+                    </li>
+                    <li class="nav-item">
+                        <a routerLink="/application/whatnew-view" class="nav-link active">View</a>
                     </li>
                 </ul>
             </div>
-            <div class="col-lg-6 col-md-6">
+            <div class="col-lg-6 ">
                 <div class="utilite float-end mb-1">
                     <ul class="mb-0">
-                        <!-- <li class="bg-transparent border-0">
+                        <li class="bg-transparent border-0">
                             <span class="text-danger small"><b>(*)</b> Indicate mandatory </span>
-                        </li> -->
-                        <li>
-                            <a href="javascript:void(0)" title="Click to Print"><i class="bi bi-printer"></i></a>
                         </li>
-                        <!-- <li>
+                        <li>
+                            <a href="javascript:void(0)" ngbTooltip="Click to Print"><i class="bi bi-printer"></i></a>
+                        </li>
+                        <li>
                             <a href="javascript:void(0)" ngbTooltip="Delete Record"><i class="bi bi-trash"></i></a>
                         </li>
-                       
+                        <li>
+                            <a href="javascript:void(0)" ngbTooltip="Download"><i class="bi bi-download"></i></a>
+                        </li>
                         <li><a href="javascript:void(0)" ngbTooltip="Go to Previous"><i
                                     class="bi bi-arrow-left"></i></a>
-                        </li> -->
-                        <li>
-                            <a href="javascript:void(0)" title="Click to Publish">
-                                <i class="bi bi-volume-up"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)" title="Click to Unpublish">
-                                <i class="bi bi-volume-mute"></i>
-                            </a>
-                        </li>
-
-                       
-
-                        <li>
-                            <a href="javascript:void(0)" title="{{ isPanelOpen ? 'Click to Close Filter' : 'Click to Open Filter' }}" 
-                               (click)="togglePanel()">
-                                <i class="bi bi-funnel"></i>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="javascript:void(0)" title="Click to Add" routerLink="/application/whatsnew">
-                                <i class="bi bi-plus-lg"></i>
-                            </a>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
-    <div id="collapseExample" class="collapse show" [ngClass]="{'show': isPanelOpen}">
+    <div id="collapseExample" class="collapse">
         <div class="content-box search-box">
             <div class="row">
-                <div class="col-xl-6 col-lg-4">
+                <div class="col-xxl-3 col-lg-4">
                     <div class="mb-3">
-                        <label class="form-label" for="title">Title</label>
-                        <textarea  id="title" rows="3" class="form-control"></textarea>
+                        <label class="form-label">Date From</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control datepicker" id="datepicker">
+                            <label class="input-group-text bg-transparent border-start-0" for="datepicker">
+                                <i class="bi bi-calendar-week"></i> </label>
+                        </div>
                     </div>
                 </div>
-
+                <div class="col-xxl-3 col-lg-4">
+                    <div class="mb-3">
+                        <label class="form-label">Date To</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control datepicker" id="datepicker1">
+                            <label class="input-group-text bg-transparent border-start-0" for="datepicker1">
+                                <i class="bi bi-calendar-week"></i> </label>
+                        </div>
+                    </div>
+                </div>
                 <div class="col-xxl-3 col-lg-4">
                     <div class="mb-3">
                         <label class="form-label d-md-block d-none">&nbsp;</label>
@@ -78,196 +68,119 @@
             </div>
         </div>
     </div>
-    <!-- <div class="search-btn">
+    <div class="search-btn">
         <a data-bs-toggle="collapse" href="#collapseExample">
-            <span class="collapse-on">Search  <i class="bi bi-arrow-down"></i></span> <span
+            <span class="collapse-on">Search Open <i class="bi bi-arrow-down"></i></span> <span
                 class="collapse-off">Search Close <i class="bi bi-arrow-up"></i></span>
         </a>
-    </div> -->
-    <div class="view-legand">
-        <ul class="legends">
-            <li><span class="bg-success"></span> Publish </li>
-            <li><span class="bg-danger"></span> Unpublish </li>
-        </ul>
     </div>
     <div class="content-box content-area p-0">
         <div class="table-responsive">
-            <table class="table mb-0">
+            <table class="table table-striped mb-0">
                 <thead>
                     <tr>
-                        <th width="30px">
+                        <th width="50">
                             <input class="form-check-input" type="checkbox">
                         </th>
                         <th width="50">Sl#</th>
-                        <th>Title</th>
-                        <th>Published on</th>
-                        <th width="90px">Action</th>
+                        <th>Compliant Category</th>
+                        <th>Compliant Category(H)</th>
+                        <th width="100">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="publish">
-                        <td><input type="checkbox"></td>
+                    <tr>
+                        <td>
+                            <input class="form-check-input" type="checkbox">
+                        </td>
                         <td> 1 </td>
                         <td>
-                            Announcement of new water supply projects for underserved areas in Bihar
+                            25400126774535687
                         </td>
                         <td> 01-Sep-2022 </td>
-                       
                         <td>
                             <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"
-                                data-bs-toggle="modal" data-bs-target="#viewmodal">
-                                    <i class="bi bi-eye"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
-                                    <i class="bi bi-pencil"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" title="Delete">
-                                    <i class="bi bi-trash3"></i></a>
+                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm me-1"
+                                    title="Edit"><i class="bi bi-pencil"></i></a>
+                                <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" title="Delete"><i
+                                        class="bi bi-trash3"></i></a>
                             </div>
                         </td>
                     </tr>
-
-                    <tr class="unpublish">
-                        <td><input type="checkbox"></td>
+                    <tr>
+                        <td>
+                            <input class="form-check-input" type="checkbox">
+                        </td>
                         <td>2</td>
                         <td>
-                            Announcement of new water supply projects for underserved areas in Bihar
+                            12400126774535683
                         </td>
                         <td> 20-Aug-2022 </td>
-                        
                         <td>
                             <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"
-                                data-bs-toggle="modal" data-bs-target="#viewmodal">
-                                    <i class="bi bi-eye"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
-                                    <i class="bi bi-pencil"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" title="Delete">
-                                    <i class="bi bi-trash3"></i></a>
+                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm me-1"
+                                    title="Edit"><i class="bi bi-pencil"></i></a>
+                                <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" title="Delete"><i
+                                        class="bi bi-trash3"></i></a>
                             </div>
                         </td>
                     </tr>
-
-                    <tr class="unpublish">
-                        <td><input type="checkbox"></td>
+                    <tr>
+                        <td>
+                            <input class="form-check-input" type="checkbox">
+                        </td>
                         <td>3</td>
                         <td>
-                            Announcement of new water supply projects for underserved areas in Bihar
+                            34254001267745356
                         </td>
                         <td> 20-Aug-2022 </td>
-                        
                         <td>
                             <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"
-                                data-bs-toggle="modal" data-bs-target="#viewmodal">
-                                    <i class="bi bi-eye"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
-                                    <i class="bi bi-pencil"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" title="Delete">
-                                    <i class="bi bi-trash3"></i></a>
+                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm me-1"
+                                    title="Edit"><i class="bi bi-pencil"></i></a>
+                                <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" title="Delete"><i
+                                        class="bi bi-trash3"></i></a>
                             </div>
                         </td>
                     </tr>
-
-                    <tr class="publish">
-                        <td><input type="checkbox"></td>
+                    <tr>
+                        <td>
+                            <input class="form-check-input" type="checkbox">
+                        </td>
                         <td>4</td>
                         <td>
-                            Announcement of new water supply projects for underserved areas in Bihar
+                            12600774589756145
                         </td>
                         <td> 20-Aug-2022 </td>
-                       
                         <td>
                             <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"
-                                data-bs-toggle="modal" data-bs-target="#viewmodal">
-                                    <i class="bi bi-eye"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
-                                    <i class="bi bi-pencil"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" title="Delete">
-                                    <i class="bi bi-trash3"></i></a>
+                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm me-1"
+                                    title="Edit"><i class="bi bi-pencil"></i></a>
+                                <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" title="Delete"><i
+                                        class="bi bi-trash3"></i></a>
                             </div>
                         </td>
                     </tr>
-
-                    <tr class="unpublish">
-                        <td><input type="checkbox"></td>
+                    <tr>
+                        <td>
+                            <input class="form-check-input" type="checkbox">
+                        </td>
                         <td>5</td>
                         <td>
-                            Announcement of new water supply projects for underserved areas in Bihar
+                            25400126774535687
                         </td>
                         <td> 20-Aug-2022 </td>
-                        
                         <td>
                             <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"
-                                data-bs-toggle="modal" data-bs-target="#viewmodal">
-                                    <i class="bi bi-eye"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
-                                    <i class="bi bi-pencil"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" title="Delete">
-                                    <i class="bi bi-trash3"></i></a>
+                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm me-1"
+                                    title="Edit"><i class="bi bi-pencil"></i></a>
+                                <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" title="Delete"><i
+                                        class="bi bi-trash3"></i></a>
                             </div>
                         </td>
                     </tr>
                 </tbody>
             </table>
-        </div>
-    </div>
-</div>
-
-
-<!-- Modal View  -->
-<div class="modal fade" id="viewmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Announcement of new water supply projects for underserved areas in Bihar</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body view-form">
-                <div class="row">
-                    <div class="col-xl-12">
-                        <div class="row">
-                            <div class="col-xl-4 col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label d-block">Published on</label>
-                                    <label class="form-value">01-Sep-2022</label>
-                                </div>
-                            </div>
-                
-                            <div class="col-xl-4 col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label">Document</label>
-                                    <label class="form-value">
-                                        <a href="javascript:void(0);" class="text-denger" title="lorem_edit.pdf">lorem_edit.pdf</a>
-                                    </label>
-                                </div>
-                            </div>
-
-                        </div>   
-                
-                        <div class="row">
-                            <div class="col-xl-12 col-md-12">
-                                <div class="mb-3">
-                                    <label class="form-label">Title</label>
-                                    <label class="form-value">Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde ullam magni quaerat, optio blanditiis dolorum omnis quis cumque, et suscipit harum quae, eaque eius accusamus reiciendis incidunt ipsam? Eos, quasi.</label>
-                                </div>
-                            </div>
-                
-                            <!-- <div class="col-xl-12 col-md-12">
-                                <div class="mb-3">
-                                    <label class="form-label">Title in Hindi</label>
-                                    <label class="form-value">लोरेम इप्सम डोलर सिट अमेट, कॉन्सेकट्यूर अडिपिसिसिंग एलिट। अंडे उल्लम मैग्नी क्वाएरेट, ऑप्टियो ब्लैंडीटिस डोलोरम ओम्निस क्विस कुम्क, एट सुस्सिपिट हारुम क्वाए, एक्यूस ईउस अक्यूसामस रीचिएंडिस इंसिडुंट इप्सम? ईओस, क्वासी।</label>
-                                </div>
-                            </div> -->
-                        </div>
-
-
-                       
-
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </div>

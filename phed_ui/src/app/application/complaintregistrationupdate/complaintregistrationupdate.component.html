@@ -8,21 +8,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="col-lg-6 col-md-6">
-                <div class="utilite float-end mb-1">
-                    <ul class="mb-0">
-                        <li>
-                            <a href="javascript:void(0)" title="Click to Print"><i class="bi bi-printer"></i></a>
-                        </li>
 
-                        <li>
-                            <a href="javascript:void(0)" data-bs-toggle="collapse" href="#collapseExample">
-                                <i class="bi bi-funnel"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
         </div>
     </div>
     <div id="collapseExample" class="collapse">
@@ -33,7 +19,7 @@
                         <label for="ddlDistrict" class="form-label">District</label>
                         <select name="ddlDistrict" id="ddlDistrict" [(ngModel)]="formData.ddlDistrict"
                             (change)="onDistrictChange($event)" class="form-select">
-                            <option selected value="0">Select</option>
+                            <option selected value="0">-Select District-</option>
                             <option *ngFor="let district of districts" [value]="district.inT_DIST_ID">
                                 {{ district.vcH_DIST_NAME }}
                             </option>
@@ -45,7 +31,7 @@
                         <label for="ddlBlock" class="form-label">Block</label>
                         <select name="ddlBlock" id="ddlBlock" [(ngModel)]="formData.ddlBlock"
                             (change)="onBlockChange($event)" class="form-select">
-                            <option value="0">Select</option>
+                            <option value="0">-Select Block-</option>
                             <option *ngFor="let block of blocks" [value]="block.inT_BLOCK_ID">{{ block.vcH_BLOCK_NAME }}
                             </option>
                         </select>
@@ -55,7 +41,7 @@
                     <div class="mb-3">
                         <label for="ddlGp" class="form-label">Gram Panchayat</label>
                         <select name="ddlGp" id="ddlGp" [(ngModel)]="formData.ddlPanchayat" class="form-select">
-                            <option value="0">Select</option>
+                            <option value="0">-Select Gram Panchayat-</option>
                             <option *ngFor="let gp of gps" [value]="gp.inT_GP_ID">{{ gp.vcH_GP_NAME }}</option>
                         </select>
                     </div>
@@ -72,7 +58,7 @@
                         <select name="ddlComplaintCategory" id="ddlComplaintCategory"
                             [(ngModel)]="formData.ddlComplaintCategory" (change)="onCategoryChange($event)"
                             class="form-select">
-                            <option selected value="0">Select</option>
+                            <option selected value="0">-Select Category-</option>
                             <option *ngFor="let category of categories" [value]="category.inT_CATEGORY_ID">{{
                                 category.vcH_CATEGORY }}
                             </option>
@@ -84,7 +70,7 @@
                         <label for="ddlSubCategory" class="form-label">Complaint Sub-Category</label>
                         <select name="ddlSubCategory" id="ddlSubCategory" [(ngModel)]="formData.ddlSubCategory"
                             class="form-select">
-                            <option value="0">Select</option>
+                            <option value="0">-Select SubCategory-</option>
                             <option *ngFor="let subcategory of subcategories" [value]="subcategory.inT_SUB_CATEGORY_ID">
                                 {{
                                 subcategory.vcH_SUB_CATEGORY }}
@@ -103,7 +89,7 @@
                         <label for="txtComplaintName" class="form-label">Complaint Status</label>
                         <select name="ddlStatusSearch" [(ngModel)]="formData.ddlComplaintsts" id="ddlStatusSearch"
                             class="form-select">
-                            <option value="0">Select</option>
+                            <option value="0">-Select Status-</option>
                             <option *ngFor="let complaint of complaintstatus"
                                 [value]="complaint.inT_COMPLIANT_STATUS_ID">{{
                                 complaint.vcH_COMPLIANT_STATUS }}</option>
@@ -152,16 +138,16 @@
             </div>
         </div>
     </div>
-    <!-- <div class="search-btn">
+    <div class="search-btn">
         <a data-bs-toggle="collapse" href="#collapseExample">
             <span class="collapse-on">Search Open <i class="bi bi-arrow-down"></i></span> <span
                 class="collapse-off">Search
                 Close <i class="bi bi-arrow-up"></i></span>
         </a>
-    </div> -->
+    </div>
     <div class="content-box content-area p-0">
         <div class="table-responsive mb-0">
-            <table class="table mb-0">
+            <table class="table table-striped mb-0">
                 <thead>
                     <tr>
                         <th width="40px">Sl#</th>
@@ -646,7 +632,7 @@
                                 <div class="mb-3">
                                     <label for="ddlDistrict" class="form-label">Reference Document</label>
                                     <input class="form-control" type="file" id="formFile">
-                                    <p class="text-danger text-end  small mb-0"> Only <span class="fw-bold">.jpeg, .jpg, .png,
+                                    <p class="text-danger text-end fw-lighter small mb-0"> Only <span class="fw-bold">.jpeg, .jpg, .png,
                                             .gif, .doc, .xls, .pdf</span> files
                                         allowed</p>
                                 </div>
@@ -655,7 +641,7 @@
                                 <div class="mb-3">
                                     <label for="ddlDistrict" class="form-label">Remarks</label>
                                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                                    <p class="text-danger text-end  small mb-0">(Maximum <span class="fw-bold">100</span>
+                                    <p class="text-danger text-end fw-lighter small mb-0">(Maximum <span class="fw-bold">100</span>
                                         Characters)</p>
                                 </div>
                             </div>

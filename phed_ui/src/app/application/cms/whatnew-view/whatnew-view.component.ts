@@ -22,10 +22,4 @@ export class WhatnewViewComponent {
     });
 
   }
-// filter tab change
-  isPanelOpen = true; // Start with the panel open
-
-  togglePanel() {
-    this.isPanelOpen = !this.isPanelOpen; // Toggle the panel state
-  }
 }

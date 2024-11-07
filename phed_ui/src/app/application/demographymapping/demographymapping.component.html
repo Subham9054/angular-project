@@ -3,9 +3,9 @@
         <div class="row justify-content-between align-items-center">
             <div class="col-xxl-3 col-lg-4 col-md-6">
                 <ul class="nav nav-tabs" routerLinkActive="active">
-                    <!-- <li class="nav-item">
+                    <li class="nav-item">
                         <a routerLink="/application/demographymapping" class="nav-link active">Add</a>
-                    </li> -->
+                    </li>
                     <li class="nav-item">
                         <a routerLink="/application/demographymapping/view" class="nav-link">View</a>
                     </li>
@@ -17,130 +17,126 @@
                         <li class="bg-transparent border-0">
                             <span class="text-danger small"><b>(*)</b> Indicate mandatory</span>
                         </li>
-                        <li>
-                            <a href="javascript:void(0)" title="Click to Add" routerLink="/application/demographymapping">
-                                <i class="bi bi-plus-lg"></i>
-                            </a>
-                        </li>
+
                     </ul>
                 </div>
             </div>
         </div>
     </div>
-    <div class="content-box content-area">
-        <div class="row">
-            <div class="col-xxl-10 col-lg-12">
-                <div class="row">
-                    <div class="col-lg-4">
-                        <div class="mb-3">
-                            <label for="circle" class="form-label">Circle</label>
-                            <select class="form-select" id="circle">
-                                <option selected>Select</option>
-                                <option value="1">Ara</option>
-                                <option value="2">Begusarai</option>
-                                <option value="3">Bhagalpur</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-4">
-                        <div class="mb-3">
-                            <label for="divison" class="form-label">Division</label>
-                            <select class="form-select" id="divison">
-                                <option selected>Select</option>
-                                <option value="1">Ara</option>
-                                <option value="2">Begusarai</option>
-                                <option value="3">Bhagalpur</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4">
-                        <div class="mb-3">
-                            <label for="sub-disvison" class="form-label">Sub-Division</label>
-                            <select class="form-select" id="sub-disvison">
-                                <option selected>Select</option>
-                                <option value="1">Ara</option>
-                                <option value="2">Begusarai</option>
-                                <option value="3">Bhagalpur</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-4">
-                        <div class="mb-3">
-                            <label for="Section" class="form-label">Section</label>
-                            <select class="form-select" id="Section">
-                                <option selected>Select</option>
-                                <option value="1">Ara</option>
-                                <option value="2">Begusarai</option>
-                                <option value="3">Bhagalpur</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4">
-                        <div class="mb-3">
-                            <label for="district" class="form-label">District</label>
-                            <select class="form-select" id="district">
-                                <option selected>Select</option>
-                                <option value="1">ARARIA</option>
-                                <option value="2">ARARIA</option>
-                                <option value="3">AURANGABAD</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-4">
-                        <div class="mb-3">
-                            <label for="block1" class="form-label">Block</label>
-                            <select class="form-select select-height" multiple id="block1" [(ngModel)]="selectedBlocks">
-                                <option value="1">ARARIA</option>
-                                <option value="2">ARWAL</option>
-                                <option value="3">AURANGABAD</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-lg-1">
-                        <div class="flex-contan">
-                            <label class="form-label d-lg-block d-none">&nbsp;&nbsp;</label>
+    <div class="content-box content-area pb-2">
+        <div class="form-section">
+            <div class="row">
+                <div class="col-xxl-10 col-lg-12">
+                    <div class="row">
+                        <div class="col-lg-4">
                             <div class="mb-3">
-                                <div class="block-fun">
-                                    <button class="btn btn-outline-primary btn-sm" (click)="moveSelectedToSecond()">
+                                <label for="circle" class="form-label">Circle</label>
+                                <select class="form-select" id="circle">
+                                    <option selected>-Select-</option>
+                                    <option value="1">Ara</option>
+                                    <option value="2">Begusarai</option>
+                                    <option value="3">Bhagalpur</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="mb-3">
+                                <label for="divison" class="form-label">Division</label>
+                                <select class="form-select" id="divison">
+                                    <option selected>-Select-</option>
+                                    <option value="1">Ara</option>
+                                    <option value="2">Begusarai</option>
+                                    <option value="3">Bhagalpur</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <div class="mb-3">
+                                <label for="sub-disvison" class="form-label">Sub-Division</label>
+                                <select class="form-select" id="sub-disvison">
+                                    <option selected>-Select-</option>
+                                    <option value="1">Ara</option>
+                                    <option value="2">Begusarai</option>
+                                    <option value="3">Bhagalpur</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="mb-3">
+                                <label for="Section" class="form-label">Section</label>
+                                <select class="form-select" id="Section">
+                                    <option selected>-Select-</option>
+                                    <option value="1">Ara</option>
+                                    <option value="2">Begusarai</option>
+                                    <option value="3">Bhagalpur</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <div class="mb-3">
+                                <label for="district" class="form-label">District</label>
+                                <select class="form-select" id="district">
+                                    <option selected>-Select-</option>
+                                    <option value="1">ARARIA</option>
+                                    <option value="2">ARARIA</option>
+                                    <option value="3">AURANGABAD</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="mb-3">
+                                <label for="block1" class="form-label">Block</label>
+                                <select class="form-select select-height" multiple id="block1" [(ngModel)]="selectedBlocks">
+                                    <option value="1">ARARIA</option>
+                                    <option value="2">ARWAL</option>
+                                    <option value="3">AURANGABAD</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-1">
+                            <div class="mb-3 text-center">
+                                <label class="form-label d-lg-block d-none">&nbsp;&nbsp;</label>
+                                <div class="d-grid gap-1 justify-content-center mt-4">
+                                    <button class="btn btn-outline-primary btn-sm w-auto" (click)="moveSelectedToSecond()">
                                         <i class="bi bi-chevron-right"></i>
                                     </button>
-                                    <button class="btn btn-outline-primary btn-sm" (click)="moveAllToSecond()">
+                                    <button class="btn btn-outline-primary btn-sm w-auto" (click)="moveAllToSecond()">
                                         <i class="bi bi-chevron-left"></i>
                                     </button>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="mb-3">
-                            <label for="block2" class="form-label">&nbsp;</label>
-                            <select class="form-select select-height" multiple id="block2">
-                                <option *ngFor="let block of selectedInSecondList" [value]="block.value">
-                                    {{ block.name }}
-                                </option>
-                            </select>
+                        <div class="col-lg-4">
+                            <div class="mb-3">
+                                <label for="block2" class="form-label">&nbsp;</label>
+                                <select class="form-select select-height" multiple id="block2">
+                                    <option *ngFor="let block of selectedInSecondList" [value]="block.value">
+                                        {{ block.name }}
+                                    </option>
+                                </select>
+                            </div>
                         </div>
                     </div>
-                </div>
-                
+                    
 
-            </div>
-            <div class="row">
-                <div class="col-xxl-3 col-lg-4 col-sm-6">
-                    <div class="d-flex gap-2 mt-lg-3">
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                        <button type="reset" class="btn btn-danger">Reset</button>
+                </div>
+                <div class="row">
+                    <div class="col-xxl-3 col-lg-4 col-sm-6">
+                        <div class="mb-3">
+                            <button type="submit" class="btn btn-primary me-2">Submit</button>
+                            <button type="reset" class="btn btn-danger">Reset</button>
+                        </div>
                     </div>
                 </div>
             </div>
