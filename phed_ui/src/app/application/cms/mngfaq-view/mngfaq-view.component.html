@@ -3,57 +3,44 @@
         <div class="row justify-content-between">
             <div class="col-lg-4">
                 <ul class="nav nav-tabs" routerLinkActive="active">
-                    <!-- <li class="nav-item">
+                    <li class="nav-item">
                         <a routerLink="/application/mngfaq" class="nav-link">Add</a>
-                    </li> -->
+                    </li>
                     <li class="nav-item">
                         <a routerLink="/application/mngfaq-view" class="nav-link active">View</a>
                     </li>
                 </ul>
             </div>
-            <div class="col-lg-6 col-md-6">
+            <div class="col-lg-6 ">
                 <div class="utilite float-end mb-1">
                     <ul class="mb-0">
-
-                        <li>
-                            <a href="javascript:void(0)" title="Click to Print"><i class="bi bi-printer"></i></a>
+                        <li class="bg-transparent border-0">
+                            <span class="text-danger small"><b>(*)</b> Indicate mandatory </span>
                         </li>
                         <li>
-                            <a href="javascript:void(0)" title="Click to Publish">
-                                <i class="bi bi-volume-up"></i>
-                            </a>
+                            <a href="javascript:void(0)" ngbTooltip="Click to Print"><i class="bi bi-printer"></i></a>
                         </li>
                         <li>
-                            <a href="javascript:void(0)" title="Click to Unpublish">
-                                <i class="bi bi-volume-mute"></i>
-                            </a>
+                            <a href="javascript:void(0)" ngbTooltip="Delete Record"><i class="bi bi-trash"></i></a>
                         </li>
-
-
-
-
                         <li>
-                            <a href="javascript:void(0)" title="Click to Add" routerLink="/application/mngfaq">
-                                <i class="bi bi-plus-lg"></i>
-                            </a>
+                            <a href="javascript:void(0)" ngbTooltip="Download"><i class="bi bi-download"></i></a>
+                        </li>
+                        <li><a href="javascript:void(0)" ngbTooltip="Go to Previous"><i
+                                    class="bi bi-arrow-left"></i></a>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
-    <div class="view-legand">
-        <ul class="legends">
-            <li><span class="bg-success"></span> Publish </li>
-            <li><span class="bg-danger"></span> Unpublish </li>
-        </ul>
-    </div>
+
     <div class="content-box content-area p-0">
         <div class="table-responsive">
-            <table class="table mb-0">
+            <table class="table table-striped mb-0">
                 <thead>
                     <tr>
-                        <th width="30px">
+                        <th width="50">
                             <input class="form-check-input" type="checkbox">
                         </th>
                         <th width="50">Sl#</th>
@@ -63,120 +50,105 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="publish">
+                    <tr>
                         <td>
                             <input class="form-check-input" type="checkbox">
                         </td>
                         <td> 1 </td>
                         <td>
-                            What is CM Kisan scheme?
+                            Lorem, ipsum.
                         </td>
-                        <td> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ab aliquam optio ea laboriosam
-                            facilis necessitatibus illum delectus, iste aut sint porro voluptate saepe reprehenderit,
-                            vero adipisci animi consequuntur excepturi autem. </td>
+                        <td> Lorem, ipsum.</td>
                         <td>
-                            <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"
-                                    data-bs-toggle="modal" data-bs-target="#viewmodal">
-                                    <i class="bi bi-eye"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
-                                    <i class="bi bi-pencil"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" title="Delete">
-                                    <i class="bi bi-trash3"></i></a>
-                            </div>
+                           <div class="d-flex gap-1">
+                            <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View">
+                                <i class="bi bi-eye"></i></a>
+                            <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
+                                <i class="bi bi-pencil"></i></a>
+                            <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" title="Delete">
+                                <i class="bi bi-trash3"></i></a>
+                           </div>
                         </td>
                     </tr>
-                    <tr class="unpublish">
+                    <tr>
                         <td>
                             <input class="form-check-input" type="checkbox">
                         </td>
                         <td> 2 </td>
                         <td>
-                            What is CM Kisan scheme?
+                            Lorem, ipsum.
                         </td>
-                        <td> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ab aliquam optio ea laboriosam
-                            facilis necessitatibus illum delectus, iste aut sint porro voluptate saepe reprehenderit,
-                            vero adipisci animi consequuntur excepturi autem. </td>
+                        <td> Lorem, ipsum.</td>
                         <td>
                             <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"
-                                    data-bs-toggle="modal" data-bs-target="#viewmodal">
-                                    <i class="bi bi-eye"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
-                                    <i class="bi bi-pencil"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" title="Delete">
-                                    <i class="bi bi-trash3"></i></a>
+                             <a href="javascript:void(0);" class="btn btn-outline-success btn-sm">
+                                 <i class="bi bi-eye"></i></a>
+                             <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm">
+                                 <i class="bi bi-pencil"></i></a>
+                             <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm">
+                                 <i class="bi bi-trash3"></i></a>
                             </div>
-                        </td>
+                         </td>
                     </tr>
-                    <tr class="publish">
+                    <tr>
                         <td>
                             <input class="form-check-input" type="checkbox">
                         </td>
                         <td> 3 </td>
                         <td>
-                            What is CM Kisan scheme?
+                            Lorem, ipsum.
                         </td>
-                        <td> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ab aliquam optio ea laboriosam
-                            facilis necessitatibus illum delectus, iste aut sint porro voluptate saepe reprehenderit,
-                            vero adipisci animi consequuntur excepturi autem. </td>
+                        <td> Lorem, ipsum.</td>
                         <td>
                             <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"
-                                    data-bs-toggle="modal" data-bs-target="#viewmodal">
-                                    <i class="bi bi-eye"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
-                                    <i class="bi bi-pencil"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" title="Delete">
-                                    <i class="bi bi-trash3"></i></a>
+                             <a href="javascript:void(0);" class="btn btn-outline-success btn-sm">
+                                 <i class="bi bi-eye"></i></a>
+                             <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm">
+                                 <i class="bi bi-pencil"></i></a>
+                             <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm">
+                                 <i class="bi bi-trash3"></i></a>
                             </div>
-                        </td>
+                         </td>
                     </tr>
-                    <tr class="unpublish">
+                    <tr>
                         <td>
                             <input class="form-check-input" type="checkbox">
                         </td>
                         <td> 4 </td>
                         <td>
-                            What is CM Kisan scheme?
+                            Lorem, ipsum.
                         </td>
-                        <td> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ab aliquam optio ea laboriosam
-                            facilis necessitatibus illum delectus, iste aut sint porro voluptate saepe reprehenderit,
-                            vero adipisci animi consequuntur excepturi autem. </td>
+                        <td> Lorem, ipsum.</td>
                         <td>
                             <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"
-                                    data-bs-toggle="modal" data-bs-target="#viewmodal">
-                                    <i class="bi bi-eye"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
-                                    <i class="bi bi-pencil"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" title="Delete">
-                                    <i class="bi bi-trash3"></i></a>
+                             <a href="javascript:void(0);" class="btn btn-outline-success btn-sm">
+                                 <i class="bi bi-eye"></i></a>
+                             <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm">
+                                 <i class="bi bi-pencil"></i></a>
+                             <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm">
+                                 <i class="bi bi-trash3"></i></a>
                             </div>
-                        </td>
+                         </td>
                     </tr>
-                    <tr class="publish">
+                    <tr>
                         <td>
                             <input class="form-check-input" type="checkbox">
                         </td>
                         <td> 5</td>
                         <td>
-                            What is CM Kisan scheme?
+                            Lorem, ipsum.
                         </td>
-                        <td> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ab aliquam optio ea laboriosam
-                            facilis necessitatibus illum delectus, iste aut sint porro voluptate saepe reprehenderit,
-                            vero adipisci animi consequuntur excepturi autem. </td>
+                        <td> Lorem, ipsum.</td>
                         <td>
                             <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"
-                                    data-bs-toggle="modal" data-bs-target="#viewmodal">
-                                    <i class="bi bi-eye"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
-                                    <i class="bi bi-pencil"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" title="Delete">
-                                    <i class="bi bi-trash3"></i></a>
+                             <a href="javascript:void(0);" class="btn btn-outline-success btn-sm">
+                                 <i class="bi bi-eye"></i></a>
+                             <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm">
+                                 <i class="bi bi-pencil"></i></a>
+                             <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm">
+                                 <i class="bi bi-trash3"></i></a>
                             </div>
-                        </td>
+                         </td>
                     </tr>
                 </tbody>
             </table>
@@ -185,32 +157,3 @@
 </div>
 
 
-<!-- Modal View  -->
-<div class="modal fade" id="viewmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">What is CM Kisan scheme?</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body view-form">
-                <div class="row">
-
-                    <div class="col-xl-12">
-                        <div class="row">
-                           <div class="col-lg-6">
-                            <!-- <label class="form-label">Question</label> -->
-                            <label class="form-label">What is CM Kisan scheme?</label>
-                           </div>
-                           <div class="col-lg-12">
-                            <!-- <label class="form-label">Answer</label> -->
-                            <label class="form-value">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ab aliquam optio ea laboriosam facilis necessitatibus illum delectus, iste aut sint porro voluptate saepe reprehenderit, vero adipisci animi consequuntur excepturi autem.</label>
-                           </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-</div>

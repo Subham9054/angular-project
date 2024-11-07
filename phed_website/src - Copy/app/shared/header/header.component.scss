@@ -1,0 +1,424 @@
+@import "../../../../node_modules/bootstrap/scss/mixins";
+@import "../../../../node_modules/bootstrap/scss/functions";
+@import "../../../../node_modules/bootstrap/scss/variables";
+
+.lang-btn {
+  padding: 3px 5px;
+  cursor: pointer;
+  border: none;
+  font-size: 15px;  
+  font-weight: bold;    
+  color: black;
+  background: none;
+  outline: none;  /* Remove focus outline */
+}
+
+.lang-btn:hover {
+  color: blue;  /* Change text color to blue on hover */
+  text-decoration: none;
+}
+
+.navbar {
+  &.header-utilities {
+    a {
+      color: var(--header-utilities-link);
+      text-decoration: none;
+      font-size: 0.9rem;
+      padding: 0.2rem 0.1rem;
+      &:hover{
+        color: var( --header-text);
+        font-weight: bold;
+      }
+    }
+    background-color: var(--header-utilities-bg);
+  }
+}
+.theme-dark{
+    .navbar-brand__img{
+        &.light-img{
+            filter: invert(1);
+        }
+    }
+}
+.nav-link{
+    
+        color: var(--about-text);
+    
+}
+.topheader, .logocontext {
+    background-color: var(--header-utilities-bg);
+    transition: top 0.3s ease; 
+}
+
+.topheader {
+  transition: transform 0.3s ease; /* Smooth transition for hiding */
+  position: fixed; /* Keep it fixed at the top */
+  top: 0; /* Start at the top */
+  width: 100%;
+
+}
+
+.hidden {
+  display: none; /* Move it up out of view */
+  transition: transform 0.3s ease;
+}
+.scroll-up {
+  display: block; /* Move it up out of view */
+  /* Add your styles for when scrolling up, for example: */
+  background-color: rgba(255, 255, 255, 0.8); /* Example style */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Example shadow */
+}
+
+.logocontext {
+  position: fixed;
+  width: 100%;
+  top: 8.5rem; /* Initial position */
+  transition: transform 0.3s ease; /* Smooth transition */
+  &.scrolllogo {
+    /* Styles for when scrolling up */
+    top: 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  &.headtoggle {
+    /* Styles for when at the top */
+    top: 2.7rem;/* Ensure it is visible */
+  }
+}
+
+.is-hidden {
+  transform: translateY(-252%); /* Move it up out of view */
+}
+
+
+
+
+ 
+.navbar-toggler {
+    padding: 0.2rem;
+    .navbar-toggler-icon{
+        width: 1.4em;
+    height: 1.4em;
+    }
+}
+.cancle-icon{
+  color: red;
+}
+
+.serach-icon {
+  color: var(--lang-text);;
+}
+#search-open {
+  position: absolute;
+  width: 100%;
+  top: 46px;
+  margin: 0 auto;
+  padding: 1.1rem;
+  background: #f1f1f1;
+  border: none;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  z-index: 11;
+  .input-group-text {
+    border: none;
+    padding: 0.7rem 1.1rem;
+    background: #ebf7ff;
+  }
+  .input-group-text {
+    i {
+      font-size: 1.3rem;
+    }
+  }
+  .form-control {
+    height: 54px;
+    border: none;
+    background-color: var( --search-bg);
+    &::placeholder {
+      font-size: 1.3rem;
+      font-weight: bold;
+    }
+  }
+}
+
+
+
+ 
+
+
+.theme {
+  border: 1px solid var(--top-bar-text);
+  border-radius: 0.25rem;
+  display: flex;
+  align-items: center;
+  margin-left: 0.3rem;
+//   background-color: #ebf7ff;
+&:hover{
+    
+        background-color: #ebf7ff;
+   
+}
+  &-mode {
+    position: relative;
+    display: flex;
+    z-index: 1;
+   
+    input {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+      z-index: 1;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+
+      &:checked ~ span {
+        background-color: var(--top-bar-text);
+        color: var(--switch-icon);
+        z-index: -1;
+      }
+    }
+
+    span {
+      display: flex;
+      padding: 0.2rem 0.3rem 0.1rem 0.4rem;
+      color: var(--theme-icon);
+      line-height: 1.2;
+    }
+
+    i {
+      font-size: 0.85rem;
+    }
+  }
+}
+.logo__section {
+  h1 {
+    a {
+      font-weight: 700;
+      font-size: 1.45rem !important;
+      margin-bottom: 0;
+    }
+  }
+}
+
+.lang-div {
+  span {
+    color: var(--lang-text);
+    cursor: pointer;
+    &:hover{
+        color: var( --header-text);
+        // font-weight: bold;
+      }
+  }
+}
+.logocontext {
+  padding: 1rem 0;
+  border-top: 1px solid var(--top-header-border);
+  h1{
+    display: block;
+    line-height: 1.2;
+    margin-bottom: 0;
+    .logo-text {
+        display: grid;
+        color: var(--text-black);
+        letter-spacing: 0.7px;
+       
+        span {
+          font-size: 1.2rem;
+          font-weight: bold;
+          
+        }
+        small {
+          font-size: 0.675rem;
+          font-weight: bold;
+          color: var(--logo-small);
+        }
+        .gov {
+          font-size: 0.75rem;
+          line-height: 1.2;
+          display: block;
+          font-weight: normal;
+        }
+      }    
+  }
+
+}
+.light-img{
+    width: 41px;
+}
+@media (min-width: 375px) {
+    
+    .navbar-toggler {
+        padding: 0.2rem!important;
+        background-color: var(--about-text);
+    }
+    .slide-main--heading{
+      
+        font-size: 1.675rem;
+    }
+    .about__container{
+        .about__img {
+            height: 17.975rem;
+            width: 17.975rem;
+        }
+    }
+    .logocontext {
+
+        h1{
+            .logo-text {
+                span {
+                    font-size: 1.3rem;
+                }
+                small{
+                    font-size: 0.675rem;
+                }
+            }
+        } 
+    } 
+  }
+
+@include media-breakpoint-up(sm) {
+    .logocontext {
+        padding: 0.4rem 0;
+        h1{
+          display: block;
+          line-height: 1.2;
+          margin-bottom: 0;
+          .logo-text {
+              display: grid;
+             
+              span {
+                font-size: 1.7rem;
+                
+              }
+              small {
+                font-size: 0.875rem;
+              }
+             
+            }    
+        }
+      
+      }
+    .theme {
+        border-radius: 0.25rem;
+        display: flex;
+        align-items: center;
+        margin-left: 1rem;
+        &-mode {
+          position: relative;
+          display: flex;
+          z-index: 1;
+      
+          input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            z-index: 1;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+      
+           
+          }
+      
+          span {
+            display: flex;
+            padding: 0.2rem 0.3rem 0.1rem 0.3rem;
+            color: var(--theme-icon);
+            line-height: 1.2;
+          }
+      
+          i {
+            font-size: 0.85rem;
+          }
+        }
+      }
+    .navbar {
+        &.header-utilities {
+          a {
+            font-size: 1rem;
+            padding: 0.2rem 0.3rem;
+          }
+        }
+      }
+      .light-img{
+        width: 56px;
+    }
+    .dark-img{
+        width: 56px;
+    }
+}
+
+@include media-breakpoint-up(lg) {
+  
+    .navbar-expand-lg{
+        .navbar-nav{
+            .nav-link{
+                padding: 0.5rem;
+            }
+        } 
+    } 
+    .logocontext{
+        h1{
+            .logo-text{
+                span{
+                    font-size: 1.6rem;
+                }
+            } 
+        }
+    } 
+    .fontresizer{
+        a {
+            padding: 0.3rem;
+        }
+    }
+}
+@include media-breakpoint-up(xl) {
+  .navbar-nav {
+    .nav-item {
+      .nav-link {
+        color: var(--menu-color);
+        font-size: 1.225rem;
+        padding: 0 1rem;
+        position: relative;
+        &:hover {
+          color: var(--menu-hover);
+          &::after {
+            position: absolute;
+            content: "";
+            background-color: var(--menu-hover);
+            width: 75%;
+            height: 2px;
+            left: 0;
+            margin: 0 auto;
+            right: 0;
+            text-align: center;
+            bottom: -5px;
+          }
+        }
+        &.active {
+          color: var(--menu-hover);
+          &::after {
+            position: absolute;
+            content: "";
+            background-color: var(--menu-hover);
+            width: 75%;
+            height: 2px;
+            left: 0;
+            margin: 0 auto;
+            right: 0;
+            text-align: center;
+            bottom: -5px;
+          }
+        }
+      }
+    }
+  }
+  .fontresizer {
+    display: block;
+    a {
+      padding: 0.3rem;
+      font-weight: 500;
+      padding: 0.2rem 0.3rem;
+    }
+  }
+}

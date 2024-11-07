@@ -1,0 +1,91 @@
+<div class="inner-area">
+    <div class=" bannerarea">
+        <div class="page-title" >
+            <h2>{{'ABOUT_PHED' | translate}}</h2>
+        </div>
+        <div class="breadcrumb-area">
+            <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                <ol class="breadcrumb justify-content-center mb-0">
+                    <li class="breadcrumb-item"><a href="#"><i class="icon icon-Group-14936"></i></a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{'ABOUT_PHED' | translate}}</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <div class="content-area mt-5" id="targetMainContent">
+        <div class="container">
+            <div class="row">               
+                <div class="col-xxl-7 col-xl-7 col-lg-7 col-md-12" *ngFor="let item of aboutUsContent; let i = index">
+                    <!-- Display paragraphs for items with id 1-3 -->
+                    <ng-container *ngIf="i < 3">
+                        <p *ngIf="currentLanguage === 'en'">{{ item.contentEng }}</p>
+                        <p *ngIf="currentLanguage === 'hi'">{{ item.contentHin }}</p>
+                    </ng-container>
+                </div>
+                <div class="col-xxl-5 col-xl-5 col-lg-5 col-md-12 mb-lg-0 mb-3 ps-4 ">
+                    <div class="left-img ms-lg-auto">
+                     <img src="../../assets/img/galleryimg-one.jpg">
+                    </div>
+                 </div>
+            </div>
+
+             <div class="objective">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="objective-patch">
+                            <div class="objective-icon">
+                                <span class="icon icon-water-tower"></span>
+                            </div>
+                            <div class="about_text " *ngFor="let item of aboutUsContent; let i = index">
+                                <ng-container *ngIf="i == 3">
+                                    <h4>{{ currentLanguage === 'en' ? item.contentHeadingEng : item.contentHeadingHin }}</h4>
+                                    <p>{{ currentLanguage === 'en' ? item.contentEng : item.contentHin }}</p>
+                                </ng-container>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="objective-patch">
+                            <div class="objective-icon">
+                                <span class="icon icon-Layer-2"></span>
+                            </div>
+                            <div class="about_text " *ngFor="let item of aboutUsContent; let i = index">
+                                <ng-container *ngIf="i == 4">
+                                    <h4>{{ currentLanguage === 'en' ? item.contentHeadingEng : item.contentHeadingHin }}</h4>
+                                    <p>{{ currentLanguage === 'en' ? item.contentEng : item.contentHin }}</p>
+                                </ng-container>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="objective-patch">
+                            <div class="objective-icon">
+                                <span class="icon icon-washing-hands"></span>
+                            </div>
+                            <div class="about_text " *ngFor="let item of aboutUsContent; let i = index">
+                                <ng-container *ngIf="i == 5">
+                                    <h4>{{ currentLanguage === 'en' ? item.contentHeadingEng : item.contentHeadingHin }}</h4>
+                                    <p>{{ currentLanguage === 'en' ? item.contentEng : item.contentHin }}</p>
+                                </ng-container>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="objective-patch">
+                            <div class="objective-icon">
+                                <span class="icon icon-engagement"></span>
+                            </div>
+                            <div class="about_text " *ngFor="let item of aboutUsContent; let i = index">
+                                <ng-container *ngIf="i == 6">
+                                    <h4>{{ currentLanguage === 'en' ? item.contentHeadingEng : item.contentHeadingHin }}</h4>
+                                    <p>{{ currentLanguage === 'en' ? item.contentEng : item.contentHin }}</p>
+                                </ng-container>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+             </div>
+        </div>
+    </div>
+</div>

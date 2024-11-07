@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 declare let $: any;
 @Component({
   selector: 'app-newsevent',
@@ -23,20 +22,4 @@ export class NewseventComponent {
     });
 
   }
-    // Ck editor
-    editor = ClassicEditor;
-    data: any = `<p class="text-grey">Enter here...</p>`;
-  // image upload
-
-  files: File[] = [];
-
-	onSelect(event:any) {
-		console.log(event);
-		this.files.push(...event.addedFiles);
-	}
-
-	onRemove(event:any) {
-		console.log(event);
-		this.files.splice(this.files.indexOf(event), 1);
-	}
 }

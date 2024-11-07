@@ -60,7 +60,38 @@ namespace Config.Repository.Repositories.Interfaces.MANAGE_ESCALATION_CONFIGDETA
                 throw;
             }
         }
-
+        public async Task<List<EscalationViewModel>> GetEscalations(int categoryid, int subcategoryid)
+        {
+            try
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("categoryid", categoryid, DbType.Int32);
+                parameters.Add("subcategoryid", subcategoryid, DbType.Int32);
+                parameters.Add("action", "VIEW");
+                var result = await Connection.QueryAsync<EscalationViewModel>("USP_EscalationView", parameters, commandType: CommandType.StoredProcedure);
+                return result.ToList();
+            }
+            catch (Exception ex) 
+            {
+                throw;
+            }
+        }
+        public async Task<List<EscalationViewModel>> GetEscalationseye(int categoryid, int subcategoryid)
+        {
+            try
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("categoryid", categoryid, DbType.Int32);
+                parameters.Add("subcategoryid", subcategoryid, DbType.Int32);
+                parameters.Add("action", "VIEW");
+                var result = await Connection.QueryAsync<EscalationViewModel>("USP_EscalationVieweye", parameters, commandType: CommandType.StoredProcedure);
+                return result.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
         public async Task<int> UPDATE_MANAGE_ESCALATION_CONFIGDETAILS(MANAGE_ESCALATION_CONFIGDETAILS_Model TBL)
         {
             var p = new DynamicParameters();
