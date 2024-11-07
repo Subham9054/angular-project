@@ -512,6 +512,9 @@
 }
 
 @include media-breakpoint-up(lg) {
+  .logocontext {
+    padding: 0.8rem 0;
+}
   .megamenu-container {
     position: relative;
     height: auto;

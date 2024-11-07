@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 @import "assets/scss/variables";
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
 @import "assets/scss/theme";
@@ -8,9 +8,9 @@
 @import "assets/css/lightgallery.css";
 @import "~swiper/swiper-bundle.min.css";
 @import "../node_modules/bootstrap/scss/mixins";
-body {
-  font-family: "Work Sans", serif; font-weight: 400;
-}
+// body {
+//   font-family: "Work Sans", serif; font-weight: 400;
+// }
 .bannerarea {
   background-image: url(./assets/img/innerbanner.png);
   padding: 3.1rem 0 1.4rem;
