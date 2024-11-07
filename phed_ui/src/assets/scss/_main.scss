@@ -86,9 +86,6 @@ a {
       transition: max-height 0.5s ease, opacity 0.5s ease, padding 0.5s ease;
       border: 0 !important;
       border-radius: 5px ;
-      .input-group-text {
-        background-color: #fff !important;
-      }
     }
   }
   // Bijayalaxmi patra date :- 07/11/24
@@ -848,24 +845,7 @@ tr.unpublish{
 
 }
 
-// Brows file
-.custom-fileupload{
-  opacity: 0;
 
-}
-.custom-input{
-  position: absolute;
-  left: 0;
-  right: 0;
-  border: 1px solid #dee2e6;
-  padding: 0.5rem 0.9rem;
-  border-radius: 0.375rem !important; 
-  color: #cccccc;
-}
-.custom-browse{
-  background-color: #565656;
-  color: $white;
-}
 .img-banner {
   // border: 1px solid #ddd;
   // background-color: #f0eeee;
@@ -889,17 +869,6 @@ tr.unpublish{
   height: 13rem;
   width: 100%;
   object-fit: cover;
-}
-.flex-contan{
-  display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    .block-fun{
-      display: flex;
-      flex-direction: column;
-      gap: 0.4rem;
-    }    
 }
 
 // Drag Image
@@ -934,8 +903,10 @@ tr.unpublish{
   /* Customize as needed */
 }
 
-
-
+// Input group
+.input-group-text {
+  background-color: #fff !important;
+}
 
 @media (max-width:630px) {
   .breadcrumb {

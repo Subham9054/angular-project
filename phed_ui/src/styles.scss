@@ -1,47 +1,29 @@
-@import url("https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap");
-@import "assets/scss/mixins";
-@import "assets/scss/variables";
-@import "../node_modules/bootstrap/scss/bootstrap.scss";
-@import "assets/scss/navbar";
-@import "assets/scss/sidebar";
-@import "assets/scss/footer";
-@import "assets/scss/main";
-@import "assets/scss/common";
-@import "assets/scss/custom";
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+@import 'assets/scss/mixins';
+@import 'assets/scss/variables';
+@import '../node_modules/bootstrap/scss/bootstrap.scss';
+@import 'assets/scss/navbar';
+@import 'assets/scss/sidebar';
+@import 'assets/scss/footer';
+@import 'assets/scss/main';
+@import 'assets/scss/common';
+@import 'assets/scss/custom';
 
-html,
-body,
-form {
+html,body,form {
     height: 100%;
 }
 
-html,
-body {
-    height: 100%;
-}
+html, body { height: 100%; }
 // body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-body {
-    margin: 0;
-    font-size: 0.9rem;
-    font-family: "Work Sans", serif;
-    font-weight: 400;
-}
+body { margin: 0; font-size: .9rem; font-family: "Work Sans", serif; font-weight: 400; }
 
-.btn-primary,
-.btn-primary:hover {
-    color: $white;
-}
-.form-label {
-    margin-bottom: 0.2rem;
-}
-.form-select,.form-control,.form-check-label {
-    color: $gray-600;
-    font-size: .9rem;
-}
+.btn-primary,.btn-primary:hover {color: $white;}
+.form-label {margin-bottom: 0.2rem;}
+.form-select {color: $gray-600;}
 ::placeholder {
     color: $gray-600;
-}
-
-::-ms-input-placeholder {
+  }
+  
+  ::-ms-input-placeholder { 
     color: $gray-600;
-}
+  }

@@ -3,9 +3,9 @@
         <div class="row justify-content-between">
             <div class="col-lg-4">
                 <ul class="nav nav-tabs" routerLinkActive="active">
-                    <!-- <li class="nav-item">
+                    <li class="nav-item">
                         <a routerLink="/application/mngfaq" class="nav-link active">Add</a>
-                    </li> -->
+                    </li>
                     <li class="nav-item">
                         <a routerLink="/application/mngfaq/view" class="nav-link">View</a>
                     </li>
@@ -17,11 +17,7 @@
                         <li class="bg-transparent border-0">
                             <span class="text-danger small"><b>(*)</b> Indicate mandatory </span>
                         </li>
-                        <li>
-                            <a href="javascript:void(0)" title="Click to Add" routerLink="/application/mngfaq">
-                                <i class="bi bi-plus-lg"></i>
-                            </a>
-                        </li>
+                        
                     </ul>
                 </div>
             </div>
@@ -30,13 +26,12 @@
 
     <div class="content-box content-area">
         <div class="row">
-            <div class="col-xxl-10 col-lg-12">
+            <div class="col-lg-12 col-xxl-12">
                 <div class="row">
                     <div class="col-xl-6">
                         <div class="mb-3">
                             <label class="form-label" for="dsn">Question</label>
                             <input class="form-control" type="text" id="dsn">
-
                         </div>
                     </div>
            
@@ -51,18 +46,12 @@
                         <div class="mb-3">
                             <label class="form-label">Answer</label>
                             <ckeditor [editor]="editor" [data]="data"></ckeditor>
-                            <p class="text-end mb-0">
-                                <small class="text-danger">Maximum <strong>500</strong> characters</small>
-                            </p>
                         </div>
                     </div>
                     <div class="col-xl-6">
                         <div class="mb-3">
                             <label class="form-label">Answer in Hindi</label>
                             <ckeditor [editor]="editor" [data]="data"></ckeditor>
-                            <p class="text-end mb-0">
-                                <small class="text-danger">Maximum <strong>500</strong> characters</small>
-                            </p>
                         </div>
                     </div>
                    
@@ -70,7 +59,7 @@
 
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="d-flex gap-2 mt-lg-3">
+                        <div class="d-flex gap-2">
                             <button type="submit" class="btn btn-primary">Submit</button>
                             <button type="reset" class="btn btn-danger">Reset</button>
                         </div>

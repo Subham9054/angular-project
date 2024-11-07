@@ -3,52 +3,17 @@
         <div class="row justify-content-between align-items-center">
             <div class="col-lg-4">
                 <ul class="nav nav-tabs" routerLinkActive="active">
-                    <!-- <li class="nav-item">
+                    <li class="nav-item">
                         <a routerLink="/application/pagecontent" class="nav-link">Add</a>
-                    </li> -->
+                    </li>
                     <li class="nav-item">
                         <a routerLink="/application/pagecontent-view" class="nav-link active">View</a>
                     </li>
                 </ul>
             </div>
-            <div class="col-lg-6 col-md-6">
-                <div class="utilite float-end mb-1">
-                    <ul class="mb-0">
-                       
-                        <li>
-                            <a href="javascript:void(0)" title="Click to Print"><i class="bi bi-printer"></i></a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)" title="Click to Publish">
-                                <i class="bi bi-volume-up"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)" title="Click to Unpublish">
-                                <i class="bi bi-volume-mute"></i>
-                            </a>
-                        </li>
-                        
-
-                        <li>
-                            <a href="javascript:void(0)" title="{{ isPanelOpen ? 'Click to Close Filter' : 'Click to Open Filter' }}" 
-                               (click)="togglePanel()">
-                                <i class="bi bi-funnel"></i>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="javascript:void(0)" title="Click to Add" routerLink="/application/pagecontent">
-                                <i class="bi bi-plus-lg"></i>
-                            </a>
-                        </li>
-
-                    </ul>
-                </div>
-            </div>
         </div>
     </div>
-    <div id="collapseExample" class="collapse show" [ngClass]="{'show': isPanelOpen}">
+    <div id="collapseExample" class="collapse show">
         <div class="content-box search-box">
             <div class="row">
                 <div class="col-xxl-3 col-lg-4 col-md-6">
@@ -69,26 +34,17 @@
             </div>
         </div>
     </div>
-    <!-- <div class="search-btn">
+    <div class="search-btn">
         <a data-bs-toggle="collapse" href="#collapseExample">
-            <span class="collapse-on">Search  <i class="bi bi-arrow-down"></i></span> <span
+            <span class="collapse-on">Search Open <i class="bi bi-arrow-down"></i></span> <span
                 class="collapse-off">Search Close <i class="bi bi-arrow-up"></i></span>
         </a>
-    </div> -->
-    <div class="view-legand">
-        <ul class="legends">
-            <li><span class="bg-success"></span> Publish </li>
-            <li><span class="bg-danger"></span> Unpublish </li>
-        </ul>
     </div>
     <div class="content-box content-area p-0">
         <div class="table-responsive mb-0">
-            <table class="table mb-0">
+            <table class="table table-striped mb-0">
                 <thead>
                     <tr>
-                        <th width="30px">
-                            <input type="checkbox">
-                        </th>
                         <th width="40px">Sl#</th>
                         <th>Page Title</th>
                         <th>Page Title in Hindi</th>
@@ -98,8 +54,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="publish">
-                        <td><input type="checkbox"></td>
+                    <tr>
                         <td>1</td>
                         <td>Parking Lots</td>
                         <td>पार्किंग स्थल</td>
@@ -117,8 +72,7 @@
                             </div>
                         </td>
                     </tr>
-                    <tr class="unpublish">
-                        <td><input type="checkbox"></td>
+                    <tr>
                         <td>2</td>
                         <td>Parking Lots</td>
                         <td>पार्किंग स्थल</td>
@@ -135,8 +89,7 @@
                             </div>
                         </td>
                     </tr>
-                    <tr class="publish">
-                        <td><input type="checkbox"></td>
+                    <tr>
                         <td>3</td>
                         <td>Parking Lots</td>
                         <td>पार्किंग स्थल</td>
@@ -154,8 +107,7 @@
                         </td>
                     </tr>
 
-                    <tr class="unpublish">
-                        <td><input type="checkbox"></td>
+                    <tr>
                         <td>4</td>
                         <td>Parking Lots</td>
                         <td>पार्किंग स्थल</td>
@@ -172,9 +124,7 @@
                             </div>
                         </td>
                     </tr>
-
-                    <tr class="publish">
-                        <td><input type="checkbox"></td>
+                    <tr>
                         <td>5</td>
                         <td>Parking Lots</td>
                         <td>पार्किंग स्थल</td>
@@ -203,22 +153,12 @@
     <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Parking Lots</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Content Details</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body view-form">
                 <div class="row">
                     <div class="col-xl-12">
-                        <div class="row">
-                            <div class="col-xl-12">
-                                <div class="mb-3">
-                                    <!-- <label class="form-label d-block mb-2">Feature Image</label> -->
-                                    <div class="img-fluid">
-                                        <img  src="./assets/img/login-bg.png" alt="Feature Image" class="modal-banner">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         <div class="row">
                             <div class="col-xl-4 col-md-6">
                                 <div class="mb-3">
@@ -227,12 +167,12 @@
                                 </div>
                             </div>
                 
-                            <!-- <div class="col-xl-4 col-md-6">
+                            <div class="col-xl-4 col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label">Page Title in Hindi</label>
                                     <label class="form-value">पार्किंग स्थल</label>
                                 </div>
-                            </div> -->
+                            </div>
 
                             <div class="col-xl-4 col-md-6">
                                 <div class="mb-3">
@@ -260,42 +200,49 @@
                                     <label class="form-value">New Window</label>
                                 </div>
                             </div>
-                        <!-- </div>
+                        </div>
                 
-                        <div class="row"> -->
-                            <div class="col-xl-6 col-md-12">
+                        <div class="row">
+                            <div class="col-xl-12 col-md-12">
                                 <div class="mb-3">
                                     <label class="form-label">Snippet</label>
                                     <label class="form-value">The Public Health Engineering Department (PHED), Govt of Bihar has the overall responsibility of managing and monitoring activities to enhance public health in the state of Bihar.</label>
                                 </div>
                             </div>
                 
-                            <!-- <div class="col-xl-12 col-md-12">
+                            <div class="col-xl-12 col-md-12">
                                 <div class="mb-3">
                                     <label class="form-label">Snippet in Hindi</label>
                                     <label class="form-value">बिहार सरकार का लोक स्वास्थ्य अभियंत्रण विभाग (PHED) राज्य में सार्वजनिक स्वास्थ्य को बढ़ावा देने के लिए गतिविधियों का प्रबंधन और निगरानी करने की पूरी जिम्मेदारी निभाता है।</label>
                                 </div>
-                            </div> -->
-                        <!-- </div>
+                            </div>
+                        </div>
 
 
-                        <div class="row"> -->
-                            <div class="col-xl-6 col-md-12">
+                        <div class="row">
+                            <div class="col-xl-12 col-md-12">
                                 <div class="mb-3">
                                     <label class="form-label">Content</label>
                                     <label class="form-value">The Public Health Engineering Department (PHED), Govt of Bihar has the overall responsibility of managing and monitoring activities to enhance public health in the state of Bihar.</label>
                                 </div>
                             </div>
                 
-                            <!-- <div class="col-xl-12 col-md-12">
+                            <div class="col-xl-12 col-md-12">
                                 <div class="mb-3">
                                     <label class="form-label">Content in Hindi</label>
                                     <label class="form-value">बिहार सरकार का लोक स्वास्थ्य अभियंत्रण विभाग (PHED) राज्य में सार्वजनिक स्वास्थ्य को बढ़ावा देने के लिए गतिविधियों का प्रबंधन और निगरानी करने की पूरी जिम्मेदारी निभाता है।</label>
                                 </div>
-                            </div> -->
+                            </div>
                         </div>
 
-                      
+                        <div class="row">
+                            <div class="col-xl-4">
+                                <div class="mb-3">
+                                    <label class="form-label d-block mb-2">Feature Image</label>
+                                    <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" title="View Image"><i class="bi bi-download"></i></a>
+                                </div>
+                            </div>
+                        </div>
 
                     </div>
                 </div>

@@ -3,51 +3,24 @@
         <div class="row justify-content-between align-items-center">
             <div class="col-xxl-3 col-lg-4 col-md-6">
                 <ul class="nav nav-tabs" routerLinkActive="active">
-                    <!-- <li class="nav-item">
+                    <li class="nav-item">
                         <a routerLink="/application/escalation" class="nav-link">Add</a>
-                    </li> -->
+                    </li>
                     <li class="nav-item">
                         <a routerLink="/application/escalation-view" class="nav-link active">View</a>
                     </li>
                 </ul>
             </div>
             <div class="col-lg-6 col-md-6">
-                <div class="utilite float-end mb-1">
+                <div class="utilite float-end">
                     <ul class="mb-0">
-                       
-                        <li>
-                            <a href="javascript:void(0)" title="Click to Print"><i class="bi bi-printer"></i></a>
-                        </li>
-                        <!-- <li>
-                            <a href="javascript:void(0)" title="Click to Publish">
-                                <i class="bi bi-volume-up"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)" title="Click to Unpublish">
-                                <i class="bi bi-volume-mute"></i>
-                            </a>
-                        </li> -->
-                       
-
-                        <li>
-                            <a href="javascript:void(0)" title="{{ isPanelOpen ? 'Click to Close Filter' : 'Click to Open Filter' }}" 
-                               (click)="togglePanel()">
-                                <i class="bi bi-funnel"></i>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="javascript:void(0)" title="Click to Add " routerLink="/application/escalation">
-                                <i class="bi bi-plus-lg"></i>
-                            </a>
-                        </li>
+                        <li><a href="javascript:void(0)" title="Click to Print"><i class="bi bi-printer"></i></a></li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
-<div id="collapseExample" class="collapse show" [ngClass]="{'show': isPanelOpen}">
+<div id="collapseExample" class="collapse show">
     <div class="content-box search-box">
         <div class="row">
 
@@ -57,7 +30,7 @@
                     <select name="ddlComplaintCategory" id="ddlComplaintCategory"
                         [(ngModel)]="formData.ddlComplaintCategory"
                         (change)="onCategoryChange($event)" class="form-select">
-                        <option selected value="0">Select</option>
+                        <option selected value="0">-Select-</option>
                         <option *ngFor="let category of categories"
                             [value]="category.inT_CATEGORY_ID">{{ category.vcH_CATEGORY }}
                         </option>
@@ -70,7 +43,7 @@
                     <label for="ddlSubCategory" class="form-label">Complaint Sub-Category</label>
                     <select name="ddlSubCategory" id="ddlSubCategory"
                         [(ngModel)]="formData.ddlSubCategory" class="form-select">
-                        <option value="0">Select</option>
+                        <option value="0">-Select-</option>
                         <option *ngFor="let subcategory of subcategories"
                             [value]="subcategory.inT_SUB_CATEGORY_ID">{{
                             subcategory.vcH_SUB_CATEGORY }}
@@ -88,30 +61,26 @@
         </div>  
     </div>
 </div>
-    <!-- <div class="search-btn">
+    <div class="search-btn">
         <a data-bs-toggle="collapse" href="#collapseExample">
-          <span class="collapse-on">Search  <i class="bi bi-arrow-down"></i></span> <span class="collapse-off">Search Close <i class="bi bi-arrow-up"></i></span>
+          <span class="collapse-on">Search Open <i class="bi bi-arrow-down"></i></span> <span class="collapse-off">Search Close <i class="bi bi-arrow-up"></i></span>
         </a>
-    </div> -->
+    </div>
     <div class="content-box content-area p-0">
         <div class="table-responsive mb-0">
-            <table class="table mb-0 table-bordered">
+            <table class="table table-striped mb-0">
                 <thead>
                     <tr>
-                        <!-- <th width="30px">
-                            <input type="checkbox">
-                        </th> -->
                         <th width="40px">Sl#</th>
                         <th>Complaint Category</th>
                         <th>Complaint Sub-Category</th>
                         <th>Level of Escalation</th>
                         <th>Receiving Authority</th>
-                        <th width="90px">Action</th>
+                        <th width="100px">Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <!-- <td><input  type="checkbox"></td> -->
                         <td>1</td>
                         <td>Handpump Tubewell Related</td>
                         <td>Repairing of Public Handpump</td>
@@ -125,12 +94,10 @@
                                 <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
                                     <i class="bi bi-pencil"></i>
                                 </a>
-                                <a title="Delete" href="javascript:void(0);" class="btn btn-outline-danger btn-sm"><i  class="bi bi-trash3"></i></a>
                             </div>
                         </td>
                     </tr>
                     <tr>
-                        <!-- <td><input  type="checkbox"></td> -->
                         <td>2</td>
                         <td>Handpump Tubewell Related</td>
                         <td>Repairing of Private Handpump</td>
@@ -144,12 +111,10 @@
                                 <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
                                     <i class="bi bi-pencil"></i>
                                 </a>
-                                <a title="Delete" href="javascript:void(0);" class="btn btn-outline-danger btn-sm"><i  class="bi bi-trash3"></i></a>
                             </div>
                         </td>
                     </tr>
                     <tr>
-                        <!-- <td><input  type="checkbox"></td> -->
                         <td>3</td>
                         <td>Piped Water Supply Related</td>
                         <td>Water is not coming from Standpost</td>
@@ -163,12 +128,10 @@
                                 <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
                                     <i class="bi bi-pencil"></i>
                                 </a>
-                                <a title="Delete" href="javascript:void(0);" class="btn btn-outline-danger btn-sm"><i  class="bi bi-trash3"></i></a>
                             </div>
                         </td>
                     </tr>
                     <tr>
-                        <!-- <td><input  type="checkbox"></td> -->
                         <td>4</td>
                         <td>Piped Water Supply Related</td>
                         <td>Motor Burnt</td>
@@ -182,7 +145,6 @@
                                 <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
                                     <i class="bi bi-pencil"></i>
                                 </a>
-                                <a title="Delete" href="javascript:void(0);" class="btn btn-outline-danger btn-sm"><i  class="bi bi-trash3"></i></a>
                             </div>
                         </td>
                     </tr>
