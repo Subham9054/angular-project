@@ -142,6 +142,7 @@
   p {
     margin-bottom: 0;
     line-height: 1.2;
+    font-size: 0.85rem;
   }
   small {
     opacity: 0.6;
@@ -181,7 +182,7 @@
   font-size: 1.8rem;
   margin-right: $spacer - 0.5rem;
   align-items: center;
-  margin-left: 1.2rem;
+  margin-left: 0.6rem;
   @media (max-width:630px){
     margin-left: 0.7rem;
   }
