@@ -1,5 +1,9 @@
 
 .theme-light {
+    --link-color: #{$blue};
+    --border-color: #{$grey-600};
+    --border-primary-color: #{$blue};
+    --primary-color: #{$blue};
     --bs-body-bg: #{$white};
     --text-white:#{$white};
     --bg-black:#{$black};
@@ -51,8 +55,18 @@
     --breadcrumb-text:#{$grey-light-400};
     --logo-small:#{$grey-light-500};
     --header-text:#{$blue-light-200};
+    --toggle-btn:#{$grey-light-200};
+    --tableheader-bg:#{$grey-light-800};
+    --shadow-bg:#{$shadow};
+    --statics-border:#{$grey-light};
+    --faq-border:#{$grey-border};
+    --input-color:#{$grey-light-900};
 }
 .theme-dark {   
+    --link-color: #{$white};
+    --border-color: #{$grey-300};
+    --border-primary-color: #{$white};
+    --primary-color: #{$warning};
     --bs-body-bg: #{$grey-700};
     --text-white:#{$white};
     --bg-black:#{$black};
@@ -61,18 +75,19 @@
     --switch-icon:#{$white};
     --header-utilities-bg:#{$grey-light-100};
     --lang-text:#{$white};
-    --top-header-border:#{$white};
+    --top-header-border:#{$grey-light-900};
     --menu-color:#{$white};
     --about-bg-tap:#{$blue-100};
     --about-bg-tapicon:#{$white};
     --know-btn:#{$blue-200};
-    --know-btn-bg:#{$blue-300};
+    --know-btn-bg:#{$warning};
     --footer-bg:#{$grey-200};
     --footer-text:#{$white};
     --socialborder:#{$grey-300};
     --faq-bg:#{$grey-800};
     --faq-active:#{$blue-200};
     --faq-accordian:#{$white};
+    --event-hover:#{$blue-900};
     --eventsmall-text:#{$grey-500};
     --view-link:#{$blue-600};
     --grivance-card:#{$blue-500};
@@ -83,16 +98,16 @@
     --btnstyle-two-text:#{$blue-400};
     --banner-bg:#{$black-100};
     --banner-text:#{$white};
-    --notification-bg:#{$grey-800};
+    --notification-bg:#{$grey-700};
     --notificationtext-bg:#{$blue-100};
     --notification-bullet:#{$blue-100};
-    --menu-hover:#{$blue-600};
+    --menu-hover:#{$warning};
     --login-btn:#{$blue-800};
     --heading-styletwo:#{$grey-900};
     --about-text:#{$white};
     --text-black:#{$white};
     --form-control:#{$white};
-    --theme-icon:#{$blue-100};
+    --theme-icon:#{$blue-light-300};
     --statics-bg:#{$grey-light-700};
     --statics-data:#{$grey-light-400};
     --statics-text:#{$grey-light-400};
@@ -102,5 +117,11 @@
     --page-title:#{$white};
     --breadcrumb-text:#{$grey-light-400};
     --logo-small:#{$grey-light-600};
-    --header-text:#{$blue-light-300};
+    --header-text:#{$warning};
+    --toggle-btn:#{$grey-light-200};
+    --tableheader-bg:#{$grey-light-400};
+    --shadow-bg:#{$shadow-100};
+    --statics-border:#{$grey-300};
+    --faq-border:#{$grey-300};
+    --input-color:#{$grey-300};
 }

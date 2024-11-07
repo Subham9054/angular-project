@@ -1,7 +1,9 @@
-
+@import "../../../node_modules/bootstrap/scss/mixins";
+@import "../../../node_modules/bootstrap/scss/functions";
+@import "../../../node_modules/bootstrap/scss/variables";
 
 .left-img{
-    width: 436px;
+    width: 100%;
     position: relative;
     img{
         width: 100%;
@@ -12,25 +14,26 @@
     &::before{
         position: absolute;
         content: "";
-        left: -2.2rem;
+        left: -0.9rem;
         border: 1px solid rgba(112, 112, 112, 0.4784313725);
         border-radius: 18px;
-        width: 315px;
-        height: 271px;
+        width: 258px;
+        height: 216px;
         z-index: -1;
-        top: -2rem;
+        top: -1rem;
    }
 }
 
 
 .objective{
-    margin-top: 2.5rem;
+    margin-top: 0.7rem;
 }
 .objective-patch{
-    display: flex;
+    display: block;
     /* align-items: center; */
     gap: 1.2rem;
     margin-bottom: 2rem;
+    text-align: center;
     .objective-icon{
         span {
             font-size: 3.5rem;
@@ -45,3 +48,46 @@
  }  
 }
 
+
+@include media-breakpoint-up(md) {
+    .left-img{
+        width: 100%;
+        position: relative;
+        margin: 0 auto;
+    }
+    .objective{
+        margin-top: 2.5rem;
+    }
+    .objective-patch{
+        display: flex;
+        /* align-items: center; */
+        gap: 1.2rem;
+        margin-bottom: 2rem;
+        text-align: left;
+
+        .objective-icon{
+            span {
+                font-size: 3.5rem;
+            }
+        }
+     .about_text{
+        h4{
+            margin-bottom: 1rem;
+        }
+        
+     }  
+    } 
+}
+@include media-breakpoint-up(lg) {
+    .left-img{
+        width: 436px;
+      
+        &::before{
+            left: -2.2rem;
+            width: 315px;
+            height: 271px;
+            z-index: -1;
+            top: -2rem;
+       }
+    }
+}

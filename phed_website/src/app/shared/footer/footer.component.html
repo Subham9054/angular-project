@@ -1,42 +1,45 @@
+
 <div class="footer">
     <div class="container">
-        <div class="row align-items-center">            
+        <div class="row align-items-center">
             <div class="col-lg-7">
                 <ul class="d-sm-flex justify-content-lg-start justify-content-center">
                     <li>
-                        <a routerLink="/home" title="Home">{{ 'HOME' | translate }}</a>
+                        <a routerLink="/home" title="Home">Home</a>
                     </li>
-                    <li> <a routerLink="/faq" title="FAQ">{{ 'Faq' | translate }}</a></li>
-                    <li><a routerLink="/privacy-policy" title="Privacy Policy">{{ 'PRIVACY' | translate }}</a></li>
-                    <li>
-                        <a href="javascript:void(0);" title="Site Links">{{ 'SITEMAP' | translate }}</a>
-                    </li>
+                    <li> <a routerLink="/faq" title="FAQ">FAQ</a></li>
+                    <li><a routerLink="/privacy-policy" title="Privacy Policy">Privacy Policy</a></li>
+                    <!-- <li>
+                        <a routerLink="/site-map" title="Site Links">Sitemap</a>
+                    </li> -->
                 </ul>
             </div>
             <div class="col-lg-5">
                 <div class="social_media_links d-sm-flex justify-content-lg-end justify-content-center">
-                    <a href="javascript:void(0)" class="fb" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Facebook"><i class="bi bi-facebook"></i></a>
-                    <a href="javascript:void(0)" class="twitter" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Twitter"><i class="bi bi-twitter-x"></i></a>
-                    <a href="javascript:void(0)" class="insta" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Instagram"><i class="bi bi-instagram"></i></a>
+                    <a href="javascript:void(0)" class="fb"  data-bs-custom-class="custom-tooltip" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Facebook"><i class="bi bi-facebook"></i></a>
+                    <a href="javascript:void(0)" class="twitter"  data-bs-custom-class="custom-tooltip" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Twitter"><i class="bi bi-twitter-x"></i></a>
+                    <a href="javascript:void(0)" class="insta"   data-bs-custom-class="custom-tooltip" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Instagram"><i class="bi bi-instagram"></i></a>
                 </div>
             </div>
         </div>
     </div>
+   
 
     <div class="copyright">
         <div class="container">
            <div class="row ">
-                <div class="col-lg-7 text-lg-start text-center">
-                    <p>{{ 'COPYRIGHT' | translate }}</p>
-                </div>                
-                <div class="col-lg-5 text-lg-end text-center">
-                    <p>{{ 'VISITORS' | translate }}<span>{{ getTranslatedVisitors() }}</span></p>
-                </div>
+            <div class="col-lg-7 text-lg-start text-center">
+                <p>© 2024 PHED, All Rights Reserved</p>
+            </div>
+            <div class="col-lg-5 text-lg-end text-center">
+                <p>Visitors: <span>75849</span></p>
+            </div>
            </div>
         </div>
     </div>
 </div>
 
-<button class="go-top" title="Go to Top" *ngIf="isShow" (click)="gotoTop()" title="Go to top">
+<button class="go-top" *ngIf="isShow" (click)="gotoTop()" data-bs-toggle="tooltip" data-bs-placement="top" title="Go to top"> 
     <i class="bi bi-arrow-up"></i>
-</button>
+  </button>
+  
