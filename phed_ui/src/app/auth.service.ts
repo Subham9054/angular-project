@@ -35,8 +35,6 @@ export class AuthService {
   private getloclevel='https://localhost:7225/api/Dropdown/GetLocationLevel';
   private insertescalationurl="https://localhost:7237/Api/MANAGE_ESCALATION_CONFIGDETAILS/insertescalation";
   private checkApiUrl = 'https://localhost:7237/Api/MANAGE_ESCALATION_CONFIGDETAILS/check';
-  private viewEscalationurl='https://localhost:7237/Api/MANAGE_ESCALATION_CONFIGDETAILS/viewescalation';
-  private viewEscalationurleye= 'https://localhost:7237/Api/MANAGE_ESCALATION_CONFIGDETAILS/viewescalationeye';
   constructor(private http: HttpClient, private router: Router) { }
  
   // Method for user login
@@ -206,18 +204,7 @@ export class AuthService {
     );
   }
 
-  viewEscalation(INT_CATEGORY_ID: string, INT_SUB_CATEGORY_ID: string): Observable<any> {
-    // Make HTTP request with proper API URL and query parameters
-    return this.http.get<any>(`${this.viewEscalationurl}?categoryId=${INT_CATEGORY_ID}&subcategoryId=${INT_SUB_CATEGORY_ID}`).pipe(
-        catchError(this.handleError)
-    );
-  }
-  viewEscalationeye(INT_CATEGORY_ID: string, INT_SUB_CATEGORY_ID: string): Observable<any> {
-    // Make HTTP request with proper API URL and query parameters
-    return this.http.get<any>(`${this.viewEscalationurleye}?categoryId=${INT_CATEGORY_ID}&subcategoryId=${INT_SUB_CATEGORY_ID}`).pipe(
-        catchError(this.handleError)
-    );
-  }
+
   // Error handling logic
   private handleError(error: any) {
     console.error('An error occurred:', error);

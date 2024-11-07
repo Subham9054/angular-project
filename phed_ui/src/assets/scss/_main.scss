@@ -86,9 +86,12 @@ a {
       transition: max-height 0.5s ease, opacity 0.5s ease, padding 0.5s ease;
       border: 0 !important;
       border-radius: 5px ;
+      .input-group-text {
+        background-color: #fff !important;
+      }
     }
   }
-
+  // Bijayalaxmi patra date :- 07/11/24
   // .search-btn {
   //   text-align: center;
   //   margin-bottom: 1rem;
@@ -224,9 +227,7 @@ a {
     text-wrap: nowrap;
     font-weight: 500;
   }
-td{
-  vertical-align: middle;
-}
+
   tfoot {
     td {
       font-weight: bold;
@@ -610,7 +611,6 @@ table {
 
   .pending {
     border: 1px solid #ff9f60;
-    background-color: transparent;
   }
 
   .pending {
@@ -632,7 +632,6 @@ table {
 
   .received {
     border: 1px solid #4374e7;
-    background-color: transparent;
   }
 
   .received {
@@ -655,7 +654,6 @@ table {
 
   .resolved {
     border: 1px solid #008000;
-    background-color: transparent;
   }
 
   .resolved {
@@ -678,7 +676,6 @@ table {
 
   .non-resolved {
     border: 1px solid #dc3545;
-    background-color: transparent;
   }
 
   .non-resolved {
@@ -701,7 +698,6 @@ table {
 
   .verify {
     border: 1px solid #0dcaf0;
-    background-color: transparent;
   }
 
   .verify {
@@ -732,7 +728,7 @@ table {
     margin-bottom: -0.9rem;
 
     .nav-link {
-      background-color: $sidebar-bg;
+      background-color: $blue-dark;
       color: $white;
 
       &:hover {
@@ -764,7 +760,7 @@ table {
 //       border-left: 2px solid #e8eef5 !important;
 //     }
 //   }
-
+//  Bijayalaxmi patra date :- 07/11/24
 //   tbody {
 //     .border-left-2 {
 //       border-left: 2px solid !important;
@@ -778,7 +774,7 @@ table {
 //       border-left-color: #4caf50 !important;
 //     }
 //   }
-
+//    Bijayalaxmi patra date :- 07/11/24
 // }
 // Publish
 tr.publish {
@@ -822,7 +818,7 @@ tr.unpublish{
     flex-direction: column;
     gap: 0.6rem;
   }
-
+ // Bijayalaxmi patra date :- 07/11/24
   .legends {
     display: flex;
     margin-bottom: 0;
@@ -848,11 +844,28 @@ tr.unpublish{
       }
     }
   }
-
+ // Bijayalaxmi patra date :- 07/11/24
 
 }
 
+// Brows file
+.custom-fileupload{
+  opacity: 0;
 
+}
+.custom-input{
+  position: absolute;
+  left: 0;
+  right: 0;
+  border: 1px solid #dee2e6;
+  padding: 0.5rem 0.9rem;
+  border-radius: 0.375rem !important; 
+  color: #cccccc;
+}
+.custom-browse{
+  background-color: #565656;
+  color: $white;
+}
 .img-banner {
   // border: 1px solid #ddd;
   // background-color: #f0eeee;
@@ -876,6 +889,17 @@ tr.unpublish{
   height: 13rem;
   width: 100%;
   object-fit: cover;
+}
+.flex-contan{
+  display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    .block-fun{
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }    
 }
 
 // Drag Image
@@ -910,10 +934,8 @@ tr.unpublish{
   /* Customize as needed */
 }
 
-// Input group
-.input-group-text {
-  background-color: #fff !important;
-}
+
+
 
 @media (max-width:630px) {
   .breadcrumb {

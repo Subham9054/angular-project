@@ -3,17 +3,48 @@
         <div class="row justify-content-between align-items-center">
             <div class="col-lg-4">
                 <ul class="nav nav-tabs" routerLinkActive="active">
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a routerLink="/application/mnggallery" class="nav-link">Add</a>
-                    </li>
+                    </li> -->
                     <li class="nav-item">
                         <a routerLink="/application/mnggallery-view" class="nav-link active">View</a>
                     </li>
                 </ul>
             </div>
+            <div class="col-lg-6 col-md-6">
+                <div class="utilite float-end mb-1">
+                    <ul class="mb-0">
+                       
+                        <li>
+                            <a href="javascript:void(0)" title="Click to Print"><i class="bi bi-printer"></i></a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" title="Click to Publish">
+                                <i class="bi bi-volume-up"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" title="Click to Unpublish">
+                                <i class="bi bi-volume-mute"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" title="Click to Add" routerLink="/application/mnggallery">
+                                <i class="bi bi-plus-lg"></i>
+                            </a>
+                        </li>
+
+                        <!-- <li>
+                            <a href="javascript:void(0)" title="Click to Open filter" data-bs-toggle="collapse" href="#collapseExample">
+                                <i class="bi bi-funnel"></i>
+                            </a>
+                        </li> -->
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
-    <div id="collapseExample" class="collapse">
+    <div id="collapseExample" class="collapse" >
         <div class="content-box search-box">
             <div class="row">
                 <div class="col-xxl-3 col-lg-4 col-md-6">
@@ -36,35 +67,37 @@
             </div>
         </div>
     </div>
-    <div class="search-btn">
+    <!-- <div class="search-btn">
         <a data-bs-toggle="collapse" href="#collapseExample">
             <span class="collapse-on">Search Open <i class="bi bi-arrow-down"></i></span> <span
                 class="collapse-off">Search Close <i class="bi bi-arrow-up"></i></span>
         </a>
-    </div>
+    </div> -->
     <div class="content-box content-area p-0">
         <div class="table-responsive mb-0">
-            <table class="table table-striped mb-0">
+            <table class="table  mb-0">
                 <thead>
                     <tr>
+                        <th width="30px">
+                            <input type="checkbox">
+                        </th>
                         <th width="40px">Sl#</th>
                         <th>Type</th>
-                        <th>Link Type</th>
-                        <th>Created On</th>
-                        <th>Status</th>
+                        <th>Caption</th>
+                        <th>Caption in Hindi</th>
                         <th width="90px">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr class="unpublish">
+                        <td><input type="checkbox"></td>
                         <td>1</td>
                         <td>Photo</td>
-                        <td>-</td>
-                        <td>14-Mar-2024</td>
-                        <td></td>
+                        <td>Lorem Ipsum is simply dummy text of the printing and typesetting industry</td>
+                       <td>लोरेम इप्सम केवल मुद्रण और प्रकारSETTING उद्योग का डमी टेक्स्ट है।</td>
                         <td>
                             <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View">
+                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View" data-bs-toggle="modal" data-bs-target="#viewmodal">
                                     <i class="bi bi-eye"></i></a>
                                 <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
                                     <i class="bi bi-pencil"></i></a>
@@ -73,15 +106,15 @@
                             </div>
                         </td>
                     </tr>
-                    <tr>
+                    <tr class="publish">
+                        <td><input type="checkbox"></td>
                         <td>2</td>
                         <td>Photo</td>
-                        <td>-</td>
-                        <td>14-Mar-2024</td>
-                        <td></td>
+                        <td>Lorem Ipsum is simply dummy text of the printing and typesetting industry</td>
+                        <td>लोरेम इप्सम केवल मुद्रण और प्रकारSETTING उद्योग का डमी टेक्स्ट है।</td>
                         <td>
                             <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View">
+                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View" data-bs-toggle="modal" data-bs-target="#viewmodal">
                                     <i class="bi bi-eye"></i></a>
                                 <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
                                     <i class="bi bi-pencil"></i></a>
@@ -90,15 +123,15 @@
                             </div>
                         </td>
                     </tr>
-                    <tr>
+                    <tr class="unpublish">
+                        <td><input type="checkbox"></td>
                         <td>3</td>
                         <td>Photo</td>
-                        <td>-</td>
-                        <td>14-Mar-2024</td>
-                        <td></td>
+                        <td>Lorem Ipsum is simply dummy text of the printing and typesetting industry</td>
+                        <td>लोरेम इप्सम केवल मुद्रण और प्रकारSETTING उद्योग का डमी टेक्स्ट है।</td>
                         <td>
                             <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View">
+                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View" data-bs-toggle="modal" data-bs-target="#viewmodal">
                                     <i class="bi bi-eye"></i></a>
                                 <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
                                     <i class="bi bi-pencil"></i></a>
@@ -108,15 +141,15 @@
                         </td>
                     </tr>
 
-                    <tr>
+                    <tr class="publish">
+                        <td><input type="checkbox"></td>
                         <td>4</td>
                         <td>Photo</td>
-                        <td>-</td>
-                        <td>14-Mar-2024</td>
-                        <td></td>
+                        <td>Lorem Ipsum is simply dummy text of the printing and typesetting industry</td>
+                        <td>लोरेम इप्सम केवल मुद्रण और प्रकारSETTING उद्योग का डमी टेक्स्ट है।</td>
                         <td>
                             <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View">
+                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View" data-bs-toggle="modal" data-bs-target="#viewmodal">
                                     <i class="bi bi-eye"></i></a>
                                 <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
                                     <i class="bi bi-pencil"></i></a>
@@ -125,15 +158,15 @@
                             </div>
                         </td>
                     </tr>
-                    <tr>
+                    <tr class="unpublish">
+                        <td><input type="checkbox"></td>
                         <td>5</td>
                         <td>Photo</td>
-                        <td>-</td>
-                        <td>14-Mar-2024</td>
-                        <td></td>
+                        <td>Lorem Ipsum is simply dummy text of the printing and typesetting industry</td>
+                        <td>लोरेम इप्सम केवल मुद्रण और प्रकारSETTING उद्योग का डमी टेक्स्ट है।</td>
                         <td>
                             <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View">
+                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View" data-bs-toggle="modal" data-bs-target="#viewmodal">
                                     <i class="bi bi-eye"></i></a>
                                 <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
                                     <i class="bi bi-pencil"></i></a>
@@ -144,6 +177,45 @@
                     </tr>
                 </tbody>
             </table>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal View  -->
+<div class="modal fade" id="viewmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Gallery</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body view-form">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="row">
+                            <div class="col-xl-12 col-md-6">
+                                <div class="mb-3">
+                                    <div class="img-fluid">
+                                        <img src="./assets/img/login-bg.png" alt="Profile Image" class="modal-banner">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="row">
+                            <div class="col-xl-12 col-md-12">
+                                <div class="mb-3">
+                                    <label class="form-label">Caption</label>
+                                    <label class="form-value">
+                                        Our government is dedicated to ensuring that every household in Bihar has access to safe, clean drinking water through the PHED's robust infrastructure.
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

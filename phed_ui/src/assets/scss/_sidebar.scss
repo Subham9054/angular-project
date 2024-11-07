@@ -233,7 +233,6 @@ a.sidebar-link {
   &:hover {
     color: $sidebar-link-hover-color;
     background: $sidebar-link-hover-bg;
-    border-radius: 6px;
   }
 
   &:focus {
@@ -266,7 +265,7 @@ a.sidebar-link {
     // }
 
     &:hover {
-      color: $white;
+      color: rgba($white, 0.8);
       background-color: transparent;
     }
 
