@@ -71,7 +71,6 @@ a {
 
 .form-cointainer {
   min-height: 10rem;
-
   .content-box {
     background-color: $white;
     padding: 1.2rem;
@@ -81,7 +80,7 @@ a {
     @include box-shadow(0 0.125rem 0.25rem rgba($black, .2));
 
     &.search-box {
-      // margin-bottom: 1rem;
+      margin-bottom: 1rem;
       padding: 1rem 1.2rem 0.2rem 0.9rem;
       background-color: $blue-light;
       transition: max-height 0.5s ease, opacity 0.5s ease, padding 0.5s ease;
@@ -89,40 +88,40 @@ a {
       border-radius: 5px ;
     }
   }
+  // Bijayalaxmi patra date :- 07/11/24
+  // .search-btn {
+  //   text-align: center;
+  //   margin-bottom: 1rem;
+  //   margin-top: -0.1rem;
 
-  .search-btn {
-    text-align: center;
-    margin-bottom: 1rem;
-    margin-top: -0.1rem;
+  //   a {
+  //     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.09);
+  //     padding: 0.3rem 0.9rem;
+  //     background-color: $blue-light;
+  //     color: #000;
+  //     position: relative;
+  //     display: inline-block;
+  //     text-decoration: none;
+  //     border-bottom-right-radius: 0.4rem;
+  //     border-bottom-left-radius: 0.4rem;
+  //   }
 
-    a {
-      box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.09);
-      padding: 0.3rem 0.9rem;
-      background-color: $blue-light;
-      color: #000;
-      position: relative;
-      display: inline-block;
-      text-decoration: none;
-      border-bottom-right-radius: 0.4rem;
-      border-bottom-left-radius: 0.4rem;
-    }
+  //   a:not(.collapsed) {
+  //     .collapse-on {
+  //       display: none;
+  //     }
 
-    a:not(.collapsed) {
-      .collapse-on {
-        display: none;
-      }
+  //     .collapse-off {
+  //       display: block;
+  //     }
+  //   }
 
-      .collapse-off {
-        display: block;
-      }
-    }
-
-    .collapse-off {
-      display: none;
-    }
+  //   .collapse-off {
+  //     display: none;
+  //   }
 
 
-  }
+  // }
 
 }
 
@@ -130,7 +129,9 @@ a {
 .main-tab {
   margin-bottom: .8rem;
   border-bottom: solid 1px $gray-200;
-
+>div{
+  align-items: center;
+}
   .nav-tabs {
     border-bottom: transparent;
     margin-bottom: .5rem;
@@ -217,6 +218,7 @@ a {
 }
 
 .table {
+
   th {
     background-color: $blue-light !important;
     text-wrap: nowrap;
@@ -748,24 +750,57 @@ table {
 
 
 // View page legand border
-.table {
-  thead {
-    .border-left-head {
-      border-left: 2px solid #e8eef5 !important;
+
+// .table {
+//   thead {
+//     .border-left-head {
+//       border-left: 2px solid #e8eef5 !important;
+//     }
+//   }
+//  Bijayalaxmi patra date :- 07/11/24
+//   tbody {
+//     .border-left-2 {
+//       border-left: 2px solid !important;
+//     }
+
+//     .border-left-danger {
+//       border-left-color: #dc3545 !important;
+//     }
+
+//     .border-left-success {
+//       border-left-color: #4caf50 !important;
+//     }
+//   }
+//    Bijayalaxmi patra date :- 07/11/24
+// }
+// Publish
+tr.publish {
+  td:first-child {
+    position: relative;
+    &:after{
+      position: absolute;
+      content: "";
+      height: 80%;
+      width: 2.2px;
+      background-color: #4caf50;
+      left: -1px;
+      top: 10%;
     }
   }
+}
+// unpublish
 
-  tbody {
-    .border-left-2 {
-      border-left: 2px solid !important;
-    }
-
-    .border-left-danger {
-      border-left-color: #dc3545 !important;
-    }
-
-    .border-left-success {
-      border-left-color: #4caf50 !important;
+tr.unpublish{
+  td:first-child {
+    position: relative;
+    &:after{
+      position: absolute;
+      content: "";
+      height: 80%;
+      width: 2.2px;
+      background-color: #dc3545;
+      left: -1px;
+      top: 10%;
     }
   }
 }
@@ -774,20 +809,18 @@ table {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 
   @media (max-width:375px) {
     flex-direction: column;
     gap: 0.6rem;
   }
-
+ // Bijayalaxmi patra date :- 07/11/24
   .legends {
     display: flex;
     margin-bottom: 0;
     padding-left: 0;
-    &:first-child li {
-      margin-right: 0.5rem;
-    }
+   
     @media (max-width:375px) {
       margin-right: auto;
     }
@@ -795,29 +828,31 @@ table {
     li {
       list-style-type: none;
 
-      
+      &:first-child {
+        margin-right: 1.5rem;
+    }
 
       span {
-        height: .9rem;
-        width: .4rem;
-        margin-right: .2rem;
+        height: 0.8rem;
+        width: 0.8rem;
         background: #e3e3e3;
-        display: inline-block
+        display: inline-block;
+        border-radius: 0.15rem;
       }
     }
   }
-
+ // Bijayalaxmi patra date :- 07/11/24
 
 }
 
 
 .img-banner {
-  border: 1px solid #ddd;
-  background-color: #f0eeee;
+  // border: 1px solid #ddd;
+  // background-color: #f0eeee;
   padding: 0.2rem;
   display: block;
   height: 100%;
-  width: 6rem;
+  width: 5.5rem;
 
   img {
     height: 100%;
@@ -826,11 +861,15 @@ table {
 }
 
 .profile-img {
-  border-radius: 50%;
-  overflow: hidden;
+  height: 70px;
+  width: 70px;
 }
 
-
+.modal-banner{
+  height: 13rem;
+  width: 100%;
+  object-fit: cover;
+}
 
 // Drag Image
 .photoUpload {
