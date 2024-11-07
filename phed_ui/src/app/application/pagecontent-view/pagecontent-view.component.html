@@ -28,23 +28,27 @@
                                 <i class="bi bi-volume-mute"></i>
                             </a>
                         </li>
+                        
+
                         <li>
-                            <a href="javascript:void(0)" title="Click to Add Tab" routerLink="/application/pagecontent">
-                                <i class="bi bi-plus-lg"></i>
+                            <a href="javascript:void(0)" title="{{ isPanelOpen ? 'Click to Close Filter' : 'Click to Open Filter' }}" 
+                               (click)="togglePanel()">
+                                <i class="bi bi-funnel"></i>
                             </a>
                         </li>
 
                         <li>
-                            <a href="javascript:void(0)" title="Click to Open filter" data-bs-toggle="collapse" href="#collapseExample">
-                                <i class="bi bi-funnel"></i>
+                            <a href="javascript:void(0)" title="Click to Add" routerLink="/application/pagecontent">
+                                <i class="bi bi-plus-lg"></i>
                             </a>
                         </li>
+
                     </ul>
                 </div>
             </div>
         </div>
     </div>
-    <div id="collapseExample" class="collapse show">
+    <div id="collapseExample" class="collapse show" [ngClass]="{'show': isPanelOpen}">
         <div class="content-box search-box">
             <div class="row">
                 <div class="col-xxl-3 col-lg-4 col-md-6">
@@ -206,6 +210,16 @@
                 <div class="row">
                     <div class="col-xl-12">
                         <div class="row">
+                            <div class="col-xl-12">
+                                <div class="mb-3">
+                                    <!-- <label class="form-label d-block mb-2">Feature Image</label> -->
+                                    <div class="img-fluid">
+                                        <img  src="./assets/img/login-bg.png" alt="Feature Image" class="modal-banner">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
                             <div class="col-xl-4 col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label d-block">Page Title</label>
@@ -281,16 +295,7 @@
                             </div> -->
                         </div>
 
-                        <div class="row">
-                            <div class="col-xl-12">
-                                <div class="mb-3">
-                                    <label class="form-label d-block mb-2">Feature Image</label>
-                                    <div class="img-fluid">
-                                        <img  src="./assets/img/login-bg.png" alt="Feature Image" class="modal-banner">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                      
 
                     </div>
                 </div>

@@ -18,7 +18,7 @@
                             <span class="text-danger small"><b>(*)</b> Indicate mandatory </span>
                         </li>
                         <li>
-                            <a href="javascript:void(0)" title="Click to Add Tab" routerLink="/application/mngbanner">
+                            <a href="javascript:void(0)" title="Click to Add" routerLink="/application/mngbanner">
                                 <i class="bi bi-plus-lg"></i>
                             </a>
                         </li>
@@ -34,11 +34,11 @@
                 <div class="row">
                     <div class="col-lg-8 col-md-6">
                         <div class="mb-3">
-                            <label class="form-label" for="menuen">Upload Banner Image</label>
+                            <label class="form-label" for="menuen"> Banner Image</label>
                             <div class="custom-dropzone photoUpload" ngx-dropzone [accept]="'image/*'" (change)="onSelect($event)">
                                 <ngx-dropzone-label>
                                     <div>
-                                        <h2>Drag and Drop <span class="d-block">or</span>Click to upload here</h2>
+                                        <h2>Drag and Drop <span class="d-block">or</span>Click to Upload Banner Image</h2>
                                     </div>
                                 </ngx-dropzone-label>
                                 <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f" [removable]="true" (removed)="onRemove(f)">

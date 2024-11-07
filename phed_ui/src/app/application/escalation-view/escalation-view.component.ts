@@ -10,7 +10,11 @@ import { HttpClient } from '@angular/common/http';
 })
 export class EscalationViewComponent {
 
+  isPanelOpen = true; // Start with the panel open
 
+  togglePanel() {
+    this.isPanelOpen = !this.isPanelOpen; // Toggle the panel state
+  }
 
   categories: any[] = [];
   subcategories: any[] = [];
