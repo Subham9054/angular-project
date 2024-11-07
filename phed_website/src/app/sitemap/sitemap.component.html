@@ -1,59 +1,57 @@
 <div class="inner-area">
     <div class=" bannerarea">
-            <div class="page-title" >
-                <h2>Sitemap</h2>
+        <div class="container">
+            <div class="bannerarea-content">
+                <div>
+                    <div class="page-title" >
+                        <h2>Sitemap</h2>
+                    </div>
+                    <div class="breadcrumb-area">
+                        <nav  aria-label="breadcrumb">
+                            <ol class="breadcrumb mb-0">
+                                <li class="breadcrumb-item"><a href="#"><i class="icon icon-Group-14936"></i></a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Sitemap</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+               
             </div>
-            <div class="breadcrumb-area">
-                <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-                    <ol class="breadcrumb justify-content-center mb-0">
-                        <li class="breadcrumb-item"><a href="#"><i class="icon icon-Group-14936"></i></a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Sitemap</li>
-                    </ol>
-                </nav>
-            </div>
+         
+        </div>
+          
       
         
     </div>
     <div class="content-area  pb-0" id="targetMainContent">
         <div class="container">
            
-            <nav class="sitemap">
-                <ul class="first">
-                  <li><a href="#">Home</a>
-                    <ul class="second">
-                      <li><a href="#">About</a>
-                        <ul class="third">
-                          <li><a href="#">History</a></li>
-                          <li><a href="#">Foundation</a></li>
-                          <li><a href="#">Future Plans</a></li>
-                        </ul>
-                      </li>
-                      <li><a href="#">Articles</a>
-                        <ul class="third">
-                          <li><a href="#">News</a></li>
-                          <li><a href="#">Book Reviews</a></li>
-                          <li><a href="#">Press</a></li>
-                          <li><a href="#">Interviews</a></li>
-                        </ul>
-                      </li>
-                      <li><a href="#">Visit</a>
-                        <ul class="third">
-                          <li><a href="#">Location</a></li>
-                          <li><a href="#">Opening Times</a></li>
-                          <li><a href="#">Tickets</a></li>
-                        </ul>
-                      </li>
-                      <li><a href="#">Shop</a>
-                        <ul class="third">
-                          <li><a href="#">Books</a></li>
-                          <li><a href="#">Gifts</a></li>
-                        </ul>
-                      </li>
-                      <li><a href="#">Contact</a></li>
-                    </ul>
-                  </li>
-                </ul>
-              </nav>
+          <div class="sitemap-sec contentbox">
+            <ul class="row">
+                <li class="col-md-6 col-xl-3">
+                    <a title="Home" [routerLink]="['/home']" class="innerarea__subtitle">Home</a></li>
+               
+                <li class="col-md-6 col-xl-3">
+                    <a title="Lorem ipsum" [routerLink]="['/about-us']" class="innerarea__subtitle" >About Us</a>
+                </li>
+                <li class="col-md-6 col-xl-3">
+                    <a title="Lorem ipsum" [routerLink]="['/how-it-works']" class="innerarea__subtitle" >How it Works</a>
+                </li>
+                <li class="col-md-6 col-xl-3">
+                    <a href="javascript:void(0);" [routerLink]="['/faq']" class="innerarea__subtitle" title="Lorem ipsum">FAQ</a>
+                   </li>
+                   <li class="col-md-6 col-xl-3">
+                    <a href="javascript:void(0);" [routerLink]="['/contact-us']" class="innerarea__subtitle" title="Lorem ipsum">Contact Us</a>
+                   </li>
+                   <li class="col-md-6 col-xl-3">
+                    <a href="javascript:void(0);" [routerLink]="['/privacy-policy']" class="innerarea__subtitle" title="Lorem ipsum">Privacy Policy</a>
+                   </li>
+                   <li class="col-md-6 col-xl-3">
+                    <a href="javascript:void(0);" [routerLink]="['/site-map']" class="innerarea__subtitle" title="Lorem ipsum">Sitemap</a>
+                   </li>
+            </ul>
+         
+        </div>
             </div>
           
     </div>

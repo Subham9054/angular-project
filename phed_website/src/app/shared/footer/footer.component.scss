@@ -1,7 +1,6 @@
 @import "../../../../node_modules/bootstrap/scss/mixins";
 @import "../../../../node_modules/bootstrap/scss/functions";
 @import "../../../../node_modules/bootstrap/scss/variables";
-
 .footer {
   padding: 1.5rem 0;
   ul {
@@ -22,7 +21,9 @@
     
     }
   }
- 
+ .custom-tooltip{
+  --bs-tooltip-bg:#ccc;
+ }
   .social_media_links {
     display: flex;
     gap: 1rem;
@@ -128,7 +129,7 @@
         position: absolute;
         content: "";
         right: 1px;
-        background-color: #ccc;
+        background-color: var(--socialborder);
         width: 1px;
         height: 60%;
         bottom: 0;
