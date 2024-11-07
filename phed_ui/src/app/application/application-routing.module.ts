@@ -86,14 +86,15 @@ const routes: Routes = [{
     
     {path:'mnglogo',component:MnglogoComponent},
 
-    {path:'mngmenu',component:MngmenuComponent},
+   
     {path:'mngmenu/:id',component:MngmenuViewComponent},
+    {path:'mngmenu',component:MngmenuComponent},
 
     {path:'newsevent',component:NewseventComponent},
     {path:'newsevent/:id',component:NewseventViewComponent},
 
     {path:'whatsnew',component:WhatsnewComponent},
-    {path:'whatnew/:id',component:WhatnewViewComponent},
+    {path:'whatsnew/:id',component:WhatnewViewComponent},
 
     {path:'mngcontact',component:MngcontactComponent},
     {path:'mngcontact/:id',component:MngcontactViewComponent},
