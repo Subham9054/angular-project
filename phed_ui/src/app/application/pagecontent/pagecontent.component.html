@@ -3,9 +3,9 @@
         <div class="row justify-content-between">
             <div class="col-lg-4">
                 <ul class="nav nav-tabs" routerLinkActive="active">
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a routerLink="/application/pagecontent" class="nav-link active">Add</a>
-                    </li>
+                    </li> -->
                     <li class="nav-item">
                         <a routerLink="/application/pagecontent/view" class="nav-link">View</a>
                     </li>
@@ -17,6 +17,11 @@
                         <li class="bg-transparent border-0">
                             <span class="text-danger small"><b>(*)</b> Indicate mandatory </span>
                         </li>
+                        <li>
+                            <a href="javascript:void(0)" title="Click to Add Tab" routerLink="/application/pagecontent">
+                                <i class="bi bi-plus-lg"></i>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -24,31 +29,31 @@
     </div>
 
     <div class="content-box content-area">
-        <div class="row justify-content-between">
-            <div class="col-xl-8 col-md-12">
+        <div class="content-page">
+            <div class="content-left">
                 <div class="row">
-                    <div class="col-xl-6">
+                    <div class="col-xl-6 col-md-6">
                         <div class="mb-3">
                             <label class="form-label" for="patitle">Page Title</label>
                             <input class="form-control" type="text" id="patitle">
                         </div>
                     </div>
-           
-                    <div class="col-xl-6">
+
+                    <div class="col-xl-6 col-md-6">
                         <div class="mb-3">
                             <label class="form-label" for="patitlehn">Page Title in Hindi</label>
                             <input type="text" class="form-control" id="patitlehn">
                         </div>
                     </div>
 
-                    <div class="col-xl-6">
+                    <div class="col-xl-6 col-md-6">
                         <div class="mb-3">
                             <label class="form-label" for="pagealias">Page Alias</label>
                             <input class="form-control" type="text" id="pagealias">
                         </div>
                     </div>
 
-                    <div class="col-xl-6">
+                    <div class="col-xl-6 col-md-6">
                         <div class="mb-3">
                             <label class="form-label" for="readmore">Read More</label>
                             <input class="form-control" type="text" id="readmore">
@@ -56,38 +61,42 @@
                     </div>
                 </div>
 
-                  <div class="row">
-                    <div class="col-xl-6">
+                <div class="row">
+                    <div class="col-xl-6 col-md-6">
                         <div class="mb-3">
                             <label class="form-label d-block" for="linktype">Link Type</label>
                             <div class="form-check form-check-inline mt-1">
-                                <input class="form-check-input" type="radio" name="link type" id="link1" value="option1" checked>
+                                <input class="form-check-input" type="radio" name="link type" id="link1" value="option1"
+                                    checked>
                                 <label class="form-check-label" for="link1">Internal</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="link type" id="link2" value="option2">
+                                <input class="form-check-input" type="radio" name="link type" id="link2"
+                                    value="option2">
                                 <label class="form-check-label" for="link2">External</label>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-xl-6">
+                    <div class="col-xl-6 col-md-6">
                         <div class="mb-3">
                             <label class="form-label d-block">Open in Window</label>
                             <div class="form-check form-check-inline mt-1">
-                                <input class="form-check-input" type="radio" name="Window Status" id="status1" value="option1">
+                                <input class="form-check-input" type="radio" name="Window Status" id="status1"
+                                    value="option1">
                                 <label class="form-check-label" for="status1">Same Window</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="Window Status" id="status2" value="option2" checked>
+                                <input class="form-check-input" type="radio" name="Window Status" id="status2"
+                                    value="option2" checked>
                                 <label class="form-check-label" for="status2">New Window</label>
                             </div>
                         </div>
                     </div>
-                  </div>
+                </div>
 
                 <div class="row">
-                    <div class="col-xl-12">
+                    <div class="col-xl-6">
                         <div class="mb-3">
                             <label class="form-label" for="snipeng">Snippet</label>
                             <textarea class="form-control" id="snipeng" rows="3"></textarea>
@@ -96,8 +105,8 @@
                             </p>
                         </div>
                     </div>
-                
-                    <div class="col-xl-12">
+
+                    <div class="col-xl-6">
                         <div class="mb-3">
                             <label class="form-label" for="snipenghn">Snippet in Hindi</label>
                             <textarea class="form-control" id="snipenghn" rows="3"></textarea>
@@ -118,7 +127,7 @@
                             </p>
                         </div>
                     </div>
-                
+
                     <div class="col-xl-12">
                         <div class="mb-3">
                             <label class="form-label">Content in Hindi</label>
@@ -130,44 +139,50 @@
                     </div>
                 </div>
 
-                 <div class="row">
-                    <div class="col-xl-6">
+                <div class="row">
+                    <div class="col-xl-12">
                         <div class="mb-3 upload-doc">
                             <label class="form-label" for="uploadfile">Feature Image</label>
-                            <div class="custom-dropzone photoUpload" ngx-dropzone [accept]="'image/*'" (change)="onSelect($event)">
+                            <div class="custom-dropzone photoUpload" ngx-dropzone [accept]="'image/*'"
+                                (change)="onSelect($event)">
                                 <ngx-dropzone-label>
                                     <div>
-                                        <h2>Drag and Drop <span class="d-block">or</span>Click to upload here</h2>
+                                        <h2>Drag and Drop <span class="d-block">or</span>Click to Upload Feature Image
+                                        </h2>
                                     </div>
                                 </ngx-dropzone-label>
-                                <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f" [removable]="true" (removed)="onRemove(f)">
+                                <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files"
+                                    [file]="f" [removable]="true" (removed)="onRemove(f)">
                                     <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
                                 </ngx-dropzone-image-preview>
                             </div>
-                            <p class="small mb-0 text-end text-danger">Max file Size <span class="fw-bold">1 mb</span></p>
+                            <p class="small mb-0 text-end text-danger">Max file Size <span class="fw-bold">1 mb</span>
+                            </p>
                         </div>
                     </div>
-                 </div>
+                </div>
             </div>
-          
-            <div class="col-xl-3 col-md-12 bg-light">
-                <div class="row">
-                    <div class="col-xl-12">
-                        <div class="mb-3">
-                            <label class="form-label" for="metatitle">Meta Title</label>
-                            <input class="form-control" type="text" id="metatitle">
+
+            <div class="content-right">
+                <div class="bg-light p-4 h-100">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="mb-3">
+                                <label class="form-label" for="metatitle">Meta Title</label>
+                                <input class="form-control" type="text" id="metatitle">
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-xl-12">
-                        <div class="mb-3">
-                            <label class="form-label" for="metekeyword">Meta Keyword</label>
-                            <input class="form-control" type="text" id="metekeyword">
+                        <div class="col-xl-12">
+                            <div class="mb-3">
+                                <label class="form-label" for="metekeyword">Meta Keyword</label>
+                                <input class="form-control" type="text" id="metekeyword">
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-xl-12">
-                        <div class="mb-3">
-                            <label class="form-label" for="metedescription">Meta Description</label>
-                            <input class="form-control" type="text" id="metedescription">
+                        <div class="col-xl-12">
+                            <div class="mb-3">
+                                <label class="form-label" for="metedescription">Meta Description</label>
+                                <textarea class="form-control" id="metedescription" rows="4"></textarea>
+                            </div>
                         </div>
                     </div>
                 </div>
