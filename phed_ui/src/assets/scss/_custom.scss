@@ -96,7 +96,7 @@
             border-radius: 0.4rem;
 
             &.active {
-                background-color:$sidebar-bg;
+                background-color: $blue-dark;
                 color: $white;
             }
             &:focus{
@@ -134,7 +134,7 @@
 .content-area {
     .table {
         .badge {
-            font-weight: 300;
+            font-weight: 500;
         }
     }
 }
@@ -145,7 +145,7 @@
     .dom-upload {
         position: absolute;
         right: -45px;
-        top: 31px;
+        top: 25px;
 
     }
 }

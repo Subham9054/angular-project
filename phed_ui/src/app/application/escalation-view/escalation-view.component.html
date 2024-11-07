@@ -3,24 +3,51 @@
         <div class="row justify-content-between align-items-center">
             <div class="col-xxl-3 col-lg-4 col-md-6">
                 <ul class="nav nav-tabs" routerLinkActive="active">
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a routerLink="/application/escalation" class="nav-link">Add</a>
-                    </li>
+                    </li> -->
                     <li class="nav-item">
                         <a routerLink="/application/escalation-view" class="nav-link active">View</a>
                     </li>
                 </ul>
             </div>
             <div class="col-lg-6 col-md-6">
-                <div class="utilite float-end">
+                <div class="utilite float-end mb-1">
                     <ul class="mb-0">
-                        <li><a href="javascript:void(0)" title="Click to Print"><i class="bi bi-printer"></i></a></li>
+                       
+                        <li>
+                            <a href="javascript:void(0)" title="Click to Print"><i class="bi bi-printer"></i></a>
+                        </li>
+                        <!-- <li>
+                            <a href="javascript:void(0)" title="Click to Publish">
+                                <i class="bi bi-volume-up"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" title="Click to Unpublish">
+                                <i class="bi bi-volume-mute"></i>
+                            </a>
+                        </li> -->
+                       
+
+                        <li>
+                            <a href="javascript:void(0)" title="{{ isPanelOpen ? 'Click to Close Filter' : 'Click to Open Filter' }}" 
+                               (click)="togglePanel()">
+                                <i class="bi bi-funnel"></i>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="javascript:void(0)" title="Click to Add " routerLink="/application/escalation">
+                                <i class="bi bi-plus-lg"></i>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
-<div id="collapseExample" class="collapse show">
+<div id="collapseExample" class="collapse show" [ngClass]="{'show': isPanelOpen}">
     <div class="content-box search-box">
         <div class="row">
 
@@ -30,7 +57,7 @@
                     <select name="ddlComplaintCategory" id="ddlComplaintCategory"
                         [(ngModel)]="formData.ddlComplaintCategory"
                         (change)="onCategoryChange($event)" class="form-select">
-                        <option selected value="0">-Select-</option>
+                        <option selected value="0">Select</option>
                         <option *ngFor="let category of categories"
                             [value]="category.inT_CATEGORY_ID">{{ category.vcH_CATEGORY }}
                         </option>
@@ -43,7 +70,7 @@
                     <label for="ddlSubCategory" class="form-label">Complaint Sub-Category</label>
                     <select name="ddlSubCategory" id="ddlSubCategory"
                         [(ngModel)]="formData.ddlSubCategory" class="form-select">
-                        <option value="0">-Select-</option>
+                        <option value="0">Select</option>
                         <option *ngFor="let subcategory of subcategories"
                             [value]="subcategory.inT_SUB_CATEGORY_ID">{{
                             subcategory.vcH_SUB_CATEGORY }}
@@ -54,56 +81,110 @@
             <div class="col-xxl-3 col-lg-4">
                 <div class="mb-3">
                     <label class="form-label d-lg-block d-none">&nbsp;</label>
-                    <button type="submit" class="btn btn-primary me-2" (click)="onSearch()">Search</button>
+                    <button type="submit" class="btn btn-primary me-2">Search</button>
                     <button type="reset" class="btn btn-danger">Reset</button>
                 </div>
             </div>
         </div>  
     </div>
 </div>
-    <div class="search-btn">
+    <!-- <div class="search-btn">
         <a data-bs-toggle="collapse" href="#collapseExample">
-          <span class="collapse-on">Search Open <i class="bi bi-arrow-down"></i></span> <span class="collapse-off">Search Close <i class="bi bi-arrow-up"></i></span>
+          <span class="collapse-on">Search  <i class="bi bi-arrow-down"></i></span> <span class="collapse-off">Search Close <i class="bi bi-arrow-up"></i></span>
         </a>
-    </div>
+    </div> -->
     <div class="content-box content-area p-0">
         <div class="table-responsive mb-0">
-            <table class="table table-striped mb-0">
+            <table class="table mb-0 table-bordered">
                 <thead>
                     <tr>
+                        <!-- <th width="30px">
+                            <input type="checkbox">
+                        </th> -->
                         <th width="40px">Sl#</th>
                         <th>Complaint Category</th>
                         <th>Complaint Sub-Category</th>
                         <th>Level of Escalation</th>
                         <th>Receiving Authority</th>
-                        <th width="100px">Action</th>
+                        <th width="90px">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let escalation of escalations; let i = index">
-                        <!-- <td> <input type="checkbox" /></td> -->
-                        <td>{{ i + 1 }}</td>
-                        <td>
-                            {{ escalation.vcH_CATEGORY }}
-                            <input type="hidden" [value]="escalation.inT_CATEGORY_ID" #categoryId/>
-                        </td>
-                        <td>{{ escalation.vcH_SUB_CATEGORY }}
-                            <input type="hidden" [value]="escalation.inT_SUB_CATEGORY_ID" #subCategoryId/>
-                        </td>
-                        <td>{{escalation.inT_ESCALATION_LEVELID}}</td>
-                        <td>{{escalation.nvchDesigName}}</td>
+                    <tr>
+                        <!-- <td><input  type="checkbox"></td> -->
+                        <td>1</td>
+                        <td>Handpump Tubewell Related</td>
+                        <td>Repairing of Public Handpump</td>
+                        <td>3</td>
+                        <td>JE</td>
                         <td>
                             <div class="d-flex gap-1">
-                              <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View" 
-                                 (click)="viewEscalationDetails(categoryId.value, subCategoryId.value)" 
-                                 data-bs-toggle="modal" data-bs-target="#escalationView">
-                                <i class="bi bi-eye"></i>
-                              </a>
-                              <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
-                                <i class="bi bi-pencil"></i>
-                              </a>
+                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View" data-bs-toggle="modal" data-bs-target="#escalationView">
+                                    <i class="bi bi-eye"></i>
+                                </a>
+                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
+                                    <i class="bi bi-pencil"></i>
+                                </a>
+                                <a title="Delete" href="javascript:void(0);" class="btn btn-outline-danger btn-sm"><i  class="bi bi-trash3"></i></a>
                             </div>
-                          </td>
+                        </td>
+                    </tr>
+                    <tr>
+                        <!-- <td><input  type="checkbox"></td> -->
+                        <td>2</td>
+                        <td>Handpump Tubewell Related</td>
+                        <td>Repairing of Private Handpump</td>
+                        <td>3</td>
+                        <td>JE</td>
+                        <td>
+                            <div class="d-flex gap-1">
+                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View" data-bs-toggle="modal" data-bs-target="#escalationView">
+                                    <i class="bi bi-eye"></i>
+                                </a>
+                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
+                                    <i class="bi bi-pencil"></i>
+                                </a>
+                                <a title="Delete" href="javascript:void(0);" class="btn btn-outline-danger btn-sm"><i  class="bi bi-trash3"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <!-- <td><input  type="checkbox"></td> -->
+                        <td>3</td>
+                        <td>Piped Water Supply Related</td>
+                        <td>Water is not coming from Standpost</td>
+                        <td>3</td>
+                        <td>JE</td>
+                        <td>
+                            <div class="d-flex gap-1">
+                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View" data-bs-toggle="modal" data-bs-target="#escalationView">
+                                    <i class="bi bi-eye"></i>
+                                </a>
+                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
+                                    <i class="bi bi-pencil"></i>
+                                </a>
+                                <a title="Delete" href="javascript:void(0);" class="btn btn-outline-danger btn-sm"><i  class="bi bi-trash3"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <!-- <td><input  type="checkbox"></td> -->
+                        <td>4</td>
+                        <td>Piped Water Supply Related</td>
+                        <td>Motor Burnt</td>
+                        <td>3</td>
+                        <td>JE</td>
+                        <td>
+                            <div class="d-flex gap-1">
+                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View" data-bs-toggle="modal" data-bs-target="#escalationView">
+                                    <i class="bi bi-eye"></i>
+                                </a>
+                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
+                                    <i class="bi bi-pencil"></i>
+                                </a>
+                                <a title="Delete" href="javascript:void(0);" class="btn btn-outline-danger btn-sm"><i  class="bi bi-trash3"></i></a>
+                            </div>
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -115,52 +196,63 @@
 <!-- Modal Start::Details -->
 <div class="modal fade" id="escalationView" tabindex="-1" aria-labelledby="escalationView" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
-      <div class="modal-content">
-        <div class="modal-header justify-content-between">
-          <h1 class="modal-title fs-5" id="tokenLabel">Escalation Details</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <div class="row">
-            <div class="col-xl-12 view-form">
-              <div class="row">
-                <div class="col-xl-6 col-md-6">
-                  <div class="mb-3">
-                    <label class="form-label">Complaint Category</label>
-                    <label class="form-value">{{ selectedEscalations[0]?.vcH_CATEGORY }}</label>
-                  </div>
-                </div>
-                <div class="col-xl-6 col-md-6">
-                  <div class="mb-3">
-                    <label class="form-label">Complaint Sub-Category</label>
-                    <label class="form-value">{{ selectedEscalations[0]?.vcH_SUB_CATEGORY }}</label>
-                  </div>
-                </div>
-              </div>
+        <div class="modal-content">
+            <div class="modal-header justify-content-between">
+                <h1 class="modal-title fs-5" id="tokenLabel">Escalation Details</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="col-xl-12">
-              <div class="table-responsive mt-2">
-                <table class="table mb-0 table-bordered">
-                  <thead>
-                    <tr>
-                      <th width="40px">Sl#</th>
-                      <th>Authority Level</th>
-                      <th width="100px">Standard Action Taking Hours</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let level of selectedEscalations; let j = index">
-                      <td>{{ j + 1 }}</td>
-                      <td>{{ level.nvchDesigName }}</td>
-                      <td>{{ level.vcH_STANDARD_DAYS }}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xl-12 view-form">
+                        <div class="row">
+                            <div class="col-xl-6 col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Complaint Category</label>
+                                    <label class="form-value">Handpump Tubewell Related</label>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-6 col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Complaint Sub-Category</label>
+                                    <label class="form-value">Repairing of Public Handpump</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-12">
+                        <div class="table-responsive mt-2">
+                            <table class="table mb-0 table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th width="40px">Sl#</th>
+                                        <th>Authority Level</th>
+                                        <th width="100px">Standard Action Taking Hours</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>JE</td>
+                                        <td>120</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>SDO</td>
+                                        <td>72</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>EE</td>
+                                        <td>168</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
+</div>
 <!-- Modal End::Token -->

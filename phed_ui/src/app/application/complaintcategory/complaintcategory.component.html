@@ -3,85 +3,87 @@
     <div class="row justify-content-between">
       <div class="col-xxl-3 col-lg-4 col-md-6 col-sm-3">
         <ul class="nav nav-tabs" routerLinkActive="active">
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a routerLink="/application/complaintcategory" class="nav-link active">Add</a>
-          </li>
+          </li> -->
           <li class="nav-item">
             <a routerLink="/application/complaintcategory/view" class="nav-link">View</a>
           </li>
         </ul>
       </div>
-      <div class="col-lg-6 col-md-6 col-sm-9">
+      <div class="col-lg-6">
         <div class="utilite float-end mb-1">
-          <ul class="mb-0">
-            <li class="bg-transparent border-0">
-              <span class="text-danger small"><b>(*)</b> Indicate mandatory</span>
-            </li>
-          </ul>
+            <ul class="mb-0">
+                <li class="bg-transparent border-0">
+                    <span class="text-danger small"><b>(*)</b> Indicate mandatory </span>
+                </li>
+                <li>
+                    <a href="javascript:void(0)" title="Click to Add" routerLink="/application/complaintcategory">
+                        <i class="bi bi-plus-lg"></i>
+                    </a>
+                </li>
+            </ul>
         </div>
-      </div>
+    </div>
     </div>
   </div>
 
-  <div class="content-box content-area pb-1">
-    <div class="form-section">
+  <div class="content-box content-area">
+    <form *ngIf="!isUpdateMode" (ngSubmit)="submitComplaint()" #complaintForm="ngForm">
+      <div class="row">
 
-      <form *ngIf="!isUpdateMode" (ngSubmit)="submitComplaint()" #complaintForm="ngForm">
-        <div class="row">
-
-          <div class="col-xxl-3 col-lg-4 col-md-6">
-            <div class="mb-3">
-              <label for="complaintCategoryE" class="form-label">Complaint Category (English)</label>
-              <input id="complaintCategoryE" class="form-control" [(ngModel)]="VCH_CATEGORY" name="complaintCategoryE"
-                 required />
-            </div>
-          </div>
-
-          <div class="col-xxl-3 col-lg-4 col-md-6">
-            <div class="mb-3">
-              <label for="complaintCategoryH" class="form-label">Complaint Category (Hindi)</label>
-              <input id="complaintCategoryH" class="form-control" [(ngModel)]="NVCH_CATEGORY" name="complaintCategoryH"
-                 required />
-            </div>
-          </div> 
-        </div>
-        <div class="row">
-          <div class="col-xxl-3 col-lg-4 btn-col mb-3">
-            <div class="form-btn">
-              <button type="submit" class="btn btn-primary">Submit</button>
-              <button type="button" class="btn btn-danger" (click)="resetForm()">Reset</button>
-            </div>
+        <div class="col-xxl-3 col-lg-4 col-md-6">
+          <div class="mb-3">
+            <label for="complaintCategoryE" class="form-label">Complaint Category </label>
+            <input id="complaintCategoryE" class="form-control" [(ngModel)]="VCH_CATEGORY" name="complaintCategoryE"
+                required />
           </div>
         </div>
-      </form>
 
-      <form *ngIf="isUpdateMode" (ngSubmit)="updateComplaint()" #updateForm="ngForm">
-        <div class="row">
-          <div class="col-xxl-3 col-lg-4 col-md-6">
-            <div class="mb-3">
-              <label for="complaintCategoryE" class="form-label">Complaint Category (English)</label>
-              <input id="complaintCategoryE" class="form-control" [(ngModel)]="VCH_CATEGORY" name="complaintCategoryE"
-                placeholder="Enter Complaint Category (E)" required />
-            </div>
+        <div class="col-xxl-3 col-lg-4 col-md-6">
+          <div class="mb-3">
+            <label for="complaintCategoryH" class="form-label">Complaint Category in Hindi</label>
+            <input id="complaintCategoryH" class="form-control" [(ngModel)]="NVCH_CATEGORY" name="complaintCategoryH"
+                required />
           </div>
-          <div class="col-xxl-3 col-lg-4 col-md-6">
-            <div class="mb-3">
-              <label for="complaintCategoryH" class="form-label">Complaint Category (Hindi)</label>
-              <input id="complaintCategoryH" class="form-control" [(ngModel)]="NVCH_CATEGORY" name="complaintCategoryH"
-                placeholder="Enter Complaint Category (H)" required />
-            </div>
-          </div>   
-        </div>
-        <div class="row">
-          <div class="col-xxl-3 col-lg-4 mb-3">
-            <div class="form-btn">
-              <button type="submit" class="btn btn-primary">Update</button>
-              <button type="button" class="btn btn-danger" (click)="resetForm()">Reset</button>
-            </div>
+        </div> 
+      </div>
+      <div class="row">
+        <div class="col-xxl-3 col-lg-4">
+          <div class="d-flex gap-2 mt-lg-3">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="button" class="btn btn-danger" (click)="resetForm()">Reset</button>
           </div>
         </div>
-      </form>
-    </div>
+      </div>
+    </form>
+
+    <form *ngIf="isUpdateMode" (ngSubmit)="updateComplaint()" #updateForm="ngForm">
+      <div class="row">
+        <div class="col-xxl-3 col-lg-4 col-md-6">
+          <div class="mb-3">
+            <label for="complaintCategoryE" class="form-label">Complaint Category</label>
+            <input id="complaintCategoryE" class="form-control" [(ngModel)]="VCH_CATEGORY" name="complaintCategoryE"
+              placeholder="Enter Complaint Category (E)" required />
+          </div>
+        </div>
+        <div class="col-xxl-3 col-lg-4 col-md-6">
+          <div class="mb-3">
+            <label for="complaintCategoryH" class="form-label">Complaint Category in Hindi</label>
+            <input id="complaintCategoryH" class="form-control" [(ngModel)]="NVCH_CATEGORY" name="complaintCategoryH"
+              placeholder="Enter Complaint Category (H)" required />
+          </div>
+        </div>   
+      </div>
+      <div class="row">
+        <div class="col-xxl-3 col-lg-4">
+          <div class="d-flex gap-2 mt-lg-3">
+            <button type="submit" class="btn btn-primary">Update</button>
+            <button type="button" class="btn btn-danger" (click)="resetForm()">Reset</button>
+          </div>
+        </div>
+      </div>
+    </form>
   </div>
 </div>
 

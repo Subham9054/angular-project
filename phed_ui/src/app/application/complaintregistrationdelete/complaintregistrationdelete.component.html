@@ -8,10 +8,24 @@
                     </li>
                 </ul>
             </div>
+            <div class="col-lg-6 col-md-6">
+                <div class="utilite float-end mb-1">
+                    <ul class="mb-0">
+                        <li>
+                            <a href="javascript:void(0)" title="Click to Print"><i class="bi bi-printer"></i></a>
+                        </li>
 
+                        <li>
+                            <a href="javascript:void(0)" data-bs-toggle="collapse" href="#collapseExample">
+                                <i class="bi bi-funnel"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
-<div id="collapseExample" class="collapse">
+<div id="collapseExample" class="collapse" >
     <div class="content-box search-box">
         <div class="row">
             <div class="col-xxl-3 col-lg-4 col-md-6 col-sm-6">
@@ -133,15 +147,15 @@
         </div>
     </div>
 </div>
-    <div class="search-btn">
+    <!-- <div class="search-btn">
         <a data-bs-toggle="collapse" href="#collapseExample">
           <span class="collapse-on">Search Open <i class="bi bi-arrow-down"></i></span> <span class="collapse-off">Search Close <i class="bi bi-arrow-up"></i></span>
         </a>
-    </div>
+    </div> -->
 
     <div class="content-box content-area p-0">
         <div class="table-responsive mb-0">
-            <table class="table table-striped mb-0">
+            <table class="table mb-0">
                 <thead>
                     <tr>
                         <th width="40px">Sl#</th>
@@ -152,7 +166,7 @@
                         <th>Complaint Date</th>
                         <th>Location</th>
                         <th>Action Taken By</th>
-                        <th class="noPrint" class="60px">Action</th>
+                        <th class="noPrint" width="50px">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -166,7 +180,7 @@
                         <td>New York</td>
                         <td>John Smith</td>
                         <td>
-                           <a  href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#details" class="btn btn-outline-primary btn-sm me-1"><i  class="bi bi-eye"></i></a>
+                           <a  href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#details" class="btn btn-outline-primary btn-sm"><i  class="bi bi-eye"></i></a>
                         </td>
                     </tr>
                     <tr>
@@ -179,7 +193,7 @@
                         <td>Los Angeles</td>
                         <td>Jane Smith</td>
                         <td>
-                           <a  href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#details" class="btn btn-outline-primary btn-sm me-1"><i  class="bi bi-eye"></i></a>
+                           <a  href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#details" class="btn btn-outline-primary btn-sm"><i  class="bi bi-eye"></i></a>
                         </td>
                     </tr>
                     <tr>
@@ -192,7 +206,7 @@
                         <td>Chicago</td>
                         <td>Robert Brown</td>
                         <td>
-                           <a  href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#details" class="btn btn-outline-primary btn-sm me-1"><i  class="bi bi-eye"></i></a>
+                           <a  href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#details" class="btn btn-outline-primary btn-sm"><i  class="bi bi-eye"></i></a>
                         </td>
                     </tr>
                     <tr>
@@ -205,7 +219,7 @@
                         <td>Houston</td>
                         <td>Emily White</td>
                         <td>
-                           <a  href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#details" class="btn btn-outline-primary btn-sm me-1"><i  class="bi bi-eye"></i></a>
+                           <a  href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#details" class="btn btn-outline-primary btn-sm"><i  class="bi bi-eye"></i></a>
                         </td>
                     </tr>
                     <tr>
@@ -218,7 +232,7 @@
                         <td>Miami</td>
                         <td>Mark Wilson</td>
                         <td>
-                            <button class="btn btn-outline-primary btn-sm me-1">
+                            <button class="btn btn-outline-success btn-sm">
                                 <i class="bi bi-pencil"></i>
                             </button>
                         </td>
@@ -402,7 +416,7 @@
                     </div>
                     <div class="col-xl-12">
                         <div class="table-responsive mb-3">
-                            <table class="table table-striped mb-0 table-bordered">
+                            <table class="table mb-0 table-bordered">
                                 <thead>
                                     <tr>
                                         <th width="40px">Sl#</th>
@@ -429,7 +443,7 @@
                     </div>
                     <div class="col-xl-12">
                         <div class="table-responsive mb-3">
-                            <table class="table table-striped mb-0 table-bordered">
+                            <table class="table mb-0 table-bordered">
                                 <thead>
                                     <tr>
                                         <th width="40px">Sl#</th>
@@ -464,7 +478,7 @@
                     </div>
                     <div class="col-xl-12">
                         <div class="table-responsive mb-0">
-                            <table class="table table-striped mb-0 table-bordered">
+                            <table class="table mb-0 table-bordered">
                                 <thead>
                                     <tr>
                                         <th width="40px">Sl#</th>
@@ -582,7 +596,7 @@
                                 <div class="mb-3">
                                     <label for="ddlDistrict" class="form-label">Reference Document</label>
                                     <input class="form-control" type="file" id="formFile">
-                                    <p class="text-danger text-end fw-lighter small mb-0"> Only <span class="fw-bold">.jpeg, .jpg, .png,
+                                    <p class="text-danger text-end small mb-0"> Only <span class="fw-bold">.jpeg, .jpg, .png,
                                             .gif, .doc, .xls, .pdf</span> files
                                         allowed</p>
                                 </div>
@@ -591,7 +605,7 @@
                                 <div class="mb-3">
                                     <label for="ddlDistrict" class="form-label">Remarks</label>
                                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                                    <p class="text-danger text-end fw-lighter small mb-0">(Maximum <span class="fw-bold">100</span>
+                                    <p class="text-danger text-end small mb-0">(Maximum <span class="fw-bold">100</span>
                                         Characters)</p>
                                 </div>
                             </div>
