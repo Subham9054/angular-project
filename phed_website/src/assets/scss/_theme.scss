@@ -1,5 +1,9 @@
 
 .theme-light {
+    --link-color: #{$blue};
+    --border-color: #{$grey-600};
+    --border-primary-color: #{$blue};
+    --primary-color: #{$blue};
     --bs-body-bg: #{$white};
     --text-white:#{$white};
     --bg-black:#{$black};
@@ -59,6 +63,10 @@
     --input-color:#{$grey-light-900};
 }
 .theme-dark {   
+    --link-color: #{$white};
+    --border-color: #{$grey-300};
+    --border-primary-color: #{$white};
+    --primary-color: #{$warning};
     --bs-body-bg: #{$grey-700};
     --text-white:#{$white};
     --bg-black:#{$black};
@@ -72,7 +80,7 @@
     --about-bg-tap:#{$blue-100};
     --about-bg-tapicon:#{$white};
     --know-btn:#{$blue-200};
-    --know-btn-bg:#{$blue-300};
+    --know-btn-bg:#{$warning};
     --footer-bg:#{$grey-200};
     --footer-text:#{$white};
     --socialborder:#{$grey-300};
@@ -93,7 +101,7 @@
     --notification-bg:#{$grey-700};
     --notificationtext-bg:#{$blue-100};
     --notification-bullet:#{$blue-100};
-    --menu-hover:#{$blue-600};
+    --menu-hover:#{$warning};
     --login-btn:#{$blue-800};
     --heading-styletwo:#{$grey-900};
     --about-text:#{$white};
@@ -109,7 +117,7 @@
     --page-title:#{$white};
     --breadcrumb-text:#{$grey-light-400};
     --logo-small:#{$grey-light-600};
-    --header-text:#{$blue-light-300};
+    --header-text:#{$warning};
     --toggle-btn:#{$grey-light-200};
     --tableheader-bg:#{$grey-light-400};
     --shadow-bg:#{$shadow-100};
