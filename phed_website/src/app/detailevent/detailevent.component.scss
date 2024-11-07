@@ -1,41 +1,44 @@
-.card-group{
+.card-group {
     display: grid;
     grid-gap: 3rem;
     grid-template-columns: repeat(3, 1fr);
 }
-.card{
-    &.card-event{
+
+.card {
+    position: relative;
+    &.card-event {
         cursor: pointer;
         position: relative;
-        .imgbox{
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); // Initial shadow
+
+        .imgbox {
             height: 250px;
             position: relative;
             border-radius: .5rem .5rem 0 0;
+            overflow: hidden;
             background: rgba(226, 241, 249, .35);
-            img{
+
+            img {
                 height: 100%;
-        left: 0;
-        object-fit: cover;
-        object-position: center;
-        position: absolute;
-        top: 0;
-        transition: .3s ease-in-out;
-        width: 100%;
-        z-index: 1;
+                left: 0;
+                object-fit: cover;
+                object-position: center;
+                position: absolute;
+                top: 0;
+                transition: .3s ease-in-out;
+                width: 100%;
+                z-index: 1;
             }
-           
-            
         }
-        &:hover{
-            img{
-    
+
+        &:hover {
+            img {
                 transform: scale(1.05);
             }
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); // Darker shadow on hover
         }
     }
 }
-
-
 
 .card-footer {
     background: none;
