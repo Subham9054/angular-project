@@ -1,0 +1,14 @@
+.content-page{
+    display: flex;
+    gap: 5rem;
+    @media (max-width:768px){
+        display: block;
+    }
+    .content-left{
+        width: 85%;
+        @media (max-width:768px){
+            width: 100%;
+        }
+    }
+
+}

@@ -2,6 +2,8 @@ import { Component, AfterViewInit, AfterViewChecked, OnInit } from '@angular/cor
 import { AuthService } from 'src/app/auth.service';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import Swal from 'sweetalert2';
+
 declare let $: any;
 
 interface EscalationDetail {
@@ -64,8 +66,12 @@ export class EscalationComponent implements OnInit, AfterViewInit, AfterViewChec
           console.log(response);
           // Check if response indicates an existing escalation
           if (response) {
-              alert('Escalation level has already been added for this type!');
-              return false;
+            Swal.fire({
+              icon: 'warning',
+              title: 'Warning!',
+              text: 'Escalation level has already been added for this type!',
+            });
+            return false;
           }
           // Explicit return value if no escalation level exists
           return true;
@@ -173,6 +179,7 @@ export class EscalationComponent implements OnInit, AfterViewInit, AfterViewChec
     const submissionData: SubmissionData = {
         INT_CATEGORY_ID: this.formData.ddlComplaintCategory,
         INT_SUB_CATEGORY_ID: this.formData.ddlSubCategory,
+        
         INT_ESCALATION_LEVELID: this.escalationLevel,
         escalationDetails: this.rows.map((row, index) => ({
             INT_DESIG_ID: this.formData.ddlDesignation[index],
@@ -181,7 +188,14 @@ export class EscalationComponent implements OnInit, AfterViewInit, AfterViewChec
             standardDays: '' // Update if needed
         })).filter(detail => detail.INT_DESIG_ID && detail.INT_DESIG_LEVELID && detail.VCH_STANDARD_DAYS)
     };
-
+    if (submissionData.INT_CATEGORY_ID !== "0" && submissionData.INT_SUB_CATEGORY_ID === "0") {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Oops...',
+        text: 'Please select a subcategory.',
+      });
+      return; // Stop execution if the condition is met
+    }
     // Make sure to check if escalationDetails is not empty before calling the API
     if (submissionData.escalationDetails.length === 0) {
         alert('No valid escalation details to submit.');
@@ -189,6 +203,7 @@ export class EscalationComponent implements OnInit, AfterViewInit, AfterViewChec
     }
 
     this.authService.submitEscalationData(submissionData).subscribe(
+      
         response => {
             console.log('Data submitted successfully', response);
             alert('Data submitted successfully');

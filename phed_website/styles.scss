@@ -36,26 +36,41 @@
     z-index: -1;
   }
 }
-.breadcrumb-item {
-  a {
-    color: var(--breadcrumb-text);
-    font-size: 1.5rem;
-    i{
-        font-size: 1.3rem;
-    }
+.breadcrumb {
+  justify-content: center;
+  ol{
+   justify-content: center;
+    
   }
 
-  &.active {
-    color: var(--page-title);
-  }
-  & + .breadcrumb-item::before {
-    content: "/";
-    color: var(--page-title);
-    font-size: 1.25rem;
-    margin: 0 0.5rem;
+  .breadcrumb-item {
+    a {
+      color: var(--breadcrumb-text);
+      font-size: 1.5rem;
+      i{
+          font-size: 1.3rem;
+      }
+    }
+  
+    &.active {
+      color: var(--page-title);
+    }
+    & + .breadcrumb-item::before {
+      content: "/";
+      color: var(--page-title);
+      font-size: 1.25rem;
+      margin: 0 0.5rem;
+    }
   }
 }
 
+.bannerarea-content{
+  display: block;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+
+}
 .content-area {
   padding: 3rem 0;
   color: var(--about-text);
@@ -176,11 +191,19 @@ table{
     thead{
         tr{
             th{
-                background-color: #f4f6f7 !important;
+                background-color: var(--tableheader-bg) !important;
                 border-width:2px!important;
             }
-
+         
         }
+    }
+    tbody{
+      tr{
+        td{
+          opacity: 0.8;
+          color: var(--text-black)!important;
+         }
+      }
     }
 }
 .card {
@@ -239,4 +262,25 @@ table{
     margin-bottom: 0.5rem;
     font-weight: 600;
     color: #6a6a6a;
+}
+.form-select{
+  color: var(--text-black);
+}
+
+
+@include media-breakpoint-up(sm) {
+  .breadcrumb {
+    justify-content: left;
+    ol{
+      text-align: left;
+      
+    }
+  }
+  .bannerarea-content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  
+  }
+
 }
