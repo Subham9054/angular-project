@@ -3,9 +3,9 @@
         <div class="row justify-content-between align-items-center">
             <div class="col-lg-4">
                 <ul class="nav nav-tabs" routerLinkActive="active">
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a routerLink="/application/mngmenu" class="nav-link">Add</a>
-                    </li>
+                    </li> -->
                     <li class="nav-item">
                         <a routerLink="/application/mngmenu-view" class="nav-link active">View</a>
                     </li>
@@ -14,19 +14,19 @@
             <div class="col-lg-6 col-md-6">
                 <div class="utilite float-end mb-1">
                     <ul class="mb-0">
-                        <li class="bg-transparent border-0">
+                        <!-- <li class="bg-transparent border-0">
                             <span class="text-danger small"><b>(*)</b> Indicate mandatory </span>
-                        </li>
+                        </li> -->
                         <li>
-                            <a href="javascript:void(0)" ngbTooltip="Click to Print"><i class="bi bi-printer"></i></a>
+                            <a href="javascript:void(0)" title="Click to Print"><i class="bi bi-printer"></i></a>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a href="javascript:void(0)" ngbTooltip="Delete Record"><i class="bi bi-trash"></i></a>
                         </li>
                        
                         <li><a href="javascript:void(0)" ngbTooltip="Go to Previous"><i
                                     class="bi bi-arrow-left"></i></a>
-                        </li>
+                        </li> -->
                         <li>
                             <a href="javascript:void(0)" title="Click to Publish">
                                 <i class="bi bi-volume-up"></i>
@@ -34,7 +34,21 @@
                         </li>
                         <li>
                             <a href="javascript:void(0)" title="Click to Unpublish">
-                                <i class="bi bi-volume-mute"></i>
+                                <i class="bi bi-volume-off"></i>
+                            </a>
+                        </li>
+                       
+
+                        <li>
+                            <a href="javascript:void(0)" title="{{ isPanelOpen ? 'Click to Close Filter' : 'Click to Open Filter' }}" 
+                               (click)="togglePanel()">
+                                <i class="bi bi-funnel"></i>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="javascript:void(0)" title="Click to Add" routerLink="/application/mngmenu">
+                                <i class="bi bi-plus-lg"></i>
                             </a>
                         </li>
                     </ul>
@@ -42,7 +56,7 @@
             </div>
         </div>
     </div>
-    <div id="collapseExample" class="collapse show">
+    <div id="collapseExample" class="collapse show" [ngClass]="{'show': isPanelOpen}">
         <div class="content-box search-box">
             <div class="row">
                 <div class="col-xxl-3 col-lg-4 col-md-6">
@@ -83,12 +97,13 @@
             </div>
         </div>
     </div>
-    <div class="search-btn">
+
+    <!-- <div class="search-btn">
         <a data-bs-toggle="collapse" href="#collapseExample">
             <span class="collapse-on">Search Open <i class="bi bi-arrow-down"></i></span> <span
                 class="collapse-off">Search Close <i class="bi bi-arrow-up"></i></span>
         </a>
-    </div>
+    </div> -->
 
     <div class="view-legand">
         <ul class="legends">
@@ -99,10 +114,10 @@
 
     <div class="content-box content-area p-0">
         <div class="table-responsive mb-0">
-            <table class="table table-striped mb-0">
+            <table class="table  mb-0">
                 <thead>
                     <tr>
-                        <th width="30px" class="border-left-head">
+                        <th width="30px">
                             <input type="checkbox">
                         </th>
                         <th width="40px">Sl#</th>
@@ -114,8 +129,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td class="border-left-2 border-left-success"><input type="checkbox"></td>
+                    <tr class="publish">
+                        <td><input type="checkbox"></td>
                         <td>1</td>
                         <td>Footer Bottom Menu</td>
                         <td>Global Link</td>
@@ -133,8 +148,8 @@
                             </div>
                         </td>
                     </tr>
-                    <tr>
-                        <td class="border-left-2 border-left-success"><input type="checkbox"></td>
+                    <tr class="unpublish">
+                        <td><input type="checkbox"></td>
                         <td>2</td>
                         <td>Footer Bottom Menu</td>
                         <td>Global Link</td>
@@ -142,7 +157,7 @@
                         <td>Place to Visit</td>
                         <td>
                             <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View">
+                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View" data-bs-toggle="modal" data-bs-target="#viewmodal">
                                     <i class="bi bi-eye"></i></a>
                                 <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
                                     <i class="bi bi-pencil"></i></a>
@@ -151,8 +166,8 @@
                             </div>
                         </td>
                     </tr>
-                    <tr>
-                        <td class="border-left-2 border-left-success"><input type="checkbox"></td>
+                    <tr class="publish">
+                        <td><input type="checkbox"></td>
                         <td>3</td>
                         <td>Footer Bottom Menu</td>
                         <td>Global Link</td>
@@ -160,7 +175,7 @@
                         <td>City Events</td>
                         <td>
                             <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View">
+                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View" data-bs-toggle="modal" data-bs-target="#viewmodal">
                                     <i class="bi bi-eye"></i></a>
                                 <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
                                     <i class="bi bi-pencil"></i></a>
@@ -170,8 +185,8 @@
                         </td>
                     </tr>
 
-                    <tr>
-                        <td class="border-left-2 border-left-success"><input type="checkbox"></td>
+                    <tr class="unpublish">
+                        <td><input type="checkbox"></td>
                         <td>4</td>
                         <td>Footer Bottom Menu</td>
                         <td>Global Link</td>
@@ -179,7 +194,7 @@
                         <td>City Map</td>
                         <td>
                             <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View">
+                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View" data-bs-toggle="modal" data-bs-target="#viewmodal">
                                     <i class="bi bi-eye"></i></a>
                                 <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
                                     <i class="bi bi-pencil"></i></a>
@@ -188,8 +203,9 @@
                             </div>
                         </td>
                     </tr>
-                    <tr>
-                        <td class="border-left-2 border-left-danger"><input type="checkbox"></td>
+                    
+                    <tr class="publish">
+                        <td><input type="checkbox"></td>
                         <td>5</td>
                         <td>Footer Bottom Menu</td>
                         <td>Global Link</td>
@@ -197,7 +213,7 @@
                         <td>Citizen Services</td>
                         <td>
                             <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View">
+                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View" data-bs-toggle="modal" data-bs-target="#viewmodal">
                                     <i class="bi bi-eye"></i></a>
                                 <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
                                     <i class="bi bi-pencil"></i></a>
@@ -218,7 +234,7 @@
     <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Menu Details</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">RTI</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body view-form">
@@ -255,15 +271,15 @@
                                 </div>
                             </div>
 
-                            <div class="col-xl-4 col-md-6">
+                            <!-- <div class="col-xl-4 col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label">Menu Name in Hindi</label>
                                     <label class="form-value">घूमने की जगह</label>
                                 </div>
-                            </div>
-                        </div>
+                            </div> -->
+                        <!-- </div>
 
-                        <div class="row">
+                        <div class="row"> -->
                             <div class="col-xl-4 col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label">Menu Link</label>

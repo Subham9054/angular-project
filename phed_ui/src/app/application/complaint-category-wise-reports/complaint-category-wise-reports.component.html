@@ -12,11 +12,13 @@
                 <div class="utilite float-end mb-1">
                     <ul class="mb-0">
                         <li>
-                            <a href="javascript:void(0)" ngbTooltip="Click to Print"><i class="bi bi-printer"></i></a>
+                            <a href="javascript:void(0)" title="Click to Print"><i class="bi bi-printer"></i></a>
                         </li>
+
                         <li>
-                            <a href="javascript:void(0)" ngbTooltip="Delete Record"><i
-                                    class="bi bi-file-earmark-excel"></i></a>
+                            <a href="javascript:void(0)" data-bs-toggle="collapse" href="#collapseExample">
+                                <i class="bi bi-funnel"></i>
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -68,18 +70,18 @@
             </div>
         </div>
     </div>
-    <div class="search-btn">
+    <!-- <div class="search-btn">
         <a data-bs-toggle="collapse" href="#collapseExample">
             <span class="collapse-on">Search Open <i class="bi bi-arrow-down"></i></span> <span
                 class="collapse-off">Search Close <i class="bi bi-arrow-up"></i></span>
         </a>
-    </div>
+    </div> -->
     <div class="content-box content-area p-0">
         <div class="table-responsive">
-            <table class="table table-striped mb-0">
+            <table class="table mb-0">
                 <thead>
                     <tr>
-                        <th width="50">Sl#</th>
+                        <th width="30px">Sl#</th>
                         <th>Complaint Category</th>
                         <th class="text-end">Total Received (in #)</th>
                         <th class="text-end">Total Solved (in #)</th>

@@ -46,36 +46,7 @@ export class EscalationComponent implements OnInit, AfterViewInit, AfterViewChec
     this.getCategories();
     this.getDesignation();
     this.getLocationlevel();
-    //this.Checked();
   }
-
-  Checked(event: Event) {
-    // Access values from formData due to two-way binding with ngModel
-    const catdropdown = this.formData.ddlComplaintCategory;
-    const subcatdropdown = this.formData.ddlSubCategory;
-
-    // Check if values are selected
-    if (!catdropdown || !subcatdropdown) {
-        alert("Please select both category and subcategory.");
-        return;
-    }
-    this.authService.checkEscalation(catdropdown, subcatdropdown).subscribe(
-      (response) => {
-          console.log(response);
-          // Check if response indicates an existing escalation
-          if (response) {
-              alert('Escalation level has already been added for this type!');
-              return false;
-          }
-          // Explicit return value if no escalation level exists
-          return true;
-      },
-      (error) => {
-          // Log error details and provide feedback to the user
-          console.error('Error checking escalation:', error);
-      }
-  );  
-}
 
   getCategories() {
     this.authService.getCategories().subscribe(

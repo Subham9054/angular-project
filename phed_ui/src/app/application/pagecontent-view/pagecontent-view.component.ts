@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./pagecontent-view.component.scss']
 })
 export class PagecontentViewComponent {
+  isPanelOpen = true; // Start with the panel open
 
+  togglePanel() {
+    this.isPanelOpen = !this.isPanelOpen; // Toggle the panel state
+  }
 }

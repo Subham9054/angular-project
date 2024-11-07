@@ -8,6 +8,7 @@ declare let $: any;
   styleUrls: ['./complaintregistrationupdate.component.scss'],
 })
 export class ComplaintregistrationupdateComponent implements OnInit {
+
   registrationDate: string = '';
   toDate: string = '';
   districts: any[] = [];

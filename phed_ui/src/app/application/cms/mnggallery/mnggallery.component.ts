@@ -8,8 +8,21 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 })
 export class MnggalleryComponent {
   // select option
-  selectedType: string | null = null;
+  selectedType: string = ""; 
   
   editor = ClassicEditor;
   data: any = `<p class="text-grey">Enter here...</p>`;
+
+
+  files: File[] = [];
+
+	onSelect(event:any) {
+		console.log(event);
+		this.files.push(...event.addedFiles);
+	}
+
+	onRemove(event:any) {
+		console.log(event);
+		this.files.splice(this.files.indexOf(event), 1);
+	}
 }
