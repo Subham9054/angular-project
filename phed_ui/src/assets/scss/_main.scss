@@ -88,7 +88,7 @@ a {
       border-radius: 5px ;
     }
   }
-  // Bijayalaxmi patra date :- 07/11/24
+
   // .search-btn {
   //   text-align: center;
   //   margin-bottom: 1rem;
@@ -224,7 +224,9 @@ a {
     text-wrap: nowrap;
     font-weight: 500;
   }
-
+td{
+  vertical-align: middle;
+}
   tfoot {
     td {
       font-weight: bold;
@@ -608,6 +610,7 @@ table {
 
   .pending {
     border: 1px solid #ff9f60;
+    background-color: transparent;
   }
 
   .pending {
@@ -629,6 +632,7 @@ table {
 
   .received {
     border: 1px solid #4374e7;
+    background-color: transparent;
   }
 
   .received {
@@ -651,6 +655,7 @@ table {
 
   .resolved {
     border: 1px solid #008000;
+    background-color: transparent;
   }
 
   .resolved {
@@ -673,6 +678,7 @@ table {
 
   .non-resolved {
     border: 1px solid #dc3545;
+    background-color: transparent;
   }
 
   .non-resolved {
@@ -695,6 +701,7 @@ table {
 
   .verify {
     border: 1px solid #0dcaf0;
+    background-color: transparent;
   }
 
   .verify {
@@ -725,7 +732,7 @@ table {
     margin-bottom: -0.9rem;
 
     .nav-link {
-      background-color: $blue-dark;
+      background-color: $sidebar-bg;
       color: $white;
 
       &:hover {
@@ -757,7 +764,7 @@ table {
 //       border-left: 2px solid #e8eef5 !important;
 //     }
 //   }
-//  Bijayalaxmi patra date :- 07/11/24
+
 //   tbody {
 //     .border-left-2 {
 //       border-left: 2px solid !important;
@@ -771,7 +778,7 @@ table {
 //       border-left-color: #4caf50 !important;
 //     }
 //   }
-//    Bijayalaxmi patra date :- 07/11/24
+
 // }
 // Publish
 tr.publish {
@@ -815,7 +822,7 @@ tr.unpublish{
     flex-direction: column;
     gap: 0.6rem;
   }
- // Bijayalaxmi patra date :- 07/11/24
+
   .legends {
     display: flex;
     margin-bottom: 0;
@@ -841,7 +848,7 @@ tr.unpublish{
       }
     }
   }
- // Bijayalaxmi patra date :- 07/11/24
+
 
 }
 

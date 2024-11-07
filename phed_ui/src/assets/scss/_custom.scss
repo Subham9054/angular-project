@@ -96,7 +96,7 @@
             border-radius: 0.4rem;
 
             &.active {
-                background-color: $blue-dark;
+                background-color:$sidebar-bg;
                 color: $white;
             }
             &:focus{
