@@ -54,7 +54,7 @@
             <div class="col-xxl-3 col-lg-4">
                 <div class="mb-3">
                     <label class="form-label d-lg-block d-none">&nbsp;</label>
-                    <button type="submit" class="btn btn-primary me-2">Search</button>
+                    <button type="submit" class="btn btn-primary me-2" (click)="onSearch()">Search</button>
                     <button type="reset" class="btn btn-danger">Reset</button>
                 </div>
             </div>
@@ -80,73 +80,30 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Handpump Tubewell Related</td>
-                        <td>Repairing of Public Handpump</td>
-                        <td>3</td>
-                        <td>JE</td>
+                    <tr *ngFor="let escalation of escalations; let i = index">
+                        <!-- <td> <input type="checkbox" /></td> -->
+                        <td>{{ i + 1 }}</td>
+                        <td>
+                            {{ escalation.vcH_CATEGORY }}
+                            <input type="hidden" [value]="escalation.inT_CATEGORY_ID" #categoryId/>
+                        </td>
+                        <td>{{ escalation.vcH_SUB_CATEGORY }}
+                            <input type="hidden" [value]="escalation.inT_SUB_CATEGORY_ID" #subCategoryId/>
+                        </td>
+                        <td>{{escalation.inT_ESCALATION_LEVELID}}</td>
+                        <td>{{escalation.nvchDesigName}}</td>
                         <td>
                             <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View" data-bs-toggle="modal" data-bs-target="#escalationView">
-                                    <i class="bi bi-eye"></i>
-                                </a>
-                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
-                                    <i class="bi bi-pencil"></i>
-                                </a>
+                              <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View" 
+                                 (click)="viewEscalationDetails(categoryId.value, subCategoryId.value)" 
+                                 data-bs-toggle="modal" data-bs-target="#escalationView">
+                                <i class="bi bi-eye"></i>
+                              </a>
+                              <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
+                                <i class="bi bi-pencil"></i>
+                              </a>
                             </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Handpump Tubewell Related</td>
-                        <td>Repairing of Private Handpump</td>
-                        <td>3</td>
-                        <td>JE</td>
-                        <td>
-                            <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View" data-bs-toggle="modal" data-bs-target="#escalationView">
-                                    <i class="bi bi-eye"></i>
-                                </a>
-                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
-                                    <i class="bi bi-pencil"></i>
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Piped Water Supply Related</td>
-                        <td>Water is not coming from Standpost</td>
-                        <td>3</td>
-                        <td>JE</td>
-                        <td>
-                            <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View" data-bs-toggle="modal" data-bs-target="#escalationView">
-                                    <i class="bi bi-eye"></i>
-                                </a>
-                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
-                                    <i class="bi bi-pencil"></i>
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Piped Water Supply Related</td>
-                        <td>Motor Burnt</td>
-                        <td>3</td>
-                        <td>JE</td>
-                        <td>
-                            <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View" data-bs-toggle="modal" data-bs-target="#escalationView">
-                                    <i class="bi bi-eye"></i>
-                                </a>
-                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
-                                    <i class="bi bi-pencil"></i>
-                                </a>
-                            </div>
-                        </td>
+                          </td>
                     </tr>
                 </tbody>
             </table>
@@ -158,63 +115,52 @@
 <!-- Modal Start::Details -->
 <div class="modal fade" id="escalationView" tabindex="-1" aria-labelledby="escalationView" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
-        <div class="modal-content">
-            <div class="modal-header justify-content-between">
-                <h1 class="modal-title fs-5" id="tokenLabel">Escalation Details</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-xl-12 view-form">
-                        <div class="row">
-                            <div class="col-xl-6 col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label">Complaint Category</label>
-                                    <label class="form-value">Handpump Tubewell Related</label>
-                                </div>
-                            </div>
-
-                            <div class="col-xl-6 col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label">Complaint Sub-Category</label>
-                                    <label class="form-value">Repairing of Public Handpump</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-12">
-                        <div class="table-responsive mt-2">
-                            <table class="table mb-0 table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th width="40px">Sl#</th>
-                                        <th>Authority Level</th>
-                                        <th width="100px">Standard Action Taking Hours</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>JE</td>
-                                        <td>120</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>SDO</td>
-                                        <td>72</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>EE</td>
-                                        <td>168</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      <div class="modal-content">
+        <div class="modal-header justify-content-between">
+          <h1 class="modal-title fs-5" id="tokenLabel">Escalation Details</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-xl-12 view-form">
+              <div class="row">
+                <div class="col-xl-6 col-md-6">
+                  <div class="mb-3">
+                    <label class="form-label">Complaint Category</label>
+                    <label class="form-value">{{ selectedEscalations[0]?.vcH_CATEGORY }}</label>
+                  </div>
+                </div>
+                <div class="col-xl-6 col-md-6">
+                  <div class="mb-3">
+                    <label class="form-label">Complaint Sub-Category</label>
+                    <label class="form-value">{{ selectedEscalations[0]?.vcH_SUB_CATEGORY }}</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-12">
+              <div class="table-responsive mt-2">
+                <table class="table mb-0 table-bordered">
+                  <thead>
+                    <tr>
+                      <th width="40px">Sl#</th>
+                      <th>Authority Level</th>
+                      <th width="100px">Standard Action Taking Hours</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let level of selectedEscalations; let j = index">
+                      <td>{{ j + 1 }}</td>
+                      <td>{{ level.nvchDesigName }}</td>
+                      <td>{{ level.vcH_STANDARD_DAYS }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-</div>
+  </div>
 <!-- Modal End::Token -->
