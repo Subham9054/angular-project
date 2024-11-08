@@ -2,8 +2,8 @@
     <div class="pagetitle-section">
         <div class="row justify-content-between align-items-center">
             <div class="col-lg-4">
-                <h3>Register Complaint</h3>
-                <p>Manage your page</p>
+                <h3> Gallery</h3>
+                <!-- <p>Manage your page</p> -->
             </div>
             <div class="col-lg-6 col-md-6">
                 <div class="utilite">
@@ -21,7 +21,7 @@
                         <li [ngClass]="isPanelOpen ? 'active-filter' : ''">
                             <a href="javascript:void(0)" title="{{ isPanelOpen ? 'Click to Close Filter' : 'Click to Open Filter' }}" 
                                (click)="togglePanel()">
-                                <i class="bi bi-funnel"></i>
+                                <i class="bi bi-funnel"></i> Filter
                             </a>
                         </li>
                         
@@ -54,7 +54,7 @@
                     <div class="mb-3">
                         <label class="form-label d-md-block d-none">&nbsp;</label>
                         <button  type="submit" class="btn btn-primary me-2">Search</button>
-                        <button  type="reset" class="btn btn-danger">Reset</button>
+                        <!-- <button  type="reset" class="btn btn-danger">Reset</button> -->
                     </div>
                 </div>
             </div>
@@ -66,24 +66,31 @@
                 class="collapse-off">Search Close <i class="bi bi-arrow-up"></i></span>
         </a>
     </div> -->
+
+    <div class="view-legand">
+        <ul class="legends">
+            <li><span class="bg-success"></span> Publish </li>
+            <li><span class="bg-danger"></span> Unpublish </li>
+        </ul>
+    </div>
     <div class="content-box content-area p-0">
         <div class="table-responsive mb-0">
             <table class="table  mb-0">
                 <thead>
                     <tr>
                         <th width="30px">
-                            <input type="checkbox">
+                            <input class="form-check-input" type="checkbox">
                         </th>
                         <th width="40px">Sl#</th>
                         <th>Type</th>
                         <th>Caption</th>
-                        <th>Caption in Hindi</th>
+                        <th>Caption (In Hindi)</th>
                         <th width="90px">Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr class="unpublish">
-                        <td><input type="checkbox"></td>
+                        <td><input class="form-check-input" type="checkbox"></td>
                         <td>1</td>
                         <td>Photo</td>
                         <td>Lorem Ipsum is simply dummy text of the printing and typesetting industry</td>
@@ -100,7 +107,7 @@
                         </td>
                     </tr>
                     <tr class="publish">
-                        <td><input type="checkbox"></td>
+                        <td><input class="form-check-input" type="checkbox"></td>
                         <td>2</td>
                         <td>Photo</td>
                         <td>Lorem Ipsum is simply dummy text of the printing and typesetting industry</td>
@@ -117,7 +124,7 @@
                         </td>
                     </tr>
                     <tr class="unpublish">
-                        <td><input type="checkbox"></td>
+                        <td><input class="form-check-input" type="checkbox"></td>
                         <td>3</td>
                         <td>Photo</td>
                         <td>Lorem Ipsum is simply dummy text of the printing and typesetting industry</td>
@@ -135,7 +142,7 @@
                     </tr>
 
                     <tr class="publish">
-                        <td><input type="checkbox"></td>
+                        <td><input class="form-check-input" type="checkbox"></td>
                         <td>4</td>
                         <td>Photo</td>
                         <td>Lorem Ipsum is simply dummy text of the printing and typesetting industry</td>
@@ -152,7 +159,7 @@
                         </td>
                     </tr>
                     <tr class="unpublish">
-                        <td><input type="checkbox"></td>
+                        <td><input class="form-check-input" type="checkbox"></td>
                         <td>5</td>
                         <td>Photo</td>
                         <td>Lorem Ipsum is simply dummy text of the printing and typesetting industry</td>

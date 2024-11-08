@@ -3,8 +3,8 @@
     <div class="pagetitle-section">
         <div class="row justify-content-between align-items-center">
             <div class="col-lg-4">
-                <h3>Register Complaint</h3>
-                <p>Manage your page</p>
+                <h3> News & Events</h3>
+                <!-- <p>Manage your page</p> -->
             </div>
             <div class="col-lg-6 col-md-6">
                 <div class="utilite">
@@ -22,7 +22,7 @@
                         <li [ngClass]="isPanelOpen ? 'active-filter' : ''">
                             <a href="javascript:void(0)" title="{{ isPanelOpen ? 'Click to Close Filter' : 'Click to Open Filter' }}" 
                                (click)="togglePanel()">
-                                <i class="bi bi-funnel"></i>
+                                <i class="bi bi-funnel"></i> Filter
                             </a>
                         </li>
                         
@@ -49,7 +49,7 @@
                 <div class="col-xxl-3 col-lg-4">
                     <div class="mb-3">
                         <label class="form-label d-md-block d-none">&nbsp;</label>
-                        <button type="submit" class="btn btn-success">Search</button>
+                        <button type="submit" class="btn btn-primary">Search</button>
                     </div>
                 </div>
             </div>
@@ -79,7 +79,7 @@
                 </thead>
                 <tbody>
                     <tr class="publish">
-                        <td><input type="checkbox"></td>
+                        <td><input type="checkbox" class="form-check-input"></td>
                         <td> 1 </td>
                         <td>
                             Announcement of new water supply projects for underserved areas in Bihar
@@ -104,7 +104,7 @@
                     </tr>
 
                     <tr class="unpublish">
-                        <td><input type="checkbox"></td>
+                        <td><input type="checkbox" class="form-check-input"></td>
                         <td>2</td>
                         <td>
                             Announcement of new water supply projects for underserved areas in Bihar
@@ -129,7 +129,7 @@
                     </tr>
 
                     <tr class="publish">
-                        <td><input type="checkbox"></td>
+                        <td><input type="checkbox" class="form-check-input"></td>
                         <td>3</td>
                         <td>
                             Announcement of new water supply projects for underserved areas in Bihar
@@ -154,7 +154,7 @@
                     </tr>
 
                     <tr class="unpublish">
-                        <td><input type="checkbox"></td>
+                        <td><input type="checkbox" class="form-check-input"></td>
                         <td>4</td>
                         <td>
                             Announcement of new water supply projects for underserved areas in Bihar
@@ -179,7 +179,7 @@
                     </tr>
 
                     <tr class="publish">
-                        <td><input type="checkbox"></td>
+                        <td><input type="checkbox" class="form-check-input"></td>
                         <td>5</td>
                         <td>
                             Announcement of new water supply projects for underserved areas in Bihar
