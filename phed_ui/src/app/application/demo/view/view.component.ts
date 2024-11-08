@@ -8,6 +8,10 @@ import { Component } from '@angular/core';
 })
 export class ViewComponent {
 
+  isPanelOpen = false; // Start with the panel open
 
+  togglePanel() {
+    this.isPanelOpen = !this.isPanelOpen; // Toggle the panel state
+  }
 
 }

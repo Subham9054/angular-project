@@ -72,17 +72,18 @@ a {
 .form-cointainer {
   min-height: 10rem;
   .content-box {
+    overflow: hidden;
     background-color: $white;
     padding: 1.2rem;
     border: solid 1px $gray-200;
     box-shadow: 0px 0px 5px rgb(0 0 0 / 9%);
-    border-radius: 6px;
+    border-radius: 8px;
     @include box-shadow(0 0.125rem 0.25rem rgba($black, .2));
 
     &.search-box {
       margin-bottom: 1rem;
       padding: 1rem 1.2rem 0.2rem 0.9rem;
-      background-color: $blue-light;
+      background-color:#f1f6fb;
       transition: max-height 0.5s ease, opacity 0.5s ease, padding 0.5s ease;
       border: 0 !important;
       border-radius: 5px ;
@@ -248,6 +249,12 @@ a {
           background-color:$blue ;
         }
       }
+      &.active-filter {
+        background-color:#93b3ed;
+        a {
+          color: #fff;
+        }
+      }
     }
 
   }
@@ -258,7 +265,7 @@ a {
   th {
     // background-color: $blue-light !important;
     text-wrap: nowrap;
-    font-weight: 500;
+    font-weight: 600;
   }
 td{
   vertical-align: middle;
