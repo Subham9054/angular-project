@@ -37,6 +37,8 @@ export class AuthService {
   private checkApiUrl = 'https://localhost:7237/Api/MANAGE_ESCALATION_CONFIGDETAILS/check';
   private viewEscalationurl='https://localhost:7237/Api/MANAGE_ESCALATION_CONFIGDETAILS/viewescalation';
   private viewEscalationurleye= 'https://localhost:7237/Api/MANAGE_ESCALATION_CONFIGDETAILS/viewescalationeye';
+  private viewupdatepenurl='https://localhost:7237/Api/MANAGE_ESCALATION_CONFIGDETAILS/viewupdatepen';
+
   constructor(private http: HttpClient, private router: Router) { }
  
   // Method for user login
@@ -218,9 +220,17 @@ export class AuthService {
         catchError(this.handleError)
     );
   }
+  UpdateEscalation(INT_CATEGORY_ID: string, INT_SUB_CATEGORY_ID: string, INT_ESCALATION_LEVELID: string): Observable<any> {
+    return this.http.get<any>(`${this.viewupdatepenurl}?categoryId=${INT_CATEGORY_ID}&subcategoryId=${INT_SUB_CATEGORY_ID}&esclid=${INT_ESCALATION_LEVELID}`).pipe(
+      catchError(this.handleError)
+    );
+  }
+ 
+
   // Error handling logic
   private handleError(error: any) {
     console.error('An error occurred:', error);
     return throwError(error);
   }
 }
+

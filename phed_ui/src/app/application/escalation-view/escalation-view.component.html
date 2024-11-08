@@ -90,7 +90,9 @@
                         <td>{{ escalation.vcH_SUB_CATEGORY }}
                             <input type="hidden" [value]="escalation.inT_SUB_CATEGORY_ID" #subCategoryId/>
                         </td>
-                        <td>{{escalation.inT_ESCALATION_LEVELID}}</td>
+                        <td>{{escalation.inT_ESCALATION_LEVELID}}
+                          <input type="hidden" [value]="escalation.inT_ESCALATION_LEVELID" #escalationlevelId/>
+                        </td>
                         <td>{{escalation.nvchDesigName}}</td>
                         <td>
                             <div class="d-flex gap-1">
@@ -99,7 +101,7 @@
                                  data-bs-toggle="modal" data-bs-target="#escalationView">
                                 <i class="bi bi-eye"></i>
                               </a>
-                              <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
+                              <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit" (click)="Updateview(categoryId.value, subCategoryId.value,escalationlevelId.value)">
                                 <i class="bi bi-pencil"></i>
                               </a>
                             </div>

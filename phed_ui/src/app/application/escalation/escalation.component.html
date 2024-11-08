@@ -26,7 +26,12 @@
         <div class="form-section">
             <div class="row">
                 <div class="col-xl-4 col-lg-4 col-sm-6">
-                    <div class="mb-3">
+                    <div *ngIf="isUpdateMode" class="mb-3">
+                        <label for="categoryName" class="form-label">Complaint Category</label>
+                        <input type="text" id="categoryName" [(ngModel)]="formData.categoryName" class="form-control" readonly>
+                        <input type="hidden" [(ngModel)]="formData.ddlComplaintCategory">
+                    </div>
+                    <div *ngIf="!isUpdateMode" class="mb-3">
                         <label for="ddlComplaintCategory" class="form-label">Complaint Category</label>
                         <select name="ddlComplaintCategory" id="ddlComplaintCategory"
                             [(ngModel)]="formData.ddlComplaintCategory"
@@ -39,7 +44,12 @@
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-4 col-sm-6">
-                    <div class="mb-3">
+                    <div *ngIf="isUpdateMode" class="mb-3">
+                        <label for="subcategoryName" class="form-label">Complaint Sub-Category</label>
+                        <input type="text" id="subcategoryName" [(ngModel)]="formData.subcategoryName" class="form-control" readonly>
+                        <input type="hidden" [(ngModel)]="formData.ddlSubCategory">
+                    </div>
+                    <div *ngIf="!isUpdateMode" class="mb-3">
                         <label for="ddlSubCategory" class="form-label">Complaint Sub-Category</label>
                         <select name="ddlSubCategory" id="ddlSubCategory"
                         [(ngModel)]="formData.ddlSubCategory" (change)="Checked($event)" class="form-select">
@@ -53,7 +63,11 @@
             </div>
             <div class="row">
                 <div class="col-xl-4 col-lg-4 col-sm-6">
-                    <div class="mb-3">
+                    <div *ngIf="isUpdateMode" class="mb-3">
+                        <label for="escalationLevel" class="form-label">Escalation Level</label>
+                        <input type="text" id="escalationLevel" [(ngModel)]="escalationLevel" class="form-control" readonly>
+                    </div>
+                    <div *ngIf="!isUpdateMode" class="mb-3">
                         <label for="exlabel" class="form-label">Escalation level</label>
                         <input type="number" class="form-control" id="exlabel" [(ngModel)]="escalationLevel"
                             (input)="generateRows()">
@@ -74,7 +88,7 @@
                                     <th width="80px">Action</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody *ngIf="!isUpdateMode">
                                 <tr *ngFor="let row of rows; let i = index">
                                     <td>{{ i + 1 }}</td>
                                     <td>
@@ -113,6 +127,42 @@
                                     </td>
                                 </tr>
                             </tbody>
+                            <tbody *ngIf="isUpdateMode">
+                                <tr *ngFor="let row of escalations; let i = index">
+                                  <td>{{ i + 1 }}</td>
+                                  <td>
+                                    <select name="ddlDesignation" [id]="'ddlDesignation' + i"
+                                            [(ngModel)]="formData.ddlDesignation[i]" class="form-select">
+                                      <option *ngFor="let designation of designations" 
+                                              [value]="designation.inT_DESIG_ID">
+                                        {{ designation.nvcH_DESIG_NAME }}
+                                      </option>
+                                    </select>
+                                  </td>
+                                  <td>
+                                    <select name="ddlLocLevel" [id]="'ddlLocLevel' + i"
+                                            [(ngModel)]="formData.ddlLocLevel[i]" class="form-select">
+                                      <option value="0">-Select-</option>
+                                      <option *ngFor="let locationlevel of locationlevels"
+                                              [value]="locationlevel.inT_LEVEL_ID">
+                                        {{ locationlevel.inT_LEVEL_ID }}
+                                      </option>
+                                    </select>
+                                  </td>
+                                  <td>
+                                    <input type="text" [id]="'hrtext' + i" class="form-control">
+                                  </td>
+                                  <td>
+                                    <div class="d-flex gap-1">
+                                      <a href="javascript:void(0);" title="Delete"
+                                         class="btn btn-outline-danger" (click)="removeRow(i)">
+                                        <i class="bi bi-trash3"></i>
+                                      </a>
+                                    </div>
+                                  </td>
+                                </tr>
+                              </tbody>
+                              
                         </table>
                     </div>
                 </div>
