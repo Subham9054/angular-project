@@ -616,6 +616,9 @@ table {
       @media (max-width:1366px) {
         padding: 0.9rem;
       }
+      @media (max-width:1280px) {
+        padding: 0.6rem;
+      }
     }
 
     .media {
@@ -643,6 +646,9 @@ table {
 
         i {
           font-size: 2rem;
+          @media (max-width:768px){
+            font-size: 1.5rem;
+          }
         }
       }
       @media (max-width:1366px) {
@@ -650,7 +656,7 @@ table {
           font-size: 1.3rem;
          }
       }
-    
+     
 
     }
 
@@ -661,6 +667,14 @@ table {
       bottom: 0;
       top: 0;
     }
+    // .card-header {
+    //   h5{
+    //     @media (max-width:425px){
+    //       font-size: 1.05rem;
+    //     }
+    //   }
+    // }
+  
   }
 
   .bg-pending {
@@ -1039,4 +1053,12 @@ tr.unpublish {
     display: none !important;
   }
 
+}
+
+@media (max-width:425px) {
+  .card-header {
+    h5{
+      font-size: 1.1rem;
+    }
+  }
 }

@@ -503,7 +503,7 @@
                                     <th>Complaint Date</th>
                                     <th>Action Taken By</th>
                                     <th>ATA Mobile Number</th>
-                                    <th width="90px">Action</th>
+                                    <th width="50px">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -993,13 +993,18 @@
                                 </div>
                             </div>
                             <div class="col-xl-6 col-md-6">
-                                <div class="mb-3">
-                                    <label for="ddlDistrict" class="form-label">Reference Document</label>
-                                    <input class="form-control" type="file" id="formFile">
-                                    <p class="text-danger text-end small mb-0"> Only <span class="fw-bold">.jpeg, .jpg, .png,
-                                            .gif, .doc, .xls, .pdf</span> files
-                                        allowed</p>
+                                <label for="ddlDistrict" class="form-label">Reference Document</label>
+                                <div class="input-group">
+                                    <input type="file" class="form-control custom-fileupload" id="doc">
+                                    <label class="custom-input" for="doc">Upload</label>
+                                    <label class="input-group-text custom-browse" for="doc">Browse</label>
                                 </div>
+                                <p class="text-danger text-end small mb-0"> Only <span class="fw-bold">.jpeg, .jpg, .png,
+                                    .gif, .doc, .xls, .pdf</span> files
+                                allowed</p>
+
+                                
+
                             </div>
                             <div class="col-xl-12">
                                 <div class="mb-3">
