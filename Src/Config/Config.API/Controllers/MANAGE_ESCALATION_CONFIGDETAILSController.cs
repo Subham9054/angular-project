@@ -101,6 +101,7 @@ namespace Config.API
         {
             try
             {
+
                 var result = await _MANAGE_ESCALATION_CONFIGDETAILSRepository.GetEscalations(categoryId, subcategoryId);
 
                 if (result == null || !result.Any())

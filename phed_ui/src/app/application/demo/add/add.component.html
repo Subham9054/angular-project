@@ -1,15 +1,9 @@
 <div class="form-cointainer">
-    <div class="main-tab">
-        <div class="row justify-content-between">
+    <div class="pagetitle-section">
+        <div class="row justify-content-between align-items-center">
             <div class="col-xxl-3 col-lg-4 col-md-6">
-                <ul class="nav nav-tabs" routerLinkActive="active">
-                    <li class="nav-item">
-                        <a routerLink="/application/demo" class="nav-link active">Add</a>
-                    </li>
-                    <li class="nav-item">
-                        <a routerLink="/application/demo/view" class="nav-link">View</a>
-                    </li>
-                </ul>
+                <h3>Register Complaint</h3>
+                <p>Manage your page</p>
             </div>
             <div class="col-lg-6 col-md-6">
                 <div class="utilite float-end mb-1">
@@ -17,18 +11,9 @@
                         <li class="bg-transparent border-0">
                             <span class="text-danger small"><b>(*)</b> Indicate mandatory </span>
                         </li>
-                        <li>
-                            <a href="javascript:void(0)" ngbTooltip="Click to Print"><i class="bi bi-printer"></i></a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)" ngbTooltip="Delete Record"><i class="bi bi-trash"></i></a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)" ngbTooltip="Download"><i class="bi bi-download"></i></a>
-                        </li>
-                        <li><a href="javascript:void(0)" ngbTooltip="Go to Previous"><i
-                                    class="bi bi-arrow-left"></i></a>
-                        </li>
+                        <li class="fill-btn back-link"><a routerLink="/application/demo/view" ngbTooltip="Go to Previous"><i
+                            class="bi bi-arrow-left"></i> Back to View</a>
+                </li>
                     </ul>
                 </div>
             </div>
@@ -60,7 +45,8 @@
                             <label class="col-form-label">Date Input</label>
                             <div class="input-group">
                                 <input type="text" class="form-control datepicker" id="datepicker">
-                                <label class="input-group-text" for="datepicker"><i class="bi bi-calendar-week"></i></label>
+                                <label class="input-group-text" for="datepicker"><i
+                                        class="bi bi-calendar-week"></i></label>
                             </div>
                         </div>
                     </div>
@@ -79,7 +65,8 @@
                             <label class="col-form-label">Date Time Input</label>
                             <div class="input-group">
                                 <input type="text" class="form-control datetimepicker" id="inputDateTime">
-                                <label class="input-group-text" for="inputDateTime"><i class="bi bi-calendar2-check"></i></label>
+                                <label class="input-group-text" for="inputDateTime"><i
+                                        class="bi bi-calendar2-check"></i></label>
                             </div>
                         </div>
                     </div>

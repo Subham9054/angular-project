@@ -1,120 +1,149 @@
 <div class="topheader" [class.hidden]="hideTopHeader" 
 [class.scroll-up]="isScrollingUp && !hideTopHeader">
     <nav class="navbar navbar-expand-lg setting-nav header-utilities" aria-label="Offcanvas navbar large">
+    
         <div class="container">
-            <div class="d-flex justify-content-lg-between justify-content-start  align-items-lg-center w-100">
-                <a href="javascript:void(0);" class="d-md-block d-none" (click)="scrollToSection('targetMainContent')">{{ 'SCROLL' | translate }}</a>
-                <div class="d-flex align-items-center ms-md-auto">
-                    <div class="lang-div">
-                        <button class="lang-btn" (click)="toggleLanguage()">
-                          {{ currentLang === 'en' ? 'हिन्दी' : 'English' }}
-                        </button>                 
-                    </div>
-
-                    <!-- <div class="lang-div">
-                        <span>हिंदी</span>
-                        <span (click)="changeLang('Hindi')" *ngIf="language== 'English'">हिंदी</span>
-                    </div> -->
-
-                    <a class="collapsed px-2 ps-3"  (click)="toggleSearch()"   [attr.aria-expanded]="isExpanded"  data-bs-toggle="collapse" href="javascript:void(0)" 
-                      data-bs-target="#search-open">
-                      <i [ngClass]="{ 'bi bi-x-lg': isOpen,'bi bi-search': !isOpen,'cancle-icon': isOpen, 'serach-icon': !isOpen  }">
-                      </i>
-                   </a>                          
+                <div class="d-flex justify-content-between justify-content-start  align-items-center w-100">
+                    <a href="javascript:void(0);" class="d-block skip-content p-0" (click)="scrollToSection('targetMainContent')">Scroll to Main Content</a>
+                      <div class="d-flex align-items-center ms-md-auto">
+                        <div class="lang-div">
+                            <span>हिंदी</span>
+                            <!-- <span (click)="changeLang('Hindi')" *ngIf="language== 'English'">हिंदी</span> -->
+                          </div>
+                          <a class="collapsed px-2 ps-sm-3"  title="search" (click)="toggleSearch()"   [attr.aria-expanded]="isExpanded"  data-bs-toggle="collapse"     href="javascript:void(0)" 
+                          data-bs-target="#search-open">
+                          <i [ngClass]="{ 'bi bi-x-lg': isOpen,'bi bi-search': !isOpen,'cancle-icon': isOpen, 'serach-icon': !isOpen  }">
+                          </i>
+                       </a>
+                       
+                        <div class="theme">
+                            <div class="theme-mode" title="Light Theme">
+                              <input type="radio" name="theame" value="light" (click)="lightThemeBtn()" [checked]="isLightTheme">
+                              <span><i class="bi bi-brightness-high-fill"></i></span>
+                            </div>
+                            <div class="theme-mode" title="Dark Theme">
+                              <input type="radio" name="theame" value="dark" (click)="darkThemeBtn()" [checked]="isDarkTheme">
+                              <span><i class="bi bi-moon-fill"></i></span>
+                            </div>
+                          </div>
+    
+                          <div class="fontresizer ms-2">
+                            <a class="fontresize" title="Decrease font size" (click)="DecreaseFontSize()"
+                              href="javascript:void(0);">A-</a>
+                            <a class="fontresize" title="Reset font size" (click)="ResetFontSize()" href="javascript:void(0);">A</a>
+                            <a class="fontresize" title="Increase font size" (click)="IncreaseFontSize()"
+                              href="javascript:void(0);">A+</a>
+                          </div>
+                        </div>
                    
-                    <div class="theme">
-                        <div class="theme-mode" title="Light Theme">
-                          <input type="radio" name="theame" value="light" (click)="lightThemeBtn()" [checked]="isLightTheme">
-                          <span><i class="bi bi-brightness-high-fill"></i></span>
-                        </div>
-                        <div class="theme-mode" title="Dark Theme">
-                          <input type="radio" name="theame" value="dark" (click)="darkThemeBtn()" [checked]="isDarkTheme">
-                          <span><i class="bi bi-moon-fill"></i></span>
-                        </div>
-                    </div>
-
-                    <div class="fontresizer ms-2">
-                        <a class="fontresize" title="Decrease font size" (click)="DecreaseFontSize()"
-                          href="javascript:void(0);">{{ 'SIZE-' | translate }}</a>
-                        <a class="fontresize" title="Reset font size" (click)="ResetFontSize()" href="javascript:void(0);">{{ 'SIZE' | translate }}</a>
-                        <a class="fontresize" title="Increase font size" (click)="IncreaseFontSize()"
-                          href="javascript:void(0);">{{ 'SIZE+' | translate }}</a>
-                    </div>
+    
                 </div>
-            </div>
-        </div>      
+           
+    
+        </div>
+      
     </nav>
 </div>
 
 
-<div class="logocontext"  [class.is-hidden]="isHidden"
-[class.scrolllogo]="isScrollingUp && !isAtTop"
-[class.headtoggle]="isAtTop">  
+<div class="logocontext"  [class.is-hidden]="isHidden" [class.scrolllogo]="isScrollingUp && !isAtTop"[class.headtoggle]="isAtTop">  
     <nav class="navbar navbar-expand-lg bg-primary-dark z-3 p-0" aria-label="Offcanvas navbar large">
         <div class="container">
            <div class="mb-0 position-relative d-flex align-items-center gap-sm-3 ">
             <img src="../../../assets/img/BiharGovLogo.png" alt="NEER NIRMAL SEVA" class="navbar-brand__img light-img">
             <img src="../../../assets/img/bihar-logo-white.png" alt="NEER NIRMAL SEVA" class="navbar-brand__img dark-img">
-            <h1>                    
+            <h1>
+                    
                 <div class="logo-text">
-                    <span>{{ 'TITLE' | translate }}</span>
-                    <small class="fw-bold">{{ 'DEPARTMENT' | translate }}<span class="gov">{{ 'BIHAR' | translate }}</span></small>                   
-                </div>
-                <!-- <div class="logo-text">
                     <span>  NEER NIRMAL SEVA</span>
-                    <small class="fw-bold">Public Health Engineering Department  <span class="gov">Government of Bihar</span></small>                   
-                </div> -->
+                    <small class="fw-bold">Public Health Engineering Department  <span class="gov">Government of Bihar</span></small>
+                   
+                </div>
+                  
+                 
             </h1>
             <a class="navbar-brand stretched-link" title="Government of Bihar" routerLink="/home"></a> 
-           </div>              
+           </div>
+              
                
             <button class="navbar-toggler main__btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar2" aria-controls="offcanvasNavbar2">
-                <span class="navbar-toggler-icon"></span>
+                <!-- <span class="navbar-toggler-icon"></span> -->
+                <span class="bi bi-list"></span>
             </button>
             <div class="offcanvas offcanvas-start "  id="offcanvasNavbar2" aria-labelledby="offcanvasNavbar2Label">
                 <div class="offcanvas-header">
-                    <h5 class="offcanvas-title screen-reader" id="offcanvasNavbar2Label" >Menu</h5>
-                    <button type="button" class="btn-close " data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    <h5 class="offcanvas-title screen-reader fw-bold" id="offcanvasNavbar2Label" >Menu</h5>
+                    <button type="button" class="close-btn btn" data-bs-dismiss="offcanvas" aria-label="Close"><span class="bi bi-x-lg"></span></button>
                 </div>
                 <div class="offcanvas-body">
                     <ul class="navbar-nav w-100 justify-content-end align-items-lg-center">
-                        <li class="nav-item" *ngFor="let menu of headerMenus">
-                            <a class="nav-link" routerLinkActive="active" [routerLink]="menu.route">{{ menu.name | translate }}</a>
-                        </li>                     
-                    </ul>
-                    <ul class="navbar-nav w-100 justify-content-end align-items-lg-center">
                         <li class="nav-item">
-                            <a class="btn btn-login"  href="javascript:void(0);" > <i class="bi bi-box-arrow-in-right me-1"></i>{{ 'LOGIN' | translate }}</a>
+                            <a class="nav-link" routerLinkActive="active" routerLink="/home"  (click)="closeOffcanvas()">Home</a>
                         </li>
-                    </ul> 
+                        <li class="nav-item">
+                            <a class="nav-link" routerLinkActive="active" routerLink="/about-us"  (click)="closeOffcanvas()">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link "  routerLinkActive="active" routerLink="how-it-works"  (click)="closeOffcanvas()">How it Works</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " routerLinkActive="active"  routerLink="/complaint" (click)="closeOffcanvas()">Complaint</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link "  routerLinkActive="active" routerLink="/faq"  (click)="closeOffcanvas()">FAQ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " routerLinkActive="active"  routerLink="/contact-us" (click)="closeOffcanvas()">Contact Us</a>
+                        </li>
+                        <li class="nav-item d-lg-block d-none">
+                            <a href="javascript:void(0);" (click)="toggleMenu()" class="menu-toggle" [ngClass]="isMenuOpen ? 'menu-open' : ''" >
+                                <i [ngClass]="isMenuOpen ? 'bi bi-x-lg' : 'bi bi-list'"></i>
+                              </a>
+                           
+                        </li>
+                        <li class="nav-item">
+                            <a class="btn btn-login"  href="javascript:void(0);" > <i class="bi bi-box-arrow-in-right me-1"></i> Login</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
     </nav>
-    <!-- <nav class="navbar navbar-expand-lg bg-primary-dark z-3 p-0" aria-label="Offcanvas navbar large">
-        <div class="container">
-          <div class="offcanvas offcanvas-start" id="offcanvasNavbar2" aria-labelledby="offcanvasNavbar2Label">
-            <ul class="navbar-nav w-100 justify-content-end align-items-lg-center">
-              <li class="menu-item" *ngFor="let menu of menus">
-                <a class="nav-link" routerLinkActive="active" [routerLink]="menu.route">
-                  {{ menu.name | translate }}
-                </a>
-                <ul class="submenu-list" *ngIf="menu.submenus?.length">
-                  <li class="submenu-item" *ngFor="let submenu of menu.submenus">
-                    <a class="nav-link" routerLinkActive="active" [routerLink]="submenu.route">
-                      {{ submenu.name | translate }}
-                    </a>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </div>
-        </div>
-    </nav> -->
 </div>
-<div [ngClass]="{'collapse': true, 'show': isOpen}"  id="search-open">
-    <div class="input-group ">          
-        <input type="text" class="form-control" placeholder="Search..." aria-label="Username" aria-describedby="basic-addon1">
-        <span class="input-group-text" id="basic-addon1"><i class="bi bi-search"></i></span>
+
+<div class="mega-menu" *ngIf="isMenuOpen" #megaMenu>
+  <div class="megamenu-container">
+    <div class="row">
+      <div class="col-lg-6">
+        <ul class="navbar-nav w-100">
+          <li class="nav-item">
+            <a href="javascript:void(0);" (click)="toggleMenu()">Home</a>
+            <ul>
+              <li><a class="nav-link" routerLinkActive="active">Other Link One</a></li>
+              <li><a class="nav-link" routerLinkActive="active">Other Link Two</a></li>
+              <li><a class="nav-link" routerLinkActive="active">Other Link Three</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="col-lg-6">
+        <ul class="navbar-nav w-100">
+          <li class="nav-item">
+            <a class="nav-link" routerLinkActive="active" routerLink="/about-us">About Us</a>
+          </li>
+        </ul>
+      </div>
     </div>
+  </div>
+</div>
+
+
+<div [ngClass]="{'collapse': true, 'show': isOpen}" id="search-open">
+  <div class="container">
+    <div class="input-group ">
+      <input type="text" class="form-control" placeholder="Search..." aria-label="Username"
+        aria-describedby="basic-addon1">
+      <span class="input-group-text" id="basic-addon1"><i class="bi bi-search"></i></span>
+    </div>
+  </div>
 </div>

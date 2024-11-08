@@ -7,8 +7,6 @@
   z-index: 9;
   height: 100vh;
   font-size: 0.95rem;
-  a {
-  }
   &-content {
     transition: $sidebar-transition;
     display: flex;
@@ -33,15 +31,17 @@
     }
 
     &::-webkit-scrollbar-track {
-      background:rgba(233, 236, 239, 0.4);
+      background:#4d5ee0;
+      border-radius: 10px;
     }
     
     &::-webkit-scrollbar-thumb {
-      background:#4b59c7;
+      border-radius: 10px;
+      background:rgba(233, 236, 239, 0.7);
     }
 
     &::-webkit-scrollbar-thumb:hover {
-      background:#5566e6;
+      background:rgba(233, 236, 239, 0.6);
     }
   }
 
@@ -142,6 +142,7 @@
   p {
     margin-bottom: 0;
     line-height: 1.2;
+    font-size: 0.85rem;
   }
   small {
     opacity: 0.6;
@@ -181,7 +182,7 @@
   font-size: 1.8rem;
   margin-right: $spacer - 0.5rem;
   align-items: center;
-  margin-left: 1.2rem;
+  margin-left: 0.6rem;
   @media (max-width:630px){
     margin-left: 0.7rem;
   }

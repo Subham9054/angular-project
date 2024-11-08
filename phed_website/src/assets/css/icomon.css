@@ -27,35 +27,27 @@
 
 .icon-Group-14936:before {
   content: "\e930";
-  color: #fff;
 }
 .icon-water-tower:before {
   content: "\e931";
-  color: #0b81cc;
 }
 .icon-Layer-2:before {
   content: "\e932";
-  color: #0b81cc;
 }
 .icon-washing-hands:before {
   content: "\e933";
-  color: #0b81cc;
 }
 .icon-engagement:before {
   content: "\e934";
-  color: #0b81cc;
 }
 .icon-complain:before {
   content: "\e900";
-  color: #fff;
 }
 .icon-edit:before {
   content: "\e901";
-  color: #fff;
 }
 .icon-faq .path1:before {
   content: "\e902";
-  color: rgb(65, 100, 163);
 }
 .icon-faq .path2:before {
   content: "\e903";
@@ -270,7 +262,6 @@
 }
 .icon-faucet:before {
   content: "\e92c";
-  color: #fff;
 }
 .icon-MagnifyingGlass:before {
   content: "\e92d";
@@ -280,5 +271,4 @@
 }
 .icon-sun:before {
   content: "\e92f";
-  color: #fff;
 }
