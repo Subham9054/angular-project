@@ -8,17 +8,21 @@
             <div class="col-lg-6 col-md-6">
                 <div class="utilite">
                     <ul class="mb-0">
-                        <li>
-                            <a href="javascript:void(0)" title="Click to filter"><i class="bi bi-funnel"></i></a>
-                        </li>
+                       
+
                         <li>
                             <a href="javascript:void(0)" title="Click to Print"><i class="bi bi-printer"></i></a>
                         </li>
+
                         <li>
                             <a href="javascript:void(0)" title="Download Excel"><i class="bi bi-file-earmark-excel"></i></a>
                         </li>
-                        <li>
-                            <a href="javascript:void(0)" title="Download"><i class="bi bi-download"></i></a>
+
+                        <li [ngClass]="isPanelOpen ? 'active-filter' : ''">
+                            <a href="javascript:void(0)" title="{{ isPanelOpen ? 'Click to Close Filter' : 'Click to Open Filter' }}" 
+                               (click)="togglePanel()">
+                                <i class="bi bi-funnel"></i>
+                            </a>
                         </li>
                         
                         <li class="fill-btn add-link"><a routerLink="/application/demo"  title="Go to Previous"><i class="bi bi-plus-lg"></i>
@@ -29,7 +33,8 @@
             </div>
         </div>
     </div>
-    <div id="collapseExample" class="collapse show" [ngClass]="{'show': isPanelOpen}">
+
+     <div id="collapseExample" class="collapse show" [ngClass]="{'show': isPanelOpen}">
         <div class="content-box search-box">
             <div class="row">
                 <div class="col-xl-4 col-lg-4 col-md-6">
@@ -70,12 +75,13 @@
             </div>
         </div>
     </div>
+
     <div class="content-box content-area p-0">
         <div class="table-responsive">
             <table class="table mb-0">
                 <thead>
                     <tr>
-                        <th width="50">Sl#</th>
+                        <th width="40px">Sl#</th>
                         <th>Name</th>
                         <th>Phone</th>
                         <th>District</th>

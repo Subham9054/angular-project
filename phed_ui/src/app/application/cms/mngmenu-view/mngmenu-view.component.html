@@ -1,43 +1,22 @@
 <div class="form-cointainer">
-    <div class="main-tab">
+    <div class="pagetitle-section">
         <div class="row justify-content-between align-items-center">
             <div class="col-lg-4">
-                <ul class="nav nav-tabs" routerLinkActive="active">
-                    <!-- <li class="nav-item">
-                        <a routerLink="/application/mngmenu" class="nav-link">Add</a>
-                    </li> -->
-                    <li class="nav-item">
-                        <a routerLink="/application/mngmenu-view" class="nav-link active">View</a>
-                    </li>
-                </ul>
+                <h3>Register Complaint</h3>
+                <p>Manage your page</p>
             </div>
             <div class="col-lg-6 col-md-6">
-                <div class="utilite float-end mb-1">
+                <div class="utilite">
                     <ul class="mb-0">
-                        <!-- <li class="bg-transparent border-0">
-                            <span class="text-danger small"><b>(*)</b> Indicate mandatory </span>
-                        </li> -->
+                       
+
                         <li>
                             <a href="javascript:void(0)" title="Click to Print"><i class="bi bi-printer"></i></a>
                         </li>
-                        <!-- <li>
-                            <a href="javascript:void(0)" ngbTooltip="Delete Record"><i class="bi bi-trash"></i></a>
-                        </li>
-                       
-                        <li><a href="javascript:void(0)" ngbTooltip="Go to Previous"><i
-                                    class="bi bi-arrow-left"></i></a>
-                        </li> -->
+
                         <li>
-                            <a href="javascript:void(0)" title="Click to Publish">
-                                <i class="bi bi-volume-up"></i>
-                            </a>
+                            <a href="javascript:void(0)" title="Download Excel"><i class="bi bi-file-earmark-excel"></i></a>
                         </li>
-                        <li>
-                            <a href="javascript:void(0)" title="Click to Unpublish">
-                                <i class="bi bi-volume-off"></i>
-                            </a>
-                        </li>
-                       
 
                         <li [ngClass]="isPanelOpen ? 'active-filter' : ''">
                             <a href="javascript:void(0)" title="{{ isPanelOpen ? 'Click to Close Filter' : 'Click to Open Filter' }}" 
@@ -45,17 +24,18 @@
                                 <i class="bi bi-funnel"></i>
                             </a>
                         </li>
-
-                        <li>
-                            <a href="javascript:void(0)" title="Click to Add" routerLink="/application/mngmenu">
-                                <i class="bi bi-plus-lg"></i>
-                            </a>
+                        
+                        <li class="fill-btn add-link"><a routerLink="/application/mngmenu"  title="Go to Previous"><i class="bi bi-plus-lg"></i>
+                                Add Page</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
+
+   
+
     <div id="collapseExample" class="collapse show" [ngClass]="{'show': isPanelOpen}">
         <div class="content-box search-box">
             <div class="row">
@@ -98,12 +78,7 @@
         </div>
     </div>
 
-    <!-- <div class="search-btn">
-        <a data-bs-toggle="collapse" href="#collapseExample">
-            <span class="collapse-on">Search Open <i class="bi bi-arrow-down"></i></span> <span
-                class="collapse-off">Search Close <i class="bi bi-arrow-up"></i></span>
-        </a>
-    </div> -->
+    
 
     <div class="view-legand">
         <ul class="legends">
