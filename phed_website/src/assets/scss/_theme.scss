@@ -61,6 +61,8 @@
     --statics-border:#{$grey-light};
     --faq-border:#{$grey-border};
     --input-color:#{$grey-light-900};
+
+    --faq-number:#{$light-white};
 }
 .theme-dark {   
     --link-color: #{$white};
@@ -79,7 +81,8 @@
     --menu-color:#{$white};
     --about-bg-tap:#{$blue-100};
     --about-bg-tapicon:#{$white};
-    --know-btn:#{$blue-200};
+    --know-btn:#{$white};
+    // --know-btn:#{$blue-200};
     --know-btn-bg:#{$warning};
     --footer-bg:#{$grey-200};
     --footer-text:#{$white};
@@ -87,7 +90,7 @@
     --faq-bg:#{$grey-800};
     --faq-active:#{$blue-200};
     --faq-accordian:#{$white};
-    --event-hover:#{$blue-900};
+    --event-hover:#{$yellow};
     --eventsmall-text:#{$grey-500};
     --view-link:#{$blue-600};
     --grivance-card:#{$blue-500};
@@ -124,4 +127,7 @@
     --statics-border:#{$grey-300};
     --faq-border:#{$grey-300};
     --input-color:#{$grey-300};
+
+    --faq-number:#{$light-white-100};
+ 
 }
