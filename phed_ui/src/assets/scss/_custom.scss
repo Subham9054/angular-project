@@ -90,13 +90,13 @@
         margin-left: 0.4rem;
 
         .page-link {
-            margin-left: 0.15rem;
+          
             padding: 0.2rem 0.5rem;
             line-height: 20px;
             border-radius: 0.4rem;
 
             &.active {
-                background-color: $blue-dark;
+                background-color: $sidebar-bg;
                 color: $white;
             }
             &:focus{
@@ -207,14 +207,13 @@
     }
 
     thead {
-        tr {
-            th {
-                position: sticky;
-                top: 0;
-                left: 0;
-                right: 0;
-            }
-        }
+        position: sticky;
+        top: 0;
+        left: 0;
+        right: 0;
+    }
+    @media (max-width:1366px){
+        height: 55vh;
     }
  
 }

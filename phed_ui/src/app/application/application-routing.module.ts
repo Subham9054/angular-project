@@ -37,13 +37,16 @@ import { MngbannerViewComponent } from './cms/mngbanner-view/mngbanner-view.comp
 import { MinisterProfileViewComponent } from './cms/minister-profile-view/minister-profile-view.component';
 import { ComplaintSubCategoryComponent } from './complaint-sub-category/complaint-sub-category.component';
 import { ModewiseReportComponent } from './modewise-report/modewise-report.component';
+import { ComplaintregistrationViewComponent } from './complaintregistration-view/complaintregistration-view.component';
 
 
 const routes: Routes = [{
   path: '', component: ApplicationComponent, children: [
     { path: 'dashboard', component: DashboardComponent },
-    { path: 'demo', component: AddComponent },
+    
     { path: 'demo/:id', component: ViewComponent },
+    { path: 'demo', component: AddComponent },
+    
 
     { path: 'complaintcategory', component: ComplaintcategoryComponent },
     { path:'complaintcategory/:id',component:ComplaintcategoryViewComponent},
@@ -51,6 +54,7 @@ const routes: Routes = [{
     { path: 'ComplaintSub-Category', component: ComplaintSubCategoryComponent },
 
     {path:'complaintregistration',component:ComplaintregistrationComponent},
+    {path:'complaintregistration/:id',component:ComplaintregistrationViewComponent},
 
     {path:'complaintregistrationupdate',component:ComplaintregistrationupdateComponent},
     {path:'complaintregistrationdelete',component:ComplaintregistrationdeleteComponent},
