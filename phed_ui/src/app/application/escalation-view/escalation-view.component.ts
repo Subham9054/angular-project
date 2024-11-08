@@ -124,6 +124,22 @@ export class EscalationViewComponent {
         console.error('Error fetching escalations:', error);
       }
     );
+  }
+  Updateview(categoryId: string, subCategoryId: string,escalationlevelId:string){
+    // alert(categoryId);
+    // alert(subCategoryId);
+    // alert(escalationlevelId);
+    const catid=categoryId;
+    const subcatid=subCategoryId;
+    const esclid=escalationlevelId;
+    this.router.navigate(['/application/escalation'], {
+      queryParams: {
+        catid: categoryId,
+        subcatid: subCategoryId,
+        esclid: escalationlevelId
+      }
+    });
+   
 }
 
 }
