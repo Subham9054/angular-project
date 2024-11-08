@@ -13,6 +13,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptorService } from './interceptors/auth-interceptor.service';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { LoaderComponent } from './loader/loader.component';
 
 
 
@@ -22,6 +23,7 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
     LoginComponent,
     ForgotpasswordComponent,
     PagenotfoundComponent,
+    LoaderComponent,
     
   ],
   imports: [
