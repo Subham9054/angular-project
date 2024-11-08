@@ -17,7 +17,12 @@
                         <li>
                             <a href="javascript:void(0)" ngbTooltip="Download"><i class="bi bi-download"></i></a>
                         </li>
-                        
+                        <li [ngClass]="isPanelOpen ? 'active-filter' : ''">
+                            <a href="javascript:void(0)" title="{{ isPanelOpen ? 'Click to Close Filter' : 'Click to Open Filter' }}" 
+                               (click)="togglePanel()">
+                                <i class="bi bi-funnel"></i>
+                            </a>
+                        </li>
                         <li class="fill-btn add-link"><a routerLink="/application/demo"  ngbTooltip="Go to Previous"><i class="bi bi-plus-lg"></i>
                                 Add Page</a>
                         </li>
@@ -26,7 +31,47 @@
             </div>
         </div>
     </div>
-
+    <div id="collapseExample" class="collapse show" [ngClass]="{'show': isPanelOpen}">
+        <div class="content-box search-box">
+            <div class="row">
+                <div class="col-xl-4 col-lg-4 col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label" for="manutype">Menu Type</label>
+                        <select class="form-select" id="manutype">
+                            <option selected>Select</option>
+                            <option value="1">Main Menu</option>
+                            <option value="2">Footer Menu</option>
+                            <option value="3">Footer Bottom Menu</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label" for="parentmanu">Parent Menu</label>
+                        <select class="form-select" id="parentmanu">
+                            <option selected>Select</option>
+                            <option value="1">FAQ</option>
+                            <option value="2">Feedback</option>
+                            <option value="3">Contact</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label" for="menuen">Menu Name</label>
+                        <input type="text" class="form-control" id="menuen">
+                    </div>
+                </div>
+                <div class="col-xl-2 col-lg-4 col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label d-xl-block d-lg-none d-md-block d-none">&nbsp;</label>
+                        <button type="submit" class="btn btn-primary me-2">Search</button>
+                        <!-- <button type="reset" class="btn btn-danger">Reset</button> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="content-box content-area p-0">
         <div class="table-responsive">
             <table class="table mb-0">
