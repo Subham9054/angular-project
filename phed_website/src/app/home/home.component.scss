@@ -618,67 +618,74 @@
 .accordion {
   &.faq-accordion {
     --bs-accordion-border-width: 0;
-    .accordion-button {
-      span {
-        margin-right: 0.5rem;
-        background-color: #ededed;
-        border-radius: 100%;
-        width: 1.9rem;
-        height: 1.9rem;
-        padding: 0.8rem;
-        margin-right: 0.7rem;
+    .accordion-item{
+      background-color: transparent;
+      .accordion-button {
+
+        position: relative;
+        background-color: var(--faq-bg);
+        align-items: baseline;
         display: flex;
-        color: #000;
-        font-size: 0.9rem;
-        font-weight: 700;
-        align-items: center;
-        justify-content: center;
-      }
-      position: relative;
-      background-color: var(--faq-bg);
-      align-items: baseline;
-      display: flex;
-      padding: 1rem 1.9rem 1rem 0;
-      font-weight: normal;
-      color: var(--faq-accordian);
-      font-size: 1.05rem;
-      border-bottom: 1px solid var(--faq-border);
-      border-radius: 0;
-      &:focus {
-        box-shadow: none !important;
-      }
-      &:hover {
-        color: var(--faq-active);
-      }
-      &:not(.collapsed) {
-        color: var(--faq-active);
+        padding: 1rem 1.9rem 1rem 0;
+        font-weight: normal;
+        color: var(--faq-accordian);
+        font-size: 1.05rem;
+        border-bottom: 1px solid var(--faq-border);
+        border-radius: 0;
+        span {
+          margin-right: 0.5rem;
+          background-color: var(--faq-number);
+          // background-color: #ededed;
+          border-radius: 100%;
+          width: 1.9rem;
+          height: 1.9rem;
+          padding: 0.8rem;
+          margin-right: 0.7rem;
+          display: flex;
+          color: var(--menu-color);
+          // color: #000;
+          font-size: 0.9rem;
+          font-weight: 700;
+          align-items: center;
+          justify-content: center;
+        }
+        &:focus {
+          box-shadow: none !important;
+        }
+        &:hover {
+          color: var(--faq-active);
+        }
+        &:not(.collapsed) {
+          color: var(--faq-active);
+          &::after {
+            content: "\F63B";
+          }
+        }
         &::after {
-          content: "\F63B";
+          background-image: none !important;
+          font-family: bootstrap-icons !important;
+          font-size: 1.25rem;
+          position: absolute;
+          right: 1rem;
+          top: 50%;
+          transform: translateY(-50%);
+          transition: transform 0.3s ease;
+          color: var(--faq-accordian);
+          content: "\F64D";
         }
       }
-      &::after {
-        background-image: none !important;
-        font-family: bootstrap-icons !important;
-        font-size: 1.25rem;
-        position: absolute;
-        right: 1rem;
-        top: 50%;
-        transform: translateY(-50%);
-        transition: transform 0.3s ease;
-        color: var(--faq-accordian);
-        content: "\F64D";
+      .accordion-collapse {
+        .accordion-body {
+          background-color: var(--faq-bg);
+          opacity: 0.6;
+          color: var(--text-black);
+          padding: 1rem 0;
+      font-size: 1.05rem;
+      text-align: justify;
+        }
       }
     }
-    .accordion-collapse {
-      .accordion-body {
-        background-color: var(--faq-bg);
-        opacity: 0.6;
-        color: var(--text-black);
-        padding: 1rem 0;
-    font-size: 1.05rem;
-    text-align: justify;
-      }
-    }
+    
   }
 }
 .faq__footer {

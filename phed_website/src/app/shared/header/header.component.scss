@@ -205,7 +205,7 @@
   }
 }
 .cancle-icon {
-  color: red;
+  color: var(--menu-hover);
 }
 
 .serach-icon {
@@ -220,7 +220,8 @@
   top: 36px;
   margin: 0 auto;
   padding: 1.1rem;
-  background: #f1f1f1;
+  background-color: var(--header-utilities-bg);
+  // background: #f1f1f1;
   border: none;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   z-index: 11;
