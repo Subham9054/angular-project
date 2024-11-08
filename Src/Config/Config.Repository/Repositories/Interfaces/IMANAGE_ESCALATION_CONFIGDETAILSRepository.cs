@@ -16,5 +16,6 @@ namespace Config.Repository.Interfaces.MANAGE_ESCALATION_CONFIGDETAILS
         Task<int> CheckEscalationExist(int INT_CATEGORY_ID, int INT_SUB_CATEGORY_ID);
         public Task<List<EscalationViewModel>> GetEscalations(int categoryid, int subcategoryid);
         public Task<List<EscalationViewModel>> GetEscalationseye(int categoryid, int subcategoryid);
+        public Task<List<EscalationViewModel>> GetUpdatepen(int categoryid, int subcategoryid, int esclid);
     }
 }
