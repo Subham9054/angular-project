@@ -1,30 +1,46 @@
 <div class="form-cointainer">
-    <div class="main-tab">
-        <div class="row justify-content-between">
-            <div class="col-xxl-3 col-lg-4 col-md-6">
-                <ul class="nav nav-tabs" routerLinkActive="active">
-                    <li class="nav-item">
-                        <a routerLink="/application/demo/view" class="nav-link active">View</a>
-                    </li>
-                </ul>
+
+    <div class="pagetitle-section">
+        <div class="row justify-content-between align-items-center">
+            <div class="col-lg-4">
+                <h3>Register Complaint</h3>
+                <p>Manage your page</p>
             </div>
             <div class="col-lg-6 col-md-6">
-                <div class="utilite float-end mb-1">
+                <div class="utilite">
                     <ul class="mb-0">
+                       
+
                         <li>
                             <a href="javascript:void(0)" title="Click to Print"><i class="bi bi-printer"></i></a>
                         </li>
 
                         <li>
-                            <a href="javascript:void(0)" data-bs-toggle="collapse" href="#collapseExample">
+                            <a href="javascript:void(0)" title="Download Excel"><i class="bi bi-file-earmark-excel"></i></a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)">
                                 <i class="bi bi-funnel"></i>
                             </a>
                         </li>
+                        <!-- <li [ngClass]="isPanelOpen ? 'active-filter' : ''">
+                            <a href="javascript:void(0)" title="{{ isPanelOpen ? 'Click to Close Filter' : 'Click to Open Filter' }}" 
+                               (click)="togglePanel()">
+                                <i class="bi bi-funnel"></i>
+                            </a>
+                        </li> -->
+                        
+                         <!-- <li class="fill-btn add-link"><a routerLink="/application/demo/view"  title="Go to Previous"><i class="bi bi-plus-lg"></i>
+                                Add Page</a>
+                        </li>  -->
                     </ul>
                 </div>
             </div>
         </div>
     </div>
+
+    
+    <!-- <div id="collapseExample" class="collapse show" [ngClass]="{'show': isPanelOpen}"> -->
     <div id="collapseExample" class="collapse show">
         <div class="content-box search-box">
             <div class="row">
@@ -70,18 +86,13 @@
             </div>
         </div>
     </div>
-    <!-- <div class="search-btn">
-        <a data-bs-toggle="collapse" href="#collapseExample">
-            <span class="collapse-on">Search Open <i class="bi bi-arrow-down"></i></span> <span
-                class="collapse-off">Search Close <i class="bi bi-arrow-up"></i></span>
-        </a>
-    </div> -->
+  
     <div class="content-box content-area p-0">
         <div class="table-responsive">
             <table class="table mb-0">
                 <thead>
                     <tr>
-                        <th width="30px">Sl#</th>
+                        <th width="40px">Sl#</th>
                         <th>Complaint Category</th>
                         <th class="text-end">Total Received (in #)</th>
                         <th class="text-end">Total Solved (in #)</th>

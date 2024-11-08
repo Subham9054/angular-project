@@ -7,6 +7,14 @@ declare let $: any;
   styleUrls: ['./complaintregistrationdelete.component.scss']
 })
 export class ComplaintregistrationdeleteComponent {
+
+
+  isPanelOpen = false; // Start with the panel open
+
+  togglePanel() {
+    this.isPanelOpen = !this.isPanelOpen; // Toggle the panel state
+  }
+  
   registrationDate: string = '';
   toDate: string = '';
   districts: any[] = [];

@@ -17,7 +17,7 @@
             </li>
 
             <li class="sidebar-item" routerLinkActive="active">
-                <a class="sidebar-link" routerLink="demo">
+                <a class="sidebar-link" routerLink="demo/view">
                     <i class="bi bi-speedometer2"></i> <span class="align-middle">Demo</span>
                 </a>
             </li>
@@ -27,11 +27,11 @@
                     <i class="bi bi-journal-check"></i> <span class="align-middle">Common Master</span> </a>
                 <ul id="mngMaster" class="sidebar-dropdown list-unstyled collapse" routerLinkActive="show" data-bs-parent="#sidebar">
                     <li class="sidebar-item">
-                        <a class="sidebar-link" routerLinkActive="active" routerLink="/application/complaintcategory"
+                        <a class="sidebar-link" routerLinkActive="active" routerLink="/application/complaintcategory/view"
                             >Complaint Category </a>
                     </li>
                     <li class="sidebar-item">
-                        <a class="sidebar-link"  routerLink="/application/ComplaintSub-Category" routerLinkActive="active">
+                        <a class="sidebar-link"  routerLink="/application/ComplaintSub-Category/view" routerLinkActive="active">
                         Complaint Sub-Category </a>
                     </li>
                 </ul>
@@ -42,7 +42,7 @@
                     routerLinkActive="active" (click)="$event.stopPropagation();">
                     <i class="bi bi-gear"></i> <span class="align-middle">Config</span> </a>
                 <ul id="mngConfig" class="sidebar-dropdown list-unstyled collapse"  routerLinkActive="show" data-bs-parent="#sidebar">
-                    <li class="sidebar-item"><a class="sidebar-link" routerLink="/application/escalation"
+                    <li class="sidebar-item"><a class="sidebar-link" routerLink="demo/view"
                             routerLinkActive="active">Escalation</a></li>
                     <li class="sidebar-item"><a class="sidebar-link" routerLink="/application/demographymapping"
                             routerLinkActive="active">Demography Mapping</a></li>
@@ -54,7 +54,7 @@
                     routerLinkActive="active" (click)="$event.stopPropagation();">
                     <i class="bi bi-journal-check"></i> <span class="align-middle">GMS</span> </a>
                 <ul id="mngGMS" class="sidebar-dropdown list-unstyled collapse"  routerLinkActive="show" data-bs-parent="#sidebar">
-                    <li class="sidebar-item"><a class="sidebar-link" routerLink="/application/complaintregistration"
+                    <li class="sidebar-item"><a class="sidebar-link" routerLink="/application/demo/view"
                             routerLinkActive="active">Register Complaint</a></li>
                     <li class="sidebar-item"><a class="sidebar-link"
                             routerLink="/application/complaintregistrationupdate" routerLinkActive="active">Update
@@ -73,7 +73,7 @@
                     <li class="sidebar-item"><a class="sidebar-link"
                             routerLink="/application/complaint-category-wise-reports"
                             routerLinkActive="active">Complaint Category wise Report</a></li>
-                    <li class="sidebar-item"><a class="sidebar-link" routerLink="/application/ModewiseReport"
+                    <li class="sidebar-item"><a class="sidebar-link" routerLink="/application/ModewiseReport/view"
                             routerLinkActive="active">Mode wise Report</a></li>
                 </ul>
             </li>

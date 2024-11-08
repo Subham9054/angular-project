@@ -1,31 +1,41 @@
 <div class="form-cointainer">
-    <div class="main-tab">
+    
+    <div class="pagetitle-section">
         <div class="row justify-content-between align-items-center">
             <div class="col-lg-4">
-                <ul class="nav nav-tabs" routerLinkActive="active">
-                    <li class="nav-item">
-                        <a routerLink="/application/complaintregistrationupdate" class="nav-link active">View</a>
-                    </li>
-                </ul>
+                <h3>Register Complaint</h3>
+                <p>Manage your page</p>
             </div>
             <div class="col-lg-6 col-md-6">
-                <div class="utilite float-end mb-1">
+                <div class="utilite">
                     <ul class="mb-0">
+                       
+
                         <li>
                             <a href="javascript:void(0)" title="Click to Print"><i class="bi bi-printer"></i></a>
                         </li>
 
                         <li>
-                            <a href="javascript:void(0)" data-bs-toggle="collapse" href="#collapseExample">
+                            <a href="javascript:void(0)" title="Download Excel"><i class="bi bi-file-earmark-excel"></i></a>
+                        </li>
+
+                        <li [ngClass]="isPanelOpen ? 'active-filter' : ''">
+                            <a href="javascript:void(0)" title="{{ isPanelOpen ? 'Click to Close Filter' : 'Click to Open Filter' }}" 
+                               (click)="togglePanel()">
                                 <i class="bi bi-funnel"></i>
                             </a>
                         </li>
+                        
+                        <!-- <li class="fill-btn add-link"><a routerLink="/application/complaintregistrationupdate"  title="Go to Previous"><i class="bi bi-plus-lg"></i>
+                                Add Page</a>
+                        </li> -->
                     </ul>
                 </div>
             </div>
         </div>
     </div>
-    <div id="collapseExample" class="collapse">
+
+    <div id="collapseExample" class="collapse show" [ngClass]="{'show': isPanelOpen}">
         <div class="content-box search-box">
             <div class="row">
                 <div class="col-xxl-3 col-lg-4 col-md-6 col-sm-6">
@@ -146,19 +156,13 @@
                     <div class="mb-3">
                         <label class="form-label d-sm-block d-none">&nbsp;</label>
                         <button type="submit" class="btn btn-primary me-2">Search</button>
-                        <button type="reset" class="btn btn-danger">Reset</button>
+                        <!-- <button type="reset" class="btn btn-danger">Reset</button> -->
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- <div class="search-btn">
-        <a data-bs-toggle="collapse" href="#collapseExample">
-            <span class="collapse-on">Search Open <i class="bi bi-arrow-down"></i></span> <span
-                class="collapse-off">Search
-                Close <i class="bi bi-arrow-up"></i></span>
-        </a>
-    </div> -->
+  
     <div class="content-box content-area p-0">
         <div class="table-responsive mb-0">
             <table class="table mb-0">
@@ -172,7 +176,7 @@
                         <th>Complaint Date</th>
                         <th>Location</th>
                         <th>Action Taken By</th>
-                        <th width="100px">Action</th>
+                        <th width="90px">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -466,7 +470,7 @@
                     </div>
                     <div class="col-xl-12">
                         <div class="table-responsive mb-3">
-                            <table class="table table-striped mb-0 table-bordered">
+                            <table class="table mb-0 table-bordered">
                                 <thead>
                                     <tr>
                                         <th width="40px">Sl#</th>
@@ -493,7 +497,7 @@
                     </div>
                     <div class="col-xl-12">
                         <div class="table-responsive mb-3">
-                            <table class="table table-striped mb-0 table-bordered">
+                            <table class="table mb-0 table-bordered">
                                 <thead>
                                     <tr>
                                         <th width="40px">Sl#</th>
@@ -528,7 +532,7 @@
                     </div>
                     <div class="col-xl-12">
                         <div class="table-responsive mb-0">
-                            <table class="table table-striped mb-0 table-bordered">
+                            <table class="table mb-0 table-bordered">
                                 <thead>
                                     <tr>
                                         <th width="40px">Sl#</th>
