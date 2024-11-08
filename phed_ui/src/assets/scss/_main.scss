@@ -72,6 +72,7 @@ a {
 .form-cointainer {
   min-height: 10rem;
   .content-box {
+    overflow: hidden;
     background-color: $white;
     padding: 1.2rem;
     border: solid 1px $gray-200;
@@ -85,7 +86,7 @@ a {
     &.search-box {
       margin-bottom: 1rem;
       padding: 1rem 1.2rem 0.2rem 0.9rem;
-      background-color: $blue-light;
+      background-color:#f1f6fb;
       transition: max-height 0.5s ease, opacity 0.5s ease, padding 0.5s ease;
       border: 0 !important;
       border-radius: 5px ;
@@ -249,6 +250,12 @@ a {
       &.add-link {
         a {
           background-color:$blue ;
+        }
+      }
+      &.active-filter {
+        background-color:#93b3ed;
+        a {
+          color: #fff;
         }
       }
     }
