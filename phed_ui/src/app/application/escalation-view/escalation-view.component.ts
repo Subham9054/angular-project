@@ -10,7 +10,11 @@ import Swal from 'sweetalert2';
   styleUrls: ['./escalation-view.component.scss']
 })
 export class EscalationViewComponent {
+  isPanelOpen = false; // Start with the panel open
 
+  togglePanel() {
+    this.isPanelOpen = !this.isPanelOpen; // Toggle the panel state
+  }
   escalations: any[] = [];
   categories: any[] = [];
   subcategories: any[] = [];
