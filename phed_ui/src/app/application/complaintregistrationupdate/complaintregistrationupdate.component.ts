@@ -8,7 +8,11 @@ declare let $: any;
   styleUrls: ['./complaintregistrationupdate.component.scss'],
 })
 export class ComplaintregistrationupdateComponent implements OnInit {
+  isPanelOpen = false; // Start with the panel open
 
+  togglePanel() {
+    this.isPanelOpen = !this.isPanelOpen; // Toggle the panel state
+  }
   registrationDate: string = '';
   toDate: string = '';
   districts: any[] = [];

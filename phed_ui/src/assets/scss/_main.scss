@@ -72,12 +72,15 @@ a {
 .form-cointainer {
   min-height: 10rem;
   .content-box {
-    overflow: hidden;
+    
     background-color: $white;
     padding: 1.2rem;
     border: solid 1px $gray-200;
     box-shadow: 0px 0px 5px rgb(0 0 0 / 9%);
-    border-radius: 8px;
+    // border-radius: 6px;
+    border-radius: 6px;
+    // overflow: hidden;
+
     @include box-shadow(0 0.125rem 0.25rem rgba($black, .2));
 
     &.search-box {
@@ -92,41 +95,7 @@ a {
       }
     }
   }
-  // Bijayalaxmi patra date :- 07/11/24
-  // .search-btn {
-  //   text-align: center;
-  //   margin-bottom: 1rem;
-  //   margin-top: -0.1rem;
-
-  //   a {
-  //     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.09);
-  //     padding: 0.3rem 0.9rem;
-  //     background-color: $blue-light;
-  //     color: #000;
-  //     position: relative;
-  //     display: inline-block;
-  //     text-decoration: none;
-  //     border-bottom-right-radius: 0.4rem;
-  //     border-bottom-left-radius: 0.4rem;
-  //   }
-
-  //   a:not(.collapsed) {
-  //     .collapse-on {
-  //       display: none;
-  //     }
-
-  //     .collapse-off {
-  //       display: block;
-  //     }
-  //   }
-
-  //   .collapse-off {
-  //     display: none;
-  //   }
-
-
-  // }
-
+  
 }
 
 
@@ -266,9 +235,12 @@ a {
     // background-color: $blue-light !important;
     text-wrap: nowrap;
     font-weight: 600;
+    border-bottom-width: 2px;
+    border-bottom-color: #e9e9e9;
   }
 td{
   vertical-align: middle;
+  border-bottom-color: #e9e9e9;
 }
   tfoot {
     td {
@@ -865,7 +837,7 @@ tr.unpublish{
     flex-direction: column;
     gap: 0.6rem;
   }
- // Bijayalaxmi patra date :- 07/11/24
+
   .legends {
     display: flex;
     margin-bottom: 0;
@@ -891,7 +863,7 @@ tr.unpublish{
       }
     }
   }
- // Bijayalaxmi patra date :- 07/11/24
+
 
 }
 
@@ -912,18 +884,16 @@ tr.unpublish{
 .custom-browse{
   background-color: #565656;
   color: $white;
+  cursor: pointer;
+  position: absolute;
+  right: 0;
 }
 .img-banner {
-  // border: 1px solid #ddd;
-  // background-color: #f0eeee;
-  padding: 0.2rem;
-  display: block;
-  height: 100%;
-  width: 5.5rem;
-
+  height: 3.5rem;
   img {
     height: 100%;
     width: 100%;
+    object-fit: cover;
   }
 }
 

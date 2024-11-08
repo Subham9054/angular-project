@@ -6,10 +6,10 @@ declare let $: any;
   styleUrls: ['./complaint-category-wise-reports.component.scss']
 })
 export class ComplaintCategoryWiseReportsComponent {
-  // isSearchBoxOpen: boolean = true; // Initially, the search box is closed.
+  // isPanelOpen = false; // Start with the panel open
 
-  // toggleSearchBox() {
-  //   this.isSearchBoxOpen = !this.isSearchBoxOpen; // Toggle the visibility of the search box.
+  // togglePanel() {
+  //   this.isPanelOpen = !this.isPanelOpen; // Toggle the panel state
   // }
   ngOnInit(): void {
 
@@ -27,4 +27,6 @@ export class ComplaintCategoryWiseReportsComponent {
     });
 
   }
+
+
 }
