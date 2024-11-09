@@ -2,8 +2,8 @@
     <div class="pagetitle-section">
         <div class="row justify-content-between align-items-center">
             <div class="col-xxl-3 col-lg-4 col-md-6">
-                <h3>Register Complaint</h3>
-                <p>Manage your page</p>
+                <h3> Page Content</h3>
+                <!-- <p>Manage your page</p> -->
             </div>
             <div class="col-lg-6 col-md-6">
                 <div class="utilite">
@@ -11,7 +11,7 @@
                         <li class="bg-transparent border-0">
                             <span class="text-danger small"><b>(*)</b> Indicate mandatory </span>
                         </li>
-                        <li class="fill-btn back-link"><a routerLink="/application/pagecontent/view" title="Go to Previous"><i
+                        <li class="fill-btn back-link"><a routerLink="/application/pagecontent" title="Go to Previous"><i
                             class="bi bi-arrow-left"></i> Back to View</a>
                 </li>
                     </ul>
@@ -36,7 +36,7 @@
 
                     <div class="col-xl-6 col-md-6">
                         <div class="mb-3">
-                            <label class="form-label" for="patitlehn">Page Title in Hindi</label>
+                            <label class="form-label" for="patitlehn">Page Title (In Hindi)</label>
                             <input type="text" class="form-control" id="patitlehn">
                         </div>
                     </div>
@@ -103,7 +103,7 @@
 
                     <div class="col-xl-6">
                         <div class="mb-3">
-                            <label class="form-label" for="snipenghn">Snippet in Hindi</label>
+                            <label class="form-label" for="snipenghn">Snippet (In Hindi)</label>
                             <textarea class="form-control" id="snipenghn" rows="3"></textarea>
                             <p class="text-end mb-0">
                                 <small class="text-danger">Maximum <strong>500</strong> characters</small>
@@ -125,7 +125,7 @@
 
                     <div class="col-xl-12">
                         <div class="mb-3">
-                            <label class="form-label">Content in Hindi</label>
+                            <label class="form-label">Content (In Hindi)</label>
                             <ckeditor [editor]="editor" [data]="data"></ckeditor>
                             <p class="text-end mb-0">
                                 <small class="text-danger">Maximum <strong>700</strong> characters</small>

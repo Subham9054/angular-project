@@ -166,7 +166,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0rem 0.8rem;
+  margin-left: 0.8rem;
   &:hover {
     background-color: rgba($red, 0.9);
   }
@@ -187,6 +187,9 @@
     height: 39px;
     background-color: #e8eef59c;
     top: 0px;
+    @media (max-width:320px){
+      right:-10px;
+    }
   }
 }
 
@@ -206,6 +209,9 @@
     @media (max-width: 530px) {
       top: -1px;
     }
+  }
+  @media (max-width:530px){
+    display: none !important;
   }
 }
 
