@@ -1,6 +1,7 @@
-@import "../../../../node_modules/bootstrap/scss/mixins";
-@import "../../../../node_modules/bootstrap/scss/functions";
-@import "../../../../node_modules/bootstrap/scss/variables";
+// @import "../../../../node_modules/bootstrap/scss/mixins";
+// @import "../../../../node_modules/bootstrap/scss/functions";
+// @import "../../../../node_modules/bootstrap/scss/variables";
+@import "../../../assets/scss/variables";
 .navbar {
   &.header-utilities {
     a {
@@ -35,10 +36,23 @@
       color: var(--menu-hover);
       position: relative;
       font-weight: bold;
+
     }
   }
+  &.active {
+    > a {
+      color: var(--link-color);
+    }
+  }
+  .dropdown-item.active, .dropdown-item:active{
+    background-color: var(--about-bg-tap);
+  }
 }
-
+.dropdown > a {
+  i {
+    font-size: 0.8rem;
+  }
+}
 .menu-toggle {
   cursor: pointer;
   display: flex;
@@ -66,7 +80,7 @@
   position: absolute;
   display: none;
   top: 7.7rem;
-  right: 22%;
+  right: 16%;
   width: auto;
   max-width: 100%;
   min-width: 35rem;
@@ -138,7 +152,11 @@
     }
   }
 }
-
+@media screen and (min-width: 1400px) {
+  .mega-menu {
+    right: 22%;
+  }
+}
 .topheader,
 .logocontext {
   background-color: var(--header-utilities-bg);
@@ -174,9 +192,10 @@
   // top: 6.8rem;
   top: 0;
   transition: transform 0.3s ease; /* Smooth transition */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   &.scrolllogo {
     top: 0;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    
   }
   &.headtoggle {
     top: 2.1rem;
@@ -234,9 +253,11 @@
     height: 54px;
     border: none;
     background-color: var(--search-bg);
-    &::placeholder {
-      font-size: 1.3rem;
-      font-weight: bold;
+    ::placeholder {
+      color: $grey-500;
+    }
+    ::-ms-input-placeholder {
+      color: $grey-500;
     }
   }
 }
@@ -438,7 +459,7 @@
   }
 }
 
-@include media-breakpoint-up(sm) {
+@media screen and (min-width: 576px)  {
   .logocontext {
     padding: 0.4rem 0;
     h1 {
@@ -516,7 +537,7 @@
   }
 }
 
-@include media-breakpoint-up(lg) {
+@media screen and (min-width: 992px)  {
   .logocontext {
     padding: 0.8rem 0;
   }
@@ -597,20 +618,19 @@
     }
   }
 }
-@include media-breakpoint-up(xl) {
+@media screen and (min-width: 1200px)  {
   .logocontext:not(.headtoggle) {
     padding: 0.3rem 0;
     h1 {
       .logo-text {
         span {
-          font-size: 1rem;
+          font-size: 0.9rem;
         }
       }
     }
     .navbar-brand__img {
       width: 35px;
     }
-
   }
   .navbar-expand-lg {
     .navbar-nav {
@@ -629,7 +649,7 @@
     .nav-item {
       // padding: 0.3rem 0.5rem;
       .nav-link {
-        padding: 0 1rem;
+        padding: 0 1.5rem;
         position: relative;
         &:hover {
           color: var(--menu-hover);
@@ -674,7 +694,7 @@
     }
   }
 }
-@include media-breakpoint-up(xxl) {
+@media screen and (min-width: 1400px)  {
   .navbar-expand-lg {
     .navbar-nav {
       .nav-item {

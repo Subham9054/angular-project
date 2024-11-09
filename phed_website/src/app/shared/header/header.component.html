@@ -1,7 +1,6 @@
 <div class="topheader" [class.hidden]="hideTopHeader" 
 [class.scroll-up]="isScrollingUp && !hideTopHeader">
-    <nav class="navbar navbar-expand-lg setting-nav header-utilities" aria-label="Offcanvas navbar large">
-    
+    <nav class="navbar navbar-expand-lg setting-nav header-utilities" aria-label="Offcanvas navbar large">    
         <div class="container">
                 <div class="d-flex justify-content-between justify-content-start  align-items-center w-100">
                     <a href="javascript:void(0);" class="d-block skip-content p-0" (click)="scrollToSection('targetMainContent')">Scroll to Main Content</a>
@@ -81,27 +80,36 @@
                         <li class="nav-item">
                             <a class="nav-link" routerLinkActive="active" routerLink="/home"  (click)="closeOffcanvas()">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" routerLinkActive="active" routerLink="/about-us"  (click)="closeOffcanvas()">About Us</a>
+                        <li class="nav-item dropdown" routerLinkActive="active">
+                          <a class="nav-link" href="javascript:void(0);" data-bs-toggle="dropdown">
+                            About <i class="bi bi-chevron-down"></i>
+                          </a>
+                          <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" routerLinkActive="active" routerLink="/about-us"  (click)="closeOffcanvas()">About Us</a></li>
+                            <li><a class="dropdown-item"  routerLinkActive="active" routerLink="how-it-works"  (click)="closeOffcanvas()">How it Works</a></li>
+                            <li><a class="dropdown-item" routerLinkActive="active"  routerLink="/complaint" (click)="closeOffcanvas()">Complaint Category</a></li>
+                          </ul>
+                            
+
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link "  routerLinkActive="active" routerLink="how-it-works"  (click)="closeOffcanvas()">How it Works</a>
-                        </li>
-                        <li class="nav-item">
+                        </li> -->
+                        <!-- <li class="nav-item">
                             <a class="nav-link " routerLinkActive="active"  routerLink="/complaint" (click)="closeOffcanvas()">Complaint</a>
-                        </li>
+                        </li> -->
                         <li class="nav-item">
                             <a class="nav-link "  routerLinkActive="active" routerLink="/faq"  (click)="closeOffcanvas()">FAQ</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link " routerLinkActive="active"  routerLink="/contact-us" (click)="closeOffcanvas()">Contact Us</a>
                         </li>
-                        <li class="nav-item d-lg-block d-none">
+                        <!-- <li class="nav-item d-lg-block d-none">
                             <a href="javascript:void(0);" (click)="toggleMenu()" class="menu-toggle" [ngClass]="isMenuOpen ? 'menu-open' : ''" >
                                 <i [ngClass]="isMenuOpen ? 'bi bi-x-lg' : 'bi bi-list'"></i>
                               </a>
                            
-                        </li>
+                        </li> -->
                         <li class="nav-item">
                             <a class="btn btn-login"  href="javascript:void(0);" > <i class="bi bi-box-arrow-in-right me-1"></i> Login</a>
                         </li>
@@ -142,7 +150,7 @@
 <div [ngClass]="{'collapse': true, 'show': isOpen}" id="search-open">
   <div class="container">
     <div class="input-group ">
-      <input type="text" class="form-control" placeholder="Search..." aria-label="Username"
+      <input type="text" class="form-control" placeholder="Search here" aria-label="Username"
         aria-describedby="basic-addon1">
       <span class="input-group-text" id="basic-addon1"><i class="bi bi-search"></i></span>
     </div>
