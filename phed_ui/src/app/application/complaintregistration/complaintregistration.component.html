@@ -27,16 +27,39 @@
         <div class="form-section">
             <div class="row">
                 <div class="col-xxl-12 col-lg-12">
+                    <h5 class="page-heading">Complaint Details</h5>
                     <div class="row">
-                        <div class="col-lg-3 col-md-6">
+                        <div class="col-xxl-3 col-xl-4 col-md-6">
                             <div class="mb-3">
                                 <label for="txtRegdDt" class="form-label">Registration Date</label>
                                 <input name="txtRegdDt" type="text" [(ngModel)]="currentDate" readonly id="txtRegdDt"
                                     class="form-control" />
                             </div>
                         </div>
-
-                        <div class="col-lg-3 col-md-6">
+                    
+                            <div class="col-xxl-3 col-xl-4 col-md-6">
+                                <div class="mb-3">
+                                    <label for="txtName" class="form-label">Name <span class="text-danger">*</span></label>
+                                    <input name="txtName" type="text" id="txtName" [(ngModel)]="formData.txtName" required
+                                        class="form-control" maxlength="100" />
+                                    <!-- <p class="text-danger text-end  small mb-0">(Maximum <span class="fw-bold">100</span>
+                                        Characters)</p> -->
+                                </div>
+                            </div>
+    
+                            <div class="col-xxl-3 col-xl-4 col-md-6">
+                                <div class="mb-3">
+                                    <label for="txtPhone" class="form-label">Phone</label>
+                                    <div class="input-group">
+                                        <label class="input-group-text">+91</label>
+                                        <input name="txtPhone" type="text" maxlength="10" id="txtPhone"
+                                        [(ngModel)]="formData.txtPhone" class="form-control" />
+                                        <a class="input-group-text btn btn-primary" href="javascript:void(0);" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal"><i class="bi bi-check2"></i> Verify</a>
+                                    </div>                                    
+                                </div>
+                            </div>
+                        <div class="col-xxl-3 col-xl-4 col-md-6">
                             <div class="mb-3">
                                 <label for="ddlRecvBy" class="form-label">Mode of Complaint</label>
                                 <select name="ddlRecievemode" [(ngModel)]="formData.ddlComplainttype"
@@ -51,10 +74,8 @@
                             </div>
                         </div>
 
-                     </div>
-
-                     <div class="row">
-                        <div class="col-lg-3 col-md-6">
+                    
+                        <div class="col-xxl-3 col-xl-4 col-md-6">
                             <div class="mb-3">
                                 <label for="ddlComplaintCategory" class="form-label">Complaint Category</label>
                                 <select name="ddlComplaintCategory" id="ddlComplaintCategory"
@@ -68,7 +89,7 @@
                             </div>
                         </div>
                         
-                        <div class="col-lg-3 col-md-6">
+                        <div class="col-xxl-3 col-xl-4 col-md-6">
                             <div class="mb-3">
                                 <label for="ddlSubCategory" class="form-label">Complaint Sub-Category</label>
                                 <select name="ddlSubCategory" id="ddlSubCategory"
@@ -81,35 +102,7 @@
                                 </select>
                             </div>
                         </div>
-                     </div>
-
-
-                       <div class="row">
-                        <div class="col-lg-3 col-md-6">
-                            <div class="mb-3">
-                                <label for="txtName" class="form-label">Name <span class="text-danger">*</span></label>
-                                <input name="txtName" type="text" id="txtName" [(ngModel)]="formData.txtName" required
-                                    class="form-control" maxlength="100" />
-                                <p class="text-danger text-end  small mb-0">(Maximum <span class="fw-bold">100</span>
-                                    Characters)</p>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-3 col-md-6">
-                            <div class="mb-3">
-                                <label for="txtPhone" class="form-label">Phone</label>
-                                <div class="input-group">
-                                    <label class="input-group-text">+91</label>
-                                    <input name="txtPhone" type="text" maxlength="10" id="txtPhone"
-                                    [(ngModel)]="formData.txtPhone" class="form-control" />
-                                </div>
-                                
-                            </div>
-                        </div>
-                       </div>
-                   
-                    <div class="row">
-                        <div class="col-lg-3 col-md-6">
+                        <div class="col-xxl-3 col-xl-4 col-md-6">
                             <div class="mb-3">
                                 <label for="txtDocument" class="form-label">Nature of Document</label>
                                 <input name="txtDocument" type="text" id="txtDocument" [(ngModel)]="formData.txtDocument"
@@ -117,21 +110,38 @@
                             </div>
                         </div>
                     
-                        <div class="col-lg-3 col-md-6">
-                            <div class="mb-3">
-                                <label class="form-label" for="doc"> Document</label>
-                                <div class="input-group">
+                        <div class="col-xxl-3 col-xl-4 col-md-6">
+                            <div class="mb-3 ">
+                                <label class="form-label" for="doc">Upload Document</label>
+                                <div class="input-group custom-file-input">
                                     <input type="file" name="FileUpload1" id="FileUpload1" (change)="handleFileInput($event)"
                                     class="form-control custom-fileupload" />
                                     <label class="custom-input" for="doc">Upload</label>
                                     <label class="input-group-text custom-browse" for="doc">Browse</label>
                                 </div>
     
-                                <p class="mb-0 small text-danger text-end ">Supported File Format(<span
-                                    class="fw-bold">pdf,doc,docx,xls,xlsx</span>)</p>
+                                <p class="mb-0 small text-danger text-end ">Supported file (<span
+                                    class="fw-bold">pdf, doc, docx, xls, xlsx</span>)</p>
                             </div>
                         </div>
-                        <!-- <div class="col-lg-3 col-md-6">
+                        <div class=" col-md-12">
+                            <div class="mb-3">
+                                <label for="txtDetailsE" class="form-label">Complaint Description</label>
+                                <textarea name="txtDetailsE" rows="3" id="txtDetailsE"
+                                    [(ngModel)]="formData.txtDetailsE" class="form-control"></textarea>
+                                <p class="text-danger text-end small mb-0 ">(Maximum <span class="fw-bold">500</span>
+                                    Characters)</p>
+                                    
+                            </div>
+                        </div>
+                     </div>
+
+                     <h5 class="page-heading">Address</h5>
+                       
+                   
+                    <!-- <div class="row">
+                        
+                        <div class="col-lg-3 col-md-6">
                             <div class="mb-3 upload-doc">
                                 <label for="FileUpload1" class="form-label">Upload Document</label>
                                 <input type="file" name="FileUpload1" id="FileUpload1" (change)="handleFileInput($event)"
@@ -142,11 +152,11 @@
                                 <p class="mb-0 small text-danger text-end ">Supported File Format(<span
                                         class="fw-bold">pdf,doc,docx,xls,xlsx</span>)</p>
                             </div>
-                        </div> -->
-                    </div>
+                        </div>
+                    </div> -->
                      
                     <div class="row">
-                        <div class="col-lg-3 col-md-6">
+                        <div class="col-xxl-3 col-xl-3 col-md-6">
                             <div class="mb-3">
                                 <label for="ddlDistrict" class="form-label">District</label>
                                 <select name="ddlDistrict" id="ddlDistrict" [(ngModel)]="formData.ddlDistrict"
@@ -159,7 +169,7 @@
                             </div>
                         </div>
 
-                        <div class="col-lg-3 col-md-6">
+                        <div class="col-xxl-3 col-xl-3 col-md-6">
                             <div class="mb-3">
                                 <label for="ddlBlock" class="form-label">Block</label>
                                 <select name="ddlBlock" id="ddlBlock" [(ngModel)]="formData.ddlBlock"
@@ -171,8 +181,7 @@
                                 </select>
                             </div>
                         </div>
-                   
-                        <div class="col-lg-3 col-md-6">
+                        <div class="col-xxl-3 col-xl-3 col-md-6">
                             <div class="mb-3">
                                 <label for="ddlGp" class="form-label">Gram Panchayat</label>
                                 <select name="ddlGp" id="ddlGp" [(ngModel)]="formData.ddlPanchayat"
@@ -183,7 +192,7 @@
                             </div>
                         </div>
 
-                        <div class="col-lg-3 col-md-6">
+                        <div class="col-xxl-3 col-xl-3 col-md-6">
                             <div class="mb-3">
                                 <label for="ddlVillage" class="form-label">Village</label>
                                 <select name="ddlVillage" id="ddlVillage" [(ngModel)]="formData.ddlVillage"
@@ -194,11 +203,8 @@
                                 </select>
                             </div>
                         </div>
-                        
-                    </div>
 
-                    <div class="row">
-                        <div class="col-lg-6 col-md-12">
+                        <div class="col-lg-12 col-md-12">
                             <div class="mb-3">
                                 <label for="txtAddress" class="form-label">Address</label>
                                 <textarea name="txtAddress" rows="3" id="txtAddress"
@@ -209,17 +215,7 @@
                             </div>
                         </div>
                  
-                        <div class="col-lg-6 col-md-12">
-                            <div class="mb-3">
-                                <label for="txtDetailsE" class="form-label">Complaint Description in
-                                    Brief</label>
-                                <textarea name="txtDetailsE" rows="3" id="txtDetailsE"
-                                    [(ngModel)]="formData.txtDetailsE" class="form-control"></textarea>
-                                <p class="text-danger text-end small mb-0 ">(Maximum <span class="fw-bold">500</span>
-                                    Characters)</p>
-                                    
-                            </div>
-                        </div>
+                        
                     </div>
                     <div class="row">
                         <div class="col-xl-5">
@@ -236,4 +232,54 @@
             </div>
         </div>
     </div>
+</div>
+
+
+<!-- Verify Modal -->
+<div class="modal fade otp-modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      
+      <div class="modal-body text-center p-5">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h3 class="mb-4">OTP Verification</h3>
+        <h5>Wait a while for OTP to receive
+          <small class="text-secondary d-block">Sent to your mobile number</small>
+        </h5>
+        <div class="mx-1">
+          <div class="row">
+            <div class="col">
+              <input type="number" class="form-control form-control-lg">
+            </div>
+            <div class="col">
+              <input type="number" class="form-control form-control-lg">
+            </div>
+            <div class="col">
+              <input type="number" class="form-control form-control-lg">
+            </div>
+            <div class="col">
+              <input type="number" class="form-control form-control-lg">
+            </div>
+            <div class="col">
+              <input type="number" class="form-control form-control-lg">
+            </div>
+            <div class="col">
+              <input type="number" class="form-control form-control-lg">
+            </div>
+          </div>
+        </div>
+        <div class="my-4 d-flex justify-content-between text-secondary">Didn't receive OTP yet?
+          <div>
+            <span class="d-block">02:00 min</span>
+            <a href="#">Resend OTP</a>
+          </div>
+        </div>
+        <div class="d-grid">
+          <button type="button" class="btn btn-primary">Verify OTP</button>
+        </div>
+      </div>
+     
+    </div>
+  </div>
 </div>

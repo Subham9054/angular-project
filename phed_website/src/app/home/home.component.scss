@@ -1,8 +1,3 @@
-@import "../../../node_modules/bootstrap/scss/mixins";
-@import "../../../node_modules/bootstrap/scss/functions";
-@import "../../../node_modules/bootstrap/scss/variables";
-
-// Banner CSS Start
 .creative-parallax--slider {
   overflow: hidden;
 }
@@ -23,8 +18,7 @@
   height: 100%;
   //   padding-left: 3rem;
   background: var(--bg-black);
-  background: transparent
-    linear-gradient(270deg, #00000000 0%, #00000087 48%, #000000bd 100%) 0% 0%;
+  background: transparent linear-gradient(270deg, #00000000 0%, #00000087 48%, #000000bd 100%) 0% 0%;
 }
 .swiper-slide {
   background-size: cover;
@@ -65,7 +59,9 @@
     animation-delay: 0.3s;
   }
   .slide-main--subheading {
-    transition: opacity 0.5s ease, filter 0.5s ease;
+    transition:
+      opacity 0.5s ease,
+      filter 0.5s ease;
     animation: fadeInDown 1s ease forwards;
     animation-delay: 0.5s;
   }
@@ -90,7 +86,9 @@
 .from-right {
   opacity: 0;
   filter: blur(4px);
-  transition: opacity 0.5s ease, filter 0.5s ease;
+  transition:
+    opacity 0.5s ease,
+    filter 0.5s ease;
 }
 
 .slide-main--subheading {
@@ -177,6 +175,27 @@
     transform: scale(1);
   }
 }
+@media screen and (min-width: 1200px) {
+  .slider-wrap {
+    height: 28rem;
+  }
+  .mega-menu {
+    right: 16%;
+  }
+}
+
+.swiper-horizontal > .swiper-pagination-bullets,
+.swiper-pagination-bullets.swiper-pagination-horizontal,
+.swiper-pagination-custom,
+.swiper-pagination-fraction {
+  bottom: 6rem;
+  display: none;
+}
+.swiper-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet,
+.swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet {
+  width: 12px !important;
+  height: 12px !important;
+}
 // Banner CSS End
 
 // Notification css Start
@@ -198,7 +217,7 @@
   .notification-wrapper,
   .wrapper-content,
   .wrapper-item {
-    height:77px;
+    height: 77px;
     &:hover {
       color: var(--event-hover);
     }
@@ -208,8 +227,8 @@
     padding: 1.3rem 0;
     z-index: 1;
     width: 174px;
-    
-    margin: 0 ;
+
+    margin: 0;
     border-radius: 5px;
     display: flex;
     height: 16px;
@@ -259,7 +278,7 @@
         position: relative;
         display: inline-block;
         padding: 0 1.4rem;
-        
+
         color: var(--text-black);
         &:before {
           content: "";
@@ -457,7 +476,7 @@
     li {
       text-align: center;
       position: relative;
-      margin-bottom:1.3rem;
+      margin-bottom: 1.3rem;
       h3 {
         color: var(--statics-data);
         font-weight: bold !important;
@@ -571,7 +590,7 @@
   }
   .img-hover {
     display: none;
-    p{
+    p {
       color: #fff;
       margin-bottom: 0;
       padding: 0.1rem 0.6rem;
@@ -618,10 +637,9 @@
 .accordion {
   &.faq-accordion {
     --bs-accordion-border-width: 0;
-    .accordion-item{
+    .accordion-item {
       background-color: transparent;
       .accordion-button {
-
         position: relative;
         background-color: var(--faq-bg);
         align-items: baseline;
@@ -680,12 +698,11 @@
           opacity: 0.6;
           color: var(--text-black);
           padding: 1rem 0;
-      font-size: 1.05rem;
-      text-align: justify;
+          font-size: 1.05rem;
+          text-align: justify;
         }
       }
     }
-    
   }
 }
 .faq__footer {
@@ -815,7 +832,7 @@
     }
   }
 }
-@include media-breakpoint-up(sm) {
+@media screen and (min-width: 576px) {
   .slide-main--heading {
     font-size: 2.375rem;
   }
@@ -844,7 +861,7 @@
       }
     }
   }
- 
+
   .swiper-slide--inner {
     padding-left: 1rem;
     font-size: 1rem;
@@ -903,7 +920,6 @@
     .events__details {
       display: flex;
       align-items: flex-start; // Use flex-start for better alignment
-
       flex-direction: row;
       align-items: center;
       margin-bottom: 2.5rem;
@@ -937,7 +953,7 @@
     // Change colors on hover
   }
 }
-@include media-breakpoint-up(md) {
+@media screen and (min-width: 768px) {
   .data {
     padding: 3rem 0;
     .card {
@@ -973,7 +989,7 @@
       }
     }
   }
-  .data__details {  
+  .data__details {
     .data__details__or {
       padding: 0;
     }
@@ -1108,14 +1124,14 @@
     text-align: start;
   }
 }
-@include media-breakpoint-up(lg) {
-  .notification{
+@media screen and (min-width: 992px) {
+  .notification {
     .wrapper-title {
       background: var(--notificationtext-bg);
       padding: 1.6rem;
       z-index: 1;
       width: 174px;
-      
+
       margin: 0 auto;
       display: flex;
       height: 16px;
@@ -1129,8 +1145,6 @@
       }
     }
     .wrapper-content {
- 
-
       .wrapper-item {
         display: flex;
         justify-content: center;
@@ -1155,13 +1169,13 @@
             width: 0.5rem;
             background-color: var(--notification-bullet);
           }
-  
+
           &:hover {
             color: var(--notificationtext-bg);
           }
         }
       }
-  
+
       &:hover .wrapper-item {
         animation-play-state: paused;
       }
@@ -1285,7 +1299,7 @@
   }
   .gallery-img {
     position: relative;
-    height: 14.2rem;
+    height: 11.2rem;
     overflow: hidden;
     border-radius: 1rem;
     img {
@@ -1299,13 +1313,17 @@
     font-size: 3.075rem;
   }
 }
-@include media-breakpoint-up(xl) {
+@media screen and (min-width: 1200px) {
+  .events {
+    .events__details {
+      margin-bottom: 1.2rem;
+    }
+  }
   .slide-detail {
     .slide-main--heading {
       font-size: 3.075rem;
     }
   }
- 
   .about__container {
     position: relative;
     .about__img {
@@ -1348,7 +1366,8 @@
   }
 }
 
-@include media-breakpoint-up(xxl) {
+@media screen and (min-width: 1400px) {
+
   .about__container {
     position: relative;
     .about__img {
@@ -1415,11 +1434,15 @@
     height: 100%;
     // padding-left: 19rem;
     background: var(--bg-black);
-    background: transparent
-      linear-gradient(270deg, #00000000 0%, #00000087 66%, #000000bd 100%) 0% 0%;
+    background: transparent linear-gradient(270deg, #00000000 0%, #00000087 66%, #000000bd 100%) 0% 0%;
   }
   .slider-wrap {
     height: 650px;
     overflow: hidden;
   }
+}
+
+.status-info {
+  width: 80px;
+  height: 80px;
 }

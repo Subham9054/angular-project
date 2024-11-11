@@ -47,9 +47,22 @@
 }
 
 .view-form {
+    margin-bottom: 1rem;
+    padding: 1rem 1.2rem 0.2rem 0.9rem;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    border: solid 1px #f1f1f1;
+    .form-control-plaintext {
+        font-weight: 500;
+        padding: 0;
+    }
+    //   .form-label {
+    //     padding: 0;
+    //     margin-bottom: 0;
+    //   }
     .form-label {
         color: #4c4c4c;
-        margin-bottom: 0.1rem;
+        margin-bottom: 0rem;
     }
 
     .form-value {
@@ -78,7 +91,6 @@
     &::-webkit-scrollbar-thumb:hover {
         background-color: rgba(0, 0, 0, 0.233);
     }
-
 }
 
 // Pagination Design Start
@@ -91,7 +103,6 @@
         margin-left: 0.4rem;
 
         .page-link {
-
             padding: 0.2rem 0.5rem;
             line-height: 20px;
             border-radius: 0.4rem;
@@ -108,8 +119,6 @@
     }
 }
 
-
-
 .content-area {
     .table {
         .badge {
@@ -125,7 +134,6 @@
         position: absolute;
         right: -45px;
         top: 25px;
-
     }
 }
 
@@ -146,19 +154,16 @@
             left: 0;
             right: 0;
         }
-        tbody{
-            td{
+        tbody {
+            td {
                 border: 0.1px solid #e9e9e9;
             }
         }
     }
-
- 
 }
 
 .myquere-table,
 .custom-table {
-
     &::-webkit-scrollbar {
         width: 10px;
         border-radius: 10px;
@@ -167,7 +172,6 @@
     &::-webkit-scrollbar-track {
         -webkit-box-shadow: inset 0 0 0px rgba(0, 0, 0, 0.233);
         background-color: rgba(0, 0, 0, 0.0352941176);
-
     }
 
     &::-webkit-scrollbar-thumb {
@@ -196,18 +200,18 @@
             left: 0;
             right: 0;
         }
-        tbody{
-            td{
+        tbody {
+            td {
                 border: 0.1px solid #e9e9e9;
             }
         }
     }
 
-    @media (max-width:1366px) {
+    @media (max-width: 1366px) {
         height: 55vh;
     }
-    @media (max-width:1280px){
-        height:40vh;
+    @media (max-width: 1280px) {
+        height: 40vh;
     }
 }
 
@@ -220,14 +224,10 @@
     display: none;
 }
 
-
-
 .form-btn {
     display: flex;
     gap: 0.4rem;
 }
-
-
 
 // Page Not Found
 .error-section {
@@ -255,7 +255,7 @@
         padding: 0;
         font-weight: 400;
         margin: 0 auto;
-        margin-bottom: .5rem;
+        margin-bottom: 0.5rem;
     }
 
     // a {
@@ -280,7 +280,7 @@
     // }
 }
 
-@media (max-width:630px) {
+@media (max-width: 630px) {
     .upload-doc {
         input {
             width: 90%;
@@ -291,8 +291,6 @@
         }
     }
 }
-
-
 
 @media (max-width: 320px) {
     .utilite {

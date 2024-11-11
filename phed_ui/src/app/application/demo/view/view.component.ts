@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+declare let $: any;
 
 @Component({
   selector: 'app-view',
@@ -13,5 +13,10 @@ export class ViewComponent {
   togglePanel() {
     this.isPanelOpen = !this.isPanelOpen; // Toggle the panel state
   }
-
+  ngOnInit(): void {
+    $('.datepicker').datetimepicker({
+      format: 'DD-MMM-YYYY',
+      daysOfWeekDisabled: [0, 6],
+    });
+  }
 }
