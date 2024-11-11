@@ -9,6 +9,19 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./complaintregistration.component.scss']
 })
 export class ComplaintregistrationComponent  {
+
+  files: File[] = [];
+
+	onSelect(event:any) {
+		console.log(event);
+		this.files.push(...event.addedFiles);
+	}
+
+	onRemove(event:any) {
+		console.log(event);
+		this.files.splice(this.files.indexOf(event), 1);
+	}
+
   currentDate: string = '';
   fileToUpload: File | null = null;
   documentFolderPath = 'http://localhost:44303/assets/ComplaintDocuments/';
