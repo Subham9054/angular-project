@@ -46,7 +46,7 @@ toggleDropdown() {
 
 closeDropdown() {
     this.isDropdownOpen = false;
-}
+}    
 
 
 
