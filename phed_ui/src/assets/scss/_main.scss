@@ -1147,8 +1147,7 @@ tr.unpublish {
     margin-top: 1rem;
   }
 }
-
-.view-form {
+.view-forms {
   margin-bottom: 1rem;
   padding: 1rem 1.2rem 0.2rem 0.9rem;
   background-color: #f4f8ff;
@@ -1158,10 +1157,9 @@ tr.unpublish {
     font-weight: 500;
     padding: 0;
   }
-  //   .form-label {
-  //     padding: 0;
-  //     margin-bottom: 0;
-  //   }
+}
+
+.view-form {
   .form-label {
     color: #4c4c4c;
     margin-bottom: 0rem;
