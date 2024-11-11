@@ -1,40 +1,83 @@
 <div class="form-cointainer">
   <div class="pagetitle-section">
     <div class="row justify-content-between align-items-center">
-        <div class="col-lg-4">
-            <h3>Escalation</h3>
-        </div>
-        <div class="col-lg-6 col-md-6">
-            <div class="utilite">
-                <ul class="mb-0">
-                   
+      <div class="col-lg-4">
+        <h3>Escalation</h3>
+      </div>
+      <div class="col-lg-6 col-md-6">
+        <div class="utilite">
+          <ul class="mb-0">
 
-                    <li>
-                        <a href="javascript:void(0)" title="Click to Print"><i class="bi bi-printer"></i></a>
-                    </li>
 
-                    <li>
-                        <a href="javascript:void(0)" title="Download Excel"><i class="bi bi-file-earmark-excel"></i></a>
-                    </li>
+            <li>
+              <a href="javascript:void(0)" title="Click to Print"><i class="bi bi-printer"></i></a>
+            </li>
 
-                    <li [ngClass]="isPanelOpen ? 'active-filter' : ''">
+            <li>
+              <a href="javascript:void(0)" title="Download Excel"><i class="bi bi-file-earmark-excel"></i></a>
+            </li>
+            <li class="filter-dropdown dropdown">
+              <a href="javascript:void(0)" data-bs-toggle="dropdown">
+                <i class="bi bi-funnel"></i> Filter
+              </a>
+
+              <div class="dropdown-menu dropdown-menu-end filter-dropdown-menu shadow border-0">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="mb-3">
+                      <label for="ddlComplaintCategory" class="form-label">Complaint Category</label>
+                      <select name="ddlComplaintCategory" id="ddlComplaintCategory"
+                        [(ngModel)]="formData.ddlComplaintCategory" (change)="onCategoryChange($event)"
+                        class="form-select">
+                        <option selected value="0">-Select-</option>
+                        <option *ngFor="let category of categories" [value]="category.inT_CATEGORY_ID">{{
+                          category.vcH_CATEGORY }}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="mb-3">
+                      <label for="ddlSubCategory" class="form-label">Complaint Sub-Category</label>
+                      <select name="ddlSubCategory" id="ddlSubCategory" [(ngModel)]="formData.ddlSubCategory"
+                        class="form-select">
+                        <option value="0">-Select-</option>
+                        <option *ngFor="let subcategory of subcategories" [value]="subcategory.inT_SUB_CATEGORY_ID">{{
+                          subcategory.vcH_SUB_CATEGORY }}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="d-flex gap-2">
+                      <button type="submit" class="btn btn-primary px-xl-4">Search</button>
+                      <button type="submit" class="btn btn-danger px-xl-4">Reset</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </li>
+            <!-- <li [ngClass]="isPanelOpen ? 'active-filter' : ''">
                       <a href="javascript:void(0)" title="{{ isPanelOpen ? 'Click to Close Filter' : 'Click to Open Filter' }}" 
                          (click)="togglePanel()">
                           <i class="bi bi-funnel"></i> Filter
                       </a>
-                  </li>
-                    
-                    <li class="fill-btn add-link"><a routerLink="/application/escalation/add"  title="Go to Previous"><i class="bi bi-plus-lg"></i>
-                            Add Page</a>
-                    </li>
-                </ul>
-            </div>
+                  </li> -->
+
+            <li class="fill-btn add-link"><a routerLink="/application/escalation/add" title="Go to Previous"><i
+                  class="bi bi-plus-lg"></i>
+                Add Page</a>
+            </li>
+          </ul>
         </div>
+      </div>
     </div>
-</div>
+  </div>
 
 
-<div id="collapseExample" class="collapse show" [ngClass]="{'show': isPanelOpen}">
+  <!-- <div id="collapseExample" class="collapse show" [ngClass]="{'show': isPanelOpen}">
     <div class="content-box search-box">
         <div class="row">
 
@@ -73,67 +116,68 @@
             </div>
         </div>  
     </div>
-</div>
-   
-    <div class="content-box content-area p-0">
-        <div class="table-responsive mb-0">
-            <table class="table  mb-0">
-                <thead>
-                    <tr>
-                        <th width="40px">Sl#</th>
-                        <th>Complaint Category</th>
-                        <th>Complaint Sub-Category</th>
-                        <th>Level of Escalation</th>
-                        <th>Receiving Authority</th>
-                        <th width="90px">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let escalation of escalations; let i = index">
-                        <!-- <td> <input type="checkbox" /></td> -->
-                        <td>{{ i + 1 }}</td>
-                        <td>
-                            {{ escalation.vcH_CATEGORY }}
-                            <input type="hidden" [value]="escalation.inT_CATEGORY_ID" #categoryId/>
-                        </td>
-                        <td>{{ escalation.vcH_SUB_CATEGORY }}
-                            <input type="hidden" [value]="escalation.inT_SUB_CATEGORY_ID" #subCategoryId/>
-                        </td>
-                        <td>{{escalation.inT_ESCALATION_LEVELID}}
-                          <input type="hidden" [value]="escalation.inT_ESCALATION_LEVELID" #escalationlevelId/>
-                        </td>
-                        <td>{{escalation.nvchDesigName}}</td>
-                        <td>
-                            <div class="d-flex gap-1">
-                              <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View" 
-                                 (click)="viewEscalationDetails(categoryId.value, subCategoryId.value)" 
-                                 data-bs-toggle="modal" data-bs-target="#escalationView">
-                                <i class="bi bi-eye"></i>
-                              </a>
-                              <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit" (click)="Updateview(categoryId.value, subCategoryId.value,escalationlevelId.value)">
-                                <i class="bi bi-pencil"></i>
-                              </a>
-                            </div>
-                          </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+</div>  -->
+
+  <div class="content-box content-area p-0">
+    <div class="table-responsive mb-0">
+      <table class="table  mb-0">
+        <thead>
+          <tr>
+            <th width="40px">Sl#</th>
+            <th>Complaint Category</th>
+            <th>Complaint Sub-Category</th>
+            <th>Level of Escalation</th>
+            <th>Receiving Authority</th>
+            <th width="90px">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let escalation of escalations; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>
+              {{ escalation.vcH_CATEGORY }}
+              <input type="hidden" [value]="escalation.inT_CATEGORY_ID" #categoryId />
+            </td>
+            <td>{{ escalation.vcH_SUB_CATEGORY }}
+              <input type="hidden" [value]="escalation.inT_SUB_CATEGORY_ID" #subCategoryId />
+            </td>
+            <td>{{escalation.inT_ESCALATION_LEVELID}}
+              <input type="hidden" [value]="escalation.inT_ESCALATION_LEVELID" #escalationlevelId />
+            </td>
+            <td>{{escalation.nvchDesigName}}</td>
+            <td>
+              <div class="d-flex gap-1">
+                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"
+                  (click)="viewEscalationDetails(categoryId.value, subCategoryId.value)" data-bs-toggle="modal"
+                  data-bs-target="#escalationView">
+                  <i class="bi bi-eye"></i>
+                </a>
+                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit"
+                  (click)="Updateview(categoryId.value, subCategoryId.value,escalationlevelId.value)">
+                  <i class="bi bi-pencil"></i>
+                </a>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
+  </div>
 </div>
 
 
 <!-- Modal Start::Details -->
 <div class="modal fade" id="escalationView" tabindex="-1" aria-labelledby="escalationView" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
-      <div class="modal-content">
-        <div class="modal-header justify-content-between">
-          <h1 class="modal-title fs-5" id="tokenLabel">Escalation Details</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <div class="row">
-            <div class="col-xl-12 view-form">
+  <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header justify-content-between">
+        <h1 class="modal-title fs-5" id="tokenLabel">Escalation Details</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-xl-12">
+            <div class="view-form border-0 bg-white p-0">
               <div class="row">
                 <div class="col-xl-6 col-md-6">
                   <div class="mb-3">
@@ -149,29 +193,30 @@
                 </div>
               </div>
             </div>
-            <div class="col-xl-12">
-              <div class="table-responsive mt-2">
-                <table class="table mb-0 table-bordered">
-                  <thead>
-                    <tr>
-                      <th width="40px">Sl#</th>
-                      <th>Authority Level</th>
-                      <th width="100px">Standard Action Taking Hours</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let level of selectedEscalations; let j = index">
-                      <td>{{ j + 1 }}</td>
-                      <td>{{ level.nvchDesigName }}</td>
-                      <td>{{ level.vcH_STANDARD_DAYS }}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+          </div>
+          <div class="col-xl-12">
+            <div class="table-responsive mt-2">
+              <table class="table mb-0 table-bordered">
+                <thead>
+                  <tr>
+                    <th width="40px">Sl#</th>
+                    <th>Authority Level</th>
+                    <th width="100px">Standard Action Taking Hours</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let level of selectedEscalations; let j = index">
+                    <td>{{ j + 1 }}</td>
+                    <td>{{ level.nvchDesigName }}</td>
+                    <td>{{ level.vcH_STANDARD_DAYS }}</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
 <!-- Modal End::Token -->

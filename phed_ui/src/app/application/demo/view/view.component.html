@@ -16,15 +16,10 @@
                         <li>
                             <a href="javascript:void(0)" title="Download Excel"><i class="bi bi-file-earmark-excel"></i></a>
                         </li>
-                        <li [ngClass]="isPanelOpen ? 'active-filter' : ''">
-                            <a href="javascript:void(0)" title="{{ isPanelOpen ? 'Click to Close Filter' : 'Click to Open Filter' }}" 
-                               (click)="togglePanel()">
-                                <i class="bi bi-funnel"></i> Filter
-                            </a>
-                        </li>
+                        
                         <li class="filter-dropdown dropdown">
                             <a href="javascript:void(0)" data-bs-toggle="dropdown">
-                                <i class="bi bi-funnel"></i> Filter 1
+                                <i class="bi bi-funnel"></i> Filter 
                             </a>
                            
                                 <div class="dropdown-menu dropdown-menu-end filter-dropdown-menu shadow border-0">
@@ -116,16 +111,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label class="form-label">Registration Date</label>
-                                                <div class="input-group">
-                                                    <input type="text" class="form-control datepicker" id="todatepicker">
-                                                    <label class="input-group-text" for="todatepicker"><i
-                                                            class="bi bi-calendar-week"></i></label>
-                                                </div>
-                                            </div>
-                                        </div> -->
                                         <div class="col-md-12">
                                             <div class="d-flex gap-2">
                                                 <button type="submit" class="btn btn-primary px-xl-4">Search</button>
@@ -136,17 +121,6 @@
                                 </div>
                             
                         </li>
-                        <!-- <li class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                              Dropdown button
-                            </button>
-                            <div class="dropdown-menu">
-                              <li><a class="dropdown-item" href="#">Action</a></li>
-                              <li><a class="dropdown-item" href="#">Another action</a></li>
-                              <li><a class="dropdown-item" href="#">Something else here</a></li>
-                            </div>
-                        </li> -->
-                        
                         
                         <li class="fill-btn add-link"><a routerLink="/application/demo/add"  title="Go to Previous"><i class="bi bi-plus-lg"></i>
                                 Add Page</a>
@@ -157,7 +131,7 @@
         </div>
     </div>
 
-     <div id="collapseExample" class="collapse show" [ngClass]="{'show': isPanelOpen}">
+     <!-- <div id="collapseExample" class="collapse show" [ngClass]="{'show': isPanelOpen}">
         <div class="content-box search-box">
             <div class="row">
                 <div class="col-xl-4 col-lg-4 col-md-6">
@@ -196,7 +170,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <div class="view-form pb-1">
         <div class="row">
             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">

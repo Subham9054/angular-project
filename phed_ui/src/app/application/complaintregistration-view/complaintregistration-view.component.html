@@ -7,24 +7,76 @@
             <div class="col-lg-6 col-md-6">
                 <div class="utilite">
                     <ul class="mb-0">
-                       
+
 
                         <li>
                             <a href="javascript:void(0)" title="Click to Print"><i class="bi bi-printer"></i></a>
                         </li>
 
                         <li>
-                            <a href="javascript:void(0)" title="Download Excel"><i class="bi bi-file-earmark-excel"></i></a>
+                            <a href="javascript:void(0)" title="Download Excel"><i
+                                    class="bi bi-file-earmark-excel"></i></a>
                         </li>
 
-                        <li [ngClass]="isPanelOpen ? 'active-filter' : ''">
-                            <a href="javascript:void(0)" title="{{ isPanelOpen ? 'Click to Close Filter' : 'Click to Open Filter' }}" 
-                               (click)="togglePanel()">
+                        <!-- <li [ngClass]="isPanelOpen ? 'active-filter' : ''">
+                            <a href="javascript:void(0)"
+                                title="{{ isPanelOpen ? 'Click to Close Filter' : 'Click to Open Filter' }}"
+                                (click)="togglePanel()">
                                 <i class="bi bi-funnel"></i> Filter
                             </a>
+                        </li> -->
+                        <li class="filter-dropdown dropdown">
+                            <a href="javascript:void(0)" data-bs-toggle="dropdown">
+                                <i class="bi bi-funnel"></i> Filter
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-end filter-dropdown-menu shadow border-0">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="manutype">Menu Type</label>
+                                            <select class="form-select" id="manutype">
+                                                <option selected>Select</option>
+                                                <option value="1">Main Menu</option>
+                                                <option value="2">Footer Menu</option>
+                                                <option value="3">Footer Bottom Menu</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="parentmanu">Parent Menu</label>
+                                            <select class="form-select" id="parentmanu">
+                                                <option selected>Select</option>
+                                                <option value="1">FAQ</option>
+                                                <option value="2">Feedback</option>
+                                                <option value="3">Contact</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="menuen">Menu Name</label>
+                                            <input type="text" class="form-control" id="menuen">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label d-md-block d-none" for="menuen">&nbsp;&nbsp;</label>
+                                            <div class="d-flex gap-2">
+                                            <button type="submit" class="btn btn-primary px-xl-4">Search</button>
+                                            <button type="submit" class="btn btn-danger px-xl-4">Reset</button></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                         </li>
-                        
-                        <li class="fill-btn add-link"><a routerLink="/application/complaintregistration/add"  title="Go to Previous"><i class="bi bi-plus-lg"></i>
+                        <li class="fill-btn add-link"><a routerLink="/application/complaintregistration/add"
+                                title="Go to Previous"><i class="bi bi-plus-lg"></i>
                                 Add Page</a>
                         </li>
                     </ul>
@@ -33,10 +85,10 @@
         </div>
     </div>
 
-     <div id="collapseExample" class="collapse show" [ngClass]="{'show': isPanelOpen}">
+    <!-- <div id="collapseExample" class="collapse show">
         <div class="content-box search-box">
             <div class="row">
-                <div class="col-xl-4 col-lg-4 col-md-6">
+                <div class="col-md-6">
                     <div class="mb-3">
                         <label class="form-label" for="manutype">Menu Type</label>
                         <select class="form-select" id="manutype">
@@ -72,8 +124,61 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
+    <div class="view-form pb-1">
+        <div class="row">
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                <div class="mb-2">
+                    <label for="ddlDistrict" class="form-label">District</label>
+                    <div class="form-control-plaintext">Khurdha</div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                <div class="mb-2">
+                    <label for="ddlBlock" class="form-label">Block</label>
+                    <div class="form-control-plaintext">-</div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                <div class="mb-2">
+                    <label for="ddlGp" class="form-label">Gram Panchayat</label>
+                    <div class="form-control-plaintext">-</div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                <div class="mb-2">
+                    <label for="txtToken" class="form-label">Village</label>
+                    <div class="form-control-plaintext">-</div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                <div class="mb-2">
+                    <label for="ddlComplaintCategory" class="form-label">Complaint Category</label>
+                    <div class="form-control-plaintext">-</div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                <div class="mb-2">
+                    <label for="ddlSubCategory" class="form-label">Complaint Sub-Category</label>
+                    <div class="form-control-plaintext">-</div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                <div class="mb-2">
+                    <label for="txtComplaintName" class="form-label">Nature of Document</label>
+                    <div class="form-control-plaintext">-</div>
+                </div>
+            </div>
+           
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                <div class="mb-2">
+                    <label class="form-label">Registration Date</label>
+                    <div class="form-control-plaintext">9-Nov-2024</div>
+                </div>
+            </div>
 
+        </div>
+    </div>
     <div class="content-box content-area p-0">
         <div class="table-responsive">
             <table class="table mb-0">
@@ -198,112 +303,122 @@
     <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header justify-content-between">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Register View</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Register Complaint</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body view-form">
+            <div class="modal-body">
+
                 <div class="row">
-
                     <div class="col-xl-12">
-                        <div class="row">
-                            <div class="col-xl-3 col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label">Registration Date</label>
-                                    <label class="form-value">24-Oct-2024</label>
+                        <h5 class="page-heading">Complaint Details</h5>
+                        <div class="bg-light p-3 pb-0 mb-4 view-form">
+                            <div class="row">
+                                <div class="col-xl-3 col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Registration Date</label>
+                                        <label class="form-value">24-Oct-2024</label>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label">Mode of Complaint</label>
-                                    <label class="form-value">Helpline</label>
-                                </div>
-                            </div>
 
-                            <div class="col-xl-3 col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label">Complaint Category</label>
-                                    <label class="form-value">Subham</label>
+                                <div class="col-xl-3 col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Name</label>
+                                        <label class="form-value">Subham Kumar Das</label>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="col-xl-3 col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label">Complaint Sub-Category</label>
-                                    <label class="form-value">Lorem</label>
+                                <div class="col-xl-3 col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Phone</label>
+                                        <label class="form-value">9437023783</label>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="col-xl-3 col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label">Name</label>
-                                    <label class="form-value">Subham Kumar Das</label>
+                                <div class="col-xl-3 col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Mode of Complaint</label>
+                                        <label class="form-value">Helpline</label>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label">Phone</label>
-                                    <label class="form-value">9437023783</label>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label">Nature of Document</label>
-                                    <label class="form-value">Lorem</label>
-                                </div>
-                            </div>
 
-                            <div class="col-xl-3 col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label">Upload Document</label>
-                                    <label class="form-value">Lorem</label>
+                                <div class="col-xl-3 col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Complaint Category</label>
+                                        <label class="form-value">Subham</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-3 col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Complaint Sub-Category</label>
+                                        <label class="form-value">Lorem</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-3 col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Nature of Document</label>
+                                        <label class="form-value">Lorem</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-3 col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Document</label>
+                                        <label class="form-value">Lorem</label>
+                                    </div>
+                                </div>
+                                <div class="col-xl-12 col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Complaint Description</label>
+                                        <label class="form-value">Lorem ipsum dolor sit, amet consectetur adipisicing
+                                            elit. Sequi temporibus delectus voluptatem libero dolorem natus sapiente
+                                            ipsum error reiciendis cupiditate!</label>
+                                    </div>
                                 </div>
                             </div>
-
-
-                            <div class="col-xl-3 col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label">District</label>
-                                    <label class="form-value">Patna</label>
+                        </div>
+                        <h5 class="page-heading">Address</h5>
+                        <div class="bg-light p-3 pb-0 mb-4 view-form">
+                            <div class="row">
+                                <div class="col-xl-3 col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">District</label>
+                                        <label class="form-value">Patna</label>
+                                    </div>
                                 </div>
-                            </div>
 
+                                <div class="col-xl-3 col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Block</label>
+                                        <label class="form-value">Lorem</label>
+                                    </div>
+                                </div>
 
-                            <div class="col-xl-3 col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label">Block</label>
-                                    <label class="form-value">Lorem</label>
+                                <div class="col-xl-3 col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Gram Panchayat</label>
+                                        <label class="form-value">Lorem</label>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label">Gram Panchayat</label>
-                                    <label class="form-value">Lorem</label>
+                                <div class="col-xl-3 col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Village</label>
+                                        <label class="form-value">Lorem</label>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label">Village</label>
-                                    <label class="form-value">Lorem</label>
-                                </div>
-                            </div>
 
-                            <div class="col-xl-3 col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label">Complaint Description in Brief</label>
-                                    <label class="form-value">Lorem</label>
-                                </div>
-                            </div>
-
-                            <div class="col-xl-3 col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label">Address</label>
-                                    <label class="form-value">Lorem ipsum dolor sit amet.</label>
+                                <div class="col-xl-12 col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Address</label>
+                                        <label class="form-value">Lorem ipsum dolor sit amet.</label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
+
             </div>
         </div>
     </div>
