@@ -173,9 +173,6 @@ a {
   }
 }
 
-.btn-login {
-  margin-left: 1rem;
-}
 
 // .btn-login {
 //   background: transparent;
@@ -220,6 +217,7 @@ a {
 .custom-dropzone {
   height: 110px !important;
   border-color: var(--top-header-border) !important;
+  background-color: var(--bs-body-bg) !important;
 }
 
 .otp-modal {
@@ -471,7 +469,7 @@ a {
       .accordion-collapse {
         .accordion-body {
           background-color: transparent;
-          padding-left: 0;
+          padding-left: 2.2rem;
           opacity: 0.6;
           color: var(--text-black);
         }

@@ -51,7 +51,7 @@
               <span class="input-group-text" id="basic-addon1">+91</span>
               <input type="number" class="form-control">
               <a class="input-group-text btn btn-primary" href="javascript:void(0);" data-bs-toggle="modal"
-                data-bs-target="#exampleModal"><i class="bi bi-check2"></i> Verify</a>
+                data-bs-target="#verifyMobileModal"><i class="bi bi-check2"></i> Verify</a>
             </div>
 
           </div>
@@ -59,9 +59,13 @@
         <div class="col-lg-4 col-xl-4">
           <div class="form-group">
             <label class="form-label">Email</label>
+            <div class="input-group">
             <input type="text" class="form-control">
+            <a class="input-group-text btn btn-primary" href="javascript:void(0);" data-bs-toggle="modal"
+                data-bs-target="#verifyEmailModal"><i class="bi bi-check2"></i> Verify</a>
           </div>
         </div>
+      </div>
         <div class="col-lg-4 col-xl-4">
           <div class="form-group">
             <label for="Complaint Category" class="form-label">Complaint Category <span
@@ -215,8 +219,8 @@
   </div>
 </div>
 
-<!-- Verify Modal -->
-<div class="modal fade otp-modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+<!-- Verify Mobile Modal -->
+<div class="modal fade otp-modal" id="verifyMobileModal" tabindex="-1" aria-labelledby="verifyMobileModalLabel"
   aria-hidden="true">
   <div class="modal-dialog modal-md">
     <div class="modal-content">
@@ -226,6 +230,55 @@
         <h3 class="mb-4">OTP Verification</h3>
         <h5>Wait a while for OTP to receive
           <small class="text-secondary d-block">Sent to your mobile number</small>
+        </h5>
+        <div class="mx-1">
+          <div class="row">
+            <div class="col">
+              <input type="number" class="form-control form-control-lg">
+            </div>
+            <div class="col">
+              <input type="number" class="form-control form-control-lg">
+            </div>
+            <div class="col">
+              <input type="number" class="form-control form-control-lg">
+            </div>
+            <div class="col">
+              <input type="number" class="form-control form-control-lg">
+            </div>
+            <div class="col">
+              <input type="number" class="form-control form-control-lg">
+            </div>
+            <div class="col">
+              <input type="number" class="form-control form-control-lg">
+            </div>
+          </div>
+        </div>
+        <div class="my-4 d-flex justify-content-between text-secondary">Didn't receive OTP yet?
+          <div>
+            <span class="d-block">02:00 min</span>
+            <!-- <a href="#">Resend OTP</a> -->
+          </div>
+        </div>
+        <div class="d-grid">
+          <button type="button" class="btn btn-primary">Verify OTP</button>
+        </div>
+      </div>
+     
+    </div>
+  </div>
+</div>
+
+<!-- Verify Email Modal -->
+<div class="modal fade otp-modal" id="verifyEmailModal" tabindex="-1" aria-labelledby="verifyEmailModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      
+      <div class="modal-body text-center p-5">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h3 class="mb-4">OTP Verification</h3>
+        <h5>Wait a while for OTP to receive
+          <small class="text-secondary d-block">Sent to your Email ID</small>
         </h5>
         <div class="mx-1">
           <div class="row">
