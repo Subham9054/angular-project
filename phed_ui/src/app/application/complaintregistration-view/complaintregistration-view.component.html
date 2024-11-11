@@ -18,13 +18,7 @@
                                     class="bi bi-file-earmark-excel"></i></a>
                         </li>
 
-                        <!-- <li [ngClass]="isPanelOpen ? 'active-filter' : ''">
-                            <a href="javascript:void(0)"
-                                title="{{ isPanelOpen ? 'Click to Close Filter' : 'Click to Open Filter' }}"
-                                (click)="togglePanel()">
-                                <i class="bi bi-funnel"></i> Filter
-                            </a>
-                        </li> -->
+                       
                         <li class="filter-dropdown dropdown">
                             <a href="javascript:void(0)" data-bs-toggle="dropdown">
                                 <i class="bi bi-funnel"></i> Filter
@@ -34,32 +28,37 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="mb-3">
-                                            <label class="form-label" for="manutype">Menu Type</label>
-                                            <select class="form-select" id="manutype">
+                                            <label class="form-label" for="manutype">District</label>
+                                            <select class="form-select" id="district">
                                                 <option selected>Select</option>
-                                                <option value="1">Main Menu</option>
-                                                <option value="2">Footer Menu</option>
-                                                <option value="3">Footer Bottom Menu</option>
+                                                <option value="1">ARARIA</option>
+                                                <option value="2">ARARIA</option>
+                                                <option value="3">AURANGABAD</option>
                                             </select>
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="mb-3">
-                                            <label class="form-label" for="parentmanu">Parent Menu</label>
-                                            <select class="form-select" id="parentmanu">
+                                            <label class="form-label" for="parentmanu">Block</label>
+                                            <select class="form-select" id="sub-disvison">
                                                 <option selected>Select</option>
-                                                <option value="1">FAQ</option>
-                                                <option value="2">Feedback</option>
-                                                <option value="3">Contact</option>
+                                                <option value="1">Ara</option>
+                                                <option value="2">Begusarai</option>
+                                                <option value="3">Bhagalpur</option>
                                             </select>
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="mb-3">
-                                            <label class="form-label" for="menuen">Menu Name</label>
-                                            <input type="text" class="form-control" id="menuen">
+                                            <label class="form-label" for="menuen">Gram Panchayat</label>
+                                            <select class="form-select" id="sub-disvison">
+                                                <option selected>Select</option>
+                                                <option value="1">Ara</option>
+                                                <option value="2">Begusarai</option>
+                                                <option value="3">Bhagalpur</option>
+                                            </select>
                                         </div>
                                     </div>
 
@@ -125,12 +124,12 @@
             </div>
         </div>
     </div> -->
-    <div class="view-form pb-1">
+    <div class="view-forms pb-1">
         <div class="row">
             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
                 <div class="mb-2">
                     <label for="ddlDistrict" class="form-label">District</label>
-                    <div class="form-control-plaintext">Khurdha</div>
+                    <div class="form-control-plaintext">Patna</div>
                 </div>
             </div>
             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
@@ -163,12 +162,12 @@
                     <div class="form-control-plaintext">-</div>
                 </div>
             </div>
-            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+            <!-- <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
                 <div class="mb-2">
                     <label for="txtComplaintName" class="form-label">Nature of Document</label>
                     <div class="form-control-plaintext">-</div>
                 </div>
-            </div>
+            </div> -->
            
             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
                 <div class="mb-2">
@@ -188,7 +187,7 @@
                         <th>Name</th>
                         <th>Phone</th>
                         <th>District</th>
-                        <th width="100">Action</th>
+                        <th width="100">Take Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -310,7 +309,7 @@
 
                 <div class="row">
                     <div class="col-xl-12">
-                        <h5 class="page-heading">Complaint Details</h5>
+                        <h5 class="page-heading">Complainant Details</h5>
                         <div class="bg-light p-3 pb-0 mb-4 view-form">
                             <div class="row">
                                 <div class="col-xl-3 col-md-6">
@@ -355,12 +354,12 @@
                                     </div>
                                 </div>
 
-                                <div class="col-xl-3 col-md-6">
+                                <!-- <div class="col-xl-3 col-md-6">
                                     <div class="mb-3">
                                         <label class="form-label">Nature of Document</label>
                                         <label class="form-value">Lorem</label>
                                     </div>
-                                </div>
+                                </div> -->
 
                                 <div class="col-xl-3 col-md-6">
                                     <div class="mb-3">
