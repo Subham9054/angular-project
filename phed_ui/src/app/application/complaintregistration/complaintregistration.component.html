@@ -26,8 +26,24 @@
         <div class="form-section">
             <div class="row">
                 <div class="col-xxl-12 col-lg-12">
-                    <h5 class="page-heading">Complaint Details</h5>
+                    <h5 class="page-heading">Complainant Details</h5>
                     <div class="row">
+
+                        <div class="col-xxl-3 col-xl-4 col-md-6">
+                            <div class="mb-3">
+                                <label for="ddlRecvBy" class="form-label">Mode of Complaint</label>
+                                <select name="ddlRecievemode" [(ngModel)]="formData.ddlComplainttype"
+                                    id="ddlRecievemode" class="form-select chosen-select-width"
+                                    style="width: 100%;">
+                                    <option value="0" selected>Select</option>
+                                    <option *ngFor="let complaintp of complainttype"
+                                        [value]="complaintp.inT_COMPLIANT_LOG_TYPE_ID">{{
+                                        complaintp.vcH_COMPLIANT_LOG_TYPE }}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+
                         <div class="col-xxl-3 col-xl-4 col-md-6">
                             <div class="mb-3">
                                 <label for="txtRegdDt" class="form-label">Registration Date</label>
@@ -89,20 +105,7 @@
                             </div>
 
 
-                        <div class="col-xxl-3 col-xl-4 col-md-6">
-                            <div class="mb-3">
-                                <label for="ddlRecvBy" class="form-label">Mode of Complaint</label>
-                                <select name="ddlRecievemode" [(ngModel)]="formData.ddlComplainttype"
-                                    id="ddlRecievemode" class="form-select chosen-select-width"
-                                    style="width: 100%;">
-                                    <option value="0" selected>Select</option>
-                                    <option *ngFor="let complaintp of complainttype"
-                                        [value]="complaintp.inT_COMPLIANT_LOG_TYPE_ID">{{
-                                        complaintp.vcH_COMPLIANT_LOG_TYPE }}
-                                    </option>
-                                </select>
-                            </div>
-                        </div>
+                       
 
                     
                         <div class="col-xxl-3 col-xl-4 col-md-6">
@@ -132,13 +135,13 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-xxl-3 col-xl-4 col-md-6">
+                        <!-- <div class="col-xxl-3 col-xl-4 col-md-6">
                             <div class="mb-3">
                                 <label for="txtDocument" class="form-label">Nature of Document</label>
                                 <input name="txtDocument" type="text" id="txtDocument" [(ngModel)]="formData.txtDocument"
                                     class="form-control" />
                             </div>
-                        </div>
+                        </div> -->
                     
                         <div class="col-xxl-3 col-xl-4 col-md-6">
                             <div class="mb-3 ">
@@ -219,6 +222,31 @@
                                 </select>
                             </div>
                         </div>
+
+                        <div class="col-xxl-3 col-xl-3 col-md-6">
+                            <div class="mb-3">
+                                <label for="ddlward" class="form-label">Ward</label>
+                                <select class="form-select" id="ddlward">
+                                    <option selected>Select</option>
+                                    <option value="1">Ara</option>
+                                    <option value="2">Begusarai</option>
+                                    <option value="3">Bhagalpur</option>
+                                </select>
+                            </div>
+                        </div>
+
+
+                        <div class="col-xxl-3 col-xl-3 col-md-6">
+                            <div class="mb-3">
+                                <label for="ddllocation" class="form-label">Near by Location</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="ddllocation">
+                                    <label class="input-group-text" for="ddllocation">
+                                        <i class="bi bi-geo-alt"></i></label>
+                                </div>
+                            </div>
+                        </div>
+
 
                         <div class="col-lg-12 col-md-12">
                             <div class="mb-3">
