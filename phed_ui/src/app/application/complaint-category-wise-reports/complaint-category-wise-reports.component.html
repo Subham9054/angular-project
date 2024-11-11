@@ -18,21 +18,57 @@
                         <li>
                             <a href="javascript:void(0)" title="Download Excel"><i class="bi bi-file-earmark-excel"></i></a>
                         </li>
-                        <li>
-                            <a href="javascript:void(0)">
-                                <i class="bi bi-funnel"></i> Filter
+                        <li class="filter-dropdown dropdown">
+                            <a href="javascript:void(0)" data-bs-toggle="dropdown">
+                                <i class="bi bi-funnel"></i> Filter 
                             </a>
+                           
+                                <div class="dropdown-menu dropdown-menu-end filter-dropdown-menu shadow border-0">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Complaint Category</label>
+                                                <select class="form-select">
+                                                    <option selected>Select</option>
+                                                    <option value="1">Handpump Tubewell Related</option>
+                                                    <option value="2">Miscellaneous</option>
+                                                    <option value="3">Piped Water Supply Related</option>
+                                                    <option value="3">Water Quality Related</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Date From</label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control  datepicker" id="datepicker">
+                                                    <label class="input-group-text" for="datepicker">
+                                                        <i class="bi bi-calendar-week"></i> </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Date To</label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control datepicker" id="datepicker1">
+                                                    <label class="input-group-text" for="datepicker1">
+                                                        <i class="bi bi-calendar-week"></i> </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="" class="form-label d-md-block d-none">&nbsp;&nbsp;</label>
+                                            <div class="d-flex gap-2">
+                                                <button type="submit" class="btn btn-primary px-xl-4">Search</button>
+                                                <button type="submit" class="btn btn-danger px-xl-4">Reset</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            
                         </li>
-                        <!-- <li [ngClass]="isPanelOpen ? 'active-filter' : ''">
-                            <a href="javascript:void(0)" title="{{ isPanelOpen ? 'Click to Close Filter' : 'Click to Open Filter' }}" 
-                               (click)="togglePanel()">
-                                <i class="bi bi-funnel"></i> Filter
-                            </a>
-                        </li> -->
-                        
-                         <!-- <li class="fill-btn add-link"><a routerLink="/application/demo/view"  title="Go to Previous"><i class="bi bi-plus-lg"></i>
-                                Add Page</a>
-                        </li>  -->
+                       
                     </ul>
                 </div>
             </div>
@@ -40,8 +76,8 @@
     </div>
 
     
-    <!-- <div id="collapseExample" class="collapse show" [ngClass]="{'show': isPanelOpen}"> -->
-    <div id="collapseExample" class="collapse show">
+
+    <!-- <div id="collapseExample" class="collapse show">
         
         <div class="content-box search-box">
             <div class="row">
@@ -85,7 +121,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
   
     <div class="content-box content-area p-0">
         <div class="table-responsive">
