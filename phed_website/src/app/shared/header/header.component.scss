@@ -1,6 +1,3 @@
-// @import "../../../../node_modules/bootstrap/scss/mixins";
-// @import "../../../../node_modules/bootstrap/scss/functions";
-// @import "../../../../node_modules/bootstrap/scss/variables";
 @import "../../../assets/scss/variables";
 .navbar {
   &.header-utilities {
@@ -22,7 +19,7 @@
   font-size: 0.7rem !important;
 }
 .theme-dark {
-  .navbar-brand__img {
+  .navbar-brand-img {
     &.light-img {
       filter: invert(1);
     }
@@ -42,6 +39,18 @@
   &.active {
     > a {
       color: var(--link-color);
+      &::after {
+        position: absolute;
+        content: "";
+        background-color: var(--menu-hover);
+        width: 75%;
+        height: 2px;
+        left: 0;
+        margin: 0 auto;
+        right: 0;
+        text-align: center;
+        bottom: 0px;
+      }
     }
   }
   .dropdown-item.active, .dropdown-item:active{
@@ -577,11 +586,8 @@
       }
     }
   }
-  .light-img {
-    width: 45px;
-  }
-  .dark-img {
-    width: 45px;
+  .navbar-brand-img {
+    width: 42px;
   }
   .navbar-expand-lg {
     .navbar-nav {
@@ -628,7 +634,7 @@
         }
       }
     }
-    .navbar-brand__img {
+    .navbar-brand-img {
       width: 35px;
     }
   }
@@ -695,6 +701,9 @@
   }
 }
 @media screen and (min-width: 1400px)  {
+  .navbar-brand-img {
+    width: 45px;
+  }
   .navbar-expand-lg {
     .navbar-nav {
       .nav-item {

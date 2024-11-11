@@ -17,19 +17,17 @@
     
     <div class="navbar-collapse collapse" (click)="$event.stopPropagation();">
         <ul class="navbar-nav navbar-align d-flex align-items-center">
-            <li class="nav-item">
-                <a  href="javascript:void(0);" class="btn btn-outline-secondary btn-sm" (click)="toggleText()" 
+            <li class="nav-item lang-btn">
+                <a  href="javascript:void(0);" (click)="toggleText()" 
                   [title]="buttonText === 'हिंदी' ? 'Click for Hindi' : 'Click for English'">
                   {{ buttonText }}
                 </a>
               </li>
               
             <li class="nav-item dropdown second-li">
-                <a class="nav-icon dropdown-toggle" href="javascript:void(0);" id="alertsDropdown" data-bs-toggle="dropdown">
-                    <div class="position-relative">
+                <a class="nav-icon dropdown-toggle position-relative" href="javascript:void(0);" id="alertsDropdown" data-bs-toggle="dropdown">
                         <i class="bi bi-bell"></i>
                         <span class="indicator">4</span>
-                    </div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-lg shadow border-0 dropdown-menu-end py-0" aria-labelledby="alertsDropdown">
                     <div class="dropdown-menu-header">

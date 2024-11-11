@@ -2,6 +2,7 @@
 .theme-light {
     --link-color: #{$blue};
     --border-color: #{$grey-600};
+    --input-border-color: #{$grey-600};
     --border-primary-color: #{$blue};
     --primary-color: #{$blue};
     --bs-body-bg: #{$white};
@@ -63,10 +64,12 @@
     --input-color:#{$grey-light-900};
 
     --faq-number:#{$light-white};
+    --custom-input-bg:#{$grey-400};
 }
 .theme-dark {   
     --link-color: #{$white};
     --border-color: #{$grey-300};
+    --input-border-color: #{$grey-300};
     --border-primary-color: #{$white};
     --primary-color: #{$warning};
     --bs-body-bg: #{$grey-700};
@@ -129,5 +132,5 @@
     --input-color:#{$grey-300};
 
     --faq-number:#{$light-white-100};
- 
+    --custom-input-bg:#{$grey-light-100};
 }

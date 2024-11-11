@@ -19,6 +19,7 @@ import { DetaileventComponent } from './detailevent/detailevent.component';
 import { HomeComponent } from './home/home.component';
 import { GallerydetailsComponent } from './gallerydetails/gallerydetails.component';
 import { SitemapComponent } from './sitemap/sitemap.component';
+import { NgxDropzoneModule } from 'ngx-dropzone';
 
 @NgModule({
   declarations: [
@@ -42,8 +43,8 @@ import { SitemapComponent } from './sitemap/sitemap.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
-    
+    AppRoutingModule,
+    NgxDropzoneModule
   ],
   providers: [],
   bootstrap: [AppComponent]
