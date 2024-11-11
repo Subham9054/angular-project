@@ -17,18 +17,23 @@
                             <a href="javascript:void(0)" title="Download Excel"><i class="bi bi-file-earmark-excel"></i></a>
                         </li>
 
-                        <!-- <li [ngClass]="isPanelOpen ? 'active-filter' : ''">
-                            <a href="javascript:void(0)" title="{{ isPanelOpen ? 'Click to Close Filter' : 'Click to Open Filter' }}" 
-                               (click)="togglePanel()">
-                                <i class="bi bi-funnel"></i> Filter
-                            </a>
-                        </li> -->
+                        
+                      
                         <li class="filter-dropdown dropdown">
                             <a href="javascript:void(0)" data-bs-toggle="dropdown">
                                 <i class="bi bi-funnel"></i> Filter
                             </a>
-
-                            <div class="dropdown-menu dropdown-menu-end filter-dropdown-menu shadow border-0">
+                        
+                            <div
+                                class="dropdown-menu dropdown-menu-end filter-dropdown-menu shadow border-0"
+                                [class.show]="isDropdownOpen"
+                                (click)="$event.stopPropagation()"
+                            >
+                                <!-- Close button at the top right -->
+                                <button type="button" class="close-btn" (click)="closeDropdown()">
+                                    <i class="bi bi-x-lg"></i>
+                                </button>
+                        
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="mb-3">
@@ -154,7 +159,6 @@
                                     </div>
                                 </div>
                             </div>
-
                         </li>
                         
                     </ul>
@@ -355,7 +359,7 @@
                         <th>Complaint Date</th>
                         <th>Location</th>
                         <th>Action Taken By</th>
-                        <th width="90px">Action</th>
+                        <th width="90px">Take Action</th>
                     </tr>
                 </thead>
                 <tbody>
