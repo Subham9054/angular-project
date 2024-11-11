@@ -19,7 +19,88 @@
                             <a href="javascript:void(0)" title="Download Excel"><i
                                     class="bi bi-file-earmark-excel"></i></a>
                         </li>
+                        <li class="filter-dropdown dropdown">
+                            <a href="javascript:void(0)" data-bs-toggle="dropdown">
+                                <i class="bi bi-funnel"></i> Filter
+                            </a>
 
+                            <div class="dropdown-menu dropdown-menu-end filter-dropdown-menu shadow border-0">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="ddlDistrict" class="form-label">Circle</label>
+                                            <select class="form-select" id="circle">
+                                                <option selected>Select</option>
+                                                <option value="1">Ara</option>
+                                                <option value="2">Begusarai</option>
+                                                <option value="3">Bhagalpur</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="divison" class="form-label">Division</label>
+                                            <select class="form-select" id="divison">
+                                                <option selected>Select</option>
+                                                <option value="1">Ara</option>
+                                                <option value="2">Begusarai</option>
+                                                <option value="3">Bhagalpur</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="sub-disvison" class="form-label">Sub-Division</label>
+                                            <select class="form-select" id="sub-disvison">
+                                                <option selected>Select</option>
+                                                <option value="1">Ara</option>
+                                                <option value="2">Begusarai</option>
+                                                <option value="3">Bhagalpur</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="Section" class="form-label">Section</label>
+                                            <select class="form-select" id="Section">
+                                                <option selected>Select</option>
+                                                <option value="1">Ara</option>
+                                                <option value="2">Begusarai</option>
+                                                <option value="3">Bhagalpur</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="district" class="form-label">District</label>
+                                            <select class="form-select" id="district">
+                                                <option selected>Select</option>
+                                                <option value="1">ARARIA</option>
+                                                <option value="2">ARARIA</option>
+                                                <option value="3">AURANGABAD</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="block1" class="form-label">Block</label>
+                                            <select class="form-select select-height"  id="block1">
+                                                <option value="1">ARARIA</option>
+                                                <option value="2">ARWAL</option>
+                                                <option value="3">AURANGABAD</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="d-flex gap-2">
+                                            <button type="submit" class="btn btn-primary px-xl-4">Search</button>
+                                            <button type="submit" class="btn btn-danger px-xl-4">Reset</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </li>
 
 
                         <li class="fill-btn add-link"><a routerLink="/application/demographymapping/add"
@@ -40,7 +121,9 @@
                 <thead>
                     <tr>
                         <th width="40px">Sl#</th>
-                        <th>Parent</th>
+                        <th>Circle</th>
+                        <th>Division</th>
+                        <th>Sub-Division</th>
                         <th>Section</th>
                         <th width="90px">Block</th>
                         <th width="90px">Action</th>
@@ -50,11 +133,12 @@
                     <tr>
                         <td>1</td>
                         <td>
-                            <p class="mb-0"><small class="text-muted">Circle:</small> <strong>Purnia</strong></p>
-                            <p class="mb-0"><small class="text-muted">Division:</small> <strong>Araria</strong></p>
-                            <p class="mb-0"><small class="text-muted">SubDivision:</small> <strong>Araria East </strong>
-                            </p>
+                            Purnia
+
                         </td>
+                        <td> Araria
+                        </td>
+                        <td> Araria East</td>
                         <td>Araria</td>
                         <td>ARARIA</td>
                         <td>
@@ -68,12 +152,9 @@
                     </tr>
                     <tr>
                         <td>2</td>
-                        <td>
-                            <p class="mb-0"><small class="text-muted">Circle:</small> <strong>Purnia</strong></p>
-                            <p class="mb-0"><small class="text-muted">Division:</small> <strong>Araria</strong></p>
-                            <p class="mb-0"><small class="text-muted">SubDivision:</small> <strong>Araria West </strong>
-                            </p>
-                        </td>
+                        <td>Purnia</td>
+                        <td>Araria</td>
+                        <td>Araria West</td>
                         <td>Bhargama</td>
                         <td>BHARGAMA</td>
                         <td>
@@ -87,12 +168,9 @@
                     </tr>
                     <tr>
                         <td>3</td>
-                        <td>
-                            <p class="mb-0"><small class="text-muted">Circle:</small> <strong>Purnia</strong></p>
-                            <p class="mb-0"><small class="text-muted">Division:</small> <strong>Araria</strong></p>
-                            <p class="mb-0"><small class="text-muted">SubDivision:</small> <strong>Forbesganj</strong>
-                            </p>
-                        </td>
+                        <td>Purnia</td>
+                        <td>Araria</td>
+                        <td>Forbesganj</td>
                         <td>Forbesganj</td>
                         <td>Forbesganj</td>
                         <td>
@@ -106,12 +184,9 @@
                     </tr>
                     <tr>
                         <td>4</td>
-                        <td>
-                            <p class="mb-0"><small class="text-muted">Circle:</small> <strong>Purnia</strong></p>
-                            <p class="mb-0"><small class="text-muted">Division:</small> <strong>Araria</strong></p>
-                            <p class="mb-0"><small class="text-muted">SubDivision:</small> <strong>Araria East </strong>
-                            </p>
-                        </td>
+                        <td>Purnia</td>
+                        <td>Araria</td>
+                        <td>Araria East</td>
                         <td>Jokihat</td>
                         <td>JOKIHAT</td>
                         <td>
@@ -125,12 +200,9 @@
                     </tr>
                     <tr>
                         <td>5</td>
-                        <td>
-                            <p class="mb-0"><small class="text-muted">Circle:</small> <strong>Purnia</strong></p>
-                            <p class="mb-0"><small class="text-muted">Division:</small> <strong>Araria</strong></p>
-                            <p class="mb-0"><small class="text-muted">SubDivision:</small> <strong>Forbesganj</strong>
-                            </p>
-                        </td>
+                        <td>Purnia</td>
+                        <td>Araria</td>
+                        <td>Forbesganj</td>
                         <td>Kursakanta</td>
                         <td>KURSAKANTA</td>
                         <td>
