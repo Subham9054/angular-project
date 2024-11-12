@@ -38,15 +38,15 @@ export class ComplaintregistrationdeleteComponent {
   constructor(private authService: AuthService) {}
 
 // Filter
-isDropdownOpen = false;
+// isDropdownOpen = false;
 
-toggleDropdown() {
-    this.isDropdownOpen = !this.isDropdownOpen;
-}
+// toggleDropdown() {
+//     this.isDropdownOpen = !this.isDropdownOpen;
+// }
 
-closeDropdown() {
-    this.isDropdownOpen = false;
-}    
+// closeDropdown() {
+//     this.isDropdownOpen = false;
+// }    
 
 
 

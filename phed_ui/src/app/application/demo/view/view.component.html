@@ -16,7 +16,12 @@
                         <li>
                             <a href="javascript:void(0)" title="Download Excel"><i class="bi bi-file-earmark-excel"></i></a>
                         </li>
-                        
+                        <li [ngClass]="isPanelOpen ? 'active-filter' : ''">
+                            <a href="javascript:void(0)" title="{{ isPanelOpen ? 'Click to Close Filter' : 'Click to Open Filter' }}" 
+                               (click)="togglePanel()">
+                                <i class="bi bi-funnel"></i> Filter 1
+                            </a>
+                        </li>
                         <li class="filter-dropdown dropdown">
                             <a href="javascript:void(0)" data-bs-toggle="dropdown">
                                 <i class="bi bi-funnel"></i> Filter 
@@ -131,7 +136,7 @@
         </div>
     </div>
 
-     <!-- <div id="collapseExample" class="collapse show" [ngClass]="{'show': isPanelOpen}">
+     <div id="collapseExample" class="collapse show" [ngClass]="{'show': isPanelOpen}">
         <div class="content-box search-box">
             <div class="row">
                 <div class="col-xl-4 col-lg-4 col-md-6">
@@ -170,12 +175,8 @@
                 </div>
             </div>
         </div>
-    </div> -->
-<<<<<<< HEAD
-    <div class="view-form pb-1">
-=======
+    </div>
     <div class="view-forms pb-1">
->>>>>>> origin/main
         <div class="row">
             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
                 <div class="mb-2">
