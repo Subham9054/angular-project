@@ -37,6 +37,19 @@ export class ComplaintregistrationdeleteComponent {
 
   constructor(private authService: AuthService) {}
 
+// Filter
+isDropdownOpen = false;
+
+toggleDropdown() {
+    this.isDropdownOpen = !this.isDropdownOpen;
+}
+
+closeDropdown() {
+    this.isDropdownOpen = false;
+}    
+
+
+
   ngOnInit(): void {
 
     $('.datepicker').datetimepicker({

@@ -29,6 +29,7 @@
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="ddlDistrict" class="form-label">Circle</label>
+<<<<<<< HEAD
                                             <select class="form-select" id="circle">
                                                 <option selected>Select</option>
                                                 <option value="1">Ara</option>
@@ -36,6 +37,30 @@
                                                 <option value="3">Bhagalpur</option>
                                             </select>
                                         </div>
+=======
+                                            <!-- Search field, conditionally displayed when typing starts -->
+                                            <input
+                                                *ngIf="showSearch || searchTerm"
+                                                type="text"
+                                                class="form-control mb-2"
+                                                placeholder="Search circles..."
+                                                [(ngModel)]="searchTerm"
+                                                (ngModelChange)="onSearchChange()"
+                                            />
+                                        
+                                            <!-- Dropdown with filtered options -->
+                                            <select
+                                                class="form-select"
+                                                id="circle"
+                                                (focus)="showSearch = true"
+                                                (blur)="showSearch = false"
+                                            >
+                                                <option selected>Select</option>
+                                                <option *ngFor="let circle of filteredCircles" [value]="circle.id">{{ circle.name }}</option>
+                                            </select>
+                                        </div>
+                                        
+>>>>>>> origin/main
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mb-3">
@@ -48,6 +73,7 @@
                                             </select>
                                         </div>
                                     </div>
+<<<<<<< HEAD
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="sub-disvison" class="form-label">Sub-Division</label>
@@ -70,6 +96,9 @@
                                             </select>
                                         </div>
                                     </div>
+=======
+                                   
+>>>>>>> origin/main
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="district" class="form-label">District</label>
@@ -81,6 +110,7 @@
                                             </select>
                                         </div>
                                     </div>
+<<<<<<< HEAD
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="block1" class="form-label">Block</label>
@@ -92,6 +122,11 @@
                                         </div>
                                     </div>
                                     <div class="col-md-12">
+=======
+                                   
+                                    <div class="col-md-6">
+                                        <label class="form-label d-md-block d-none">&nbsp;&nbsp;</label>
+>>>>>>> origin/main
                                         <div class="d-flex gap-2">
                                             <button type="submit" class="btn btn-primary px-xl-4">Search</button>
                                             <button type="submit" class="btn btn-danger px-xl-4">Reset</button>
@@ -125,6 +160,7 @@
                         <th>Division</th>
                         <th>Sub-Division</th>
                         <th>Section</th>
+                        <th width="90px">District</th>
                         <th width="90px">Block</th>
                         <th width="90px">Action</th>
                     </tr>
@@ -139,6 +175,10 @@
                         <td> Araria
                         </td>
                         <td> Araria East</td>
+<<<<<<< HEAD
+=======
+                        <td>Araria</td>
+>>>>>>> origin/main
                         <td>Araria</td>
                         <td>ARARIA</td>
                         <td>
@@ -156,6 +196,7 @@
                         <td>Araria</td>
                         <td>Araria West</td>
                         <td>Bhargama</td>
+                        <td>ARARIA</td>
                         <td>BHARGAMA</td>
                         <td>
                             <div class="d-flex gap-1">
@@ -171,6 +212,10 @@
                         <td>Purnia</td>
                         <td>Araria</td>
                         <td>Forbesganj</td>
+<<<<<<< HEAD
+=======
+                        <td>Forbesganj</td>
+>>>>>>> origin/main
                         <td>Forbesganj</td>
                         <td>Forbesganj</td>
                         <td>
@@ -189,6 +234,7 @@
                         <td>Araria East</td>
                         <td>Jokihat</td>
                         <td>JOKIHAT</td>
+                        <td>JOKIHAT</td>
                         <td>
                             <div class="d-flex gap-1">
                                 <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
@@ -204,6 +250,7 @@
                         <td>Araria</td>
                         <td>Forbesganj</td>
                         <td>Kursakanta</td>
+                        <td>KURSAKANTA</td>
                         <td>KURSAKANTA</td>
                         <td>
                             <div class="d-flex gap-1">

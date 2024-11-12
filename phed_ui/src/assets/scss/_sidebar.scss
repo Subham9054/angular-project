@@ -6,7 +6,7 @@
   position: fixed;
   z-index: 9;
   height: 100vh;
-  font-size: 0.95rem;
+  font-size: 1.1rem;
   &-content {
     transition: $sidebar-transition;
     display: flex;
@@ -223,8 +223,7 @@ a.sidebar-link {
   position: relative;
   text-decoration: none;
   cursor: pointer;
-  // border-radius: 0.5rem;
-  color: rgba($sidebar-link-color, 0.85);
+  color: $white;
   &.active{
     color: $sidebar-link-hover-color;
     &:hover {

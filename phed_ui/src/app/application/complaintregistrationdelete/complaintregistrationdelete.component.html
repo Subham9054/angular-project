@@ -17,6 +17,7 @@
                             <a href="javascript:void(0)" title="Download Excel"><i class="bi bi-file-earmark-excel"></i></a>
                         </li>
 
+<<<<<<< HEAD
                         <!-- <li [ngClass]="isPanelOpen ? 'active-filter' : ''">
                             <a href="javascript:void(0)" title="{{ isPanelOpen ? 'Click to Close Filter' : 'Click to Open Filter' }}" 
                                (click)="togglePanel()">
@@ -157,18 +158,169 @@
 
                         </li>
                         
+=======
+                             
+                      
+                        <li class="filter-dropdown dropdown">
+                            <a href="javascript:void(0)" data-bs-toggle="dropdown">
+                                <i class="bi bi-funnel"></i> Filter
+                            </a>
+                        
+                            <div
+                                class="dropdown-menu dropdown-menu-end filter-dropdown-menu shadow border-0"
+                                [class.show]="isDropdownOpen"
+                                (click)="$event.stopPropagation()"
+                            >
+                             
+                        
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="ddlDistrict" class="form-label">District</label>
+                                            <select name="ddlDistrict" id="ddlDistrict" [(ngModel)]="formData.ddlDistrict"
+                                                (change)="onDistrictChange($event)" class="form-select">
+                                                <option selected value="0">Select</option>
+                                                <option *ngFor="let district of districts" [value]="district.inT_DIST_ID">
+                                                    {{ district.vcH_DIST_NAME }}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="ddlBlock" class="form-label">Block</label>
+                                            <select name="ddlBlock" id="ddlBlock" [(ngModel)]="formData.ddlBlock"
+                                                (change)="onBlockChange($event)" class="form-select">
+                                                <option value="0">Select</option>
+                                                <option *ngFor="let block of blocks" [value]="block.inT_BLOCK_ID">{{ block.vcH_BLOCK_NAME }}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="ddlGp" class="form-label">Gram Panchayat</label>
+                                            <select name="ddlGp" id="ddlGp" [(ngModel)]="formData.ddlPanchayat" class="form-select">
+                                                <option value="0">Select</option>
+                                                <option *ngFor="let gp of gps" [value]="gp.inT_GP_ID">{{ gp.vcH_GP_NAME }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="txtToken" class="form-label">Token No.</label>
+                                            <input class="form-control" id="txtToken" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="ddlComplaintCategory" class="form-label">Complaint Category</label>
+                                            <select name="ddlComplaintCategory" id="ddlComplaintCategory"
+                                                [(ngModel)]="formData.ddlComplaintCategory" (change)="onCategoryChange($event)"
+                                                class="form-select">
+                                                <option selected value="0">Select</option>
+                                                <option *ngFor="let category of categories" [value]="category.inT_CATEGORY_ID">{{
+                                                    category.vcH_CATEGORY }}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="ddlSubCategory" class="form-label">Complaint Sub-Category</label>
+                                            <select name="ddlSubCategory" id="ddlSubCategory" [(ngModel)]="formData.ddlSubCategory"
+                                                class="form-select">
+                                                <option value="0">Select</option>
+                                                <option *ngFor="let subcategory of subcategories" [value]="subcategory.inT_SUB_CATEGORY_ID">
+                                                    {{
+                                                    subcategory.vcH_SUB_CATEGORY }}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="txtComplaintName" class="form-label">Complaint name</label>
+                                            <input class="form-control" id="txtComplaintName" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="txtComplaintName" class="form-label">Complaint Status</label>
+                                            <select name="ddlStatusSearch" [(ngModel)]="formData.ddlComplaintsts" id="ddlStatusSearch"
+                                                class="form-select">
+                                                <option value="0">Select</option>
+                                                <option *ngFor="let complaint of complaintstatus"
+                                                    [value]="complaint.inT_COMPLIANT_STATUS_ID">{{
+                                                    complaint.vcH_COMPLIANT_STATUS }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="txtComplaintName" class="form-label">Source of Complaint</label>
+                                            <select name="ddlRecievemode" [(ngModel)]="formData.ddlComplainttype" id="ddlRecievemode"
+                                                class="form-select">
+                                                <option value="0">Select</option>
+                                                <option *ngFor="let complaintp of complainttype"
+                                                    [value]="complaintp.inT_COMPLIANT_LOG_TYPE_ID">
+                                                    {{ complaintp.vcH_COMPLIANT_LOG_TYPE }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Registration Date</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control datepicker" id="Regddatepicker">
+                                                <label class="input-group-text" for="Regddatepicker"><i
+                                                        class="bi bi-calendar-week"></i></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Registration Date</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control datepicker" id="todatepicker">
+                                                <label class="input-group-text" for="todatepicker"><i
+                                                        class="bi bi-calendar-week"></i></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label d-md-block d-none" for="menuen">&nbsp;&nbsp;</label>
+                                            <div class="d-flex gap-2">
+                                            <button type="submit" class="btn btn-primary px-xl-4">Search</button>
+                                            <button type="submit" class="btn btn-danger px-xl-4">Reset</button></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        
+>>>>>>> origin/main
                     </ul>
                 </div>
             </div>
         </div>
     </div>
  
+<<<<<<< HEAD
     <div class="view-form pb-1">
+=======
+    <div class="view-forms pb-1">
+>>>>>>> origin/main
         <div class="row">
           
             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
                 <div class="mb-2">
+<<<<<<< HEAD
                     <label for="txtToken" class="form-label">Token number</label>
+=======
+                    <label for="txtToken" class="form-label">Token No.</label>
+>>>>>>> origin/main
                     <div class="form-control-plaintext">-</div>
                 </div>
             </div>
@@ -348,34 +500,55 @@
                 <thead>
                     <tr>
                         <th width="40px">Sl#</th>
+<<<<<<< HEAD
                         <th>Token No</th>
+=======
+                        <th>Token No.</th>
+>>>>>>> origin/main
                         <th>Complaint Name</th>
                         <th>Complaint Details</th>
                         <th>Complaint Status</th>
                         <th>Complaint Date</th>
                         <th>Location</th>
                         <th>Action Taken By</th>
-                        <th class="noPrint" width="50px">Action</th>
+                        <th width="90px">Take Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>1</td>
-                        <td><a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#token">TKN12345</a>
+                        <td><a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#token">202411110143</a>
                         </td>
+<<<<<<< HEAD
                         <td>John Doe</td>
                         <td>Road damage</td>
                         <td><span class="badge text-bg-warning">Pending</span></td>
                         <td>01-Jan-2024</td>
                         <td>New York</td>
                         <td>John Smith</td>
+=======
+                        <td>Deepak kumar</td>
+                        <td>Water lekaje no</td>
+                        <td><span class="badge text-bg-success">Resolved</span></td>
+                        <td>11-Nov-2024</td>
+                        <td>-</td>
+                        <td>JE Ekma</td>
+>>>>>>> origin/main
                         <td>
-                            <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#details"
-                                class="btn btn-outline-primary btn-sm"><i class="bi bi-eye"></i></a>
+                            <div class="d-flex gap-1">
+                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"
+                                    data-bs-toggle="modal" data-bs-target="#details">
+                                    <i class="bi bi-eye"></i>
+                                </a>
+                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
+                                    <i class="bi bi-pencil"></i>
+                                </a>
+                            </div>
                         </td>
                     </tr>
                     <tr>
                         <td>2</td>
+<<<<<<< HEAD
                         <td><a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#token">TKN12346</a>
                         </td>
                         <td>Jane Doe</td>
@@ -384,43 +557,92 @@
                         <td>05-Jan-2024</td>
                         <td>Los Angeles</td>
                         <td>Jane Smith</td>
+=======
+                        <td><a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#token">202411110139</a></td>
+                        <td>Basant Kumar</td>
+                        <td>वार्ड न०- 13 में मेरे दरव</td>
+                        <td><span class="badge text-bg-success">Resolved</span></td>
+                        <td>11-Nov-2024</td>
+                        <td>-</td>
+                        <td>JE Section - I</td>
+>>>>>>> origin/main
                         <td>
-                            <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#details"
-                                class="btn btn-outline-primary btn-sm"><i class="bi bi-eye"></i></a>
+                            <div class="d-flex gap-1">
+                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"
+                                    data-bs-toggle="modal" data-bs-target="#details">
+                                    <i class="bi bi-eye"></i>
+                                </a>
+                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
+                                    <i class="bi bi-pencil"></i>
+                                </a>
+                            </div>
                         </td>
                     </tr>
                     <tr>
                         <td>3</td>
-                        <td><a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#token">TKN12347</a>
+                        <td><a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#token">202411110138</a>
                         </td>
+<<<<<<< HEAD
                         <td>Michael Johnson</td>
                         <td>Power outage</td>
                         <td><span class="badge text-bg-secondary">In Progress</span></td>
                         <td>10-Jan-2024</td>
                         <td>Chicago</td>
                         <td>Robert Brown</td>
+=======
+                        <td>Ram Lakhan</td>
+                        <td>वार्ड नंबर एक में सप्लाई</td>
+                        <td><span class="badge text-bg-success">Resolved</span></td>
+                        <td>11-Nov-2024</td>
+                        <td>-</td>
+                        <td>JE Andhratharhi</td>
+>>>>>>> origin/main
                         <td>
-                            <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#details"
-                                class="btn btn-outline-primary btn-sm"><i class="bi bi-eye"></i></a>
+                            <div class="d-flex gap-1">
+                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"
+                                    data-bs-toggle="modal" data-bs-target="#details">
+                                    <i class="bi bi-eye"></i>
+                                </a>
+                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
+                                    <i class="bi bi-pencil"></i>
+                                </a>
+                            </div>
                         </td>
                     </tr>
                     <tr>
                         <td>4</td>
-                        <td><a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#token">TKN12348</a>
+                        <td><a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#token">202411110137</a>
                         </td>
+<<<<<<< HEAD
                         <td>Emily Davis</td>
                         <td>Street light issue</td>
                         <td><span class="badge text-bg-warning">Pending</span></td>
                         <td>15-Jan-2024</td>
                         <td>Houston</td>
                         <td>Emily White</td>
+=======
+                        <td>Sudher Kumar</td>
+                        <td>वार्ड न०-06 में नौ सिर्गि</td>
+                        <td><span class="badge text-bg-success">Resolved</span></td>
+                        <td>11-Nov-2024</td>
+                        <td>-</td>
+                        <td>JE Lalganj</td>
+>>>>>>> origin/main
                         <td>
-                            <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#details"
-                                class="btn btn-outline-primary btn-sm"><i class="bi bi-eye"></i></a>
+                            <div class="d-flex gap-1">
+                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"
+                                    data-bs-toggle="modal" data-bs-target="#details">
+                                    <i class="bi bi-eye"></i>
+                                </a>
+                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
+                                    <i class="bi bi-pencil"></i>
+                                </a>
+                            </div>
                         </td>
                     </tr>
                     <tr>
                         <td>5</td>
+<<<<<<< HEAD
                         <td><a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#token">TKN12349</a>
                         </td>
                         <td>David Lee</td>
@@ -429,10 +651,25 @@
                         <td>20-Jan-2024</td>
                         <td>Miami</td>
                         <td>Mark Wilson</td>
+=======
+                        <td><a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#token">202411110135</a></td>
+                        <td>Nagendra sarma</td>
+                        <td>वार्ड न०- 10 में लीकेज हो</td>
+                        <td><span class="badge text-bg-success">Resolved</span></td>
+                        <td>11-Nov-2024</td>
+                        <td>-</td>
+                        <td>JE Tekari</td>
+>>>>>>> origin/main
                         <td>
-                            <button class="btn btn-outline-success btn-sm">
-                                <i class="bi bi-pencil"></i>
-                            </button>
+                            <div class="d-flex gap-1">
+                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"
+                                    data-bs-toggle="modal" data-bs-target="#details">
+                                    <i class="bi bi-eye"></i>
+                                </a>
+                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
+                                    <i class="bi bi-pencil"></i>
+                                </a>
+                            </div>
                         </td>
                     </tr>
                 </tbody>
@@ -454,7 +691,7 @@
                 <div class="modal-logo">
                     <img src="./assets/img/bihar-logo-black.png" alt="Govt. of Bihar Logo" class="me-1 me-lg-3">
                     <div>
-                        <h1>Neer Nirmal Seva</h1>
+                        <h1>HAR GHAR NAL KA JAL</h1>
                         <p>Public Health Engineering Department</p>
                         <small>Government of Bihar </small>
                     </div>
