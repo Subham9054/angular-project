@@ -1275,27 +1275,27 @@ tr.unpublish {
 
 
 // Filter close icon
-.filter-dropdown {
-  .dropdown-menu {
-    position: relative;
+// .filter-dropdown {
+//   .dropdown-menu {
+//     position: relative;
 
-    &::after {
-      position: absolute;
-      right: 0;
-      top: 0;
-      content: "\F62A";
-      background-color: transparent;
-      border: 1px solid #ddd;
-      font-family: bootstrap-icons !important;
-      border-radius: 50%;
-      height: 20px;
-      width: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-  }
-}
+//     &::after {
+//       position: absolute;
+//       right: 0;
+//       top: 0;
+//       content: "\F62A";
+//       background-color: transparent;
+//       border: 1px solid #ddd;
+//       font-family: bootstrap-icons !important;
+//       border-radius: 50%;
+//       height: 20px;
+//       width: 20px;
+//       display: flex;
+//       align-items: center;
+//       justify-content: center;
+//     }
+//   }
+// }
 
 .close-btn {
   position: absolute;
@@ -1418,12 +1418,12 @@ tr.unpublish {
 }
 // progress status end
 
-.attchfile{
-  color:$link-color;
-  &:hover{
-    color: $black;
-  }
-}
+// .attchfile{
+//   color:$link-color;
+//   &:hover{
+//     color: $black;
+//   }
+// }
 
 
 // Table-fixed
@@ -1550,6 +1550,10 @@ tr.unpublish {
     margin-bottom: 0.5rem;
   }
 
+}
+// Alert box button
+div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-confirm){
+  background: transparent linear-gradient(103deg, #097CC5 0%, #128FE0 100%) 0% 0% no-repeat padding-box !important;
 }
 
 @media (max-width: 630px) {

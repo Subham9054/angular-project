@@ -38,6 +38,7 @@ import { MinisterProfileViewComponent } from './cms/minister-profile-view/minist
 import { ComplaintSubCategoryComponent } from './complaint-sub-category/complaint-sub-category.component';
 import { ModewiseReportComponent } from './modewise-report/modewise-report.component';
 import { ComplaintregistrationViewComponent } from './complaintregistration-view/complaintregistration-view.component';
+import { ComplaintSubCategoryViewComponent } from './complaint-sub-category-view/complaint-sub-category-view.component';
 
 
 const routes: Routes = [{
@@ -51,7 +52,8 @@ const routes: Routes = [{
     { path: 'complaintcategory/:id', component: ComplaintcategoryComponent },
     { path:'complaintcategory',component:ComplaintcategoryViewComponent},
     
-    { path: 'ComplaintSub-Category', component: ComplaintSubCategoryComponent },
+    { path: 'ComplaintSub-Category/:id', component: ComplaintSubCategoryComponent },
+    { path: 'ComplaintSub-Category', component: ComplaintSubCategoryViewComponent },
 
     {path:'complaintregistration/:id',component:ComplaintregistrationComponent},
     {path:'complaintregistration',component:ComplaintregistrationViewComponent},
