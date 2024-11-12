@@ -8,11 +8,11 @@ declare let $: any;
 })
 export class ViewComponent {
 
-  // isPanelOpen = false; // Start with the panel open
+  isPanelOpen = false; // Start with the panel open
 
-  // togglePanel() {
-  //   this.isPanelOpen = !this.isPanelOpen; // Toggle the panel state
-  // }
+  togglePanel() {
+    this.isPanelOpen = !this.isPanelOpen; // Toggle the panel state
+  }
   ngOnInit(): void {
     $('.datepicker').datetimepicker({
       format: 'DD-MMM-YYYY',

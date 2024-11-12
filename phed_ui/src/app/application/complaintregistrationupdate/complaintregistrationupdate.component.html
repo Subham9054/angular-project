@@ -93,7 +93,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mb-3">
-                                            <label for="txtComplaintName" class="form-label">Complaint name</label>
+                                            <label for="txtComplaintName" class="form-label">Complaint Name</label>
                                             <input class="form-control" id="txtComplaintName" type="text">
                                         </div>
                                     </div>
@@ -121,7 +121,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <!-- <div class="col-md-6">
                                         <div class="mb-3">
                                             <label class="form-label">Registration Date</label>
                                             <div class="input-group">
@@ -130,7 +130,7 @@
                                                         class="bi bi-calendar-week"></i></label>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label class="form-label">Registration Date</label>
@@ -143,8 +143,8 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mb-3">
-                                            <label class="form-label d-md-block d-none"
-                                                for="menuen">&nbsp;&nbsp;</label>
+                                            <!-- <label class="form-label d-md-block d-none"
+                                                for="menuen">&nbsp;&nbsp;</label> -->
                                             <div class="d-flex gap-2">
                                                 <button type="submit" class="btn btn-primary px-xl-4">Search</button>
                                                 <button type="submit" class="btn btn-danger px-xl-4">Reset</button>
@@ -173,7 +173,7 @@
             </div>
             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
                 <div class="mb-2">
-                    <label for="txtComplaintName" class="form-label">Complaint name</label>
+                    <label for="txtComplaintName" class="form-label">Complaint Name</label>
                     <div class="form-control-plaintext">Deepak kumar</div>
                 </div>
             </div>
@@ -227,7 +227,7 @@
                         <th>Complaint Date</th>
                         <th>Location</th>
                         <th>Action Taken By</th>
-                        <th width="90px">Take Action</th>
+                        <th width="100px">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -369,9 +369,8 @@
 
                                
                                 <ul class="dropdown-menu shadow border-0 dropdown-menu-end py-0">
-                                   
                                     <li>
-                                        <a href="javascript:void(0);" class="dropdown-item" title="Take Action"
+                                        <a href="javascript:void(0);" class="dropdown-item" title="Take Action" 
                                         data-bs-toggle="modal" data-bs-target="#details">
                                             <i class="bi-clock-history me-1"></i> Take Action
                                         </a>
@@ -408,19 +407,8 @@
                                 
                                 <ul class="dropdown-menu shadow border-0 dropdown-menu-end py-0">
                                     <li>
-                                        <a href="javascript:void(0);" class="dropdown-item" title="View"
-                                            data-bs-toggle="modal" data-bs-target="#details">
-                                            <i class="bi bi-eye me-1"></i> View
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0);" class="dropdown-item" title="Edit">
-                                            <i class="bi bi-pencil me-1"></i> Edit
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <a href="javascript:void(0);" class="dropdown-item" title="Take Action">
+                                        <a href="javascript:void(0);" class="dropdown-item" title="Take Action" 
+                                        data-bs-toggle="modal" data-bs-target="#details">
                                             <i class="bi-clock-history me-1"></i> Take Action
                                         </a>
                                     </li>
@@ -582,7 +570,7 @@
                             <div class="col-xl-3 col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label">Village Name</label>
-                                    <label class="form-value"></label>
+                                    <label class="form-value">-</label>
                                 </div>
                             </div>
                             <div class="col-xl-3 col-md-6">
@@ -753,7 +741,7 @@
                                 <div class="col-xl-3 col-md-6">
                                     <div class="mb-3">
                                         <label class="form-label"> Location</label>
-                                        <label class="form-value">NA</label>
+                                        <label class="form-value">-</label>
                                     </div>
                                 </div>
                                 <div class="col-xl-3 col-md-6">
@@ -787,9 +775,9 @@
                                     <label for="ddlDistrict" class="form-label">Status</label>
                                     <select class="form-select">
                                         <option selected>Select</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
+                                        <option value="1">Attended & Can`t be resolved</option>
+                                        <option value="2">Inprogress</option>
+                                        <option value="3">Resolved</option>
                                     </select>
                                 </div>
                             </div>
@@ -834,7 +822,6 @@
         </div>
     </div>
 </div>
-
 <!-- Modal End::Token -->
 
 <!-- Modal Start::Take Action -->
@@ -891,12 +878,12 @@
                             </div> -->
 
 
-                            <div class="col-xl-3 col-md-6">
+                            <!-- <div class="col-xl-3 col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label">Name</label>
                                     <label class="form-value">Krishanumar</label>
                                 </div>
-                            </div>
+                            </div> -->
                             <!-- <div class="col-xl-3 col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label">Gender</label>
@@ -906,7 +893,7 @@
 
                             <div class="col-xl-3 col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label">Phone No</label>
+                                    <label class="form-label">Phone No.</label>
                                     <label class="form-value">8789952814</label>
                                 </div>
                             </div>
@@ -961,7 +948,7 @@
                             <div class="col-xl-3 col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label">Village Name</label>
-                                    <label class="form-value"></label>
+                                    <label class="form-value">-</label>
                                 </div>
                             </div>
                             <div class="col-xl-3 col-md-6">
@@ -1056,4 +1043,4 @@
         </div>
     </div>
 </div>
-
+<!-- Modal end::Take Action -->
