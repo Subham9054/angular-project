@@ -15,7 +15,7 @@
 
 
 
-                        <li class="fill-btn back-link"><a routerLink="/application/complaintregistration"
+                        <li class="fill-btn back-link"><a routerLink="/application/ComplaintSub-Category"
                                 title="Go to Previous"><i class="bi bi-arrow-left"></i> Back to View</a>
                     </ul>
                 </div>
@@ -25,79 +25,66 @@
     <div class="content-box content-area">
         <div class="form-section">
             <div class="row">
-                <div class="col-xxl-12 col-lg-12">
-
+                <div class="col-xxl-10 col-lg-12">
+                    
                     <div class="row">
-
-
-
-                        <div class="col-xxl-3 col-xl-4 col-md-6">
+                        <div class="col-lg-4">
                             <div class="mb-3">
-
-                            </div>
-                        </div>
-                        <div class="col-xxl-3 col-xl-4 col-md-6">
-                            <div class="mb-3">
-
-                            </div>
-                        </div>
-                        <div class="col-xxl-3 col-xl-4 col-md-6">
-                            <div class="mb-3">
-
-                            </div>
-                        </div>
-
-                        <div class="col-xxl-3 col-xl-4 col-md-6">
-                            <div class="mb-3">
-
-                            </div>
-                        </div>
-
-
-                        <div class="col-xxl-3 col-xl-4 col-md-6">
-                            <div class="mb-3">
-
-                            </div>
-                        </div>
-
-
-
-                        <div class="col-xxl-3 col-xl-4 col-md-6">
-                            <div class="mb-3 ">
-
-                            </div>
-                        </div>
-
-
-                        <div class="col-xxl-3 col-xl-4 col-md-6">
-                            <div class="mb-3">
-
-                            </div>
-                        </div>
-
-                        <div class="col-xxl-3 col-xl-4 col-md-6">
-                            <div class="mb-3">
-
-                            </div>
-                        </div>
-
-                        <div class=" col-md-12">
-                            <div class="mb-3">
-
-
+                                <label for="complaintcata" class="form-label">Complaint Category <span class="text-danger">*</span></label>
+                                <select id="complaintcata" class="form-select">
+                                    <option selected value="0">Select</option>
+                                    <option value="1">Handpump Tubewell Related</option>
+                                    <option value="2">Miscellaneous</option>
+                                    <option value="3">Piped Water Supply Related</option>
+                                    <option value="4">Water Quality Related</option>
+                                </select>
                             </div>
                         </div>
                     </div>
 
-
-
-
-                   
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="mb-3">
+                                <label for="complaintsub" class="form-label">Complaint Sub Category <span
+                                        class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="complaintsub">
+                            </div>
+                        </div>
+                    
+                        <div class="col-lg-4">
+                            <div class="mb-3">
+                                <label for="complaintsubhn" class="form-label">Complaint Sub Category (In Hindi)</label>
+                                <input type="text" class="form-control" id="complaintsubhn">
+                            </div>
+                        </div>
+                    </div>
+                      
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="mb-3">
+                                <label for="complaintcata" class="form-label">Priority <span class="text-danger">*</span></label>
+                                <select id="complaintcata" class="form-select">
+                                    <option selected value="0">Select</option>
+                                    <option value="1">High</option>
+                                    <option value="2">Low</option>
+                                    <option value="3">Medium</option>
+                                </select>
+                            </div>
+                        </div>
+                    
+                    
+                        <div class="col-lg-4">
+                            <div class="mb-3">
+                                <label for="escallabel" class="form-label">Escalation Level <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="escallabel">
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="row">
                         <div class="col-xl-5">
-                            <div class="mt-lg-3">
-                                <button type="button" name="btnSubmit" class="btn btn-primary me-1">Submit</button>
+                            <div class="mt-lg-3 d-flex gap-2">
+                                <button type="button" name="btnSubmit" class="btn btn-primary">Submit</button>
                                 <button type="button" name="btnReset" class="btn btn-danger">Reset</button>
                             </div>
                         </div>
