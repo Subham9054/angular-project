@@ -1,7 +1,3 @@
-@import "../../../node_modules/bootstrap/scss/mixins";
-@import "../../../node_modules/bootstrap/scss/functions";
-@import "../../../node_modules/bootstrap/scss/variables";
-
 .left-img{
     width: 100%;
     position: relative;
@@ -49,7 +45,7 @@
 }
 
 
-@include media-breakpoint-up(md) {
+@media screen and (min-width: 768px)  {
     .left-img{
         width: 100%;
         position: relative;
@@ -78,16 +74,16 @@
      }  
     } 
 }
-@include media-breakpoint-up(lg) {
+@media screen and (min-width: 992px)  {
     .left-img{
         width: 436px;
       
         &::before{
-            left: -2.2rem;
+            left: -1.2rem;
             width: 315px;
             height: 271px;
             z-index: -1;
-            top: -2rem;
+            top: -1rem;
        }
     }
 }

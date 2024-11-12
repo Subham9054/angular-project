@@ -23,9 +23,9 @@ export class NewseventViewComponent {
 
   }
 // Open pannel
-  isPanelOpen = true; // Start with the panel open
+isPanelOpen = false; // Start with the panel open
 
-  togglePanel() {
-    this.isPanelOpen = !this.isPanelOpen; // Toggle the panel state
-  }
+togglePanel() {
+  this.isPanelOpen = !this.isPanelOpen; // Toggle the panel state
+}
 }

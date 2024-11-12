@@ -7,6 +7,14 @@ declare let $: any;
   styleUrls: ['./complaintregistrationdelete.component.scss']
 })
 export class ComplaintregistrationdeleteComponent {
+
+
+  isPanelOpen = false; // Start with the panel open
+
+  togglePanel() {
+    this.isPanelOpen = !this.isPanelOpen; // Toggle the panel state
+  }
+  
   registrationDate: string = '';
   toDate: string = '';
   districts: any[] = [];
@@ -28,6 +36,19 @@ export class ComplaintregistrationdeleteComponent {
   };
 
   constructor(private authService: AuthService) {}
+
+// Filter
+isDropdownOpen = false;
+
+toggleDropdown() {
+    this.isDropdownOpen = !this.isDropdownOpen;
+}
+
+closeDropdown() {
+    this.isDropdownOpen = false;
+}    
+
+
 
   ngOnInit(): void {
 

@@ -1,52 +1,42 @@
 <div class="form-cointainer">
-    <div class="main-tab">
+    <div class="pagetitle-section">
         <div class="row justify-content-between align-items-center">
             <div class="col-lg-4">
-                <ul class="nav nav-tabs" routerLinkActive="active">
-                    <!-- <li class="nav-item">
-                        <a routerLink="/application/mngbanner" class="nav-link">Add</a>
-                    </li> -->
-                    <li class="nav-item">
-                        <a routerLink="/application/mngbanner-view" class="nav-link active">View</a>
-                    </li>
-                </ul>
+                <h3>Banner</h3>
+                <!-- <p>Manage your page</p> -->
             </div>
             <div class="col-lg-6 col-md-6">
-                <div class="utilite float-end mb-1">
+                <div class="utilite">
                     <ul class="mb-0">
                        
+
                         <li>
                             <a href="javascript:void(0)" title="Click to Print"><i class="bi bi-printer"></i></a>
                         </li>
-                        <li>
-                            <a href="javascript:void(0)" title="Click to Publish">
-                                <i class="bi bi-volume-up"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)" title="Click to Unpublish">
-                                <i class="bi bi-volume-mute"></i>
-                            </a>
-                        </li>
-                       
 
                         <li>
+                            <a href="javascript:void(0)" title="Download Excel"><i class="bi bi-file-earmark-excel"></i></a>
+                        </li>
+
+                        <li [ngClass]="isPanelOpen ? 'active-filter' : ''">
                             <a href="javascript:void(0)" title="{{ isPanelOpen ? 'Click to Close Filter' : 'Click to Open Filter' }}" 
                                (click)="togglePanel()">
-                                <i class="bi bi-funnel"></i>
+                                <i class="bi bi-funnel"></i> Filter
                             </a>
                         </li>
-
-                        <li>
-                            <a href="javascript:void(0)" title="Click to Add " routerLink="/application/mngbanner">
-                                <i class="bi bi-plus-lg"></i>
-                            </a>
+                        
+                        <li class="fill-btn add-link"><a routerLink="/application/mngbanner/add"  title="Go to Previous"><i class="bi bi-plus-lg"></i>
+                                Add Page</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
+
+
+   
+
     <div id="collapseExample" class="collapse show" [ngClass]="{'show': isPanelOpen}">
         <div class="content-box search-box">
             <div class="row">
@@ -60,18 +50,13 @@
                     <div class="mb-3">
                         <label class="form-label d-md-block d-none">&nbsp;</label>
                         <button type="submit" class="btn btn-primary me-2">Search</button>
-                        <button type="reset" class="btn btn-danger">Reset</button>
+                        <!-- <button type="reset" class="btn btn-danger">Reset</button> -->
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- <div class="search-btn">
-        <a data-bs-toggle="collapse" href="#collapseExample">
-            <span class="collapse-on">Search  <i class="bi bi-arrow-down"></i></span> <span
-                class="collapse-off">Search Close <i class="bi bi-arrow-up"></i></span>
-        </a>
-    </div> -->
+  
 
     <div class="view-legand">
         <ul class="legends">
@@ -86,18 +71,18 @@
                 <thead>
                     <tr>
                         <th width="30px">
-                            <input type="checkbox">
+                            <input type="checkbox" class="form-check-input">
                         </th>
                         <th width="40px">Sl#</th>
                         <th>Banner Text 1 </th>
-                        <th>Banner Text 1 in Hindi</th>
+                        <th>Banner Text 1 (In Hindi)</th>
                         <th>Image</th>
                         <th width="70px">Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr class="publish">
-                        <td><input type="checkbox"></td>
+                        <td><input type="checkbox" class="form-check-input"></td>
                         <td>1</td>
                         <td>Ensuring Clean Water</td>
                         <td>स्वच्छ पानी सुनिश्चित करना</td>
@@ -118,7 +103,7 @@
                         </td>
                     </tr>
                     <tr class="unpublish">
-                        <td><input type="checkbox"></td>
+                        <td><input type="checkbox" class="form-check-input"></td>
                         <td>2</td>
                         <td>Ensuring Clean Water</td>
                         <td>स्वच्छ पानी सुनिश्चित करना</td>
@@ -139,7 +124,7 @@
                         </td>
                     </tr>
                     <tr class="publish">
-                        <td><input type="checkbox"></td>
+                        <td><input type="checkbox" class="form-check-input"></td>
                         <td>3</td>
                         <td>Ensuring Clean Water</td>
                         <td>स्वच्छ पानी सुनिश्चित करना</td>
@@ -161,7 +146,7 @@
                     </tr>
 
                     <tr class="unpublish">
-                        <td><input type="checkbox"></td>
+                        <td><input type="checkbox" class="form-check-input"></td>
                         <td>4</td>
                         <td>Ensuring Clean Water</td>
                         <td>स्वच्छ पानी सुनिश्चित करना</td>
@@ -183,7 +168,7 @@
                     </tr>
 
                     <tr class="publish">
-                        <td><input type="checkbox"></td>
+                        <td><input type="checkbox" class="form-check-input"></td>
                         <td>5</td>
                         <td>Ensuring Clean Water</td>
                         <td>स्वच्छ पानी सुनिश्चित करना</td>
@@ -254,7 +239,7 @@
                         <div class="col-xl-4 col-md-6">
                             <div class="mb-3">
                                 <label class="form-label">Banner Text 2</label>
-                                <label class="form-value">Welcome to Neer Nirmal Seva</label>
+                                <label class="form-value">Welcome to HAR GHAR NAL KA JAL</label>
                             </div>
                         </div>
 

@@ -1,32 +1,26 @@
 <div class="form-cointainer">
-    <div class="main-tab">
-        <div class="row justify-content-between">
-            <div class="col-lg-4">
-                <ul class="nav nav-tabs" routerLinkActive="active">
-                    <!-- <li class="nav-item">
-                        <a routerLink="/application/mngfaq" class="nav-link active">Add</a>
-                    </li> -->
-                    <li class="nav-item">
-                        <a routerLink="/application/mngfaq/view" class="nav-link">View</a>
-                    </li>
-                </ul>
+    <div class="pagetitle-section">
+        <div class="row justify-content-between align-items-center">
+            <div class="col-xxl-3 col-lg-4 col-md-6">
+                <h3> Faq</h3>
+                <!-- <p>Manage your page</p> -->
             </div>
-            <div class="col-lg-6 ">
-                <div class="utilite float-end mb-1">
+            <div class="col-lg-6 col-md-6">
+                <div class="utilite">
                     <ul class="mb-0">
                         <li class="bg-transparent border-0">
                             <span class="text-danger small"><b>(*)</b> Indicate mandatory </span>
                         </li>
-                        <li>
-                            <a href="javascript:void(0)" title="Click to Add" routerLink="/application/mngfaq">
-                                <i class="bi bi-plus-lg"></i>
-                            </a>
-                        </li>
+                        <li class="fill-btn back-link"><a routerLink="/application/mngfaq" title="Go to Previous"><i
+                            class="bi bi-arrow-left"></i> Back to View</a>
+                </li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
+
+  
 
     <div class="content-box content-area">
         <div class="row">
@@ -42,7 +36,7 @@
            
                     <div class="col-xl-6">
                         <div class="mb-3">
-                            <label class="form-label" for="qsnhn">Question in Hindi</label>
+                            <label class="form-label" for="qsnhn">Question (In Hindi)</label>
                             <input type="text" class="form-control" id="qsnhn">
                         </div>
                     </div>
@@ -58,7 +52,7 @@
                     </div>
                     <div class="col-xl-6">
                         <div class="mb-3">
-                            <label class="form-label">Answer in Hindi</label>
+                            <label class="form-label">Answer (In Hindi)</label>
                             <ckeditor [editor]="editor" [data]="data"></ckeditor>
                             <p class="text-end mb-0">
                                 <small class="text-danger">Maximum <strong>500</strong> characters</small>

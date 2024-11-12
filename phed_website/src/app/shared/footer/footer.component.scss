@@ -1,34 +1,39 @@
-@import "../../../../node_modules/bootstrap/scss/mixins";
-@import "../../../../node_modules/bootstrap/scss/functions";
-@import "../../../../node_modules/bootstrap/scss/variables";
+@import '../../../assets/scss/variables';
 .footer {
   padding: 1.5rem 0;
+
   ul {
     display: flex;
     margin-bottom: 1.6rem;
     padding-left: 0;
     font-size: 1rem;
     list-style: none;
+
     li {
       padding-right: 0.4rem;
       margin-right: 0.4rem;
+
       &:last-child {
         border-right: 1px solid transparent;
       }
+
       a {
         color: var(--footer-text);
       }
-    
+
     }
   }
- .custom-tooltip{
-  --bs-tooltip-bg:#ccc;
- }
+
+  .custom-tooltip {
+    --bs-tooltip-bg: #ccc;
+  }
+
   .social_media_links {
     display: flex;
     gap: 1rem;
     margin-bottom: 0.8rem;
     justify-content: end;
+
     a {
       padding: 0.2rem 0.5rem;
       border-radius: 0.3rem;
@@ -36,7 +41,9 @@
       transition: 0.2s;
       color: var(--footer-text);
       border: 1px solid var(--socialborder);
+
       &.fb {
+
         // Use & to refer to the parent class
         &:hover {
           // Use &:hover for hover effect
@@ -45,7 +52,9 @@
           border-color: #3b5998;
         }
       }
+
       &.twitter {
+
         // Use & to refer to the parent class
         &:hover {
           // Use &:hover for hover effect
@@ -53,67 +62,111 @@
           border-color: #1093f4;
         }
       }
+
       &.insta {
+
         // Use & to refer to the parent class
         &:hover {
           // Use &:hover for hover effect
-          background: linear-gradient(
-            135deg,
-            #833ab4,
-            #fd1d1d,
-            #fd1d1d,
-            #fcb045,
-            #ff5b5b
-          );
+          background: linear-gradient(135deg,
+              #833ab4,
+              #fd1d1d,
+              #fd1d1d,
+              #fcb045,
+              #ff5b5b);
           background-size: 300% 300%;
           border-color: #ff5b5b;
         }
       }
     }
   }
- 
+
   .copyright {
     padding: 1rem 0 0;
     border-top: 1px solid #46545e;
+
     p {
       color: #bfbfbf;
       margin-bottom: 0;
       font-size: 1rem;
-      span{
+
+      span {
         font-weight: bold;
         font-size: 1.2rem;
       }
     }
   }
 }
+.reg-complaint-floating {
+  position: fixed;
+  right: -3rem;
+  bottom: 10rem;
+  transform: rotate(270deg);
+  z-index: 1;
+}
 
-@include media-breakpoint-up(md) {
-    .footer {
-  padding: 0.8rem 0;
-  ul {
-    display: flex;
-    margin-bottom: 0.6rem;
-    padding-left: 0;
-    font-size: 1rem;
-    list-style: none;
-    li {
-      padding-right: 0.9rem;
-      margin-right: 0.9rem;
-      &:last-child {
-        border-right: 1px solid transparent;
-      }
-      a {
-        color: var(--footer-text);
-        &:hover{
-            color: #8ad2ff;
+.go-top {
+  position: fixed;
+  bottom: 20px;
+  right: 10px;
+  background-color: var(--link-color);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition:
+    background-color 0.3s,
+    transform 0.3s;
+  z-index: 1000;
+
+  &:hover {
+    background-color: #0056b3;
+    transform: scale(1.1);
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .footer {
+    padding: 0.8rem 0;
+
+    ul {
+      display: flex;
+      margin-bottom: 0.6rem;
+      padding-left: 0;
+      font-size: 1rem;
+      list-style: none;
+
+      li {
+        padding-right: 0.9rem;
+        margin-right: 0.9rem;
+
+        &:last-child {
+          border-right: 1px solid transparent;
         }
+
+        a {
+          color: var(--footer-text);
+
+          &:hover {
+            color: #8ad2ff;
+          }
+        }
+
       }
-    
     }
   }
 }
-}
-@include media-breakpoint-up(sm) {
+
+@media screen and (min-width: 576px) {
   ul {
     flex-direction: row !important;
     align-items: center;
@@ -121,10 +174,12 @@
     padding-left: 0;
     font-size: 1rem;
     list-style: none;
+
     li {
       padding-right: 2rem;
       margin-right: 2rem;
       position: relative;
+
       &::after {
         position: absolute;
         content: "";
@@ -135,6 +190,7 @@
         bottom: 0;
         top: 5px;
       }
+
       &:last-child {
         &::after {
           background-color: transparent; // This removes the line
@@ -143,6 +199,7 @@
       }
     }
   }
+
   .social_media_links {
     justify-content: start;
     gap: 1rem;

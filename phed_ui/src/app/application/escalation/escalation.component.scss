@@ -1,3 +1,5 @@
 .time-visible{
-    overflow-x: visible;
+    table{
+        overflow: auto !important;
+    }
 }

@@ -1,10 +1,40 @@
+@import '../../assets/scss/variables';
+.notification-list {
+    display: flex;
+    // align-items: center;
+    justify-content: space-between;
+    p {
+        flex: 0 0 90%;
+        margin-bottom: 0;
+    }
+    a {
+        flex: 0 0 2rem;
+        height: 2rem;
+        border-radius: 50%;
+        border:solid 1px $blue;
+        color: $blue;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &:hover {
+            background-color: $blue;
+            color: $white;
+        }
+    }
+}
 .notification-content{
     border-bottom: 1px dashed #ccc;
-    padding: 1.5rem 0;
+    padding: 1.2rem 0;
+    margin-bottom: 1.2rem;
+    
 }
 .notification-badge{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
+    margin-bottom: .5rem;
+    h5 {
+        margin-bottom: 0;
+    }
+}
+.notification-date {
+    font-size: .8rem;
+    color: $grey-200;
 }

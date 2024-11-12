@@ -37,67 +37,71 @@ import { MngbannerViewComponent } from './cms/mngbanner-view/mngbanner-view.comp
 import { MinisterProfileViewComponent } from './cms/minister-profile-view/minister-profile-view.component';
 import { ComplaintSubCategoryComponent } from './complaint-sub-category/complaint-sub-category.component';
 import { ModewiseReportComponent } from './modewise-report/modewise-report.component';
+import { ComplaintregistrationViewComponent } from './complaintregistration-view/complaintregistration-view.component';
 
 
 const routes: Routes = [{
   path: '', component: ApplicationComponent, children: [
     { path: 'dashboard', component: DashboardComponent },
-    { path: 'demo', component: AddComponent },
-    { path: 'demo/:id', component: ViewComponent },
+    
+    { path: 'demo', component: ViewComponent },
+    { path: 'demo/:id', component: AddComponent },
+    
 
-    { path: 'complaintcategory', component: ComplaintcategoryComponent },
-    { path:'complaintcategory/:id',component:ComplaintcategoryViewComponent},
+    { path: 'complaintcategory/:id', component: ComplaintcategoryComponent },
+    { path:'complaintcategory',component:ComplaintcategoryViewComponent},
     
     { path: 'ComplaintSub-Category', component: ComplaintSubCategoryComponent },
 
-    {path:'complaintregistration',component:ComplaintregistrationComponent},
+    {path:'complaintregistration/:id',component:ComplaintregistrationComponent},
+    {path:'complaintregistration',component:ComplaintregistrationViewComponent},
 
     {path:'complaintregistrationupdate',component:ComplaintregistrationupdateComponent},
     {path:'complaintregistrationdelete',component:ComplaintregistrationdeleteComponent},
 
-    {path:'escalation',component:EscalationComponent},
-    {path:'escalation/:id',component:EscalationViewComponent},
+    {path:'escalation/:id',component:EscalationComponent},
+    {path:'escalation',component:EscalationViewComponent},
 
     {path:'ModewiseReport',component:ModewiseReportComponent},
 
     {path:'complaint-category-wise-reports',component:ComplaintCategoryWiseReportsComponent},
 
-    {path:'demographymapping',component:DemographymappingComponent},
-    {path:'demographymapping/:id',component:DemographymappingViewComponent},
+    {path:'demographymapping/:id',component:DemographymappingComponent},
+    {path:'demographymapping',component:DemographymappingViewComponent},
 
     {path:'page',component:PageComponent},
     {path:'page-view',component:PageViewComponent},
 
-    {path:'pagecontent',component:PagecontentComponent},
-    {path:'pagecontent/:id',component:PagecontentViewComponent},
+    {path:'pagecontent/:id',component:PagecontentComponent},
+    {path:'pagecontent',component:PagecontentViewComponent},
 
-    {path:'mngbanner',component:MngbannerComponent},
-    {path:'mngbanner/:id',component:MngbannerViewComponent},
+    {path:'mngbanner/:id',component:MngbannerComponent},
+    {path:'mngbanner',component:MngbannerViewComponent},
 
-    {path:'minister-profile',component:MinisterProfileComponent},
-    {path:'minister-profile/:id',component:MinisterProfileViewComponent},
+    {path:'minister-profile/:id',component:MinisterProfileComponent},
+    {path:'minister-profile',component:MinisterProfileViewComponent},
 
-    {path:'mngfaq',component:MngfaqComponent},
-    {path:'mngfaq/:id',component:MngfaqViewComponent},
+    {path:'mngfaq/:id',component:MngfaqComponent},
+    {path:'mngfaq',component:MngfaqViewComponent},
 
-    {path:'mnggallery',component:MnggalleryComponent},
-    {path:'mnggallery/:id',component:MnggalleryViewComponent},
+    {path:'mnggallery/:id',component:MnggalleryComponent},
+    {path:'mnggallery',component:MnggalleryViewComponent},
 
     
     {path:'mnglogo',component:MnglogoComponent},
 
    
-    {path:'mngmenu/:id',component:MngmenuViewComponent},
-    {path:'mngmenu',component:MngmenuComponent},
+    {path:'mngmenu',component:MngmenuViewComponent},
+    {path:'mngmenu/:id',component:MngmenuComponent},
 
-    {path:'newsevent',component:NewseventComponent},
-    {path:'newsevent/:id',component:NewseventViewComponent},
+    {path:'newsevent/:id',component:NewseventComponent},
+    {path:'newsevent',component:NewseventViewComponent},
 
-    {path:'whatsnew',component:WhatsnewComponent},
-    {path:'whatsnew/:id',component:WhatnewViewComponent},
+    {path:'whatsnew/:id',component:WhatsnewComponent},
+    {path:'whatsnew',component:WhatnewViewComponent},
 
-    {path:'mngcontact',component:MngcontactComponent},
-    {path:'mngcontact/:id',component:MngcontactViewComponent},
+    {path:'mngcontact/:id',component:MngcontactComponent},
+    {path:'mngcontact',component:MngcontactViewComponent},
   ]
 }];
 

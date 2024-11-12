@@ -106,8 +106,8 @@
                             <div class="row justify-content-end">
                                 <div class="col-xl-4">
                                     <div class="row  justify-content-end">
-                                        <label for="" class="col-xl-5 mb-3 col-form-label text-end">Year</label>
-                                        <div class="col-xl-6 mb-3">
+                                        <label for="" class="col-xl-5 mb-md-3 col-form-label text-md-end col-md-4">Year</label>
+                                        <div class="col-xl-6 mb-3 col-md-4">
                                             <select class="form-select">
                                                 <option selected>Select</option>
                                                 <option value="0">2024</option>
@@ -410,8 +410,8 @@
                             <div class="row justify-content-end">
                                 <div class="col-xl-4">
                                     <div class="row  justify-content-end">
-                                        <label for="" class="col-xl-5 mb-3 col-form-label text-end">Year</label>
-                                        <div class="col-xl-6 mb-3">
+                                        <label for="" class="col-xl-5 mb-md-3 col-form-label text-md-end col-md-4">Year</label>
+                                        <div class="col-xl-6 mb-3 col-md-4">
                                             <select class="form-select">
                                                 <option selected>Select</option>
                                                 <option value="0">2024</option>
@@ -495,7 +495,7 @@
                         <table class="table mb-0 table-bordered">
                             <thead>
                                 <tr>
-                                    <th width="50px">Sl#</th>
+                                    <th width="40px">Sl#</th>
                                     <th>Token No.</th>
                                     <th>Complainant Name</th>
                                     <th>Complaint Details</th>
@@ -503,7 +503,7 @@
                                     <th>Complaint Date</th>
                                     <th>Action Taken By</th>
                                     <th>ATA Mobile Number</th>
-                                    <th width="90px">Action</th>
+                                    <th width="50px">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -656,7 +656,7 @@
                 <div class="modal-logo">
                     <img src="./assets/img/bihar-logo-black.png" alt="Govt. of Bihar Logo" class="me-1 me-lg-3">
                     <div>
-                        <h1>Neer Nirmal Seva</h1>
+                        <h1>HAR GHAR NAL KA JAL</h1>
                         <p>Public Health Engineering Department</p>
                         <small>Government of Bihar </small>
                     </div>
@@ -993,13 +993,18 @@
                                 </div>
                             </div>
                             <div class="col-xl-6 col-md-6">
-                                <div class="mb-3">
-                                    <label for="ddlDistrict" class="form-label">Reference Document</label>
-                                    <input class="form-control" type="file" id="formFile">
-                                    <p class="text-danger text-end small mb-0"> Only <span class="fw-bold">.jpeg, .jpg, .png,
-                                            .gif, .doc, .xls, .pdf</span> files
-                                        allowed</p>
+                                <label for="ddlDistrict" class="form-label">Reference Document</label>
+                                <div class="input-group">
+                                    <input type="file" class="form-control custom-fileupload" id="doc">
+                                    <label class="custom-input" for="doc">Upload</label>
+                                    <label class="input-group-text custom-browse" for="doc">Browse</label>
                                 </div>
+                                <p class="text-danger text-end small mb-0"> Only <span class="fw-bold">.jpeg, .jpg, .png,
+                                    .gif, .doc, .xls, .pdf</span> files
+                                allowed</p>
+
+                                
+
                             </div>
                             <div class="col-xl-12">
                                 <div class="mb-3">
