@@ -1,1 +1,182 @@
-<p>complaint-sub-category-view works!</p>
+<div class="form-cointainer">
+
+    <div class="pagetitle-section">
+        <div class="row justify-content-between align-items-center">
+            <div class="col-lg-4">
+                <h3> Complaint Sub-Category </h3>
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <div class="utilite">
+                    <ul class="mb-0">
+
+
+                        <li>
+                            <a href="javascript:void(0)" title="Click to Print"><i class="bi bi-printer"></i></a>
+                        </li>
+
+                        <li>
+                            <a href="javascript:void(0)" title="Download Excel"><i
+                                    class="bi bi-file-earmark-excel"></i></a>
+                        </li>
+
+
+                        <li class="filter-dropdown dropdown">
+                            <a href="javascript:void(0)" data-bs-toggle="dropdown">
+                                <i class="bi bi-funnel"></i> Filter 
+                            </a>
+                           
+                                <div class="dropdown-menu dropdown-menu-end filter-dropdown-menu shadow border-0">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="complaintcata" class="form-label">Complaint Category</label>
+                                                <select id="complaintcata" class="form-select">
+                                                    <option selected value="0">Select</option>
+                                                    <option value="1">Handpump Tubewell Related</option>
+                                                    <option value="2">Miscellaneous</option>
+                                                    <option value="3">Piped Water Supply Related</option>
+                                                    <option value="4">Water Quality Related</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                   
+                                      
+                                     
+                                        <div class="col-md-6">
+                                            <label for="" class="form-label d-md-block d-none">&nbsp;&nbsp;</label>
+                                            <div class="d-flex gap-2">
+                                                <button type="submit" class="btn btn-primary px-xl-4">Search</button>
+                                                <button type="submit" class="btn btn-danger px-xl-4">Reset</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                        </li>
+                        <li class="fill-btn add-link"><a routerLink="/application/ComplaintSub-Category/add"
+                                title="Click to Add"><i class="bi bi-plus-lg"></i>
+                                Add Page</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content-box content-area p-0">
+
+        <div class="table-responsive mb-0">
+            <table class="table mb-0">
+                <thead>
+                    <tr>
+
+                        <th width="40px">Sl#</th>
+                        <th>Complaint Category </th>
+                        <th>Complaint Sub Category</th>
+                        <th>Complaint Sub Category (In Hindi)</th>
+                        <th>Complaint Priority</th>
+                        <th>Escalation Level</th>
+                        <th width="90px">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>
+                            Water Quality Related
+                        </td>
+                        <td>Bacterial Contamination in Water</td>
+                        <td>-</td>
+                        <td>High</td>
+                        <td>3</td>
+                        <td>
+                            <div class="d-flex gap-1">
+                                <a class="btn btn-outline-primary btn-sm" title="Edit">
+                                    <i class="bi bi-pencil"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+
+
+
+                    <tr>
+                        <td>2</td>
+                        <td>
+                            Swachh Bharat Mission
+                        </td>
+                        <td>Bill Pending</td>
+                        <td>-</td>
+                        <td>High</td>
+                        <td>4</td>
+                        <td>
+                            <div class="d-flex gap-1">
+                                <a class="btn btn-outline-primary btn-sm" title="Edit">
+                                    <i class="bi bi-pencil"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+
+
+
+                    <tr>
+                        <td>3</td>
+                        <td>
+                            Contractor Related
+                        </td>
+                        <td>CIPET Related</td>
+                        <td>CIPET Related</td>
+                        <td>High</td>
+                        <td>0</td>
+                        <td>
+                            <div class="d-flex gap-1">
+                                <a class="btn btn-outline-primary btn-sm" title="Edit">
+                                    <i class="bi bi-pencil"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+
+
+
+                    <tr>
+                        <td>4</td>
+                        <td>
+                            Water Quality Related
+                        </td>
+                        <td>Dirty Water Supply</td>
+                        <td>-</td>
+                        <td>High</td>
+                        <td>3</td>
+                        <td>
+                            <div class="d-flex gap-1">
+                                <a class="btn btn-outline-primary btn-sm" title="Edit">
+                                    <i class="bi bi-pencil"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td>1</td>
+                        <td>
+                            Water Quality Related
+                        </td>
+                        <td>High Amount of Arsenic in Water</td>
+                        <td>-</td>
+                        <td>High</td>
+                        <td>3</td>
+                        <td>
+                            <div class="d-flex gap-1">
+                                <a class="btn btn-outline-primary btn-sm" title="Edit">
+                                    <i class="bi bi-pencil"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
