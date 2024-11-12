@@ -36,12 +36,10 @@
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="ddlDistrict" class="form-label">District</label>
-                                            <select name="ddlDistrict" id="ddlDistrict"
-                                                [(ngModel)]="formData.ddlDistrict" (change)="onDistrictChange($event)"
-                                                class="form-select">
+                                            <select name="ddlDistrict" id="ddlDistrict" [(ngModel)]="formData.ddlDistrict"
+                                                (change)="onDistrictChange($event)" class="form-select">
                                                 <option selected value="0">Select</option>
-                                                <option *ngFor="let district of districts"
-                                                    [value]="district.inT_DIST_ID">
+                                                <option *ngFor="let district of districts" [value]="district.inT_DIST_ID">
                                                     {{ district.vcH_DIST_NAME }}
                                                 </option>
                                             </select>
@@ -53,8 +51,7 @@
                                             <select name="ddlBlock" id="ddlBlock" [(ngModel)]="formData.ddlBlock"
                                                 (change)="onBlockChange($event)" class="form-select">
                                                 <option value="0">Select</option>
-                                                <option *ngFor="let block of blocks" [value]="block.inT_BLOCK_ID">{{
-                                                    block.vcH_BLOCK_NAME }}
+                                                <option *ngFor="let block of blocks" [value]="block.inT_BLOCK_ID">{{ block.vcH_BLOCK_NAME }}
                                                 </option>
                                             </select>
                                         </div>
@@ -62,30 +59,26 @@
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="ddlGp" class="form-label">Gram Panchayat</label>
-                                            <select name="ddlGp" id="ddlGp" [(ngModel)]="formData.ddlPanchayat"
-                                                class="form-select">
+                                            <select name="ddlGp" id="ddlGp" [(ngModel)]="formData.ddlPanchayat" class="form-select">
                                                 <option value="0">Select</option>
-                                                <option *ngFor="let gp of gps" [value]="gp.inT_GP_ID">{{ gp.vcH_GP_NAME
-                                                    }}</option>
+                                                <option *ngFor="let gp of gps" [value]="gp.inT_GP_ID">{{ gp.vcH_GP_NAME }}</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mb-3">
-                                            <label for="txtToken" class="form-label">Token No.</label>
+                                            <label for="txtToken" class="form-label">Token number</label>
                                             <input class="form-control" id="txtToken" type="text">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mb-3">
-                                            <label for="ddlComplaintCategory" class="form-label">Complaint
-                                                Category</label>
+                                            <label for="ddlComplaintCategory" class="form-label">Complaint Category</label>
                                             <select name="ddlComplaintCategory" id="ddlComplaintCategory"
-                                                [(ngModel)]="formData.ddlComplaintCategory"
-                                                (change)="onCategoryChange($event)" class="form-select">
+                                                [(ngModel)]="formData.ddlComplaintCategory" (change)="onCategoryChange($event)"
+                                                class="form-select">
                                                 <option selected value="0">Select</option>
-                                                <option *ngFor="let category of categories"
-                                                    [value]="category.inT_CATEGORY_ID">{{
+                                                <option *ngFor="let category of categories" [value]="category.inT_CATEGORY_ID">{{
                                                     category.vcH_CATEGORY }}
                                                 </option>
                                             </select>
@@ -93,13 +86,11 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mb-3">
-                                            <label for="ddlSubCategory" class="form-label">Complaint
-                                                Sub-Category</label>
-                                            <select name="ddlSubCategory" id="ddlSubCategory"
-                                                [(ngModel)]="formData.ddlSubCategory" class="form-select">
+                                            <label for="ddlSubCategory" class="form-label">Complaint Sub-Category</label>
+                                            <select name="ddlSubCategory" id="ddlSubCategory" [(ngModel)]="formData.ddlSubCategory"
+                                                class="form-select">
                                                 <option value="0">Select</option>
-                                                <option *ngFor="let subcategory of subcategories"
-                                                    [value]="subcategory.inT_SUB_CATEGORY_ID">
+                                                <option *ngFor="let subcategory of subcategories" [value]="subcategory.inT_SUB_CATEGORY_ID">
                                                     {{
                                                     subcategory.vcH_SUB_CATEGORY }}
                                                 </option>
@@ -115,8 +106,8 @@
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="txtComplaintName" class="form-label">Complaint Status</label>
-                                            <select name="ddlStatusSearch" [(ngModel)]="formData.ddlComplaintsts"
-                                                id="ddlStatusSearch" class="form-select">
+                                            <select name="ddlStatusSearch" [(ngModel)]="formData.ddlComplaintsts" id="ddlStatusSearch"
+                                                class="form-select">
                                                 <option value="0">Select</option>
                                                 <option *ngFor="let complaint of complaintstatus"
                                                     [value]="complaint.inT_COMPLIANT_STATUS_ID">{{
@@ -127,8 +118,8 @@
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="txtComplaintName" class="form-label">Source of Complaint</label>
-                                            <select name="ddlRecievemode" [(ngModel)]="formData.ddlComplainttype"
-                                                id="ddlRecievemode" class="form-select">
+                                            <select name="ddlRecievemode" [(ngModel)]="formData.ddlComplainttype" id="ddlRecievemode"
+                                                class="form-select">
                                                 <option value="0">Select</option>
                                                 <option *ngFor="let complaintp of complainttype"
                                                     [value]="complaintp.inT_COMPLIANT_LOG_TYPE_ID">
@@ -170,7 +161,6 @@
                             </div>
 
                         </li>
-
                     </ul>
                 </div>
             </div>
@@ -655,9 +645,10 @@
                             class="btn btn-outline-danger btn-sm"><i class="bi bi-printer me-1"></i>Print</a>
                     </div>
                 </div>
-                <div class="modal-title-part">
+                <!-- <div class="modal-title-part">
                     <h5>Status of Registered Complaint</h5>
-                </div>
+                </div> -->
+
                 <div class="row">
                     <div class="col-xl-12">
                         <h5 class="subtitle">General Information</h5>
@@ -666,7 +657,7 @@
                         <div class="row">
                             <div class="col-xl-3 col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label">Complaint Number</label>
+                                    <label class="form-label">Complaint No.</label>
                                     <label class="form-value">202410230124</label>
                                 </div>
                             </div>
@@ -717,14 +708,14 @@
 
                             <div class="col-xl-3 col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label">Phone No</label>
+                                    <label class="form-label">Phone No.</label>
                                     <label class="form-value">8789952814</label>
                                 </div>
                             </div>
                             <div class="col-xl-3 col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label">Attached File</label>
-                                    <label class="form-value">No File to Show</label>
+                                    <label class="form-value"><a href="javascript:void(0);" target="_blank" title="Attached File" class="attchfile">No File to Show</a></label>
                                 </div>
                             </div>
 
@@ -738,7 +729,7 @@
                             <div class="col-xl-3 col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label">Action File</label>
-                                    <label class="form-value">No File to Show</label>
+                                    <label class="form-value"><a href="javascript:void(0);" target="_blank" title="Attached File" class="attchfile">No File to Show</a></label>
                                 </div>
                             </div>
                         </div>
@@ -800,6 +791,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="row">
                     <div class="col-xl-12">
                         <h5 class="subtitle">Intimation Sent To</h5>
@@ -1023,73 +1015,226 @@
         </div>
     </div>
 </div>
+
 <!-- Modal End::Token -->
 
 <!-- Modal Start::Take Action -->
 <div class="modal fade" id="takehistrory" tabindex="-1" aria-labelledby="tokenLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+    <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header justify-content-between">
                 <h1 class="modal-title fs-5" id="tokenLabel">Complaint Details</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                <div class="timeline">
-                    <ul>
-                        <li class="timeline-item">
-                            <div class="timeline-number">
+            <div class="modal-body view-form">
 
+                <div class="row">
+                    <div class="col-xl-12">
+                        <h5 class="subtitle mt-0">General Information</h5>
+                    </div>
+                    <div class="col-xl-12">
+                        <div class="row">
+                            <div class="col-xl-3 col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Complaint No.</label>
+                                    <label class="form-value">202410230124</label>
+                                </div>
                             </div>
-                            <div class="timeline-content">
-                                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Blanditiis sint
-                                    laudantium explicabo quo natus? Eum expedita magni quibusdam est, iure tempora
-                                    minima dolore sed nulla?</p>
+                            <div class="col-xl-3 col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Registration Date</label>
+                                    <label class="form-value">23-Oct-2024</label>
+                                </div>
                             </div>
-                        </li>
-                        <li class="timeline-item">
-                            <div class="timeline-number active">
+                            <div class="col-xl-3 col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Received By</label>
+                                    <label class="form-value">Helpline</label>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">E-Mail</label>
+                                    <label class="form-value">gmail.com</label>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Name</label>
+                                    <label class="form-value">Krishanumar</label>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Gender</label>
+                                    <label class="form-value">Male</label>
+                                </div>
+                            </div>
 
-                            </div>
-                            <div class="timeline-content active">
-                                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Blanditiis sint
-                                    laudantium explicabo quo natus? Eum expedita magni quibusdam est, iure tempora
-                                    minima dolore sed nulla?</p>
-                            </div>
-                        </li>
-                        <li class="timeline-item">
-                            <div class="timeline-number">
 
+                            <div class="col-xl-3 col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Name</label>
+                                    <label class="form-value">Krishanumar</label>
+                                </div>
                             </div>
-                            <div class="timeline-content">
-                                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Blanditiis sint
-                                    laudantium explicabo quo natus? Eum expedita magni quibusdam est, iure tempora
-                                    minima dolore sed nulla?</p>
+                            <div class="col-xl-3 col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Gender</label>
+                                    <label class="form-value">Male</label>
+                                </div>
                             </div>
-                        </li>
-                        <li class="timeline-item">
-                            <div class="timeline-number">
 
+                            <div class="col-xl-3 col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Phone No</label>
+                                    <label class="form-value">8789952814</label>
+                                </div>
                             </div>
-                            <div class="timeline-content">
-                                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Blanditiis sint
-                                    laudantium explicabo quo natus? Eum expedita magni quibusdam est, iure tempora
-                                    minima dolore sed nulla?</p>
+                            <div class="col-xl-3 col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Attached File</label>
+                                    <label class="form-value"><a href="javascript:void(0);" target="_blank" title="Attached File" class="attchfile">No File to Show</a></label>
+                                </div>
                             </div>
-                        </li>
-                        <li class="timeline-item">
-                            <div class="timeline-number">
 
+
+                            <div class="col-xl-3 col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Address</label>
+                                    <label class="form-value">Vill-Bhatgawan, ward no-11</label>
+                                </div>
                             </div>
-                            <div class="timeline-content">
-                                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Blanditiis sint
-                                    laudantium explicabo quo natus? Eum expedita magni quibusdam est, iure tempora
-                                    minima dolore sed nulla?</p>
+                            <div class="col-xl-3 col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Action File</label>
+                                    <label class="form-value"><a href="javascript:void(0);" target="_blank" title="Attached File" class="attchfile">No File to Show</a></label>
+                                </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xl-12">
+                        <h5 class="subtitle">Complaint Details</h5>
+                    </div>
+                    <div class="col-xl-12">
+                        <div class="row">
+                            <div class="col-xl-3 col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">District</label>
+                                    <label class="form-value">MADHEPURA</label>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Block</label>
+                                    <label class="form-value">CHAUSA</label>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Panchayat</label>
+                                    <label class="form-value">ARAJIPUR WEST</label>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Village Name</label>
+                                    <label class="form-value"></label>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Complaint Category</label>
+                                    <label class="form-value">Piped Water Supply Related</label>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Complaint Sub-Category</label>
+                                    <label class="form-value">Operator does not runs the motor</label>
+                                </div>
+                            </div>
+
+
+                            <div class="col-xl-6 col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Complaint Details</label>
+                                    <label class="form-value">पंप चालक वार्ड न०- 11 में सप्लाई का पानी समय से नहीं चलाता
+                                        है अतः उचित कार्यवाई करके सप्लाई का पानी सुचारू रूप से चलाया जाय|</label>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="progress-wrap">
+                    <ul class="StepProgress">
+                        <li class="stepProgress-item is-done">
+                            <ul>
+                                <li>Complaint Number- <strong
+                                    >202411110143</strong></li>
+                                <li>Registration Date- <strong
+                                    >11-Nov-2024</strong></li>
+                                <li>Complaint Name- <strong
+                                    >Deepak kumar</strong></li>
+                                <li>Status- <span
+                                        class="badge bg-primary">Open</span></li>
+                                <!-- <li><a href="#">View
+                                        Detais</a></li> -->
+                            </ul>
                         </li>
+                        <!-- <li class="stepProgress-item is-done">
+                            <ul>
+                                <li>Action Taken By- <strong
+                                    >JE Muzaffarpur 1 (7979040112)</strong></li>
+                                <li>Action Taken on- <strong
+                                    >12-Nov-2024</strong></li>
+                                <li>Status- <span
+                                        class="badge bg-primary">Open</span></li>
+                            </ul>
+                        </li> -->
+                        <li class="stepProgress-item current">
+                            <ul>
+                                <li>Action Taken By- 
+                                    <strong>JE Pandaul (7050555110)</strong></li>
+                                <li>Action Taken on- <strong
+                                    >12-Nov-2024</strong></li>
+                                <li>Status- <span
+                                        class="badge bg-primary">Open</span></li>
+                            </ul>
+                        </li>
+                        
+                        <li class="stepProgress-item">
+                            <ul>
+                                <li>Action Taken By- <strong
+                                    >SDO</strong></li>
+                                <li>Action Taken on- <strong
+                                    >20-Nov-2024</strong></li>
+                                <li>Status- <span
+                                        class="badge text-bg-warning">Pending</span></li>
+                            </ul>
+                        </li>
+
+                        <li class="stepProgress-item">
+                            <ul>
+                                <li>Action Taken By- 
+                                    <strong>EE</strong></li>
+                                <li>Action Taken on- 
+                                    <strong>27-Nov-2024</strong></li>
+                                <li>Status- 
+                                    <span class="badge text-bg-warning">Pending</span></li>
+                            </ul>
+                        </li>
+
                     </ul>
                 </div>
+
             </div>
         </div>
     </div>
 </div>
-<!-- Modal End::Take Action -->
+
