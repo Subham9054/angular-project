@@ -20,6 +20,8 @@ import { HomeComponent } from './home/home.component';
 import { GallerydetailsComponent } from './gallerydetails/gallerydetails.component';
 import { SitemapComponent } from './sitemap/sitemap.component';
 import { NgxDropzoneModule } from 'ngx-dropzone';
+import { GrievancestatusComponent } from './grievancestatus/grievancestatus.component';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,9 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
     GalleryComponent,
     DetaileventComponent,
     GallerydetailsComponent,
-    SitemapComponent
+    SitemapComponent,
+    GrievancestatusComponent,
+    PagenotfoundComponent
   ],
   imports: [
     BrowserModule,
