@@ -1000,6 +1000,7 @@ tr.unpublish {
 
 .custom-fileupload {
   opacity: 0;
+  z-index: 11;
 }
 
 .custom-input {
@@ -1313,7 +1314,7 @@ tr.unpublish {
 
 .StepProgress {
   position: relative;
-  padding-left: 45px;
+  padding-left: 0;
   list-style: none;
 
   &::before {
@@ -1321,7 +1322,7 @@ tr.unpublish {
     content: '';
     position: absolute;
     top: 0;
-    left: 20px;
+    left: -24px;
     width: 10px;
     height: 82%;
     border-left: 2px solid #CCC;
@@ -1418,12 +1419,12 @@ tr.unpublish {
 }
 // progress status end
 
-// .attchfile{
-//   color:$link-color;
-//   &:hover{
-//     color: $black;
-//   }
-// }
+  // .attchfile{
+  //   color:$link-color;
+  //   &:hover{
+  //     color: $black;
+  //   }
+  // }
 
 
 // Table-fixed
