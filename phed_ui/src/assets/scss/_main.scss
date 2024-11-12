@@ -1273,11 +1273,7 @@ tr.unpublish {
   }
 }
 
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-=======
-=======
->>>>>>> origin/main
+
 // Filter close icon
 .filter-dropdown {
   .dropdown-menu {
@@ -1313,7 +1309,6 @@ tr.unpublish {
 
 // Time line Design 
 
-<<<<<<< HEAD
 // progress status
 
 .StepProgress {
@@ -1419,94 +1414,8 @@ tr.unpublish {
       border: 2px solid green;
       background-color: white;
     }
-=======
-
-.timeline {
-  counter-reset: timeline-counter;
-  ul {
-    padding-left: 0;
-    list-style: none;
-  }
-  .timeline-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 1rem;
-    justify-content: center;
-    position: relative;
-    line-height: 100%;
-    .timeline-number {
-      width: 3rem;
-      height: 3rem;
-      background-color: #f1f1f1;
-      border: 1px solid #ddd;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      counter-increment: timeline-counter;
-      position: relative;
-      z-index: 111;
-      &::before {
-        content: counter(timeline-counter); 
-        font-size: 1rem;
-        font-weight: 500;
-      }
-
-      &::after {
-        content: "";
-        position: absolute;
-        left: 50%;
-        bottom: -84px;
-        width: 0.1rem;
-        height: 8rem;
-        background-color: #ddd;
-        transform: translateX(-50%);
-        z-index: 0;
-      }
-      
-    }
-
-    .timeline-content {
-      margin-left: 1rem;
-      border: 1px solid #ddd;
-      padding: 0.7rem;
-      width: 90%;
-      position: relative;
-      border-radius: 0.4rem;
-      &::before {
-        position: absolute;
-        content: "";
-        left: 0;
-        width: 2.5%;
-        height: 0.15rem;
-        background-color: #ddd;
-        transform: translate(-18px, 35px);
-    
-      }
-
-      p {
-        margin-bottom: 0rem;
-        line-height: 1.5;
-        font-size: 0.95rem;
-      }
-    }
-
-    .active{
-      background-color: #e6edf9;
-      color: #1d1d1d;
-    }
-
- 
-    &:last-child .timeline-number::after {
-      content: none; 
-    }
-   
->>>>>>> origin/main
   }
 }
-
-
-<<<<<<< HEAD
 // progress status end
 
 .attchfile{
@@ -1516,10 +1425,7 @@ tr.unpublish {
   }
 }
 
->>>>>>> Stashed changes
-=======
 
->>>>>>> origin/main
 // Table-fixed
 .custom-table {
   height: 42vh;
