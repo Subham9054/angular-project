@@ -796,7 +796,8 @@
   .events {
     .events__details {
       .events__details__thumbnail {
-        width: 22rem;
+        // width: 22rem;
+        width: 100%;
       }
     }
   }
@@ -1445,4 +1446,9 @@
 .status-info {
   width: 80px;
   height: 80px;
+}
+@media screen and (min-width:1440px) {
+  .register-btn {
+    margin-top: 4rem;
+  }
 }

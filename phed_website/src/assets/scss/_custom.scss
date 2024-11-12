@@ -173,9 +173,6 @@ a {
   }
 }
 
-.btn-login {
-  margin-left: 1rem;
-}
 
 // .btn-login {
 //   background: transparent;
@@ -220,6 +217,7 @@ a {
 .custom-dropzone {
   height: 110px !important;
   border-color: var(--top-header-border) !important;
+  background-color: var(--bs-body-bg) !important;
 }
 
 .otp-modal {
@@ -342,7 +340,11 @@ a {
     margin-bottom: 1.5rem;
   }
 }
-
+.list-style {
+  li {
+    padding: .4rem 0 .4rem 1.6rem;
+  }
+}
 .content-area {
   ul {
     list-style: none;
@@ -350,7 +352,7 @@ a {
     padding-left: 0;
 
     li {
-      margin-top: 1rem;
+      // margin-top: 1rem;
       position: relative;
       //   padding-left: 1.5rem;
       //   font-weight: bold;
@@ -367,7 +369,7 @@ a {
   }
 
   ol {
-    margin-top: 1.5rem;
+    // margin-top: 1.5rem;
 
     li {
       margin-bottom: 0.6rem;
@@ -471,7 +473,7 @@ a {
       .accordion-collapse {
         .accordion-body {
           background-color: transparent;
-          padding-left: 0;
+          padding-left: 2.2rem;
           opacity: 0.6;
           color: var(--text-black);
         }
@@ -485,6 +487,7 @@ table {
     tr {
       th {
         // background-color: var(--tableheader-bg) !important;
+        color:var(--statics-text);
         border-bottom-width: 2px !important;
       }
     }
@@ -512,13 +515,12 @@ table {
 
 .custom-border-start {
   position: relative;
-  padding-left: 1.6rem;
-  margin-top: 1.5rem;
+  // padding-left: 1.6rem;
+  // margin-top: 1.5rem;
 
   &::before {
     position: absolute;
     content: "\F288";
-    top: 3px;
     font-size: 0.9rem;
     left: 0;
     font-family: bootstrap-icons !important;
@@ -674,7 +676,7 @@ table {
   display: flex;
   align-items: center;
   margin: 1rem 0 1.5rem;
-  font-size: 1.1rem;
+  font-size: 1.4rem;
   font-weight: 600;
   &::after {
     content: "";
@@ -688,6 +690,24 @@ table {
     left: 0;
   }
 }
+
+.view-form {
+  margin-bottom: 1rem;
+  padding: 1.5rem;
+  background-color: #fbfbfb;
+  border-radius: 5px;
+  border: solid 1px #f1f1f1;
+  .form-label {
+      color: #4c4c4c;
+      margin-bottom: 0rem;
+  }
+
+  .form-control-plaintext {
+      font-weight: 600;
+      display: block;
+      padding: 0;
+  }
+}
 // Brows file
 .custom-file-input {
   .custom-fileupload {
@@ -698,6 +718,7 @@ table {
     left: 0;
     right: 0;
     border: 1px solid #dee2e6;
+    background-color: var(--bs-body-bg);
     padding: 0.5rem 0.9rem;
     border-radius: 0.375rem !important;
     color: #cccccc;
