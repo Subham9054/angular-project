@@ -710,6 +710,9 @@ table {
 } 
 // Brows file
 .custom-file-input {
+.form-control {
+  z-index: 1;
+}
   .custom-fileupload {
     opacity: 0;
   }
