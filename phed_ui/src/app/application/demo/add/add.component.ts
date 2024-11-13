@@ -10,11 +10,14 @@ export class AddComponent {
   constructor(private router: Router ) { }
 
 // Select upload
-// options = [
-//   { id: 1, name: 'Option 1' },
-//   { id: 2, name: 'Option 2' },
-//   { id: 3, name: 'Option 3' }
-// ];
+items = [
+  { id: 1, name: 'Option 1' },
+  { id: 2, name: 'Option 2' },
+  { id: 3, name: 'Option 3' },
+  // Add more options as needed
+];
+
+selectedItem: any;
 
 
   ngOnInit(): void {

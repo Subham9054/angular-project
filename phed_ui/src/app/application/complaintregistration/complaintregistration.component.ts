@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component , QueryList, ViewChildren, ElementRef} from '@angular/core';
 import { AuthService } from 'src/app/auth.service';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
@@ -10,7 +10,18 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ComplaintregistrationComponent  {
 
+// Otp number
 
+// @ViewChildren('otpInput') otpInputs!: QueryList<ElementRef>;
+
+// otpInputs = new Array(6).fill(''); // Adjust length based on the number of OTP inputs
+
+// onOtpInputChange(event: any, index: number): void {
+//   const input = event.target.value;
+//   if (input.length === 1 && index < this.otpInputs.length - 1) {
+//     this.otpInputs.toArray()[index + 1].nativeElement.focus();
+//   }
+// }
   
 
   files: File[] = [];

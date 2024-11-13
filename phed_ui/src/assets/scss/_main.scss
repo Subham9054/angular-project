@@ -298,6 +298,7 @@ a {
         right: 1rem;
         top: 0.7rem;
         font-size: 1rem;
+        cursor: pointer;
     }
     .form-label {
       font-size: 0.9rem;
@@ -752,13 +753,7 @@ table {
       top: 0;
     }
 
-    // .card-header {
-    //   h5{
-    //     @media (max-width:425px){
-    //       font-size: 1.05rem;
-    //     }
-    //   }
-    // }
+ 
   }
 
   .bg-pending {
@@ -901,35 +896,7 @@ table {
 }
 
 // Dashboard Design end
-// Graph Design
-// .graph-wrapper{
-//   height: 300px;
-// }
 
-// View page legand border
-
-// .table {
-//   thead {
-//     .border-left-head {
-//       border-left: 2px solid #e8eef5 !important;
-//     }
-//   }
-//  Bijayalaxmi patra date :- 07/11/24
-//   tbody {
-//     .border-left-2 {
-//       border-left: 2px solid !important;
-//     }
-
-//     .border-left-danger {
-//       border-left-color: #dc3545 !important;
-//     }
-
-//     .border-left-success {
-//       border-left-color: #4caf50 !important;
-//     }
-//   }
-//    Bijayalaxmi patra date :- 07/11/24
-// }
 // Publish
 tr.publish {
   td:first-child {
@@ -1038,6 +1005,7 @@ tr.unpublish {
   color: black;
 }
 // Brows file::Ends
+
 
 
 .img-banner {
@@ -1196,10 +1164,10 @@ tr.unpublish {
 
 .view-forms {
   margin-bottom: 1rem;
-  padding: 1rem 1.2rem 0.2rem 0.9rem;
-  background-color: #f4f8ff;
+  padding: 1rem;
+  background-color: #fbfbfb;
   border-radius: 5px;
-  border: solid 1px #e5ebf5;
+  border: solid 1px #f1f1f1;
 
   .form-control-plaintext {
     font-weight: 500;
@@ -1320,24 +1288,22 @@ tr.unpublish {
 }
 
 // Time line Design 
-
-// progress status
-
 .progress-wrap {
+  margin-top: 2.8rem;
   .StepProgress {
     position: relative;
-    padding-left: 0;
+    padding-left: 30px;
     list-style: none;
 
     &::before {
       display: inline-block;
-      content: '';
+      content: "";
       position: absolute;
       top: 0;
-      left: -24px;
+      left: 1px;
       width: 10px;
-      height: 62%;
-      border-left: 2px solid #CCC;
+      height: 100%;
+      border-left: 2px solid #ccc;
     }
 
     .stepProgress-item {
@@ -1345,7 +1311,7 @@ tr.unpublish {
       position: relative;
       counter-increment: list;
       background-color: #fff;
-      border: 1px solid #CCC;
+      border: 1px solid #ccc;
       border-radius: 6px;
       padding: 1rem 1.2rem;
       margin: 0 0 1rem 0;
@@ -1357,14 +1323,14 @@ tr.unpublish {
 
         li {
           padding: 0.2rem 0;
+        }
 
-          a {
-            text-decoration: underline;
-            font-weight: 600;
+        a {
+          text-decoration: underline;
+          font-weight: 600;
 
-            &:hover {
-              text-decoration: none;
-            }
+          &:hover {
+            text-decoration: none;
           }
         }
       }
@@ -1375,25 +1341,34 @@ tr.unpublish {
 
       &::before {
         display: inline-block;
-        content: '';
+        content: "";
         position: absolute;
-        left: -25px;
+        left: -31px;
         bottom: -20px;
         height: 100%;
         width: 10px;
       }
 
       &::after {
-        content: '';
+        content: "";
         display: inline-block;
         position: absolute;
         top: 0;
-        left: -37px;
+        left: -41px;
         width: 25px;
         height: 25px;
-        border: 2px solid #CCC;
+        border: 2px solid #ccc;
         border-radius: 50%;
-        background-color: #FFF;
+        background-color: #fff;
+      }
+
+      &:last-child,
+      &.is-done:last-child {
+        &::before {
+          left: -34px;
+          background-color: #fff;
+          border-left-color: #fff;
+        }
       }
 
       &.is-done {
@@ -1404,44 +1379,35 @@ tr.unpublish {
         &::after {
           content: "✔";
           font-size: 15px;
-          color: #FFF;
+          color: #fff;
           text-align: center;
           border: 2px solid green;
           background-color: green;
         }
-      }
 
-      &.current {
-        &::before {
-          border-left: 2px solid green;
-        }
+        .stepProgress-item {
+          &.current {
+            &::before {
+              border-left: 2px solid green;
+            }
 
-        &::after {
-          content: counter(list);
-          padding-top: 1px;
-          top: -4px;
-          font-size: 14px;
-          text-align: center;
-          color: green;
-          border: 2px solid green;
-          background-color: white;
+            &::after {
+              content: counter(list);
+              padding-top: 1px;
+              top: -4px;
+              font-size: 14px;
+              text-align: center;
+              color: green;
+              border: 2px solid green;
+              background-color: white;
+            }
+          }
         }
-      }
-      &:last-child::before {
-        display: none;
       }
     }
   }
 }
-
-// progress status end
-
-  // .attchfile{
-  //   color:$link-color;
-  //   &:hover{
-  //     color: $black;
-  //   }
-  // }
+// Time line end
 
 
 // Table-fixed

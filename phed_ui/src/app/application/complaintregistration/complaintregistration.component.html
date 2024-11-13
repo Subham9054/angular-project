@@ -358,7 +358,39 @@
 </div>
 
 <!-- Verify Modal -->
-<div class="modal fade otp-modal" id="mailmodal" tabindex="-1" aria-labelledby="mailmodalLabel"
+<!-- <div class="modal fade otp-modal" id="mailmodal" tabindex="-1" aria-labelledby="mailmodalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content">
+        <div class="modal-body text-center p-5">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <h3 class="mb-4">OTP Verification</h3>
+          <h5>Wait a while for OTP to receive
+            <small class="text-secondary d-block">Sent to your Email ID</small>
+          </h5>
+          <div class="mx-1">
+            <div class="row">
+              <div class="col" *ngFor="let input of otpInputs; let i = index">
+                <input type="number" class="form-control form-control-lg" maxlength="1" (input)="onOtpInputChange($event, i)" #otpInput>
+              </div>
+            </div>
+          </div>
+          <div class="my-4 d-flex justify-content-between text-secondary">Didn't receive OTP yet?
+            <div>
+              <span class="d-block">02:00 min</span>
+            </div>
+          </div>
+          <div class="d-grid">
+            <button type="button" class="btn btn-primary">Verify OTP</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+  
+
+
+
+ <div class="modal fade otp-modal" id="mailmodal" tabindex="-1" aria-labelledby="mailmodalLabel"
   aria-hidden="true">
   <div class="modal-dialog modal-md">
     <div class="modal-content">
@@ -394,7 +426,6 @@
         <div class="my-4 d-flex justify-content-between text-secondary">Didn't receive OTP yet?
           <div>
             <span class="d-block">02:00 min</span>
-            <!-- <a href="#">Resend OTP</a> -->
           </div>
         </div>
         <div class="d-grid">
@@ -404,4 +435,4 @@
      
     </div>
   </div>
-</div>
+</div> 

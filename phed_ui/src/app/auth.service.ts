@@ -38,7 +38,6 @@ export class AuthService {
   private viewEscalationurl='https://localhost:7237/Api/MANAGE_ESCALATION_CONFIGDETAILS/viewescalation';
   private viewEscalationurleye= 'https://localhost:7237/Api/MANAGE_ESCALATION_CONFIGDETAILS/viewescalationeye';
   private viewupdatepenurl='https://localhost:7237/Api/MANAGE_ESCALATION_CONFIGDETAILS/viewupdatepen';
-  
   //For Content Management URLs
   private getParentMenusUrl = 'http://localhost:5097/api/CMS/GetParentMenus';
   private createOrUpdatePageUrl = 'http://localhost:5097/api/CMS/CreateOrUpdatePageLink';
@@ -84,6 +83,7 @@ export class AuthService {
     return true;
   }
 
+  
   // Method to handle logout
   logout() {
     sessionStorage.clear();  // Clears all session data
@@ -240,7 +240,6 @@ export class AuthService {
       catchError(this.handleError)
     );
   }
-
 
   //******.....Methods For Content Managent Dynamic Work by Debasis Das.....******
   GetParentMenus(): Observable<any> {

@@ -33,7 +33,11 @@
                         <div class="mb-3">
                             <label class="form-label"> Dropdown</label>
                             <select class="form-select">
-                                <option>Select</option>
+                                <option value="0" selected>Select</option>
+                                <option value="1">One</option>
+                                <option value="2">One</option>
+                                <option value="3">One</option>
+                                <option value="4">One</option>
                             </select>
                         </div>
                     </div>
@@ -97,18 +101,19 @@
                                     characters</small></p>
                         </div>
                     </div>
-                    <!-- <div class="col-lg-4">
+                    <div class="col-lg-4">
                         <div class="mb-3">
                             <label for="complaintcata" class="form-label">
-                              Complaint Category <span class="text-danger">*</span>
+                                Complaint Category <span class="text-danger">*</span>
                             </label>
-                          
-                           
-                            <ng-select [items]="options" bindLabel="name" bindValue="id" placeholder="Select an option">
+
+
+                            <ng-select [items]="items" bindLabel="name" bindValue="id" [(ngModel)]="selectedItem"
+                                [searchable]="true" placeholder="Select">
                             </ng-select>
-                          
-                          </div>
-                    </div> -->
+
+                        </div>
+                    </div>
                 </div>
                 <div class="row my-3">
                     <div class="col-lg-4">
