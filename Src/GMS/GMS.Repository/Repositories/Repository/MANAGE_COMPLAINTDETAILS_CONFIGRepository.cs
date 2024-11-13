@@ -7,6 +7,8 @@ using GMS.Repository;
 using PHED_CGRC.MANAGE_COMPLAINTDETAILS_CONFIG;
 using Dapper;
 using System.Data;
+using MySql.Data.MySqlClient;
+using GMS.Model.Entities.GMS;
 namespace GMS.Repository.Repositories.Interfaces.MANAGE_COMPLAINTDETAILS_CONFIG
 {
     public class MANAGE_COMPLAINTDETAILS_CONFIGRepository : db_PHED_CGRCRepositoryBase, IMANAGE_COMPLAINTDETAILS_CONFIGRepository
@@ -14,6 +16,42 @@ namespace GMS.Repository.Repositories.Interfaces.MANAGE_COMPLAINTDETAILS_CONFIG
         public MANAGE_COMPLAINTDETAILS_CONFIGRepository(Idb_PHED_CGRCConnectionFactory db_PHED_CGRCConnectionFactory) : base(db_PHED_CGRCConnectionFactory)
         {
 
+        }
+        public async Task<bool> ComplaintRegistrationdetail(Complaint complaint)
+        {
+            try
+            {
+
+
+                DynamicParameters parameters = new DynamicParameters();
+                //var randomToken = new Random().Next(1000000000, 2147483647).ToString();
+                parameters.Add("@createdon", DateTime.Now);
+                parameters.Add("@createdby", 1);
+                parameters.Add("@category", complaint.INT_CATEGORY_ID);
+                parameters.Add("@subcategory", complaint.INT_SUB_CATEGORY_ID);
+                parameters.Add("@complainttype", complaint.INT_COMPLIANT_LOG_TYPE);
+                parameters.Add("@contactnumber", complaint.VCH_CONTACT_NO);
+                parameters.Add("@name", complaint.NVCH_COMPLIANTANT_NAME);
+                parameters.Add("@distid", complaint.INT_DIST_ID);
+                parameters.Add("@blockid", complaint.INT_BLOCK);
+                parameters.Add("@panchayatid", complaint.INT_PANCHAYAT);
+                parameters.Add("@intVillage", complaint.INT_VILLAGE);
+                parameters.Add("@address", complaint.NVCH_ADDRESS);
+                parameters.Add("@complaintdetail", complaint.NVCH_COMPLIANT_DETAILS);
+                parameters.Add("@filename", complaint.VCH_COMPLAINT_FILE);
+                parameters.Add("@token", complaint.VCH_TOKENNO);
+                parameters.Add("email", complaint.VCH_EMAIL);
+                parameters.Add("landMark", complaint.NVCH_LANDMARK);
+                parameters.Add("@action", "INSERT");
+                var result = await Connection.QueryAsync<int>("USP_complaintRegistration_insert", parameters, commandType: CommandType.StoredProcedure);
+                return result.Contains(1);
+
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
         public async Task<int> INSERT_MANAGE_COMPLAINTDETAILS_CONFIG(MANAGE_COMPLAINTDETAILS_CONFIG_Model TBL)
         {

@@ -17,6 +17,7 @@ import { SitemapComponent } from './sitemap/sitemap.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { GrievancestatusComponent } from './grievancestatus/grievancestatus.component';
 
+
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home'},
   { path: 'home', component: HomeComponent },

@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 
 using PHED_CGRC.MANAGE_COMPLAINTDETAILS_CONFIG;
 using GMS.Repository.Interfaces.MANAGE_COMPLAINTDETAILS_CONFIG;
+using GMS.Model.Entities.GMS;
 namespace GMS.API
 {
 
@@ -21,6 +22,33 @@ namespace GMS.API
 
             _hostingEnvironment = hostingEnvironment;
         }
+
+        [HttpPost("DetailcomplaintRegistration")]
+        public async Task<IActionResult> complaintRegistration([FromBody] Complaint complaint)
+        {
+            if (complaint == null)
+            {
+                return BadRequest(new { message = "Provide all the data" });
+            }
+            try
+            {
+                var result = await _MANAGE_COMPLAINTDETAILS_CONFIGRepository.ComplaintRegistrationdetail(complaint);
+
+                if (result)
+                {
+                    return Ok(new { message = "Complaint registered successfully." });
+                }
+                else
+                {
+                    return StatusCode(StatusCodes.Status500InternalServerError, new { message = "Failed to register complaint." });
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { message = "An error occurred while processing your request." });
+            }
+        }
+
         [HttpPost("CreateMANAGE_COMPLAINTDETAILS_CONFIG")]
         public IActionResult MANAGE_COMPLAINTDETAILS_CONFIG(MANAGE_COMPLAINTDETAILS_CONFIG_Model TBL)
         {

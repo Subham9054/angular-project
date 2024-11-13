@@ -40,7 +40,8 @@
             <div class="col-xl-12">
               <div class="form-group">
                 <label for="Name" class="form-label">Name <span class="text-danger">*</span></label>
-                <input type="text" class="form-control">
+                <input name="txtName" type="text" id="txtName" [(ngModel)]="formData.txtName" required
+                                        class="form-control" maxlength="100" />
                 <!-- <small class="text-danger d-block text-end"> (Maximum <strong>100</strong> Characters)</small> -->
               </div>
             </div>
@@ -49,9 +50,11 @@
                 <label for="Phone Number" class="form-label">Phone Number <span class="text-danger">*</span></label>
                 <div class="input-group">
                   <span class="input-group-text" id="basic-addon1">+91</span>
-                  <input type="number" class="form-control">
-                  <a class="input-group-text btn btn-primary" href="javascript:void(0);" data-bs-toggle="modal"
-                    data-bs-target="#verifyMobileModal"><i class="bi bi-check-circle"></i></a>
+                  <input name="txtPhone" type="text" maxlength="10" id="txtPhone"
+                                        [(ngModel)]="formData.txtPhone" class="form-control" />
+                  <a class="input-group-text btn btn-primary" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#verifyMobileModal">
+                    <i class="bi bi-check-circle"></i>
+                </a>
                 </div>
 
               </div>
@@ -60,7 +63,8 @@
               <div class="form-group">
                 <label class="form-label">Email</label>
                 <div class="input-group">
-                  <input type="text" class="form-control">
+                  <input name="txtEmail" type="text" id="txtEmail"
+                                        [(ngModel)]="formData.txtEmail" class="form-control" />
                   <a class="input-group-text btn btn-primary" href="javascript:void(0);" data-bs-toggle="modal"
                     data-bs-target="#verifyEmailModal"><i class="bi bi-check-circle"></i></a>
                 </div>
@@ -70,12 +74,13 @@
               <div class="form-group">
                 <label for="Complaint Category" class="form-label">Complaint Category <span
                     class="text-danger">*</span></label>
-                <select class="form-select">
-                  <option selected>Select</option>
-                  <option value="1">Handpump Tubewell Related</option>
-                  <option value="2">Miscellaneous</option>
-                  <option value="3">Piped Water Supply Related</option>
-                  <option value="4">Water Quality Related</option>
+                    <select name="ddlComplaintCategory" id="ddlComplaintCategory"
+                    [(ngModel)]="formData.ddlComplaintCategory"
+                    (change)="onCategoryChange($event)" class="form-select">
+                    <option selected value="0">Select</option>
+                    <option *ngFor="let category of categories"
+                        [value]="category.inT_CATEGORY_ID">{{ category.vcH_CATEGORY }}
+                    </option>
                 </select>
               </div>
             </div>
@@ -83,9 +88,13 @@
               <div class="form-group">
                 <label for="Complaint Sub-Category" class="form-label">Complaint Sub-Category <span
                     class="text-danger">*</span></label>
-                <select class="form-select">
-                  <option selected>Select</option>
-                  <option value="2">Miscellaneous</option>
+                    <select name="ddlSubCategory" id="ddlSubCategory"
+                    [(ngModel)]="formData.ddlSubCategory" class="form-select">
+                    <option value="0">Select</option>
+                    <option *ngFor="let subcategory of subcategories"
+                        [value]="subcategory.inT_SUB_CATEGORY_ID">{{
+                        subcategory.vcH_SUB_CATEGORY }}
+                    </option>
                 </select>
               </div>
             </div>
@@ -100,21 +109,22 @@
 
             <div class="col-xl-12">
               <div class="form-group">
-                <label for="Nature of Document" class="form-label">Upload Document/Photo <span
-                    class="text-danger">*</span></label>
-                    <div class="d-flex align-items-center">
-                <div class="input-group custom-file-input">
-                  <input type="file" name="FileUpload1" id="FileUpload1" class="form-control custom-fileupload" />
-                  <label class="custom-input" for="doc">Choose ...</label>
-                  <label class="input-group-text custom-browse" for="doc">Browse</label>
+                <label for="FileUpload1" class="form-label">
+                  Upload Document <span class="text-danger">*</span>
+                </label>
+                <div class="input-group">
+                  <!-- The file input element -->
+                  <input type="file" name="FileUpload1" id="FileUpload1" (change)="handleFileInput($event)"
+                    class="form-control" />
                 </div>
-                <a href="#" class="btn btn-primary" title="Add More Document/Photo"><i class="bi bi-plus-lg"></i></a>
-              </div>
-                <!-- <label for="Upload Document" class="form-label">Upload Document</label>
-            <input class="form-control" type="file" id="formFile"> -->
-                <small class="text-danger d-block text-end">Supported File (<strong>.pdf, .doc, .xls, .jpg, .png</strong>) Max <strong>5MB</strong></small>
+                <small class="text-danger d-block text-end">
+                  Supported File (.pdf, .doc, .xls, .jpg, .png)
+                </small>
               </div>
             </div>
+            
+            
+          
             <!-- <div class="col-lg-12 d-none d-lg-block"></div>
             <div class="col-lg-4">
               <div class="form-group">
@@ -136,7 +146,8 @@
             <div class="col-lg-12">
               <div class="form-group">
                 <label for="Enter Complaint Description in Brief" class="form-label"> Complaint Description</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
+                <textarea name="txtDetailsE" rows="3" id="txtDetailsE"
+                                    [(ngModel)]="formData.txtDetailsE" class="form-control"></textarea>
                 <small class="text-danger d-block text-end">(Maximum <strong>500</strong> Characters)</small>
               </div>
             </div>
@@ -152,12 +163,13 @@
             <div class="col-xl-6">
               <div class="form-group">
                 <label for="District" class="form-label">District <span class="text-danger">*</span></label>
-                <select class="form-select">
-                  <option selected>Select</option>
-                  <option value="1">ARARIA</option>
-                  <option value="2">ARWAL</option>
-                  <option value="3">AURANGABAD</option>
-                </select>
+                <select name="ddlDistrict" id="ddlDistrict" [(ngModel)]="formData.ddlDistrict"
+                                        (change)="onDistrictChange($event)" class="form-select">
+                                        <option selected value="0">Select</option>
+                                        <option *ngFor="let district of districts" [value]="district.inT_DIST_ID">
+                                            {{ district.vcH_DIST_NAME }}
+                                        </option>
+                                    </select>
               </div>
             </div>
             <!-- <div class="col-lg-4">
@@ -173,34 +185,36 @@
           <div class="col-xl-6">
               <div class="form-group">
                 <label for="Block" class="form-label">Block<span class="text-danger">*</span></label>
-                <select class="form-select">
-                  <option selected>Select</option>
-                  <option value="1">ARARIA</option>
-                  <option value="2">ARWAL</option>
-                  <option value="3">AURANGABAD</option>
-                </select>
+                <select name="ddlBlock" id="ddlBlock" [(ngModel)]="formData.ddlBlock"
+                (change)="onBlockChange($event)" class="form-select">
+                <option value="0">Select</option>
+                <option *ngFor="let block of blocks" [value]="block.inT_BLOCK_ID">{{
+                    block.vcH_BLOCK_NAME }}
+                </option>
+            </select>
               </div>
             </div>
     
             <div class="col-xl-6">
               <div class="form-group">
                 <label for="Panchyat" class="form-label">Panchyat <span class="text-danger">*</span></label>
-                <select class="form-select">
-                  <option selected>Select</option>
-                  <option value="1">Demo 1</option>
-                  <option value="2">Demo 2</option>
-                </select>
+                <select name="ddlGp" id="ddlGp" [(ngModel)]="formData.ddlPanchayat"
+                                        (change)="onGpChange($event)" class="form-select">
+                                        <option value="0">Select</option>
+                                        <option *ngFor="let gp of gps" [value]="gp.inT_GP_ID">{{ gp.vcH_GP_NAME }}</option>
+                                    </select>
               </div>
             </div>
     
             <div class="col-xl-6">
               <div class="form-group">
                 <label for="Panchyat" class="form-label">village <span class="text-danger">*</span></label>
-                <select class="form-select">
-                  <option selected>Select</option>
-                  <option value="1">Demo 1</option>
-                  <option value="2">Demo 2</option>
-                </select>
+                <select name="ddlVillage" id="ddlVillage" [(ngModel)]="formData.ddlVillage"
+                class="form-select">
+                <option value="0">Select</option>
+                <option *ngFor="let village of villages" [value]="village.inT_VILLAGE_ID">{{
+                    village.vcH_VILLAGE_NAME }}</option>
+            </select> 
               </div>
             </div>
             <div class="col-xl-6">
@@ -215,8 +229,8 @@
               <div class="form-group">
                 <label for="Panchyat" class="form-label">Near by Location </label>
                 <div class="input-group">
-                  
-                  <input type="text" class="form-control">
+                  <input type="text" name="txtlandmark" rows="3" id="txtlandmark"
+                                        [(ngModel)]="formData.txtLandmark" class="form-control">
                   <span class="input-group-text" id="basic-addon1"><i class="bi bi-geo-alt"></i></span>
                 </div>
               </div>
@@ -227,7 +241,8 @@
             <div class="col-lg-12">
               <div class="form-group">
                 <label for="Address" class="form-label">Address</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
+                <textarea name="txtAddress" rows="3" id="txtAddress"
+                                        [(ngModel)]="formData.txtAddress" class="form-control"></textarea>
                 <small class="text-danger d-block text-end">(Maximum <strong>300</strong> Characters)</small>
               </div>
             </div>
@@ -237,8 +252,8 @@
         </div>
         <div class="col-12 mt-4">
           <div class="d-flex gap-2 justify-content-center">
-            <a href="javascript:void(0)" class="btn btn-primary">Submit</a>
-            <a href="javascript:void(0)" class="btn btn-danger">Reset</a>
+            <a href="javascript:void(0)" class="btn btn-primary" (click)="onSubmit()">Submit</a>
+            <a href="javascript:void(0)" class="btn btn-danger" (click)="resetForm()">Reset</a>
           </div>
         </div>
       </div>
@@ -248,54 +263,54 @@
   </div>
 </div>
 
-<!-- Verify Mobile Modal -->
-<div class="modal fade otp-modal" id="verifyMobileModal" tabindex="-1" aria-labelledby="verifyMobileModalLabel"
-  aria-hidden="true">
+
+<div class="modal fade otp-modal" id="verifyMobileModal" tabindex="-1" aria-labelledby="verifyMobileModalLabel" aria-hidden="true" *ngIf="isModalVisible">
   <div class="modal-dialog modal-md">
-    <div class="modal-content">
-
-      <div class="modal-body text-center p-5">
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        <h3 class="mb-4">OTP Verification</h3>
-        <h5>Wait a while for OTP to receive
-          <small class="text-secondary d-block">Sent to your mobile number</small>
-        </h5>
-        <div class="mx-1">
-          <div class="row">
-            <div class="col">
-              <input type="number" class="form-control form-control-lg">
-            </div>
-            <div class="col">
-              <input type="number" class="form-control form-control-lg">
-            </div>
-            <div class="col">
-              <input type="number" class="form-control form-control-lg">
-            </div>
-            <div class="col">
-              <input type="number" class="form-control form-control-lg">
-            </div>
-            <div class="col">
-              <input type="number" class="form-control form-control-lg">
-            </div>
-            <div class="col">
-              <input type="number" class="form-control form-control-lg">
-            </div>
+      <div class="modal-content">
+          <div class="modal-body text-center p-5">
+              <button type="button" class="btn-close" (click)="closeModal()" aria-label="Close"></button>
+              <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+              <h3 class="mb-4">OTP Verification</h3>
+              <h5>Wait a while for OTP to receive
+                  <small class="text-secondary d-block">Sent to your mobile number</small>
+              </h5>
+              <div class="mx-1">
+                <div class="row">
+                  <div class="col">
+                    <input type="number" class="form-control form-control-lg" [(ngModel)]="otpValues[0]" />
+                  </div>
+                  <div class="col">
+                    <input type="number" class="form-control form-control-lg" [(ngModel)]="otpValues[1]" />
+                  </div>
+                  <div class="col">
+                    <input type="number" class="form-control form-control-lg" [(ngModel)]="otpValues[2]" />
+                  </div>
+                  <div class="col">
+                    <input type="number" class="form-control form-control-lg" [(ngModel)]="otpValues[3]" />
+                  </div>
+                  <div class="col">
+                    <input type="number" class="form-control form-control-lg" [(ngModel)]="otpValues[4]" />
+                  </div>
+                  <div class="col">
+                    <input type="number" class="form-control form-control-lg" [(ngModel)]="otpValues[5]" />
+                  </div>
+                </div>
+              </div>
+              <div class="my-4 d-flex justify-content-between text-secondary">Didn't receive OTP yet?
+                  <div>
+                      <span class="d-block">02:00 min</span>
+                  </div>
+              </div>
+              <div class="d-grid">
+                  <button type="button" class="btn btn-primary" (click)="mobOtp()">Verify OTP</button>
+              </div>
           </div>
-        </div>
-        <div class="my-4 d-flex justify-content-between text-secondary">Didn't receive OTP yet?
-          <div>
-            <span class="d-block">02:00 min</span>
-            <!-- <a href="#">Resend OTP</a> -->
-          </div>
-        </div>
-        <div class="d-grid">
-          <button type="button" class="btn btn-primary">Verify OTP</button>
-        </div>
       </div>
-
-    </div>
   </div>
 </div>
+
+
+
 
 <!-- Verify Email Modal -->
 <div class="modal fade otp-modal" id="verifyEmailModal" tabindex="-1" aria-labelledby="verifyEmailModalLabel"
