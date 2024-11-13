@@ -80,7 +80,8 @@
                                 <div class="mb-3">
                                     <label for="txtPhone" class="form-label">Email</label>
                                     <div class="input-group">
-                                        <input name="txtPhone" type="text" class="form-control" />
+                                        <input name="txtEmail" type="text" id="txtEmail"
+                                        [(ngModel)]="formData.txtEmail" class="form-control" />
                                         <a class="input-group-text btn btn-primary" href="javascript:void(0);" data-bs-toggle="modal"
                                          data-bs-target="#mailmodal"><i class="bi bi-check-circle"></i></a>
                                     </div>                                    
@@ -108,12 +109,11 @@
                             <div class="col-xxl-3 col-xl-4 col-md-6">
                                 <div class="mb-3 ">
                                     <label class="form-label" for="doc"> Upload Document/Photo</label>
-                                    <div class="input-group custom-file-input">
+                                    <div class="input-group">
+                                        <!-- The file input element -->
                                         <input type="file" name="FileUpload1" id="FileUpload1" (change)="handleFileInput($event)"
-                                        class="form-control custom-fileupload" />
-                                        <label class="custom-input" for="doc">Upload</label>
-                                        <label class="input-group-text custom-browse" for="doc">Browse</label>
-                                    </div>
+                                          class="form-control" />
+                                      </div>
         
                                     <p class="mb-0 small text-danger text-end">Supported File (<span class="fw-bold">.pdf, .doc, .xls, .jpg, .png</span>)</p>
                                 </div>
@@ -266,7 +266,8 @@
                                 <div class="mb-3">
                                     <label for="ddllocation" class="form-label">Near by Location</label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" id="ddllocation">
+                                        <input type="text" name="txtlandmark" rows="3" id="txtlandmark"
+                                        [(ngModel)]="formData.txtLandmark" class="form-control">
                                         <label class="input-group-text" for="ddllocation">
                                             <i class="bi bi-geo-alt"></i></label>
                                     </div>

@@ -16,7 +16,7 @@ export class AuthService {
   
 
   private apiUrl = 'https://localhost:7199/Login'; // Your API URL for login
-  private registrationApiUrl = 'http://172.27.32.0:8085/api/ComplaintsRegistration/DetailcomplaintRegistration';
+  private registrationApiUrl = 'https://localhost:7024/Api/MANAGE_COMPLAINTDETAILS_CONFIG/DetailcomplaintRegistration';
   private complaintApiUrl = 'https://localhost:7010/Api/MANAGE_CATEGORYMASTER/ComplaintCategory';
   private getComplaintApiUrl = 'https://localhost:7010/Api/MANAGE_CATEGORYMASTER/GetallComplaint';
   private updateComplaintApiUrl = 'https://localhost:7010/Api/MANAGE_CATEGORYMASTER/UpdateComplaint';
