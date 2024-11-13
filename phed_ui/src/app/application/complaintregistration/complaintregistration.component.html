@@ -1,400 +1,366 @@
 <div class="form-cointainer">
-    <div class="pagetitle-section">
-        <div class="row justify-content-between align-items-center">
-            <div class="col-lg-4">
-                <h3>Register Complaint</h3>
-            </div>
-            <div class="col-lg-6 col-md-6">
-                <div class="utilite mb-1">
-                    <ul class="mb-0">
-                       
+  <div class="pagetitle-section">
+      <div class="row justify-content-between align-items-center">
+          <div class="col-lg-4">
+              <h3>Register Complaint</h3>
+          </div>
+          <div class="col-lg-6 col-md-6">
+              <div class="utilite mb-1">
+                  <ul class="mb-0">
+                     
 
-                        <li class="bg-transparent border-0">
-                            <span class="text-danger small"><b>(*)</b> Indicate mandatory </span>
-                        </li>
+                      <li class="bg-transparent border-0">
+                          <span class="text-danger small"><b>(*)</b> Indicate mandatory </span>
+                      </li>
 
+                    
                       
-                        
-                        <li class="fill-btn back-link"><a routerLink="/application/complaintregistration" title="Go to Previous"><i
-                            class="bi bi-arrow-left"></i> Back to View</a>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="content-box content-area">
-        <div class="form-section">
-            <div class="row">
-                <div class="col-xxl-12 col-lg-12">
-                    <h5 class="page-heading">Complainant Details</h5>
-                    <div class="row">
+                      <li class="fill-btn back-link"><a routerLink="/application/complaintregistration" title="Go to Previous"><i
+                          class="bi bi-arrow-left"></i> Back to View</a>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="content-box content-area">
+      <div class="form-section">
+          <div class="row">
+              <div class="col-xxl-12 col-lg-12">
+                  <h5 class="page-heading">Complainant Details</h5>
+                  <div class="row">
 
-                      
+                    
 
-                        <div class="col-xxl-3 col-xl-4 col-md-6">
-                            <div class="mb-3">
-                                <label for="txtRegdDt" class="form-label">Registration Date</label>
-                                <input name="txtRegdDt" type="text" [(ngModel)]="currentDate" readonly id="txtRegdDt"
-                                    class="form-control" />
-                            </div>
-                        </div>
-                        <div class="col-xxl-3 col-xl-4 col-md-6">
-                            <div class="mb-3">
-                                <label for="ddlRecvBy" class="form-label">Mode of Complaint</label>
-                                <select name="ddlRecievemode" [(ngModel)]="formData.ddlComplainttype"
-                                    id="ddlRecievemode" class="form-select chosen-select-width"
-                                    style="width: 100%;">
-                                    <option value="0" selected>Select</option>
-                                    <option *ngFor="let complaintp of complainttype"
-                                        [value]="complaintp.inT_COMPLIANT_LOG_TYPE_ID">{{
-                                        complaintp.vcH_COMPLIANT_LOG_TYPE }}
-                                    </option>
-                                </select>
-                            </div>
-                        </div>
-                            <div class="col-xxl-3 col-xl-4 col-md-6">
-                                <div class="mb-3">
-                                    <label for="txtName" class="form-label">Name <span class="text-danger">*</span></label>
-                                    <input name="txtName" type="text" id="txtName" [(ngModel)]="formData.txtName" required
-                                        class="form-control" maxlength="100" />
-                                    <!-- <p class="text-danger text-end  small mb-0">(Maximum <span class="fw-bold">100</span>
-                                        Characters)</p> -->
-                                </div>
-                            </div>
-    
-                            <div class="col-xxl-3 col-xl-4 col-md-6">
-                                <div class="mb-3">
-                                    <label for="txtPhone" class="form-label">Phone</label>
-                                    <div class="input-group">
-                                        <label class="input-group-text">+91</label>
-                                        <input name="txtPhone" type="text" maxlength="10" id="txtPhone"
-                                        [(ngModel)]="formData.txtPhone" class="form-control" />
-                                        <a class="input-group-text btn btn-primary" href="javascript:void(0);" data-bs-toggle="modal"
-                                         data-bs-target="#exampleModal"><i class="bi bi-check-circle"></i></a>
-                                    </div>                                    
-                                </div>
-                            </div>
-
-
-                            <div class="col-xxl-3 col-xl-4 col-md-6">
-                                <div class="mb-3">
-                                    <label for="txtPhone" class="form-label">Email</label>
-                                    <div class="input-group">
-                                        <input name="txtEmail" type="text" id="txtEmail"
-                                        [(ngModel)]="formData.txtEmail" class="form-control" />
-                                        <a class="input-group-text btn btn-primary" href="javascript:void(0);" data-bs-toggle="modal"
-                                         data-bs-target="#mailmodal"><i class="bi bi-check-circle"></i></a>
-                                    </div>                                    
-                                </div>
-                            </div>
-
-                            <!-- <div class="col-xxl-3 col-xl-4 col-md-6">
-                                <div class="mb-3">
-                                    <label for="txtPhone" class="form-label">Photo</label>
-                                    <div class="custom-dropzone photoUpload" ngx-dropzone [accept]="'image/*'" (change)="onSelect($event)">
-                                        <ngx-dropzone-label>
-                                            <div>
-                                                <h2>Drag and Drop <span class="d-block">or</span>Click to Upload Photo</h2>
-                                            </div>
-                                        </ngx-dropzone-label>
-                                        <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f" [removable]="true" (removed)="onRemove(f)">
-                                            <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
-                                        </ngx-dropzone-image-preview>
-                                    </div>
-                                    <p class="small mb-0 text-end text-danger">Max file Size <span class="fw-bold">1 mb</span></p>                                   
-                                </div>
-                            </div> -->
-
-
-                            <div class="col-xxl-3 col-xl-4 col-md-6">
-                                <div class="mb-3 ">
-                                    <label class="form-label" for="doc"> Upload Document/Photo</label>
-                                    <div class="input-group">
-                                        <!-- The file input element -->
-                                        <input type="file" name="FileUpload1" id="FileUpload1" (change)="handleFileInput($event)"
-                                          class="form-control" />
-                                      </div>
-        
-                                    <p class="mb-0 small text-danger text-end">Supported File (<span class="fw-bold">.pdf, .doc, .xls, .jpg, .png</span>)</p>
-                                </div>
-                            </div>
-                            <!-- <div class="col-xl-12">
-                                <div class="form-group">
-                                  <label for="FileUpload1" class="form-label">
-                                    Upload Document/Photo <span class="text-danger">*</span>
-                                  </label>
+                      <div class="col-xxl-3 col-xl-4 col-md-6">
+                          <div class="mb-3">
+                              <label for="txtRegdDt" class="form-label">Registration Date</label>
+                              <input name="txtRegdDt" type="text" [(ngModel)]="currentDate" readonly id="txtRegdDt"
+                                  class="form-control" />
+                          </div>
+                      </div>
+                      <div class="col-xxl-3 col-xl-4 col-md-6">
+                          <div class="mb-3">
+                              <label for="ddlRecvBy" class="form-label">Mode of Complaint</label>
+                              <select name="ddlRecievemode" [(ngModel)]="formData.ddlComplainttype"
+                                  id="ddlRecievemode" class="form-select chosen-select-width"
+                                  style="width: 100%;">
+                                  <option value="0" selected>Select</option>
+                                  <option *ngFor="let complaintp of complainttype"
+                                      [value]="complaintp.inT_COMPLIANT_LOG_TYPE_ID">{{
+                                      complaintp.vcH_COMPLIANT_LOG_TYPE }}
+                                  </option>
+                              </select>
+                          </div>
+                      </div>
+                          <div class="col-xxl-3 col-xl-4 col-md-6">
+                              <div class="mb-3">
+                                  <label for="txtName" class="form-label">Name <span class="text-danger">*</span></label>
+                                  <input name="txtName" type="text" id="txtName" [(ngModel)]="formData.txtName" required
+                                      class="form-control" maxlength="100" />
+                                  <!-- <p class="text-danger text-end  small mb-0">(Maximum <span class="fw-bold">100</span>
+                                      Characters)</p> -->
+                              </div>
+                          </div>
+  
+                          <div class="col-xxl-3 col-xl-4 col-md-6">
+                              <div class="mb-3">
+                                  <label for="txtPhone" class="form-label">Phone</label>
                                   <div class="input-group">
-                                    <input type="file" name="FileUpload1" id="FileUpload1" (change)="handleFileInput($event)"
-                                      class="form-control" />
-                                  </div>
-                                  <small class="text-danger d-block text-end">
-                                    Supported File (.pdf, .doc, .xls, .jpg, .png)
-                                  </small>
-                                </div>
-                              </div> -->
-                    
-                        <div class="col-xxl-3 col-xl-4 col-md-6">
-                            <div class="mb-3">
-                                <label for="ddlComplaintCategory" class="form-label">Complaint Category</label>
-                                <select name="ddlComplaintCategory" id="ddlComplaintCategory"
-                                    [(ngModel)]="formData.ddlComplaintCategory"
-                                    (change)="onCategoryChange($event)" class="form-select">
-                                    <option selected value="0">Select</option>
-                                    <option *ngFor="let category of categories"
-                                        [value]="category.inT_CATEGORY_ID">{{ category.vcH_CATEGORY }}
-                                    </option>
-                                </select>
-                            </div>
-                        </div>
-                        
-                        <div class="col-xxl-3 col-xl-4 col-md-6">
-                            <div class="mb-3">
-                                <label for="ddlSubCategory" class="form-label">Complaint Sub-Category</label>
-                                <select name="ddlSubCategory" id="ddlSubCategory"
-                                    [(ngModel)]="formData.ddlSubCategory" class="form-select">
-                                    <option value="0">Select</option>
-                                    <option *ngFor="let subcategory of subcategories"
-                                        [value]="subcategory.inT_SUB_CATEGORY_ID">{{
-                                        subcategory.vcH_SUB_CATEGORY }}
-                                    </option>
-                                </select>
-                            </div>
-                        </div>
-                        <!-- <div class="col-xxl-3 col-xl-4 col-md-6">
-                            <div class="mb-3">
-                                <label for="txtDocument" class="form-label">Nature of Document</label>
-                                <input name="txtDocument" type="text" id="txtDocument" [(ngModel)]="formData.txtDocument"
-                                    class="form-control" />
-                            </div>
-                        </div> -->
-                    
-                        <!-- <div class="col-xxl-3 col-xl-4 col-md-6">
-                            <div class="mb-3 ">
-                                <label class="form-label" for="doc"> Document</label>
-                                <div class="input-group custom-file-input">
-                                    <input type="file" name="FileUpload1" id="FileUpload1" (change)="handleFileInput($event)"
-                                    class="form-control custom-fileupload" />
-                                    <label class="custom-input" for="doc">Upload</label>
-                                    <label class="input-group-text custom-browse" for="doc">Browse</label>
-                                </div>
-    
-                                <p class="mb-0 small text-danger text-end ">Supported file (<span
-                                    class="fw-bold">pdf, doc, docx, xls, xlsx</span>)</p>
-                            </div>
-                        </div> -->
-                        <div class=" col-md-12">
-                            <div class="mb-3">
-                                <label for="txtDetailsE" class="form-label">Complaint Description</label>
-                                <textarea name="txtDetailsE" rows="3" id="txtDetailsE"
-                                    [(ngModel)]="formData.txtDetailsE" class="form-control"></textarea>
-                                <p class="text-danger text-end small mb-0 ">(Maximum <span class="fw-bold">500</span>
-                                    Characters)</p>
-                                    
-                            </div>
-                        </div>
-                     </div>
+                                      <label class="input-group-text">+91</label>
+                                      <input name="txtPhone" type="text" maxlength="10" id="txtPhone"
+                                      [(ngModel)]="formData.txtPhone" class="form-control" />
+                                      <a class="input-group-text btn btn-primary" href="javascript:void(0);" data-bs-toggle="modal"
+                                       data-bs-target="#exampleModal"><i class="bi bi-check-circle"></i></a>
+                                  </div>                                    
+                              </div>
+                          </div>
 
-                     <h5 class="page-heading">Address Details</h5>
-                       
-                   
-                  
-                     
-                    <div class="col-xl-9 col-lg-12">
-                        <div class="row">
-                            <div class="col-xl-4 col-md-6">
-                                <div class="mb-3">
-                                    <label for="ddlDistrict" class="form-label">District</label>
-                                    <select name="ddlDistrict" id="ddlDistrict" [(ngModel)]="formData.ddlDistrict"
-                                        (change)="onDistrictChange($event)" class="form-select">
-                                        <option selected value="0">Select</option>
-                                        <option *ngFor="let district of districts" [value]="district.inT_DIST_ID">
-                                            {{ district.vcH_DIST_NAME }}
-                                        </option>
-                                    </select>
-                                </div>
-                            </div>
-    
-                            <div class="col-xl-4 col-md-6">
-                                <div class="mb-3">
-                                    <label for="ddlBlock" class="form-label">Block</label>
-                                    <select name="ddlBlock" id="ddlBlock" [(ngModel)]="formData.ddlBlock"
-                                        (change)="onBlockChange($event)" class="form-select">
-                                        <option value="0">Select</option>
-                                        <option *ngFor="let block of blocks" [value]="block.inT_BLOCK_ID">{{
-                                            block.vcH_BLOCK_NAME }}
-                                        </option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-xl-4 col-md-6">
-                                <div class="mb-3">
-                                    <label for="ddlGp" class="form-label">Gram Panchayat</label>
-                                    <select name="ddlGp" id="ddlGp" [(ngModel)]="formData.ddlPanchayat"
-                                        (change)="onGpChange($event)" class="form-select">
-                                        <option value="0">Select</option>
-                                        <option *ngFor="let gp of gps" [value]="gp.inT_GP_ID">{{ gp.vcH_GP_NAME }}</option>
-                                    </select>
-                                </div>
-                            </div>
-    
-                            <div class="col-xl-4 col-md-6">
-                                <div class="mb-3">
-                                    <label for="ddlVillage" class="form-label">Village</label>
-                                    <select name="ddlVillage" id="ddlVillage" [(ngModel)]="formData.ddlVillage"
-                                        class="form-select">
-                                        <option value="0">Select</option>
-                                        <option *ngFor="let village of villages" [value]="village.inT_VILLAGE_ID">{{
-                                            village.vcH_VILLAGE_NAME }}</option>
-                                    </select>
-                                </div>
-                            </div>
-    
-                            <div class="col-xl-4 col-md-6">
-                                <div class="mb-3">
-                                    <label for="ddlward" class="form-label">Ward</label>
-                                    <select class="form-select" id="ddlward">
-                                        <option selected>Select</option>
-                                        <option value="1">Ara</option>
-                                        <option value="2">Begusarai</option>
-                                        <option value="3">Bhagalpur</option>
-                                    </select>
-                                </div>
-                            </div>
-    
-    
-                            <div class="col-xl-4 col-md-6">
-                                <div class="mb-3">
-                                    <label for="ddllocation" class="form-label">Near by Location</label>
-                                    <div class="input-group">
-                                        <input type="text" name="txtlandmark" rows="3" id="txtlandmark"
-                                        [(ngModel)]="formData.txtLandmark" class="form-control">
-                                        <label class="input-group-text" for="ddllocation">
-                                            <i class="bi bi-geo-alt"></i></label>
+
+                          <div class="col-xxl-3 col-xl-4 col-md-6">
+                              <div class="mb-3">
+                                  <label for="txtPhone" class="form-label">Email</label>
+                                  <div class="input-group">
+                                      <input name="txtEmail" type="text" id="txtEmail"
+                                      [(ngModel)]="formData.txtEmail" class="form-control" />
+                                      <a class="input-group-text btn btn-primary" href="javascript:void(0);" data-bs-toggle="modal"
+                                       data-bs-target="#mailmodal"><i class="bi bi-check-circle"></i></a>
+                                  </div>                                    
+                              </div>
+                          </div>
+
+                          <!-- <div class="col-xxl-3 col-xl-4 col-md-6">
+                              <div class="mb-3">
+                                  <label for="txtPhone" class="form-label">Photo</label>
+                                  <div class="custom-dropzone photoUpload" ngx-dropzone [accept]="'image/*'" (change)="onSelect($event)">
+                                      <ngx-dropzone-label>
+                                          <div>
+                                              <h2>Drag and Drop <span class="d-block">or</span>Click to Upload Photo</h2>
+                                          </div>
+                                      </ngx-dropzone-label>
+                                      <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f" [removable]="true" (removed)="onRemove(f)">
+                                          <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                                      </ngx-dropzone-image-preview>
+                                  </div>
+                                  <p class="small mb-0 text-end text-danger">Max file Size <span class="fw-bold">1 mb</span></p>                                   
+                              </div>
+                          </div> -->
+
+
+                          <div class="col-xxl-3 col-xl-4 col-md-6">
+                              <div class="mb-3 ">
+                                  <label class="form-label" for="doc"> Upload Document/Photo</label>
+                                  <div class="input-group">
+                                      <!-- The file input element -->
+                                      <input type="file" name="FileUpload1" id="FileUpload1" (change)="handleFileInput($event)"
+                                        class="form-control" />
                                     </div>
+      
+                                  <p class="mb-0 small text-danger text-end">Supported File (<span class="fw-bold">.pdf, .doc, .xls, .jpg, .png</span>)</p>
+                              </div>
+                          </div>
+                          <!-- <div class="col-xl-12">
+                              <div class="form-group">
+                                <label for="FileUpload1" class="form-label">
+                                  Upload Document/Photo <span class="text-danger">*</span>
+                                </label>
+                                <div class="input-group">
+                                  <input type="file" name="FileUpload1" id="FileUpload1" (change)="handleFileInput($event)"
+                                    class="form-control" />
                                 </div>
-                            </div>
-    
-    
-                            <div class="col-lg-12 col-md-12">
-                                <div class="mb-3">
-                                    <label for="txtAddress" class="form-label">Address</label>
-                                    <textarea name="txtAddress" rows="3" id="txtAddress"
-                                        [(ngModel)]="formData.txtAddress" class="form-control"></textarea>
-                                 
-                                        <p class="text-danger text-end  small mb-0">(Maximum <span class="fw-bold">200</span>
-                                            Characters)</p>
-                                </div>
-                            </div>
-                     
-                            
-                        </div>
-                    </div>
-                    
-                    <div class="row">
-                        <div class="col-xl-5">
-                            <div class="form-actions mt-lg-3">
-                                <button type="button" name="btnSubmit" class="btn btn-primary me-1"
-                                    (click)="onSubmit()">Submit</button>
-                                <button type="button" name="btnReset" class="btn btn-danger"
-                                    (click)="resetForm()">Reset</button>
-                            </div>
-                        </div>
-                    </div>
+                                <small class="text-danger d-block text-end">
+                                  Supported File (.pdf, .doc, .xls, .jpg, .png)
+                                </small>
+                              </div>
+                            </div> -->
+                  
+                      <div class="col-xxl-3 col-xl-4 col-md-6">
+                          <div class="mb-3">
+                              <label for="ddlComplaintCategory" class="form-label">Complaint Category</label>
+                              <select name="ddlComplaintCategory" id="ddlComplaintCategory"
+                                  [(ngModel)]="formData.ddlComplaintCategory"
+                                  (change)="onCategoryChange($event)" class="form-select">
+                                  <option selected value="0">Select</option>
+                                  <option *ngFor="let category of categories"
+                                      [value]="category.inT_CATEGORY_ID">{{ category.vcH_CATEGORY }}
+                                  </option>
+                              </select>
+                          </div>
+                      </div>
                       
-                </div>
-            </div>
-        </div>
-    </div>
+                      <div class="col-xxl-3 col-xl-4 col-md-6">
+                          <div class="mb-3">
+                              <label for="ddlSubCategory" class="form-label">Complaint Sub-Category</label>
+                              <select name="ddlSubCategory" id="ddlSubCategory"
+                                  [(ngModel)]="formData.ddlSubCategory" class="form-select">
+                                  <option value="0">Select</option>
+                                  <option *ngFor="let subcategory of subcategories"
+                                      [value]="subcategory.inT_SUB_CATEGORY_ID">{{
+                                      subcategory.vcH_SUB_CATEGORY }}
+                                  </option>
+                              </select>
+                          </div>
+                      </div>
+                      <!-- <div class="col-xxl-3 col-xl-4 col-md-6">
+                          <div class="mb-3">
+                              <label for="txtDocument" class="form-label">Nature of Document</label>
+                              <input name="txtDocument" type="text" id="txtDocument" [(ngModel)]="formData.txtDocument"
+                                  class="form-control" />
+                          </div>
+                      </div> -->
+                  
+                      <!-- <div class="col-xxl-3 col-xl-4 col-md-6">
+                          <div class="mb-3 ">
+                              <label class="form-label" for="doc"> Document</label>
+                              <div class="input-group custom-file-input">
+                                  <input type="file" name="FileUpload1" id="FileUpload1" (change)="handleFileInput($event)"
+                                  class="form-control custom-fileupload" />
+                                  <label class="custom-input" for="doc">Upload</label>
+                                  <label class="input-group-text custom-browse" for="doc">Browse</label>
+                              </div>
+  
+                              <p class="mb-0 small text-danger text-end ">Supported file (<span
+                                  class="fw-bold">pdf, doc, docx, xls, xlsx</span>)</p>
+                          </div>
+                      </div> -->
+                      <div class=" col-md-12">
+                          <div class="mb-3">
+                              <label for="txtDetailsE" class="form-label">Complaint Description</label>
+                              <textarea name="txtDetailsE" rows="3" id="txtDetailsE"
+                                  [(ngModel)]="formData.txtDetailsE" class="form-control"></textarea>
+                              <p class="text-danger text-end small mb-0 ">(Maximum <span class="fw-bold">500</span>
+                                  Characters)</p>
+                                  
+                          </div>
+                      </div>
+                   </div>
+
+                   <h5 class="page-heading">Address Details</h5>
+                     
+                 
+                
+                   
+                  <div class="col-xl-9 col-lg-12">
+                      <div class="row">
+                          <div class="col-xl-4 col-md-6">
+                              <div class="mb-3">
+                                  <label for="ddlDistrict" class="form-label">District</label>
+                                  <select name="ddlDistrict" id="ddlDistrict" [(ngModel)]="formData.ddlDistrict"
+                                      (change)="onDistrictChange($event)" class="form-select">
+                                      <option selected value="0">Select</option>
+                                      <option *ngFor="let district of districts" [value]="district.inT_DIST_ID">
+                                          {{ district.vcH_DIST_NAME }}
+                                      </option>
+                                  </select>
+                              </div>
+                          </div>
+  
+                          <div class="col-xl-4 col-md-6">
+                              <div class="mb-3">
+                                  <label for="ddlBlock" class="form-label">Block</label>
+                                  <select name="ddlBlock" id="ddlBlock" [(ngModel)]="formData.ddlBlock"
+                                      (change)="onBlockChange($event)" class="form-select">
+                                      <option value="0">Select</option>
+                                      <option *ngFor="let block of blocks" [value]="block.inT_BLOCK_ID">{{
+                                          block.vcH_BLOCK_NAME }}
+                                      </option>
+                                  </select>
+                              </div>
+                          </div>
+                          <div class="col-xl-4 col-md-6">
+                              <div class="mb-3">
+                                  <label for="ddlGp" class="form-label">Gram Panchayat</label>
+                                  <select name="ddlGp" id="ddlGp" [(ngModel)]="formData.ddlPanchayat"
+                                      (change)="onGpChange($event)" class="form-select">
+                                      <option value="0">Select</option>
+                                      <option *ngFor="let gp of gps" [value]="gp.inT_GP_ID">{{ gp.vcH_GP_NAME }}</option>
+                                  </select>
+                              </div>
+                          </div>
+  
+                          <div class="col-xl-4 col-md-6">
+                              <div class="mb-3">
+                                  <label for="ddlVillage" class="form-label">Village</label>
+                                  <select name="ddlVillage" id="ddlVillage" [(ngModel)]="formData.ddlVillage"
+                                      class="form-select">
+                                      <option value="0">Select</option>
+                                      <option *ngFor="let village of villages" [value]="village.inT_VILLAGE_ID">{{
+                                          village.vcH_VILLAGE_NAME }}</option>
+                                  </select>
+                              </div>
+                          </div>
+  
+                          <div class="col-xl-4 col-md-6">
+                              <div class="mb-3">
+                                  <label for="ddlward" class="form-label">Ward</label>
+                                  <select class="form-select" id="ddlward">
+                                      <option selected>Select</option>
+                                      <option value="1">Ara</option>
+                                      <option value="2">Begusarai</option>
+                                      <option value="3">Bhagalpur</option>
+                                  </select>
+                              </div>
+                          </div>
+  
+  
+                          <div class="col-xl-4 col-md-6">
+                              <div class="mb-3">
+                                  <label for="ddllocation" class="form-label">Near by Location</label>
+                                  <div class="input-group">
+                                      <input type="text" name="txtlandmark" rows="3" id="txtlandmark"
+                                      [(ngModel)]="formData.txtLandmark" class="form-control">
+                                      <label class="input-group-text" for="ddllocation">
+                                          <i class="bi bi-geo-alt"></i></label>
+                                  </div>
+                              </div>
+                          </div>
+  
+  
+                          <div class="col-lg-12 col-md-12">
+                              <div class="mb-3">
+                                  <label for="txtAddress" class="form-label">Address</label>
+                                  <textarea name="txtAddress" rows="3" id="txtAddress"
+                                      [(ngModel)]="formData.txtAddress" class="form-control"></textarea>
+                               
+                                      <p class="text-danger text-end  small mb-0">(Maximum <span class="fw-bold">200</span>
+                                          Characters)</p>
+                              </div>
+                          </div>
+                   
+                          
+                      </div>
+                  </div>
+                  
+                  <div class="row">
+                      <div class="col-xl-5">
+                          <div class="form-actions mt-lg-3">
+                              <button type="button" name="btnSubmit" class="btn btn-primary me-1"
+                                  (click)="onSubmit()">Submit</button>
+                              <button type="button" name="btnReset" class="btn btn-danger"
+                                  (click)="resetForm()">Reset</button>
+                          </div>
+                      </div>
+                  </div>
+                    
+              </div>
+          </div>
+      </div>
+  </div>
 </div>
 
 
 <!-- Verify Modal -->
 <div class="modal fade otp-modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog modal-md">
-    <div class="modal-content">
-      
-      <div class="modal-body text-center p-5">
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        <h3 class="mb-4">OTP Verification</h3>
-        <h5>Wait a while for OTP to receive
-          <small class="text-secondary d-block">Sent to your mobile number</small>
-        </h5>
-        <div class="mx-1">
-          <div class="row">
-            <div class="col">
-              <input type="number" class="form-control form-control-lg">
-            </div>
-            <div class="col">
-              <input type="number" class="form-control form-control-lg">
-            </div>
-            <div class="col">
-              <input type="number" class="form-control form-control-lg">
-            </div>
-            <div class="col">
-              <input type="number" class="form-control form-control-lg">
-            </div>
-            <div class="col">
-              <input type="number" class="form-control form-control-lg">
-            </div>
-            <div class="col">
-              <input type="number" class="form-control form-control-lg">
-            </div>
+aria-hidden="true">
+<div class="modal-dialog modal-md">
+  <div class="modal-content">
+    
+    <div class="modal-body text-center p-5">
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      <h3 class="mb-4">OTP Verification</h3>
+      <h5>Wait a while for OTP to receive
+        <small class="text-secondary d-block">Sent to your mobile number</small>
+      </h5>
+      <div class="mx-1">
+        <div class="row">
+          <div class="col">
+            <input type="number" class="form-control form-control-lg">
           </div>
-        </div>
-        <div class="my-4 d-flex justify-content-between text-secondary">Didn't receive OTP yet?
-          <div>
-            <span class="d-block">02:00 min</span>
-            <!-- <a href="#">Resend OTP</a> -->
+          <div class="col">
+            <input type="number" class="form-control form-control-lg">
           </div>
-        </div>
-        <div class="d-grid">
-          <button type="button" class="btn btn-primary">Verify OTP</button>
+          <div class="col">
+            <input type="number" class="form-control form-control-lg">
+          </div>
+          <div class="col">
+            <input type="number" class="form-control form-control-lg">
+          </div>
+          <div class="col">
+            <input type="number" class="form-control form-control-lg">
+          </div>
+          <div class="col">
+            <input type="number" class="form-control form-control-lg">
+          </div>
         </div>
       </div>
-     
+      <div class="my-4 d-flex justify-content-between text-secondary">Didn't receive OTP yet?
+        <div>
+          <span class="d-block">02:00 min</span>
+          <!-- <a href="#">Resend OTP</a> -->
+        </div>
+      </div>
+      <div class="d-grid">
+        <button type="button" class="btn btn-primary">Verify OTP</button>
+      </div>
     </div>
+   
   </div>
+</div>
 </div>
 
 <!-- Verify Modal -->
 <!-- <div class="modal fade otp-modal" id="mailmodal" tabindex="-1" aria-labelledby="mailmodalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-md">
-      <div class="modal-content">
-        <div class="modal-body text-center p-5">
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          <h3 class="mb-4">OTP Verification</h3>
-          <h5>Wait a while for OTP to receive
-            <small class="text-secondary d-block">Sent to your Email ID</small>
-          </h5>
-          <div class="mx-1">
-            <div class="row">
-              <div class="col" *ngFor="let input of otpInputs; let i = index">
-                <input type="number" class="form-control form-control-lg" maxlength="1" (input)="onOtpInputChange($event, i)" #otpInput>
-              </div>
-            </div>
-          </div>
-          <div class="my-4 d-flex justify-content-between text-secondary">Didn't receive OTP yet?
-            <div>
-              <span class="d-block">02:00 min</span>
-            </div>
-          </div>
-          <div class="d-grid">
-            <button type="button" class="btn btn-primary">Verify OTP</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div> -->
-  
-
-
-
- <div class="modal fade otp-modal" id="mailmodal" tabindex="-1" aria-labelledby="mailmodalLabel"
-  aria-hidden="true">
   <div class="modal-dialog modal-md">
     <div class="modal-content">
-      
       <div class="modal-body text-center p-5">
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         <h3 class="mb-4">OTP Verification</h3>
@@ -403,23 +369,8 @@
         </h5>
         <div class="mx-1">
           <div class="row">
-            <div class="col">
-              <input type="number" class="form-control form-control-lg">
-            </div>
-            <div class="col">
-              <input type="number" class="form-control form-control-lg">
-            </div>
-            <div class="col">
-              <input type="number" class="form-control form-control-lg">
-            </div>
-            <div class="col">
-              <input type="number" class="form-control form-control-lg">
-            </div>
-            <div class="col">
-              <input type="number" class="form-control form-control-lg">
-            </div>
-            <div class="col">
-              <input type="number" class="form-control form-control-lg">
+            <div class="col" *ngFor="let input of otpInputs; let i = index">
+              <input type="number" class="form-control form-control-lg" maxlength="1" (input)="onOtpInputChange($event, i)" #otpInput>
             </div>
           </div>
         </div>
@@ -432,7 +383,57 @@
           <button type="button" class="btn btn-primary">Verify OTP</button>
         </div>
       </div>
-     
     </div>
   </div>
+</div> -->
+
+
+
+
+<div class="modal fade otp-modal" id="mailmodal" tabindex="-1" aria-labelledby="mailmodalLabel"
+aria-hidden="true">
+<div class="modal-dialog modal-md">
+  <div class="modal-content">
+    
+    <div class="modal-body text-center p-5">
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      <h3 class="mb-4">OTP Verification</h3>
+      <h5>Wait a while for OTP to receive
+        <small class="text-secondary d-block">Sent to your Email ID</small>
+      </h5>
+      <div class="mx-1">
+        <div class="row">
+          <div class="col">
+            <input type="number" class="form-control form-control-lg">
+          </div>
+          <div class="col">
+            <input type="number" class="form-control form-control-lg">
+          </div>
+          <div class="col">
+            <input type="number" class="form-control form-control-lg">
+          </div>
+          <div class="col">
+            <input type="number" class="form-control form-control-lg">
+          </div>
+          <div class="col">
+            <input type="number" class="form-control form-control-lg">
+          </div>
+          <div class="col">
+            <input type="number" class="form-control form-control-lg">
+          </div>
+        </div>
+      </div>
+      <div class="my-4 d-flex justify-content-between text-secondary">Didn't receive OTP yet?
+        <div>
+          <span class="d-block">02:00 min</span>
+        </div>
+      </div>
+      <div class="d-grid">
+        <button type="button" class="btn btn-primary">Verify OTP</button>
+      </div>
+    </div>
+   
+  </div>
+</div>
 </div> 
+<!-- jhsdj -->
