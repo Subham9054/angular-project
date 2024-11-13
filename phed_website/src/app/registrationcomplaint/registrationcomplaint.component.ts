@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import Swal from 'sweetalert2';
 import { ChangeDetectorRef } from '@angular/core';
+declare var $:any;
 
 
 @Component({
@@ -57,6 +58,10 @@ export class RegistrationcomplaintComponent implements OnInit {
   ngOnInit() {
     this.getCategories();
     this.getDistricts();
+  }
+
+  doSomething() {
+    $('#verifyMobileModal').modal('hide')
   }
 
   onSelect(event: any) {
@@ -217,12 +222,11 @@ export class RegistrationcomplaintComponent implements OnInit {
   }
 
   openModal() {
-    this.isModalVisible = true;
+    $('#verifyMobileModal').modal('show')
   }
 
   closeModal() {
-    this.isModalVisible = false;
-    this.cdr.detectChanges();
+    $('#verifyMobileModal').modal('hide')
   }
 
   uploadFile(): Promise<string> {
