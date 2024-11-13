@@ -83,6 +83,7 @@ export class AuthService {
     return true;
   }
 
+  
   // Method to handle logout
   logout() {
     sessionStorage.clear();  // Clears all session data
