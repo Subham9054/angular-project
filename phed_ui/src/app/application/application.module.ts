@@ -47,6 +47,8 @@ import { ModewiseReportComponent } from './modewise-report/modewise-report.compo
 import { ComplaintregistrationViewComponent } from './complaintregistration-view/complaintregistration-view.component';
 import { ComplaintSubCategoryViewComponent } from './complaint-sub-category-view/complaint-sub-category-view.component';
 
+
+
 @NgModule({
   declarations: [
     ApplicationComponent,
@@ -97,7 +99,8 @@ import { ComplaintSubCategoryViewComponent } from './complaint-sub-category-view
     FormsModule,
     CKEditorModule,
     HighchartsChartModule,
-    NgxDropzoneModule
+    NgxDropzoneModule,
+ 
   ],
   exports: [ 
     ApplicationComponent,
