@@ -38,6 +38,7 @@ export class ComplaintregistrationComponent  {
     ddlRecvBy: 0,
     txtName: '',
     txtPhone: '',
+    txtEmail: '',
     txtAddress:'',
     txtDocument: '',
     ddlDistrict: '0',
@@ -47,6 +48,7 @@ export class ComplaintregistrationComponent  {
     ddlComplaintCategory: '0',
     ddlSubCategory: '0',
     txtDetailsE: '',
+    txtLandmark: '',
     ddlComplainttype:'0',
     ddllanguage:'1'
   };
@@ -236,6 +238,8 @@ export class ComplaintregistrationComponent  {
       INT_CATEGORY_ID: parseInt(this.formData.ddlComplaintCategory, 10),
       INT_SUB_CATEGORY_ID: parseInt(this.formData.ddlSubCategory, 10),
       NVCH_COMPLIANT_DETAILS: this.formData.txtDetailsE || '',
+      NVCH_LANDMARK: this.formData.txtLandmark || '',
+      VCH_EMAIL: this.formData.txtEmail || '',
       VCH_TOKENNO: this.generateToken(),
       NVCH_ADDRESS: this.formData.txtAddress || '' // Ensure this is set correctly
     };
@@ -268,6 +272,7 @@ export class ComplaintregistrationComponent  {
       ddlRecvBy: 0,
     txtName: '',
     txtPhone: '',
+    txtEmail: '',
     txtAddress:'',
     txtDocument: '',
     ddlDistrict: '0',
@@ -277,6 +282,7 @@ export class ComplaintregistrationComponent  {
     ddlComplaintCategory: '0',
     ddlSubCategory: '0',
     txtDetailsE: '',
+    txtLandmark: '',
     ddlComplainttype:'0'
     };
     this.fileToUpload = null;

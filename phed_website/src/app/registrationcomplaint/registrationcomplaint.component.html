@@ -107,21 +107,20 @@
               </div>
             </div> -->
 
-            <div class="col-xl-12">
-              <div class="form-group">
-                <label for="FileUpload1" class="form-label">
-                  Upload Document <span class="text-danger">*</span>
-                </label>
-                <div class="input-group">
-                  <!-- The file input element -->
-                  <input type="file" name="FileUpload1" id="FileUpload1" (change)="handleFileInput($event)"
-                    class="form-control" />
-                </div>
-                <small class="text-danger d-block text-end">
-                  Supported File (.pdf, .doc, .xls, .jpg, .png)
-                </small>
+            <div class="mb-3">
+              <label class="form-label" for="doc">Upload Document/Photo</label>
+              <div class="input-group custom-file-input">
+                  <input type="file" name="FileUpload1" id="FileUpload1"
+                      (change)="handleFileInput($event)" class="form-control custom-fileupload" />
+                  <label class="custom-input" [ngClass]="{'custom-input-black': fileName}" for="doc">
+                      {{ fileName || 'Upload' }}
+                  </label>
+                  <label class="input-group-text custom-browse" for="doc">Browse</label>
               </div>
-            </div>
+              <p class="mb-0 small text-danger text-end">
+                  Supported File (<span class="fw-bold">.pdf, .doc, .xls, .jpg, .png</span>)
+              </p>
+          </div>
             
             
           

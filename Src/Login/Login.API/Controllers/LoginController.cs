@@ -88,7 +88,7 @@ namespace Login.API.Controllers
         [AllowAnonymous]
         [HttpPost("Login")]
         public async Task<IActionResult> Login([FromBody] Users user)
-        {
+            {
             IActionResult response = Unauthorized();
 
             // Authenticate user and fetch the user details
