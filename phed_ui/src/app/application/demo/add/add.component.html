@@ -11,8 +11,8 @@
                             <span class="text-danger small"><b>(*)</b> Indicate mandatory </span>
                         </li>
                         <li class="fill-btn back-link"><a routerLink="/application/demo" title="Go to Previous"><i
-                            class="bi bi-arrow-left"></i> Back to View</a>
-                </li>
+                                    class="bi bi-arrow-left"></i> Back to View</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -24,36 +24,41 @@
             <div class="col-lg-12 col-xxl-10">
                 <div class="row">
                     <div class="col-lg-4">
-                        <div class="mb-2">
+                        <div class="mb-3">
                             <label class="form-label">Text Input</label>
                             <input class="form-control" type="text">
                         </div>
                     </div>
                     <div class="col-lg-4">
-                        <div class="mb-2">
+                        <div class="mb-3">
                             <label class="form-label"> Dropdown</label>
                             <select class="form-select">
                                 <option>Select</option>
                             </select>
                         </div>
                     </div>
+
                     <div class="col-lg-4">
                         <div class="mb-3">
-                            <label class="form-label" for="doc"> Document</label>
-                            <div class="input-group">
-                                <input type="file" class="form-control custom-fileupload" id="doc">
-                                <label class="custom-input" for="doc">Upload</label>
+                            <label class="form-label" for="doc">Upload Document/Photo</label>
+                            <div class="input-group custom-file-input">
+                                <input type="file" name="FileUpload1" id="FileUpload1"
+                                    (change)="handleFileInput($event)" class="form-control custom-fileupload" />
+                                <label class="custom-input" [ngClass]="{'custom-input-black': fileName}" for="doc">
+                                    {{ fileName || 'Upload' }}
+                                </label>
                                 <label class="input-group-text custom-browse" for="doc">Browse</label>
                             </div>
-
-                            <p class="text-end mb-0"><small class="text-danger">Max size <strong>10 MB</strong>
-                                    (.pdf)</small></p>
+                            <p class="mb-0 small text-danger text-end">
+                                Supported File (<span class="fw-bold">.pdf, .doc, .xls, .jpg, .png</span>)
+                            </p>
                         </div>
                     </div>
+
                 </div>
                 <div class="row">
                     <div class="col-lg-4">
-                        <div class="mb-2">
+                        <div class="mb-3">
                             <label class="form-label">Date Input</label>
                             <div class="input-group">
                                 <input type="text" class="form-control datepicker" id="datepicker">
@@ -63,7 +68,7 @@
                         </div>
                     </div>
                     <div class="col-lg-4">
-                        <div class="mb-2">
+                        <div class="mb-3">
                             <label class="form-label">Time Input</label>
                             <div class="input-group">
                                 <input type="text" class="form-control timepicker" id="inputTime">
@@ -73,7 +78,7 @@
                     </div>
 
                     <div class="col-lg-4">
-                        <div class="mb-2">
+                        <div class="mb-3">
                             <label class="form-label">Date Time Input</label>
                             <div class="input-group">
                                 <input type="text" class="form-control datetimepicker" id="inputDateTime">
@@ -85,13 +90,25 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-8">
-                        <div class="mb-2">
+                        <div class="mb-3">
                             <label class="form-label">Text Area</label>
                             <textarea class="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
                             <p class="text-end mb-0"><small class="text-danger">Maximum <strong>500</strong>
                                     characters</small></p>
                         </div>
                     </div>
+                    <!-- <div class="col-lg-4">
+                        <div class="mb-3">
+                            <label for="complaintcata" class="form-label">
+                              Complaint Category <span class="text-danger">*</span>
+                            </label>
+                          
+                           
+                            <ng-select [items]="options" bindLabel="name" bindValue="id" placeholder="Select an option">
+                            </ng-select>
+                          
+                          </div>
+                    </div> -->
                 </div>
                 <div class="row my-3">
                     <div class="col-lg-4">

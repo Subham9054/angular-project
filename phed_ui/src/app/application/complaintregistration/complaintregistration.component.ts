@@ -10,6 +10,9 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ComplaintregistrationComponent  {
 
+
+  
+
   files: File[] = [];
 
 	onSelect(event:any) {
