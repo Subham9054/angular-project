@@ -5,6 +5,7 @@ import { AuthService } from '../auth.service';
 import Swal from 'sweetalert2';
 import { ChangeDetectorRef } from '@angular/core';
 
+
 @Component({
   selector: 'app-registrationcomplaint',
   templateUrl: './registrationcomplaint.component.html',
@@ -12,6 +13,7 @@ import { ChangeDetectorRef } from '@angular/core';
 })
 export class RegistrationcomplaintComponent implements OnInit {
 
+  fileName: string = '';
   otpValues: string[] = ['', '', '', '', '', '']; // OTP input values
   isModalVisible = true; // Initially set the modal to visible
   files: File[] = [];
@@ -65,14 +67,20 @@ export class RegistrationcomplaintComponent implements OnInit {
     this.files.splice(this.files.indexOf(event), 1);
   }
 
-  handleFileInput(event: Event) {
-    const input = event.target as HTMLInputElement;
-    if (input.files && input.files.length > 0) {
-      this.fileToUpload = input.files[0];
-    } else {
-      this.fileToUpload = null;
+  handleFileInput(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      this.fileName = file.name;
     }
   }
+  // handleFileInput(event: Event) {
+  //   const input = event.target as HTMLInputElement;
+  //   if (input.files && input.files.length > 0) {
+  //     this.fileToUpload = input.files[0];
+  //   } else {
+  //     this.fileToUpload = null;
+  //   }
+  // }
 
   getCategories() {
     this.authService.getCategories().subscribe(
