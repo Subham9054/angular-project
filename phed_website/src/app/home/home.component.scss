@@ -1368,7 +1368,6 @@
 }
 
 @media screen and (min-width: 1400px) {
-
   .about__container {
     position: relative;
     .about__img {
@@ -1441,14 +1440,17 @@
     height: 650px;
     overflow: hidden;
   }
+  .register-btn {
+    margin-top: 4rem;
+  }
 }
 
 .status-info {
   width: 80px;
   height: 80px;
 }
-@media screen and (min-width:1440px) {
-  .register-btn {
-    margin-top: 4rem;
+@media screen and (min-width: 1600px) {
+  .gallery-img {
+    height: 13rem;
   }
 }
