@@ -16,7 +16,7 @@ export class AuthService {
   
 
   private apiUrl = 'https://localhost:7199/Login'; // Your API URL for login
-  private registrationApiUrl = 'http://172.27.32.0:8085/api/ComplaintsRegistration/DetailcomplaintRegistration';
+  private registrationApiUrl = 'https://localhost:7024/Api/MANAGE_COMPLAINTDETAILS_CONFIG/DetailcomplaintRegistration';
   private complaintApiUrl = 'https://localhost:7010/Api/MANAGE_CATEGORYMASTER/ComplaintCategory';
   private getComplaintApiUrl = 'https://localhost:7010/Api/MANAGE_CATEGORYMASTER/GetallComplaint';
   private updateComplaintApiUrl = 'https://localhost:7010/Api/MANAGE_CATEGORYMASTER/UpdateComplaint';
@@ -37,6 +37,7 @@ export class AuthService {
   private checkApiUrl = 'https://localhost:7237/Api/MANAGE_ESCALATION_CONFIGDETAILS/check';
   private viewEscalationurl='https://localhost:7237/Api/MANAGE_ESCALATION_CONFIGDETAILS/viewescalation';
   private viewEscalationurleye= 'https://localhost:7237/Api/MANAGE_ESCALATION_CONFIGDETAILS/viewescalationeye';
+  private viewupdatepenurl='https://localhost:7237/Api/MANAGE_ESCALATION_CONFIGDETAILS/viewupdatepen';
   
   //For Content Management URLs
   private getParentMenusUrl = 'http://localhost:5097/api/CMS/GetParentMenus';
@@ -232,6 +233,11 @@ export class AuthService {
     // Make HTTP request with proper API URL and query parameters
     return this.http.get<any>(`${this.viewEscalationurleye}?categoryId=${INT_CATEGORY_ID}&subcategoryId=${INT_SUB_CATEGORY_ID}`).pipe(
         catchError(this.handleError)
+    );
+  }
+  UpdateEscalation(INT_CATEGORY_ID: string, INT_SUB_CATEGORY_ID: string, INT_ESCALATION_LEVELID: string): Observable<any> {
+    return this.http.get<any>(`${this.viewupdatepenurl}?categoryId=${INT_CATEGORY_ID}&subcategoryId=${INT_SUB_CATEGORY_ID}&esclid=${INT_ESCALATION_LEVELID}`).pipe(
+      catchError(this.handleError)
     );
   }
 
