@@ -287,14 +287,21 @@ a {
 }
 
 .filter-dropdown {
+  
   .filter-dropdown-menu {
     padding: 1.2rem;
+    // padding-bottom: 0.5rem;
     min-width: 40rem;
-    position: absolute;
-  }
-
-  .form-label {
-    font-size: 0.9rem;
+    position: relative;
+    .drop-icon{
+        position: absolute;
+        right: 1rem;
+        top: 0.7rem;
+        font-size: 1rem;
+    }
+    .form-label {
+      font-size: 0.9rem;
+    }
   }
 }
 
@@ -996,8 +1003,7 @@ tr.unpublish {
   }
 }
 
-// Brows file
-
+// Brows file::Start
 .custom-fileupload {
   opacity: 0;
   z-index: 11;
@@ -1028,6 +1034,11 @@ tr.unpublish {
     }
   }
 }
+.custom-input-black {
+  color: black;
+}
+// Brows file::Ends
+
 
 .img-banner {
   width: 6rem;
@@ -1312,111 +1323,117 @@ tr.unpublish {
 
 // progress status
 
-.StepProgress {
-  position: relative;
-  padding-left: 0;
-  list-style: none;
-
-  &::before {
-    display: inline-block;
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -24px;
-    width: 10px;
-    height: 82%;
-    border-left: 2px solid #CCC;
-  }
-}
-
-.stepProgress-item {
-  font-size: .95rem;
-  position: relative;
-  counter-increment: list;
-  background-color: #fff;
-  border: 1px solid #CCC;
-  border-radius: 6px;
-  padding: 1rem 1.2rem;
-  margin: 0 0 1rem 0;
-
-  ul {
+.progress-wrap {
+  .StepProgress {
+    position: relative;
+    padding-left: 0;
     list-style: none;
-    padding: 0;
-    margin: 0;
 
-    li {
-      padding: .2rem 0;
+    &::before {
+      display: inline-block;
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -24px;
+      width: 10px;
+      height: 62%;
+      border-left: 2px solid #CCC;
+    }
 
-      a {
-        text-decoration: underline;
-        font-weight: 600;
+    .stepProgress-item {
+      font-size: 0.95rem;
+      position: relative;
+      counter-increment: list;
+      background-color: #fff;
+      border: 1px solid #CCC;
+      border-radius: 6px;
+      padding: 1rem 1.2rem;
+      margin: 0 0 1rem 0;
 
-        &:hover {
-          text-decoration: none;
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+          padding: 0.2rem 0;
+
+          a {
+            text-decoration: underline;
+            font-weight: 600;
+
+            &:hover {
+              text-decoration: none;
+            }
+          }
         }
+      }
+
+      &:not(:last-child) {
+        padding-bottom: 20px;
+      }
+
+      &::before {
+        display: inline-block;
+        content: '';
+        position: absolute;
+        left: -25px;
+        bottom: -20px;
+        height: 100%;
+        width: 10px;
+      }
+
+      &::after {
+        content: '';
+        display: inline-block;
+        position: absolute;
+        top: 0;
+        left: -37px;
+        width: 25px;
+        height: 25px;
+        border: 2px solid #CCC;
+        border-radius: 50%;
+        background-color: #FFF;
+      }
+
+      &.is-done {
+        &::before {
+          border-left: 2px solid green;
+        }
+
+        &::after {
+          content: "✔";
+          font-size: 15px;
+          color: #FFF;
+          text-align: center;
+          border: 2px solid green;
+          background-color: green;
+        }
+      }
+
+      &.current {
+        &::before {
+          border-left: 2px solid green;
+        }
+
+        &::after {
+          content: counter(list);
+          padding-top: 1px;
+          top: -4px;
+          font-size: 14px;
+          text-align: center;
+          color: green;
+          border: 2px solid green;
+          background-color: white;
+        }
+      }
+      &:last-child::before {
+        display: none;
       }
     }
   }
-
-  &:not(:last-child) {
-    padding-bottom: 20px;
-  }
-
-  &::before {
-    display: inline-block;
-    content: '';
-    position: absolute;
-    left: -25px;
-    bottom: -20px;
-    height: 100%;
-    width: 10px;
-  }
-
-  &::after {
-    content: '';
-    display: inline-block;
-    position: absolute;
-    top: 0;
-    left: -37px;
-    width: 25px;
-    height: 25px;
-    border: 2px solid #CCC;
-    border-radius: 50%;
-    background-color: #FFF;
-  }
-
-  &.is-done {
-    &::before {
-      border-left: 2px solid green;
-    }
-
-    &::after {
-      content: "✔";
-      font-size: 15px;
-      color: #FFF;
-      text-align: center;
-      border: 2px solid green;
-      background-color: green;
-    }
-  }
-
-  &.current {
-    &::before {
-      border-left: 2px solid green;
-    }
-
-    &::after {
-      content: counter(list);
-      padding-top: 1px;
-      top: -4px;
-      font-size: 14px;
-      text-align: center;
-      color: green;
-      border: 2px solid green;
-      background-color: white;
-    }
-  }
 }
+
 // progress status end
 
   // .attchfile{
