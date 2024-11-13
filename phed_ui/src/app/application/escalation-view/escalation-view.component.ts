@@ -10,7 +10,11 @@ import Swal from 'sweetalert2';
   styleUrls: ['./escalation-view.component.scss']
 })
 export class EscalationViewComponent {
+  isPanelOpen = false; // Start with the panel open
 
+  togglePanel() {
+    this.isPanelOpen = !this.isPanelOpen; // Toggle the panel state
+  }
   escalations: any[] = [];
   categories: any[] = [];
   subcategories: any[] = [];
@@ -124,6 +128,22 @@ export class EscalationViewComponent {
         console.error('Error fetching escalations:', error);
       }
     );
+  }
+  Updateview(categoryId: string, subCategoryId: string,escalationlevelId:string){
+    // alert(categoryId);
+    // alert(subCategoryId);
+    // alert(escalationlevelId);
+    const catid=categoryId;
+    const subcatid=subCategoryId;
+    const esclid=escalationlevelId;
+    this.router.navigate(['/application/escalation'], {
+      queryParams: {
+        catid: categoryId,
+        subcatid: subCategoryId,
+        esclid: escalationlevelId
+      }
+    });
+   
 }
 
 }

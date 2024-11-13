@@ -9,6 +9,22 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./complaintregistration.component.scss']
 })
 export class ComplaintregistrationComponent  {
+
+
+  
+
+  files: File[] = [];
+
+	onSelect(event:any) {
+		console.log(event);
+		this.files.push(...event.addedFiles);
+	}
+
+	onRemove(event:any) {
+		console.log(event);
+		this.files.splice(this.files.indexOf(event), 1);
+	}
+
   currentDate: string = '';
   fileToUpload: File | null = null;
   documentFolderPath = 'http://localhost:44303/assets/ComplaintDocuments/';
@@ -192,8 +208,8 @@ export class ComplaintregistrationComponent  {
     return new Promise((resolve, reject) => {
       const fileUploadData = new FormData();
       fileUploadData.append('file', this.fileToUpload!, this.fileToUpload!.name);
-      
-      this.http.post<{ message: string; fileName: string }>('https://localhost:44303/api/ComplaintsRegistration/UploadFile', fileUploadData)
+  
+      this.http.post<{ message: string; fileName: string }>('https://localhost:7225/api/Dropdown/UploadFile', fileUploadData)
         .subscribe(
           (response) => {
             console.log('File uploaded successfully', response);
@@ -206,6 +222,7 @@ export class ComplaintregistrationComponent  {
         );
     });
   }
+  
   
 
   submitRegistrationData(fileName: string) {

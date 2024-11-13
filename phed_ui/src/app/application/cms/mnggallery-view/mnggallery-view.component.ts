@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./mnggallery-view.component.scss']
 })
 export class MnggalleryViewComponent {
+  isPanelOpen = false; // Start with the panel open
 
+  togglePanel() {
+    this.isPanelOpen = !this.isPanelOpen; // Toggle the panel state
+  }
 }

@@ -14,6 +14,9 @@ import { GalleryComponent } from './gallery/gallery.component';
 import { DetaileventComponent } from './detailevent/detailevent.component';
 import { GallerydetailsComponent } from './gallerydetails/gallerydetails.component';
 import { SitemapComponent } from './sitemap/sitemap.component';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { GrievancestatusComponent } from './grievancestatus/grievancestatus.component';
+
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home'},
@@ -31,6 +34,8 @@ const routes: Routes = [
   { path: 'event-details', component: DetaileventComponent },
   { path: 'gallery-details', component: GallerydetailsComponent },
   { path: 'site-map', component: SitemapComponent },
+  { path: 'grievance-status', component: GrievancestatusComponent },
+  { path: '**', component: PagenotfoundComponent }
 ];
 
 @NgModule({

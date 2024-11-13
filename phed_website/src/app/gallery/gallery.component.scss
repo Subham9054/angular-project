@@ -1,7 +1,3 @@
-@import "../../../node_modules/bootstrap/scss/mixins";
-@import "../../../node_modules/bootstrap/scss/functions";
-@import "../../../node_modules/bootstrap/scss/variables";
-
 .card-group{
     display: grid;
     grid-gap: 3rem;
@@ -58,13 +54,13 @@
       }
     }
   }
-  @include media-breakpoint-up(md) {
+  @media screen and (min-width: 768px)  {
     .card-group{
       grid-gap: 3rem;
       grid-template-columns: repeat(2, 1fr);
   }
   }
-  @include media-breakpoint-up(lg) {
+  @media screen and (min-width: 992px)  {
     .card-group{
       grid-gap: 3rem;
       grid-template-columns: repeat(3, 1fr);

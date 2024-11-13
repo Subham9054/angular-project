@@ -8,6 +8,15 @@ declare let $: any;
 })
 export class AddComponent {
   constructor(private router: Router ) { }
+
+// Select upload
+// options = [
+//   { id: 1, name: 'Option 1' },
+//   { id: 2, name: 'Option 2' },
+//   { id: 3, name: 'Option 3' }
+// ];
+
+
   ngOnInit(): void {
 
     $('.datepicker').datetimepicker({
@@ -24,5 +33,14 @@ export class AddComponent {
     });
 
   }
+  // file upload
+  fileName: string = '';
 
+  handleFileInput(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      this.fileName = file.name;
+    }
+  }
+  
 }

@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./complaint-sub-category.component.scss']
 })
 export class ComplaintSubCategoryComponent {
-
+ 
 }

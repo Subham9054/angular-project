@@ -2,6 +2,7 @@
 .theme-light {
     --link-color: #{$blue};
     --border-color: #{$grey-600};
+    --input-border-color: #{$grey-600};
     --border-primary-color: #{$blue};
     --primary-color: #{$blue};
     --bs-body-bg: #{$white};
@@ -50,7 +51,7 @@
     --event-hover:#{$blue-900};
     --login-btn-hover:#{$blue-600};
     --btn-styleone:#{$blue-light-100};
-    --search-bg:#{$grey-light-400};
+    --search-bg:#{$grey-600};
     --page-title:#{$white};
     --breadcrumb-text:#{$grey-light-400};
     --logo-small:#{$grey-light-500};
@@ -63,10 +64,12 @@
     --input-color:#{$grey-light-900};
 
     --faq-number:#{$light-white};
+    --custom-input-bg:#{$grey-400};
 }
 .theme-dark {   
     --link-color: #{$white};
     --border-color: #{$grey-300};
+    --input-border-color: #{$grey-300};
     --border-primary-color: #{$white};
     --primary-color: #{$warning};
     --bs-body-bg: #{$grey-700};
@@ -88,7 +91,7 @@
     --footer-text:#{$white};
     --socialborder:#{$grey-300};
     --faq-bg:#{$grey-800};
-    --faq-active:#{$blue-200};
+    --faq-active:#{$yellow};
     --faq-accordian:#{$white};
     --event-hover:#{$yellow};
     --eventsmall-text:#{$grey-500};
@@ -129,5 +132,5 @@
     --input-color:#{$grey-300};
 
     --faq-number:#{$light-white-100};
- 
+    --custom-input-bg:#{$grey-light-100};
 }
