@@ -13,6 +13,26 @@ export class ViewComponent {
   togglePanel() {
     this.isPanelOpen = !this.isPanelOpen; // Toggle the panel state
   }
+
+  // Filter 
+ // Flag to control the dropdown's visibility
+ isDropdownOpen = false;
+
+ // This method opens the dropdown
+ openDropdown() {
+   this.isDropdownOpen = true;
+ }
+
+ // This method closes the dropdown
+ closeDropdown() {
+   this.isDropdownOpen = false;
+ }
+
+  resetFilters() {
+    // Reset form fields logic if needed
+  }
+
+
   ngOnInit(): void {
     $('.datepicker').datetimepicker({
       format: 'DD-MMM-YYYY',
