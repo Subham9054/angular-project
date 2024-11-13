@@ -31,7 +31,7 @@ export class AppComponent {
     if (currentScroll > 0 && this.paddingTop !== '0') {
       this.paddingTop = '0'; // Set padding to 0 when scrolling down
     } else if (currentScroll === 0 && this.paddingTop !== '8.5rem') {
-      this.paddingTop = '7rem'; // Reset padding when at the top
+      this.paddingTop = '6.5rem'; // Reset padding when at the top
     }
 
     this.previousScroll = currentScroll; // Update previous scroll position
