@@ -37,6 +37,22 @@ export class AuthService {
   private checkApiUrl = 'https://localhost:7237/Api/MANAGE_ESCALATION_CONFIGDETAILS/check';
   private viewEscalationurl='https://localhost:7237/Api/MANAGE_ESCALATION_CONFIGDETAILS/viewescalation';
   private viewEscalationurleye= 'https://localhost:7237/Api/MANAGE_ESCALATION_CONFIGDETAILS/viewescalationeye';
+  
+  //For Content Management URLs
+  private getParentMenusUrl = 'http://localhost:5097/api/CMS/GetParentMenus';
+  private createOrUpdatePageUrl = 'http://localhost:5097/api/CMS/CreateOrUpdatePageLink';
+  private getAllPageLinksUrl = 'http://localhost:5097/api/CMS/GetPageLinks';
+  private getPageLinkByIdUrl = 'http://localhost:5097/api/CMS/GetPageLinkById';
+  private deletePageLinkUrl = 'http://localhost:5097/api/CMS/DeletePageLink';
+  private getMenuSubmenuUrl = 'http://localhost:5097/api/CMS/GetMenuSubmenu';
+
+  
+  private createOrUpdateBannerUrl = 'http://localhost:5097/api/CMS/CreateOrUpdateBanner';
+  private getAllBannersUrl = 'http://localhost:5097/api/CMS/GetBanners';
+  private getBannerByIdUrl = 'http://localhost:5097/api/CMS/GetBannerById';
+  private getBannerByNameUrl = 'http://localhost:5097/api/CMS/GetBannerByName';
+  private deleteBannerUrl = 'http://localhost:5097/api/CMS/DeleteBanner';
+  
   constructor(private http: HttpClient, private router: Router) { }
  
   // Method for user login
@@ -218,6 +234,85 @@ export class AuthService {
         catchError(this.handleError)
     );
   }
+
+
+  //******.....Methods For Content Managent Dynamic Work by Debasis Das.....******
+  GetParentMenus(): Observable<any> {
+    return this.http.get(this.getParentMenusUrl).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  // Method to send form data to the updated URL
+  CreateOrUpdatePageLink(formData: FormData, pageId?: number): Observable<any> {
+    const headers = new HttpHeaders();
+    // Construct the URL based on the presence of pageId
+    const url = pageId ? `${this.createOrUpdatePageUrl}` : this.createOrUpdatePageUrl;
+    // Use POST for both creating and updating
+    return this.http.post(url, formData, { headers }).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  DeletePageLink(pageId: number): Observable<any> {
+    const url = `${this.deletePageLinkUrl}?pageId=${pageId}`;
+    return this.http.delete(url).pipe(
+        catchError(this.handleError)
+    );
+  }
+
+  GetPageLinks(): Observable<any> {
+    return this.http.get(this.getAllPageLinksUrl).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  GetPageLinkById(id: number): Observable<any> {
+    return this.http.get(`${this.getPageLinkByIdUrl}?pageId=${id}`)
+      .pipe(catchError(this.handleError)
+    );
+  }
+
+  GetMenuSubmenu(): Observable<any> {
+    return this.http.get(this.getMenuSubmenuUrl).pipe(
+      catchError(this.handleError)
+    );
+  }  
+
+  CreateOrUpdateBanner(formData: FormData, bannerId?: number): Observable<any> {
+    const headers = new HttpHeaders();
+    const url = bannerId ? `${this.createOrUpdateBannerUrl}?bannerId=${bannerId}` : this.createOrUpdateBannerUrl;
+    // Use POST for both creating and updating
+    return this.http.post(url, formData, { headers }).pipe(
+      catchError(this.handleError)
+    );
+  }  
+
+  GetBanners(): Observable<any> {
+    return this.http.get(this.getAllBannersUrl).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  GetBannerById(id: number): Observable<any> {
+    return this.http.get(`${this.getBannerByIdUrl}?bannerId=${id}`)
+      .pipe(catchError(this.handleError)
+    );
+  }
+
+  GetBannerByName(name: string): Observable<any> {
+    return this.http.get(`${this.getBannerByNameUrl}?bannerName=${name}`)
+      .pipe(catchError(this.handleError)
+    );
+  }
+
+  DeleteBanner(id: number): Observable<any> {
+    const url = `${this.deleteBannerUrl}?bannerId=${id}`;
+    return this.http.delete(url).pipe(
+        catchError(this.handleError)
+    );
+  }
+
   // Error handling logic
   private handleError(error: any) {
     console.error('An error occurred:', error);

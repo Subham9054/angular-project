@@ -30,90 +30,102 @@
 
     <div class="content-box content-area">
         <div class="row">
-            <div class="col-xxl-10 col-lg-12">
-
-                <div class="row">
-                    <div class="col-lg-4 col-md-6">
-                        <div class="mb-3">
-                            <label class="form-label" for="manutype">Menu Type</label>
-                            <select class="form-select" id="manutype">
-                                <option selected>Select</option>
-                                <option value="1">Main Menu</option>
-                                <option value="2">Footer Menu</option>
-                                <option value="3">Footer Bottom Menu</option>
-                            </select>
-                        </div>
-                    </div>
-           
-                    <div class="col-lg-4 col-md-6">
-                        <div class="mb-3">
-                            <label class="form-label" for="linktype">Link Type</label>
-                            <select class="form-select" id="linktype" [(ngModel)]="selectedLinkType" (change)="onLinkTypeChange()">
-                                <option selected value="">Select</option>
-                                <option value="1">Global Link</option>
-                                <option value="2">Primary Link</option>
-                                <option value="2">Secondary Link</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6" *ngIf="showParentMenu">
-                        <div class="mb-3">
-                            <label class="form-label" for="parentmanu">Parent Menu</label>
-                            <select class="form-select" id="parentmanu">
-                                <option selected>Select</option>
-                                <option value="1">FAQ</option>
-                                <option value="2">Feedback</option>
-                                <option value="3">Contact</option>
-                            </select>
-                        </div>
-                    </div>
+            <!-- Page Name English -->
+            <div class="col-xxl-3 col-lg-4 col-sm-6">
+                <div class="mb-3">
+                <label for="pageNameEng" class="form-label">Page Name English</label>
+                <input type="text" id="pageNameEng" class="form-control" [(ngModel)]="pageNameEng" required>
                 </div>
-
-                <div class="row">
-                    <div class="col-lg-4 col-md-6">
-                        <div class="mb-3">
-                            <label class="form-label" for="menuen">Menu Name</label>
-                            <input type="text" class="form-control" id="menuen">
-                        </div>
-                    </div>
-                   
-                    <div class="col-lg-4 col-md-6">
-                        <div class="mb-3">
-                            <label class="form-label" for="menuhn">Menu Name in Hindi</label>
-                            <input type="text" class="form-control" id="menuhn">
-                        </div>
-                    </div>
+            </div>          
+  
+            <!-- Page Name Hindi -->
+            <div class="col-xxl-3 col-lg-4 col-sm-6">
+                <div class="mb-3">
+                <label for="pageNameHin" class="form-label">Page Name Hindi</label>
+                <input type="text" id="pageNameHin" class="form-control" [(ngModel)]="pageNameHin" required>
                 </div>
-
-                <div class="row">
-                    <div class="col-lg-4 col-md-6">
-                        <div class="mb-3">
-                            <label class="form-label" for="menulink">Menu Link</label>
-                            <input type="text" class="form-control" id="menulink">
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6">
-                        <div class="mb-3">
-                            <label class="form-label" for="menuserila">Menu Serial</label>
-                            <input type="text" class="form-control" id="menuserila">
-                        </div>
-                    </div>
+            </div>
+  
+            <!-- Is Sub Menu -->
+            <div class="col-xxl-3 col-lg-4 col-sm-6">
+                <div class="mb-3">
+                <label for="txtRegdDt" class="form-label d-block">Is Sub Menu</label>
+                <div class="form-check form-check-inline mt-2">
+                    <input class="form-check-input" type="radio" name="isSubMenuOptions" id="inlineRadioYes"
+                    [checked]="isSubMenu === true"
+                    (click)="toggleSubMenu(true)">
+                    <label class="form-check-label" for="inlineRadioYes">Yes</label>
                 </div>
-
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="d-flex gap-2 mt-lg-3">
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                            <button type="reset" class="btn btn-danger">Reset</button>
-                        </div>
-                    </div>
+                <div class="form-check form-check-inline mt-2">
+                    <input class="form-check-input" type="radio" name="isSubMenuOptions" id="inlineRadioNo"
+                    [checked]="isSubMenu === false"
+                    (click)="toggleSubMenu(false)">
+                    <label class="form-check-label" for="inlineRadioNo">No</label>
                 </div>
-
+                </div>
+            </div>
+  
+            <!-- Parent Menu (shown only if isSubMenu is true) -->
+            <div class="col-xxl-3 col-lg-4 col-sm-6" *ngIf="isSubMenu">
+                <div class="mb-3">
+                <label for="parentMenu" class="form-label">Parent Menu Name</label>
+                <select class="form-select" [(ngModel)]="selectedParentMenu" (change)="onParentMenuChange($event)">
+                    <option [ngValue]="0" disabled>Select Parent Menu</option>
+                    <option *ngFor="let menu of parentMenuNames" [ngValue]="menu.id">{{menu.name}}</option>
+                </select>                        
+                </div>
+            </div>
+  
+            <!-- Position (shown only if isSubMenu is true) -->
+            <div class="col-xxl-3 col-lg-4 col-sm-6" *ngIf="isSubMenu">
+                <div class="mb-3">
+                <label for="position" class="form-label">Position</label>
+                <input type="number" id="position" class="form-control" [(ngModel)]="position" required>
+                </div>
+            </div>
+  
+            <!-- Is External -->
+            <div class="col-xxl-3 col-lg-4 col-sm-6">
+                <div class="mb-3">
+                <label for="txtRegdDt" class="form-label d-block">Is External</label>
+                <div class="form-check form-check-inline mt-2">
+                    <input class="form-check-input" type="radio" name="isExternalOption" id="isExternalYes" [(ngModel)]="isExternalValue" [value]="true">
+                    <label class="form-check-label" for="isExternalYes">Yes</label>
+                </div>
+                <div class="form-check form-check-inline mt-2">
+                    <input class="form-check-input" type="radio" name="isExternalOption" id="isExternalNo" [(ngModel)]="isExternalValue" [value]="false" checked>
+                    <label class="form-check-label" for="isExternalNo">No</label>
+                </div>
+                </div>
+            </div>
+  
+            <!-- URL -->
+            <div class="col-xxl-3 col-lg-4 col-sm-6">
+                <div class="mb-3">
+                <label for="url" class="form-label">URL</label>
+                <input type="url" id="url" class="form-control" [(ngModel)]="url" required>
+                </div>
+            </div>
+  
+            <!-- Icon Image (File Upload) -->
+            <div class="col-xxl-3 col-lg-4 col-sm-6">
+                <div class="mb-3">
+                    <label for="icon" class="form-label">Icon Image</label>
+                    <input #fileInput type="file" id="icon" class="form-control" (change)="onFileSelected($event)" accept="image/png, image/jpeg">
+                </div>
+                <!-- Image Preview -->
+                <div *ngIf="imagePreview || existingIconUrl">
+                    <img [src]="imagePreview || existingIconUrl" alt="Image preview" class="img-fluid" style="max-width: 50px; max-height: 50px;"/>
+                </div>
+            </div>            
+  
+            <!-- Submit and Reset Buttons -->
+            <div class="col-xxl-3 col-lg-4 col-sm-6">
+                <div class="mb-3">
+                <button type="button" class="btn btn-success me-2" [ngClass]="isEditing ? 'btn-info' : 'btn-success'" (click)="submitForm()">{{ isEditing ? 'Update' : 'Submit' }}</button>
+                <button type="button" class="btn btn-danger" (click)="resetForm()">Reset</button>
+                </div>
             </div>
         </div>
     </div>
 </div>
-
-
