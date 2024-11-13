@@ -49,6 +49,7 @@ namespace GMS.API
             }
         }
 
+
         [HttpPost("CreateMANAGE_COMPLAINTDETAILS_CONFIG")]
         public IActionResult MANAGE_COMPLAINTDETAILS_CONFIG(MANAGE_COMPLAINTDETAILS_CONFIG_Model TBL)
         {

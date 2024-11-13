@@ -257,20 +257,29 @@ export class RegistrationcomplaintComponent implements OnInit {
 
     this.authService.submitRegistration(registrationData).subscribe(
       (response) => {
+        console.log(response);
         Swal.fire({
           title: 'Success!',
           text: 'Complaint submitted successfully',
           icon: 'success',
-          confirmButtonText: 'OK' // Custom text for the OK button
+          confirmButtonText: 'OK'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.resetForm();
+            // Optional: navigate to a specific page or refresh specific parts instead of reloading
+          }
         });
-        
-        this.resetForm();
-        window.location.reload();
       },
       (error) => {
-        Swal.fire('Error', 'Failed to submit registration data. Please try again.', 'error');
+        Swal.fire({
+          title: 'Error',
+          text: 'Failed to submit registration data. Please try again.',
+          icon: 'error',
+          confirmButtonText: 'OK'
+        });
       }
     );
+    
   }
 
   generateToken(): string {
