@@ -45,6 +45,7 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
 import { ComplaintSubCategoryComponent } from './complaint-sub-category/complaint-sub-category.component';
 import { ModewiseReportComponent } from './modewise-report/modewise-report.component';
 import { ComplaintregistrationViewComponent } from './complaintregistration-view/complaintregistration-view.component';
+import { ComplaintSubCategoryViewComponent } from './complaint-sub-category-view/complaint-sub-category-view.component';
 
 @NgModule({
   declarations: [
@@ -87,7 +88,8 @@ import { ComplaintregistrationViewComponent } from './complaintregistration-view
     MinisterProfileViewComponent,
     ComplaintSubCategoryComponent,
     ModewiseReportComponent,
-    ComplaintregistrationViewComponent
+    ComplaintregistrationViewComponent,
+    ComplaintSubCategoryViewComponent
   ],
   imports: [
     CommonModule,
