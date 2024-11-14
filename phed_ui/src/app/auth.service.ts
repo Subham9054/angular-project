@@ -130,14 +130,14 @@ export class AuthService {
     );
   }
 
-  getGps(distId: number, blockId: number): Observable<any> {
-    return this.http.get<any[]>(`${this.gpurl}?distid=${distId}&blockid=${blockId}`).pipe(
+  getGps( blockId: number): Observable<any> {
+    return this.http.get<any[]>(`${this.gpurl}?blockid=${blockId}`).pipe(
       catchError(this.handleError)
     );
   }
 
-  getVillages(distId: number, blockId: number, gpId: number): Observable<any> {
-    return this.http.get<any>(`${this.villageurl}?distid=${distId}&blockid=${blockId}&gpid=${gpId}`).pipe(
+  getVillages( gpId: number): Observable<any> {
+    return this.http.get<any>(`${this.villageurl}?gpid=${gpId}`).pipe(
       catchError(this.handleError)
     );
   }

@@ -153,13 +153,14 @@ export class ComplaintregistrationdeleteComponent {
     }
   }
 
-  onBlockChange(event: any): void {
-    const blockId = parseInt(event.target.value, 10);
-    const distId = parseInt(this.formData.ddlDistrict, 10);
-    if (!isNaN(distId) && !isNaN(blockId)) {
-      this.authService.getGps(distId, blockId).subscribe(
+  onBlockChange(event: any) {
+    debugger;
+    const blockId = event.inT_BLOCK_ID
+    if (!isNaN(blockId)) {
+      this.authService.getGps(blockId).subscribe(
         response => {
           this.gps = response;
+          console.log(this.gps);
         },
         error => {
           console.error('Error fetching GPs', error);
