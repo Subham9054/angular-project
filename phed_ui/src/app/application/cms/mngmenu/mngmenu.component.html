@@ -1,53 +1,49 @@
 <div class="form-cointainer">
-    <div class="main-tab">
-        <div class="row justify-content-between">
-            <div class="col-lg-4 col-md-6">
-                <ul class="nav nav-tabs" routerLinkActive="active">
-                    <!-- <li class="nav-item">
-                        <a routerLink="/application/mngmenu" class="nav-link active">Add</a>
-                    </li> -->
-                    <li class="nav-item">
-                        <a routerLink="/application/mngmenu/view" class="nav-link">View</a>
-                    </li>
-                </ul>
+    <div class="pagetitle-section">
+        <div class="row justify-content-between align-items-center">
+            <div class="col-xxl-3 col-lg-4 col-md-6">
+                <h3> Menu</h3>
             </div>
-            <div class="col-lg-6">
-                <div class="utilite float-end mb-1">
+            <div class="col-lg-6 col-md-6">
+                <div class="utilite">
                     <ul class="mb-0">
                         <li class="bg-transparent border-0">
                             <span class="text-danger small"><b>(*)</b> Indicate mandatory </span>
                         </li>
-                        <li>
-                            <a href="javascript:void(0)" title="Click to Add Tab" routerLink="/application/mngmenu">
-                                <i class="bi bi-plus-lg"></i>
-                            </a>
-                        </li>
+                        <li class="fill-btn back-link"><a routerLink="/application/mngmenu" title="Go to Previous"><i
+                            class="bi bi-arrow-left"></i> Back to View</a>
+                </li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
 
+
+  
+
     <div class="content-box content-area">
         <div class="row">
-            <!-- Page Name English -->
-            <div class="col-xxl-3 col-lg-4 col-sm-6">
+           <div class="col-xl-10 col-lg-12">
+            <div class="row">
+             <!-- Page Name English -->
+             <div class="col-lg-4 col-md-6">
                 <div class="mb-3">
-                <label for="pageNameEng" class="form-label">Page Name English</label>
+                <label for="pageNameEng" class="form-label">Page Name</label>
                 <input type="text" id="pageNameEng" class="form-control" [(ngModel)]="pageNameEng" required>
                 </div>
             </div>          
   
             <!-- Page Name Hindi -->
-            <div class="col-xxl-3 col-lg-4 col-sm-6">
+            <div class="col-lg-4 col-md-6">
                 <div class="mb-3">
-                <label for="pageNameHin" class="form-label">Page Name Hindi</label>
+                <label for="pageNameHin" class="form-label">Page Name (In Hindi)</label>
                 <input type="text" id="pageNameHin" class="form-control" [(ngModel)]="pageNameHin" required>
                 </div>
             </div>
   
             <!-- Is Sub Menu -->
-            <div class="col-xxl-3 col-lg-4 col-sm-6">
+            <div class="col-lg-4 col-md-6">
                 <div class="mb-3">
                 <label for="txtRegdDt" class="form-label d-block">Is Sub Menu</label>
                 <div class="form-check form-check-inline mt-2">
@@ -66,7 +62,7 @@
             </div>
   
             <!-- Parent Menu (shown only if isSubMenu is true) -->
-            <div class="col-xxl-3 col-lg-4 col-sm-6" *ngIf="isSubMenu">
+            <div class="col-lg-4 col-md-6" *ngIf="isSubMenu">
                 <div class="mb-3">
                 <label for="parentMenu" class="form-label">Parent Menu Name</label>
                 <select class="form-select" [(ngModel)]="selectedParentMenu" (change)="onParentMenuChange($event)">
@@ -77,7 +73,7 @@
             </div>
   
             <!-- Position (shown only if isSubMenu is true) -->
-            <div class="col-xxl-3 col-lg-4 col-sm-6" *ngIf="isSubMenu">
+            <div class="col-lg-4 col-md-6" *ngIf="isSubMenu">
                 <div class="mb-3">
                 <label for="position" class="form-label">Position</label>
                 <input type="number" id="position" class="form-control" [(ngModel)]="position" required>
@@ -85,7 +81,7 @@
             </div>
   
             <!-- Is External -->
-            <div class="col-xxl-3 col-lg-4 col-sm-6">
+            <div class="col-lg-4 col-md-6">
                 <div class="mb-3">
                 <label for="txtRegdDt" class="form-label d-block">Is External</label>
                 <div class="form-check form-check-inline mt-2">
@@ -100,7 +96,7 @@
             </div>
   
             <!-- URL -->
-            <div class="col-xxl-3 col-lg-4 col-sm-6">
+            <div class="col-lg-4 col-md-6">
                 <div class="mb-3">
                 <label for="url" class="form-label">URL</label>
                 <input type="url" id="url" class="form-control" [(ngModel)]="url" required>
@@ -108,7 +104,7 @@
             </div>
   
             <!-- Icon Image (File Upload) -->
-            <div class="col-xxl-3 col-lg-4 col-sm-6">
+            <div class="col-lg-4 col-md-6">
                 <div class="mb-3">
                     <label for="icon" class="form-label">Icon Image</label>
                     <input #fileInput type="file" id="icon" class="form-control" (change)="onFileSelected($event)" accept="image/png, image/jpeg">
@@ -120,12 +116,13 @@
             </div>            
   
             <!-- Submit and Reset Buttons -->
-            <div class="col-xxl-3 col-lg-4 col-sm-6">
+            <div class="col-lg-4 col-md-6">
                 <div class="mb-3">
                 <button type="button" class="btn btn-success me-2" [ngClass]="isEditing ? 'btn-info' : 'btn-success'" (click)="submitForm()">{{ isEditing ? 'Update' : 'Submit' }}</button>
                 <button type="button" class="btn btn-danger" (click)="resetForm()">Reset</button>
                 </div>
             </div>
-        </div>
+           </div>
+        </div></div>
     </div>
 </div>

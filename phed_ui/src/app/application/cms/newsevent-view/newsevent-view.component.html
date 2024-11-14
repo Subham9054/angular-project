@@ -2,31 +2,54 @@
 
     <div class="pagetitle-section">
         <div class="row justify-content-between align-items-center">
-            <div class="col-lg-4">
+            <div class="col-lg-4 col-md-6">
                 <h3> News & Events</h3>
                 <!-- <p>Manage your page</p> -->
             </div>
             <div class="col-lg-6 col-md-6">
                 <div class="utilite">
                     <ul class="mb-0">
-                       
+
 
                         <li>
                             <a href="javascript:void(0)" title="Click to Print"><i class="bi bi-printer"></i></a>
                         </li>
 
                         <li>
-                            <a href="javascript:void(0)" title="Download Excel"><i class="bi bi-file-earmark-excel"></i></a>
+                            <a href="javascript:void(0)" title="Download Excel"><i
+                                    class="bi bi-file-earmark-excel"></i></a>
                         </li>
 
-                        <li [ngClass]="isPanelOpen ? 'active-filter' : ''">
-                            <a href="javascript:void(0)" title="{{ isPanelOpen ? 'Click to Close Filter' : 'Click to Open Filter' }}" 
-                               (click)="togglePanel()">
+                        <li class="filter-dropdown dropdown">
+                            <a href="javascript:void(0)" data-bs-toggle="dropdown" (click)="openDropdown()">
                                 <i class="bi bi-funnel"></i> Filter
                             </a>
+
+                            <div class="dropdown-menu dropdown-menu-end filter-dropdown-menu shadow border-0"
+                                [ngClass]="{ 'show': isDropdownOpen }" (click)="$event.stopPropagation()">
+                                <span class="drop-icon" (click)="closeDropdown()">
+                                    <i class="bi bi-x-lg"></i>
+                                </span>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-lg-0 mb-3">
+                                            <label class="form-label" for="title">Title</label>
+                                            <input type="text" class="form-control" id="title">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="" class="d-md-block d-none form-label">&nbsp;</label>
+                                        <div class="d-flex gap-2">
+                                            <button type="submit" class="btn btn-primary px-xl-4">Search</button>
+                                            <button type="submit" class="btn btn-danger px-xl-4">Reset</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </li>
-                        
-                        <li class="fill-btn add-link"><a routerLink="/application/newsevent/add"  title="Go to Previous"><i class="bi bi-plus-lg"></i>
+
+                        <li class="fill-btn add-link"><a routerLink="/application/newsevent/add" title="Click to Add"><i
+                                    class="bi bi-plus-lg"></i>
                                 Add Page</a>
                         </li>
                     </ul>
@@ -36,26 +59,9 @@
     </div>
 
 
-   
-    <div id="collapseExample" class="collapse show" [ngClass]="{'show': isPanelOpen}">
-        <div class="content-box search-box">
-            <div class="row">
-                <div class="col-xl-6 col-lg-4">
-                    <div class="mb-3">
-                        <label class="form-label" for="title">Title</label>
-                        <textarea class="form-control" id="title" rows="3"></textarea>
-                    </div>
-                </div>
-                <div class="col-xxl-3 col-lg-4">
-                    <div class="mb-3">
-                        <label class="form-label d-md-block d-none">&nbsp;</label>
-                        <button type="submit" class="btn btn-primary">Search</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-  
+
+
+
     <div class="view-legand">
         <ul class="legends">
             <li><span class="bg-success"></span> Publish </li>
@@ -210,7 +216,7 @@
 
 <!-- Modal View  -->
 <div class="modal fade" id="viewmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+    <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="exampleModalLabel">Announcement of new water supply projects for
@@ -219,42 +225,28 @@
             </div>
             <div class="modal-body view-form">
                 <div class="row">
-                    <div class="col-xl-12">
-
+                    <div class="col-lg-8">
                         <div class="row">
+
                             <div class="col-xl-12 col-md-12">
                                 <div class="mb-3">
-                                    <!-- <label class="form-label">Image</label> -->
-                                    <label class="form-value">
-                                        <div href="javascript:void(0);" class="img-fluid">
-                                            <img src="./assets/img/login-bg.png" alt="Banner text" class="modal-banner">
-                                        </div>
-                                    </label>
+                                    <label class="form-label">Title</label>
+                                    <label class="form-value">Announcement of new water supply projects for underserved
+                                        areas in Bihar.</label>
                                 </div>
                             </div>
                             <div class="col-xl-12 col-md-12">
                                 <div class="mb-3">
                                     <label class="form-label">Title</label>
-                                    <label class="form-value">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                        Unde ullam magni quaerat, optio blanditiis dolorum omnis quis cumque, et
-                                        suscipit harum quae, eaque eius accusamus reiciendis incidunt ipsam? Eos,
-                                        quasi.</label>
+                                    <label class="form-value">बिहार में अविकसित क्षेत्रों के लिए नए जल आपूर्ति
+                                        परियोजनाओं की घोषणा</label>
                                 </div>
                             </div>
 
-                            <!-- <div class="col-xl-12 col-md-12">
-                                <div class="mb-3">
-                                    <label class="form-label">Title in Hindi</label>
-                                    <label class="form-value">लोरेम इप्सम डोलर सिट अमेट, कॉन्सेकट्यूर अडिपिसिसिंग एलिट। अंडे उल्लम मैग्नी क्वाएरेट, ऑप्टियो ब्लैंडीटिस डोलोरम ओम्निस क्विस कुम्क, एट सुस्सिपिट हारुम क्वाए, एक्यूस ईउस अक्यूसामस रीचिएंडिस इंसिडुंट इप्सम? ईओस, क्वासी।</label>
-                                </div>
-                            </div> -->
-                        </div>
 
-                       
-                        <div class="row">
                             <div class="col-xl-12 col-md-12">
                                 <div class="mb-3">
-                                    <label class="form-label">Content</label>
+                                    <label class="form-label">Description</label>
                                     <label class="form-value">Lorem ipsum dolor sit amet consectetur adipisicing elit.
                                         Unde ullam magni quaerat, optio blanditiis dolorum omnis quis cumque, et
                                         suscipit harum quae, eaque eius accusamus reiciendis incidunt ipsam? Eos,
@@ -264,7 +256,7 @@
 
                             <div class="col-xl-12 col-md-12">
                                 <div class="mb-3">
-                                    <label class="form-label">Content in Hindi</label>
+                                    <label class="form-label">Description in Hindi</label>
                                     <label class="form-value">लोरेम इप्सम डोलर सिट अमेट, कॉन्सेकट्यूर अडिपिसिसिंग एलिट।
                                         अंडे उल्लम मैग्नी क्वाएरेट, ऑप्टियो ब्लैंडीटिस डोलोरम ओम्निस क्विस कुम्क, एट
                                         सुस्सिपिट हारुम क्वाए, एक्यूस ईउस अक्यूसामस रीचिएंडिस इंसिडुंट इप्सम? ईओस,
@@ -278,13 +270,15 @@
                                     <label class="form-value">06-Nov-2024</label>
                                 </div>
                             </div>
+
                         </div>
+                    </div>
 
-
-
-
-
-
+                    <div class="col-lg-4">
+                        <label class="form-label">Feature Image</label>
+                        <div class="img-fluid">
+                            <img src="./assets/img/login-bg.png" alt="Banner text" class="modal-banner">
+                        </div>
                     </div>
                 </div>
             </div>
