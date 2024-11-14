@@ -64,7 +64,7 @@ export class ComplaintregistrationComponent  {
     ddlSubCategory: [null],
     txtDetailsE: '',
     txtLandmark: '',
-    ddlComplainttype:[null],
+    ddlComplainttype:'0',
     ddllanguage:'1'
   };
 
