@@ -70,6 +70,6 @@ export class HeaderComponent {
   buttonText: string = 'हिंदी';
 
   toggleText() {
-    this.buttonText = this.buttonText === 'हिंदी' ? 'En' : 'हिंदी';
+    this.buttonText = this.buttonText === 'हिंदी' ? 'EN' : 'हिंदी';
   }
 }

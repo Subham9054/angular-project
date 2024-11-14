@@ -6,6 +6,19 @@ import { Component } from '@angular/core';
   styleUrls: ['./demographymapping-view.component.scss']
 })
 export class DemographymappingViewComponent {
+
+ // Filter close btn
+ isDropdownOpen = false;
+ openDropdown() {
+   this.isDropdownOpen = true;
+ }
+
+
+ closeDropdown() {
+   this.isDropdownOpen = false;
+ }
+
+
   searchTerm: string = '';
   showSearch: boolean = false;
 

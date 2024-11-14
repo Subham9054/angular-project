@@ -1,7 +1,7 @@
 <div class="form-cointainer">
   <div class="pagetitle-section">
     <div class="row justify-content-between align-items-center">
-      <div class="col-lg-4">
+      <div class="col-lg-4 col-md-6">
         <h3>Escalation</h3>
       </div>
       <div class="col-lg-6 col-md-6">
@@ -17,16 +17,21 @@
               <a href="javascript:void(0)" title="Download Excel"><i class="bi bi-file-earmark-excel"></i></a>
             </li>
             <li class="filter-dropdown dropdown">
-              <a href="javascript:void(0)" data-bs-toggle="dropdown">
+              <a href="javascript:void(0)" data-bs-toggle="dropdown" (click)="openDropdown()">
                 <i class="bi bi-funnel"></i> Filter
               </a>
 
-              <div class="dropdown-menu dropdown-menu-end filter-dropdown-menu shadow border-0">
+              <div class="dropdown-menu dropdown-menu-end filter-dropdown-menu shadow border-0"
+              [ngClass]="{ 'show': isDropdownOpen }" (click)="$event.stopPropagation()">
+              <span class="drop-icon" (click)="closeDropdown()">
+                <i class="bi bi-x-lg"></i>
+              </span>
                 <div class="row">
                   <div class="col-md-6">
                     <div class="mb-3">
                       <label for="ddlComplaintCategory" class="form-label">Complaint Category</label>
-                      <select name="ddlComplaintCategory" id="ddlComplaintCategory"
+
+                     <select name="ddlComplaintCategory" id="ddlComplaintCategory"
                         [(ngModel)]="formData.ddlComplaintCategory" (change)="onCategoryChange($event)"
                         class="form-select">
                         <option selected value="0">Select</option>
@@ -34,6 +39,9 @@
                           category.vcH_CATEGORY }}
                         </option>
                       </select>
+                      
+                     
+
                     </div>
                   </div>
 
@@ -66,7 +74,7 @@
                       </a>
                   </li> -->
 
-            <li class="fill-btn add-link"><a routerLink="/application/escalation/add" title="Go to Previous"><i
+            <li class="fill-btn add-link"><a routerLink="/application/escalation/add" title="Click to Add"><i
                   class="bi bi-plus-lg"></i>
                 Add Page</a>
             </li>
@@ -101,7 +109,7 @@
                     <select name="ddlSubCategory" id="ddlSubCategory"
                         [(ngModel)]="formData.ddlSubCategory" class="form-select">
                         <option value="0">-Select-</option>
-                        <option *ngFor="let subcategory of subcategories"
+                        <option *ngFor="let subcategory of subcategories"s
                             [value]="subcategory.inT_SUB_CATEGORY_ID">{{
                             subcategory.vcH_SUB_CATEGORY }}
                         </option>

@@ -28,7 +28,16 @@ export class MngmenuViewComponent implements OnInit {
   noRecordsFound: boolean = false; // Flag to show "No Page Links Found"
 
   constructor(private authService: AuthService, private router: Router) {} // Inject Router
+// Filter close btn
+isDropdownOpen = false;
+openDropdown() {
+  this.isDropdownOpen = true;
+}
 
+
+closeDropdown() {
+  this.isDropdownOpen = false;
+}
   ngOnInit(): void {
     this.getPageLinks();
   }

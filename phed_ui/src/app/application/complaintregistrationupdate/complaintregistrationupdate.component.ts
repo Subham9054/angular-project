@@ -8,6 +8,18 @@ declare let $: any;
   styleUrls: ['./complaintregistrationupdate.component.scss'],
 })
 export class ComplaintregistrationupdateComponent implements OnInit {
+
+ // Filter close btn
+ isDropdownOpen = false;
+ openDropdown() {
+   this.isDropdownOpen = true;
+ }
+
+
+ closeDropdown() {
+   this.isDropdownOpen = false;
+ }
+
   isPanelOpen = false; // Start with the panel open
 
   togglePanel() {

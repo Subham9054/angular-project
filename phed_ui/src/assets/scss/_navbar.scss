@@ -112,6 +112,7 @@
 .lang-btn {
   padding-top: 0.4rem;
   a {
+    font-weight: 500;
     font-size: 1.2rem;
     color: $gray-600;
     &:hover {
@@ -138,12 +139,16 @@
       width: 18px;
       padding: 1px;
       position: absolute;
-      top: 0;
-      right: -8px;
+      top: 2px;
+      right: -3px;  
       text-align: center;
       transition: top 0.1s ease-out;
       font-size: 0.675rem;
       color: $white;
+      @media (max-width:320px){
+        top: 1px;
+        right: -9px;
+      }
     }
 
     // &:hover .indicator {
@@ -158,11 +163,10 @@
 
 .logout-btn {
   display: block;
-  font-size: 1.25rem;
-  // line-height: 1.4;
+  font-size: 1rem;
   color: #fff;
   font-weight: bold;
-  background-color: $red;
+  background-color: #d13e4a;
   border-radius: 50%;
   height: 2.5rem;
   width: 2.5rem;
@@ -170,11 +174,16 @@
   align-items: center;
   justify-content: center;
   margin-left: 0.8rem;
+  height: 34px;
+  width: 34px;
   &:hover {
     background-color: rgba($red, 0.9);
   }
   i {
     line-height: 1;
+  }
+  @media (max-width:768px){
+    margin-right: 0.7rem;
   }
 }
 
@@ -212,7 +221,7 @@
     width: 0.05rem;
     height: 39px;
     background-color: #e8eef59c;
-    top: 9px;
+    top: 7px;
 
     @media (max-width: 530px) {
       top: -1px;

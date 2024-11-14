@@ -1,38 +1,46 @@
 <div class="form-cointainer">
     <div class="pagetitle-section">
         <div class="row justify-content-between align-items-center">
-            <div class="col-lg-4">
+            <div class="col-lg-4 col-md-6">
                 <h3>Close Complaint</h3>
             </div>
             <div class="col-lg-6 col-md-6">
                 <div class="utilite">
                     <ul class="mb-0">
-                       
+
 
                         <li>
                             <a href="javascript:void(0)" title="Click to Print"><i class="bi bi-printer"></i></a>
                         </li>
 
                         <li>
-                            <a href="javascript:void(0)" title="Download Excel"><i class="bi bi-file-earmark-excel"></i></a>
+                            <a href="javascript:void(0)" title="Download Excel"><i
+                                    class="bi bi-file-earmark-excel"></i></a>
                         </li>
 
-                             
-                      
+
+
                         <li class="filter-dropdown dropdown">
-                            <a href="javascript:void(0)" data-bs-toggle="dropdown">
+                            <a href="javascript:void(0)" data-bs-toggle="dropdown" (click)="openDropdown()">
                                 <i class="bi bi-funnel"></i> Filter
                             </a>
-                        
-                            <div class="dropdown-menu dropdown-menu-end filter-dropdown-menu shadow border-0">
+
+                            <div class="dropdown-menu dropdown-menu-end filter-dropdown-menu shadow border-0"
+                                [ngClass]="{ 'show': isDropdownOpen }" (click)="$event.stopPropagation()">
+
+                                <span class="drop-icon" (click)="closeDropdown()">
+                                    <i class="bi bi-x-lg"></i>
+                                </span>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="ddlDistrict" class="form-label">District</label>
-                                            <select name="ddlDistrict" id="ddlDistrict" [(ngModel)]="formData.ddlDistrict"
-                                                (change)="onDistrictChange($event)" class="form-select">
+                                            <select name="ddlDistrict" id="ddlDistrict"
+                                                [(ngModel)]="formData.ddlDistrict" (change)="onDistrictChange($event)"
+                                                class="form-select">
                                                 <option selected value="0">Select</option>
-                                                <option *ngFor="let district of districts" [value]="district.inT_DIST_ID">
+                                                <option *ngFor="let district of districts"
+                                                    [value]="district.inT_DIST_ID">
                                                     {{ district.vcH_DIST_NAME }}
                                                 </option>
                                             </select>
@@ -44,7 +52,8 @@
                                             <select name="ddlBlock" id="ddlBlock" [(ngModel)]="formData.ddlBlock"
                                                 (change)="onBlockChange($event)" class="form-select">
                                                 <option value="0">Select</option>
-                                                <option *ngFor="let block of blocks" [value]="block.inT_BLOCK_ID">{{ block.vcH_BLOCK_NAME }}
+                                                <option *ngFor="let block of blocks" [value]="block.inT_BLOCK_ID">{{
+                                                    block.vcH_BLOCK_NAME }}
                                                 </option>
                                             </select>
                                         </div>
@@ -52,9 +61,11 @@
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="ddlGp" class="form-label">Gram Panchayat</label>
-                                            <select name="ddlGp" id="ddlGp" [(ngModel)]="formData.ddlPanchayat" class="form-select">
+                                            <select name="ddlGp" id="ddlGp" [(ngModel)]="formData.ddlPanchayat"
+                                                class="form-select">
                                                 <option value="0">Select</option>
-                                                <option *ngFor="let gp of gps" [value]="gp.inT_GP_ID">{{ gp.vcH_GP_NAME }}</option>
+                                                <option *ngFor="let gp of gps" [value]="gp.inT_GP_ID">{{ gp.vcH_GP_NAME
+                                                    }}</option>
                                             </select>
                                         </div>
                                     </div>
@@ -66,12 +77,14 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mb-3">
-                                            <label for="ddlComplaintCategory" class="form-label">Complaint Category</label>
+                                            <label for="ddlComplaintCategory" class="form-label">Complaint
+                                                Category</label>
                                             <select name="ddlComplaintCategory" id="ddlComplaintCategory"
-                                                [(ngModel)]="formData.ddlComplaintCategory" (change)="onCategoryChange($event)"
-                                                class="form-select">
+                                                [(ngModel)]="formData.ddlComplaintCategory"
+                                                (change)="onCategoryChange($event)" class="form-select">
                                                 <option selected value="0">Select</option>
-                                                <option *ngFor="let category of categories" [value]="category.inT_CATEGORY_ID">{{
+                                                <option *ngFor="let category of categories"
+                                                    [value]="category.inT_CATEGORY_ID">{{
                                                     category.vcH_CATEGORY }}
                                                 </option>
                                             </select>
@@ -79,11 +92,13 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mb-3">
-                                            <label for="ddlSubCategory" class="form-label">Complaint Sub-Category</label>
-                                            <select name="ddlSubCategory" id="ddlSubCategory" [(ngModel)]="formData.ddlSubCategory"
-                                                class="form-select">
+                                            <label for="ddlSubCategory" class="form-label">Complaint
+                                                Sub-Category</label>
+                                            <select name="ddlSubCategory" id="ddlSubCategory"
+                                                [(ngModel)]="formData.ddlSubCategory" class="form-select">
                                                 <option value="0">Select</option>
-                                                <option *ngFor="let subcategory of subcategories" [value]="subcategory.inT_SUB_CATEGORY_ID">
+                                                <option *ngFor="let subcategory of subcategories"
+                                                    [value]="subcategory.inT_SUB_CATEGORY_ID">
                                                     {{
                                                     subcategory.vcH_SUB_CATEGORY }}
                                                 </option>
@@ -99,8 +114,8 @@
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="txtComplaintName" class="form-label">Complaint Status</label>
-                                            <select name="ddlStatusSearch" [(ngModel)]="formData.ddlComplaintsts" id="ddlStatusSearch"
-                                                class="form-select">
+                                            <select name="ddlStatusSearch" [(ngModel)]="formData.ddlComplaintsts"
+                                                id="ddlStatusSearch" class="form-select">
                                                 <option value="0">Select</option>
                                                 <option *ngFor="let complaint of complaintstatus"
                                                     [value]="complaint.inT_COMPLIANT_STATUS_ID">{{
@@ -111,8 +126,8 @@
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="txtComplaintName" class="form-label">Source of Complaint</label>
-                                            <select name="ddlRecievemode" [(ngModel)]="formData.ddlComplainttype" id="ddlRecievemode"
-                                                class="form-select">
+                                            <select name="ddlRecievemode" [(ngModel)]="formData.ddlComplainttype"
+                                                id="ddlRecievemode" class="form-select">
                                                 <option value="0">Select</option>
                                                 <option *ngFor="let complaintp of complainttype"
                                                     [value]="complaintp.inT_COMPLIANT_LOG_TYPE_ID">
@@ -141,24 +156,25 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="mb-3">
+                                        <div>
                                             <!-- <label class="form-label d-md-block d-none" for="menuen">&nbsp;&nbsp;</label> -->
                                             <div class="d-flex gap-2">
-                                            <button type="submit" class="btn btn-primary px-xl-4">Search</button>
-                                            <button type="submit" class="btn btn-danger px-xl-4">Reset</button></div>
+                                                <button type="submit" class="btn btn-primary px-xl-4">Search</button>
+                                                <button type="submit" class="btn btn-danger px-xl-4">Reset</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </li>
-                        
+
                     </ul>
                 </div>
             </div>
         </div>
     </div>
- 
-    
+
+
     <!-- <div id="collapseExample" class="collapse show" [ngClass]="{'show': isPanelOpen}">
         <div class="content-box search-box">
             <div class="row">
@@ -367,13 +383,13 @@
                         <td>JE Ekma</td>
                         <td>
                             <div class="dropdown">
-                              
+
                                 <button class="btn btn-outline-primary btn-sm" type="button" data-bs-toggle="dropdown"
                                     aria-expanded="false">
                                     <i class="bi bi-caret-down"></i> Action
                                 </button>
 
-                                
+
                                 <ul class="dropdown-menu shadow border-0 dropdown-menu-end py-0">
                                     <!-- <li>
                                         <a href="javascript:void(0);" class="dropdown-item" title="Take Action" 
@@ -392,7 +408,7 @@
                             </div>
                         </td>
 
-                        
+
                     </tr>
                     <tr>
                         <td>2</td>
@@ -406,19 +422,19 @@
                         <td>JE Section - I</td>
                         <td>
                             <div class="dropdown">
-                                
+
                                 <button class="btn btn-outline-primary btn-sm" type="button" data-bs-toggle="dropdown"
                                     aria-expanded="false">
-                                    <i class="bi bi-caret-down"></i> Action     
+                                    <i class="bi bi-caret-down"></i> Action
                                 </button>
 
                                 <!-- Drop Down -->
                                 <ul class="dropdown-menu shadow border-0 dropdown-menu-end py-0">
-                                        
+
 
                                     <li>
                                         <a href="javascript:void(0);" class="dropdown-item" title="Take Action"
-                                        data-bs-toggle="modal" data-bs-target="#details">
+                                            data-bs-toggle="modal" data-bs-target="#details">
                                             <i class="bi-clock-history me-1"></i> Take Action
                                         </a>
                                     </li>
@@ -446,17 +462,17 @@
                         <td>JE Andhratharhi</td>
                         <td>
                             <div class="dropdown">
-                               
+
                                 <button class="btn btn-outline-primary btn-sm" type="button" data-bs-toggle="dropdown"
                                     aria-expanded="false">
                                     <i class="bi bi-caret-down"></i> Action
                                 </button>
 
-                              
+
                                 <ul class="dropdown-menu shadow border-0 dropdown-menu-end py-0">
                                     <li>
-                                        <a href="javascript:void(0);" class="dropdown-item" title="Take Action" 
-                                        data-bs-toggle="modal" data-bs-target="#details">
+                                        <a href="javascript:void(0);" class="dropdown-item" title="Take Action"
+                                            data-bs-toggle="modal" data-bs-target="#details">
                                             <i class="bi-clock-history me-1"></i> Take Action
                                         </a>
                                     </li>
@@ -484,17 +500,17 @@
                         <td>JE Lalganj</td>
                         <td>
                             <div class="dropdown">
-                         
+
                                 <button class="btn btn-outline-primary btn-sm" type="button" data-bs-toggle="dropdown"
                                     aria-expanded="false">
                                     <i class="bi bi-caret-down"></i> Action
                                 </button>
 
-                               
+
                                 <ul class="dropdown-menu shadow border-0 dropdown-menu-end py-0">
                                     <li>
-                                        <a href="javascript:void(0);" class="dropdown-item" title="Take Action" 
-                                        data-bs-toggle="modal" data-bs-target="#details">
+                                        <a href="javascript:void(0);" class="dropdown-item" title="Take Action"
+                                            data-bs-toggle="modal" data-bs-target="#details">
                                             <i class="bi-clock-history me-1"></i> Take Action
                                         </a>
                                     </li>
@@ -521,17 +537,17 @@
                         <td>JE Tekari</td>
                         <td>
                             <div class="dropdown">
-                                
+
                                 <button class="btn btn-outline-primary btn-sm" type="button" data-bs-toggle="dropdown"
                                     aria-expanded="false">
                                     <i class="bi bi-caret-down"></i> Action
                                 </button>
 
-                                
+
                                 <ul class="dropdown-menu shadow border-0 dropdown-menu-end py-0">
                                     <li>
-                                        <a href="javascript:void(0);" class="dropdown-item" title="Take Action" 
-                                        data-bs-toggle="modal" data-bs-target="#details">
+                                        <a href="javascript:void(0);" class="dropdown-item" title="Take Action"
+                                            data-bs-toggle="modal" data-bs-target="#details">
                                             <i class="bi-clock-history me-1"></i> Take Action
                                         </a>
                                     </li>
@@ -574,43 +590,44 @@
                             class="btn btn-outline-danger btn-sm"><i class="bi bi-printer me-1"></i>Print</a>
                     </div>
                 </div>
-               
+
                 <div class="row">
                     <div class="col-xl-12">
                         <h5 class="page-heading">Complainant Details</h5>
                     </div>
                     <div class="col-xl-12">
                         <div class="view-forms">
-                        <div class="row">
-                            <div class="col-xl-3 col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label">Complaint No.</label>
-                                    <label class="form-value">202410230124</label>
+                            <div class="row">
+                                <div class="col-xl-3 col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Complaint No.</label>
+                                        <label class="form-value">202410230124</label>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label">Registration Date</label>
-                                    <label class="form-value">23-Oct-2024</label>
+                                <div class="col-xl-3 col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Registration Date</label>
+                                        <label class="form-value">23-Oct-2024</label>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label">Mode of Complaint</label>
-                                    <label class="form-value">Helpline</label>
+                                <div class="col-xl-3 col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Mode of Complaint</label>
+                                        <label class="form-value">Helpline</label>
+                                    </div>
                                 </div>
-                            </div>
-    
-                            <div class="col-xl-3 col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label">Name</label>
-                                    <label class="form-value">Krishanumar</label>
+
+                                <div class="col-xl-3 col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Name</label>
+                                        <label class="form-value">Krishanumar</label>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label">Phone No.</label>
-                                    <label class="form-value">8789952814</label>
+                                <div class="col-xl-3 col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Phone No.</label>
+                                        <label class="form-value">8789952814</label>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-xl-3 col-md-6">
@@ -618,47 +635,49 @@
                                     <label class="form-label">E-Mail</label>
                                     <label class="form-value">testusergmail.com</label>
                                 </div>
-                            </div>
-    
-    
-    
-    
-                            <div class="col-xl-3 col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label"> Document/Photo</label>
-                                    <label class="form-value">
-                                        <div class="d-flex gap-1">
-                                            <a href="javascript:void(0);" class="btn btn-sm btn-outline-danger"><i class="bi bi-download"></i> Download</a>
-                                            <!-- <a href="javascript:void(0);" class="btn btn-sm btn-outline-danger"><i class="bi bi-download"></i></a> -->
-                                        </div>
-                                    </label>
+
+
+
+
+                                <div class="col-xl-3 col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label"> Document/Photo</label>
+                                        <label class="form-value">
+                                            <div class="d-flex gap-1">
+                                                <a href="javascript:void(0);" class="btn btn-sm btn-outline-danger"><i
+                                                        class="bi bi-download"></i> Download</a>
+                                                <!-- <a href="javascript:void(0);" class="btn btn-sm btn-outline-danger"><i class="bi bi-download"></i></a> -->
+                                            </div>
+                                        </label>
+                                    </div>
                                 </div>
-                            </div>
-    
-                            <div class="col-xl-3 col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label">Complaint Category</label>
-                                    <label class="form-value">Piped Water Supply Related</label>
+
+                                <div class="col-xl-3 col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Complaint Category</label>
+                                        <label class="form-value">Piped Water Supply Related</label>
+                                    </div>
                                 </div>
-                            </div>
-    
-                            <div class="col-xl-3 col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label">Complaint Sub-Category</label>
-                                    <label class="form-value">Operator does not runs the motor</label>
+
+                                <div class="col-xl-3 col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Complaint Sub-Category</label>
+                                        <label class="form-value">Operator does not runs the motor</label>
+                                    </div>
                                 </div>
-                            </div>
-    
-    
-                            <div class="col-xl-9 col-md-12">
-                                <div class="mb-3">
-                                    <label class="form-label">Complaint Details</label>
-                                    <label class="form-value">पंप चालक वार्ड न०- 11 में सप्लाई का पानी समय से नहीं चलाता
-                                        है अतः उचित कार्यवाई करके सप्लाई का पानी सुचारू रूप से चलाया जाय|</label>
+
+
+                                <div class="col-xl-9 col-md-12">
+                                    <div class="mb-3">
+                                        <label class="form-label">Complaint Details</label>
+                                        <label class="form-value">पंप चालक वार्ड न०- 11 में सप्लाई का पानी समय से नहीं
+                                            चलाता
+                                            है अतः उचित कार्यवाई करके सप्लाई का पानी सुचारू रूप से चलाया जाय|</label>
+                                    </div>
                                 </div>
+
                             </div>
-    
-                        </div></div>
+                        </div>
                     </div>
                 </div>
 
@@ -668,53 +687,55 @@
                     </div>
                     <div class="col-xl-12">
                         <div class="view-forms">
-                        <div class="row">
-                            <div class="col-xl-3 col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label">District</label>
-                                    <label class="form-value">Madhepura</label>
+                            <div class="row">
+                                <div class="col-xl-3 col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">District</label>
+                                        <label class="form-value">Madhepura</label>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Block</label>
+                                        <label class="form-value">Chausa</label>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Gram Panchayat</label>
+                                        <label class="form-value">Arajipur West</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-3 col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Village</label>
+                                        <label class="form-value">-</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-3 col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Ward</label>
+                                        <label class="form-value">Ara</label>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Near by Location</label>
+                                        <label class="form-value">Patna</label>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-md-12">
+                                    <div class="mb-3">
+                                        <label class="form-label">Address</label>
+                                        <label class="form-value">Lorem ipsum dolor, sit amet consectetur adipisicing
+                                            elit.
+                                            Ipsam, natus.</label>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label">Block</label>
-                                    <label class="form-value">Chausa</label>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label">Gram Panchayat</label>
-                                    <label class="form-value">Arajipur West</label>
-                                </div>
-                            </div>
-    
-                            <div class="col-xl-3 col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label">Village</label>
-                                    <label class="form-value">-</label>
-                                </div>
-                            </div>
-    
-                            <div class="col-xl-3 col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label">Ward</label>
-                                    <label class="form-value">Ara</label>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label">Near by Location</label>
-                                    <label class="form-value">Patna</label>
-                                </div>
-                            </div>
-                            <div class="col-xl-6 col-md-12">
-                                <div class="mb-3">
-                                    <label class="form-label">Address</label>
-                                    <label class="form-value">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                                        Ipsam, natus.</label>
-                                </div>
-                            </div>
-                        </div></div>
+                        </div>
                     </div>
                 </div>
 
@@ -909,7 +930,7 @@
                                 </div>
                                 <p class="text-danger text-end small mb-0"> Only <span class="fw-bold">(.jpg,
                                         .png,
-                                         .doc, .xls, .pdf)</span> files
+                                        .doc, .xls, .pdf)</span> files
                                     allowed</p>
 
 
@@ -959,37 +980,38 @@
                                 <h5 class="page-heading mt-0">Complainant Details</h5>
                             </div>
                             <div class="col-xl-12">
-                              <div class="view-forms">
-                                <div class="row">
-                                    <div class="col-xl-4 col-md-6">
-                                        <div class="mb-3">
-                                            <label class="form-label">Complaint No.</label>
-                                            <label class="form-value">202410230124</label>
+                                <div class="view-forms">
+                                    <div class="row">
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Complaint No.</label>
+                                                <label class="form-value">202410230124</label>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-xl-4 col-md-6">
-                                        <div class="mb-3">
-                                            <label class="form-label">Registration Date</label>
-                                            <label class="form-value">23-Oct-2024</label>
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Registration Date</label>
+                                                <label class="form-value">23-Oct-2024</label>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-xl-4 col-md-6">
-                                        <div class="mb-3">
-                                            <label class="form-label">Mode of Complaint</label>
-                                            <label class="form-value">Helpline</label>
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Mode of Complaint</label>
+                                                <label class="form-value">Helpline</label>
+                                            </div>
                                         </div>
-                                    </div>
-            
-                                    <div class="col-xl-4 col-md-6">
-                                        <div class="mb-3">
-                                            <label class="form-label">Name</label>
-                                            <label class="form-value">Krishanumar</label>
+
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Name</label>
+                                                <label class="form-value">Krishanumar</label>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-xl-4 col-md-6">
-                                        <div class="mb-3">
-                                            <label class="form-label">Phone No.</label>
-                                            <label class="form-value">8789952814</label>
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Phone No.</label>
+                                                <label class="form-value">8789952814</label>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-xl-4 col-md-6">
@@ -997,105 +1019,109 @@
                                             <label class="form-label">E-Mail</label>
                                             <label class="form-value">testusergmail.com</label>
                                         </div>
-                                    </div>
-            
-            
-            
-            
-                                    <div class="col-xl-4 col-md-6">
-                                        <div class="mb-3">
-                                            <label class="form-label"> Document/Photo</label>
-                                            <label class="form-value">
-                                                <div class="d-flex gap-1">
-                                                    <a href="javascript:void(0);" class="btn btn-sm btn-outline-danger"><i class="bi bi-download"></i> Download</a>
-                                                    <!-- <a href="javascript:void(0);" class="btn btn-sm btn-outline-danger"><i class="bi bi-download"></i></a> -->
-                                                </div>
-                                            </label>
+
+
+
+
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label"> Document/Photo</label>
+                                                <label class="form-value">
+                                                    <div class="d-flex gap-1">
+                                                        <a href="javascript:void(0);"
+                                                            class="btn btn-sm btn-outline-danger"><i
+                                                                class="bi bi-download"></i> Download</a>
+                                                        <!-- <a href="javascript:void(0);" class="btn btn-sm btn-outline-danger"><i class="bi bi-download"></i></a> -->
+                                                    </div>
+                                                </label>
+                                            </div>
                                         </div>
-                                    </div>
-            
-                                    <div class="col-xl-4 col-md-6">
-                                        <div class="mb-3">
-                                            <label class="form-label">Complaint Category</label>
-                                            <label class="form-value">Piped Water Supply Related</label>
+
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Complaint Category</label>
+                                                <label class="form-value">Piped Water Supply Related</label>
+                                            </div>
                                         </div>
-                                    </div>
-            
-                                    <div class="col-xl-4 col-md-6">
-                                        <div class="mb-3">
-                                            <label class="form-label">Complaint Sub-Category</label>
-                                            <label class="form-value">Operator does not runs the motor</label>
+
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Complaint Sub-Category</label>
+                                                <label class="form-value">Operator does not runs the motor</label>
+                                            </div>
                                         </div>
-                                    </div>
-            
-            
-                                    <div class="col-xl-12 col-md-12">
-                                        <div class="mb-3">
-                                            <label class="form-label">Complaint Details</label>
-                                            <label class="form-value">पंप चालक वार्ड न०- 11 में सप्लाई का पानी समय से नहीं चलाता
-                                                है अतः उचित कार्यवाई करके सप्लाई का पानी सुचारू रूप से चलाया जाय|</label>
+
+
+                                        <div class="col-xl-12 col-md-12">
+                                            <div class="mb-3">
+                                                <label class="form-label">Complaint Details</label>
+                                                <label class="form-value">पंप चालक वार्ड न०- 11 में सप्लाई का पानी समय
+                                                    से नहीं चलाता
+                                                    है अतः उचित कार्यवाई करके सप्लाई का पानी सुचारू रूप से चलाया
+                                                    जाय|</label>
+                                            </div>
                                         </div>
+
                                     </div>
-            
                                 </div>
-                              </div>
                             </div>
                         </div>
-            
+
                         <div class="row">
                             <div class="col-xl-12">
                                 <h5 class="page-heading">Address Details</h5>
                             </div>
                             <div class="col-xl-12">
-                              <div class="view-forms">
-                                <div class="row">
-                                    <div class="col-xl-4 col-md-6">
-                                        <div class="mb-3">
-                                            <label class="form-label">District</label>
-                                            <label class="form-value">Madhepura</label>
+                                <div class="view-forms">
+                                    <div class="row">
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">District</label>
+                                                <label class="form-value">Madhepura</label>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-xl-4 col-md-6">
-                                        <div class="mb-3">
-                                            <label class="form-label">Block</label>
-                                            <label class="form-value">Chausa</label>
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Block</label>
+                                                <label class="form-value">Chausa</label>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-xl-4 col-md-6">
-                                        <div class="mb-3">
-                                            <label class="form-label">Gram Panchayat</label>
-                                            <label class="form-value">Arajipur Wests</label>
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Gram Panchayat</label>
+                                                <label class="form-value">Arajipur Wests</label>
+                                            </div>
                                         </div>
-                                    </div>
-            
-                                    <div class="col-xl-4 col-md-6">
-                                        <div class="mb-3">
-                                            <label class="form-label">Village</label>
-                                            <label class="form-value">-</label>
+
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Village</label>
+                                                <label class="form-value">-</label>
+                                            </div>
                                         </div>
-                                    </div>
-            
-                                    <div class="col-xl-4 col-md-6">
-                                        <div class="mb-3">
-                                            <label class="form-label">Ward</label>
-                                            <label class="form-value">Ara</label>
+
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Ward</label>
+                                                <label class="form-value">Ara</label>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-xl-4 col-md-6">
-                                        <div class="mb-3">
-                                            <label class="form-label">Near by Location</label>
-                                            <label class="form-value">Patna</label>
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Near by Location</label>
+                                                <label class="form-value">Patna</label>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-xl-12 col-md-12">
-                                        <div class="mb-3">
-                                            <label class="form-label">Address</label>
-                                            <label class="form-value">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                                                Ipsam, natus.</label>
+                                        <div class="col-xl-12 col-md-12">
+                                            <div class="mb-3">
+                                                <label class="form-label">Address</label>
+                                                <label class="form-value">Lorem ipsum dolor, sit amet consectetur
+                                                    adipisicing elit.
+                                                    Ipsam, natus.</label>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                              </div>
                             </div>
                         </div>
                     </div>
@@ -1131,7 +1157,7 @@
                                         <li>Status- <span class="badge text-bg-primary">Complaint Received</span></li>
                                     </ul>
                                 </li>
-            
+
                                 <!-- <li class="stepProgress-item">
                                                 <ul>
                                                     <li>Action Taken By- <strong
@@ -1153,7 +1179,7 @@
                                                         <span class="badge text-bg-warning">Pending</span></li>
                                                 </ul>
                                             </li> -->
-            
+
                             </ul>
                         </div>
                     </div>
