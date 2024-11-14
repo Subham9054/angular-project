@@ -1,7 +1,7 @@
 <div class="form-cointainer">
     <div class="pagetitle-section">
         <div class="row justify-content-between align-items-center">
-            <div class="col-lg-4">
+            <div class="col-lg-4 col-md-6">
                 <h3> Whats New</h3>
                 <!-- <p>Manage your page</p> -->
             </div>
@@ -18,14 +18,40 @@
                             <a href="javascript:void(0)" title="Download Excel"><i class="bi bi-file-earmark-excel"></i></a>
                         </li>
 
-                        <li [ngClass]="isPanelOpen ? 'active-filter' : ''">
+                        <!-- <li [ngClass]="isPanelOpen ? 'active-filter' : ''">
                             <a href="javascript:void(0)" title="{{ isPanelOpen ? 'Click to Close Filter' : 'Click to Open Filter' }}" 
                                (click)="togglePanel()">
                                 <i class="bi bi-funnel"></i> Filter
                             </a>
+                        </li> -->
+                        <li class="filter-dropdown dropdown">
+                            <a href="javascript:void(0)" data-bs-toggle="dropdown" (click)="openDropdown()">
+                                <i class="bi bi-funnel"></i> Filter
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-end filter-dropdown-menu shadow border-0"
+                                [ngClass]="{ 'show': isDropdownOpen }" (click)="$event.stopPropagation()">
+                                <span class="drop-icon" (click)="closeDropdown()">
+                                    <i class="bi bi-x-lg"></i>
+                                </span>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-lg-0 mb-3">
+                                            <label class="form-label" for="title">Title</label>
+                                            <input type="text" class="form-control" id="title">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="" class="d-md-block d-none form-label">&nbsp;</label>
+                                        <div class="d-flex gap-2">
+                                            <button type="submit" class="btn btn-primary px-xl-4">Search</button>
+                                            <button type="submit" class="btn btn-danger px-xl-4">Reset</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </li>
-                        
-                        <li class="fill-btn add-link"><a routerLink="/application/whatsnew/add"  title="Go to Previous"><i class="bi bi-plus-lg"></i>
+                        <li class="fill-btn add-link"><a routerLink="/application/whatsnew/add"  title="Click to Add"><i class="bi bi-plus-lg"></i>
                                 Add Page</a>
                         </li>
                     </ul>
@@ -36,33 +62,7 @@
 
 
    
-    <div id="collapseExample" class="collapse show" [ngClass]="{'show': isPanelOpen}">
-        <div class="content-box search-box">
-            <div class="row">
-                <div class="col-xl-6 col-lg-4">
-                    <div class="mb-3">
-                        <label class="form-label" for="title">Title</label>
-                        <textarea  id="title" rows="3" class="form-control"></textarea>
-                    </div>
-                </div>
-
-                <div class="col-xxl-3 col-lg-4">
-                    <div class="mb-3">
-                        <label class="form-label d-md-block d-none">&nbsp;</label>
-                        <button type="submit" class="btn btn-primary me-1">Search</button>
-                        <!-- <button type="reset" class="btn btn-danger">Reset</button> -->
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-    <!-- <div class="search-btn">
-        <a data-bs-toggle="collapse" href="#collapseExample">
-            <span class="collapse-on">Search  <i class="bi bi-arrow-down"></i></span> <span
-                class="collapse-off">Search Close <i class="bi bi-arrow-up"></i></span>
-        </a>
-    </div> -->
+  
     <div class="view-legand">
         <ul class="legends">
             <li><span class="bg-success"></span> Publish </li>
@@ -80,6 +80,7 @@
                         <th width="40px">Sl#</th>
                         <th>Title</th>
                         <th>Published on</th>
+                        <th>Description</th>
                         <th width="90px">Action</th>
                     </tr>
                 </thead>
@@ -88,10 +89,12 @@
                         <td><input class="form-check-input" type="checkbox"></td>
                         <td> 1 </td>
                         <td>
-                            Announcement of new water supply projects for underserved areas in Bihar
+                            Tender for demo
                         </td>
                         <td> 01-Sep-2022 </td>
-                       
+                       <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde ullam magni quaerat, 
+                        <br>optio blanditiis dolorum omnis quis cumque, et suscipit harum quae, eaque eius <br>
+                        accusamus reiciendis incidunt ipsam? Eos, quasi.</td>
                         <td>
                             <div class="d-flex gap-1">
                                 <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"
@@ -109,10 +112,12 @@
                         <td><input class="form-check-input" type="checkbox"></td>
                         <td>2</td>
                         <td>
-                            Announcement of new water supply projects for underserved areas in Bihar
+                            Tender for demo
                         </td>
                         <td> 20-Aug-2022 </td>
-                        
+                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde ullam magni quaerat, 
+                            <br>optio blanditiis dolorum omnis quis cumque, et suscipit harum quae, eaque eius <br>
+                            accusamus reiciendis incidunt ipsam? Eos, quasi.</td>
                         <td>
                             <div class="d-flex gap-1">
                                 <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"
@@ -130,10 +135,12 @@
                         <td><input class="form-check-input" type="checkbox"></td>
                         <td>3</td>
                         <td>
-                            Announcement of new water supply projects for underserved areas in Bihar
+                            Tender for demo
                         </td>
                         <td> 20-Aug-2022 </td>
-                        
+                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde ullam magni quaerat, 
+                            <br>optio blanditiis dolorum omnis quis cumque, et suscipit harum quae, eaque eius <br>
+                            accusamus reiciendis incidunt ipsam? Eos, quasi.</td>
                         <td>
                             <div class="d-flex gap-1">
                                 <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"
@@ -151,10 +158,12 @@
                         <td><input class="form-check-input" type="checkbox"></td>
                         <td>4</td>
                         <td>
-                            Announcement of new water supply projects for underserved areas in Bihar
+                            Tender for demo
                         </td>
                         <td> 20-Aug-2022 </td>
-                       
+                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde ullam magni quaerat, 
+                            <br>optio blanditiis dolorum omnis quis cumque, et suscipit harum quae, eaque eius <br>
+                            accusamus reiciendis incidunt ipsam? Eos, quasi.</td>
                         <td>
                             <div class="d-flex gap-1">
                                 <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"
@@ -172,10 +181,12 @@
                         <td><input class="form-check-input" type="checkbox"></td>
                         <td>5</td>
                         <td>
-                            Announcement of new water supply projects for underserved areas in Bihar
+                            Tender for demo
                         </td>
                         <td> 20-Aug-2022 </td>
-                        
+                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde ullam magni quaerat, 
+                            <br>optio blanditiis dolorum omnis quis cumque, et suscipit harum quae, eaque eius <br>
+                            accusamus reiciendis incidunt ipsam? Eos, quasi.</td>
                         <td>
                             <div class="d-flex gap-1">
                                 <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"
@@ -197,51 +208,61 @@
 
 <!-- Modal View  -->
 <div class="modal fade" id="viewmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable">
+    <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Announcement of new water supply projects for underserved areas in Bihar</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Tender for demo</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body view-form">
                 <div class="row">
                     <div class="col-xl-12">
                         <div class="row">
-                            <div class="col-xl-4 col-md-6">
+                            <div class="col-xl-6 col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label d-block">Published on</label>
                                     <label class="form-value">01-Sep-2022</label>
                                 </div>
                             </div>
                 
-                            <div class="col-xl-4 col-md-6">
+                            <div class="col-xl-6 col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label">Document</label>
                                     <label class="form-value">
-                                        <a href="javascript:void(0);" class="text-denger" title="lorem_edit.pdf">lorem_edit.pdf</a>
+                                        <a href="javascript:void(0);" class="btn btn-sm btn-outline-danger" title="lorem_edit.pdf"><i class="bi bi-download"></i> Download</a>
                                     </label>
                                 </div>
                             </div>
 
-                        </div>   
-                
-                        <div class="row">
-                            <div class="col-xl-12 col-md-12">
+                       
+                            <div class="col-xl-6 col-md-12">
                                 <div class="mb-3">
                                     <label class="form-label">Title</label>
+                                    <label class="form-value">Tender for demo</label>
+                                </div>
+                            </div>
+                
+                            <div class="col-xl-6 col-md-12">
+                                <div class="mb-3">
+                                    <label class="form-label">Title (In Hindi)</label>
+                                    <label class="form-value">डेमो के लिए टेंडर</label>
+                                </div>
+                            </div>
+                        
+                            <div class="col-xl-12 col-md-12">
+                                <div class="mb-3">
+                                    <label class="form-label">Description</label>
                                     <label class="form-value">Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde ullam magni quaerat, optio blanditiis dolorum omnis quis cumque, et suscipit harum quae, eaque eius accusamus reiciendis incidunt ipsam? Eos, quasi.</label>
                                 </div>
                             </div>
                 
                             <div class="col-xl-12 col-md-12">
                                 <div class="mb-3">
-                                    <label class="form-label">Title in Hindi</label>
-                                    <label class="form-value">लोरेम इप्सम डोलर सिट अमेट, कॉन्सेकट्यूर अडिपिसिसिंग एलिट। अंडे उल्लम मैग्नी क्वाएरेट, ऑप्टियो ब्लैंडीटिस डोलोरम ओम्निस क्विस कुम्क, एट सुस्सिपिट हारुम क्वाए, एक्यूस ईउस अक्यूसामस रीचिएंडिस इंसिडुंट इप्सम? ईओस, क्वासी।</label>
+                                    <label class="form-label">Description (In Hindi)</label>
+                                    <label class="form-value">लोरेम इप्सम डोलोर sit amet कंसिक्टेटुर एडिपिसिकिंग एलीट। उन्डे उल्लम मैग्नी क्वाएरत, ऑप्टियो ब्लैंडिटियस डोलोरम ओम्निस क्यूस कुम्के, एट सुसिपिट हारम क्वाए, ईक्वे eius अकुसामस रीसीडिंड्स इन्सिडुंट इप्साम? ईओस, क्वासी।</label>
                                 </div>
                             </div>
                         </div>
-
-
                        
 
                     </div>

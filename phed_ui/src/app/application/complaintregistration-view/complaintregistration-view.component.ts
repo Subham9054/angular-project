@@ -11,4 +11,15 @@ export class ComplaintregistrationViewComponent {
   // togglePanel() {
   //   this.isPanelOpen = !this.isPanelOpen; // Toggle the panel state
   // }
+
+  // Filter close btn
+ isDropdownOpen = false;
+ openDropdown() {
+   this.isDropdownOpen = true;
+ }
+
+
+ closeDropdown() {
+   this.isDropdownOpen = false;
+ }
 }

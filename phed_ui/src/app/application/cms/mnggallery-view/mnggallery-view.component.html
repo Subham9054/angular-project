@@ -1,31 +1,54 @@
 <div class="form-cointainer">
     <div class="pagetitle-section">
         <div class="row justify-content-between align-items-center">
-            <div class="col-lg-4">
+            <div class="col-lg-4 col-md-6">
                 <h3> Gallery</h3>
                 <!-- <p>Manage your page</p> -->
             </div>
             <div class="col-lg-6 col-md-6">
                 <div class="utilite">
                     <ul class="mb-0">
-                       
+
 
                         <li>
                             <a href="javascript:void(0)" title="Click to Print"><i class="bi bi-printer"></i></a>
                         </li>
 
                         <li>
-                            <a href="javascript:void(0)" title="Download Excel"><i class="bi bi-file-earmark-excel"></i></a>
+                            <a href="javascript:void(0)" title="Download Excel"><i
+                                    class="bi bi-file-earmark-excel"></i></a>
                         </li>
 
-                        <li [ngClass]="isPanelOpen ? 'active-filter' : ''">
-                            <a href="javascript:void(0)" title="{{ isPanelOpen ? 'Click to Close Filter' : 'Click to Open Filter' }}" 
-                               (click)="togglePanel()">
+
+                        <li class="filter-dropdown dropdown">
+                            <a href="javascript:void(0)" data-bs-toggle="dropdown" (click)="openDropdown()">
                                 <i class="bi bi-funnel"></i> Filter
                             </a>
+
+                            <div class="dropdown-menu dropdown-menu-end filter-dropdown-menu shadow border-0"
+                                [ngClass]="{ 'show': isDropdownOpen }" (click)="$event.stopPropagation()">
+                                <span class="drop-icon" (click)="closeDropdown()">
+                                    <i class="bi bi-x-lg"></i>
+                                </span>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-lg-0 mb-3">
+                                            <label class="form-label" for="captionen">Caption</label>
+                                            <input class="form-control" id="captionen" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="" class="form-label d-md-block d-none">&nbsp;</label>
+                                        <div class="d-flex gap-2">
+                                            <button type="submit" class="btn btn-primary px-xl-4">Search</button>
+                                            <button type="submit" class="btn btn-danger px-xl-4">Reset</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </li>
-                        
-                        <li class="fill-btn add-link"><a routerLink="/application/mnggallery/add"  title="Go to Previous"><i class="bi bi-plus-lg"></i>
+                        <li class="fill-btn add-link"><a routerLink="/application/mnggallery/add"
+                                title="Click to Add"><i class="bi bi-plus-lg"></i>
                                 Add Page</a>
                         </li>
                     </ul>
@@ -36,36 +59,9 @@
 
 
 
-  
-    <div id="collapseExample" class="collapse show" [ngClass]="{'show': isPanelOpen}">
-        <div class="content-box search-box">
-            <div class="row">
-                <div class="col-xxl-3 col-lg-4 col-md-6">
-                    <div class="mb-3">
-                        <label class="form-label" for="type">Type</label>
-                        <select class="form-select">
-                            <option selected>Select</option>
-                            <option value="1">Photo</option>
-                            <option value="2">Video</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-xxl-3 col-lg-4 col-md-6">
-                    <div class="mb-3">
-                        <label class="form-label d-md-block d-none">&nbsp;</label>
-                        <button  type="submit" class="btn btn-primary me-2">Search</button>
-                        <!-- <button  type="reset" class="btn btn-danger">Reset</button> -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- <div class="search-btn">
-        <a data-bs-toggle="collapse" href="#collapseExample">
-            <span class="collapse-on">Search Open <i class="bi bi-arrow-down"></i></span> <span
-                class="collapse-off">Search Close <i class="bi bi-arrow-up"></i></span>
-        </a>
-    </div> -->
+
+
+
 
     <div class="view-legand">
         <ul class="legends">
@@ -84,7 +80,7 @@
                         <th width="40px">Sl#</th>
                         <th>Type</th>
                         <th>Caption</th>
-                        <th>Caption (In Hindi)</th>
+                        <th>Thumb Image</th>
                         <th width="90px">Action</th>
                     </tr>
                 </thead>
@@ -94,10 +90,13 @@
                         <td>1</td>
                         <td>Photo</td>
                         <td>Lorem Ipsum is simply dummy text of the printing and typesetting industry</td>
-                       <td>लोरेम इप्सम केवल मुद्रण और प्रकारSETTING उद्योग का डमी टेक्स्ट है।</td>
+                        <td>
+                            <img src="./assets/img/login-bg.png" alt="Banner text" class="galley-image">
+                        </td>
                         <td>
                             <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View" data-bs-toggle="modal" data-bs-target="#viewmodal">
+                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"
+                                    data-bs-toggle="modal" data-bs-target="#viewmodal">
                                     <i class="bi bi-eye"></i></a>
                                 <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
                                     <i class="bi bi-pencil"></i></a>
@@ -111,10 +110,13 @@
                         <td>2</td>
                         <td>Photo</td>
                         <td>Lorem Ipsum is simply dummy text of the printing and typesetting industry</td>
-                        <td>लोरेम इप्सम केवल मुद्रण और प्रकारSETTING उद्योग का डमी टेक्स्ट है।</td>
+                        <td>
+                            <img src="./assets/img/login-bg.png" alt="Banner text" class="galley-image">
+                        </td>
                         <td>
                             <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View" data-bs-toggle="modal" data-bs-target="#viewmodal">
+                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"
+                                    data-bs-toggle="modal" data-bs-target="#viewmodal">
                                     <i class="bi bi-eye"></i></a>
                                 <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
                                     <i class="bi bi-pencil"></i></a>
@@ -128,10 +130,13 @@
                         <td>3</td>
                         <td>Photo</td>
                         <td>Lorem Ipsum is simply dummy text of the printing and typesetting industry</td>
-                        <td>लोरेम इप्सम केवल मुद्रण और प्रकारSETTING उद्योग का डमी टेक्स्ट है।</td>
+                        <td>
+                            <img src="./assets/img/login-bg.png" alt="Banner text" class="galley-image">
+                        </td>
                         <td>
                             <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View" data-bs-toggle="modal" data-bs-target="#viewmodal">
+                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"
+                                    data-bs-toggle="modal" data-bs-target="#viewmodal">
                                     <i class="bi bi-eye"></i></a>
                                 <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
                                     <i class="bi bi-pencil"></i></a>
@@ -146,10 +151,13 @@
                         <td>4</td>
                         <td>Photo</td>
                         <td>Lorem Ipsum is simply dummy text of the printing and typesetting industry</td>
-                        <td>लोरेम इप्सम केवल मुद्रण और प्रकारSETTING उद्योग का डमी टेक्स्ट है।</td>
+                        <td>
+                            <img src="./assets/img/login-bg.png" alt="Banner text" class="galley-image">
+                        </td>
                         <td>
                             <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View" data-bs-toggle="modal" data-bs-target="#viewmodal">
+                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"
+                                    data-bs-toggle="modal" data-bs-target="#viewmodal">
                                     <i class="bi bi-eye"></i></a>
                                 <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
                                     <i class="bi bi-pencil"></i></a>
@@ -163,10 +171,13 @@
                         <td>5</td>
                         <td>Photo</td>
                         <td>Lorem Ipsum is simply dummy text of the printing and typesetting industry</td>
-                        <td>लोरेम इप्सम केवल मुद्रण और प्रकारSETTING उद्योग का डमी टेक्स्ट है।</td>
+                        <td>
+                            <img src="./assets/img/login-bg.png" alt="Banner text" class="galley-image">
+                        </td>
                         <td>
                             <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View" data-bs-toggle="modal" data-bs-target="#viewmodal">
+                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"
+                                    data-bs-toggle="modal" data-bs-target="#viewmodal">
                                     <i class="bi bi-eye"></i></a>
                                 <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
                                     <i class="bi bi-pencil"></i></a>
@@ -184,7 +195,7 @@
 
 <!-- Modal View  -->
 <div class="modal fade" id="viewmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+    <div class="modal-dialog modal-dialog-centered modal-md modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="exampleModalLabel">Gallery</h1>
@@ -192,27 +203,18 @@
             </div>
             <div class="modal-body view-form">
                 <div class="row">
-                    <div class="col-xl-12">
-                        <div class="row">
-                            <div class="col-xl-12 col-md-6">
-                                <div class="mb-3">
-                                    <div class="img-fluid">
-                                        <img src="./assets/img/login-bg.png" alt="Profile Image" class="modal-banner">
-                                    </div>
-                                </div>
-                            </div>
+                    <div class="col-md-12">
+                        <div class="img-fluid mb-3">
+                            <img src="./assets/img/login-bg.png" alt="Profile Image" class="modal-banner">
                         </div>
-    
-                        <div class="row">
-                            <div class="col-xl-12 col-md-12">
-                                <div class="mb-3">
-                                    <label class="form-label">Caption</label>
-                                    <label class="form-value">
-                                        Our government is dedicated to ensuring that every household in Bihar has access to safe, clean drinking water through the PHED's robust infrastructure.
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <label class="form-label">Caption</label>
+                        <label class="form-value">
+                            Our government is dedicated to ensuring that every household in Bihar has access
+                            to safe, clean drinking water through the PHED's robust infrastructure.
+                        </label>
                     </div>
                 </div>
             </div>

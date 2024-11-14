@@ -1,26 +1,54 @@
 <div class="form-cointainer">
     <div class="pagetitle-section">
         <div class="row justify-content-between align-items-center">
-            <div class="col-lg-4">
+            <div class="col-lg-4 col-md-6">
                 <h3> Faq</h3>
                 <!-- <p>Manage your page</p> -->
             </div>
             <div class="col-lg-6 col-md-6">
                 <div class="utilite">
                     <ul class="mb-0">
-                       
+
 
                         <li>
                             <a href="javascript:void(0)" title="Click to Print"><i class="bi bi-printer"></i></a>
                         </li>
 
                         <li>
-                            <a href="javascript:void(0)" title="Download Excel"><i class="bi bi-file-earmark-excel"></i></a>
+                            <a href="javascript:void(0)" title="Download Excel"><i
+                                    class="bi bi-file-earmark-excel"></i></a>
                         </li>
 
-                        
-                        
-                        <li class="fill-btn add-link"><a routerLink="/application/mngfaq/add"  title="Go to Previous"><i class="bi bi-plus-lg"></i>
+                        <li class="filter-dropdown dropdown">
+                            <a href="javascript:void(0)" data-bs-toggle="dropdown" (click)="openDropdown()">
+                                <i class="bi bi-funnel"></i> Filter
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-end filter-dropdown-menu shadow border-0"
+                                [ngClass]="{ 'show': isDropdownOpen }" (click)="$event.stopPropagation()">
+                                <span class="drop-icon" (click)="closeDropdown()">
+                                    <i class="bi bi-x-lg"></i>
+                                </span>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-lg-0 mb-3">
+                                            <label class="form-label" for="dsn">Question</label>
+                                            <input class="form-control" type="text" id="dsn">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label d-md-block d-none">&nbsp;</label>
+                                        <div class="d-flex gap-2">
+                                            <button type="submit" class="btn btn-primary px-xl-4">Search</button>
+                                            <button type="submit" class="btn btn-danger px-xl-4">Reset</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="fill-btn add-link"><a routerLink="/application/mngfaq/add" title="Click to Add"><i
+                                    class="bi bi-plus-lg"></i>
                                 Add Page</a>
                         </li>
                     </ul>
@@ -29,7 +57,7 @@
         </div>
     </div>
 
-    
+
 
     <div class="view-legand">
         <ul class="legends">
@@ -47,7 +75,7 @@
                         </th>
                         <th width="40px">Sl#</th>
                         <th>Question</th>
-                        <th>Question (In Hindi)</th>
+                        <th>Answer (In Hindi)</th>
                         <th width="100">Action</th>
                     </tr>
                 </thead>
@@ -61,7 +89,8 @@
                             What is CM Kisan scheme?
                         </td>
                         <td> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ab aliquam optio ea laboriosam
-                            facilis necessitatibus illum delectus, iste aut sint porro voluptate saepe reprehenderit,
+                            facilis necessitatibus illum delectus, <br>iste aut sint porro voluptate saepe
+                            reprehenderit,
                             vero adipisci animi consequuntur excepturi autem. </td>
                         <td>
                             <div class="d-flex gap-1">
@@ -84,7 +113,8 @@
                             What is CM Kisan scheme?
                         </td>
                         <td> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ab aliquam optio ea laboriosam
-                            facilis necessitatibus illum delectus, iste aut sint porro voluptate saepe reprehenderit,
+                            facilis necessitatibus illum delectus, <br>iste aut sint porro voluptate saepe
+                            reprehenderit,
                             vero adipisci animi consequuntur excepturi autem. </td>
                         <td>
                             <div class="d-flex gap-1">
@@ -107,7 +137,8 @@
                             What is CM Kisan scheme?
                         </td>
                         <td> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ab aliquam optio ea laboriosam
-                            facilis necessitatibus illum delectus, iste aut sint porro voluptate saepe reprehenderit,
+                            facilis necessitatibus illum delectus, <br>iste aut sint porro voluptate saepe
+                            reprehenderit,
                             vero adipisci animi consequuntur excepturi autem. </td>
                         <td>
                             <div class="d-flex gap-1">
@@ -130,7 +161,8 @@
                             What is CM Kisan scheme?
                         </td>
                         <td> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ab aliquam optio ea laboriosam
-                            facilis necessitatibus illum delectus, iste aut sint porro voluptate saepe reprehenderit,
+                            facilis necessitatibus illum delectus, <br>iste aut sint porro voluptate saepe
+                            reprehenderit,
                             vero adipisci animi consequuntur excepturi autem. </td>
                         <td>
                             <div class="d-flex gap-1">
@@ -153,7 +185,8 @@
                             What is CM Kisan scheme?
                         </td>
                         <td> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ab aliquam optio ea laboriosam
-                            facilis necessitatibus illum delectus, iste aut sint porro voluptate saepe reprehenderit,
+                            facilis necessitatibus illum delectus, <br>iste aut sint porro voluptate saepe
+                            reprehenderit,
                             vero adipisci animi consequuntur excepturi autem. </td>
                         <td>
                             <div class="d-flex gap-1">
@@ -184,17 +217,28 @@
             </div>
             <div class="modal-body view-form">
                 <div class="row">
-
                     <div class="col-xl-12">
                         <div class="row">
-                           <div class="col-lg-6">
-                            <!-- <label class="form-label">Question</label> -->
-                            <label class="form-label">What is CM Kisan scheme?</label>
-                           </div>
-                           <div class="col-lg-12">
-                            <!-- <label class="form-label">Answer</label> -->
-                            <label class="form-value">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ab aliquam optio ea laboriosam facilis necessitatibus illum delectus, iste aut sint porro voluptate saepe reprehenderit, vero adipisci animi consequuntur excepturi autem.</label>
-                           </div>
+                            <div class="col-lg-12">
+                                <div class="mb-3">
+                                    <label for="form-label">Answer</label>
+                                    <label class="form-value">
+                                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ab
+                                        aliquam optio ea laboriosam facilis necessitatibus illum delectus, iste aut sint
+                                        porro voluptate saepe reprehenderit, vero adipisci animi consequuntur excepturi
+                                        autem.</label>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <div class="mb-3">
+                                    <label for="form-label">सीएम किसान योजना </label>
+                                    <label class="form-value">
+                                        लोरेम इप्सम डोलोर, सिट अमेत कंसिक्टेटुर एडिपिसिकिंग एलीट। अब आलिकम ऑप्टियो ईआ लेबरियोसाम फासिलिस आवश्यकताबुस इलुम डिलेक्टुस, इस्टे ऑट सिंट पोर्रो वोलुप्टेटे साएप रेप्रेहेंडेरिट, वेरो एडिपिस्की आनी कोंसेक्वुंटूर एक्सेप्टुरी ऑटेम।</label>
+                                </div>
+                            </div>
+
+
                         </div>
                     </div>
 
