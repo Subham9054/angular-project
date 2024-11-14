@@ -105,6 +105,7 @@ export class RegistrationcomplaintComponent implements OnInit {
 
   onCategoryChange(event: any) {
     const catid = parseInt(event.target.value, 10);
+    //const catid = event;  // event itself contains the value of the selected category
     if (!isNaN(catid)) {
       this.authService.getSubcategories(catid).subscribe(
         response => {
@@ -116,6 +117,7 @@ export class RegistrationcomplaintComponent implements OnInit {
       );
     }
   }
+  
 
   getDistricts() {
     this.authService.getDistricts().subscribe(
