@@ -52,7 +52,7 @@
                   <span class="input-group-text" id="basic-addon1">+91</span>
                   <input name="txtPhone" type="text" maxlength="10" id="txtPhone"
                                         [(ngModel)]="formData.txtPhone" class="form-control" />
-                  <a class="input-group-text btn btn-primary" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#verifyMobileModal">
+                  <a class="input-group-text btn btn-primary" href="javascript:void(0);" (click)="openModal()" data-bs-toggle="modal" data-bs-target="#verifyMobileModal">
                     <i class="bi bi-check-circle"></i>
                 </a>
                 </div>
@@ -275,7 +275,8 @@
 </div>
 
 
-<div class="modal fade otp-modal" id="verifyMobileModal" tabindex="-1" aria-labelledby="verifyMobileModalLabel" aria-hidden="true" *ngIf="isModalVisible">
+<!-- OTP Modal -->
+<div class="modal fade otp-modal" id="verifyMobileModal" tabindex="-1" aria-labelledby="verifyMobileModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-md">
       <div class="modal-content">
           <div class="modal-body text-center p-5">
@@ -289,29 +290,30 @@
               <div class="mx-1">
                 <div class="row">
                   <div class="col">
-                    <input type="number" class="form-control form-control-lg" [(ngModel)]="otpValues[0]" />
+                    <input type="number" class="form-control form-control-lg" [(ngModel)]="otpValues[0]" (input)="moveToNext(0)" #otp0 />
                   </div>
                   <div class="col">
-                    <input type="number" class="form-control form-control-lg" [(ngModel)]="otpValues[1]" />
+                    <input type="number" class="form-control form-control-lg" [(ngModel)]="otpValues[1]" (input)="moveToNext(1)" #otp1 />
                   </div>
                   <div class="col">
-                    <input type="number" class="form-control form-control-lg" [(ngModel)]="otpValues[2]" />
+                    <input type="number" class="form-control form-control-lg" [(ngModel)]="otpValues[2]" (input)="moveToNext(2)" #otp2 />
                   </div>
                   <div class="col">
-                    <input type="number" class="form-control form-control-lg" [(ngModel)]="otpValues[3]" />
+                    <input type="number" class="form-control form-control-lg" [(ngModel)]="otpValues[3]" (input)="moveToNext(3)" #otp3 />
                   </div>
                   <div class="col">
-                    <input type="number" class="form-control form-control-lg" [(ngModel)]="otpValues[4]" />
+                    <input type="number" class="form-control form-control-lg" [(ngModel)]="otpValues[4]" (input)="moveToNext(4)" #otp4 />
                   </div>
                   <div class="col">
-                    <input type="number" class="form-control form-control-lg" [(ngModel)]="otpValues[5]" />
+                    <input type="number" class="form-control form-control-lg" [(ngModel)]="otpValues[5]" (input)="moveToNext(5)" #otp5 />
                   </div>
                 </div>
               </div>
               <div class="my-4 d-flex justify-content-between text-secondary">Didn't receive OTP yet?
-                  <div>
-                      <span class="d-block">02:00 min</span>
-                  </div>
+                <div *ngIf="timer > 0">
+                  <p>Time Remaining: {{ formattedTime }}</p>
+                </div>
+                
               </div>
               <div class="d-grid">
                   <button type="button" class="btn btn-primary" (click)="mobOtp()">Verify OTP</button>
@@ -320,6 +322,7 @@
       </div>
   </div>
 </div>
+
 
 
 

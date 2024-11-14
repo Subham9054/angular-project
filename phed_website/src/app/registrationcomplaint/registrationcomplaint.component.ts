@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChildren, QueryList, ElementRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
@@ -14,9 +14,14 @@ declare var $:any;
 })
 export class RegistrationcomplaintComponent implements OnInit {
 
+  timer: number = 120; // Timer duration in seconds
+  interval: any; // For holding interval reference
+
+  @ViewChildren('otp0, otp1, otp2, otp3, otp4, otp5') otpInputs!: QueryList<ElementRef>;
+
   fileName: string = '';
-  otpValues: string[] = ['', '', '', '', '', '']; // OTP input values
-  isModalVisible = true; // Initially set the modal to visible
+  otpValues: string[] = ['', '', '', '', '', ''];
+  //isModalVisible = true;
   files: File[] = [];
   currentDate: string = '';
   fileToUpload: File | null = null;
@@ -28,7 +33,6 @@ export class RegistrationcomplaintComponent implements OnInit {
   categories: any[] = [];
   subcategories: any[] = [];
   complainttype: any[] = [];
-
   formData: any = {
     ddlRecvBy: 0,
     txtName: '',
@@ -47,6 +51,7 @@ export class RegistrationcomplaintComponent implements OnInit {
     ddlComplainttype: '0',
     ddllanguage: '1'
   };
+
 
   constructor(
     private http: HttpClient,
@@ -122,7 +127,46 @@ export class RegistrationcomplaintComponent implements OnInit {
       }
     );
   }
+ 
 
+  startTimer() {
+    this.stopTimer();
+    this.timer = 120;
+    this.interval = setInterval(() => {
+      if (this.timer > 0) {
+        this.timer--;
+        console.log(this.timer); // Debug: shows the countdown in the console
+      } else {
+        this.stopTimer();
+      }
+    }, 1000);
+  }
+
+  stopTimer() {
+    
+      clearInterval(this.interval);
+    
+  }
+
+  get formattedTime(): string {
+    const minutes = Math.floor(this.timer / 60);
+    const seconds = this.timer % 60;
+    return `${this.padZero(minutes)}:${this.padZero(seconds)}`;
+}
+
+// Helper function to add a leading zero if needed
+padZero(value: number): string {
+    return value < 10 ? `0${value}` : value.toString();
+}
+
+  moveToNext(index: number) {
+    if (this.otpValues[index] && index < 5) {
+      const nextInput = this.otpInputs.toArray()[index + 1];
+      if (nextInput) {
+        nextInput.nativeElement.focus();
+      }
+    }
+  }
   onDistrictChange(event: any) {
     const distId = parseInt(event.target.value, 10);
     if (!isNaN(distId)) {
@@ -222,11 +266,15 @@ export class RegistrationcomplaintComponent implements OnInit {
   }
 
   openModal() {
+    this.startTimer();
     $('#verifyMobileModal').modal('show')
+    this.startTimer();
   }
 
   closeModal() {
-    $('#verifyMobileModal').modal('hide')
+    $('#verifyMobileModal').modal('hide');
+    this.resetOtpFields();
+    this.stopTimer();
   }
 
   uploadFile(): Promise<string> {
