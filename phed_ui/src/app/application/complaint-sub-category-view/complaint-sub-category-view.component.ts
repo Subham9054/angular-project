@@ -6,6 +6,21 @@ declare let $: any;
   styleUrls: ['./complaint-sub-category-view.component.scss']
 })
 export class ComplaintSubCategoryViewComponent {
+   // Filter 
+   isDropdownOpen = false;
+   openDropdown() {
+     this.isDropdownOpen = true;
+   }
+  
+  
+   closeDropdown() {
+     this.isDropdownOpen = false;
+   }
+
+   resetFilters() {
+    // Reset form fields logic if needed
+  }
+
   ngOnInit(): void {
 
     $('.datepicker').datetimepicker({
@@ -22,4 +37,12 @@ export class ComplaintSubCategoryViewComponent {
     });
 
   }
+// Select upload
+items = [
+  { id: 1, name: 'Handpump Tubewell Related' },
+  { id: 2, name: 'Miscellaneous' },
+  { id: 3, name: 'Piped Water Supply Related' },
+  { id: 4, name: 'Water Quality Related' },
+];
+selectedItem: any;
 }
