@@ -31,13 +31,9 @@
                         <div class="col-lg-4">
                             <div class="mb-3">
                                 <label for="complaintcata" class="form-label">Complaint Category <span class="text-danger">*</span></label>
-                                <select id="complaintcata" class="form-select">
-                                    <option selected value="0">Select</option>
-                                    <option value="1">Handpump Tubewell Related</option>
-                                    <option value="2">Miscellaneous</option>
-                                    <option value="3">Piped Water Supply Related</option>
-                                    <option value="4">Water Quality Related</option>
-                                </select>
+                                <ng-select [items]="items" bindLabel="name" bindValue="id" [(ngModel)]="selectedItem"
+                                   [searchable]="true" placeholder="Select">
+                                </ng-select>
                             </div>
                         </div>
                     </div>
@@ -45,7 +41,7 @@
                     <div class="row">
                         <div class="col-lg-4">
                             <div class="mb-3">
-                                <label for="complaintsub" class="form-label">Complaint Sub Category <span
+                                <label for="complaintsub" class="form-label">Complaint Sub-Category <span
                                         class="text-danger">*</span></label>
                                 <input type="text" class="form-control" id="complaintsub">
                             </div>
@@ -53,7 +49,7 @@
                     
                         <div class="col-lg-4">
                             <div class="mb-3">
-                                <label for="complaintsubhn" class="form-label">Complaint Sub Category (In Hindi)</label>
+                                <label for="complaintsubhn" class="form-label">Complaint Sub-Category (In Hindi)</label>
                                 <input type="text" class="form-control" id="complaintsubhn">
                             </div>
                         </div>
@@ -63,12 +59,9 @@
                         <div class="col-lg-4">
                             <div class="mb-3">
                                 <label for="complaintcata" class="form-label">Priority <span class="text-danger">*</span></label>
-                                <select id="complaintcata" class="form-select">
-                                    <option selected value="0">Select</option>
-                                    <option value="1">High</option>
-                                    <option value="2">Low</option>
-                                    <option value="3">Medium</option>
-                                </select>
+                                <ng-select [items]="item" bindLabel="name" bindValue="id" [(ngModel)]="selectedItem1"
+                                   [searchable]="true" placeholder="Select">
+                                </ng-select>
                             </div>
                         </div>
                     
