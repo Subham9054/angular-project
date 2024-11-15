@@ -189,13 +189,18 @@ a {
 
 .pagetitle-section {
   margin-bottom: 1rem;
-
+   @media (max-width:480px){
+    margin-bottom: 0.7rem;
+   }
   h3 {
     color: #1d4181;
     font-size: 1.1rem;
     margin-bottom: 0.1rem;
     @media (max-width:630px){
       margin-bottom: 1rem;
+    }
+    @media (max-width:480px){
+      margin-bottom: 0.5rem;
     }
     @media (max-width:320px){
       font-size: 1rem;
@@ -233,6 +238,9 @@ a {
         text-decoration: none;
         padding: 0.6rem;
         line-height: 1;
+        @media (max-width:480px){
+          padding: 0.4rem;
+        }
         // @include media-breakpoint-up(md) {
         //   padding: 0.4rem;
         // }
@@ -1135,9 +1143,14 @@ tr.unpublish {
     background-color: #ececec;
     padding: 1rem;
     border-radius: 0.3rem;
-
+    @media (max-width:768px){
+      padding: 0.6rem;
+    }
     img {
       height: 4rem;
+      @media (max-width:768px){
+        height: 3.5rem;
+      }
     }
 
     h1 {
@@ -1149,6 +1162,10 @@ tr.unpublish {
     p {
       margin-bottom: 0;
       line-height: 1.2;
+      @media (max-width:768px){
+        line-height: 1;
+        font-size: 0.7rem;
+      }
     }
 
     small {
@@ -1560,7 +1577,13 @@ tr.unpublish {
 div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-confirm){
   background: transparent linear-gradient(103deg, #097CC5 0%, #128FE0 100%) 0% 0% no-repeat padding-box !important;
 }
-
+@media(max-width:768px){
+  .modal-content{
+    h1{
+      font-size: 1.2rem !important;
+    }
+  }
+}
 @media (max-width: 630px) {
   .upload-doc {
     input {
@@ -1587,6 +1610,6 @@ div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-confirm){
     display: block;
   }
   .pagetitle-section {
-    margin-bottom: 0.2rem;
+    margin-bottom: 0.5rem;
 }
 }
