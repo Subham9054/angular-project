@@ -57,13 +57,24 @@ export class ComplaintSubCategoryViewComponent {
   }
   deleteSubCategory(cateid:any, subcateid:any){
     const catid=cateid;
-    alert(catid);
+    //alert(catid);
     const subcatid=subcateid;
-    alert(subcatid);
+    this.authService.deleteComplaintSubCategory(catid, subcatid).subscribe(
+      (response) => {
+        if(response==1){
+          alert("Subcategory Deleted Successfully");
+          window.location.reload();
+        }
+      },
+      (error) => {
+        alert('Unable to delete subcategories. Please try again later.');
+      }
+    );
   }
+
   Updateview(categoryId: string, subCategoryId: string){
-    // alert(categoryId);
-    // alert(subCategoryId);
+    //alert(categoryId);
+    //alert(subCategoryId);
     // alert(escalationlevelId);
     const catid=categoryId;
     const subcatid=subCategoryId;

@@ -62,6 +62,51 @@ namespace CommonMaster.API
                 throw;
             }
         }
+
+        [HttpPut("UpdateComplaintSubCategory")]
+        public async Task<IActionResult> UpdateComplaintSubCategory([FromQuery] int subcatid, [FromBody] UpdateComplaintSubCategoryModel complaintCategory)
+        {
+            if (complaintCategory == null)
+            {
+                return BadRequest("Provide All The Data");
+            }
+            try
+            {
+                var subcategory =await _MANAGE_SUBCATEGORYMASTERRepository.UpdateComplaintSubCategory(subcatid, complaintCategory);
+                if (subcategory != null)
+                {
+                    return Ok(subcategory);  // You can return the updated subcategory data here
+                }
+                else
+                {
+                    return NotFound("Subcategory not found or could not be updated");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.Error.WriteLine(ex.Message);
+                return StatusCode(500, "An error occurred while updating the subcategory.");
+            }
+        }
+        [HttpDelete("DeleteSubcat")]
+        public async Task<IActionResult> GetComplaintdeletebyid(int catid,int subcatid)
+        {
+            try
+            {
+                var complaints = await _MANAGE_SUBCATEGORYMASTERRepository.getdeleteCatagorybyid(catid,subcatid);
+                if (complaints <= 0)
+                {
+                    return NoContent(); // Use NoContent for an empty result
+                }
+                return Ok(complaints);
+            }
+            catch (Exception ex)
+            {
+
+                return StatusCode(500, "Internal server error"); // Return a meaningful error message
+            }
+        }
+
         [HttpPost("CreateMANAGE_SUBCATEGORYMASTER")]
         public IActionResult MANAGE_SUBCATEGORYMASTER(MANAGE_SUBCATEGORYMASTER_Model TBL)
         {

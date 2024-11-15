@@ -57,6 +57,7 @@
                             <div class="mb-3">
                                 <label for="complaintsubhn" class="form-label">Complaint Sub-Category (In Hindi)</label>
                                 <input type="text" [(ngModel)]="formData.complaintsubhn" required class="form-control" id="complaintsubhn" maxlength="100">
+                                <input type="hidden" id="inpthidn" [value]="formData.inT_SUB_CATEGORY_ID" />
                             </div>
                         </div>
                     </div>
@@ -89,7 +90,8 @@
                     <div class="row">
                         <div class="col-xl-5">
                             <div class="mt-lg-3 d-flex gap-2">
-                                <button type="button" name="btnSubmit" (click)="submitSubcat()" class="btn btn-primary">Submit</button>
+                                <button *ngIf="isUpdateMode" type="button" name="btnSubmit" (click)="updateSubcat()" class="btn btn-primary">Update</button>
+                                <button *ngIf="!isUpdateMode" type="button" name="btnSubmit" (click)="submitSubcat()" class="btn btn-primary">Submit</button>
                                 <button type="button" name="btnReset" class="btn btn-danger">Reset</button>
                             </div>
                         </div>

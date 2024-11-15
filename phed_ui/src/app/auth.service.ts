@@ -41,6 +41,8 @@ export class AuthService {
   private getPrioritiesUrl='https://localhost:7225/api/Dropdown/GetComplaintPriority';
   private submitsubcaturl='https://localhost:7010/Api/MANAGE_SUBCATEGORYMASTER/ComplaintSubCategory'
   private getallsubcaturl = 'https://localhost:7010/Api/MANAGE_SUBCATEGORYMASTER/ViewComplaintSubCategory';
+  private updatesubcaturl='https://localhost:7010/Api/MANAGE_SUBCATEGORYMASTER/UpdateComplaintSubCategory';
+  private deletesubcaturl= 'https://localhost:7010/Api/MANAGE_SUBCATEGORYMASTER/DeleteSubcat';
 
   //For Content Management URLs
   private getParentMenusUrl = 'http://localhost:5097/api/CMS/GetParentMenus';
@@ -249,14 +251,18 @@ export class AuthService {
       catchError(this.handleError)
     );
   }
+
+
+
   submitSubcategory(registrationData: any): Observable<any> {
-    return this.http.post(this.submitsubcaturl, registrationData, {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-      responseType: 'text' // Set response type to text
-    }).pipe(
-      catchError(this.handleError)
+    return this.http.post(`${this.submitsubcaturl}`, registrationData).pipe(
+      catchError(error => {
+        console.error('Error submitting registration data:', error);
+        return throwError(error); // propagate the error
+      })
     );
   }
+  
 
  
   
@@ -265,6 +271,25 @@ export class AuthService {
       catchError(this.handleError)  // Corrected missing parenthesis here
     );
   }
+
+  UpdateSubCategory(INT_CATEGORY_ID: string, INT_SUB_CATEGORY_ID: string): Observable<any> {
+    return this.http.get<any>(`${this.getallsubcaturl}?catid=${INT_CATEGORY_ID}&subcatid=${INT_SUB_CATEGORY_ID}`).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  updateSubCat(subcatid: string, registrationData: any) {
+    return this.http.put<any>(`${this.updatesubcaturl}?subcatid=${subcatid}`, registrationData).pipe(
+      catchError(this.handleError)
+    );
+  }
+  
+  deleteComplaintSubCategory(catid: string, subcatid: string): Observable<any> {
+    return this.http.delete<any>(`${this.deletesubcaturl}?catid=${catid}&subcatid=${subcatid}`).pipe(
+      catchError(this.handleError)  // Corrected missing parenthesis here
+    );
+  }
+  
   //******.....Methods For Content Managent Dynamic Work by Debasis Das.....******
   GetParentMenus(): Observable<any> {
     return this.http.get(this.getParentMenusUrl).pipe(
