@@ -182,9 +182,10 @@
   font-size: 1.8rem;
   margin-right: $spacer - 0.5rem;
   align-items: center;
+  margin-left: 0.2rem;
   // margin-left: 0.6rem;
-  @media (max-width:630px){
-    margin-left: 0.2rem;
+  @media (max-width:768px){
+    margin-left: 0.4rem;
   }
   span {
     font-size: 1.2rem;

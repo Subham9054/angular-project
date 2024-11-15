@@ -176,6 +176,15 @@ export class ComplaintregistrationdeleteComponent {
   // toggleSearchBox() {
   //   this.isSearchBoxOpen = !this.isSearchBoxOpen; // Toggle the visibility of the search box.
   // }
+ // Filter close btn
+ isDropdownOpen = false;
+ openDropdown() {
+   this.isDropdownOpen = true;
+ }
 
+
+ closeDropdown() {
+   this.isDropdownOpen = false;
+ }
   
 }

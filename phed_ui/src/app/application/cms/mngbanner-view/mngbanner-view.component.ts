@@ -10,6 +10,18 @@ import Swal from 'sweetalert2';
 })
 export class MngbannerViewComponent {
   isPanelOpen = true; // Start with the panel open
+
+// Filter close btn
+isDropdownOpen = false;
+openDropdown() {
+  this.isDropdownOpen = true;
+}
+
+
+closeDropdown() {
+  this.isDropdownOpen = false;
+}
+
   banners: any[] = [];
   noRecordsFound = false;
 
