@@ -1,10 +1,10 @@
 <div class="form-cointainer">
     <div class="pagetitle-section">
         <div class="row justify-content-between align-items-center">
-            <div class="col-lg-4 col-md-6">
+            <div class="col-lg-4 col-md-4">
                 <h3> Banner</h3>
             </div>
-            <div class="col-lg-6 col-md-6">
+            <div class="col-lg-6 col-md-8">
                 <div class="utilite">
                     <ul class="mb-0">
                         <li>
@@ -14,9 +14,19 @@
                         <li>
                             <a href="javascript:void(0)" title="Download Excel"><i class="bi bi-file-earmark-excel"></i></a>
                         </li>
+
+                        <li>
+                            <a href="javascript:void(0)" title="Click to Publish"><i class="bi bi-volume-up"></i></a>
+                        </li>
+
+                        <li>
+                            <a href="javascript:void(0)" title="Click to Unpublish"><i class="bi bi-volume-mute"></i></a>
+                        </li>
+
+                        
                         <li class="filter-dropdown dropdown">
                             <a href="javascript:void(0)" data-bs-toggle="dropdown" (click)="openDropdown()">
-                                <i class="bi bi-funnel"></i> Filter
+                                <i class="bi bi-funnel"></i><span class="hide-icon"> Filter</span>
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-end filter-dropdown-menu shadow border-0"
@@ -42,7 +52,7 @@
                             </div>
                         </li>
                         <li class="fill-btn add-link"><a routerLink="/application/mngbanner/add"  title="Click to Add"><i class="bi bi-plus-lg"></i>
-                                Add Page</a>
+                                <span class="hide-icon">Add Page</span></a>
                         </li>
                     </ul>
                 </div>
@@ -68,12 +78,12 @@
               <tr>
                 <th width="30px"><input type="checkbox"></th>
                 <th width="40px">Sl#</th>
-                <th>Banner Heading English</th>
-                <th>Banner Heading Hindi</th>
-                <th>Banner Content English</th>
-                <th>Banner Content Hindi</th>
+                <th>Banner Heading </th>
+                <!-- <th>Banner Heading (In Hindi)</th> -->
+                <th>Banner Content</th>
+                <!-- <th>Banner Content Hindi</th> -->
                 <th>Image</th>
-                <th width="70px" style="text-align: center;">Action</th>
+                <th width="70px">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -81,14 +91,14 @@
                     <td><input type="checkbox"></td>
                     <td>{{ i + 1 }}</td>
                     <td>{{ banner.bannerHeadingEng }}</td>
-                    <td>{{ banner.bannerHeadingHin }}</td>
+                    <!-- <td>{{ banner.bannerHeadingHin }}</td> -->
                     <td>{{ banner.bannerContentEng }}</td>
-                    <td>{{ banner.bannerContentHin }}</td>
+                    <!-- <td>{{ banner.bannerContentHin }}</td> -->
                     <td><img [src]="banner.bannerImage" alt="Banner image" class="img-banner"></td>
                     <td>
                       <div class="d-flex gap-1">
-                        <button class="btn btn-outline-primary btn-sm" (click)="editBannerDetails(banner.bannerId)">Edit</button>
-                        <button class="btn btn-outline-danger btn-sm" (click)="deleteBannerDetails(banner.bannerId)">Delete</button>
+                        <button class="btn btn-outline-primary btn-sm" (click)="editBannerDetails(banner.bannerId)" title="Edit"><i class="bi bi-pencil"></i></button>
+                        <button class="btn btn-outline-danger btn-sm" (click)="deleteBannerDetails(banner.bannerId)" title="Delete"><i class="bi bi-trash3"></i></button>
                       </div>
                     </td>
                 </tr>                  
