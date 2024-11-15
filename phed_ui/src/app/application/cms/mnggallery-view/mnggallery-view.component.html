@@ -1,11 +1,10 @@
 <div class="form-cointainer">
     <div class="pagetitle-section">
         <div class="row justify-content-between align-items-center">
-            <div class="col-lg-4 col-md-6">
+            <div class="col-lg-4 col-md-4">
                 <h3> Gallery</h3>
-                <!-- <p>Manage your page</p> -->
             </div>
-            <div class="col-lg-6 col-md-6">
+            <div class="col-lg-6 col-md-8">
                 <div class="utilite">
                     <ul class="mb-0">
 
@@ -19,10 +18,17 @@
                                     class="bi bi-file-earmark-excel"></i></a>
                         </li>
 
+                        <li>
+                            <a href="javascript:void(0)" title="Click to Publish"><i class="bi bi-volume-up"></i></a>
+                        </li>
 
+                        <li>
+                            <a href="javascript:void(0)" title="Click to Unpublish"><i class="bi bi-volume-mute"></i></a>
+                        </li>
+                        
                         <li class="filter-dropdown dropdown">
                             <a href="javascript:void(0)" data-bs-toggle="dropdown" (click)="openDropdown()">
-                                <i class="bi bi-funnel"></i> Filter
+                                <i class="bi bi-funnel"></i> <span class="hide-icon ms-2">Filter</span>
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-end filter-dropdown-menu shadow border-0"
@@ -49,7 +55,7 @@
                         </li>
                         <li class="fill-btn add-link"><a routerLink="/application/mnggallery/add"
                                 title="Click to Add"><i class="bi bi-plus-lg"></i>
-                                Add Page</a>
+                                <span class="hide-icon ms-2">Add Page</span></a>
                         </li>
                     </ul>
                 </div>
@@ -91,7 +97,9 @@
                         <td>Photo</td>
                         <td>Lorem Ipsum is simply dummy text of the printing and typesetting industry</td>
                         <td>
-                            <img src="./assets/img/login-bg.png" alt="Banner text" class="galley-image">
+                            <div class="gallery-parent">
+                                <img src="./assets/img/login-bg.png" alt="Banner text" class="galley-image">
+                            </div>
                         </td>
                         <td>
                             <div class="d-flex gap-1">
@@ -111,7 +119,9 @@
                         <td>Photo</td>
                         <td>Lorem Ipsum is simply dummy text of the printing and typesetting industry</td>
                         <td>
-                            <img src="./assets/img/login-bg.png" alt="Banner text" class="galley-image">
+                            <div class="gallery-parent">
+                                <img src="./assets/img/login-bg.png" alt="Banner text" class="galley-image">
+                            </div>
                         </td>
                         <td>
                             <div class="d-flex gap-1">
@@ -131,7 +141,9 @@
                         <td>Photo</td>
                         <td>Lorem Ipsum is simply dummy text of the printing and typesetting industry</td>
                         <td>
-                            <img src="./assets/img/login-bg.png" alt="Banner text" class="galley-image">
+                            <div class="gallery-parent">
+                                <img src="./assets/img/login-bg.png" alt="Banner text" class="galley-image">
+                            </div>
                         </td>
                         <td>
                             <div class="d-flex gap-1">
@@ -152,7 +164,9 @@
                         <td>Photo</td>
                         <td>Lorem Ipsum is simply dummy text of the printing and typesetting industry</td>
                         <td>
-                            <img src="./assets/img/login-bg.png" alt="Banner text" class="galley-image">
+                            <div class="gallery-parent">
+                                <img src="./assets/img/login-bg.png" alt="Banner text" class="galley-image">
+                            </div>
                         </td>
                         <td>
                             <div class="d-flex gap-1">
@@ -172,7 +186,9 @@
                         <td>Photo</td>
                         <td>Lorem Ipsum is simply dummy text of the printing and typesetting industry</td>
                         <td>
-                            <img src="./assets/img/login-bg.png" alt="Banner text" class="galley-image">
+                            <div class="gallery-parent">
+                                <img src="./assets/img/login-bg.png" alt="Banner text" class="galley-image">
+                            </div>
                         </td>
                         <td>
                             <div class="d-flex gap-1">
