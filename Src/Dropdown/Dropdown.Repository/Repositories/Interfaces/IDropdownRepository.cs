@@ -19,5 +19,6 @@ namespace Dropdown.Repository.Repositories.Interfaces
         public Task<List<subCategory>> GetSubCategories(int catid);
         public Task<List<Designation>> getDesignation();
         public Task<List<Location>> getLocation();
+        public Task<List<ComplaintPriority>> GetComplaintPriority();
     }
 }

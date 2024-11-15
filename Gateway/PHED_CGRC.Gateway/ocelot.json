@@ -1,1 +1,499 @@
-{"GlobalConfiguration":{"BaseUrl":"https://localhost:7197","RequestIdKey":"e133bbb6-7b30-41d3-83e5-e0d854151b15","AdministrationPath":"/administration","RateLimitOptions":{"DisableRateLimitHeaders":false,"QuotaExceededMessage":"<Add your message>","HttpStatusCode":9999,"ClientWhitelist":[],"EnableRateLimiting":true,"Period":"1s","PeriodTimespan":1,"Limit":1}},"Routes":[{"UpstreamPathTemplate":"/gateway/MANAGE_CATEGORYMASTER/CreateMANAGE_CATEGORYMASTER","UpstreamHttpMethod":["Post"],"DownstreamPathTemplate":"/Api/MANAGE_CATEGORYMASTER/CreateMANAGE_CATEGORYMASTER","DownstreamScheme":"https","DownstreamHostAndPorts":[{"Host":"localhost","Port":7010}],"RateLimitOptions":{"DisableRateLimitHeaders":false,"QuotaExceededMessage":"<Add your message>","HttpStatusCode":9999,"ClientWhitelist":[],"EnableRateLimiting":true,"Period":"1s","PeriodTimespan":1,"Limit":1}},{"UpstreamPathTemplate":"/gateway/MANAGE_CATEGORYMASTER/GetMANAGE_CATEGORYMASTER","UpstreamHttpMethod":["Get"],"DownstreamPathTemplate":"/Api/MANAGE_CATEGORYMASTER/GetMANAGE_CATEGORYMASTER","DownstreamScheme":"https","DownstreamHostAndPorts":[{"Host":"localhost","Port":7010}],"RateLimitOptions":{"DisableRateLimitHeaders":false,"QuotaExceededMessage":"<Add your message>","HttpStatusCode":9999,"ClientWhitelist":[],"EnableRateLimiting":true,"Period":"1s","PeriodTimespan":1,"Limit":1}},{"UpstreamPathTemplate":"/gateway/MANAGE_CATEGORYMASTER/DeleteMANAGE_CATEGORYMASTER","UpstreamHttpMethod":["Delete"],"DownstreamPathTemplate":"/Api/MANAGE_CATEGORYMASTER/DeleteMANAGE_CATEGORYMASTER","DownstreamScheme":"https","DownstreamHostAndPorts":[{"Host":"localhost","Port":7010}],"RateLimitOptions":{"DisableRateLimitHeaders":false,"QuotaExceededMessage":"<Add your message>","HttpStatusCode":9999,"ClientWhitelist":[],"EnableRateLimiting":true,"Period":"1s","PeriodTimespan":1,"Limit":1}},{"UpstreamPathTemplate":"/gateway/MANAGE_CATEGORYMASTER/GetByIDMANAGE_CATEGORYMASTER","UpstreamHttpMethod":["Get"],"DownstreamPathTemplate":"/Api/MANAGE_CATEGORYMASTER/GetByIDMANAGE_CATEGORYMASTER","DownstreamScheme":"https","DownstreamHostAndPorts":[{"Host":"localhost","Port":7010}],"RateLimitOptions":{"DisableRateLimitHeaders":false,"QuotaExceededMessage":"<Add your message>","HttpStatusCode":9999,"ClientWhitelist":[],"EnableRateLimiting":true,"Period":"1s","PeriodTimespan":1,"Limit":1}},{"UpstreamPathTemplate":"/gateway/MANAGE_SUBCATEGORYMASTER/CreateMANAGE_SUBCATEGORYMASTER","UpstreamHttpMethod":["Post"],"DownstreamPathTemplate":"/Api/MANAGE_SUBCATEGORYMASTER/CreateMANAGE_SUBCATEGORYMASTER","DownstreamScheme":"https","DownstreamHostAndPorts":[{"Host":"localhost","Port":7010}],"RateLimitOptions":{"DisableRateLimitHeaders":false,"QuotaExceededMessage":"<Add your message>","HttpStatusCode":9999,"ClientWhitelist":[],"EnableRateLimiting":true,"Period":"1s","PeriodTimespan":1,"Limit":1}},{"UpstreamPathTemplate":"/gateway/MANAGE_SUBCATEGORYMASTER/GetMANAGE_SUBCATEGORYMASTER","UpstreamHttpMethod":["Get"],"DownstreamPathTemplate":"/Api/MANAGE_SUBCATEGORYMASTER/GetMANAGE_SUBCATEGORYMASTER","DownstreamScheme":"https","DownstreamHostAndPorts":[{"Host":"localhost","Port":7010}],"RateLimitOptions":{"DisableRateLimitHeaders":false,"QuotaExceededMessage":"<Add your message>","HttpStatusCode":9999,"ClientWhitelist":[],"EnableRateLimiting":true,"Period":"1s","PeriodTimespan":1,"Limit":1}},{"UpstreamPathTemplate":"/gateway/MANAGE_SUBCATEGORYMASTER/DeleteMANAGE_SUBCATEGORYMASTER","UpstreamHttpMethod":["Delete"],"DownstreamPathTemplate":"/Api/MANAGE_SUBCATEGORYMASTER/DeleteMANAGE_SUBCATEGORYMASTER","DownstreamScheme":"https","DownstreamHostAndPorts":[{"Host":"localhost","Port":7010}],"RateLimitOptions":{"DisableRateLimitHeaders":false,"QuotaExceededMessage":"<Add your message>","HttpStatusCode":9999,"ClientWhitelist":[],"EnableRateLimiting":true,"Period":"1s","PeriodTimespan":1,"Limit":1}},{"UpstreamPathTemplate":"/gateway/MANAGE_SUBCATEGORYMASTER/GetByIDMANAGE_SUBCATEGORYMASTER","UpstreamHttpMethod":["Get"],"DownstreamPathTemplate":"/Api/MANAGE_SUBCATEGORYMASTER/GetByIDMANAGE_SUBCATEGORYMASTER","DownstreamScheme":"https","DownstreamHostAndPorts":[{"Host":"localhost","Port":7010}],"RateLimitOptions":{"DisableRateLimitHeaders":false,"QuotaExceededMessage":"<Add your message>","HttpStatusCode":9999,"ClientWhitelist":[],"EnableRateLimiting":true,"Period":"1s","PeriodTimespan":1,"Limit":1}},{"UpstreamPathTemplate":"/gateway/MANAGE_COMPLAINTDETAILS_CONFIG/CreateMANAGE_COMPLAINTDETAILS_CONFIG","UpstreamHttpMethod":["Post"],"DownstreamPathTemplate":"/Api/MANAGE_COMPLAINTDETAILS_CONFIG/CreateMANAGE_COMPLAINTDETAILS_CONFIG","DownstreamScheme":"https","DownstreamHostAndPorts":[{"Host":"localhost","Port":7024}],"RateLimitOptions":{"DisableRateLimitHeaders":false,"QuotaExceededMessage":"<Add your message>","HttpStatusCode":9999,"ClientWhitelist":[],"EnableRateLimiting":true,"Period":"1s","PeriodTimespan":1,"Limit":1}},{"UpstreamPathTemplate":"/gateway/MANAGE_COMPLAINTDETAILS_CONFIG/GetMANAGE_COMPLAINTDETAILS_CONFIG","UpstreamHttpMethod":["Get"],"DownstreamPathTemplate":"/Api/MANAGE_COMPLAINTDETAILS_CONFIG/GetMANAGE_COMPLAINTDETAILS_CONFIG","DownstreamScheme":"https","DownstreamHostAndPorts":[{"Host":"localhost","Port":7024}],"RateLimitOptions":{"DisableRateLimitHeaders":false,"QuotaExceededMessage":"<Add your message>","HttpStatusCode":9999,"ClientWhitelist":[],"EnableRateLimiting":true,"Period":"1s","PeriodTimespan":1,"Limit":1}},{"UpstreamPathTemplate":"/gateway/MANAGE_COMPLAINTDETAILS_CONFIG/DeleteMANAGE_COMPLAINTDETAILS_CONFIG","UpstreamHttpMethod":["Delete"],"DownstreamPathTemplate":"/Api/MANAGE_COMPLAINTDETAILS_CONFIG/DeleteMANAGE_COMPLAINTDETAILS_CONFIG","DownstreamScheme":"https","DownstreamHostAndPorts":[{"Host":"localhost","Port":7024}],"RateLimitOptions":{"DisableRateLimitHeaders":false,"QuotaExceededMessage":"<Add your message>","HttpStatusCode":9999,"ClientWhitelist":[],"EnableRateLimiting":true,"Period":"1s","PeriodTimespan":1,"Limit":1}},{"UpstreamPathTemplate":"/gateway/MANAGE_COMPLAINTDETAILS_CONFIG/GetByIDMANAGE_COMPLAINTDETAILS_CONFIG","UpstreamHttpMethod":["Get"],"DownstreamPathTemplate":"/Api/MANAGE_COMPLAINTDETAILS_CONFIG/GetByIDMANAGE_COMPLAINTDETAILS_CONFIG","DownstreamScheme":"https","DownstreamHostAndPorts":[{"Host":"localhost","Port":7024}],"RateLimitOptions":{"DisableRateLimitHeaders":false,"QuotaExceededMessage":"<Add your message>","HttpStatusCode":9999,"ClientWhitelist":[],"EnableRateLimiting":true,"Period":"1s","PeriodTimespan":1,"Limit":1}},{"UpstreamPathTemplate":"/gateway/MANAGE_ESCALATION_CONFIGDETAILS/CreateMANAGE_ESCALATION_CONFIGDETAILS","UpstreamHttpMethod":["Post"],"DownstreamPathTemplate":"/Api/MANAGE_ESCALATION_CONFIGDETAILS/CreateMANAGE_ESCALATION_CONFIGDETAILS","DownstreamScheme":"https","DownstreamHostAndPorts":[{"Host":"localhost","Port":7237}],"RateLimitOptions":{"DisableRateLimitHeaders":false,"QuotaExceededMessage":"<Add your message>","HttpStatusCode":9999,"ClientWhitelist":[],"EnableRateLimiting":true,"Period":"1s","PeriodTimespan":1,"Limit":1}},{"UpstreamPathTemplate":"/gateway/MANAGE_ESCALATION_CONFIGDETAILS/GetMANAGE_ESCALATION_CONFIGDETAILS","UpstreamHttpMethod":["Get"],"DownstreamPathTemplate":"/Api/MANAGE_ESCALATION_CONFIGDETAILS/GetMANAGE_ESCALATION_CONFIGDETAILS","DownstreamScheme":"https","DownstreamHostAndPorts":[{"Host":"localhost","Port":7237}],"RateLimitOptions":{"DisableRateLimitHeaders":false,"QuotaExceededMessage":"<Add your message>","HttpStatusCode":9999,"ClientWhitelist":[],"EnableRateLimiting":true,"Period":"1s","PeriodTimespan":1,"Limit":1}},{"UpstreamPathTemplate":"/gateway/MANAGE_ESCALATION_CONFIGDETAILS/DeleteMANAGE_ESCALATION_CONFIGDETAILS","UpstreamHttpMethod":["Delete"],"DownstreamPathTemplate":"/Api/MANAGE_ESCALATION_CONFIGDETAILS/DeleteMANAGE_ESCALATION_CONFIGDETAILS","DownstreamScheme":"https","DownstreamHostAndPorts":[{"Host":"localhost","Port":7237}],"RateLimitOptions":{"DisableRateLimitHeaders":false,"QuotaExceededMessage":"<Add your message>","HttpStatusCode":9999,"ClientWhitelist":[],"EnableRateLimiting":true,"Period":"1s","PeriodTimespan":1,"Limit":1}},{"UpstreamPathTemplate":"/gateway/MANAGE_ESCALATION_CONFIGDETAILS/GetByIDMANAGE_ESCALATION_CONFIGDETAILS","UpstreamHttpMethod":["Get"],"DownstreamPathTemplate":"/Api/MANAGE_ESCALATION_CONFIGDETAILS/GetByIDMANAGE_ESCALATION_CONFIGDETAILS","DownstreamScheme":"https","DownstreamHostAndPorts":[{"Host":"localhost","Port":7237}],"RateLimitOptions":{"DisableRateLimitHeaders":false,"QuotaExceededMessage":"<Add your message>","HttpStatusCode":9999,"ClientWhitelist":[],"EnableRateLimiting":true,"Period":"1s","PeriodTimespan":1,"Limit":1}},{"UpstreamPathTemplate":"/gateway/MANAGE_HOLIDAYSLIST_CONFIG/CreateMANAGE_HOLIDAYSLIST_CONFIG","UpstreamHttpMethod":["Post"],"DownstreamPathTemplate":"/Api/MANAGE_HOLIDAYSLIST_CONFIG/CreateMANAGE_HOLIDAYSLIST_CONFIG","DownstreamScheme":"https","DownstreamHostAndPorts":[{"Host":"localhost","Port":7182}],"RateLimitOptions":{"DisableRateLimitHeaders":false,"QuotaExceededMessage":"<Add your message>","HttpStatusCode":9999,"ClientWhitelist":[],"EnableRateLimiting":true,"Period":"1s","PeriodTimespan":1,"Limit":1}},{"UpstreamPathTemplate":"/gateway/MANAGE_HOLIDAYSLIST_CONFIG/GetMANAGE_HOLIDAYSLIST_CONFIG","UpstreamHttpMethod":["Get"],"DownstreamPathTemplate":"/Api/MANAGE_HOLIDAYSLIST_CONFIG/GetMANAGE_HOLIDAYSLIST_CONFIG","DownstreamScheme":"https","DownstreamHostAndPorts":[{"Host":"localhost","Port":7182}],"RateLimitOptions":{"DisableRateLimitHeaders":false,"QuotaExceededMessage":"<Add your message>","HttpStatusCode":9999,"ClientWhitelist":[],"EnableRateLimiting":true,"Period":"1s","PeriodTimespan":1,"Limit":1}},{"UpstreamPathTemplate":"/gateway/MANAGE_HOLIDAYSLIST_CONFIG/DeleteMANAGE_HOLIDAYSLIST_CONFIG","UpstreamHttpMethod":["Delete"],"DownstreamPathTemplate":"/Api/MANAGE_HOLIDAYSLIST_CONFIG/DeleteMANAGE_HOLIDAYSLIST_CONFIG","DownstreamScheme":"https","DownstreamHostAndPorts":[{"Host":"localhost","Port":7182}],"RateLimitOptions":{"DisableRateLimitHeaders":false,"QuotaExceededMessage":"<Add your message>","HttpStatusCode":9999,"ClientWhitelist":[],"EnableRateLimiting":true,"Period":"1s","PeriodTimespan":1,"Limit":1}},{"UpstreamPathTemplate":"/gateway/MANAGE_HOLIDAYSLIST_CONFIG/GetByIDMANAGE_HOLIDAYSLIST_CONFIG","UpstreamHttpMethod":["Get"],"DownstreamPathTemplate":"/Api/MANAGE_HOLIDAYSLIST_CONFIG/GetByIDMANAGE_HOLIDAYSLIST_CONFIG","DownstreamScheme":"https","DownstreamHostAndPorts":[{"Host":"localhost","Port":7182}],"RateLimitOptions":{"DisableRateLimitHeaders":false,"QuotaExceededMessage":"<Add your message>","HttpStatusCode":9999,"ClientWhitelist":[],"EnableRateLimiting":true,"Period":"1s","PeriodTimespan":1,"Limit":1}}]}
+{
+  "GlobalConfiguration": {
+    "BaseUrl": "https://localhost:7197",
+    "RequestIdKey": "e133bbb6-7b30-41d3-83e5-e0d854151b15",
+    "AdministrationPath": "/administration",
+    "RateLimitOptions": {
+      "DisableRateLimitHeaders": false,
+      "QuotaExceededMessage": "<Add your message>",
+      "HttpStatusCode": 9999,
+      "ClientWhitelist": [],
+      "EnableRateLimiting": true,
+      "Period": "1s",
+      "PeriodTimespan": 1,
+      "Limit": 1
+    }
+  },
+  "Routes": [
+    {
+      "UpstreamPathTemplate": "/gateway/MANAGE_CATEGORYMASTER/CreateMANAGE_CATEGORYMASTER",
+      "UpstreamHttpMethod": [
+        "Post"
+      ],
+      "DownstreamPathTemplate": "/Api/MANAGE_CATEGORYMASTER/CreateMANAGE_CATEGORYMASTER",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7010
+        }
+      ],
+      "RateLimitOptions": {
+        "DisableRateLimitHeaders": false,
+        "QuotaExceededMessage": "<Add your message>",
+        "HttpStatusCode": 9999,
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 1
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/MANAGE_CATEGORYMASTER/GetMANAGE_CATEGORYMASTER",
+      "UpstreamHttpMethod": [
+        "Get"
+      ],
+      "DownstreamPathTemplate": "/Api/MANAGE_CATEGORYMASTER/GetMANAGE_CATEGORYMASTER",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7010
+        }
+      ],
+      "RateLimitOptions": {
+        "DisableRateLimitHeaders": false,
+        "QuotaExceededMessage": "<Add your message>",
+        "HttpStatusCode": 9999,
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 1
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/MANAGE_CATEGORYMASTER/DeleteMANAGE_CATEGORYMASTER",
+      "UpstreamHttpMethod": [
+        "Delete"
+      ],
+      "DownstreamPathTemplate": "/Api/MANAGE_CATEGORYMASTER/DeleteMANAGE_CATEGORYMASTER",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7010
+        }
+      ],
+      "RateLimitOptions": {
+        "DisableRateLimitHeaders": false,
+        "QuotaExceededMessage": "<Add your message>",
+        "HttpStatusCode": 9999,
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 1
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/MANAGE_CATEGORYMASTER/GetByIDMANAGE_CATEGORYMASTER",
+      "UpstreamHttpMethod": [
+        "Get"
+      ],
+      "DownstreamPathTemplate": "/Api/MANAGE_CATEGORYMASTER/GetByIDMANAGE_CATEGORYMASTER",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7010
+        }
+      ],
+      "RateLimitOptions": {
+        "DisableRateLimitHeaders": false,
+        "QuotaExceededMessage": "<Add your message>",
+        "HttpStatusCode": 9999,
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 1
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/MANAGE_SUBCATEGORYMASTER/CreateMANAGE_SUBCATEGORYMASTER",
+      "UpstreamHttpMethod": [
+        "Post"
+      ],
+      "DownstreamPathTemplate": "/Api/MANAGE_SUBCATEGORYMASTER/CreateMANAGE_SUBCATEGORYMASTER",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7010
+        }
+      ],
+      "RateLimitOptions": {
+        "DisableRateLimitHeaders": false,
+        "QuotaExceededMessage": "<Add your message>",
+        "HttpStatusCode": 9999,
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 1
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/MANAGE_SUBCATEGORYMASTER/GetMANAGE_SUBCATEGORYMASTER",
+      "UpstreamHttpMethod": [
+        "Get"
+      ],
+      "DownstreamPathTemplate": "/Api/MANAGE_SUBCATEGORYMASTER/GetMANAGE_SUBCATEGORYMASTER",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7010
+        }
+      ],
+      "RateLimitOptions": {
+        "DisableRateLimitHeaders": false,
+        "QuotaExceededMessage": "<Add your message>",
+        "HttpStatusCode": 9999,
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 1
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/MANAGE_SUBCATEGORYMASTER/DeleteMANAGE_SUBCATEGORYMASTER",
+      "UpstreamHttpMethod": [
+        "Delete"
+      ],
+      "DownstreamPathTemplate": "/Api/MANAGE_SUBCATEGORYMASTER/DeleteMANAGE_SUBCATEGORYMASTER",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7010
+        }
+      ],
+      "RateLimitOptions": {
+        "DisableRateLimitHeaders": false,
+        "QuotaExceededMessage": "<Add your message>",
+        "HttpStatusCode": 9999,
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 1
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/MANAGE_SUBCATEGORYMASTER/GetByIDMANAGE_SUBCATEGORYMASTER",
+      "UpstreamHttpMethod": [
+        "Get"
+      ],
+      "DownstreamPathTemplate": "/Api/MANAGE_SUBCATEGORYMASTER/GetByIDMANAGE_SUBCATEGORYMASTER",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7010
+        }
+      ],
+      "RateLimitOptions": {
+        "DisableRateLimitHeaders": false,
+        "QuotaExceededMessage": "<Add your message>",
+        "HttpStatusCode": 9999,
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 1
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/MANAGE_COMPLAINTDETAILS_CONFIG/CreateMANAGE_COMPLAINTDETAILS_CONFIG",
+      "UpstreamHttpMethod": [
+        "Post"
+      ],
+      "DownstreamPathTemplate": "/Api/MANAGE_COMPLAINTDETAILS_CONFIG/CreateMANAGE_COMPLAINTDETAILS_CONFIG",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7024
+        }
+      ],
+      "RateLimitOptions": {
+        "DisableRateLimitHeaders": false,
+        "QuotaExceededMessage": "<Add your message>",
+        "HttpStatusCode": 9999,
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 1
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/MANAGE_COMPLAINTDETAILS_CONFIG/GetMANAGE_COMPLAINTDETAILS_CONFIG",
+      "UpstreamHttpMethod": [
+        "Get"
+      ],
+      "DownstreamPathTemplate": "/Api/MANAGE_COMPLAINTDETAILS_CONFIG/GetMANAGE_COMPLAINTDETAILS_CONFIG",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7024
+        }
+      ],
+      "RateLimitOptions": {
+        "DisableRateLimitHeaders": false,
+        "QuotaExceededMessage": "<Add your message>",
+        "HttpStatusCode": 9999,
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 1
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/MANAGE_COMPLAINTDETAILS_CONFIG/DeleteMANAGE_COMPLAINTDETAILS_CONFIG",
+      "UpstreamHttpMethod": [
+        "Delete"
+      ],
+      "DownstreamPathTemplate": "/Api/MANAGE_COMPLAINTDETAILS_CONFIG/DeleteMANAGE_COMPLAINTDETAILS_CONFIG",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7024
+        }
+      ],
+      "RateLimitOptions": {
+        "DisableRateLimitHeaders": false,
+        "QuotaExceededMessage": "<Add your message>",
+        "HttpStatusCode": 9999,
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 1
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/MANAGE_COMPLAINTDETAILS_CONFIG/GetByIDMANAGE_COMPLAINTDETAILS_CONFIG",
+      "UpstreamHttpMethod": [
+        "Get"
+      ],
+      "DownstreamPathTemplate": "/Api/MANAGE_COMPLAINTDETAILS_CONFIG/GetByIDMANAGE_COMPLAINTDETAILS_CONFIG",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7024
+        }
+      ],
+      "RateLimitOptions": {
+        "DisableRateLimitHeaders": false,
+        "QuotaExceededMessage": "<Add your message>",
+        "HttpStatusCode": 9999,
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 1
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/MANAGE_ESCALATION_CONFIGDETAILS/CreateMANAGE_ESCALATION_CONFIGDETAILS",
+      "UpstreamHttpMethod": [
+        "Post"
+      ],
+      "DownstreamPathTemplate": "/Api/MANAGE_ESCALATION_CONFIGDETAILS/CreateMANAGE_ESCALATION_CONFIGDETAILS",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7237
+        }
+      ],
+      "RateLimitOptions": {
+        "DisableRateLimitHeaders": false,
+        "QuotaExceededMessage": "<Add your message>",
+        "HttpStatusCode": 9999,
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 1
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/MANAGE_ESCALATION_CONFIGDETAILS/GetMANAGE_ESCALATION_CONFIGDETAILS",
+      "UpstreamHttpMethod": [
+        "Get"
+      ],
+      "DownstreamPathTemplate": "/Api/MANAGE_ESCALATION_CONFIGDETAILS/GetMANAGE_ESCALATION_CONFIGDETAILS",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7237
+        }
+      ],
+      "RateLimitOptions": {
+        "DisableRateLimitHeaders": false,
+        "QuotaExceededMessage": "<Add your message>",
+        "HttpStatusCode": 9999,
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 1
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/MANAGE_ESCALATION_CONFIGDETAILS/DeleteMANAGE_ESCALATION_CONFIGDETAILS",
+      "UpstreamHttpMethod": [
+        "Delete"
+      ],
+      "DownstreamPathTemplate": "/Api/MANAGE_ESCALATION_CONFIGDETAILS/DeleteMANAGE_ESCALATION_CONFIGDETAILS",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7237
+        }
+      ],
+      "RateLimitOptions": {
+        "DisableRateLimitHeaders": false,
+        "QuotaExceededMessage": "<Add your message>",
+        "HttpStatusCode": 9999,
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 1
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/MANAGE_ESCALATION_CONFIGDETAILS/GetByIDMANAGE_ESCALATION_CONFIGDETAILS",
+      "UpstreamHttpMethod": [
+        "Get"
+      ],
+      "DownstreamPathTemplate": "/Api/MANAGE_ESCALATION_CONFIGDETAILS/GetByIDMANAGE_ESCALATION_CONFIGDETAILS",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7237
+        }
+      ],
+      "RateLimitOptions": {
+        "DisableRateLimitHeaders": false,
+        "QuotaExceededMessage": "<Add your message>",
+        "HttpStatusCode": 9999,
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 1
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/MANAGE_HOLIDAYSLIST_CONFIG/CreateMANAGE_HOLIDAYSLIST_CONFIG",
+      "UpstreamHttpMethod": [
+        "Post"
+      ],
+      "DownstreamPathTemplate": "/Api/MANAGE_HOLIDAYSLIST_CONFIG/CreateMANAGE_HOLIDAYSLIST_CONFIG",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7182
+        }
+      ],
+      "RateLimitOptions": {
+        "DisableRateLimitHeaders": false,
+        "QuotaExceededMessage": "<Add your message>",
+        "HttpStatusCode": 9999,
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 1
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/MANAGE_HOLIDAYSLIST_CONFIG/GetMANAGE_HOLIDAYSLIST_CONFIG",
+      "UpstreamHttpMethod": [
+        "Get"
+      ],
+      "DownstreamPathTemplate": "/Api/MANAGE_HOLIDAYSLIST_CONFIG/GetMANAGE_HOLIDAYSLIST_CONFIG",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7182
+        }
+      ],
+      "RateLimitOptions": {
+        "DisableRateLimitHeaders": false,
+        "QuotaExceededMessage": "<Add your message>",
+        "HttpStatusCode": 9999,
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 1
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/MANAGE_HOLIDAYSLIST_CONFIG/DeleteMANAGE_HOLIDAYSLIST_CONFIG",
+      "UpstreamHttpMethod": [
+        "Delete"
+      ],
+      "DownstreamPathTemplate": "/Api/MANAGE_HOLIDAYSLIST_CONFIG/DeleteMANAGE_HOLIDAYSLIST_CONFIG",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7182
+        }
+      ],
+      "RateLimitOptions": {
+        "DisableRateLimitHeaders": false,
+        "QuotaExceededMessage": "<Add your message>",
+        "HttpStatusCode": 9999,
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 1
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/MANAGE_HOLIDAYSLIST_CONFIG/GetByIDMANAGE_HOLIDAYSLIST_CONFIG",
+      "UpstreamHttpMethod": [
+        "Get"
+      ],
+      "DownstreamPathTemplate": "/Api/MANAGE_HOLIDAYSLIST_CONFIG/GetByIDMANAGE_HOLIDAYSLIST_CONFIG",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7182
+        }
+      ],
+      "RateLimitOptions": {
+        "DisableRateLimitHeaders": false,
+        "QuotaExceededMessage": "<Add your message>",
+        "HttpStatusCode": 9999,
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 1
+      }
+    }
+  ]
+}
