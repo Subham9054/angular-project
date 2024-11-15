@@ -38,6 +38,10 @@ export class AuthService {
   private viewEscalationurl='https://localhost:7237/Api/MANAGE_ESCALATION_CONFIGDETAILS/viewescalation';
   private viewEscalationurleye= 'https://localhost:7237/Api/MANAGE_ESCALATION_CONFIGDETAILS/viewescalationeye';
   private viewupdatepenurl='https://localhost:7237/Api/MANAGE_ESCALATION_CONFIGDETAILS/viewupdatepen';
+  private getPrioritiesUrl='https://localhost:7225/api/Dropdown/GetComplaintPriority';
+  private submitsubcaturl='https://localhost:7010/Api/MANAGE_SUBCATEGORYMASTER/ComplaintSubCategory'
+  private getallsubcaturl = 'https://localhost:7010/Api/MANAGE_SUBCATEGORYMASTER/ViewComplaintSubCategory';
+
   //For Content Management URLs
   private getParentMenusUrl = 'http://localhost:5097/api/CMS/GetParentMenus';
   private createOrUpdatePageUrl = 'http://localhost:5097/api/CMS/CreateOrUpdatePageLink';
@@ -240,7 +244,27 @@ export class AuthService {
       catchError(this.handleError)
     );
   }
+  getPriorities(): Observable<any> {
+    return this.http.get<any>(this.getPrioritiesUrl).pipe(
+      catchError(this.handleError)
+    );
+  }
+  submitSubcategory(registrationData: any): Observable<any> {
+    return this.http.post(this.submitsubcaturl, registrationData, {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+      responseType: 'text' // Set response type to text
+    }).pipe(
+      catchError(this.handleError)
+    );
+  }
 
+ 
+  
+  getComplaintSubCategory(INT_CATEGORY_ID: string, INT_SUB_CATEGORY_ID: string): Observable<any> {
+    return this.http.get<any>(`${this.getallsubcaturl}?catid=${INT_CATEGORY_ID}&subcatid=${INT_SUB_CATEGORY_ID}`).pipe(
+      catchError(this.handleError)  // Corrected missing parenthesis here
+    );
+  }
   //******.....Methods For Content Managent Dynamic Work by Debasis Das.....******
   GetParentMenus(): Observable<any> {
     return this.http.get(this.getParentMenusUrl).pipe(

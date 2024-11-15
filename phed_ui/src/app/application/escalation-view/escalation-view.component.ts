@@ -148,7 +148,7 @@ export class EscalationViewComponent {
     const catid=categoryId;
     const subcatid=subCategoryId;
     const esclid=escalationlevelId;
-    this.router.navigate(['/application/escalation'], {
+    this.router.navigate(['/application/escalation/add'], {
       queryParams: {
         catid: categoryId,
         subcatid: subCategoryId,
