@@ -8,6 +8,17 @@ namespace CommonMaster.Model.Entities.CommonMaster
 {
     public class ComplaintSubCategoryModel
     {
+       
+        public int INT_CATEGORY_ID { get; set; }
+        public string VCH_SUB_CATEGORY { get; set; }    
+        public string NVCH_SUB_CATEGORY { get; set; }
+        public int INT_ESCALATION_LEVEL { get; set; }
+        public int INT_COMPLAINT_PRIORITY { get; set; }
+        public int INT_CREATED_BY { get; set; }
+        public DateTime DTM_CREATED_ON { get; set; }
+    }
+    public class ViewComplaintSubCategoryModel
+    {
         public string VCH_CATEGORY { get; set; }
         public int INT_CATEGORY_ID { get; set; }
         public string VCH_SUB_CATEGORY { get; set; }
@@ -18,6 +29,20 @@ namespace CommonMaster.Model.Entities.CommonMaster
         public int INT_CREATED_BY { get; set; }
         public DateTime DTM_CREATED_ON { get; set; }
         public string VCH_COMPLIANT_PRORITY { get; set; }
+        public int INT_UPDATED_BY { get; set; }
+        public DateTime DTM_UPDATED_ON { get; set; }
 
     }
+    public class UpdateComplaintSubCategoryModel
+    {
+        public int INT_CATEGORY_ID { get; set; }
+        public string VCH_SUB_CATEGORY { get; set; }
+        public string NVCH_SUB_CATEGORY { get; set; }
+        public int INT_ESCALATION_LEVEL { get; set; }
+        public int INT_COMPLAINT_PRIORITY { get; set; }
+        public int INT_UPDATED_BY { get; set; }
+        public DateTime DTM_UPDATED_ON { get; set; }
+
+    }
+
 }
