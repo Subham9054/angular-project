@@ -1,11 +1,10 @@
 <div class="form-cointainer">
     <div class="pagetitle-section">
         <div class="row justify-content-between align-items-center">
-            <div class="col-lg-4 col-md-6">
+            <div class="col-lg-4 col-md-4">
                 <h3> Whats New</h3>
-                <!-- <p>Manage your page</p> -->
             </div>
-            <div class="col-lg-6 col-md-6">
+            <div class="col-lg-6 col-md-8">
                 <div class="utilite">
                     <ul class="mb-0">
                        
@@ -17,7 +16,14 @@
                         <li>
                             <a href="javascript:void(0)" title="Download Excel"><i class="bi bi-file-earmark-excel"></i></a>
                         </li>
+                        
+                        <li>
+                            <a href="javascript:void(0)" title="Click to Publish"><i class="bi bi-volume-up"></i></a>
+                        </li>
 
+                        <li>
+                            <a href="javascript:void(0)" title="Click to Unpublish"><i class="bi bi-volume-mute"></i></a>
+                        </li>
                         <!-- <li [ngClass]="isPanelOpen ? 'active-filter' : ''">
                             <a href="javascript:void(0)" title="{{ isPanelOpen ? 'Click to Close Filter' : 'Click to Open Filter' }}" 
                                (click)="togglePanel()">
@@ -26,7 +32,7 @@
                         </li> -->
                         <li class="filter-dropdown dropdown">
                             <a href="javascript:void(0)" data-bs-toggle="dropdown" (click)="openDropdown()">
-                                <i class="bi bi-funnel"></i> Filter
+                                <i class="bi bi-funnel"></i><span class="hide-icon ms-2"> Filter</span>
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-end filter-dropdown-menu shadow border-0"
@@ -52,7 +58,7 @@
                             </div>
                         </li>
                         <li class="fill-btn add-link"><a routerLink="/application/whatsnew/add"  title="Click to Add"><i class="bi bi-plus-lg"></i>
-                                Add Page</a>
+                            <span class="hide-icon ms-2">Add Page</span></a>
                         </li>
                     </ul>
                 </div>
@@ -81,6 +87,7 @@
                         <th>Title</th>
                         <th>Published on</th>
                         <th>Description</th>
+                        <th>Document</th>
                         <th width="90px">Action</th>
                     </tr>
                 </thead>
@@ -95,6 +102,9 @@
                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde ullam magni quaerat, 
                         <br>optio blanditiis dolorum omnis quis cumque, et suscipit harum quae, eaque eius <br>
                         accusamus reiciendis incidunt ipsam? Eos, quasi.</td>
+                        <td>
+                            <a href="javascript:void(0);" class="btn btn-sm btn-outline-danger" title="Download"><i class="bi bi-download"></i></a>
+                        </td>
                         <td>
                             <div class="d-flex gap-1">
                                 <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"
@@ -118,6 +128,9 @@
                         <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde ullam magni quaerat, 
                             <br>optio blanditiis dolorum omnis quis cumque, et suscipit harum quae, eaque eius <br>
                             accusamus reiciendis incidunt ipsam? Eos, quasi.</td>
+                            <td>
+                                <a href="javascript:void(0);" class="btn btn-sm btn-outline-danger" title="Download"><i class="bi bi-download"></i></a>
+                            </td>
                         <td>
                             <div class="d-flex gap-1">
                                 <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"
@@ -141,6 +154,9 @@
                         <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde ullam magni quaerat, 
                             <br>optio blanditiis dolorum omnis quis cumque, et suscipit harum quae, eaque eius <br>
                             accusamus reiciendis incidunt ipsam? Eos, quasi.</td>
+                            <td>
+                                <a href="javascript:void(0);" class="btn btn-sm btn-outline-danger" title="Download"><i class="bi bi-download"></i></a>
+                            </td>
                         <td>
                             <div class="d-flex gap-1">
                                 <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"
@@ -164,6 +180,9 @@
                         <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde ullam magni quaerat, 
                             <br>optio blanditiis dolorum omnis quis cumque, et suscipit harum quae, eaque eius <br>
                             accusamus reiciendis incidunt ipsam? Eos, quasi.</td>
+                            <td>
+                                <a href="javascript:void(0);" class="btn btn-sm btn-outline-danger" title="Download"><i class="bi bi-download"></i></a>
+                            </td>
                         <td>
                             <div class="d-flex gap-1">
                                 <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"
@@ -187,6 +206,9 @@
                         <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde ullam magni quaerat, 
                             <br>optio blanditiis dolorum omnis quis cumque, et suscipit harum quae, eaque eius <br>
                             accusamus reiciendis incidunt ipsam? Eos, quasi.</td>
+                            <td>
+                                <a href="javascript:void(0);" class="btn btn-sm btn-outline-danger" title="Download"><i class="bi bi-download"></i></a>
+                            </td>
                         <td>
                             <div class="d-flex gap-1">
                                 <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"
@@ -235,19 +257,14 @@
                             </div>
 
                        
-                            <div class="col-xl-6 col-md-12">
+                            <!-- <div class="col-xl-6 col-md-12">
                                 <div class="mb-3">
                                     <label class="form-label">Title</label>
                                     <label class="form-value">Tender for demo</label>
                                 </div>
-                            </div>
+                            </div> -->
                 
-                            <div class="col-xl-6 col-md-12">
-                                <div class="mb-3">
-                                    <label class="form-label">Title (In Hindi)</label>
-                                    <label class="form-value">डेमो के लिए टेंडर</label>
-                                </div>
-                            </div>
+                           
                         
                             <div class="col-xl-12 col-md-12">
                                 <div class="mb-3">
@@ -255,7 +272,12 @@
                                     <label class="form-value">Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde ullam magni quaerat, optio blanditiis dolorum omnis quis cumque, et suscipit harum quae, eaque eius accusamus reiciendis incidunt ipsam? Eos, quasi.</label>
                                 </div>
                             </div>
-                
+                            <div class="col-xl-6 col-md-12">
+                                <div class="mb-3">
+                                    <label class="form-label">Title (In Hindi)</label>
+                                    <label class="form-value">डेमो के लिए टेंडर</label>
+                                </div>
+                            </div>
                             <div class="col-xl-12 col-md-12">
                                 <div class="mb-3">
                                     <label class="form-label">Description (In Hindi)</label>
