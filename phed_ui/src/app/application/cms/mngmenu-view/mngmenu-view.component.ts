@@ -7,8 +7,8 @@ interface MenuItem {
   pageId: number;
   pageNameEng: string;
   pageNameHin: string;
-  parentNameEng?: string;
-  parentNameHin?: string;
+  parentNameEng: string;
+  parentNameHin: string;
   url: string;
   isSubMenu: boolean;
 }
@@ -28,16 +28,17 @@ export class MngmenuViewComponent implements OnInit {
   noRecordsFound: boolean = false; // Flag to show "No Page Links Found"
 
   constructor(private authService: AuthService, private router: Router) {} // Inject Router
-// Filter close btn
-isDropdownOpen = false;
-openDropdown() {
-  this.isDropdownOpen = true;
-}
 
+  // Filter close btn
+  isDropdownOpen = false;
+  openDropdown() {
+    this.isDropdownOpen = true;
+  }
 
-closeDropdown() {
-  this.isDropdownOpen = false;
-}
+  closeDropdown() {
+    this.isDropdownOpen = false;
+  }
+
   ngOnInit(): void {
     this.getPageLinks();
   }
@@ -75,10 +76,9 @@ closeDropdown() {
       }
     });
   }
-
+  
   editPageLink(id: number): void {
-    // Navigate to MngmenuComponent with the selected pageId
-    this.router.navigate(['/application/mngmenu'], { queryParams: { pageId: id } });
+    this.router.navigate([`/application/mngmenu/${id}`]);
   }
 
   deletePageLink(pageId: number): void {

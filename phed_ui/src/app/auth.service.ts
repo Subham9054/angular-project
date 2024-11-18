@@ -58,8 +58,11 @@ export class AuthService {
   private getBannerByIdUrl = 'http://localhost:5097/api/CMS/GetBannerById';
   private getBannerByNameUrl = 'http://localhost:5097/api/CMS/GetBannerByName';
   private deleteBannerUrl = 'http://localhost:5097/api/CMS/DeleteBanner';
-  
+
+  private faqUrl = 'http://localhost:5097/api/FAQ'; //Base URL for Managing FAQs
+
   constructor(private http: HttpClient, private router: Router) { }
+  
  
   // Method for user login
   login(loginPayload: { vchUserName: string, vchPassWord: string }): Observable<any> {
@@ -252,8 +255,6 @@ export class AuthService {
     );
   }
 
-
-
   submitSubcategory(registrationData: any): Observable<any> {
     return this.http.post(`${this.submitsubcaturl}`, registrationData).pipe(
       catchError(error => {
@@ -262,10 +263,7 @@ export class AuthService {
       })
     );
   }
-  
-
- 
-  
+    
   getComplaintSubCategory(INT_CATEGORY_ID: string, INT_SUB_CATEGORY_ID: string): Observable<any> {
     return this.http.get<any>(`${this.getallsubcaturl}?catid=${INT_CATEGORY_ID}&subcatid=${INT_SUB_CATEGORY_ID}`).pipe(
       catchError(this.handleError)  // Corrected missing parenthesis here
@@ -286,7 +284,7 @@ export class AuthService {
   
   deleteComplaintSubCategory(catid: string, subcatid: string): Observable<any> {
     return this.http.delete<any>(`${this.deletesubcaturl}?catid=${catid}&subcatid=${subcatid}`).pipe(
-      catchError(this.handleError)  // Corrected missing parenthesis here
+      catchError(this.handleError)
     );
   }
   
@@ -367,9 +365,48 @@ export class AuthService {
     );
   }
 
+  // //Methods for Manage FAQs
+  // createOrUpdateFAQ(faqData: any): Observable<any> {
+  //   const headers = new HttpHeaders({
+  //     'Content-Type': 'application/json'
+  //   });  
+  //   return this.http.post(`${this.faqUrl}/CreateOrUpdateFaq`, faqData, { headers }).pipe(
+  //     catchError(this.handleError)
+  //   );
+  // }
+
+  // getFAQs(): Observable<any> {
+  //   return this.http.get(`${this.faqUrl}/GetFaqs`).pipe(
+  //     catchError(this.handleError)
+  //   );
+  // }
+
+  // getFAQById(faqId: number): Observable<any> {
+  //   return this.http.get(`${this.faqUrl}/GetFaqById?faqId=${faqId}`).pipe(
+  //     catchError(this.handleError)
+  //   );
+  // }
+
+  // deleteFAQ(id: number): Observable<any> {
+  //   return this.http.delete(`${this.faqUrl}/DeleteFaq`, { body: { FaqId: id } }).pipe(
+  //     catchError(this.handleError)
+  //   );
+  // }
+
+  // deleteFAQ(id: number): Observable<any> {
+  //   return this.http.delete(`${this.faqUrl}/DeleteFaqDetails?faqId=${id}`).pipe(
+  //     catchError(this.handleError)
+  //   );
+  // }
+
   // Error handling logic
   private handleError(error: any) {
     console.error('An error occurred:', error);
-    return throwError(error);
+    return throwError(() => new Error(error.message || 'Unknown error occurred'));
   }
+
+  // private handleError(error: any): Observable<never> {
+  //   console.error('An error occurred:', error); // For debugging
+  //   return throwError(error.message || 'Server Error');
+  // }
 }
