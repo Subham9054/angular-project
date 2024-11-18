@@ -1,75 +1,53 @@
 <div class="form-cointainer">
-
     <div class="pagetitle-section">
         <div class="row justify-content-between align-items-center">
             <div class="col-lg-4">
-                <h3> Complaint Sub-Category </h3>
+                <h3>Complaint Sub-Category</h3>
             </div>
             <div class="col-lg-6 col-md-6">
                 <div class="utilite">
                     <ul class="mb-0">
-
-
                         <li>
                             <a href="javascript:void(0)" title="Click to Print"><i class="bi bi-printer"></i></a>
                         </li>
-
                         <li>
-                            <a href="javascript:void(0)" title="Download Excel"><i
-                                    class="bi bi-file-earmark-excel"></i></a>
+                            <a href="javascript:void(0)" title="Download Excel"><i class="bi bi-file-earmark-excel"></i></a>
                         </li>
-
-
                         <li class="filter-dropdown dropdown">
-                            <a href="javascript:void(0)" data-bs-toggle="dropdown">
-                                <i class="bi bi-funnel"></i> Filter 
+                            <a href="javascript:void(0)" data-bs-toggle="dropdown" (click)="openDropdown()">
+                                <i class="bi bi-funnel"></i> Filter
                             </a>
-                           
-                                <div class="dropdown-menu dropdown-menu-end filter-dropdown-menu shadow border-0">
-
-                                    <!-- <span class="drop-icon">
-                                        <i class="bi bi-x-lg"></i>
-                                    </span> -->
-
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label for="complaintcata" class="form-label">Complaint Category</label>
-                                                <select id="complaintcata" class="form-select">
-                                                    <option selected value="0">Select</option>
-                                                    <option value="1">Handpump Tubewell Related</option>
-                                                    <option value="2">Miscellaneous</option>
-                                                    <option value="3">Piped Water Supply Related</option>
-                                                    <option value="4">Water Quality Related</option>
-                                                </select>
-                                            </div>
+                            <div class="dropdown-menu dropdown-menu-end filter-dropdown-menu shadow border-0" [ngClass]="{ 'show': isDropdownOpen }" (click)="$event.stopPropagation()">
+                                <span class="drop-icon" (click)="closeDropdown()">
+                                    <i class="bi bi-x-lg"></i>
+                                </span>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-lg-0 mb-3">
+                                            <label for="complaintcata" class="form-label">Complaint Category</label>
+                                            <ng-select
+                                              [items]="categories"
+                                              bindLabel="vcH_CATEGORY"
+                                              bindValue="inT_CATEGORY_ID"
+                                              [(ngModel)]="formData.ddlComplaintCategory"
+                                              [placeholder]="'Select a category'"
+                                              [searchable]="true"
+                                              [clearable]="false">
+                                            </ng-select>
                                         </div>
-                                   <!-- <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label class="form-label">Registration Date</label>
-                                            <div class="input-group">
-                                                <input type="text" class="form-control datepicker" id="todatepicker">
-                                                <label class="input-group-text" for="todatepicker"><i
-                                                        class="bi bi-calendar-week"></i></label>
-                                            </div>
-                                        </div>
-                                    </div> -->
-                                      
-                                     
-                                        <div class="col-md-6">
-                                            <label for="" class="form-label d-md-block d-none">&nbsp;&nbsp;</label>
-                                            <div class="d-flex gap-2">
-                                                <button type="submit" class="btn btn-primary px-xl-4">Search</button>
-                                                <button type="submit" class="btn btn-danger px-xl-4">Reset</button>
-                                            </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="" class="form-label d-md-block d-none">&nbsp;&nbsp;</label>
+                                        <div class="d-flex gap-2">
+                                            <button type="submit" class="btn btn-primary px-xl-4" (click)="subCatData()">Search</button>
+                                            <button type="button" class="btn btn-danger px-xl-4" (click)="resetFilters()">Reset</button>
                                         </div>
                                     </div>
                                 </div>
-                            
+                            </div>
                         </li>
-                        <li class="fill-btn add-link"><a routerLink="/application/ComplaintSub-Category/add"
-                                title="Click to Add"><i class="bi bi-plus-lg"></i>
-                                Add Page</a>
+                        <li class="fill-btn add-link">
+                            <a routerLink="/application/ComplaintSub-Category/add" title="Click to Add"><i class="bi bi-plus-lg"></i> Add Page</a>
                         </li>
                     </ul>
                 </div>
@@ -77,117 +55,48 @@
         </div>
     </div>
     <div class="content-box content-area p-0">
-
         <div class="table-responsive mb-0">
             <table class="table mb-0">
                 <thead>
                     <tr>
-
                         <th width="40px">Sl#</th>
-                        <th>Complaint Category </th>
-                        <th>Complaint Sub Category</th>
-                        <th>Complaint Sub Category (In Hindi)</th>
+                        <th>Complaint Category</th>
+                        <th>Complaint Sub-Category</th>
+                        <th>Complaint Sub-Category (In Hindi)</th>
                         <th>Complaint Priority</th>
                         <th>Escalation Level</th>
                         <th width="90px">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>
-                            Water Quality Related
-                        </td>
-                        <td>Bacterial Contamination in Water</td>
-                        <td>-</td>
-                        <td>High</td>
-                        <td>3</td>
+                    <tr *ngFor="let subCategory of subcategories; let i = index">
+                        <td>{{ i + 1 }}</td>
+                        <td>{{ subCategory.vcH_CATEGORY }} <input type="hidden" [value]="subCategory.inT_CATEGORY_ID" /></td>
+                        <td>{{ subCategory.vcH_SUB_CATEGORY }}<input type="hidden" [value]="subCategory.inT_SUB_CATEGORY_ID" /></td>
+                        <td>{{ subCategory.nvcH_SUB_CATEGORY || '-' }}</td>
+                        <td>{{ subCategory.vcH_COMPLIANT_PRORITY }}</td>
+                        <td>{{ subCategory.inT_ESCALATION_LEVEL }}</td>
                         <td>
                             <div class="d-flex gap-1">
-                                <a class="btn btn-outline-primary btn-sm" title="Edit">
-                                    <i class="bi bi-pencil"></i>
-                                </a>
+                              <!-- Edit Button -->
+                              <a  class="btn btn-outline-primary btn-sm" title="Edit"
+                              (click)="Updateview(subCategory.inT_CATEGORY_ID, subCategory.inT_SUB_CATEGORY_ID)">
+                              <i class="bi bi-pencil"></i>
+                            </a>
+                          
+                              <!-- Delete Button -->
+                              <button class="btn btn-outline-danger btn-sm" title="Delete"
+                                      (click)="deleteSubCategory(subCategory.inT_CATEGORY_ID, subCategory.inT_SUB_CATEGORY_ID)">
+                                <i class="bi bi-trash"></i>
+                              </button>
+                          
+                              <!-- Hidden inputs for category and sub-category IDs -->
+                              <input type="hidden" [value]="subCategory.inT_CATEGORY_ID" />
+                              <input type="hidden" [value]="subCategory.inT_SUB_CATEGORY_ID" />
                             </div>
-                        </td>
-                    </tr>
-
-
-
-                    <tr>
-                        <td>2</td>
-                        <td>
-                            Swachh Bharat Mission
-                        </td>
-                        <td>Bill Pending</td>
-                        <td>-</td>
-                        <td>High</td>
-                        <td>4</td>
-                        <td>
-                            <div class="d-flex gap-1">
-                                <a class="btn btn-outline-primary btn-sm" title="Edit">
-                                    <i class="bi bi-pencil"></i>
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-
-
-
-                    <tr>
-                        <td>3</td>
-                        <td>
-                            Contractor Related
-                        </td>
-                        <td>CIPET Related</td>
-                        <td>CIPET Related</td>
-                        <td>High</td>
-                        <td>0</td>
-                        <td>
-                            <div class="d-flex gap-1">
-                                <a class="btn btn-outline-primary btn-sm" title="Edit">
-                                    <i class="bi bi-pencil"></i>
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-
-
-
-                    <tr>
-                        <td>4</td>
-                        <td>
-                            Water Quality Related
-                        </td>
-                        <td>Dirty Water Supply</td>
-                        <td>-</td>
-                        <td>High</td>
-                        <td>3</td>
-                        <td>
-                            <div class="d-flex gap-1">
-                                <a class="btn btn-outline-primary btn-sm" title="Edit">
-                                    <i class="bi bi-pencil"></i>
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-
-
-                    <tr>
-                        <td>1</td>
-                        <td>
-                            Water Quality Related
-                        </td>
-                        <td>High Amount of Arsenic in Water</td>
-                        <td>-</td>
-                        <td>High</td>
-                        <td>3</td>
-                        <td>
-                            <div class="d-flex gap-1">
-                                <a class="btn btn-outline-primary btn-sm" title="Edit">
-                                    <i class="bi bi-pencil"></i>
-                                </a>
-                            </div>
-                        </td>
+                          </td>
+                          
+                          
                     </tr>
                 </tbody>
             </table>

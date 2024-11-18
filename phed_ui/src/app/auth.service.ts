@@ -38,6 +38,12 @@ export class AuthService {
   private viewEscalationurl='https://localhost:7237/Api/MANAGE_ESCALATION_CONFIGDETAILS/viewescalation';
   private viewEscalationurleye= 'https://localhost:7237/Api/MANAGE_ESCALATION_CONFIGDETAILS/viewescalationeye';
   private viewupdatepenurl='https://localhost:7237/Api/MANAGE_ESCALATION_CONFIGDETAILS/viewupdatepen';
+  private getPrioritiesUrl='https://localhost:7225/api/Dropdown/GetComplaintPriority';
+  private submitsubcaturl='https://localhost:7010/Api/MANAGE_SUBCATEGORYMASTER/ComplaintSubCategory'
+  private getallsubcaturl = 'https://localhost:7010/Api/MANAGE_SUBCATEGORYMASTER/ViewComplaintSubCategory';
+  private updatesubcaturl='https://localhost:7010/Api/MANAGE_SUBCATEGORYMASTER/UpdateComplaintSubCategory';
+  private deletesubcaturl= 'https://localhost:7010/Api/MANAGE_SUBCATEGORYMASTER/DeleteSubcat';
+
   //For Content Management URLs
   private getParentMenusUrl = 'http://localhost:5097/api/CMS/GetParentMenus';
   private createOrUpdatePageUrl = 'http://localhost:5097/api/CMS/CreateOrUpdatePageLink';
@@ -130,14 +136,14 @@ export class AuthService {
     );
   }
 
-  getGps(distId: number, blockId: number): Observable<any> {
-    return this.http.get<any[]>(`${this.gpurl}?distid=${distId}&blockid=${blockId}`).pipe(
+  getGps( blockId: number): Observable<any> {
+    return this.http.get<any[]>(`${this.gpurl}?blockid=${blockId}`).pipe(
       catchError(this.handleError)
     );
   }
 
-  getVillages(distId: number, blockId: number, gpId: number): Observable<any> {
-    return this.http.get<any>(`${this.villageurl}?distid=${distId}&blockid=${blockId}&gpid=${gpId}`).pipe(
+  getVillages( gpId: number): Observable<any> {
+    return this.http.get<any>(`${this.villageurl}?gpid=${gpId}`).pipe(
       catchError(this.handleError)
     );
   }
@@ -240,7 +246,50 @@ export class AuthService {
       catchError(this.handleError)
     );
   }
+  getPriorities(): Observable<any> {
+    return this.http.get<any>(this.getPrioritiesUrl).pipe(
+      catchError(this.handleError)
+    );
+  }
 
+
+
+  submitSubcategory(registrationData: any): Observable<any> {
+    return this.http.post(`${this.submitsubcaturl}`, registrationData).pipe(
+      catchError(error => {
+        console.error('Error submitting registration data:', error);
+        return throwError(error); // propagate the error
+      })
+    );
+  }
+  
+
+ 
+  
+  getComplaintSubCategory(INT_CATEGORY_ID: string, INT_SUB_CATEGORY_ID: string): Observable<any> {
+    return this.http.get<any>(`${this.getallsubcaturl}?catid=${INT_CATEGORY_ID}&subcatid=${INT_SUB_CATEGORY_ID}`).pipe(
+      catchError(this.handleError)  // Corrected missing parenthesis here
+    );
+  }
+
+  UpdateSubCategory(INT_CATEGORY_ID: string, INT_SUB_CATEGORY_ID: string): Observable<any> {
+    return this.http.get<any>(`${this.getallsubcaturl}?catid=${INT_CATEGORY_ID}&subcatid=${INT_SUB_CATEGORY_ID}`).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  updateSubCat(subcatid: string, registrationData: any) {
+    return this.http.put<any>(`${this.updatesubcaturl}?subcatid=${subcatid}`, registrationData).pipe(
+      catchError(this.handleError)
+    );
+  }
+  
+  deleteComplaintSubCategory(catid: string, subcatid: string): Observable<any> {
+    return this.http.delete<any>(`${this.deletesubcaturl}?catid=${catid}&subcatid=${subcatid}`).pipe(
+      catchError(this.handleError)  // Corrected missing parenthesis here
+    );
+  }
+  
   //******.....Methods For Content Managent Dynamic Work by Debasis Das.....******
   GetParentMenus(): Observable<any> {
     return this.http.get(this.getParentMenusUrl).pipe(

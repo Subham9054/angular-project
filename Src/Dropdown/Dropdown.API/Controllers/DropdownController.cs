@@ -194,5 +194,18 @@ namespace Dropdown.API.Controllers
                 return BadRequest("Error in fetching designations");
             }
         }
+        [HttpGet("GetComplaintPriority")]
+        public async Task<IActionResult> getcomplaintpriority()
+        {
+            try
+            {
+                var compority = await _dropdownRepository.GetComplaintPriority();
+                return Ok(compority);
+            }
+            catch
+            {
+                return BadRequest("Error in fetching Districts");
+            }
+        }
     }
 }

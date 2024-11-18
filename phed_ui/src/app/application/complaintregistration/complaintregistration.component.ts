@@ -3,6 +3,7 @@ import { AuthService } from 'src/app/auth.service';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
+
 @Component({
   selector: 'app-complaintregistration',
   templateUrl: './complaintregistration.component.html',
@@ -49,18 +50,18 @@ export class ComplaintregistrationComponent  {
 
 
   formData: any = {
-    ddlRecvBy: 0,
+    ddlRecvBy: '0',
     txtName: '',
     txtPhone: '',
     txtEmail: '',
     txtAddress:'',
     txtDocument: '',
-    ddlDistrict: '0',
-    ddlBlock: '0',
-    ddlPanchayat: '0',
-    ddlVillage: '0',
-    ddlComplaintCategory: '0',
-    ddlSubCategory: '0',
+    ddlDistrict: [null],
+    ddlBlock: [null],
+    ddlPanchayat: [null],
+    ddlVillage: [null],
+    ddlComplaintCategory: [null],
+    ddlSubCategory: [null],
     txtDetailsE: '',
     txtLandmark: '',
     ddlComplainttype:'0',
@@ -100,21 +101,21 @@ export class ComplaintregistrationComponent  {
   }
 
   onCategoryChange(event: any) {
-    const catid = parseInt(event.target.value, 10);
-    if (!isNaN(catid)) {
-      this.authService.getsubcategories(catid).subscribe(
+    debugger;
+    // Directly use the event as the selected category ID
+    const catid = event.inT_CATEGORY_ID;  // event contains the selected category ID directly
+    if (catid && !isNaN(catid)) {
+      this.authService.getSubcategories(catid).subscribe(
         response => {
           this.subcategories = response;
-          console.log(this.subcategories);
         },
         error => {
           console.error('Error fetching subcategories', error);
         }
       );
-    } else {
-      console.error('Invalid category ID');
     }
   }
+  
 
   getDistricts() {
     this.authService.getDistricts().subscribe(
@@ -131,7 +132,7 @@ export class ComplaintregistrationComponent  {
     this.router.navigate(['/registrationupdate']); 
   }
   onDistrictChange(event: any) {
-    const distId = parseInt(event.target.value, 10);
+    const distId = event.inT_DIST_ID
     if (!isNaN(distId)) {
       this.authService.getBlocks(distId).subscribe(
         response => {
@@ -149,10 +150,10 @@ export class ComplaintregistrationComponent  {
   }
 
   onBlockChange(event: any) {
-    const blockId = parseInt(event.target.value, 10);
-    const distId = parseInt(this.formData.ddlDistrict, 10);
-    if (!isNaN(distId) && !isNaN(blockId)) {
-      this.authService.getGps(distId, blockId).subscribe(
+    debugger;
+    const blockId = event.inT_BLOCK_ID
+    if (!isNaN(blockId)) {
+      this.authService.getGps(blockId).subscribe(
         response => {
           this.gps = response;
           console.log(this.gps);
@@ -167,11 +168,10 @@ export class ComplaintregistrationComponent  {
   }
 
   onGpChange(event: any) {
-    const gpId = parseInt(event.target.value, 10);
-    const blockId = parseInt(this.formData.ddlBlock, 10);
-    const distId = parseInt(this.formData.ddlDistrict, 10);
-    if (!isNaN(distId) && !isNaN(blockId) && !isNaN(gpId)) {
-      this.authService.getVillages(distId, blockId, gpId).subscribe(
+    debugger;
+    const gpId = event.inT_GP_ID;
+    if (!isNaN(gpId)) {
+      this.authService.getVillages(gpId).subscribe(
         response => {
           this.villages = response;
           console.log(this.villages);

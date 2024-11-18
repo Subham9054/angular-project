@@ -6,5 +6,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./mngfaq-view.component.scss']
 })
 export class MngfaqViewComponent {
+// Filter close btn
+isDropdownOpen = false;
+openDropdown() {
+  this.isDropdownOpen = true;
+}
 
+
+closeDropdown() {
+  this.isDropdownOpen = false;
+}
 }

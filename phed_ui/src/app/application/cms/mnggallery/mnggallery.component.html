@@ -1,18 +1,17 @@
 <div class="form-cointainer">
     <div class="pagetitle-section">
         <div class="row justify-content-between align-items-center">
-            <div class="col-xxl-3 col-lg-4 col-md-6">
+            <div class="col-xxl-3 col-lg-4 col-md-4">
                 <h3> Gallery</h3>
-                <!-- <p>Manage your page</p> -->
             </div>
-            <div class="col-lg-6 col-md-6">
+            <div class="col-lg-6 col-md-8">
                 <div class="utilite">
                     <ul class="mb-0">
                         <li class="bg-transparent border-0">
                             <span class="text-danger small"><b>(*)</b> Indicate mandatory </span>
                         </li>
                         <li class="fill-btn back-link"><a routerLink="/application/mnggallery" title="Go to Previous"><i
-                            class="bi bi-arrow-left"></i> Back to View</a>
+                            class="bi bi-arrow-left"></i>  <span class="hide-icon ms-2"> Back to View</span></a>
                 </li>
                     </ul>
                 </div>
@@ -29,7 +28,16 @@
         <div class="row">
             <div class="col-xl-10 col-lg-12">
                 <div class="row">
-
+                    <div class="col-xl-4">
+                        <div class="mb-3">
+                            <label class="form-label" for="type">Category <span class="text-danger">*</span></label>
+                            <select class="form-select" [(ngModel)]="selectedType">
+                                <option value="" selected>Select</option>
+                                <option value="photo">Category 1</option>
+                                <option value="video">Category 2</option>
+                            </select>
+                        </div>
+                    </div>
                     <div class="col-xl-4">
                         <div class="mb-3">
                             <label class="form-label" for="type">Type <span class="text-danger">*</span></label>
@@ -42,7 +50,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-xl-4" *ngIf="selectedType === 'photo' || selectedType === 'video'">
+                    <div class="col-xl-3" *ngIf="selectedType === 'photo' || selectedType === 'video'">
                         <div class="mb-3">
                             <label class="form-label" for="thembimg"> Thumb Image <span class="text-danger">*</span></label>
                             <div class="custom-dropzone photoUpload" ngx-dropzone [accept]="'image/*'" (change)="onSelect($event)">
@@ -60,7 +68,7 @@
                     </div>
                     
                     
-                    <div class="col-xl-4" *ngIf="selectedType === 'photo'">
+                    <div class="col-xl-5" *ngIf="selectedType === 'photo'">
                         <div class="mb-3">
                             <label class="form-label" for="upodimg"> large Image <span class="text-danger">*</span></label>
                             <div class="custom-dropzone photoUpload" ngx-dropzone [accept]="'image/*'" (change)="onSelect($event)">
@@ -78,7 +86,7 @@
                     </div>
                     
                    
-                    <div class="col-xl-4" *ngIf="selectedType === 'video'">
+                    <!-- <div class="col-xl-4" *ngIf="selectedType === 'video'">
                         <div class="mb-3">
                             <label class="form-label d-block" for="linktype">Link Type</label>
                             <div class="form-check form-check-inline mt-1">
@@ -90,9 +98,9 @@
                                 <label class="form-check-label" for="link2">External</label>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     
-                    <div class="col-xl-4" *ngIf="selectedType === 'video'">
+                    <div class="col-xl-5" *ngIf="selectedType === 'video'">
                         <div class="mb-3">
                             <label class="form-label" for="videurl">Video Url</label>
                             <input type="text" class="form-control" id="videurl">
@@ -104,20 +112,14 @@
                     <div class="col-xl-4">
                         <div class="mb-3">
                             <label class="form-label" for="captionen">Caption</label>
-                            <textarea class="form-control" id="captionen" rows="3"></textarea>
-                            <p class="text-end mb-0">
-                                <small class="text-danger">Maximum <strong>500</strong> characters</small>
-                            </p>
+                            <input class="form-control" id="captionen" type="text">
                         </div>
                     </div>
 
                     <div class="col-xl-4">
                         <div class="mb-3">
                             <label class="form-label" for="captionhn">Caption (In Hindi)</label>
-                            <textarea class="form-control" id="captionhn" rows="3"></textarea>
-                            <p class="text-end mb-0">
-                                <small class="text-danger">Maximum <strong>500</strong> characters</small>
-                            </p>
+                            <input class="form-control" id="captionhn" type="text">
                         </div>
                     </div>
                 </div>

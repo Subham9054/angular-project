@@ -41,7 +41,7 @@ export class ComplaintcategoryViewComponent implements OnInit {
     const encryptedComplaintId = CryptoJS.AES.encrypt(complaint.inT_CATEGORY_ID.toString(), secretKey).toString();
     const numberRepresentation = parseInt(CryptoJS.MD5(encryptedComplaintId).toString(CryptoJS.enc.Hex).slice(0, 8), 16);
 
-    this.router.navigate(['/application/complaintcategory'], {
+    this.router.navigate(['/application/complaintcategory/add'], {
       queryParams: {
         VCH_CATEGORY: encryptedCategory,
         NVCH_CATEGORY: encryptedSubCategory,

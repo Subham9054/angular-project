@@ -10,15 +10,27 @@ import Swal from 'sweetalert2';
   styleUrls: ['./escalation-view.component.scss']
 })
 export class EscalationViewComponent {
-  isPanelOpen = false; // Start with the panel open
+  // Filter close btn
+ isDropdownOpen = false;
+ openDropdown() {
+   this.isDropdownOpen = true;
+ }
+
+
+ closeDropdown() {
+   this.isDropdownOpen = false;
+ }
+
+  // Search filter
+  isPanelOpen = false; 
 
   togglePanel() {
-    this.isPanelOpen = !this.isPanelOpen; // Toggle the panel state
+    this.isPanelOpen = !this.isPanelOpen; 
   }
   escalations: any[] = [];
   categories: any[] = [];
   subcategories: any[] = [];
-  selectedEscalations: any = []; // Property to store selected escalation details
+  selectedEscalations: any = [];
 
   formData: any = { 
     ddlComplaintCategory: '0',
@@ -136,7 +148,7 @@ export class EscalationViewComponent {
     const catid=categoryId;
     const subcatid=subCategoryId;
     const esclid=escalationlevelId;
-    this.router.navigate(['/application/escalation'], {
+    this.router.navigate(['/application/escalation/add'], {
       queryParams: {
         catid: categoryId,
         subcatid: subCategoryId,
@@ -147,3 +159,5 @@ export class EscalationViewComponent {
 }
 
 }
+
+

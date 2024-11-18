@@ -15,15 +15,12 @@ export class ViewComponent {
   }
 
   // Filter 
- // Flag to control the dropdown's visibility
  isDropdownOpen = false;
-
- // This method opens the dropdown
  openDropdown() {
    this.isDropdownOpen = true;
  }
 
- // This method closes the dropdown
+
  closeDropdown() {
    this.isDropdownOpen = false;
  }

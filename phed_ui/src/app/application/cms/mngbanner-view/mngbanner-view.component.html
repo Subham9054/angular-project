@@ -1,77 +1,68 @@
 <div class="form-cointainer">
-    <div class="main-tab">
+    <div class="pagetitle-section">
         <div class="row justify-content-between align-items-center">
-            <div class="col-lg-4">
-                <ul class="nav nav-tabs" routerLinkActive="active">
-                    <!-- <li class="nav-item">
-                        <a routerLink="/application/mngbanner" class="nav-link">Add</a>
-                    </li> -->
-                    <li class="nav-item">
-                        <a routerLink="/application/mngbanner-view" class="nav-link active">View</a>
-                    </li>
-                </ul>
+            <div class="col-lg-4 col-md-4">
+                <h3> Banner</h3>
             </div>
-            <div class="col-lg-6 col-md-6">
-                <div class="utilite float-end mb-1">
+            <div class="col-lg-6 col-md-8">
+                <div class="utilite">
                     <ul class="mb-0">
-                       
                         <li>
                             <a href="javascript:void(0)" title="Click to Print"><i class="bi bi-printer"></i></a>
                         </li>
-                        <li>
-                            <a href="javascript:void(0)" title="Click to Publish">
-                                <i class="bi bi-volume-up"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)" title="Click to Unpublish">
-                                <i class="bi bi-volume-mute"></i>
-                            </a>
-                        </li>
-                       
 
                         <li>
-                            <a href="javascript:void(0)" title="{{ isPanelOpen ? 'Click to Close Filter' : 'Click to Open Filter' }}" 
-                               (click)="togglePanel()">
-                                <i class="bi bi-funnel"></i>
-                            </a>
+                            <a href="javascript:void(0)" title="Download Excel"><i class="bi bi-file-earmark-excel"></i></a>
                         </li>
 
                         <li>
-                            <a href="javascript:void(0)" title="Click to Add " routerLink="/application/mngbanner">
-                                <i class="bi bi-plus-lg"></i>
+                            <a href="javascript:void(0)" title="Click to Publish"><i class="bi bi-volume-up"></i></a>
+                        </li>
+
+                        <li>
+                            <a href="javascript:void(0)" title="Click to Unpublish"><i class="bi bi-volume-mute"></i></a>
+                        </li>
+
+                        
+                        <li class="filter-dropdown dropdown">
+                            <a href="javascript:void(0)" data-bs-toggle="dropdown" (click)="openDropdown()">
+                                <i class="bi bi-funnel"></i><span class="hide-icon"> Filter</span>
                             </a>
+
+                            <div class="dropdown-menu dropdown-menu-end filter-dropdown-menu shadow border-0"
+                                [ngClass]="{ 'show': isDropdownOpen }" (click)="$event.stopPropagation()">
+                                <span class="drop-icon" (click)="closeDropdown()">
+                                    <i class="bi bi-x-lg"></i>
+                                </span>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-lg-0 mb-3">
+                                            <label class="form-label" for="bannerHeading">Banner Heading</label>
+                                            <input type="text" class="form-control" id="bannerHeading">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label d-md-block d-none">&nbsp;</label>
+                                        <div class="d-flex gap-2">
+                                            <button type="submit" class="btn btn-primary px-xl-4">Search</button>
+                                            <button type="submit" class="btn btn-danger px-xl-4">Reset</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="fill-btn add-link"><a routerLink="/application/mngbanner/add"  title="Click to Add"><i class="bi bi-plus-lg"></i>
+                                <span class="hide-icon">Add Page</span></a>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
-    <div id="collapseExample" class="collapse show" [ngClass]="{'show': isPanelOpen}">
-        <div class="content-box search-box">
-            <div class="row">
-                <div class="col-xxl-3 col-lg-4 col-md-6">
-                    <div class="mb-3">
-                        <label class="form-label" for="bannerHeading">Banner Heading</label>
-                        <input type="text" class="form-control" id="bannerHeading">
-                    </div>
-                </div>
-                <div class="col-xxl-3 col-lg-4 col-md-6">
-                    <div class="mb-3">
-                        <label class="form-label d-md-block d-none">&nbsp;</label>
-                        <button type="submit" class="btn btn-primary me-2">Search</button>
-                        <button type="reset" class="btn btn-danger">Reset</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- <div class="search-btn">
-        <a data-bs-toggle="collapse" href="#collapseExample">
-            <span class="collapse-on">Search  <i class="bi bi-arrow-down"></i></span> <span
-                class="collapse-off">Search Close <i class="bi bi-arrow-up"></i></span>
-        </a>
-    </div> -->
+
+
+    
+   
 
     <div class="view-legand">
         <ul class="legends">
@@ -87,12 +78,12 @@
               <tr>
                 <th width="30px"><input type="checkbox"></th>
                 <th width="40px">Sl#</th>
-                <th>Banner Heading English</th>
-                <th>Banner Heading Hindi</th>
-                <th>Banner Content English</th>
-                <th>Banner Content Hindi</th>
+                <th>Banner Heading </th>
+                <!-- <th>Banner Heading (In Hindi)</th> -->
+                <th>Banner Content</th>
+                <!-- <th>Banner Content Hindi</th> -->
                 <th>Image</th>
-                <th width="70px" style="text-align: center;">Action</th>
+                <th width="70px">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -100,14 +91,14 @@
                     <td><input type="checkbox"></td>
                     <td>{{ i + 1 }}</td>
                     <td>{{ banner.bannerHeadingEng }}</td>
-                    <td>{{ banner.bannerHeadingHin }}</td>
+                    <!-- <td>{{ banner.bannerHeadingHin }}</td> -->
                     <td>{{ banner.bannerContentEng }}</td>
-                    <td>{{ banner.bannerContentHin }}</td>
+                    <!-- <td>{{ banner.bannerContentHin }}</td> -->
                     <td><img [src]="banner.bannerImage" alt="Banner image" class="img-banner"></td>
                     <td>
                       <div class="d-flex gap-1">
-                        <button class="btn btn-outline-primary btn-sm" (click)="editBannerDetails(banner.bannerId)">Edit</button>
-                        <button class="btn btn-outline-danger btn-sm" (click)="deleteBannerDetails(banner.bannerId)">Delete</button>
+                        <button class="btn btn-outline-primary btn-sm" (click)="editBannerDetails(banner.bannerId)" title="Edit"><i class="bi bi-pencil"></i></button>
+                        <button class="btn btn-outline-danger btn-sm" (click)="deleteBannerDetails(banner.bannerId)" title="Delete"><i class="bi bi-trash3"></i></button>
                       </div>
                     </td>
                 </tr>                  

@@ -1,109 +1,95 @@
 <div class="form-cointainer">
-    <div class="main-tab">
+    <div class="pagetitle-section">
         <div class="row justify-content-between align-items-center">
-            <div class="col-lg-4">
-                <ul class="nav nav-tabs" routerLinkActive="active">
-                    <!-- <li class="nav-item">
-                        <a routerLink="/application/mngmenu" class="nav-link">Add</a>
-                    </li> -->
-                    <li class="nav-item">
-                        <a routerLink="/application/mngmenu-view" class="nav-link active">View</a>
-                    </li>
-                </ul>
+            <div class="col-lg-4 col-md-4">
+                <h3>Menu</h3>
             </div>
-            <div class="col-lg-6 col-md-6">
-                <div class="utilite float-end mb-1">
+            <div class="col-lg-6 col-md-8">
+                <div class="utilite">
                     <ul class="mb-0">
-                        <!-- <li class="bg-transparent border-0">
-                            <span class="text-danger small"><b>(*)</b> Indicate mandatory </span>
-                        </li> -->
                         <li>
                             <a href="javascript:void(0)" title="Click to Print"><i class="bi bi-printer"></i></a>
                         </li>
-                        <!-- <li>
-                            <a href="javascript:void(0)" ngbTooltip="Delete Record"><i class="bi bi-trash"></i></a>
-                        </li>
-                       
-                        <li><a href="javascript:void(0)" ngbTooltip="Go to Previous"><i
-                                    class="bi bi-arrow-left"></i></a>
-                        </li> -->
-                        <li>
-                            <a href="javascript:void(0)" title="Click to Publish">
-                                <i class="bi bi-volume-up"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)" title="Click to Unpublish">
-                                <i class="bi bi-volume-off"></i>
-                            </a>
-                        </li>
-                       
 
-                        <li [ngClass]="isPanelOpen ? 'active-filter' : ''">
-                            <a href="javascript:void(0)" title="{{ isPanelOpen ? 'Click to Close Filter' : 'Click to Open Filter' }}" 
-                               (click)="togglePanel()">
-                                <i class="bi bi-funnel"></i>
-                            </a>
+                        <li>
+                            <a href="javascript:void(0)" title="Download Excel"><i
+                                    class="bi bi-file-earmark-excel"></i></a>
+                        </li>
+                        
+                        <li>
+                            <a href="javascript:void(0)" title="Click to Publish"><i class="bi bi-volume-up"></i></a>
                         </li>
 
                         <li>
-                            <a href="javascript:void(0)" title="Click to Add" routerLink="/application/mngmenu">
-                                <i class="bi bi-plus-lg"></i>
+                            <a href="javascript:void(0)" title="Click to Unpublish"><i class="bi bi-volume-mute"></i></a>
+                        </li>
+
+
+                        <li class="filter-dropdown dropdown">
+                            <a href="javascript:void(0)" data-bs-toggle="dropdown" (click)="openDropdown()">
+                                <i class="bi bi-funnel"></i> <span class="hide-icon ms-2">Filter</span>
                             </a>
+
+                            <div class="dropdown-menu dropdown-menu-end filter-dropdown-menu shadow border-0"
+                                [ngClass]="{ 'show': isDropdownOpen }" (click)="$event.stopPropagation()">
+                                <span class="drop-icon" (click)="closeDropdown()">
+                                    <i class="bi bi-x-lg"></i>
+                                </span>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="manutype">Menu Type</label>
+                                            <select class="form-select" id="manutype">
+                                                <option selected>Select</option>
+                                                <option value="1">Main Menu</option>
+                                                <option value="2">Footer Menu</option>
+                                                <option value="3">Footer Bottom Menu</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="parentmanu">Parent Menu</label>
+                                            <select class="form-select" id="parentmanu">
+                                                <option selected>Select</option>
+                                                <option value="1">FAQ</option>
+                                                <option value="2">Feedback</option>
+                                                <option value="3">Contact</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-lg-0 mb-3">
+                                            <label class="form-label" for="menuen">Menu Name</label>
+                                            <input type="text" class="form-control" id="menuen">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                       <div class="mb-lg-0 mb-3">
+                                        <label class="form-label d-md-block d-none">&nbsp;</label>
+                                        <div class="d-flex gap-2">
+                                            <button type="submit" class="btn btn-primary px-xl-4">Search</button>
+                                            <button type="submit" class="btn btn-danger px-xl-4">Reset</button>
+                                        </div>
+                                       </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="fill-btn add-link"><a routerLink="/application/mngmenu/add" title="Click to Add"><i
+                                    class="bi bi-plus-lg"></i>
+                                <span class="hide-icon ms-2">Add Page</span></a>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
-    <div id="collapseExample" class="collapse show" [ngClass]="{'show': isPanelOpen}">
-        <div class="content-box search-box">
-            <div class="row">
-                <div class="col-xl-4 col-lg-4 col-md-6">
-                    <div class="mb-3">
-                        <label class="form-label" for="manutype">Menu Type</label>
-                        <select class="form-select" id="manutype">
-                            <option selected>Select</option>
-                            <option value="1">Main Menu</option>
-                            <option value="2">Footer Menu</option>
-                            <option value="3">Footer Bottom Menu</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-6">
-                    <div class="mb-3">
-                        <label class="form-label" for="parentmanu">Parent Menu</label>
-                        <select class="form-select" id="parentmanu">
-                            <option selected>Select</option>
-                            <option value="1">FAQ</option>
-                            <option value="2">Feedback</option>
-                            <option value="3">Contact</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-6">
-                    <div class="mb-3">
-                        <label class="form-label" for="menuen">Menu Name</label>
-                        <input type="text" class="form-control" id="menuen">
-                    </div>
-                </div>
-                <div class="col-xl-2 col-lg-4 col-md-6">
-                    <div class="mb-3">
-                        <label class="form-label d-xl-block d-lg-none d-md-block d-none">&nbsp;</label>
-                        <button type="submit" class="btn btn-primary me-2">Search</button>
-                        <button type="reset" class="btn btn-danger">Reset</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <!-- <div class="search-btn">
-        <a data-bs-toggle="collapse" href="#collapseExample">
-            <span class="collapse-on">Search Open <i class="bi bi-arrow-down"></i></span> <span
-                class="collapse-off">Search Close <i class="bi bi-arrow-up"></i></span>
-        </a>
-    </div> -->
+
+
+  
+
 
     <div class="view-legand">
         <ul class="legends">
@@ -143,13 +129,16 @@
                             <td>{{ menu.url }}</td>
                             <td>
                                 <div class="d-flex gap-1">
-                                    <button class="btn btn-outline-success btn-sm" title="View" data-bs-toggle="modal" data-bs-target="#viewmodal">
+                                    <button class="btn btn-outline-success btn-sm" title="View" data-bs-toggle="modal"
+                                        data-bs-target="#viewmodal">
                                         <i class="bi bi-eye"></i>
                                     </button>
-                                    <button class="btn btn-outline-primary btn-sm" title="Edit" (click)="editPageLink(menu.pageId)">
+                                    <button class="btn btn-outline-primary btn-sm" title="Edit"
+                                        (click)="editPageLink(menu.pageId)">
                                         <i class="bi bi-pencil"></i>
                                     </button>
-                                    <button class="btn btn-outline-danger btn-sm" title="Delete" (click)="deletePageLink(menu.pageId)">
+                                    <button class="btn btn-outline-danger btn-sm" title="Delete"
+                                        (click)="deletePageLink(menu.pageId)">
                                         <i class="bi bi-trash3"></i>
                                     </button>
                                     <!-- <button class="btn btn-primary btn-sm" title="Edit" (click)="editPageLink(menu.pageId)">
@@ -172,12 +161,12 @@
                                         <i class="bi bi-trash3"></i>
                                     </a>
                                 </div>                           
-                            </td> -->                            
+                            </td> -->
                         </tr>
                     </ng-container>
                 </tbody>
             </table>
-        </div>        
+        </div>
     </div>
 </div>
 
@@ -230,7 +219,7 @@
                                     <label class="form-value">घूमने की जगह</label>
                                 </div>
                             </div> -->
-                        <!-- </div>
+                            <!-- </div>
 
                         <div class="row"> -->
                             <div class="col-xl-4 col-md-6">
