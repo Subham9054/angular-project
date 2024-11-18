@@ -23,6 +23,8 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
 import { GrievancestatusComponent } from './grievancestatus/grievancestatus.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { HttpClientModule } from '@angular/common/http'; 
+import { NgSelectModule } from '@ng-select/ng-select';
+
 
 @NgModule({
   declarations: [
@@ -51,7 +53,8 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     NgxDropzoneModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

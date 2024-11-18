@@ -30,9 +30,12 @@ export class RegistrationcomplaintComponent implements OnInit {
   blocks: any[] = [];
   gps: any[] = [];
   villages: any[] = [];
+  wards:any[]=[];
   categories: any[] = [];
   subcategories: any[] = [];
   complainttype: any[] = [];
+
+  
   formData: any = {
     ddlRecvBy: 0,
     txtName: '',
@@ -40,11 +43,12 @@ export class RegistrationcomplaintComponent implements OnInit {
     txtEmail: '',
     txtAddress: '',
     txtDocument: '',
-    ddlDistrict: '0',
-    ddlBlock: '0',
-    ddlPanchayat: '0',
-    ddlVillage: '0',
-    ddlComplaintCategory: '0',
+    ddlDistrict: [],
+    ddlBlock: [],
+    ddlPanchayat: [],
+    ddlVillage: [],
+    ddlWard: [],
+    ddlComplaintCategory: [],
     ddlSubCategory: '0',
     txtDetailsE: '',
     txtLandmark: '',
@@ -52,6 +56,15 @@ export class RegistrationcomplaintComponent implements OnInit {
     ddllanguage: '1'
   };
 
+ // Select upload
+items = [
+  { id: 1, name: 'Option 1' },
+  { id: 2, name: 'Option 2' },
+  { id: 3, name: 'Option 3' },
+  // Add more options as needed
+];
+
+selectedItem: any;
 
   constructor(
     private http: HttpClient,
@@ -77,20 +90,17 @@ export class RegistrationcomplaintComponent implements OnInit {
     this.files.splice(this.files.indexOf(event), 1);
   }
 
-  handleFileInput(event: any) {
-    const file = event.target.files[0];
-    if (file) {
-      this.fileName = file.name;
+  handleFileInput(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      this.fileToUpload = input.files[0];
+      this.fileName = this.fileToUpload.name;  // Capture the file name
+    } else {
+      this.fileToUpload = null;
+      this.fileName = '';  // Clear the file name if no file is selected
     }
   }
-  // handleFileInput(event: Event) {
-  //   const input = event.target as HTMLInputElement;
-  //   if (input.files && input.files.length > 0) {
-  //     this.fileToUpload = input.files[0];
-  //   } else {
-  //     this.fileToUpload = null;
-  //   }
-  // }
+  
 
   getCategories() {
     this.authService.getCategories().subscribe(
@@ -104,7 +114,8 @@ export class RegistrationcomplaintComponent implements OnInit {
   }
 
   onCategoryChange(event: any) {
-    const catid = parseInt(event.target.value, 10);
+    debugger;
+    const catid = event.inT_CATEGORY_ID;
     //const catid = event;  // event itself contains the value of the selected category
     if (!isNaN(catid)) {
       this.authService.getSubcategories(catid).subscribe(
@@ -119,16 +130,7 @@ export class RegistrationcomplaintComponent implements OnInit {
   }
   
 
-  getDistricts() {
-    this.authService.getDistricts().subscribe(
-      response => {
-        this.districts = response;
-      },
-      error => {
-        console.error('Error fetching districts', error);
-      }
-    );
-  }
+ 
  
 
   startTimer() {
@@ -169,8 +171,21 @@ padZero(value: number): string {
       }
     }
   }
+  getDistricts() {
+    this.authService.getDistricts().subscribe(
+      response => {
+        this.districts = response;
+      },
+      error => {
+        console.error('Error fetching districts', error);
+      }
+    );
+  }
+
   onDistrictChange(event: any) {
-    const distId = parseInt(event.target.value, 10);
+    debugger;
+    const distId = event.inT_DIST_ID;  // Get the district ID from the selected option
+  
     if (!isNaN(distId)) {
       this.authService.getBlocks(distId).subscribe(
         response => {
@@ -182,40 +197,61 @@ padZero(value: number): string {
           console.error('Error fetching blocks', error);
         }
       );
+    } else {
+      console.error('Invalid district ID');
     }
   }
-
+  
   onBlockChange(event: any) {
-    const blockId = parseInt(event.target.value, 10);
-    const distId = parseInt(this.formData.ddlDistrict, 10);
-    if (!isNaN(distId) && !isNaN(blockId)) {
-      this.authService.getGps(distId, blockId).subscribe(
+    debugger;
+    const blockId = event.inT_BLOCK_ID;
+    if (!isNaN(blockId)) {
+      this.authService.getGps(blockId).subscribe(
         response => {
           this.gps = response;
+          this.formData.ddlPanchayat = [];
+          console.log(this.gps);
         },
         error => {
           console.error('Error fetching GPs', error);
         }
       );
+    } else {
+      console.error('Invalid district or block ID');
     }
   }
 
   onGpChange(event: any) {
-    const gpId = parseInt(event.target.value, 10);
-    const blockId = parseInt(this.formData.ddlBlock, 10);
-    const distId = parseInt(this.formData.ddlDistrict, 10);
-    if (!isNaN(distId) && !isNaN(blockId) && !isNaN(gpId)) {
-      this.authService.getVillages(distId, blockId, gpId).subscribe(
+    debugger;
+    const gpId = event.inT_GP_ID;
+    if (!isNaN(gpId)) {
+      this.authService.getVillages(gpId).subscribe(
         response => {
           this.villages = response;
+          console.log(this.villages);
         },
         error => {
           console.error('Error fetching villages', error);
         }
       );
+    } else {
+      console.error('Invalid district, block, or GP ID');
     }
   }
 
+  onVillageChange(event: any) {
+    const villageid = event.inT_VILLAGE_ID;
+    if (!isNaN(villageid)) {
+      this.authService.getWards(villageid).subscribe(
+        response => {
+          this.wards = response;
+        },
+        error => {
+          console.error('Error fetching wards', error);
+        }
+      );
+    }
+  }
   onSubmit() {
     if (!this.fileToUpload) {
       alert('Please upload a file before submitting the form.');
@@ -299,6 +335,12 @@ padZero(value: number): string {
   
 
   submitRegistrationData(fileName: string) {
+    const panchayatValue = Number(this.formData.ddlPanchayat);
+    if (isNaN(panchayatValue)) {
+      console.error('Invalid Panchayat value');
+      return; // or show an alert here
+    }
+    debugger;
     const registrationData = {
       NVCH_COMPLIANTANT_NAME: this.formData.txtName || '',
       VCH_CONTACT_NO: this.formData.txtPhone || '',
