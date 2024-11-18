@@ -22,7 +22,7 @@
 
 
 
-   
+
 
     <div class="content-box content-area">
         <div class="row">
@@ -31,7 +31,7 @@
                     <div class="col-xl-4">
                         <div class="mb-3">
                             <label class="form-label" for="type">Category <span class="text-danger">*</span></label>
-                            <select class="form-select" [(ngModel)]="selectedType">
+                            <select class="form-select">
                                 <option value="" selected>Select</option>
                                 <option value="photo">Category 1</option>
                                 <option value="video">Category 2</option>
@@ -50,7 +50,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-xl-3" *ngIf="selectedType === 'photo' || selectedType === 'video'">
+                    <div class="col-xl-4" *ngIf="selectedType === 'photo' || selectedType === 'video'">
                         <div class="mb-3">
                             <label class="form-label" for="thembimg"> Thumb Image <span class="text-danger">*</span></label>
                             <div class="custom-dropzone photoUpload" ngx-dropzone [accept]="'image/*'" (change)="onSelect($event)">
@@ -66,9 +66,9 @@
                             <p class="small mb-0 text-end text-danger">Max file Size <span class="fw-bold">300 mb</span></p>
                         </div>
                     </div>
-                    
-                    
-                    <div class="col-xl-5" *ngIf="selectedType === 'photo'">
+
+
+                    <div class="col-xl-4" *ngIf="selectedType === 'photo'">
                         <div class="mb-3">
                             <label class="form-label" for="upodimg"> large Image <span class="text-danger">*</span></label>
                             <div class="custom-dropzone photoUpload" ngx-dropzone [accept]="'image/*'" (change)="onSelect($event)">
@@ -84,8 +84,8 @@
                             <p class="small mb-0 text-end text-danger">Max file Size <span class="fw-bold">1 mb</span></p>
                         </div>
                     </div>
-                    
-                   
+
+
                     <!-- <div class="col-xl-4" *ngIf="selectedType === 'video'">
                         <div class="mb-3">
                             <label class="form-label d-block" for="linktype">Link Type</label>
@@ -99,14 +99,14 @@
                             </div>
                         </div>
                     </div> -->
-                    
-                    <div class="col-xl-5" *ngIf="selectedType === 'video'">
+
+                    <div class="col-xl-4" *ngIf="selectedType === 'video'">
                         <div class="mb-3">
                             <label class="form-label" for="videurl">Video Url</label>
-                            <input type="text" class="form-control" id="videurl">
+                            <textarea class="form-control" id="videurl" rows="3"></textarea>
                         </div>
                     </div>
-                   
+
                 </div>
                 <div class="row">
                     <div class="col-xl-4">
