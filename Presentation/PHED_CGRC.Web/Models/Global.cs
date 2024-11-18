@@ -56,7 +56,7 @@
         public int CreatedBy { get; set; }
         public int INTPROJECTLINKID { get; set; }
         public string NVCHPROJECTLINKNAME { get; set; }
-        public List<ViewPoject> ProjectList { get; set; }
+      //  public List<ViewPoject> ProjectList { get; set; }
 
     }
     public class ViewGlobalLink
