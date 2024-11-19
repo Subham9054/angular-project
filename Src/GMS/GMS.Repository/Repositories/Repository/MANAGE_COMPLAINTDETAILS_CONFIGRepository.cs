@@ -43,6 +43,7 @@ namespace GMS.Repository.Repositories.Interfaces.MANAGE_COMPLAINTDETAILS_CONFIG
                 parameters.Add("@blockid", complaint.INT_BLOCK);
                 parameters.Add("@panchayatid", complaint.INT_PANCHAYAT);
                 parameters.Add("@intVillage", complaint.INT_VILLAGE);
+                parameters.Add("@intward",complaint.INT_WARD);
                 parameters.Add("@address", complaint.NVCH_ADDRESS);
                 parameters.Add("@complaintdetail", complaint.NVCH_COMPLIANT_DETAILS);
                 parameters.Add("@filename", complaint.VCH_COMPLAINT_FILE);

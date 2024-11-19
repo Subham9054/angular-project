@@ -17,6 +17,7 @@ namespace GMS.Model.Entities.GMS
         public int INT_BLOCK { get; set; }
         public int INT_PANCHAYAT { get; set; }
         public int INT_VILLAGE { get; set; }
+        public int INT_WARD {  get; set; }
         public string NVCH_ADDRESS { get; set; }
         public string NVCH_COMPLIANT_DETAILS { get; set; }
         public string VCH_COMPLAINT_FILE { get; set; }

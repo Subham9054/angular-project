@@ -35,6 +35,8 @@ export class RegistrationcomplaintComponent implements OnInit {
   subcategories: any[] = [];
   complainttype: any[] = [];
   gpnid: number=0;
+  wrdid: number=0;
+
   
   formData: any = {
     ddlRecvBy: 0,
@@ -336,17 +338,21 @@ padZero(value: number): string {
   
 
   submitRegistrationData(fileName: string) {
-    //alert(this.gpnid);
+    const wardid= $('#ddlward').attr('ng-reflect-model');
+    const wi=wardid.value;
+    alert(wi);
     debugger;
     const registrationData = {
       NVCH_COMPLIANTANT_NAME: this.formData.txtName || '',
       VCH_CONTACT_NO: this.formData.txtPhone || '',
-	  VCH_COMPLAINT_FILE: fileName || this.formData.txtDocument,
+	    VCH_COMPLAINT_FILE: fileName || this.formData.txtDocument,
       INT_COMPLIANT_LOG_TYPE: parseInt(this.formData.ddlRecvBy, 10),
       INT_DIST_ID: parseInt(this.formData.ddlDistrict, 10),
       INT_BLOCK: parseInt(this.formData.ddlBlock, 10),
       INT_PANCHAYAT: this.gpnid, //parseInt(this.formData.ddlPanchayat, 10),
       INT_VILLAGE: parseInt(this.formData.ddlVillage, 10),
+      //INT_WARD : document.getElementById('ddlward') as HTMLInputElement,
+      INT_WARD: parseInt($('#ddlward').attr('ng-reflect-model'),10),
       INT_CATEGORY_ID: parseInt(this.formData.ddlComplaintCategory, 10),
       INT_SUB_CATEGORY_ID: parseInt(this.formData.ddlSubCategory, 10),
       NVCH_COMPLIANT_DETAILS: this.formData.txtDetailsE || '',

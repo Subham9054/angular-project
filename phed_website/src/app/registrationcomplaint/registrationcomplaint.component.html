@@ -296,13 +296,12 @@
                                         <option *ngFor="let ward of wards" [value]="ward.inT_WARD_ID">{{
                                             ward.vcH_WARD_NAME }}</option>
                 </select> -->
-                                    <ng-select
+                                    <ng-select id="ddlward"
                                     [items]="wards"
                                     bindLabel="vcH_WARD_NAME"
                                     bindValue="inT_WARD_ID"
                                     [(ngModel)]="formData.ddlward"
                                     [id]="'ddlward'"
-                                    (change)="onVillageChange($event)"
                                     [placeholder]="'Select a ward'"
                                     [searchable]="true"
                                     [clearable]="false">
