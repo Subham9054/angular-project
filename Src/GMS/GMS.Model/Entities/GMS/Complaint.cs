@@ -24,5 +24,6 @@ namespace GMS.Model.Entities.GMS
         public DateTime DTM_CREATED_ON { get; set; } // Assuming it will be provided from frontend or generated in the repository
         public string VCH_EMAIL { get; set; }
         public string NVCH_LANDMARK { get;set; }
+        public int INT_COMPLAINT_PRIORITY { get; set; }
     }
 }

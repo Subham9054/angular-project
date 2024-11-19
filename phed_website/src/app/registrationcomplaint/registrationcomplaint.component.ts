@@ -34,7 +34,7 @@ export class RegistrationcomplaintComponent implements OnInit {
   categories: any[] = [];
   subcategories: any[] = [];
   complainttype: any[] = [];
-
+  gpnid: number=0;
   
   formData: any = {
     ddlRecvBy: 0,
@@ -224,6 +224,7 @@ padZero(value: number): string {
   onGpChange(event: any) {
     debugger;
     const gpId = event.inT_GP_ID;
+    this.gpnid=gpId;
     if (!isNaN(gpId)) {
       this.authService.getVillages(gpId).subscribe(
         response => {
@@ -335,11 +336,7 @@ padZero(value: number): string {
   
 
   submitRegistrationData(fileName: string) {
-    const panchayatValue = Number(this.formData.ddlPanchayat);
-    if (isNaN(panchayatValue)) {
-      console.error('Invalid Panchayat value');
-      return; // or show an alert here
-    }
+    //alert(this.gpnid);
     debugger;
     const registrationData = {
       NVCH_COMPLIANTANT_NAME: this.formData.txtName || '',
@@ -348,7 +345,7 @@ padZero(value: number): string {
       INT_COMPLIANT_LOG_TYPE: parseInt(this.formData.ddlRecvBy, 10),
       INT_DIST_ID: parseInt(this.formData.ddlDistrict, 10),
       INT_BLOCK: parseInt(this.formData.ddlBlock, 10),
-      INT_PANCHAYAT: parseInt(this.formData.ddlPanchayat, 10),
+      INT_PANCHAYAT: this.gpnid, //parseInt(this.formData.ddlPanchayat, 10),
       INT_VILLAGE: parseInt(this.formData.ddlVillage, 10),
       INT_CATEGORY_ID: parseInt(this.formData.ddlComplaintCategory, 10),
       INT_SUB_CATEGORY_ID: parseInt(this.formData.ddlSubCategory, 10),
@@ -400,11 +397,11 @@ padZero(value: number): string {
       txtEmail: '',
       txtAddress: '',
       txtDocument: '',
-      ddlDistrict: '0',
-      ddlBlock: '0',
-      ddlPanchayat: '0',
-      ddlVillage: '0',
-      ddlComplaintCategory: '0',
+      ddlDistrict: [],
+      ddlBlock: [],
+      ddlPanchayat: [],
+      ddlVillage: [],
+      ddlComplaintCategory: [],
       ddlSubCategory: '0',
       txtDetailsE: '',
       txtLandmark: '',

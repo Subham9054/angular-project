@@ -29,7 +29,14 @@ namespace GMS.Repository.Repositories.Interfaces.MANAGE_COMPLAINTDETAILS_CONFIG
                 parameters.Add("@createdby", 1);
                 parameters.Add("@category", complaint.INT_CATEGORY_ID);
                 parameters.Add("@subcategory", complaint.INT_SUB_CATEGORY_ID);
-                parameters.Add("@complainttype", complaint.INT_COMPLIANT_LOG_TYPE);
+                if (complaint.INT_COMPLIANT_LOG_TYPE == 0)
+                {
+                    parameters.Add("@complainttype", 5);
+                }
+                else
+                {
+                    parameters.Add("@complainttype", complaint.INT_COMPLIANT_LOG_TYPE);
+                }
                 parameters.Add("@contactnumber", complaint.VCH_CONTACT_NO);
                 parameters.Add("@name", complaint.NVCH_COMPLIANTANT_NAME);
                 parameters.Add("@distid", complaint.INT_DIST_ID);
@@ -42,6 +49,7 @@ namespace GMS.Repository.Repositories.Interfaces.MANAGE_COMPLAINTDETAILS_CONFIG
                 parameters.Add("@token", complaint.VCH_TOKENNO);
                 parameters.Add("email", complaint.VCH_EMAIL);
                 parameters.Add("landMark", complaint.NVCH_LANDMARK);
+                parameters.Add("priority", 1);
                 parameters.Add("@action", "INSERT");
                 var result = await Connection.QueryAsync<int>("USP_complaintRegistration_insert", parameters, commandType: CommandType.StoredProcedure);
                 return result.Contains(1);
