@@ -54,14 +54,14 @@ export class MngmenuComponent implements OnInit {
   }
 
   checkForEdit(): void {
-    this.route.queryParams.subscribe(params => {
-      const pageId = params['pageId'];
-      if (pageId) {
-        const parsedPageId = parseInt(pageId, 10); 
-        if (!isNaN(parsedPageId)) {
+    this.route.params.subscribe(params => {
+      const id = params['id']; // Assuming `id` is passed in the route as a parameter
+      if (id) {
+        const parsedId = parseInt(id, 10);
+        if (!isNaN(parsedId)) {
           this.isEditing = true;
-          this.pageId = parsedPageId;
-          this.authService.GetPageLinkById(parsedPageId).subscribe({
+          this.pageId = parsedId;
+          this.authService.GetPageLinkById(parsedId).subscribe({
             next: (response: any) => {
               if (response.success && response.data && response.data.length > 0) {
                 this.populateForm(response.data[0]);
@@ -75,11 +75,11 @@ export class MngmenuComponent implements OnInit {
             }
           });
         } else {
-          Swal.fire('Error', 'Invalid pageId provided', 'error');
+          console.warn('Invalid pageId provided');
         }
       }
     });
-  }
+  }    
 
   populateForm(data: any): void {
     this.pageNameEng = data.pageNameEng;
@@ -132,6 +132,7 @@ export class MngmenuComponent implements OnInit {
   }
 
   submitForm(): void {
+    debugger;
     // Validate required fields
     if (!this.pageNameEng || !this.pageNameHin) {
       Swal.fire('Error', 'Please fill in all mandatory fields', 'error');
@@ -200,8 +201,6 @@ export class MngmenuComponent implements OnInit {
     this.imagePreview = null;
     this.existingIconUrl = null;
     this.isEditing = false;
-    if (this.fileInput) {
-      this.fileInput.nativeElement.value = '';
-    }
+    this.fileInput.nativeElement.value = '';
   }
 }
