@@ -1,17 +1,24 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { AuthService } from 'src/app/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 import Swal from 'sweetalert2';
+
+interface UploadedFile {
+  file: File;
+  url: string;
+}
 
 @Component({
   selector: 'app-mngbanner',
   templateUrl: './mngbanner.component.html',
-  styleUrls: ['./mngbanner.component.scss']
+  styleUrls: ['./mngbanner.component.scss'],
 })
 export class MngbannerComponent implements OnInit {
   @ViewChild('fileInput') fileInput!: ElementRef;
+  files: UploadedFile[] = [];
+  //files: { file?: File; url?: string }[] = [];
 
-  files: File[] = [];
   bannerId: number | undefined;
   bannerHeadingEnglish: string = '';
   bannerHeadingHindi: string = '';
@@ -24,7 +31,8 @@ export class MngbannerComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private http: HttpClient
   ) {}
 
   ngOnInit(): void {
@@ -34,46 +42,82 @@ export class MngbannerComponent implements OnInit {
   // Check if we are in edit mode by looking for the ID in the route parameters
   checkForEdit(): void {
     this.route.params.subscribe((params) => {
-      const id = +params['id'];
+      const id = +params['id']; // Convert the route parameter to a number
       if (id) {
         this.isEditing = true;
         this.loadBanner(id);
       } else {
-        this.isEditing = false;
+        this.isEditing = false; // If there's no 'id', not in edit mode
       }
     });
-  }
+  }  
 
   // Load banner data for editing
   loadBanner(id: number): void {
     this.authService.GetBannerById(id).subscribe({
       next: (response: any) => {
-        if (response) {
-          this.bannerId = response.bannerId;
-          this.bannerHeadingEnglish = response.bannerHeadingEnglish;
-          this.bannerHeadingHindi = response.bannerHeadingHindi;
-          this.bannerContentEnglish = response.bannerContentEnglish;
-          this.bannerContentHindi = response.bannerContentHindi;
-          this.serialNo = response.serialNo;
-          this.isPublish = response.isPublish;
+        if (response?.success && response.data && response.data.length > 0) {
+          const data = response.data[0];
+  
+          // Populate form fields
+          this.bannerId = data.bannerId;
+          this.bannerHeadingEnglish = data.bannerHeadingEng;
+          this.bannerHeadingHindi = data.bannerHeadingHin;
+          this.bannerContentEnglish = data.bannerContentEng;
+          this.bannerContentHindi = data.bannerContentHin;
+          this.serialNo = data.serialNo ?? null;
+          this.isPublish = !!data.isPublish;
+  
+          // Handle banner image
+          if (data.bannerImage) {
+            const baseURL = 'http://localhost:5097'; // Adjust base URL as per your API
+            const relativePath = data.bannerImage.replace(/.*wwwroot\\/, '').replace(/\\/g, '/');
+            const imageUrl = `${baseURL}/${relativePath}`; // Construct full image URL
+            
+            // Push image into the files array with preview
+            this.files = [{
+              file: new File([], relativePath.split('/').pop() || '', { type: 'image/jpeg' }),
+              url: imageUrl
+            }];
+          }
         } else {
-          Swal.fire('Error', 'Banner not found', 'error');
-          this.router.navigate(['/application/mngbanner']); // Redirect if banner not found
+          Swal.fire('Error', response?.Message || 'Banner not found', 'error');
+          this.router.navigate(['/application/mngbanner']);
         }
       },
       error: (error) => {
-        Swal.fire('Error', 'Unable to load banner details.', 'error');
-      }
+        console.error('Error loading banner:', error);
+        const errorMessage = error.error?.Message || 'Unable to load banner details.';
+        Swal.fire('Error', errorMessage, 'error');
+      },
     });
   }
-
+    
   onSelect(event: any): void {
-    this.files.push(...event.addedFiles);
+    for (const file of event.addedFiles) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.files.push({ file, url: e.target.result });
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+  
+  onRemove(file: UploadedFile): void {
+    this.files = this.files.filter((f) => f !== file);
   }
 
-  onRemove(event: any): void {
-    this.files.splice(this.files.indexOf(event), 1);
-  }
+  // onSelect(event: any): void {
+  //   for (const file of event.addedFiles) {
+  //     this.files.push({ file }); // Add uploaded file
+  //   }
+  // }
+  
+  // onRemove(file: { file?: File; url?: string }): void {
+  //   this.files = this.files.filter(f => f !== file); // Remove file from the list
+  // }
+
+ 
 
   submitForm(): void {
     // Validation for required fields
@@ -101,7 +145,7 @@ export class MngbannerComponent implements OnInit {
       Swal.fire('Validation Error', 'Banner image is required', 'warning');
       return;
     }
-
+  
     // Prepare FormData
     const formData = new FormData();
     formData.append('bannerHeadingEng', this.bannerHeadingEnglish.trim());
@@ -110,15 +154,21 @@ export class MngbannerComponent implements OnInit {
     formData.append('bannerContentHin', this.bannerContentHindi.trim());
     formData.append('serialNo', this.serialNo.toString());
     formData.append('isPublish', this.isPublish ? 'true' : 'false');
-
+  
     if (this.bannerId) {
       formData.append('bannerId', this.bannerId.toString());
     }
-
+  
+    // Append file (use .file from UploadedFile object)
     if (this.files.length > 0) {
-      formData.append('bannerImage', this.files[0], this.files[0].name);
+      formData.append('bannerImage', this.files[0].file, this.files[0].file.name);
     }
 
+    // if (this.files.length > 0 && this.files[0].file) {
+    //   formData.append('bannerImage', this.files[0].file as File, this.files[0].file.name);
+    // }
+    
+  
     // Save or update based on editing mode
     this.authService.CreateOrUpdateBanner(formData, this.bannerId).subscribe({
       next: (response: any) => {
@@ -136,10 +186,10 @@ export class MngbannerComponent implements OnInit {
       error: (error) => {
         console.error('Error:', error);
         Swal.fire('Error', `An error occurred while ${this.isEditing ? 'updating' : 'creating'} the banner.`, 'error');
-      }
+      },
     });
   }
-
+  
   resetForm(): void {
     this.files = [];
     this.bannerHeadingEnglish = '';
@@ -149,6 +199,5 @@ export class MngbannerComponent implements OnInit {
     this.serialNo = null;
     this.isPublish = false;
     this.isEditing = false;
-    this.fileInput.nativeElement.value = '';
   }
 }

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ApplicationRoutingModule } from './application-routing.module';
 import { ApplicationComponent } from './application.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -98,6 +98,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
     ApplicationRoutingModule,
     NgSelectModule,
     FormsModule,
+    ReactiveFormsModule,
     CKEditorModule,
     HighchartsChartModule,
     NgxDropzoneModule
