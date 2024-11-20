@@ -365,33 +365,37 @@ export class AuthService {
     );
   }
 
-  // //Methods for Manage FAQs
-  // createOrUpdateFAQ(faqData: any): Observable<any> {
-  //   const headers = new HttpHeaders({
-  //     'Content-Type': 'application/json'
-  //   });  
-  //   return this.http.post(`${this.faqUrl}/CreateOrUpdateFaq`, faqData, { headers }).pipe(
-  //     catchError(this.handleError)
-  //   );
+  //Methods for Manage FAQs
+  createOrUpdateFAQ(faqData: any): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });  
+    return this.http.post(`${this.faqUrl}/CreateOrUpdateFaq`, faqData, { headers }).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  getFAQs(): Observable<any> {
+    return this.http.get(`${this.faqUrl}/GetFaqs`).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  getFAQById(faqId: number): Observable<any> {
+    return this.http.get(`${this.faqUrl}/GetFaqById?faqId=${faqId}`).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  // getFAQById(id: number): Observable<FAQ> {
+  //   return this.http.get<FAQ>(`${this.baseUrl}/faq/${id}`);
   // }
 
-  // getFAQs(): Observable<any> {
-  //   return this.http.get(`${this.faqUrl}/GetFaqs`).pipe(
-  //     catchError(this.handleError)
-  //   );
-  // }
-
-  // getFAQById(faqId: number): Observable<any> {
-  //   return this.http.get(`${this.faqUrl}/GetFaqById?faqId=${faqId}`).pipe(
-  //     catchError(this.handleError)
-  //   );
-  // }
-
-  // deleteFAQ(id: number): Observable<any> {
-  //   return this.http.delete(`${this.faqUrl}/DeleteFaq`, { body: { FaqId: id } }).pipe(
-  //     catchError(this.handleError)
-  //   );
-  // }
+  deleteFAQ(id: number): Observable<any> {
+    return this.http.delete(`${this.faqUrl}/DeleteFaq`, { body: { FaqId: id } }).pipe(
+      catchError(this.handleError)
+    );
+  }
 
   // deleteFAQ(id: number): Observable<any> {
   //   return this.http.delete(`${this.faqUrl}/DeleteFaqDetails?faqId=${id}`).pipe(
