@@ -17,91 +17,101 @@ export interface FAQ {
 @Component({
   selector: 'app-mngfaq',
   templateUrl: './mngfaq.component.html',
-  styleUrls: ['./mngfaq.component.scss']
+  styleUrls: ['./mngfaq.component.scss'],
 })
 export class MngfaqComponent implements OnInit {
   editor = ClassicEditor;
   faqForm: FormGroup;
-  faqs: FAQ[] = [];
-  selectedFaq: FAQ | null = null;
   isEditMode = false;
-  faqAnsEngData: string = `<p class="text-grey">Enter here...</p>`;
-  faqAnsHinData: string = `<p class="text-grey">Enter here...</p>`;
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private route: ActivatedRoute) {
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private route: ActivatedRoute
+  ) {
+    // Initialize form group, including `faqId` as a hidden control
     this.faqForm = this.fb.group({
+      faqId: [0], // Default to 0 for new records
       faqEng: ['', [Validators.required, Validators.maxLength(200)]],
       faqHin: ['', [Validators.required, Validators.maxLength(200)]],
       faqAnsEng: ['', [Validators.required, Validators.maxLength(500)]],
-      faqAnsHin: ['', [Validators.required, Validators.maxLength(500)]]
+      faqAnsHin: ['', [Validators.required, Validators.maxLength(500)]],
     });
   }
 
   ngOnInit(): void {
-    this.checkForEdit(); // Check if editing a specific FAQ
+    this.checkForEdit(); // Check if in edit mode based on route params
   }
 
-  // Check route params for edit mode
+  // Check if the user is editing an existing FAQ
   checkForEdit(): void {
-    this.route.params.subscribe(params => {
+    this.route.params.subscribe((params) => {
       const id = params['id'];
       if (id) {
         const faqId = parseInt(id, 10);
         if (!isNaN(faqId)) {
           this.isEditMode = true;
           this.authService.getFAQById(faqId).subscribe({
-            next: (faq: FAQ) => this.populateForm(faq),
-            error: () => Swal.fire('Error', 'Failed to load FAQ for editing', 'error')
+            next: (faqResponse) => this.populateForm(faqResponse),
+            error: () =>
+              Swal.fire('Error', 'Failed to load FAQ for editing.', 'error'),
           });
         }
       }
     });
   }
 
-  // Populate form for editing
-  populateForm(faq: FAQ): void {
-    this.selectedFaq = faq;
-    this.faqForm.patchValue({
-      faqEng: faq.faqEng,
-      faqHin: faq.faqHin,
-      faqAnsEng: faq.faqAnsEng,
-      faqAnsHin: faq.faqAnsHin
-    });
-    this.faqAnsEngData = faq.faqAnsEng;
-    this.faqAnsHinData = faq.faqAnsHin;
-  }
-
-  // Handle form submission for creating or updating an FAQ
-  onSubmit(): void {
-    if (this.faqForm.invalid) {
-      Swal.fire('Validation Error', 'Please fill all required fields correctly.', 'warning');
+  // Populate the form with existing FAQ data
+  populateForm(faqResponse: any): void {
+    const faq = faqResponse?.data?.[0]; // Access the first object in the data array
+    if (!faq) {
+      Swal.fire('Error', 'No FAQ data found for this ID.', 'error');
       return;
     }
 
-    const faqData: FAQ = {
-      faqId: this.isEditMode && this.selectedFaq ? this.selectedFaq.faqId : 0,
-      faqEng: this.faqForm.value.faqEng,
-      faqHin: this.faqForm.value.faqHin,
-      faqAnsEng: this.faqForm.value.faqAnsEng,
-      faqAnsHin: this.faqForm.value.faqAnsHin,
-      createdBy: 1 // Assuming a static value for createdBy
-    };
-
-    this.authService.createOrUpdateFAQ(faqData).subscribe({
-      next: () => {
-        Swal.fire('Success', this.isEditMode ? 'FAQ updated successfully.' : 'FAQ created successfully.', 'success');
-        this.resetForm(); // Reset the form after submission
-      },
-      error: () => Swal.fire('Error', 'Failed to save FAQ', 'error')
+    // Bind data to form controls
+    this.faqForm.patchValue({
+      faqId: faq.faqId, // Ensure `faqId` is populated
+      faqEng: faq.faqEng || '',
+      faqHin: faq.faqHin || '',
+      faqAnsEng: faq.faqAnsEng || '',
+      faqAnsHin: faq.faqAnsHin || '',
     });
   }
 
-  // Reset form and switch back to create mode
+  // Handle form submission
+  onSubmit(): void {
+    if (this.faqForm.invalid) {
+      Swal.fire(
+        'Validation Error',
+        'Please fill all required fields correctly.',
+        'warning'
+      );
+      return;
+    }
+
+    const faqData: FAQ = this.faqForm.value;
+
+    // Create or update FAQ based on mode
+    this.authService.createOrUpdateFAQ(faqData).subscribe({
+      next: () => {
+        Swal.fire(
+          'Success',
+          this.isEditMode
+            ? 'FAQ updated successfully.'
+            : 'FAQ created successfully.',
+          'success'
+        );
+        this.resetForm();
+      },
+      error: () =>
+        Swal.fire('Error', 'Failed to save FAQ. Please try again.', 'error'),
+    });
+  }
+
+  // Reset the form
   resetForm(): void {
-    this.faqForm.reset();
+    this.faqForm.reset({ faqId: 0 }); // Reset `faqId` to 0
     this.isEditMode = false;
-    this.selectedFaq = null;
-    this.faqAnsEngData = `<p class="text-grey">Enter here...</p>`; // Reset CKEditor content for English
-    this.faqAnsHinData = `<p class="text-grey">Enter here...</p>`; // Reset CKEditor content for Hindi
   }
 }

@@ -74,14 +74,25 @@
               <div class="form-group">
                 <label for="Complaint Category" class="form-label">Complaint Category <span
                     class="text-danger">*</span></label>
-                    <select name="ddlComplaintCategory" id="ddlComplaintCategory"
+                    <!-- <select name="ddlComplaintCategory" id="ddlComplaintCategory"
                     [(ngModel)]="formData.ddlComplaintCategory"
                     (change)="onCategoryChange($event)" class="form-select">
                     <option selected value="0">Select</option>
                     <option *ngFor="let category of categories"
                         [value]="category.inT_CATEGORY_ID">{{ category.vcH_CATEGORY }}
                     </option>
-                </select>
+                </select> -->
+                <ng-select
+                [items]="categories"
+                bindLabel="vcH_CATEGORY"
+                bindValue="inT_CATEGORY_ID"
+                [(ngModel)]="formData.ddlComplaintCategory"
+                [id]="'ddlComplaintCategory'"
+                (change)="onCategoryChange($event)"
+                [placeholder]="'Select Category'"
+                [searchable]="true"
+                [clearable]="false">
+              </ng-select>
               </div>
             </div>
             <div class="col-xl-6">
@@ -112,17 +123,25 @@
                 <label for="FileUpload1" class="form-label">
                   Upload Document/Photo <span class="text-danger">*</span>
                 </label>
+                <div class="input-group custom-file-input">
+                  <input type="file" name="FileUpload1" id="FileUpload1"
+                      (change)="handleFileInput($event)" class="form-control custom-fileupload" />
+                  <label class="custom-input" [ngClass]="{'custom-input-black': fileName}" for="doc">
+                      {{ fileName || 'Upload' }}
+                  </label>
+                  <label class="input-group-text custom-browse" for="doc">Browse</label>
+              </div>
                 <!-- <div class="input-group">
                   <input type="file" name="FileUpload1" id="FileUpload1" (change)="handleFileInput($event)"
                     class="form-control" />
                 </div> -->
                 <!-- <div class="d-flex align-items-center"> -->
-                <div class="input-group custom-file-input">
+                <!-- <div class="input-group custom-file-input">
                   <input type="file" name="FileUpload1" id="FileUpload1" (change)="handleFileInput($event)"
                   class="form-control custom-fileupload" />
                   <label class="custom-input" for="doc">Upload</label>
                   <label class="input-group-text custom-browse" for="doc">Browse</label>
-              </div>
+              </div> -->
               <!-- <a href="#" class="btn btn-primary" title="Add More Document/Photo"><i class="bi bi-plus-lg"></i></a>
             </div> -->
                 <small class="text-danger d-block text-end">
@@ -173,16 +192,22 @@
             </div>
             <div class="col-xl-6">
               <div class="form-group">
-                <label for="District" class="form-label">District <span class="text-danger">*</span></label>
-                <select name="ddlDistrict" id="ddlDistrict" [(ngModel)]="formData.ddlDistrict"
-                                        (change)="onDistrictChange($event)" class="form-select">
-                                        <option selected value="0">Select</option>
-                                        <option *ngFor="let district of districts" [value]="district.inT_DIST_ID">
-                                            {{ district.vcH_DIST_NAME }}
-                                        </option>
-                                    </select>
+                <label for="ddlDistrict" class="form-label">District<span class="text-danger">*</span></label>
+                <ng-select
+                [items]="districts"
+                bindLabel="vcH_DIST_NAME"
+                bindValue="inT_DIST_ID"
+                [(ngModel)]="formData.ddlDistrict"
+                [id]="'ddlDistrict'"
+                (change)="onDistrictChange($event)"
+                [placeholder]="'Select a District'"
+                [searchable]="true"
+                [clearable]="false">
+              </ng-select>
               </div>
             </div>
+            
+            
             <!-- <div class="col-lg-4">
               <div class="form-group">
                   <label for="Mode of Complaint" class="form-label">Mode of Complaint <span class="text-danger">*</span></label>
@@ -196,45 +221,91 @@
           </div> -->
           <div class="col-xl-6">
               <div class="form-group">
-                <label for="Block" class="form-label">Block<span class="text-danger">*</span></label>
-                <select name="ddlBlock" id="ddlBlock" [(ngModel)]="formData.ddlBlock"
-                (change)="onBlockChange($event)" class="form-select">
-                <option value="0">Select</option>
-                <option *ngFor="let block of blocks" [value]="block.inT_BLOCK_ID">{{
-                    block.vcH_BLOCK_NAME }}
-                </option>
-            </select>
+                <label for="ddlBlock" class="form-label">Block<span class="text-danger">*</span></label>
+                <ng-select
+                [items]="blocks"
+                bindLabel="vcH_BLOCK_NAME"
+                bindValue="inT_BLOCK_ID"
+                [(ngModel)]="formData.ddlBlock"
+                [id]="'ddlBlock'"
+                (change)="onBlockChange($event)"
+                [placeholder]="'Select a block'"
+                [searchable]="true"
+                [clearable]="false">
+              </ng-select>
+                <!-- <select name="ddlBlock" id="ddlBlock" [(ngModel)]="formData.ddlBlock"
+                                        (change)="onBlockChange($event)" class="form-select">
+                                        <option value="0">Select</option>
+                                        <option *ngFor="let block of blocks" [value]="block.inT_BLOCK_ID">{{
+                                            block.vcH_BLOCK_NAME }}
+                                        </option>
+                                    </select> -->
               </div>
             </div>
     
             <div class="col-xl-6">
               <div class="form-group">
-                <label for="Panchyat" class="form-label">Panchyat <span class="text-danger">*</span></label>
-                <select name="ddlGp" id="ddlGp" [(ngModel)]="formData.ddlPanchayat"
+                <label for="ddlPanchayat" class="form-label">Panchyat <span class="text-danger">*</span></label>
+                <!-- <select name="ddlGp" id="ddlGp" [(ngModel)]="formData.ddlPanchayat"
                                         (change)="onGpChange($event)" class="form-select">
                                         <option value="0">Select</option>
                                         <option *ngFor="let gp of gps" [value]="gp.inT_GP_ID">{{ gp.vcH_GP_NAME }}</option>
-                                    </select>
+                                    </select> -->
+                                    <ng-select
+                                    [items]="gps"
+                                    bindLabel="vcH_GP_NAME"
+                                    bindValue="inT_GP_ID"
+                                    [(ngModel)]="formData.ddlGp"
+                                    [id]="'ddlPanchayat'"
+                                    (change)="onGpChange($event)"
+                                    [placeholder]="'Select a Gp'"
+                                    [searchable]="true"
+                                    [clearable]="false">
+                                  </ng-select>                    
               </div>
             </div>
     
             <div class="col-xl-6">
               <div class="form-group">
-                <label for="Panchyat" class="form-label">village <span class="text-danger">*</span></label>
-                <select name="ddlVillage" id="ddlVillage" [(ngModel)]="formData.ddlVillage"
-                class="form-select">
-                <option value="0">Select</option>
-                <option *ngFor="let village of villages" [value]="village.inT_VILLAGE_ID">{{
-                    village.vcH_VILLAGE_NAME }}</option>
-            </select> 
+                <label for="ddlVillage" class="form-label">village <span class="text-danger">*</span></label>
+                <!-- <select name="ddlVillage" id="ddlVillage" [(ngModel)]="formData.ddlVillage"
+                                        class="form-select">
+                                        <option value="0">Select</option>
+                                        <option *ngFor="let village of villages" [value]="village.inT_VILLAGE_ID">{{
+                                            village.vcH_VILLAGE_NAME }}</option>
+                                    </select> -->
+
+                                    <ng-select
+                                    [items]="villages"
+                                    bindLabel="vcH_VILLAGE_NAME"
+                                    bindValue="inT_VILLAGE_ID"
+                                    [(ngModel)]="formData.ddlVillage"
+                                    [id]="'ddlVillage'"
+                                    (change)="onVillageChange($event)"
+                                    [placeholder]="'Select a village'"
+                                    [searchable]="true"
+                                    [clearable]="false">
+                                  </ng-select>                             
               </div>
             </div>
             <div class="col-xl-6">
               <div class="form-group">
-                <label for="Panchyat" class="form-label">Ward </label>
-                <select class="form-select">
-                  <option selected>Select</option>
-                </select>
+                <label for="ddlward" class="form-label">Ward </label>
+                <!-- <select name="ddlward" id="ddlward" [(ngModel)]="formData.ddlward" class="form-select">
+                  <option value="0">Select</option>
+                                        <option *ngFor="let ward of wards" [value]="ward.inT_WARD_ID">{{
+                                            ward.vcH_WARD_NAME }}</option>
+                </select> -->
+                                    <ng-select id="ddlward"
+                                    [items]="wards"
+                                    bindLabel="vcH_WARD_NAME"
+                                    bindValue="inT_WARD_ID"
+                                    [(ngModel)]="formData.ddlward"
+                                    [id]="'ddlward'"
+                                    [placeholder]="'Select a ward'"
+                                    [searchable]="true"
+                                    [clearable]="false">
+                                  </ng-select>   
               </div>
             </div>
             <div class="col-xl-6">
@@ -262,6 +333,10 @@
           </div>
           </div>
         </div>
+
+     
+
+
         <div class="col-12 mt-4">
           <div class="d-flex gap-2 justify-content-center">
             <a href="javascript:void(0)" class="btn btn-primary" (click)="onSubmit()">Submit</a>
