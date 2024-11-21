@@ -1,85 +1,91 @@
 <div class="form-cointainer">
     <div class="pagetitle-section">
         <div class="row justify-content-between align-items-center">
-            <div class="col-lg-4">
-                <h3> Menu</h3>
-                <!-- <p>Manage your page</p> -->
+            <div class="col-lg-4 col-md-4">
+                <h3>Menu</h3>
             </div>
-            <div class="col-lg-6 col-md-6">
+            <div class="col-lg-6 col-md-8">
                 <div class="utilite">
                     <ul class="mb-0">
-                       
-
                         <li>
                             <a href="javascript:void(0)" title="Click to Print"><i class="bi bi-printer"></i></a>
                         </li>
 
                         <li>
-                            <a href="javascript:void(0)" title="Download Excel"><i class="bi bi-file-earmark-excel"></i></a>
-                        </li>
-
-                        <li [ngClass]="isPanelOpen ? 'active-filter' : ''">
-                            <a href="javascript:void(0)" title="{{ isPanelOpen ? 'Click to Close Filter' : 'Click to Open Filter' }}" 
-                               (click)="togglePanel()">
-                                <i class="bi bi-funnel"></i> Filter
-                            </a>
+                            <a href="javascript:void(0)" title="Download Excel"><i
+                                    class="bi bi-file-earmark-excel"></i></a>
                         </li>
                         
-                        <li class="fill-btn add-link"><a routerLink="/application/mngmenu/add"  title="Go to Previous"><i class="bi bi-plus-lg"></i>
-                                Add Page</a>
+                        <li>
+                            <a href="javascript:void(0)" title="Click to Publish"><i class="bi bi-volume-up"></i></a>
+                        </li>
+
+                        <li>
+                            <a href="javascript:void(0)" title="Click to Unpublish"><i class="bi bi-volume-mute"></i></a>
+                        </li>
+
+
+                        <li class="filter-dropdown dropdown">
+                            <a href="javascript:void(0)" data-bs-toggle="dropdown" (click)="openDropdown()">
+                                <i class="bi bi-funnel"></i> <span class="hide-icon ms-2">Filter</span>
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-end filter-dropdown-menu shadow border-0"
+                                [ngClass]="{ 'show': isDropdownOpen }" (click)="$event.stopPropagation()">
+                                <span class="drop-icon" (click)="closeDropdown()">
+                                    <i class="bi bi-x-lg"></i>
+                                </span>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="manutype">Menu Type</label>
+                                            <select class="form-select" id="manutype">
+                                                <option selected>Select</option>
+                                                <option value="1">Main Menu</option>
+                                                <option value="2">Footer Menu</option>
+                                                <option value="3">Footer Bottom Menu</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="parentmanu">Parent Menu</label>
+                                            <select class="form-select" id="parentmanu">
+                                                <option selected>Select</option>
+                                                <option value="1">FAQ</option>
+                                                <option value="2">Feedback</option>
+                                                <option value="3">Contact</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-lg-0 mb-3">
+                                            <label class="form-label" for="menuen">Menu Name</label>
+                                            <input type="text" class="form-control" id="menuen">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                       <div class="mb-lg-0 mb-3">
+                                        <label class="form-label d-md-block d-none">&nbsp;</label>
+                                        <div class="d-flex gap-2">
+                                            <button type="submit" class="btn btn-primary px-xl-4">Search</button>
+                                            <button type="submit" class="btn btn-danger px-xl-4">Reset</button>
+                                        </div>
+                                       </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="fill-btn add-link"><a routerLink="/application/mngmenu/add" title="Click to Add"><i
+                                    class="bi bi-plus-lg"></i>
+                                <span class="hide-icon ms-2">Add Page</span></a>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
-
-   
-
-    <div id="collapseExample" class="collapse show" [ngClass]="{'show': isPanelOpen}">
-        <div class="content-box search-box">
-            <div class="row">
-                <div class="col-xl-4 col-lg-4 col-md-6">
-                    <div class="mb-3">
-                        <label class="form-label" for="manutype">Menu Type</label>
-                        <select class="form-select" id="manutype">
-                            <option selected>Select</option>
-                            <option value="1">Main Menu</option>
-                            <option value="2">Footer Menu</option>
-                            <option value="3">Footer Bottom Menu</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-6">
-                    <div class="mb-3">
-                        <label class="form-label" for="parentmanu">Parent Menu</label>
-                        <select class="form-select" id="parentmanu">
-                            <option selected>Select</option>
-                            <option value="1">FAQ</option>
-                            <option value="2">Feedback</option>
-                            <option value="3">Contact</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-6">
-                    <div class="mb-3">
-                        <label class="form-label" for="menuen">Menu Name</label>
-                        <input type="text" class="form-control" id="menuen">
-                    </div>
-                </div>
-                <div class="col-xl-2 col-lg-4 col-md-6">
-                    <div class="mb-3">
-                        <label class="form-label d-xl-block d-lg-none d-md-block d-none">&nbsp;</label>
-                        <button type="submit" class="btn btn-primary me-2">Search</button>
-                        <!-- <button type="reset" class="btn btn-danger">Reset</button> -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     
-
     <div class="view-legand">
         <ul class="legends">
             <li><span class="bg-success"></span> Publish </li>
@@ -88,121 +94,74 @@
     </div>
 
     <div class="content-box content-area p-0">
-        <div class="table-responsive mb-0">
-            <table class="table  mb-0">
+        <div *ngIf="noRecordsFound" class="alert alert-warning text-center mt-3">
+            No Page Links Found
+        </div>
+
+        <div *ngIf="menuData.length > 0" class="table-responsive mb-0">
+            <table class="table table-striped mb-0">
                 <thead>
                     <tr>
-                        <th width="30px">
-                            <input class="form-check-input" type="checkbox">
-                        </th>
-                        <th width="40px">Sl#</th>
-                        <th>Menu Type</th>
-                        <th>Link Type</th>
-                        <th>Parent Menu</th>
-                        <th>Menu Name</th>
-                        <th width="70px">Action</th>
+                        <th width="45px">Sl#</th>
+                        <th hidden>Page ID</th> <!-- Hidden Column -->
+                        <th>Page Name (Eng)</th>
+                        <th>Page Name (Hin)</th>
+                        <th>Parent Menu Name (Eng)</th>
+                        <th>Parent Menu Name (Hin)</th>
+                        <th>URL</th>
+                        <th width="140px">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="publish">
-                        <td><input class="form-check-input" type="checkbox"></td>
-                        <td>1</td>
-                        <td>Footer Bottom Menu</td>
-                        <td>Global Link</td>
-                        <td>-</td>
-                        <td>RTI</td>
-                        <td>
-                            <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"
-                                    data-bs-toggle="modal" data-bs-target="#viewmodal">
-                                    <i class="bi bi-eye"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
-                                    <i class="bi bi-pencil"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" title="Delete">
-                                    <i class="bi bi-trash3"></i></a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="unpublish">
-                        <td><input class="form-check-input" type="checkbox"></td>
-                        <td>2</td>
-                        <td>Footer Bottom Menu</td>
-                        <td>Global Link</td>
-                        <td>-</td>
-                        <td>Place to Visit</td>
-                        <td>
-                            <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View" data-bs-toggle="modal" data-bs-target="#viewmodal">
-                                    <i class="bi bi-eye"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
-                                    <i class="bi bi-pencil"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" title="Delete">
-                                    <i class="bi bi-trash3"></i></a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="publish">
-                        <td><input class="form-check-input" type="checkbox"></td>
-                        <td>3</td>
-                        <td>Footer Bottom Menu</td>
-                        <td>Global Link</td>
-                        <td>-</td>
-                        <td>City Events</td>
-                        <td>
-                            <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View" data-bs-toggle="modal" data-bs-target="#viewmodal">
-                                    <i class="bi bi-eye"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
-                                    <i class="bi bi-pencil"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" title="Delete">
-                                    <i class="bi bi-trash3"></i></a>
-                            </div>
-                        </td>
-                    </tr>
-
-                    <tr class="unpublish">
-                        <td><input class="form-check-input" type="checkbox"></td>
-                        <td>4</td>
-                        <td>Footer Bottom Menu</td>
-                        <td>Global Link</td>
-                        <td>-</td>
-                        <td>City Map</td>
-                        <td>
-                            <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View" data-bs-toggle="modal" data-bs-target="#viewmodal">
-                                    <i class="bi bi-eye"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
-                                    <i class="bi bi-pencil"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" title="Delete">
-                                    <i class="bi bi-trash3"></i></a>
-                            </div>
-                        </td>
-                    </tr>
-                    
-                    <tr class="publish">
-                        <td><input class="form-check-input" type="checkbox"></td>
-                        <td>5</td>
-                        <td>Footer Bottom Menu</td>
-                        <td>Global Link</td>
-                        <td>-</td>
-                        <td>Citizen Services</td>
-                        <td>
-                            <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View" data-bs-toggle="modal" data-bs-target="#viewmodal">
-                                    <i class="bi bi-eye"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
-                                    <i class="bi bi-pencil"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" title="Delete">
-                                    <i class="bi bi-trash3"></i></a>
-                            </div>
-                        </td>
-                    </tr>
+                    <ng-container *ngFor="let menu of menuData; let i = index">
+                        <tr>
+                            <td>{{ i + 1 }}</td>
+                            <td hidden>{{ menu.pageId }}</td> <!-- Hidden Column -->
+                            <td>{{ menu.pageNameEng }}</td>
+                            <td>{{ menu.pageNameHin }}</td>
+                            <td>{{ menu.parentNameEng }}</td>
+                            <td>{{ menu.parentNameHin }}</td>
+                            <td>{{ menu.url }}</td>
+                            <td>
+                                <div class="d-flex gap-1">
+                                    <!-- <button class="btn btn-outline-success btn-sm" title="View" data-bs-toggle="modal"
+                                        data-bs-target="#viewmodal">
+                                        <i class="bi bi-eye"></i>
+                                    </button> -->
+                                    <button class="btn btn-outline-primary btn-sm" title="Edit" (click)="editPageLink(menu.pageId)">
+                                        <i class="bi bi-pencil"></i>
+                                    </button>
+                                    <button class="btn btn-outline-danger btn-sm" title="Delete" (click)="deletePageLink(menu.pageId)">
+                                        <i class="bi bi-trash3"></i>
+                                    </button>
+                                    <!-- <button class="btn btn-primary btn-sm" title="Edit" (click)="editPageLink(menu.pageId)">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </button>
+                                    <button class="btn btn-danger btn-sm" title="Delete" (click)="deletePageLink(menu.pageId)">
+                                        <i class="bi bi-trash"></i>
+                                    </button> -->
+                                </div>
+                            </td>
+                            <!-- <td>
+                                <div class="d-flex gap-1">
+                                    <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"
+                                        data-bs-toggle="modal" data-bs-target="#viewmodal"><i class="bi bi-eye"></i>
+                                    </a>
+                                    <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit" (click)="editPageLink(menu.pageId)">
+                                        <i class="bi bi-pencil"></i>
+                                    </a>                                    
+                                    <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" title="Delete" (click)="deletePageLink(menu.pageId)">
+                                        <i class="bi bi-trash3"></i>
+                                    </a>
+                                </div>                           
+                            </td> -->
+                        </tr>
+                    </ng-container>
                 </tbody>
             </table>
         </div>
     </div>
 </div>
-
 
 <!-- Modal View  -->
 <div class="modal fade" id="viewmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -252,7 +211,7 @@
                                     <label class="form-value">घूमने की जगह</label>
                                 </div>
                             </div> -->
-                        <!-- </div>
+                            <!-- </div>
 
                         <div class="row"> -->
                             <div class="col-xl-4 col-md-6">

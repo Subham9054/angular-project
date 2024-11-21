@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ApplicationRoutingModule } from './application-routing.module';
 import { ApplicationComponent } from './application.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -45,6 +45,9 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
 import { ComplaintSubCategoryComponent } from './complaint-sub-category/complaint-sub-category.component';
 import { ModewiseReportComponent } from './modewise-report/modewise-report.component';
 import { ComplaintregistrationViewComponent } from './complaintregistration-view/complaintregistration-view.component';
+import { ComplaintSubCategoryViewComponent } from './complaint-sub-category-view/complaint-sub-category-view.component';
+
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   declarations: [
@@ -87,15 +90,19 @@ import { ComplaintregistrationViewComponent } from './complaintregistration-view
     MinisterProfileViewComponent,
     ComplaintSubCategoryComponent,
     ModewiseReportComponent,
-    ComplaintregistrationViewComponent
+    ComplaintregistrationViewComponent,
+    ComplaintSubCategoryViewComponent
   ],
   imports: [
     CommonModule,
     ApplicationRoutingModule,
+    NgSelectModule,
     FormsModule,
+    ReactiveFormsModule,
     CKEditorModule,
     HighchartsChartModule,
     NgxDropzoneModule
+ 
   ],
   exports: [ 
     ApplicationComponent,

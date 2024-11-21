@@ -6,9 +6,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./mnggallery-view.component.scss']
 })
 export class MnggalleryViewComponent {
-  isPanelOpen = false; // Start with the panel open
+ // Filter close btn
+ isDropdownOpen = false;
+ openDropdown() {
+   this.isDropdownOpen = true;
+ }
 
-  togglePanel() {
-    this.isPanelOpen = !this.isPanelOpen; // Toggle the panel state
-  }
+
+ closeDropdown() {
+   this.isDropdownOpen = false;
+ }
 }

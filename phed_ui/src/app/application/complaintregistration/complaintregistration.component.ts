@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component , QueryList, ViewChildren, ElementRef} from '@angular/core';
 import { AuthService } from 'src/app/auth.service';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-complaintregistration',
@@ -9,6 +10,20 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./complaintregistration.component.scss']
 })
 export class ComplaintregistrationComponent  {
+
+// Otp number
+
+// @ViewChildren('otpInput') otpInputs!: QueryList<ElementRef>;
+
+// otpInputs = new Array(6).fill(''); // Adjust length based on the number of OTP inputs
+
+// onOtpInputChange(event: any, index: number): void {
+//   const input = event.target.value;
+//   if (input.length === 1 && index < this.otpInputs.length - 1) {
+//     this.otpInputs.toArray()[index + 1].nativeElement.focus();
+//   }
+// }
+  
 
   files: File[] = [];
 
@@ -35,18 +50,20 @@ export class ComplaintregistrationComponent  {
 
 
   formData: any = {
-    ddlRecvBy: 0,
+    ddlRecvBy: '0',
     txtName: '',
     txtPhone: '',
+    txtEmail: '',
     txtAddress:'',
     txtDocument: '',
-    ddlDistrict: '0',
-    ddlBlock: '0',
-    ddlPanchayat: '0',
-    ddlVillage: '0',
-    ddlComplaintCategory: '0',
-    ddlSubCategory: '0',
+    ddlDistrict: [null],
+    ddlBlock: [null],
+    ddlPanchayat: [null],
+    ddlVillage: [null],
+    ddlComplaintCategory: [null],
+    ddlSubCategory: [null],
     txtDetailsE: '',
+    txtLandmark: '',
     ddlComplainttype:'0',
     ddllanguage:'1'
   };
@@ -84,21 +101,21 @@ export class ComplaintregistrationComponent  {
   }
 
   onCategoryChange(event: any) {
-    const catid = parseInt(event.target.value, 10);
-    if (!isNaN(catid)) {
-      this.authService.getsubcategories(catid).subscribe(
+    debugger;
+    // Directly use the event as the selected category ID
+    const catid = event.inT_CATEGORY_ID;  // event contains the selected category ID directly
+    if (catid && !isNaN(catid)) {
+      this.authService.getSubcategories(catid).subscribe(
         response => {
           this.subcategories = response;
-          console.log(this.subcategories);
         },
         error => {
           console.error('Error fetching subcategories', error);
         }
       );
-    } else {
-      console.error('Invalid category ID');
     }
   }
+  
 
   getDistricts() {
     this.authService.getDistricts().subscribe(
@@ -115,7 +132,7 @@ export class ComplaintregistrationComponent  {
     this.router.navigate(['/registrationupdate']); 
   }
   onDistrictChange(event: any) {
-    const distId = parseInt(event.target.value, 10);
+    const distId = event.inT_DIST_ID
     if (!isNaN(distId)) {
       this.authService.getBlocks(distId).subscribe(
         response => {
@@ -133,10 +150,10 @@ export class ComplaintregistrationComponent  {
   }
 
   onBlockChange(event: any) {
-    const blockId = parseInt(event.target.value, 10);
-    const distId = parseInt(this.formData.ddlDistrict, 10);
-    if (!isNaN(distId) && !isNaN(blockId)) {
-      this.authService.getGps(distId, blockId).subscribe(
+    debugger;
+    const blockId = event.inT_BLOCK_ID
+    if (!isNaN(blockId)) {
+      this.authService.getGps(blockId).subscribe(
         response => {
           this.gps = response;
           console.log(this.gps);
@@ -151,11 +168,10 @@ export class ComplaintregistrationComponent  {
   }
 
   onGpChange(event: any) {
-    const gpId = parseInt(event.target.value, 10);
-    const blockId = parseInt(this.formData.ddlBlock, 10);
-    const distId = parseInt(this.formData.ddlDistrict, 10);
-    if (!isNaN(distId) && !isNaN(blockId) && !isNaN(gpId)) {
-      this.authService.getVillages(distId, blockId, gpId).subscribe(
+    debugger;
+    const gpId = event.inT_GP_ID;
+    if (!isNaN(gpId)) {
+      this.authService.getVillages(gpId).subscribe(
         response => {
           this.villages = response;
           console.log(this.villages);
@@ -205,8 +221,8 @@ export class ComplaintregistrationComponent  {
     return new Promise((resolve, reject) => {
       const fileUploadData = new FormData();
       fileUploadData.append('file', this.fileToUpload!, this.fileToUpload!.name);
-      
-      this.http.post<{ message: string; fileName: string }>('https://localhost:44303/api/ComplaintsRegistration/UploadFile', fileUploadData)
+  
+      this.http.post<{ message: string; fileName: string }>('https://localhost:7225/api/Dropdown/UploadFile', fileUploadData)
         .subscribe(
           (response) => {
             console.log('File uploaded successfully', response);
@@ -219,6 +235,7 @@ export class ComplaintregistrationComponent  {
         );
     });
   }
+  
   
 
   submitRegistrationData(fileName: string) {
@@ -235,6 +252,8 @@ export class ComplaintregistrationComponent  {
       INT_CATEGORY_ID: parseInt(this.formData.ddlComplaintCategory, 10),
       INT_SUB_CATEGORY_ID: parseInt(this.formData.ddlSubCategory, 10),
       NVCH_COMPLIANT_DETAILS: this.formData.txtDetailsE || '',
+      NVCH_LANDMARK: this.formData.txtLandmark || '',
+      VCH_EMAIL: this.formData.txtEmail || '',
       VCH_TOKENNO: this.generateToken(),
       NVCH_ADDRESS: this.formData.txtAddress || '' // Ensure this is set correctly
     };
@@ -267,6 +286,7 @@ export class ComplaintregistrationComponent  {
       ddlRecvBy: 0,
     txtName: '',
     txtPhone: '',
+    txtEmail: '',
     txtAddress:'',
     txtDocument: '',
     ddlDistrict: '0',
@@ -276,6 +296,7 @@ export class ComplaintregistrationComponent  {
     ddlComplaintCategory: '0',
     ddlSubCategory: '0',
     txtDetailsE: '',
+    txtLandmark: '',
     ddlComplainttype:'0'
     };
     this.fileToUpload = null;

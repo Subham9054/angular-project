@@ -5,7 +5,17 @@ declare let $: any;
   templateUrl: './whatsnew.component.html',
   styleUrls: ['./whatsnew.component.scss']
 })
-export class WhatsnewComponent {
+export class WhatsnewComponent { 
+   // file upload
+  fileName: string = '';
+
+  handleFileInput(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      this.fileName = file.name;
+    }
+  }
+
   ngOnInit(): void {
 
     $('.datepicker').datetimepicker({

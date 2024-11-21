@@ -1,7 +1,7 @@
 <div class="form-cointainer">
     <div class="pagetitle-section">
         <div class="row justify-content-between align-items-center">
-            <div class="col-lg-4">
+            <div class="col-lg-4 col-md-6">
                 <h3>Register Complaint</h3>
             </div>
             <div class="col-lg-6 col-md-6">
@@ -70,7 +70,7 @@
                                         <input name="txtPhone" type="text" maxlength="10" id="txtPhone"
                                         [(ngModel)]="formData.txtPhone" class="form-control" />
                                         <a class="input-group-text btn btn-primary" href="javascript:void(0);" data-bs-toggle="modal"
-                                         data-bs-target="#exampleModal"><i class="bi bi-check2"></i> Verify</a>
+                                         data-bs-target="#exampleModal"><i class="bi bi-check-circle"></i></a>
                                     </div>                                    
                                 </div>
                             </div>
@@ -80,9 +80,10 @@
                                 <div class="mb-3">
                                     <label for="txtPhone" class="form-label">Email</label>
                                     <div class="input-group">
-                                        <input name="txtPhone" type="text" class="form-control" />
+                                        <input name="txtEmail" type="text" id="txtEmail"
+                                        [(ngModel)]="formData.txtEmail" class="form-control" />
                                         <a class="input-group-text btn btn-primary" href="javascript:void(0);" data-bs-toggle="modal"
-                                         data-bs-target="#mailmodal"><i class="bi bi-check2"></i> Verify</a>
+                                         data-bs-target="#mailmodal"><i class="bi bi-check-circle"></i></a>
                                     </div>                                    
                                 </div>
                             </div>
@@ -107,18 +108,30 @@
 
                             <div class="col-xxl-3 col-xl-4 col-md-6">
                                 <div class="mb-3 ">
-                                    <label class="form-label" for="doc"> Document</label>
-                                    <div class="input-group custom-file-input">
+                                    <label class="form-label" for="doc"> Upload Document/Photo</label>
+                                    <div class="input-group">
+                                        <!-- The file input element -->
                                         <input type="file" name="FileUpload1" id="FileUpload1" (change)="handleFileInput($event)"
-                                        class="form-control custom-fileupload" />
-                                        <label class="custom-input" for="doc">Upload</label>
-                                        <label class="input-group-text custom-browse" for="doc">Browse</label>
-                                    </div>
+                                          class="form-control" />
+                                      </div>
         
                                     <p class="mb-0 small text-danger text-end">Supported File (<span class="fw-bold">.pdf, .doc, .xls, .jpg, .png</span>)</p>
                                 </div>
                             </div>
-
+                            <!-- <div class="col-xl-12">
+                                <div class="form-group">
+                                  <label for="FileUpload1" class="form-label">
+                                    Upload Document/Photo <span class="text-danger">*</span>
+                                  </label>
+                                  <div class="input-group">
+                                    <input type="file" name="FileUpload1" id="FileUpload1" (change)="handleFileInput($event)"
+                                      class="form-control" />
+                                  </div>
+                                  <small class="text-danger d-block text-end">
+                                    Supported File (.pdf, .doc, .xls, .jpg, .png)
+                                  </small>
+                                </div>
+                              </div> -->
                     
                         <div class="col-xxl-3 col-xl-4 col-md-6">
                             <div class="mb-3">
@@ -253,7 +266,8 @@
                                 <div class="mb-3">
                                     <label for="ddllocation" class="form-label">Near by Location</label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" id="ddllocation">
+                                        <input type="text" name="txtlandmark" rows="3" id="txtlandmark"
+                                        [(ngModel)]="formData.txtLandmark" class="form-control">
                                         <label class="input-group-text" for="ddllocation">
                                             <i class="bi bi-geo-alt"></i></label>
                                     </div>
@@ -344,7 +358,39 @@
 </div>
 
 <!-- Verify Modal -->
-<div class="modal fade otp-modal" id="mailmodal" tabindex="-1" aria-labelledby="mailmodalLabel"
+<!-- <div class="modal fade otp-modal" id="mailmodal" tabindex="-1" aria-labelledby="mailmodalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content">
+        <div class="modal-body text-center p-5">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <h3 class="mb-4">OTP Verification</h3>
+          <h5>Wait a while for OTP to receive
+            <small class="text-secondary d-block">Sent to your Email ID</small>
+          </h5>
+          <div class="mx-1">
+            <div class="row">
+              <div class="col" *ngFor="let input of otpInputs; let i = index">
+                <input type="number" class="form-control form-control-lg" maxlength="1" (input)="onOtpInputChange($event, i)" #otpInput>
+              </div>
+            </div>
+          </div>
+          <div class="my-4 d-flex justify-content-between text-secondary">Didn't receive OTP yet?
+            <div>
+              <span class="d-block">02:00 min</span>
+            </div>
+          </div>
+          <div class="d-grid">
+            <button type="button" class="btn btn-primary">Verify OTP</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+  
+
+
+
+ <div class="modal fade otp-modal" id="mailmodal" tabindex="-1" aria-labelledby="mailmodalLabel"
   aria-hidden="true">
   <div class="modal-dialog modal-md">
     <div class="modal-content">
@@ -380,7 +426,6 @@
         <div class="my-4 d-flex justify-content-between text-secondary">Didn't receive OTP yet?
           <div>
             <span class="d-block">02:00 min</span>
-            <!-- <a href="#">Resend OTP</a> -->
           </div>
         </div>
         <div class="d-grid">
@@ -390,4 +435,4 @@
      
     </div>
   </div>
-</div>
+</div> 

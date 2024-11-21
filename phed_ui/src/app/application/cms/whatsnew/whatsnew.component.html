@@ -1,18 +1,17 @@
 <div class="form-cointainer">
     <div class="pagetitle-section">
         <div class="row justify-content-between align-items-center">
-            <div class="col-xxl-3 col-lg-4 col-md-6">
+            <div class="col-xxl-3 col-lg-4 col-md-4">
                 <h3> Whats New</h3>
-                <!-- <p>Manage your page</p> -->
             </div>
-            <div class="col-lg-6 col-md-6">
+            <div class="col-lg-6 col-md-8">
                 <div class="utilite">
                     <ul class="mb-0">
                         <li class="bg-transparent border-0">
                             <span class="text-danger small"><b>(*)</b> Indicate mandatory </span>
                         </li>
-                        <li class="fill-btn back-link"><a routerLink="/application/whatnew" title="Go to Previous"><i
-                            class="bi bi-arrow-left"></i> Back to View</a>
+                        <li class="fill-btn back-link"><a routerLink="/application/whatsnew" title="Go to Previous"><i
+                            class="bi bi-arrow-left"></i> <span class="hide-icon ms-2"> Back to View</span></a>
                 </li>
                     </ul>
                 </div>
@@ -40,38 +39,46 @@
                     </div>
                     <div class="col-xl-4 col-md-12">
                         <div class="mb-3">
-                            <label class="form-label" for="doc"> Document</label>
-                            <div class="input-group">
-                                <input type="file" class="form-control custom-fileupload" id="doc">
-                                <label class="custom-input" for="doc">Upload</label>
+                            <label class="form-label" for="doc">Upload Document/Photo</label>
+                            <div class="input-group custom-file-input">
+                                <input type="file" name="FileUpload1" id="FileUpload1"
+                                    (change)="handleFileInput($event)" class="form-control custom-fileupload" />
+                                <label class="custom-input" [ngClass]="{'custom-input-black': fileName}" for="doc">
+                                    {{ fileName || 'Upload' }}
+                                </label>
                                 <label class="input-group-text custom-browse" for="doc">Browse</label>
                             </div>
-
                             <p class="text-end mb-0"><small class="text-danger">Max size <strong>10 MB</strong>
-                                    (.pdf)</small></p>
+                                (.pdf)</small></p>
                         </div>
                     </div>
-                    <!-- <div class="col-xl-4 col-md-12">
-                        <div class="mb-3">
-                            <label class="form-label">Upload Document</label>
-                            <input class="form-control" type="file" id="formFile">
-                            <p class="text-end mb-0"><small class="text-danger">Max size <strong>10 MB</strong>
-                                    (.pdf)</small></p>
-                        </div>
-                    </div> -->
                 </div>
                 <div class="row">
                     <div class="col-xl-4 col-md-12">
                         <div class="mb-3">
                             <label class="form-label" for="title">Title</label>
-                            <textarea class="form-control" id="title" rows="3"></textarea>
+                            <input type="text" class="form-control" id="title">
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-12">
+                        <div class="mb-3">
+                            <label class="form-label" for="titlehn">Title (In Hindi)</label>
+                            <input type="text" class="form-control" id="titlehn">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-4 col-md-12">
+                        <div class="mb-3">
+                            <label class="form-label" for="desction">Description</label>
+                            <textarea class="form-control" id="desction" rows="3"></textarea>
                             <p class="text-end mb-0"><small class="text-danger">Maximum <strong>500</strong> characters</small></p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-12">
                         <div class="mb-3">
-                            <label class="form-label" for="title">Title (In Hindi)</label>
-                            <textarea class="form-control" id="title" rows="3"></textarea>
+                            <label class="form-label" for="desctionhn">Description (In Hindi)</label>
+                            <textarea class="form-control" id="desctionhn" rows="3"></textarea>
                             <p class="text-end mb-0"><small class="text-danger">Maximum <strong>500</strong> characters</small></p>
                         </div>
                     </div>

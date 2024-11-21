@@ -1,43 +1,46 @@
 <div class="form-cointainer">
     <div class="pagetitle-section">
         <div class="row justify-content-between align-items-center">
-            <div class="col-lg-4">
+            <div class="col-lg-4 col-md-6">
                 <h3>Close Complaint</h3>
             </div>
             <div class="col-lg-6 col-md-6">
                 <div class="utilite">
                     <ul class="mb-0">
-                       
+
 
                         <li>
                             <a href="javascript:void(0)" title="Click to Print"><i class="bi bi-printer"></i></a>
                         </li>
 
                         <li>
-                            <a href="javascript:void(0)" title="Download Excel"><i class="bi bi-file-earmark-excel"></i></a>
+                            <a href="javascript:void(0)" title="Download Excel"><i
+                                    class="bi bi-file-earmark-excel"></i></a>
                         </li>
 
-<<<<<<< HEAD
-                        <!-- <li [ngClass]="isPanelOpen ? 'active-filter' : ''">
-                            <a href="javascript:void(0)" title="{{ isPanelOpen ? 'Click to Close Filter' : 'Click to Open Filter' }}" 
-                               (click)="togglePanel()">
-                                <i class="bi bi-funnel"></i> Filter
-                            </a>
-                        </li> -->
+
+
                         <li class="filter-dropdown dropdown">
-                            <a href="javascript:void(0)" data-bs-toggle="dropdown">
+                            <a href="javascript:void(0)" data-bs-toggle="dropdown" (click)="openDropdown()">
                                 <i class="bi bi-funnel"></i> Filter
                             </a>
 
-                            <div class="dropdown-menu dropdown-menu-end filter-dropdown-menu shadow border-0">
+                            <div class="dropdown-menu dropdown-menu-end filter-dropdown-menu shadow border-0"
+                                [ngClass]="{ 'show': isDropdownOpen }" (click)="$event.stopPropagation()">
+
+                                <span class="drop-icon" (click)="closeDropdown()">
+                                    <i class="bi bi-x-lg"></i>
+                                </span>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="ddlDistrict" class="form-label">District</label>
-                                            <select name="ddlDistrict" id="ddlDistrict" [(ngModel)]="formData.ddlDistrict"
-                                                (change)="onDistrictChange($event)" class="form-select">
+                                            <select name="ddlDistrict" id="ddlDistrict"
+                                                [(ngModel)]="formData.ddlDistrict" (change)="onDistrictChange($event)"
+                                                class="form-select">
                                                 <option selected value="0">Select</option>
-                                                <option *ngFor="let district of districts" [value]="district.inT_DIST_ID">
+                                                <option *ngFor="let district of districts"
+                                                    [value]="district.inT_DIST_ID">
                                                     {{ district.vcH_DIST_NAME }}
                                                 </option>
                                             </select>
@@ -49,7 +52,8 @@
                                             <select name="ddlBlock" id="ddlBlock" [(ngModel)]="formData.ddlBlock"
                                                 (change)="onBlockChange($event)" class="form-select">
                                                 <option value="0">Select</option>
-                                                <option *ngFor="let block of blocks" [value]="block.inT_BLOCK_ID">{{ block.vcH_BLOCK_NAME }}
+                                                <option *ngFor="let block of blocks" [value]="block.inT_BLOCK_ID">{{
+                                                    block.vcH_BLOCK_NAME }}
                                                 </option>
                                             </select>
                                         </div>
@@ -57,152 +61,11 @@
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="ddlGp" class="form-label">Gram Panchayat</label>
-                                            <select name="ddlGp" id="ddlGp" [(ngModel)]="formData.ddlPanchayat" class="form-select">
-                                                <option value="0">Select</option>
-                                                <option *ngFor="let gp of gps" [value]="gp.inT_GP_ID">{{ gp.vcH_GP_NAME }}</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label for="txtToken" class="form-label">Token number</label>
-                                            <input class="form-control" id="txtToken" type="text">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label for="ddlComplaintCategory" class="form-label">Complaint Category</label>
-                                            <select name="ddlComplaintCategory" id="ddlComplaintCategory"
-                                                [(ngModel)]="formData.ddlComplaintCategory" (change)="onCategoryChange($event)"
-                                                class="form-select">
-                                                <option selected value="0">Select</option>
-                                                <option *ngFor="let category of categories" [value]="category.inT_CATEGORY_ID">{{
-                                                    category.vcH_CATEGORY }}
-                                                </option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label for="ddlSubCategory" class="form-label">Complaint Sub-Category</label>
-                                            <select name="ddlSubCategory" id="ddlSubCategory" [(ngModel)]="formData.ddlSubCategory"
+                                            <select name="ddlGp" id="ddlGp" [(ngModel)]="formData.ddlPanchayat"
                                                 class="form-select">
                                                 <option value="0">Select</option>
-                                                <option *ngFor="let subcategory of subcategories" [value]="subcategory.inT_SUB_CATEGORY_ID">
-                                                    {{
-                                                    subcategory.vcH_SUB_CATEGORY }}
-                                                </option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label for="txtComplaintName" class="form-label">Complaint name</label>
-                                            <input class="form-control" id="txtComplaintName" type="text">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label for="txtComplaintName" class="form-label">Complaint Status</label>
-                                            <select name="ddlStatusSearch" [(ngModel)]="formData.ddlComplaintsts" id="ddlStatusSearch"
-                                                class="form-select">
-                                                <option value="0">Select</option>
-                                                <option *ngFor="let complaint of complaintstatus"
-                                                    [value]="complaint.inT_COMPLIANT_STATUS_ID">{{
-                                                    complaint.vcH_COMPLIANT_STATUS }}</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label for="txtComplaintName" class="form-label">Source of Complaint</label>
-                                            <select name="ddlRecievemode" [(ngModel)]="formData.ddlComplainttype" id="ddlRecievemode"
-                                                class="form-select">
-                                                <option value="0">Select</option>
-                                                <option *ngFor="let complaintp of complainttype"
-                                                    [value]="complaintp.inT_COMPLIANT_LOG_TYPE_ID">
-                                                    {{ complaintp.vcH_COMPLIANT_LOG_TYPE }}</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label class="form-label">Registration Date</label>
-                                            <div class="input-group">
-                                                <input type="text" class="form-control datepicker" id="Regddatepicker">
-                                                <label class="input-group-text" for="Regddatepicker"><i
-                                                        class="bi bi-calendar-week"></i></label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label class="form-label">Registration Date</label>
-                                            <div class="input-group">
-                                                <input type="text" class="form-control datepicker" id="todatepicker">
-                                                <label class="input-group-text" for="todatepicker"><i
-                                                        class="bi bi-calendar-week"></i></label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label class="form-label d-md-block d-none" for="menuen">&nbsp;&nbsp;</label>
-                                            <div class="d-flex gap-2">
-                                            <button type="submit" class="btn btn-primary px-xl-4">Search</button>
-                                            <button type="submit" class="btn btn-danger px-xl-4">Reset</button></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </li>
-                        
-=======
-                             
-                      
-                        <li class="filter-dropdown dropdown">
-                            <a href="javascript:void(0)" data-bs-toggle="dropdown">
-                                <i class="bi bi-funnel"></i> Filter
-                            </a>
-                        
-                            <div
-                                class="dropdown-menu dropdown-menu-end filter-dropdown-menu shadow border-0"
-                                [class.show]="isDropdownOpen"
-                                (click)="$event.stopPropagation()"
-                            >
-                             
-                        
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label for="ddlDistrict" class="form-label">District</label>
-                                            <select name="ddlDistrict" id="ddlDistrict" [(ngModel)]="formData.ddlDistrict"
-                                                (change)="onDistrictChange($event)" class="form-select">
-                                                <option selected value="0">Select</option>
-                                                <option *ngFor="let district of districts" [value]="district.inT_DIST_ID">
-                                                    {{ district.vcH_DIST_NAME }}
-                                                </option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label for="ddlBlock" class="form-label">Block</label>
-                                            <select name="ddlBlock" id="ddlBlock" [(ngModel)]="formData.ddlBlock"
-                                                (change)="onBlockChange($event)" class="form-select">
-                                                <option value="0">Select</option>
-                                                <option *ngFor="let block of blocks" [value]="block.inT_BLOCK_ID">{{ block.vcH_BLOCK_NAME }}
-                                                </option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label for="ddlGp" class="form-label">Gram Panchayat</label>
-                                            <select name="ddlGp" id="ddlGp" [(ngModel)]="formData.ddlPanchayat" class="form-select">
-                                                <option value="0">Select</option>
-                                                <option *ngFor="let gp of gps" [value]="gp.inT_GP_ID">{{ gp.vcH_GP_NAME }}</option>
+                                                <option *ngFor="let gp of gps" [value]="gp.inT_GP_ID">{{ gp.vcH_GP_NAME
+                                                    }}</option>
                                             </select>
                                         </div>
                                     </div>
@@ -214,12 +77,14 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mb-3">
-                                            <label for="ddlComplaintCategory" class="form-label">Complaint Category</label>
+                                            <label for="ddlComplaintCategory" class="form-label">Complaint
+                                                Category</label>
                                             <select name="ddlComplaintCategory" id="ddlComplaintCategory"
-                                                [(ngModel)]="formData.ddlComplaintCategory" (change)="onCategoryChange($event)"
-                                                class="form-select">
+                                                [(ngModel)]="formData.ddlComplaintCategory"
+                                                (change)="onCategoryChange($event)" class="form-select">
                                                 <option selected value="0">Select</option>
-                                                <option *ngFor="let category of categories" [value]="category.inT_CATEGORY_ID">{{
+                                                <option *ngFor="let category of categories"
+                                                    [value]="category.inT_CATEGORY_ID">{{
                                                     category.vcH_CATEGORY }}
                                                 </option>
                                             </select>
@@ -227,11 +92,13 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mb-3">
-                                            <label for="ddlSubCategory" class="form-label">Complaint Sub-Category</label>
-                                            <select name="ddlSubCategory" id="ddlSubCategory" [(ngModel)]="formData.ddlSubCategory"
-                                                class="form-select">
+                                            <label for="ddlSubCategory" class="form-label">Complaint
+                                                Sub-Category</label>
+                                            <select name="ddlSubCategory" id="ddlSubCategory"
+                                                [(ngModel)]="formData.ddlSubCategory" class="form-select">
                                                 <option value="0">Select</option>
-                                                <option *ngFor="let subcategory of subcategories" [value]="subcategory.inT_SUB_CATEGORY_ID">
+                                                <option *ngFor="let subcategory of subcategories"
+                                                    [value]="subcategory.inT_SUB_CATEGORY_ID">
                                                     {{
                                                     subcategory.vcH_SUB_CATEGORY }}
                                                 </option>
@@ -240,15 +107,15 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mb-3">
-                                            <label for="txtComplaintName" class="form-label">Complaint name</label>
+                                            <label for="txtComplaintName" class="form-label">Complaint Name</label>
                                             <input class="form-control" id="txtComplaintName" type="text">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="txtComplaintName" class="form-label">Complaint Status</label>
-                                            <select name="ddlStatusSearch" [(ngModel)]="formData.ddlComplaintsts" id="ddlStatusSearch"
-                                                class="form-select">
+                                            <select name="ddlStatusSearch" [(ngModel)]="formData.ddlComplaintsts"
+                                                id="ddlStatusSearch" class="form-select">
                                                 <option value="0">Select</option>
                                                 <option *ngFor="let complaint of complaintstatus"
                                                     [value]="complaint.inT_COMPLIANT_STATUS_ID">{{
@@ -259,8 +126,8 @@
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="txtComplaintName" class="form-label">Source of Complaint</label>
-                                            <select name="ddlRecievemode" [(ngModel)]="formData.ddlComplainttype" id="ddlRecievemode"
-                                                class="form-select">
+                                            <select name="ddlRecievemode" [(ngModel)]="formData.ddlComplainttype"
+                                                id="ddlRecievemode" class="form-select">
                                                 <option value="0">Select</option>
                                                 <option *ngFor="let complaintp of complainttype"
                                                     [value]="complaintp.inT_COMPLIANT_LOG_TYPE_ID">
@@ -268,7 +135,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <!-- <div class="col-md-6">
                                         <div class="mb-3">
                                             <label class="form-label">Registration Date</label>
                                             <div class="input-group">
@@ -277,7 +144,7 @@
                                                         class="bi bi-calendar-week"></i></label>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label class="form-label">Registration Date</label>
@@ -289,83 +156,25 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label class="form-label d-md-block d-none" for="menuen">&nbsp;&nbsp;</label>
+                                        <div>
+                                            <!-- <label class="form-label d-md-block d-none" for="menuen">&nbsp;&nbsp;</label> -->
                                             <div class="d-flex gap-2">
-                                            <button type="submit" class="btn btn-primary px-xl-4">Search</button>
-                                            <button type="submit" class="btn btn-danger px-xl-4">Reset</button></div>
+                                                <button type="submit" class="btn btn-primary px-xl-4">Search</button>
+                                                <button type="submit" class="btn btn-danger px-xl-4">Reset</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </li>
-                        
->>>>>>> origin/main
+
                     </ul>
                 </div>
             </div>
         </div>
     </div>
- 
-<<<<<<< HEAD
-    <div class="view-form pb-1">
-=======
-    <div class="view-forms pb-1">
->>>>>>> origin/main
-        <div class="row">
-          
-            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-                <div class="mb-2">
-<<<<<<< HEAD
-                    <label for="txtToken" class="form-label">Token number</label>
-=======
-                    <label for="txtToken" class="form-label">Token No.</label>
->>>>>>> origin/main
-                    <div class="form-control-plaintext">-</div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-                <div class="mb-2">
-                    <label for="txtComplaintName" class="form-label">Complaint name</label>
-                    <div class="form-control-plaintext">-</div>
-                </div>
-            </div>
 
-            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-                <div class="mb-2">
-                    <label for="ddlComplaintCategory" class="form-label">Complaint Details</label>
-                    <div class="form-control-plaintext">-</div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-                <div class="mb-2">
-                    <label for="ddlSubCategory" class="form-label">Complaint Status</label>
-                    <div class="form-control-plaintext">-</div>
-                </div>
-            </div>
-            
-            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-                <div class="mb-2">
-                    <label class="form-label">Complaint Date</label>
-                    <div class="form-control-plaintext">9-Nov-2024</div>
-                </div>
-            </div>
 
-            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-                <div class="mb-2">
-                    <label for="txtComplaintName" class="form-label">Location</label>
-                    <div class="form-control-plaintext">-</div>
-                </div>
-            </div>
-            
-            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-                <div class="mb-2">
-                    <label for="txtComplaintName" class="form-label">Action Taken By</label>
-                    <div class="form-control-plaintext">-</div>
-                </div>
-            </div>
-        </div>
-    </div>
     <!-- <div id="collapseExample" class="collapse show" [ngClass]="{'show': isPanelOpen}">
         <div class="content-box search-box">
             <div class="row">
@@ -492,7 +301,57 @@
             </div>
         </div>
     </div> -->
+    <!-- <div class="view-forms pb-1">
+        <div class="row">
 
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                <div class="mb-2">
+                    <label for="txtToken" class="form-label">Token No.</label>
+                    <div class="form-control-plaintext">202411110143</div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                <div class="mb-2">
+                    <label for="txtComplaintName" class="form-label">Complaint Name</label>
+                    <div class="form-control-plaintext">Deepak kumar</div>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                <div class="mb-2">
+                    <label for="ddlComplaintCategory" class="form-label">Complaint Details</label>
+                    <div class="form-control-plaintext">Water lekaje no</div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                <div class="mb-2">
+                    <label for="ddlSubCategory" class="form-label">Complaint Status</label>
+                    <div class="form-control-plaintext"><span class="badge text-bg-success">Resolved</span></div>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                <div class="mb-2">
+                    <label class="form-label">Complaint Date</label>
+                    <div class="form-control-plaintext">11-Nov-2024</div>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                <div class="mb-2">
+                    <label for="txtComplaintName" class="form-label">Near by Location</label>
+                    <div class="form-control-plaintext">-</div>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                <div class="mb-2">
+                    <label for="txtComplaintName" class="form-label">Action Taken By</label>
+                    <div class="form-control-plaintext">JE Ekma</div>
+                </div>
+            </div>
+        </div>
+    </div> -->
 
     <div class="content-box content-area p-0">
         <div class="table-responsive mb-0">
@@ -500,175 +359,206 @@
                 <thead>
                     <tr>
                         <th width="40px">Sl#</th>
-<<<<<<< HEAD
-                        <th>Token No</th>
-=======
                         <th>Token No.</th>
->>>>>>> origin/main
                         <th>Complaint Name</th>
-                        <th>Complaint Details</th>
+                        <!-- <th>Complaint Details</th> -->
                         <th>Complaint Status</th>
                         <th>Complaint Date</th>
-                        <th>Location</th>
+                        <!-- <th>Near by Location</th> -->
                         <th>Action Taken By</th>
-                        <th width="90px">Take Action</th>
+                        <th width="100px">Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>1</td>
-                        <td><a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#token">202411110143</a>
+                        <td><a href="javascript:void(0);" data-bs-toggle="modal"
+                                data-bs-target="#token">202411110143</a>
                         </td>
-<<<<<<< HEAD
-                        <td>John Doe</td>
-                        <td>Road damage</td>
-                        <td><span class="badge text-bg-warning">Pending</span></td>
-                        <td>01-Jan-2024</td>
-                        <td>New York</td>
-                        <td>John Smith</td>
-=======
                         <td>Deepak kumar</td>
-                        <td>Water lekaje no</td>
+                        <!-- <td>Water lekaje no</td> -->
                         <td><span class="badge text-bg-success">Resolved</span></td>
                         <td>11-Nov-2024</td>
-                        <td>-</td>
+                        <!-- <td>-</td> -->
                         <td>JE Ekma</td>
->>>>>>> origin/main
                         <td>
-                            <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"
-                                    data-bs-toggle="modal" data-bs-target="#details">
-                                    <i class="bi bi-eye"></i>
-                                </a>
-                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
-                                    <i class="bi bi-pencil"></i>
-                                </a>
+                            <div class="dropdown">
+
+                                <button class="btn btn-outline-primary btn-sm" type="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <i class="bi bi-caret-down"></i> Action
+                                </button>
+
+
+                                <ul class="dropdown-menu shadow border-0 dropdown-menu-end py-0">
+                                    <!-- <li>
+                                        <a href="javascript:void(0);" class="dropdown-item" title="Take Action" 
+                                        data-bs-toggle="modal" data-bs-target="#details">
+                                            <i class="bi-clock-history me-1"></i> Take Action
+                                        </a>
+                                    </li> -->
+
+                                    <li>
+                                        <a href="javascript:void(0);" class="dropdown-item" title="Action History"
+                                            data-bs-toggle="modal" data-bs-target="#takehistrory">
+                                            <i class="bi-journal-text me-1"></i> Action History
+                                        </a>
+                                    </li>
+                                </ul>
                             </div>
                         </td>
+
+
                     </tr>
                     <tr>
                         <td>2</td>
-<<<<<<< HEAD
-                        <td><a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#token">TKN12346</a>
-                        </td>
-                        <td>Jane Doe</td>
-                        <td>Water leakage</td>
-                        <td><span class="badge text-bg-success">Resolved</span></td>
-                        <td>05-Jan-2024</td>
-                        <td>Los Angeles</td>
-                        <td>Jane Smith</td>
-=======
-                        <td><a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#token">202411110139</a></td>
+                        <td><a href="javascript:void(0);" data-bs-toggle="modal"
+                                data-bs-target="#token">202411110139</a></td>
                         <td>Basant Kumar</td>
-                        <td>वार्ड न०- 13 में मेरे दरव</td>
+                        <!-- <td>वार्ड न०- 13 में मेरे दरव</td> -->
                         <td><span class="badge text-bg-success">Resolved</span></td>
-                        <td>11-Nov-2024</td>
-                        <td>-</td>
+                        <td>09-Nov-2024</td>
+                        <!-- <td>-</td> -->
                         <td>JE Section - I</td>
->>>>>>> origin/main
                         <td>
-                            <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"
-                                    data-bs-toggle="modal" data-bs-target="#details">
-                                    <i class="bi bi-eye"></i>
-                                </a>
-                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
-                                    <i class="bi bi-pencil"></i>
-                                </a>
+                            <div class="dropdown">
+
+                                <button class="btn btn-outline-primary btn-sm" type="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <i class="bi bi-caret-down"></i> Action
+                                </button>
+
+                                <!-- Drop Down -->
+                                <ul class="dropdown-menu shadow border-0 dropdown-menu-end py-0">
+
+
+                                    <li>
+                                        <a href="javascript:void(0);" class="dropdown-item" title="Take Action"
+                                            data-bs-toggle="modal" data-bs-target="#details">
+                                            <i class="bi-clock-history me-1"></i> Take Action
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="javascript:void(0);" class="dropdown-item" title="Action History"
+                                            data-bs-toggle="modal" data-bs-target="#takehistrory">
+                                            <i class="bi-journal-text me-1"></i> Action History
+                                        </a>
+                                    </li>
+                                </ul>
                             </div>
                         </td>
                     </tr>
                     <tr>
                         <td>3</td>
-                        <td><a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#token">202411110138</a>
+                        <td><a href="javascript:void(0);" data-bs-toggle="modal"
+                                data-bs-target="#token">202411110138</a>
                         </td>
-<<<<<<< HEAD
-                        <td>Michael Johnson</td>
-                        <td>Power outage</td>
-                        <td><span class="badge text-bg-secondary">In Progress</span></td>
-                        <td>10-Jan-2024</td>
-                        <td>Chicago</td>
-                        <td>Robert Brown</td>
-=======
                         <td>Ram Lakhan</td>
-                        <td>वार्ड नंबर एक में सप्लाई</td>
-                        <td><span class="badge text-bg-success">Resolved</span></td>
-                        <td>11-Nov-2024</td>
-                        <td>-</td>
+                        <!-- <td>वार्ड नंबर एक में सप्लाई</td> -->
+                        <td><span class="badge text-bg-success">Registered & Open</span></td>
+                        <td>08-Nov-2024</td>
+                        <!-- <td>-</td> -->
                         <td>JE Andhratharhi</td>
->>>>>>> origin/main
                         <td>
-                            <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"
-                                    data-bs-toggle="modal" data-bs-target="#details">
-                                    <i class="bi bi-eye"></i>
-                                </a>
-                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
-                                    <i class="bi bi-pencil"></i>
-                                </a>
+                            <div class="dropdown">
+
+                                <button class="btn btn-outline-primary btn-sm" type="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <i class="bi bi-caret-down"></i> Action
+                                </button>
+
+
+                                <ul class="dropdown-menu shadow border-0 dropdown-menu-end py-0">
+                                    <li>
+                                        <a href="javascript:void(0);" class="dropdown-item" title="Take Action"
+                                            data-bs-toggle="modal" data-bs-target="#details">
+                                            <i class="bi-clock-history me-1"></i> Take Action
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="javascript:void(0);" class="dropdown-item" title="Action History"
+                                            data-bs-toggle="modal" data-bs-target="#takehistrory">
+                                            <i class="bi-journal-text me-1"></i> Action History
+                                        </a>
+                                    </li>
+                                </ul>
                             </div>
                         </td>
                     </tr>
                     <tr>
                         <td>4</td>
-                        <td><a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#token">202411110137</a>
+                        <td><a href="javascript:void(0);" data-bs-toggle="modal"
+                                data-bs-target="#token">202411110137</a>
                         </td>
-<<<<<<< HEAD
-                        <td>Emily Davis</td>
-                        <td>Street light issue</td>
-                        <td><span class="badge text-bg-warning">Pending</span></td>
-                        <td>15-Jan-2024</td>
-                        <td>Houston</td>
-                        <td>Emily White</td>
-=======
                         <td>Sudher Kumar</td>
-                        <td>वार्ड न०-06 में नौ सिर्गि</td>
-                        <td><span class="badge text-bg-success">Resolved</span></td>
-                        <td>11-Nov-2024</td>
-                        <td>-</td>
+                        <!-- <td>वार्ड न०-06 में नौ सिर्गि</td> -->
+                        <td><span class="badge text-bg-success">Registered & Open</span></td>
+                        <td>08-Nov-2024</td>
+                        <!-- <td>-</td> -->
                         <td>JE Lalganj</td>
->>>>>>> origin/main
                         <td>
-                            <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"
-                                    data-bs-toggle="modal" data-bs-target="#details">
-                                    <i class="bi bi-eye"></i>
-                                </a>
-                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
-                                    <i class="bi bi-pencil"></i>
-                                </a>
+                            <div class="dropdown">
+
+                                <button class="btn btn-outline-primary btn-sm" type="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <i class="bi bi-caret-down"></i> Action
+                                </button>
+
+
+                                <ul class="dropdown-menu shadow border-0 dropdown-menu-end py-0">
+                                    <li>
+                                        <a href="javascript:void(0);" class="dropdown-item" title="Take Action"
+                                            data-bs-toggle="modal" data-bs-target="#details">
+                                            <i class="bi-clock-history me-1"></i> Take Action
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="javascript:void(0);" class="dropdown-item" title="Action History"
+                                            data-bs-toggle="modal" data-bs-target="#takehistrory">
+                                            <i class="bi-journal-text me-1"></i> Action History
+                                        </a>
+                                    </li>
+                                </ul>
                             </div>
                         </td>
                     </tr>
                     <tr>
                         <td>5</td>
-<<<<<<< HEAD
-                        <td><a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#token">TKN12349</a>
-                        </td>
-                        <td>David Lee</td>
-                        <td>Garbage collection delay</td>
-                        <td><span class="badge text-bg-success">Resolved</span></td>
-                        <td>20-Jan-2024</td>
-                        <td>Miami</td>
-                        <td>Mark Wilson</td>
-=======
-                        <td><a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#token">202411110135</a></td>
+                        <td><a href="javascript:void(0);" data-bs-toggle="modal"
+                                data-bs-target="#token">202411110135</a></td>
                         <td>Nagendra sarma</td>
-                        <td>वार्ड न०- 10 में लीकेज हो</td>
-                        <td><span class="badge text-bg-success">Resolved</span></td>
-                        <td>11-Nov-2024</td>
-                        <td>-</td>
+                        <!-- <td>वार्ड न०- 10 में लीकेज हो</td> -->
+                        <td><span class="badge text-bg-success">Registered & Open</span></td>
+                        <td>07-Nov-2024</td>
+                        <!-- <td>-</td> -->
                         <td>JE Tekari</td>
->>>>>>> origin/main
                         <td>
-                            <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"
-                                    data-bs-toggle="modal" data-bs-target="#details">
-                                    <i class="bi bi-eye"></i>
-                                </a>
-                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
-                                    <i class="bi bi-pencil"></i>
-                                </a>
+                            <div class="dropdown">
+
+                                <button class="btn btn-outline-primary btn-sm" type="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <i class="bi bi-caret-down"></i> Action
+                                </button>
+
+
+                                <ul class="dropdown-menu shadow border-0 dropdown-menu-end py-0">
+                                    <li>
+                                        <a href="javascript:void(0);" class="dropdown-item" title="Take Action"
+                                            data-bs-toggle="modal" data-bs-target="#details">
+                                            <i class="bi-clock-history me-1"></i> Take Action
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="javascript:void(0);" class="dropdown-item" title="Action History"
+                                            data-bs-toggle="modal" data-bs-target="#takehistrory">
+                                            <i class="bi-journal-text me-1"></i> Action History
+                                        </a>
+                                    </li>
+                                </ul>
                             </div>
                         </td>
                     </tr>
@@ -700,90 +590,149 @@
                             class="btn btn-outline-danger btn-sm"><i class="bi bi-printer me-1"></i>Print</a>
                     </div>
                 </div>
-                <div class="modal-title-part">
-                    <h5>Status of Registered Complaint</h5>
-                </div>
+
                 <div class="row">
                     <div class="col-xl-12">
-                        <h5 class="subtitle">General Information</h5>
+                        <h5 class="page-heading">Complainant Details</h5>
                     </div>
                     <div class="col-xl-12">
-                        <div class="row">
-                            <div class="col-xl-3 col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label">Complaint Number</label>
-                                    <label class="form-value">202410230124</label>
+                        <div class="view-forms">
+                            <div class="row">
+                                <div class="col-xl-3 col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Complaint No.</label>
+                                        <label class="form-value">202410230124</label>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label">Registration Date</label>
-                                    <label class="form-value">23-Oct-2024</label>
+                                <div class="col-xl-3 col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Registration Date</label>
+                                        <label class="form-value">23-Oct-2024</label>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label">Received By</label>
-                                    <label class="form-value">Helpline</label>
+                                <div class="col-xl-3 col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Mode of Complaint</label>
+                                        <label class="form-value">Helpline</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-3 col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Name</label>
+                                        <label class="form-value">Krishanumar</label>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Phone No.</label>
+                                        <label class="form-value">8789952814</label>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-xl-3 col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label">E-Mail</label>
-                                    <label class="form-value">gmail.com</label>
+                                    <label class="form-value">testusergmail.com</label>
                                 </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label">Name</label>
-                                    <label class="form-value">Krishanumar</label>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label">Gender</label>
-                                    <label class="form-value">Male</label>
-                                </div>
-                            </div>
 
 
-                            <div class="col-xl-3 col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label">Name</label>
-                                    <label class="form-value">Krishanumar</label>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label">Gender</label>
-                                    <label class="form-value">Male</label>
-                                </div>
-                            </div>
-
-                            <div class="col-xl-3 col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label">Phone No</label>
-                                    <label class="form-value">8789952814</label>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label">Attached File</label>
-                                    <label class="form-value">No File to Show</label>
-                                </div>
-                            </div>
 
 
-                            <div class="col-xl-3 col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label">Address</label>
-                                    <label class="form-value">Vill-Bhatgawan, ward no-11</label>
+                                <div class="col-xl-3 col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label"> Document/Photo</label>
+                                        <label class="form-value">
+                                            <div class="d-flex gap-1">
+                                                <a href="javascript:void(0);" class="btn btn-sm btn-outline-danger"><i
+                                                        class="bi bi-download"></i> Download</a>
+                                                <!-- <a href="javascript:void(0);" class="btn btn-sm btn-outline-danger"><i class="bi bi-download"></i></a> -->
+                                            </div>
+                                        </label>
+                                    </div>
                                 </div>
+
+                                <div class="col-xl-3 col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Complaint Category</label>
+                                        <label class="form-value">Piped Water Supply Related</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-3 col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Complaint Sub-Category</label>
+                                        <label class="form-value">Operator does not runs the motor</label>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-xl-9 col-md-12">
+                                    <div class="mb-3">
+                                        <label class="form-label">Complaint Details</label>
+                                        <label class="form-value">पंप चालक वार्ड न०- 11 में सप्लाई का पानी समय से नहीं
+                                            चलाता
+                                            है अतः उचित कार्यवाई करके सप्लाई का पानी सुचारू रूप से चलाया जाय|</label>
+                                    </div>
+                                </div>
+
                             </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label">Action File</label>
-                                    <label class="form-value">No File to Show</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xl-12">
+                        <h5 class="page-heading">Address Details</h5>
+                    </div>
+                    <div class="col-xl-12">
+                        <div class="view-forms">
+                            <div class="row">
+                                <div class="col-xl-3 col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">District</label>
+                                        <label class="form-value">Madhepura</label>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Block</label>
+                                        <label class="form-value">Chausa</label>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Gram Panchayat</label>
+                                        <label class="form-value">Arajipur West</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-3 col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Village</label>
+                                        <label class="form-value">-</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-3 col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Ward</label>
+                                        <label class="form-value">Ara</label>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Near by Location</label>
+                                        <label class="form-value">Patna</label>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-md-12">
+                                    <div class="mb-3">
+                                        <label class="form-label">Address</label>
+                                        <label class="form-value">Lorem ipsum dolor, sit amet consectetur adipisicing
+                                            elit.
+                                            Ipsam, natus.</label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -792,62 +741,7 @@
 
                 <div class="row">
                     <div class="col-xl-12">
-                        <h5 class="subtitle">Complaint Details</h5>
-                    </div>
-                    <div class="col-xl-12">
-                        <div class="row">
-                            <div class="col-xl-3 col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label">District</label>
-                                    <label class="form-value">MADHEPURA</label>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label">Block</label>
-                                    <label class="form-value">CHAUSA</label>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label">Panchayat</label>
-                                    <label class="form-value">ARAJIPUR WEST</label>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label">Village Name</label>
-                                    <label class="form-value"></label>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label">Complaint Category</label>
-                                    <label class="form-value">Piped Water Supply Related</label>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label">Complaint Sub-Category</label>
-                                    <label class="form-value">Operator does not runs the motor</label>
-                                </div>
-                            </div>
-
-
-                            <div class="col-xl-6 col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label">Complaint Details</label>
-                                    <label class="form-value">पंप चालक वार्ड न०- 11 में सप्लाई का पानी समय से नहीं चलाता
-                                        है अतः उचित कार्यवाई करके सप्लाई का पानी सुचारू रूप से चलाया जाय|</label>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xl-12">
-                        <h5 class="subtitle">Intimation Sent To</h5>
+                        <h5 class="page-heading">Intimation Sent To</h5>
                     </div>
                     <div class="col-xl-12">
                         <div class="table-responsive mb-3">
@@ -863,7 +757,7 @@
                                 <tbody>
                                     <tr>
                                         <td>1</td>
-                                        <td>JE UdaKishanganj (8544428938)</td>
+                                        <td>JE UdaKishanganj (+91-8544428938)</td>
                                         <td>23-Oct-2024</td>
                                         <td>Registered & Open</td>
                                     </tr>
@@ -874,7 +768,7 @@
                 </div>
                 <div class="row">
                     <div class="col-xl-12">
-                        <h5 class="subtitle">Summary Of Action Taken</h5>
+                        <h5 class="page-heading">Summary Of Action Taken</h5>
                     </div>
                     <div class="col-xl-12">
                         <div class="table-responsive mb-3">
@@ -909,7 +803,7 @@
                 </div>
                 <div class="row">
                     <div class="col-xl-12">
-                        <h5 class="subtitle">Escalation Level</h5>
+                        <h5 class="page-heading">Escalation Level</h5>
                     </div>
                     <div class="col-xl-12">
                         <div class="table-responsive mb-0">
@@ -958,17 +852,17 @@
     <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header justify-content-between">
-                <h1 class="modal-title fs-5" id="tokenLabel">Complaint Details</h1>
+                <h1 class="modal-title fs-5" id="tokenLabel"> Take Action</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="row">
                     <div class="col-xl-12">
-                        <div class="bg-light p-3 pb-0 mb-4 view-form">
+                        <div class="view-forms view-form pb-0">
                             <div class="row">
                                 <div class="col-xl-3 col-md-6">
                                     <div class="mb-3">
-                                        <label class="form-label">Token No</label>
+                                        <label class="form-label">Token No.</label>
                                         <label class="form-value">202410230124</label>
                                     </div>
                                 </div>
@@ -986,8 +880,8 @@
                                 </div>
                                 <div class="col-xl-3 col-md-6">
                                     <div class="mb-3">
-                                        <label class="form-label"> Location</label>
-                                        <label class="form-value">NA</label>
+                                        <label class="form-label"> Near by Location</label>
+                                        <label class="form-value">-</label>
                                     </div>
                                 </div>
                                 <div class="col-xl-3 col-md-6">
@@ -1021,9 +915,9 @@
                                     <label for="ddlDistrict" class="form-label">Status</label>
                                     <select class="form-select">
                                         <option selected>Select</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
+                                        <option value="1">Attended & Can`t be resolved</option>
+                                        <option value="2">Inprogress</option>
+                                        <option value="3">Resolved</option>
                                     </select>
                                 </div>
                             </div>
@@ -1034,15 +928,20 @@
                                     <label class="custom-input" for="doc">Upload</label>
                                     <label class="input-group-text custom-browse" for="doc">Browse</label>
                                 </div>
-                                <p class="text-danger text-end small mb-0"> Only <span class="fw-bold">.jpeg, .jpg, .png,
-                                    .gif, .doc, .xls, .pdf</span> files
-                                allowed</p>
+                                <p class="text-danger text-end small mb-0"> Only <span class="fw-bold">(.jpg,
+                                        .png,
+                                        .doc, .xls, .pdf)</span> files
+                                    allowed</p>
+
+
+
                             </div>
                             <div class="col-xl-12">
                                 <div class="mb-3">
                                     <label for="ddlDistrict" class="form-label">Remarks</label>
                                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                                    <p class="text-danger text-end small mb-0">(Maximum <span class="fw-bold">100</span>
+                                    <p class="text-danger text-end  small mb-0">(Maximum <span
+                                            class="fw-bold">100</span>
                                         Characters)</p>
                                 </div>
                             </div>
@@ -1064,3 +963,229 @@
     </div>
 </div>
 <!-- Modal End::Token -->
+
+<!-- Modal Start::Take Action -->
+<div class="modal fade" id="takehistrory" tabindex="-1" aria-labelledby="tokenLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header justify-content-between">
+                <h1 class="modal-title fs-5" id="tokenLabel"> Action History </h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body view-form">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <h5 class="page-heading mt-0">Complainant Details</h5>
+                            </div>
+                            <div class="col-xl-12">
+                                <div class="view-forms">
+                                    <div class="row">
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Complaint No.</label>
+                                                <label class="form-value">202410230124</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Registration Date</label>
+                                                <label class="form-value">23-Oct-2024</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Mode of Complaint</label>
+                                                <label class="form-value">Helpline</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Name</label>
+                                                <label class="form-value">Krishanumar</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Phone No.</label>
+                                                <label class="form-value">8789952814</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4 col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">E-Mail</label>
+                                            <label class="form-value">testusergmail.com</label>
+                                        </div>
+
+
+
+
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label"> Document/Photo</label>
+                                                <label class="form-value">
+                                                    <div class="d-flex gap-1">
+                                                        <a href="javascript:void(0);"
+                                                            class="btn btn-sm btn-outline-danger"><i
+                                                                class="bi bi-download"></i> Download</a>
+                                                        <!-- <a href="javascript:void(0);" class="btn btn-sm btn-outline-danger"><i class="bi bi-download"></i></a> -->
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Complaint Category</label>
+                                                <label class="form-value">Piped Water Supply Related</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Complaint Sub-Category</label>
+                                                <label class="form-value">Operator does not runs the motor</label>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-xl-12 col-md-12">
+                                            <div class="mb-3">
+                                                <label class="form-label">Complaint Details</label>
+                                                <label class="form-value">पंप चालक वार्ड न०- 11 में सप्लाई का पानी समय
+                                                    से नहीं चलाता
+                                                    है अतः उचित कार्यवाई करके सप्लाई का पानी सुचारू रूप से चलाया
+                                                    जाय|</label>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <h5 class="page-heading">Address Details</h5>
+                            </div>
+                            <div class="col-xl-12">
+                                <div class="view-forms">
+                                    <div class="row">
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">District</label>
+                                                <label class="form-value">Madhepura</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Block</label>
+                                                <label class="form-value">Chausa</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Gram Panchayat</label>
+                                                <label class="form-value">Arajipur Wests</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Village</label>
+                                                <label class="form-value">-</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Ward</label>
+                                                <label class="form-value">Ara</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Near by Location</label>
+                                                <label class="form-value">Patna</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-12 col-md-12">
+                                            <div class="mb-3">
+                                                <label class="form-label">Address</label>
+                                                <label class="form-value">Lorem ipsum dolor, sit amet consectetur
+                                                    adipisicing elit.
+                                                    Ipsam, natus.</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="progress-wrap">
+                            <ul class="StepProgress">
+                                <li class="stepProgress-item is-done">
+                                    <ul>
+                                        <li>Complaint Number- <strong>202411110143</strong></li>
+                                        <li>Registration Date- <strong>11-Nov-2024</strong></li>
+                                        <li>Complaint Name- <strong>Deepak kumar</strong></li>
+                                        <!-- <li>Status- <span class="badge bg-primary">Open</span></li> -->
+                                        <!-- <li><a href="#">View
+                                                            Detais</a></li> -->
+                                    </ul>
+                                </li>
+                                <!-- <li class="stepProgress-item is-done">
+                                                <ul>
+                                                    <li>Action Taken By- <strong
+                                                        >JE Muzaffarpur 1 (7979040112)</strong></li>
+                                                    <li>Action Taken on- <strong
+                                                        >12-Nov-2024</strong></li>
+                                                    <li>Status- <span
+                                                            class="badge bg-primary">Open</span></li>
+                                                </ul>
+                                            </li> -->
+                                <li class="stepProgress-item is-done">
+                                    <ul>
+                                        <li>Action Taken By-
+                                            <strong class="d-block">JE Pandaul(Level 1, +91-7050555110)</strong>
+                                        </li>
+                                        <li>Action Taken on- <strong>12-Nov-2024</strong></li>
+                                        <li>Status- <span class="badge text-bg-primary">Complaint Received</span></li>
+                                    </ul>
+                                </li>
+
+                                <!-- <li class="stepProgress-item">
+                                                <ul>
+                                                    <li>Action Taken By- <strong
+                                                        >SDO</strong></li>
+                                                    <li>Action Taken on- <strong
+                                                        >20-Nov-2024</strong></li>
+                                                    <li>Status- <span
+                                                            class="badge text-bg-warning">Pending</span></li>
+                                                </ul>
+                                            </li>
+                    
+                                            <li class="stepProgress-item">
+                                                <ul>
+                                                    <li>Action Taken By- 
+                                                        <strong>EE</strong></li>
+                                                    <li>Action Taken on- 
+                                                        <strong>27-Nov-2024</strong></li>
+                                                    <li>Status- 
+                                                        <span class="badge text-bg-warning">Pending</span></li>
+                                                </ul>
+                                            </li> -->
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal end::Take Action -->

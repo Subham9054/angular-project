@@ -1,4 +1,21 @@
 @import "../../../assets/scss/variables";
+
+.lang-btn {
+  padding: 3px 5px;
+  cursor: pointer;
+  border: none;
+  font-size: 15px;  
+  font-weight: bold;    
+  color: black;
+  background: none;
+  outline: none;  /* Remove focus outline */
+}
+
+.lang-btn:hover {
+  color: blue;  /* Change text color to blue on hover */
+  text-decoration: none;
+}
+
 .navbar {
   &.header-utilities {
     a {
@@ -20,9 +37,11 @@
     }
   }
 }
+
 .skip-content {
   font-size: 0.7rem !important;
 }
+
 .theme-dark {
   .navbar-brand-img {
     &.light-img {
@@ -30,6 +49,7 @@
     }
   }
 }
+
 .nav-item {
   border-bottom: 1px dashed var(--faq-border);
   .nav-link {
@@ -38,7 +58,6 @@
       color: var(--menu-hover);
       position: relative;
       font-weight: bold;
-
     }
   }
   &.active {
@@ -56,11 +75,13 @@
     border-bottom: 0;
   }
 }
+
 .dropdown > a {
   i {
     font-size: 0.8rem;
   }
 }
+
 .menu-toggle {
   cursor: pointer;
   display: flex;
@@ -84,6 +105,7 @@
     }
   }
 }
+
 .mega-menu {
   position: absolute;
   display: none;
@@ -162,13 +184,14 @@
     }
   }
 }
+
 @media screen and (min-width: 1400px) {
   .mega-menu {
     right: 22%;
   }
 }
-.topheader,
-.logocontext {
+
+.topheader, .logocontext {
   background-color: var(--header-utilities-bg);
   transition: top 0.3s ease;
 }
@@ -187,15 +210,18 @@
   transform: translateY(-100%); /* Move it up out of view */
   pointer-events: none; /* Prevent interaction */
 }
+
 .scroll-up {
   display: block; /* Fully visible */
   transform: translateY(0); /* Reset to original position */
   background-color: rgba(255, 255, 255, 0.8); /* Example style */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Example shadow */
 }
+
 .dark-img {
   width: 40px;
 }
+
 .logocontext {
   position: fixed;
   width: 100%;
@@ -204,8 +230,7 @@
   transition: transform 0.3s ease; /* Smooth transition */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   &.scrolllogo {
-    top: 0;
-    
+    top: 0;    
   }
   &.headtoggle {
     top: 2.1rem;
@@ -221,12 +246,13 @@
   border: none;
   span {
     font-size: 2rem;
-    color: var(--toggle-btn);
+    color: var(--link-color);
   }
   &:focus {
     box-shadow: none;
   }
 }
+
 .cancle-icon {
   color: var(--menu-hover);
 }
@@ -237,6 +263,7 @@
     color: var(--menu-hover);
   }
 }
+
 #search-open {
   position: absolute;
   width: 100%;
@@ -316,6 +343,7 @@
     }
   }
 }
+
 .logo__section {
   h1 {
     a {
@@ -404,12 +432,15 @@
     }
   }
 }
+
 .light-img {
   width: 33px;
 }
+
 .dark-img {
   width: 33px;
 }
+
 .offcanvas-header {
   justify-content: space-between;
   border-bottom: 1px dashed var(--faq-border);
@@ -427,6 +458,7 @@
     }
   }
 }
+
 @media (min-width: 375px) {
   .skip-content {
     font-size: 0.9rem !important;
@@ -643,6 +675,7 @@
     }
   }
 }
+
 @media screen and (min-width: 1200px) {
   .btn-login {
     margin-left: 1rem;
@@ -728,6 +761,7 @@
     }
   }
 }
+
 @media screen and (min-width: 1400px)  {
   .navbar-brand-img {
     width: 45px;
@@ -745,8 +779,9 @@
     }
   }
 }
+
 @media screen and (max-width: 768px)  {
-.btn-login {
-  display: flex;
-}
+  .btn-login {
+    display: flex;
+  }
 }

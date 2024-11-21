@@ -7,122 +7,134 @@
             <div class="col-lg-6 col-md-6">
                 <div class="utilite">
                     <ul class="mb-0">
-                       
+
 
                         <li>
                             <a href="javascript:void(0)" title="Click to Print"><i class="bi bi-printer"></i></a>
                         </li>
 
                         <li>
-                            <a href="javascript:void(0)" title="Download Excel"><i class="bi bi-file-earmark-excel"></i></a>
+                            <a href="javascript:void(0)" title="Download Excel"><i
+                                    class="bi bi-file-earmark-excel"></i></a>
                         </li>
-                        
-                        <li class="filter-dropdown dropdown">
-                            <a href="javascript:void(0)" data-bs-toggle="dropdown">
-                                <i class="bi bi-funnel"></i> Filter 
+                        <li [ngClass]="isPanelOpen ? 'active-filter' : ''">
+                            <a href="javascript:void(0)"
+                                title="{{ isPanelOpen ? 'Click to Close Filter' : 'Click to Open Filter' }}"
+                                (click)="togglePanel()">
+                                <i class="bi bi-funnel"></i> Filter 1
                             </a>
-                           
-                                <div class="dropdown-menu dropdown-menu-end filter-dropdown-menu shadow border-0">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label for="ddlDistrict" class="form-label">District</label>
-                                                <select name="ddlDistrict" id="ddlDistrict" class="form-select">
-                                                    <option selected value="0">Select</option>
-                                                    
-                                                </select>
-                                            </div>
+                        </li>
+
+                        <li class="filter-dropdown dropdown">
+                            <a href="javascript:void(0)" data-bs-toggle="dropdown" (click)="openDropdown()">
+                                <i class="bi bi-funnel"></i> Filter
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-end filter-dropdown-menu shadow border-0"
+                                [ngClass]="{ 'show': isDropdownOpen }" (click)="$event.stopPropagation()">
+                                <span class="drop-icon" (click)="closeDropdown()">
+                                    <i class="bi bi-x-lg"></i>
+                                </span>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="ddlDistrict" class="form-label">District</label>
+                                            <select name="ddlDistrict" id="ddlDistrict" class="form-select">
+                                                <option selected value="0">Select</option>
+
+                                            </select>
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label for="ddlBlock" class="form-label">Block</label>
-                                                <select name="ddlBlock" id="ddlBlock" class="form-select">
-                                                    <option value="0">Select</option>
-                                                    
-                                                </select>
-                                            </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="ddlBlock" class="form-label">Block</label>
+                                            <select name="ddlBlock" id="ddlBlock" class="form-select">
+                                                <option value="0">Select</option>
+
+                                            </select>
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label for="ddlGp" class="form-label">Gram Panchayat</label>
-                                                <select name="ddlGp" id="ddlGp" class="form-select">
-                                                    <option value="0">Select</option>
-                                                    
-                                                </select>
-                                            </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="ddlGp" class="form-label">Gram Panchayat</label>
+                                            <select name="ddlGp" id="ddlGp" class="form-select">
+                                                <option value="0">Select</option>
+
+                                            </select>
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label for="txtToken" class="form-label">Token number</label>
-                                                <input class="form-control" id="txtToken" type="text">
-                                            </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="txtToken" class="form-label">Token number</label>
+                                            <input class="form-control" id="txtToken" type="text">
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label for="ddlComplaintCategory" class="form-label">Complaint Category</label>
-                                                <select name="ddlComplaintCategory" id="ddlComplaintCategory" class="form-select">
-                                                    <option selected value="0">Select</option>
-                                                   
-                                                </select>
-                                            </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="ddlComplaintCategory" class="form-label">Complaint
+                                                Category</label>
+                                            <select name="ddlComplaintCategory" id="ddlComplaintCategory"
+                                                class="form-select">
+                                                <option selected value="0">Select</option>
+
+                                            </select>
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label for="ddlSubCategory" class="form-label">Complaint Sub-Category</label>
-                                                <select name="ddlSubCategory" id="ddlSubCategory" class="form-select">
-                                                    <option value="0">Select</option>
-                                                    
-                                                </select>
-                                            </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="ddlSubCategory" class="form-label">Complaint
+                                                Sub-Category</label>
+                                            <select name="ddlSubCategory" id="ddlSubCategory" class="form-select">
+                                                <option value="0">Select</option>
+
+                                            </select>
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label for="txtComplaintName" class="form-label">Complaint name</label>
-                                                <input class="form-control" id="txtComplaintName" type="text">
-                                            </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="txtComplaintName" class="form-label">Complaint name</label>
+                                            <input class="form-control" id="txtComplaintName" type="text">
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label for="txtComplaintName" class="form-label">Complaint Status</label>
-                                                <select name="ddlStatusSearch" id="ddlStatusSearch"
-                                                    class="form-select">
-                                                    <option value="0">Select</option>
-                                                   
-                                                </select>
-                                            </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="txtComplaintName" class="form-label">Complaint Status</label>
+                                            <select name="ddlStatusSearch" id="ddlStatusSearch" class="form-select">
+                                                <option value="0">Select</option>
+
+                                            </select>
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label for="txtComplaintName" class="form-label">Source of Complaint</label>
-                                                <select name="ddlRecievemode" id="ddlRecievemode"
-                                                    class="form-select">
-                                                    <option value="0">Select</option>
-                                                    
-                                                </select>
-                                            </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="txtComplaintName" class="form-label">Source of Complaint</label>
+                                            <select name="ddlRecievemode" id="ddlRecievemode" class="form-select">
+                                                <option value="0">Select</option>
+
+                                            </select>
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label class="form-label">Registration Date</label>
-                                                <div class="input-group">
-                                                    <input type="text" class="form-control datepicker" id="Regddatepicker">
-                                                    <label class="input-group-text" for="Regddatepicker"><i
-                                                            class="bi bi-calendar-week"></i></label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="d-flex gap-2">
-                                                <button type="submit" class="btn btn-primary px-xl-4">Search</button>
-                                                <button type="submit" class="btn btn-danger px-xl-4">Reset</button>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Registration Date</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control datepicker" id="Regddatepicker">
+                                                <label class="input-group-text" for="Regddatepicker"><i
+                                                        class="bi bi-calendar-week"></i></label>
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="col-md-12">
+                                        <div class="d-flex gap-2">
+                                            <button type="submit" class="btn btn-primary px-xl-4">Search</button>
+                                            <button type="submit" class="btn btn-danger px-xl-4">Reset</button>
+                                        </div>
+                                    </div>
                                 </div>
-                            
+                            </div>
                         </li>
-                        
-                        <li class="fill-btn add-link"><a routerLink="/application/demo/add"  title="Go to Previous"><i class="bi bi-plus-lg"></i>
+                        <li class="fill-btn add-link"><a routerLink="/application/demo/add" title="Click to Add"><i
+                                    class="bi bi-plus-lg"></i>
                                 Add Page</a>
                         </li>
                     </ul>
@@ -131,7 +143,7 @@
         </div>
     </div>
 
-     <!-- <div id="collapseExample" class="collapse show" [ngClass]="{'show': isPanelOpen}">
+    <div id="collapseExample" class="collapse show" [ngClass]="{'show': isPanelOpen}">
         <div class="content-box search-box">
             <div class="row">
                 <div class="col-xl-4 col-lg-4 col-md-6">
@@ -170,12 +182,8 @@
                 </div>
             </div>
         </div>
-    </div> -->
-<<<<<<< HEAD
-    <div class="view-form pb-1">
-=======
-    <div class="view-forms pb-1">
->>>>>>> origin/main
+    </div>
+    <!-- <div class="view-forms">
         <div class="row">
             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
                 <div class="mb-2">
@@ -239,7 +247,7 @@
             </div>
 
         </div>
-    </div>
+    </div> -->
     <div class="content-box content-area p-0">
         <div class="table-responsive">
             <table class="table mb-0">

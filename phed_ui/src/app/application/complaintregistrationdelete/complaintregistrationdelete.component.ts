@@ -38,15 +38,15 @@ export class ComplaintregistrationdeleteComponent {
   constructor(private authService: AuthService) {}
 
 // Filter
-isDropdownOpen = false;
+// isDropdownOpen = false;
 
-toggleDropdown() {
-    this.isDropdownOpen = !this.isDropdownOpen;
-}
+// toggleDropdown() {
+//     this.isDropdownOpen = !this.isDropdownOpen;
+// }
 
-closeDropdown() {
-    this.isDropdownOpen = false;
-}    
+// closeDropdown() {
+//     this.isDropdownOpen = false;
+// }    
 
 
 
@@ -153,13 +153,14 @@ closeDropdown() {
     }
   }
 
-  onBlockChange(event: any): void {
-    const blockId = parseInt(event.target.value, 10);
-    const distId = parseInt(this.formData.ddlDistrict, 10);
-    if (!isNaN(distId) && !isNaN(blockId)) {
-      this.authService.getGps(distId, blockId).subscribe(
+  onBlockChange(event: any) {
+    debugger;
+    const blockId = event.inT_BLOCK_ID
+    if (!isNaN(blockId)) {
+      this.authService.getGps(blockId).subscribe(
         response => {
           this.gps = response;
+          console.log(this.gps);
         },
         error => {
           console.error('Error fetching GPs', error);
@@ -175,6 +176,15 @@ closeDropdown() {
   // toggleSearchBox() {
   //   this.isSearchBoxOpen = !this.isSearchBoxOpen; // Toggle the visibility of the search box.
   // }
+ // Filter close btn
+ isDropdownOpen = false;
+ openDropdown() {
+   this.isDropdownOpen = true;
+ }
 
+
+ closeDropdown() {
+   this.isDropdownOpen = false;
+ }
   
 }

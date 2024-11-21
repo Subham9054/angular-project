@@ -16,7 +16,7 @@ export class AuthService {
   
 
   private apiUrl = 'https://localhost:7199/Login'; // Your API URL for login
-  private registrationApiUrl = 'http://172.27.32.0:8085/api/ComplaintsRegistration/DetailcomplaintRegistration';
+  private registrationApiUrl = 'https://localhost:7024/Api/MANAGE_COMPLAINTDETAILS_CONFIG/DetailcomplaintRegistration';
   private complaintApiUrl = 'https://localhost:7010/Api/MANAGE_CATEGORYMASTER/ComplaintCategory';
   private getComplaintApiUrl = 'https://localhost:7010/Api/MANAGE_CATEGORYMASTER/GetallComplaint';
   private updateComplaintApiUrl = 'https://localhost:7010/Api/MANAGE_CATEGORYMASTER/UpdateComplaint';
@@ -38,8 +38,31 @@ export class AuthService {
   private viewEscalationurl='https://localhost:7237/Api/MANAGE_ESCALATION_CONFIGDETAILS/viewescalation';
   private viewEscalationurleye= 'https://localhost:7237/Api/MANAGE_ESCALATION_CONFIGDETAILS/viewescalationeye';
   private viewupdatepenurl='https://localhost:7237/Api/MANAGE_ESCALATION_CONFIGDETAILS/viewupdatepen';
+  private getPrioritiesUrl='https://localhost:7225/api/Dropdown/GetComplaintPriority';
+  private submitsubcaturl='https://localhost:7010/Api/MANAGE_SUBCATEGORYMASTER/ComplaintSubCategory'
+  private getallsubcaturl = 'https://localhost:7010/Api/MANAGE_SUBCATEGORYMASTER/ViewComplaintSubCategory';
+  private updatesubcaturl='https://localhost:7010/Api/MANAGE_SUBCATEGORYMASTER/UpdateComplaintSubCategory';
+  private deletesubcaturl= 'https://localhost:7010/Api/MANAGE_SUBCATEGORYMASTER/DeleteSubcat';
+
+  //For Content Management URLs
+  private getParentMenusUrl = 'http://localhost:5097/api/CMS/GetParentMenus';
+  private createOrUpdatePageUrl = 'http://localhost:5097/api/CMS/CreateOrUpdatePageLink';
+  private getAllPageLinksUrl = 'http://localhost:5097/api/CMS/GetPageLinks';
+  private getPageLinkByIdUrl = 'http://localhost:5097/api/CMS/GetPageLinkById';
+  private deletePageLinkUrl = 'http://localhost:5097/api/CMS/DeletePageLink';
+  private getMenuSubmenuUrl = 'http://localhost:5097/api/CMS/GetMenuSubmenu';
+
+  
+  private createOrUpdateBannerUrl = 'http://localhost:5097/api/CMS/CreateOrUpdateBanner';
+  private getAllBannersUrl = 'http://localhost:5097/api/CMS/GetBanners';
+  private getBannerByIdUrl = 'http://localhost:5097/api/CMS/GetBannerById';
+  private getBannerByNameUrl = 'http://localhost:5097/api/CMS/GetBannerByName';
+  private deleteBannerUrl = 'http://localhost:5097/api/CMS/DeleteBanner';
+
+  private faqUrl = 'http://localhost:5097/api/FAQ'; //Base URL for Managing FAQs
 
   constructor(private http: HttpClient, private router: Router) { }
+  
  
   // Method for user login
   login(loginPayload: { vchUserName: string, vchPassWord: string }): Observable<any> {
@@ -69,6 +92,7 @@ export class AuthService {
     return true;
   }
 
+  
   // Method to handle logout
   logout() {
     sessionStorage.clear();  // Clears all session data
@@ -115,14 +139,14 @@ export class AuthService {
     );
   }
 
-  getGps(distId: number, blockId: number): Observable<any> {
-    return this.http.get<any[]>(`${this.gpurl}?distid=${distId}&blockid=${blockId}`).pipe(
+  getGps( blockId: number): Observable<any> {
+    return this.http.get<any[]>(`${this.gpurl}?blockid=${blockId}`).pipe(
       catchError(this.handleError)
     );
   }
 
-  getVillages(distId: number, blockId: number, gpId: number): Observable<any> {
-    return this.http.get<any>(`${this.villageurl}?distid=${distId}&blockid=${blockId}&gpid=${gpId}`).pipe(
+  getVillages( gpId: number): Observable<any> {
+    return this.http.get<any>(`${this.villageurl}?gpid=${gpId}`).pipe(
       catchError(this.handleError)
     );
   }
@@ -225,12 +249,168 @@ export class AuthService {
       catchError(this.handleError)
     );
   }
- 
+  getPriorities(): Observable<any> {
+    return this.http.get<any>(this.getPrioritiesUrl).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  submitSubcategory(registrationData: any): Observable<any> {
+    return this.http.post(`${this.submitsubcaturl}`, registrationData).pipe(
+      catchError(error => {
+        console.error('Error submitting registration data:', error);
+        return throwError(error); // propagate the error
+      })
+    );
+  }
+    
+  getComplaintSubCategory(INT_CATEGORY_ID: string, INT_SUB_CATEGORY_ID: string): Observable<any> {
+    return this.http.get<any>(`${this.getallsubcaturl}?catid=${INT_CATEGORY_ID}&subcatid=${INT_SUB_CATEGORY_ID}`).pipe(
+      catchError(this.handleError)  // Corrected missing parenthesis here
+    );
+  }
+
+  UpdateSubCategory(INT_CATEGORY_ID: string, INT_SUB_CATEGORY_ID: string): Observable<any> {
+    return this.http.get<any>(`${this.getallsubcaturl}?catid=${INT_CATEGORY_ID}&subcatid=${INT_SUB_CATEGORY_ID}`).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  updateSubCat(subcatid: string, registrationData: any) {
+    return this.http.put<any>(`${this.updatesubcaturl}?subcatid=${subcatid}`, registrationData).pipe(
+      catchError(this.handleError)
+    );
+  }
+  
+  deleteComplaintSubCategory(catid: string, subcatid: string): Observable<any> {
+    return this.http.delete<any>(`${this.deletesubcaturl}?catid=${catid}&subcatid=${subcatid}`).pipe(
+      catchError(this.handleError)
+    );
+  }
+  
+  //******.....Methods For Content Managent Dynamic Work by Debasis Das.....******
+  GetParentMenus(): Observable<any> {
+    return this.http.get(this.getParentMenusUrl).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  // Method to send form data to the updated URL
+  CreateOrUpdatePageLink(formData: FormData, pageId?: number): Observable<any> {
+    const headers = new HttpHeaders();
+    // Construct the URL based on the presence of pageId
+    const url = pageId ? `${this.createOrUpdatePageUrl}` : this.createOrUpdatePageUrl;
+    // Use POST for both creating and updating
+    return this.http.post(url, formData, { headers }).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  DeletePageLink(pageId: number): Observable<any> {
+    const url = `${this.deletePageLinkUrl}?pageId=${pageId}`;
+    return this.http.delete(url).pipe(
+        catchError(this.handleError)
+    );
+  }
+
+  GetPageLinks(): Observable<any> {
+    return this.http.get(this.getAllPageLinksUrl).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  GetPageLinkById(id: number): Observable<any> {
+    return this.http.get(`${this.getPageLinkByIdUrl}?pageId=${id}`)
+      .pipe(catchError(this.handleError)
+    );
+  }
+
+  GetMenuSubmenu(): Observable<any> {
+    return this.http.get(this.getMenuSubmenuUrl).pipe(
+      catchError(this.handleError)
+    );
+  }  
+
+  CreateOrUpdateBanner(formData: FormData, bannerId?: number): Observable<any> {
+    const headers = new HttpHeaders();
+    const url = bannerId ? `${this.createOrUpdateBannerUrl}?bannerId=${bannerId}` : this.createOrUpdateBannerUrl;
+    // Use POST for both creating and updating
+    return this.http.post(url, formData, { headers }).pipe(
+      catchError(this.handleError)
+    );
+  }  
+
+  GetBanners(): Observable<any> {
+    return this.http.get(this.getAllBannersUrl).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  GetBannerById(id: number): Observable<any> {
+    return this.http.get(`${this.getBannerByIdUrl}?bannerId=${id}`)
+      .pipe(catchError(this.handleError)
+    );
+  }
+
+  GetBannerByName(name: string): Observable<any> {
+    return this.http.get(`${this.getBannerByNameUrl}?bannerName=${name}`)
+      .pipe(catchError(this.handleError)
+    );
+  }
+
+  DeleteBanner(id: number): Observable<any> {
+    const url = `${this.deleteBannerUrl}?bannerId=${id}`;
+    return this.http.delete(url).pipe(
+        catchError(this.handleError)
+    );
+  }
+
+  //Methods for Manage FAQs
+  createOrUpdateFAQ(faqData: any): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });  
+    return this.http.post(`${this.faqUrl}/CreateOrUpdateFaq`, faqData, { headers }).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  getFAQs(): Observable<any> {
+    return this.http.get(`${this.faqUrl}/GetFaqs`).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  getFAQById(faqId: number): Observable<any> {
+    return this.http.get(`${this.faqUrl}/GetFaqById?faqId=${faqId}`).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  // getFAQById(id: number): Observable<FAQ> {
+  //   return this.http.get<FAQ>(`${this.baseUrl}/faq/${id}`);
+  // }
+
+  deleteFAQ(id: number): Observable<any> {
+    return this.http.delete(`${this.faqUrl}/DeleteFaq`, { body: { FaqId: id } }).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  // deleteFAQ(id: number): Observable<any> {
+  //   return this.http.delete(`${this.faqUrl}/DeleteFaqDetails?faqId=${id}`).pipe(
+  //     catchError(this.handleError)
+  //   );
+  // }
 
   // Error handling logic
   private handleError(error: any) {
     console.error('An error occurred:', error);
-    return throwError(error);
+    return throwError(() => new Error(error.message || 'Unknown error occurred'));
   }
-}
 
+  // private handleError(error: any): Observable<never> {
+  //   console.error('An error occurred:', error); // For debugging
+  //   return throwError(error.message || 'Server Error');
+  // }
+}

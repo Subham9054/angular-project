@@ -1,123 +1,97 @@
-<div class="topheader" [class.hidden]="hideTopHeader" 
-[class.scroll-up]="isScrollingUp && !hideTopHeader">
-    <nav class="navbar navbar-expand-lg setting-nav header-utilities" aria-label="Offcanvas navbar large">    
-        <div class="container">
-                <div class="d-flex justify-content-between justify-content-start  align-items-center w-100">
-                    <a href="javascript:void(0);" class="d-block skip-content p-0" (click)="scrollToSection('targetMainContent')">Scroll to Main Content</a>
-                      <div class="d-flex align-items-center ms-md-auto">
-                        <div class="lang-div">
-                            <span>हिंदी</span>
-                            <!-- <span (click)="changeLang('Hindi')" *ngIf="language== 'English'">हिंदी</span> -->
-                          </div>
-                          <a class="collapsed px-2 ps-sm-3"  title="search" (click)="toggleSearch()"   [attr.aria-expanded]="isExpanded"  data-bs-toggle="collapse"     href="javascript:void(0)" 
-                          data-bs-target="#search-open">
-                          <i [ngClass]="{ 'bi bi-x-lg': isOpen,'bi bi-search': !isOpen,'cancle-icon': isOpen, 'serach-icon': !isOpen  }">
-                          </i>
-                       </a>
-                       
-                        <div class="theme">
-                            <div class="theme-mode" title="Light Theme">
-                              <input type="radio" name="theame" value="light" (click)="lightThemeBtn()" [checked]="isLightTheme">
-                              <span><i class="bi bi-brightness-high-fill"></i></span>
-                            </div>
-                            <div class="theme-mode" title="Dark Theme">
-                              <input type="radio" name="theame" value="dark" (click)="darkThemeBtn()" [checked]="isDarkTheme">
-                              <span><i class="bi bi-moon-fill"></i></span>
-                            </div>
-                          </div>
-    
-                          <div class="fontresizer ms-2">
-                            <a class="fontresize" title="Decrease font size" (click)="DecreaseFontSize()"
-                              href="javascript:void(0);">A-</a>
-                            <a class="fontresize" title="Reset font size" (click)="ResetFontSize()" href="javascript:void(0);">A</a>
-                            <a class="fontresize" title="Increase font size" (click)="IncreaseFontSize()"
-                              href="javascript:void(0);">A+</a>
-                          </div>
-                        </div>
-                   
-    
-                </div>
-           
-    
+<div class="topheader" [class.hidden]="hideTopHeader" [class.scroll-up]="isScrollingUp && !hideTopHeader">
+  <nav class="navbar navbar-expand-lg setting-nav header-utilities" aria-label="Offcanvas navbar large">    
+    <div class="container">
+      <div class="d-flex justify-content-between justify-content-start  align-items-center w-100">
+        <a href="javascript:void(0);" class="d-block skip-content p-0" (click)="scrollToSection('targetMainContent')">{{ 'SCROLL' | translate }}</a>
+        <div class="d-flex align-items-center ms-md-auto">
+          <div class="lang-div">
+            <button class="lang-btn" (click)="toggleLanguage()">
+              {{ currentLang === 'en' ? 'हिन्दी' : 'English' }}
+            </button>                 
+          </div>
+          <a class="collapsed px-2 ps-sm-3"  title="search" (click)="toggleSearch()" [attr.aria-expanded]="isExpanded" data-bs-toggle="collapse" href="javascript:void(0)" data-bs-target="#search-open">
+            <i [ngClass]="{ 'bi bi-x-lg': isOpen,'bi bi-search': !isOpen,'cancle-icon': isOpen, 'serach-icon': !isOpen  }"></i>
+          </a>
+          <div class="theme">
+            <div class="theme-mode" title="Light Theme">
+              <input type="radio" name="theame" value="light" (click)="lightThemeBtn()" [checked]="isLightTheme">
+              <span><i class="bi bi-brightness-high-fill"></i></span>
+            </div>
+            <div class="theme-mode" title="Dark Theme">
+              <input type="radio" name="theame" value="dark" (click)="darkThemeBtn()" [checked]="isDarkTheme">
+              <span><i class="bi bi-moon-fill"></i></span>
+            </div>
+          </div>
+          <div class="fontresizer ms-2">
+            <a class="fontresize" title="Decrease font size" (click)="DecreaseFontSize()" href="javascript:void(0);">{{ 'SIZE-' | translate }}</a>
+            <a class="fontresize" title="Reset font size" (click)="ResetFontSize()" href="javascript:void(0);">{{ 'SIZE' | translate }}</a>
+            <a class="fontresize" title="Increase font size" (click)="IncreaseFontSize()" href="javascript:void(0);">{{ 'SIZE+' | translate }}</a>
+          </div>
         </div>
-      
-    </nav>
+      </div>
+    </div>
+  </nav>
 </div>
 
-
 <div class="logocontext"  [class.scrolllogo]="isScrollingUp && !isAtTop"[class.headtoggle]="isAtTop">  
-<!-- <div class="logocontext"  [class.is-hidden]="isHidden" [class.scrolllogo]="isScrollingUp && !isAtTop"[class.headtoggle]="isAtTop">   -->
-    <nav class="navbar navbar-expand-lg bg-primary-dark z-3 p-0" aria-label="Offcanvas navbar large">
-        <div class="container">
-           <div class="mb-0 position-relative d-flex align-items-center gap-sm-3 ">
-            <img src="../../../assets/img/BiharGovLogo.png" alt="HAR GHAR NAL KA JAL" class="navbar-brand-img light-img">
-            <img src="../../../assets/img/bihar-logo-white.png" alt="HAR GHAR NAL KA JAL" class="navbar-brand-img dark-img">
-            <h1>
-                    
-                <div class="logo-text">
-                    <span>  HAR GHAR NAL KA JAL</span>
-                    <small class="fw-bold">Public Health Engineering Department  <span class="gov">Government of Bihar</span></small>
-                   
-                </div>
-                  
-                 
-            </h1>
-            <a class="navbar-brand stretched-link" title="Government of Bihar" routerLink="/home"></a> 
-           </div>
-              
-               
-            <button class="navbar-toggler main__btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar2" aria-controls="offcanvasNavbar2">
-                <!-- <span class="navbar-toggler-icon"></span> -->
-                <span class="bi bi-list"></span>
-            </button>
-            <div class="offcanvas offcanvas-start "  id="offcanvasNavbar2" aria-labelledby="offcanvasNavbar2Label">
-                <div class="offcanvas-header">
-                    <h5 class="offcanvas-title screen-reader fw-bold" id="offcanvasNavbar2Label" >Menu</h5>
-                    <button type="button" class="close-btn btn" data-bs-dismiss="offcanvas" aria-label="Close"><span class="bi bi-x-lg"></span></button>
-                </div>
-                <div class="offcanvas-body">
-                    <ul class="navbar-nav w-100 justify-content-end align-items-lg-center">
-                        <li class="nav-item">
-                            <a class="nav-link" routerLinkActive="active" routerLink="/home"  (click)="closeOffcanvas()"><i class="bi bi-house-door"></i></a>
-                        </li>
-                        <li class="nav-item dropdown" routerLinkActive="active">
-                          <a class="nav-link" href="javascript:void(0);" routerLinkActive="active" data-bs-toggle="dropdown">
-                            About <i class="bi bi-chevron-down"></i>
-                          </a>
-                          <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" routerLinkActive="active" routerLink="/about-us"  (click)="closeOffcanvas()">About Us</a></li>
-                            <li><a class="dropdown-item"  routerLinkActive="active" routerLink="how-it-works"  (click)="closeOffcanvas()">How it Works</a></li>
-                            <li><a class="dropdown-item" routerLinkActive="active"  routerLink="/complaint" (click)="closeOffcanvas()">Complaint Category</a></li>
-                          </ul>
-                            
+  <nav class="navbar navbar-expand-lg bg-primary-dark z-3 p-0" aria-label="Offcanvas navbar large">
+    <div class="container">
+      <div class="mb-0 position-relative d-flex align-items-center gap-sm-3 ">
+        <img src="../../../assets/img/BiharGovLogo.png" alt="HAR GHAR NAL KA JAL" class="navbar-brand-img light-img">
+        <img src="../../../assets/img/bihar-logo-white.png" alt="HAR GHAR NAL KA JAL" class="navbar-brand-img dark-img">
+        <h1>                
+          <div class="logo-text">
+            <span>{{ 'TITLE' | translate }}</span>
+            <small class="fw-bold">{{ 'DEPARTMENT' | translate }}<span class="gov">{{ 'BIHAR' | translate }}</span></small>            
+          </div>
+        </h1>
+        <a class="navbar-brand stretched-link" title="Government of Bihar" routerLink="/home"></a> 
+      </div>
 
-                        </li>
-                        <!-- <li class="nav-item">
-                            <a class="nav-link "  routerLinkActive="active" routerLink="how-it-works"  (click)="closeOffcanvas()">How it Works</a>
-                        </li> -->
-                        <!-- <li class="nav-item">
-                            <a class="nav-link " routerLinkActive="active"  routerLink="/complaint" (click)="closeOffcanvas()">Complaint</a>
-                        </li> -->
-                        <li class="nav-item">
-                            <a class="nav-link "  routerLinkActive="active" routerLink="/faq"  (click)="closeOffcanvas()">FAQ</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link " routerLinkActive="active"  routerLink="/contact-us" (click)="closeOffcanvas()">Contact Us</a>
-                        </li>
-                        <!-- <li class="nav-item d-lg-block d-none">
-                            <a href="javascript:void(0);" (click)="toggleMenu()" class="menu-toggle" [ngClass]="isMenuOpen ? 'menu-open' : ''" >
-                                <i [ngClass]="isMenuOpen ? 'bi bi-x-lg' : 'bi bi-list'"></i>
-                              </a>
-                           
-                        </li> -->
-                        <li class="nav-item">
-                            <a class="btn btn-primary btn-login"  href="http://192.168.103.176:4200/login" target="_blank" > <i class="bi bi-box-arrow-in-right me-1"></i> Login</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+      <button class="navbar-toggler main__btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar2" aria-controls="offcanvasNavbar2">
+        <!-- <span class="navbar-toggler-icon"></span> -->
+        <span class="bi bi-list"></span>
+      </button>
+      <div class="offcanvas offcanvas-start "  id="offcanvasNavbar2" aria-labelledby="offcanvasNavbar2Label">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title screen-reader fw-bold" id="offcanvasNavbar2Label" >Menu</h5>
+          <button type="button" class="close-btn btn" data-bs-dismiss="offcanvas" aria-label="Close"><span class="bi bi-x-lg"></span></button>
         </div>
-    </nav>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav w-100 justify-content-end align-items-lg-center">
+            <li class="nav-item">
+              <a class="nav-link" routerLinkActive="active" routerLink="/home"  (click)="closeOffcanvas()"><i class="bi bi-house-door"></i> <span class="ps-1 d-md-none">Home</span> </a>
+            </li>
+            <li class="nav-item dropdown" routerLinkActive="active">
+              <a class="nav-link" href="javascript:void(0);" routerLinkActive="active" data-bs-toggle="dropdown">
+                {{ 'ABOUT' | translate }} <i class="bi bi-chevron-down"></i>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" routerLinkActive="active" routerLink="/about-us"  (click)="closeOffcanvas()">{{ 'ABOUT_US' | translate }}</a></li>
+                <li><a class="dropdown-item"  routerLinkActive="active" routerLink="how-it-works"  (click)="closeOffcanvas()">{{ 'HOW-IT-WORKS' | translate }}</a></li>
+                <li><a class="dropdown-item" routerLinkActive="active"  routerLink="/complaint" (click)="closeOffcanvas()">{{ 'COMPLAINT' | translate }}</a></li>
+              </ul>
+            </li>
+            <!-- <li class="nav-item">
+              <a class="nav-link "  routerLinkActive="active" routerLink="how-it-works"  (click)="closeOffcanvas()">How it Works</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link " routerLinkActive="active"  routerLink="/complaint" (click)="closeOffcanvas()">Complaint</a>
+            </li> -->
+            <li class="nav-item">
+              <a class="nav-link "  routerLinkActive="active" routerLink="/faq"  (click)="closeOffcanvas()">{{ 'Faq' | translate }}</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link " routerLinkActive="active"  routerLink="/contact-us" (click)="closeOffcanvas()">{{ 'CONTACT_US' | translate }}</a>
+            </li>
+            <li class="nav-item">
+              <a class="btn btn-primary btn-login"  href="http://192.168.103.176:4200/login" target="_blank" > <i class="bi bi-box-arrow-in-right me-1"></i>{{ 'LOGIN' | translate }}</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
 </div>
 
 <div class="mega-menu" *ngIf="isMenuOpen" #megaMenu>
@@ -145,7 +119,6 @@
     </div>
   </div>
 </div>
-
 
 <div [ngClass]="{'collapse': true, 'show': isOpen}" id="search-open">
   <div class="container">

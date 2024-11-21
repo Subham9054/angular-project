@@ -75,4 +75,9 @@ namespace Dropdown.Model
     {
         public int INT_LEVEL_ID { get; set; }
     }
+    public class ComplaintPriority
+    {
+        public int INT_COMPLAINT_PRIORITY { get; set; }
+        public string VCH_COMPLIANT_PRORITY { get; set; }
+    }
 }

@@ -174,5 +174,21 @@ namespace Dropdown.Repository.Repositories.Repository
                 throw;
             }
         }
+        public async Task<List<ComplaintPriority>> GetComplaintPriority()
+        {
+            try
+            {
+
+                {
+                    DynamicParameters dynamicParameters = new DynamicParameters();
+                    var priority = await Connection.QueryAsync<ComplaintPriority>("GetActiveComplaintPriorities", dynamicParameters, commandType: CommandType.StoredProcedure);
+                    return priority.ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
     }
 }
