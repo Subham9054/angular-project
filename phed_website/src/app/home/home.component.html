@@ -1,5 +1,4 @@
 <!--Banner Start -->
-
 <section class="creative-parallax--slider py-0">
     <div class="slider-inner">
         <div class="slider-row">
@@ -7,68 +6,25 @@
                 <div class="swiper-wrapper">
                     <!-- Slide 1 -->
                     <div class="swiper-slide" style="background-image: url('../../assets/img/banner.jpg');">
-
                         <div class="swiper-slide--inner">
                             <div class="container">
                                 <div class="slide-detail">
                                     <div class="slide-main--subheading">
-                                        <span class="welcome"><i class="fa-solid fa-award"></i>Welcome to Neer Nirmal
-                                            Seva</span>
+                                        <span class="welcome"><i class="fa-solid fa-award"></i>{{ 'WELCOME_NEER' | translate }}</span>
                                     </div>
                                     <div class="slide-main--heading">
-                                        <div class="from-left">Ensuring Clean Water</div>
-                                        <div class="from-right"> for Every Drop of Life</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="swiper-slide" style="background-image: url('../../assets/img/banner.jpg');">
-                        <div class="swiper-slide--inner">
-                            <div class="container">
-                                <div class="slide-detail">
-                                    <div class="slide-main--subheading">
-                                        <span class="welcome"><i class="fa-solid fa-award"></i>Welcome to Neer Nirmal
-                                            Seva</span>
-                                    </div>
-                                    <div class="slide-main--heading">
-                                        <div class="from-left">Ensuring Clean Water</div>
-                                        <div class="from-right"> for Every Drop of Life</div>
+                                        <div class="from-left">{{ 'ENSURING' | translate }}</div>
+                                        <div class="from-right">{{ 'EVERY_DROP' | translate }}</div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="swiper-slide" style="background-image: url('../../assets/img/banner.jpg');">
-                        <div class="swiper-slide--inner">
-                          
-                            <div class="slide-detail">
-                                <div class="slide-main--subheading">
-                                    <span class="welcome"><i class="fa-solid fa-award"></i>Welcome to Neer Nirmal Seva</span>
-                                </div>
-                                <div class="slide-main--heading">
-                                    <div class="from-left">Ensuring Clean Water</div>
-                                    <div class="from-right"> for Every Drop of Life</div>
-                                </div>
-                              
-
-                            </div>
-                        </div>
-                    </div> -->
-
                 </div>
-                <div class="swiper-pagination"></div>
-
             </div>
         </div>
-
     </div>
-
-
 </section>
-
-
 <!--Banner End -->
 
 <!--Notification Start -->
@@ -77,29 +33,22 @@
         <div class="container">
             <div class="notification-wrapper">
                 <div class="wrapper-title ">
-                    <a [routerLink]="['/whats-new']" class="view-link"> What's New <span
-                            class="bi bi-arrow-right"></span>
+                    <a [routerLink]="['/whats-new']" class="view-link">{{ 'WHAT_IS_NEW' | translate }}<span class="bi bi-arrow-right"></span>
                     </a>
                 </div>
                 <div class="wrapper-content">
                     <div class="wrapper-item">
-                        <a class="wrapper-items" href="javascript:void(0);">Lorem Ipsum is simply dummy text of the
-                            printing and typesetting industry</a>
-                        <a class="wrapper-items" href="javascript:void(0);">Donec volutpat, tortor a interdum
-                            fermentum.</a>
+                        <a class="wrapper-items" href="javascript:void(0);">Lorem Ipsum is simply dummy text of the printing and typesetting industry</a>
+                        <a class="wrapper-items" href="javascript:void(0);">Donec volutpat, tortor a interdum fermentum.</a>
                         <a class="wrapper-items" href="javascript:void(0);">Fusce molestie interdum metus a finibus.</a>
                         <a class="wrapper-items" href="javascript:void(0);">Proin et aliquam libero. </a>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
-
 </section>
 <!--Notification End -->
-
-
 
 <!--CM Message Start -->
 <section class="cm-message">
@@ -112,17 +61,14 @@
                         <img src="../../assets/img/cm.jpg" alt="Hon'ble  minister">
                     </div>
                     <div class="minister-text">
-                        <span class="h5">Shri Nitish Kumar</span>
-                        <div class="d-block"> Chief Minister Of Bihar </div>
+                        <span class="h5">{{ 'CM' | translate }}</span>
+                        <div class="d-block">{{ 'CM_BIHAR' | translate }}</div>
                     </div>
                 </div>
 
             </div>
             <div class="col-lg-8">
-                <p class="mb-0">Our government is dedicated to ensuring that every household in Bihar has access to
-                    safe, clean drinking water through the PHED's robust infrastructure. With initiatives like 'Har Ghar
-                    Nal Se Jal,' we are committed to improving public health and water supply across the state, leaving
-                    no village behind.</p>
+                <p class="mb-0">{{ 'CM_MESSAGE' | translate }}</p>
             </div>
         </div>
     </div>
@@ -134,15 +80,11 @@
     <div class="container">
         <div class="row align-items-lg-center">
             <div class="col-lg-7  order-lg-1 order-2">
-                <h3 class="about__header"> About <span>PHED Bihar</span></h3>
-                <p>The Public Health Engineering Department (PHED), Govt of Bihar has the overall responsibility of
-                    managing and monitoring activities to enhance public health in the state of Bihar. Improved portable
-                    water supply and services are critical to enhance public health and improve human development
-                    outcomes,</p>
+                <h3 class="about__header">{{ 'ABOUT' | translate }} <span>{{ 'ABOUT_PHED' | translate }}</span></h3>
+                <p>{{ 'ABOUT_PHED_BIHAR' | translate }}</p>
                 <div class="text-md-start text-center">
-                    <a [routerLink]="['/about-us']" class="btn btn-outline-primary know-more">Know More</a>
+                    <a [routerLink]="['/about-us']" class="btn btn-outline-primary know-more">{{ 'KNOW_MORE' | translate }}</a>
                 </div>
-
             </div>
             <div class="col-lg-5 order-lg-2 order-1">
                 <div class="about__container">
@@ -157,7 +99,6 @@
             </div>
         </div>
     </div>
-
 </section>
 <!-- About Us End -->
 
@@ -168,15 +109,15 @@
             <div class="col-lg-6">
                 <div class="card card-grivance mb-xl-0">
                     <div class="card-body">
-                        <h3>Grievance Status</h3>
-                        <p class="mb-0">Check the current status and progress of your grievance here.</p>
+                        <h3>{{ 'GRIEVANCE_STATUS' | translate }}</h3>
+                        <p class="mb-0">{{ 'GRIEVANCE_STATUS_CHECK' | translate }}</p>
                         <div
                             class="data__details d-flex align-items-center justify-content-center flex-md-row flex-column">
-                            <input type="text" class="form-control" placeholder="Enter Complaint No.">
+                            <input type="text" class="form-control" placeholder="{{ 'COMPLAINT_NO' | translate }}Enter Complaint No.">
                             <div class="data__details__or">- or -</div>
-                            <input type="text" class="form-control" placeholder="Enter Complaint No.">
+                            <input type="text" class="form-control" placeholder="{{ 'MOBILE_NO' | translate }}Enter Complaint No.">
                         </div>
-                        <a routerLink="/grievance-status" class="btn  btnstyle-one">Know More</a>
+                        <a routerLink="/grievance-status" class="btn  btnstyle-one">{{ 'KNOW_MORE' | translate }}</a>
                     </div>
                 </div>
             </div>
@@ -184,22 +125,19 @@
                 <div class="card card-complaint mb-xl-0">
                     <div class="card-body">
                         <div>
-                            <h3>Register Your Complaint for Review</h3>
-                            <p>We value your feedback; kindly share your complaint to help us ensure quality service and
-                                satisfaction for all customers.</p>
+                            <h3>{{ 'REGISTER_COMPLAINT' | translate }}</h3>
+                            <p>{{ 'REGISTER_COMPLAINT_FEEDBACK' | translate }}</p>
                             <div class="text-lg-end register-btn">
-                                <a [routerLink]="['/complaintregistration'] " class="btn  btnstyle-two">Register</a>
+                                <a [routerLink]="['/complaintregistration'] " class="btn  btnstyle-two">{{ 'REGISTER' | translate }}</a>
                             </div>
-
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="statics">
-            <h3 class="heading-styletwo mb-0">Complaint Statistics</h3>
+            <h3 class="heading-styletwo mb-0">{{ 'COMPLAINT_STATISTICS' | translate }}</h3>
             <div class="statics-container">
                 <ul>
                     <li>
@@ -226,16 +164,14 @@
 </section>
 <!-- Data End -->
 
-
 <!-- Events and Gallery Start -->
 <section class="news">
     <div class="container">
         <div class="row gx-lg-5">
             <div class="col-lg-5 col-12">
                 <div class="d-flex justify-content-between align-items-center mb-4">
-                    <h3 class="heading-styletwo mb-0">News & Events</h3>
-                    <a class="view-link" [routerLink]="['/event-details']"> View All <span
-                            class="bi bi-arrow-right"></span></a>
+                    <h3 class="heading-styletwo mb-0">{{ 'NEWS_EVENTS' | translate }}</h3>
+                    <a class="view-link" [routerLink]="['/event-details']">{{ 'VIEW_ALL' | translate }}<span class="bi bi-arrow-right"></span></a>
                 </div>
 
                 <div class="events position-relative">
@@ -277,9 +213,8 @@
             </div>
             <div class="col-lg-7 mt-4 mt-lg-0">
                 <div class="d-flex justify-content-between align-items-center mb-4">
-                    <h3 class="heading-styletwo mb-0">Photo Gallery</h3>
-                    <a class="view-link" [routerLink]="['/gallery']"> View All <span
-                            class="bi bi-arrow-right"></span></a>
+                    <h3 class="heading-styletwo mb-0">{{ 'PHOTO_GALLERY' | translate }}</h3>
+                    <a class="view-link" [routerLink]="['/gallery']">{{ 'VIEW_ALL' | translate }}<span class="bi bi-arrow-right"></span></a>
                 </div>
                 <div id="photogallery" class="row g-3 g-xxl-3">
                     <div class="col-6 col-md-6 col-xl-6 gallery-item"
@@ -343,15 +278,12 @@
         </div>
     </div>
 </section>
-
-
 <!-- Events and Gallery End -->
-
 
 <!-- FAQ Us Start -->
 <section class="faq">
     <div class="container">
-        <h3 class="heading-styletwo">Frequently Asked Questions (FAQs)</h3>
+        <h3 class="heading-styletwo">{{ 'FAQs' | translate }}</h3>
         <div class="row">
             <div class="col-lg-7 ">
                 <div class="accordion faq-accordion" id="accordionExample">
@@ -441,34 +373,20 @@
                     </div>
                 </div>
                 <div class="faq__footer">
-                    <!-- <div class="faq__footer__pagination">
-                       Showing 5 out of 96
-                   </div> -->
                     <div class="faq__footer__view">
-                        <!-- <span>For more and scheme specific FAQs</span> -->
-                        <a [routerLink]="['/faq']" class="btn btn-outline-primary know-more  ms-0 mt-sm-0 mt-2">View
-                            More</a>
-
+                        <a [routerLink]="['/faq']" class="btn btn-outline-primary know-more  ms-0 mt-sm-0 mt-2">{{ 'VIEW_MORE' | translate }}</a>
                     </div>
                 </div>
             </div>
             <div class="col-lg-4  offset-lg-1 d-lg-block d-none text-center">
                 <img src="../../assets/img/faq.png" />
-
             </div>
-        </div>
-
-       
+        </div>       
     </div>
-
 </section>
 <!-- FAQ  Us End -->
 
-
 <!-- Grievance Status Modal -->
-
-
-<!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -477,8 +395,6 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body text-center">
-
-
                 <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="100" height="100"
                     class="success-icon status-info">
                     <circle cx="12" cy="12" r="10" fill="green" />
@@ -500,13 +416,9 @@
                 </svg>
                 <div>
                     <p class="mb-0 mt-3">Your grievance has been Lodged.</p>
-
                     <h3><span class="badge rounded-pill text-bg-success mb-3">PHED/564874</span></h3>
                 </div> -->
-
-
             </div>
-
         </div>
     </div>
 </div>

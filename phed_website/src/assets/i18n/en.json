@@ -1,5 +1,5 @@
 {
-    "TITLE": "NEER NIRMAL SEVA",
+    "TITLE": "HAR GHAR NAL KA JAL",
     "DEPARTMENT": "Public Health Engineering Department",
     "BIHAR": "Government of Bihar",
     "SCROLL": "Scroll to Main Content",
@@ -8,9 +8,10 @@
     "SIZE": "A",
     "SIZE+": "A+",
     "HOME": "Home",
+    "ABOUT": "About",
     "ABOUT_US": "About Nirmal Seva",
     "HOW-IT-WORKS": "How It Works",
-    "COMPLAINT": "Complaint",
+    "COMPLAINT": "Complaint Category",
     "Sl_No": "Sl No",
     "complaint_category": "Complaint Category",
     "complaint_sub_category": "Complaint Sub-category",
@@ -27,7 +28,7 @@
     "CM": "Shri Nitish Kumar",
     "CM_BIHAR": "Chief Minister Of Bihar",
     "CM_MESSAGE": "Our government is dedicated to ensuring that every household in Bihar has access to safe, clean drinking water through the PHED's robust infrastructure. With initiatives like 'Har Ghar Nal Se Jal,' we are committed to improving public health and water supply across the state, leaving no village behind.",
-    "ABOUT_PHED": "About PHED Bihar",
+    "ABOUT_PHED": "PHED Bihar",
     "ABOUT_PHED_BIHAR": "The Public Health Engineering Department (PHED), Govt of Bihar has the overall responsibility of managing and monitoring activities to enhance public health in the state of Bihar. Improved portable water supply and services are critical to enhance public health and improve human development outcomes.",
     "KNOW_MORE": "Know More",
     "GRIEVANCE_STATUS": "Grievance Status",
@@ -42,17 +43,13 @@
     "NEWS_EVENTS": "News & Events",
     "PHOTO_GALLERY": "Photo Gallery",
     "VIEW_ALL": "View All",
-
     "FAQs": "Frequently Asked Questions (FAQs)",
-
-
     "VIEW_MORE": "View More",
-
+    "REGISTERCOMPLAINT": "Register Complaint",
     "PRIVACY" :"Privacy Policy",
     "SITEMAP" :"Sitemap",
     "COPYRIGHT": "© 2024 PHED, All Rights Reserved",
     "VISITORS" : "Visitors:  ",
-
 
     "about_phed": "About Public Health Engineering Department, Bihar",
     "home_content": "The Public Health Engineering Department (PHED), Govt of Bihar has the overall responsibility of managing and monitoring activities to enhance public health in the state of Bihar. Improved portable water supply and services are critical to enhance public health and improve human development outcomes, more so for rural households.",

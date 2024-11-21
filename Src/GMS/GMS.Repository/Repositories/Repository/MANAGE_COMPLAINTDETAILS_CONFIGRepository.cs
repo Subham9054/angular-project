@@ -29,19 +29,28 @@ namespace GMS.Repository.Repositories.Interfaces.MANAGE_COMPLAINTDETAILS_CONFIG
                 parameters.Add("@createdby", 1);
                 parameters.Add("@category", complaint.INT_CATEGORY_ID);
                 parameters.Add("@subcategory", complaint.INT_SUB_CATEGORY_ID);
-                parameters.Add("@complainttype", complaint.INT_COMPLIANT_LOG_TYPE);
+                if (complaint.INT_COMPLIANT_LOG_TYPE == 0)
+                {
+                    parameters.Add("@complainttype", 5);
+                }
+                else
+                {
+                    parameters.Add("@complainttype", complaint.INT_COMPLIANT_LOG_TYPE);
+                }
                 parameters.Add("@contactnumber", complaint.VCH_CONTACT_NO);
                 parameters.Add("@name", complaint.NVCH_COMPLIANTANT_NAME);
                 parameters.Add("@distid", complaint.INT_DIST_ID);
                 parameters.Add("@blockid", complaint.INT_BLOCK);
                 parameters.Add("@panchayatid", complaint.INT_PANCHAYAT);
                 parameters.Add("@intVillage", complaint.INT_VILLAGE);
+                parameters.Add("@intward",complaint.INT_WARD);
                 parameters.Add("@address", complaint.NVCH_ADDRESS);
                 parameters.Add("@complaintdetail", complaint.NVCH_COMPLIANT_DETAILS);
                 parameters.Add("@filename", complaint.VCH_COMPLAINT_FILE);
                 parameters.Add("@token", complaint.VCH_TOKENNO);
                 parameters.Add("email", complaint.VCH_EMAIL);
                 parameters.Add("landMark", complaint.NVCH_LANDMARK);
+                parameters.Add("priority", 1);
                 parameters.Add("@action", "INSERT");
                 var result = await Connection.QueryAsync<int>("USP_complaintRegistration_insert", parameters, commandType: CommandType.StoredProcedure);
                 return result.Contains(1);
