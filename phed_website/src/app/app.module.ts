@@ -23,6 +23,7 @@ import { HomeComponent } from './home/home.component';
 import { GallerydetailsComponent } from './gallerydetails/gallerydetails.component';
 import { SitemapComponent } from './sitemap/sitemap.component';
 import { NgxDropzoneModule } from 'ngx-dropzone';
+import { NgSelectModule } from '@ng-select/ng-select'; // Import NgSelectModule
 import { GrievancestatusComponent } from './grievancestatus/grievancestatus.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 
@@ -59,6 +60,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     NgxDropzoneModule,
     FormsModule,
     HttpClientModule,
+    NgSelectModule, // Add NgSelectModule here
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
