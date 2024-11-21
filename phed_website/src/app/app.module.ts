@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
@@ -22,9 +25,11 @@ import { SitemapComponent } from './sitemap/sitemap.component';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { GrievancestatusComponent } from './grievancestatus/grievancestatus.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
-import { HttpClientModule } from '@angular/common/http'; 
-import { NgSelectModule } from '@ng-select/ng-select';
 
+// Factory function to create the TranslateHttpLoader
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
+}
 
 @NgModule({
   declarations: [
@@ -54,7 +59,13 @@ import { NgSelectModule } from '@ng-select/ng-select';
     NgxDropzoneModule,
     FormsModule,
     HttpClientModule,
-    NgSelectModule
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

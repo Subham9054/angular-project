@@ -1,75 +1,67 @@
-<div class="form-cointainer">
-    <div class="pagetitle-section">
-        <div class="row justify-content-between align-items-center">
-            <div class="col-xxl-3 col-lg-4 col-md-4">
-                <h3> Faq</h3>
-            </div>
-            <div class="col-lg-6 col-md-8">
-                <div class="utilite">
-                    <ul class="mb-0">
-                        <li class="bg-transparent border-0">
-                            <span class="text-danger small"><b>(*)</b> Indicate mandatory </span>
-                        </li>
-                        <li class="fill-btn back-link"><a routerLink="/application/mngfaq" title="Go to Previous"><i
-                            class="bi bi-arrow-left"></i>  <span class="hide-icon"> Back to View</span></a>
-                </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
+<div class="container">
+    <form [formGroup]="faqForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <!-- FAQ ID (Hidden Field) -->
+        <input type="hidden" formControlName="faqId" />
   
-
-    <div class="content-box content-area">
-        <div class="row">
-            <div class="col-xxl-10 col-lg-12">
-                <div class="row">
-                    <div class="col-xl-6">
-                        <div class="mb-3">
-                            <label class="form-label" for="dsn">Question</label>
-                            <input class="form-control" type="text" id="dsn">
-                        </div>
-                    </div>
-           
-                    <div class="col-xl-6">
-                        <div class="mb-3">
-                            <label class="form-label" for="qsnhn">Question (In Hindi)</label>
-                            <input type="text" class="form-control" id="qsnhn">
-                        </div>
-                    </div>
-
-                    <div class="col-xl-6">
-                        <div class="mb-3">
-                            <label class="form-label">Answer</label>
-                            <ckeditor [editor]="editor" [data]="data"></ckeditor>
-                            <p class="text-end mb-0">
-                                <small class="text-danger">Maximum <strong>500</strong> characters</small>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-xl-6">
-                        <div class="mb-3">
-                            <label class="form-label">Answer (In Hindi)</label>
-                            <ckeditor [editor]="editor" [data]="data"></ckeditor>
-                            <p class="text-end mb-0">
-                                <small class="text-danger">Maximum <strong>500</strong> characters</small>
-                            </p>
-                        </div>
-                    </div>
-                   
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="d-flex gap-2 mt-lg-3">
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                            <button type="reset" class="btn btn-danger">Reset</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <!-- FAQ Question in English -->
+        <div class="col-xl-6">
+          <div class="mb-3">
+            <label for="faqEng" class="form-label">FAQ Question (English)</label>
+            <input
+              type="text"
+              id="faqEng"
+              class="form-control"
+              formControlName="faqEng"
+              placeholder="Enter FAQ question in English"
+            />
+            <small class="text-danger" *ngIf="faqForm.get('faqEng')?.invalid && faqForm.get('faqEng')?.touched">
+              Maximum 200 characters allowed.
+            </small>
+          </div>
         </div>
-    </div>
+  
+        <!-- FAQ Question in Hindi -->
+        <div class="col-xl-6">
+          <div class="mb-3">
+            <label for="faqHin" class="form-label">FAQ Question (Hindi)</label>
+            <input
+              type="text"
+              id="faqHin"
+              class="form-control"
+              formControlName="faqHin"
+              placeholder="Enter FAQ question in Hindi"
+            />
+            <small class="text-danger" *ngIf="faqForm.get('faqHin')?.invalid && faqForm.get('faqHin')?.touched">
+              Maximum 200 characters allowed.
+            </small>
+          </div>
+        </div>
+  
+        <!-- FAQ Answer in English -->
+        <div class="col-xl-6">
+          <div class="mb-3">
+            <label for="faqAnsEng" class="form-label">FAQ Answer (English)</label>
+            <ckeditor formControlName="faqAnsEng" [editor]="editor"></ckeditor>
+          </div>
+        </div>
+  
+        <!-- FAQ Answer in Hindi -->
+        <div class="col-xl-6">
+          <div class="mb-3">
+            <label for="faqAnsHin" class="form-label">FAQ Answer (Hindi)</label>
+            <ckeditor formControlName="faqAnsHin" [editor]="editor"></ckeditor>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Submit and Reset Buttons -->
+      <div class="text-end">
+        <button type="submit" class="btn btn-primary" [disabled]="faqForm.invalid">
+          {{ isEditMode ? 'Update FAQ' : 'Create FAQ' }}
+        </button>
+        <button type="button" class="btn btn-secondary" (click)="resetForm()">Reset</button>
+      </div>
+    </form>
 </div>
-
+  

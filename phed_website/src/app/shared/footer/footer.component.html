@@ -1,16 +1,16 @@
-<a routerLink="/complaintregistration" class="btn btn-warning rounded-pill reg-complaint-floating">Register Complaint</a>
+<a routerLink="/complaintregistration" class="btn btn-warning rounded-pill reg-complaint-floating">{{ 'REGISTERCOMPLAINT' | translate }}</a>
 <div class="footer">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-7">
                 <ul class="d-sm-flex justify-content-lg-start justify-content-center">
                     <li>
-                        <a routerLink="/home" title="Home">Home</a>
+                        <a routerLink="/home" title="Home">{{ 'HOME' | translate }}</a>
                     </li>
-                    <li> <a routerLink="/faq" title="FAQ">FAQ</a></li>
-                    <li><a routerLink="/privacy-policy" title="Privacy Policy">Privacy Policy</a></li>
+                    <li> <a routerLink="/faq" title="FAQ">{{ 'Faq' | translate }}</a></li>
+                    <li><a routerLink="/privacy-policy" title="Privacy Policy">{{ 'PRIVACY' | translate }}</a></li>
                     <!-- <li>
-                        <a routerLink="/site-map" title="Site Links">Sitemap</a>
+                        <a routerLink="/site-map" title="Site Links">{{ 'SITEMAP' | translate }}</a>
                     </li> -->
                 </ul>
             </div>
@@ -22,18 +22,17 @@
                 </div>
             </div>
         </div>
-    </div>
-   
+    </div>  
 
     <div class="copyright">
         <div class="container">
            <div class="row ">
-            <div class="col-lg-7 text-lg-start text-center">
-                <p>© 2024 PHED, All Rights Reserved</p>
-            </div>
-            <div class="col-lg-5 text-lg-end text-center">
-                <p>Visitors: <span>75849</span></p>
-            </div>
+                <div class="col-lg-7 text-lg-start text-center">
+                    <p>{{ 'COPYRIGHT' | translate }}</p>
+                </div>
+                <div class="col-lg-5 text-lg-end text-center">
+                    <p>{{ 'VISITORS' | translate }}<span>75849</span></p>
+                </div>
            </div>
         </div>
     </div>
@@ -41,5 +40,4 @@
 
 <button class="go-top" *ngIf="isShow" (click)="gotoTop()" data-bs-toggle="tooltip" data-bs-placement="top" title="Go to top"> 
     <i class="bi bi-arrow-up"></i>
-  </button>
-  
+</button>
