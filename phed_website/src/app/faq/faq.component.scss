@@ -1,0 +1,25 @@
+.accordion-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1.25rem;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  transition: all 0.3s;
+}
+
+.accordion-button .faq-icon {
+  margin-right: 0.5rem;
+  font-size: 1.5rem;
+  color: #007bff;
+  transition: transform 0.3s;
+}
+
+.accordion-button.collapsed .faq-icon {
+  color: #6c757d;
+  transform: rotate(180deg); /* Optional for visual effect */
+}
