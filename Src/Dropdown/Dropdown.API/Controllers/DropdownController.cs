@@ -70,6 +70,20 @@ namespace Dropdown.API.Controllers
                 return BadRequest("Error in fetching Villages");
             }
         }
+
+        [HttpGet("GetWards")]
+        public async Task<IActionResult> getWards(int villageid)
+        {
+            try
+            {
+                var wards = await _dropdownRepository.Getward(villageid);
+                return Ok(wards);
+            }
+            catch
+            {
+                return BadRequest("Error in fetching Wards");
+            }
+        }
         [HttpPost("UploadFile")]
         public async Task<IActionResult> UploadFile(IFormFile file)
         {

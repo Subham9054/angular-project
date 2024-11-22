@@ -82,6 +82,23 @@ namespace Dropdown.Repository.Repositories.Repository
                 throw;
             }
         }
+
+        public async Task<List<Ward>> Getward(int villageid)
+        {
+            try
+            {
+                {
+                    DynamicParameters dynamicParameters = new DynamicParameters();
+                    dynamicParameters.Add("@villageid", villageid);
+                    var villages = await Connection.QueryAsync<Ward>("GetActiveWardssByVillage", dynamicParameters, commandType: CommandType.StoredProcedure);
+                    return villages.ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
         public async Task<List<ComplaintStatus>> GetComplaints()
         {
             try

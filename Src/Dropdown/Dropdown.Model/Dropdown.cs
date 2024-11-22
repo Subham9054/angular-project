@@ -46,6 +46,11 @@ namespace Dropdown.Model
         public int INT_VILLAGE_ID { get; set; }
         public string VCH_VILLAGE_NAME { get; set; }
     }
+    public class Ward
+    {
+        public int INT_WARD_ID { get; set; }
+        public string VCH_WARD_NAME { get; set; }
+    }
     public class Category
     {
         public int INT_CATEGORY_ID { get; set; }
