@@ -84,7 +84,7 @@ export class AuthService {
     );
   }
 
-  //*******Website dynamic work methods Debasis Das******
+  //**********Website Dynamic Work Methods by Debasis Das**********
   getFAQs(): Observable<any> {
     return this.http.get(this.faqUrl).pipe(
       catchError(this.handleError)
