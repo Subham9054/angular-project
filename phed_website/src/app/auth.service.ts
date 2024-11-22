@@ -19,6 +19,9 @@ export class AuthService {
   private subcategoryUrl = 'https://localhost:7225/api/Dropdown/GetSubCategories';
   private fileUploadUrl = 'http://172.27.32.0:8085/api/ComplaintsRegistration/UploadFile';
 
+
+  private faqUrl = 'http://localhost:5097/api/FAQ/GetFaqs'; //Base URL for Getting FAQs
+
   constructor(private http: HttpClient, private router: Router) {}
 
   getCategories(): Observable<any> {
@@ -81,8 +84,16 @@ export class AuthService {
     );
   }
 
+  //**********Website Dynamic Work Methods by Debasis Das**********
+  getFAQs(): Observable<any> {
+    return this.http.get(this.faqUrl).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  // Error handling logic
   private handleError(error: any) {
     console.error('An error occurred:', error);
-    return throwError(error);
+    return throwError(() => new Error(error.message || 'Unknown error occurred'));
   }
 }

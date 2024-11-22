@@ -113,9 +113,9 @@
                         <p class="mb-0">{{ 'GRIEVANCE_STATUS_CHECK' | translate }}</p>
                         <div
                             class="data__details d-flex align-items-center justify-content-center flex-md-row flex-column">
-                            <input type="text" class="form-control" placeholder="{{ 'COMPLAINT_NO' | translate }}Enter Complaint No.">
-                            <div class="data__details__or">- or -</div>
-                            <input type="text" class="form-control" placeholder="{{ 'MOBILE_NO' | translate }}Enter Complaint No.">
+                            <input type="text" class="form-control" placeholder="{{ 'COMPLAINT_NO' | translate }}">
+                            <div class="data__details__or">- {{ 'OR' | translate }} -</div>
+                            <input type="text" class="form-control" placeholder="{{ 'MOBILE_NO' | translate }}">
                         </div>
                         <a routerLink="/grievance-status" class="btn  btnstyle-one">{{ 'KNOW_MORE' | translate }}</a>
                     </div>
@@ -286,7 +286,22 @@
         <h3 class="heading-styletwo">{{ 'FAQs' | translate }}</h3>
         <div class="row">
             <div class="col-lg-7 ">
-                <div class="accordion faq-accordion" id="accordionExample">
+                <div *ngIf="!isLoading && displayedFaqs.length > 0" class="accordion faq-accordion">
+                    <div *ngFor="let faq of displayedFaqs; let i = index" class="accordion-item">
+                      <h2 class="accordion-header">
+                        <button class="accordion-button" type="button"
+                          [class.collapsed]="activeIndex !== i"
+                          [attr.aria-expanded]="activeIndex === i ? 'true' : 'false'"
+                          (click)="toggleFAQ(i)">
+                          <span class="faq-count">{{ i + 1 }}</span> {{ faq.faqEng }}
+                        </button>
+                      </h2>
+                      <div class="accordion-collapse collapse" [class.show]="activeIndex === i">
+                        <div class="accordion-body" [innerHTML]="faq.faqAnsEng"></div>
+                      </div>
+                    </div>
+                </div>
+                <!-- <div class="accordion faq-accordion" id="accordionExample">
                     <div class="accordion-item active">
                         <h2 class="accordion-header" id="headingOne">
                             <button class="accordion-button " type="button" data-bs-toggle="collapse"
@@ -371,7 +386,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <div class="faq__footer">
                     <div class="faq__footer__view">
                         <a [routerLink]="['/faq']" class="btn btn-outline-primary know-more  ms-0 mt-sm-0 mt-2">{{ 'VIEW_MORE' | translate }}</a>
