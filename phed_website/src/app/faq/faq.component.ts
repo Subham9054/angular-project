@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { TranslationService } from '../services/translation.service';
@@ -12,15 +11,15 @@ import Swal from 'sweetalert2';
 })
 export class FaqComponent implements OnInit {
   faqs: any[] = [];
+  displayedFaqs: any[] = []; // FAQs currently displayed based on the selected language
   isLoading = true;
   errorMessage = '';
-  activeIndex: number | null = null; // Tracks the currently active FAQ accordion
+  activeIndex: number | null = 0; // Default to expand the first FAQ
   noRecordsFound = false;
   currentLanguage: string = 'en'; // Default language (English)
 
   constructor(
     private authService: AuthService,
-    private router: Router,
     private sanitizer: DomSanitizer,
     private translationService: TranslationService
   ) {}
@@ -32,7 +31,7 @@ export class FaqComponent implements OnInit {
     // Listen to language change events from TranslationService
     this.translationService.onLanguageChange().subscribe((event) => {
       this.currentLanguage = event.lang;
-      this.updateFAQsForLanguage();
+      this.updateFAQsForLanguage(); // Update FAQs based on selected language
     });
 
     // Set the initial language
@@ -45,13 +44,13 @@ export class FaqComponent implements OnInit {
       next: (response: any) => {
         this.isLoading = false;
         if (response.success) {
-          // Sanitize and store FAQs
+          // Store FAQs and sanitize their content
           this.faqs = response.data.map((faq: any) => ({
             ...faq,
             faqAnsEng: this.sanitizeHtml(faq.faqAnsEng),
             faqAnsHin: this.sanitizeHtml(faq.faqAnsHin)
           }));
-          this.updateFAQsForLanguage(); // Ensure language-specific content is displayed
+          this.updateFAQsForLanguage(); // Ensure the correct language is displayed
           this.noRecordsFound = this.faqs.length === 0;
         } else {
           this.noRecordsFound = true;
@@ -85,12 +84,14 @@ export class FaqComponent implements OnInit {
     this.activeIndex = this.activeIndex === index ? null : index;
   }
 
-  // Update FAQs based on selected language
+  // Update the FAQs displayed based on the selected language
   updateFAQsForLanguage(): void {
-    this.faqs = this.faqs.map((faq) => ({
+    this.displayedFaqs = this.faqs.map((faq) => ({
       ...faq,
       faqEng: this.currentLanguage === 'en' ? faq.faqEng : faq.faqHin,
       faqAnsEng: this.currentLanguage === 'en' ? faq.faqAnsEng : faq.faqAnsHin
     }));
+    // Expand the first FAQ after updating language
+    this.activeIndex = this.displayedFaqs.length > 0 ? 0 : null;
   }
 }

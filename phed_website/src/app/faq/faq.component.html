@@ -32,10 +32,12 @@
       </div>
 
       <!-- FAQ Accordion -->
-      <div *ngIf="!isLoading && faqs.length > 0" class="accordion faq-accordion">
-        <div *ngFor="let faq of faqs; let i = index" class="accordion-item">
+      <div *ngIf="!isLoading && displayedFaqs.length > 0" class="accordion faq-accordion">
+        <div *ngFor="let faq of displayedFaqs; let i = index" class="accordion-item">
           <h2 class="accordion-header">
-            <button class="accordion-button" type="button" [attr.aria-expanded]="activeIndex === i ? 'true' : 'false'"
+            <button class="accordion-button" type="button"
+              [class.collapsed]="activeIndex !== i"
+              [attr.aria-expanded]="activeIndex === i ? 'true' : 'false'"
               (click)="toggleFAQ(i)">
               <span class="faq-count">{{ i + 1 }}</span> {{ faq.faqEng }}
             </button>
@@ -45,24 +47,9 @@
           </div>
         </div>
       </div>
-      <div *ngIf="!isLoading && faqs.length > 0" class="accordion faq-accordion">
-        <div *ngFor="let faq of faqs; let i = index" class="accordion-item">
-          <h2 class="accordion-header">
-            <button class="accordion-button" type="button" [class.collapsed]="activeIndex !== i" [attr.aria-expanded]="activeIndex === i ? 'true' : 'false'"
-              (click)="toggleFAQ(i)">
-              <span class="faq-icon">{{ activeIndex === i ? '-' : '+' }}</span>
-              <span class="faq-count">{{ i + 1 }}</span> {{ faq.faqEng }}
-            </button>
-          </h2>
-          <div class="accordion-collapse collapse" [class.show]="activeIndex === i">
-            <div class="accordion-body" [innerHTML]="faq.faqAnsEng"></div>
-          </div>
-        </div>
-      </div>
-      
 
       <!-- No FAQs Found Message -->
-      <div *ngIf="!isLoading && faqs.length === 0" class="text-center">
+      <div *ngIf="!isLoading && displayedFaqs.length === 0" class="text-center">
         <p>No FAQs available at the moment.</p>
       </div>
     </div>
