@@ -24,11 +24,7 @@ export class MngfaqComponent implements OnInit {
   faqForm: FormGroup;
   isEditMode = false;
 
-  constructor(
-    private fb: FormBuilder,
-    private authService: AuthService,
-    private route: ActivatedRoute
-  ) {
+  constructor(private fb: FormBuilder, private authService: AuthService, private route: ActivatedRoute) {
     // Initialize form group, including `faqId` as a hidden control
     this.faqForm = this.fb.group({
       faqId: [0], // Default to 0 for new records
@@ -71,7 +67,7 @@ export class MngfaqComponent implements OnInit {
 
     // Bind data to form controls
     this.faqForm.patchValue({
-      faqId: faq.faqId, // Ensure `faqId` is populated
+      faqId: faq.faqId,
       faqEng: faq.faqEng || '',
       faqHin: faq.faqHin || '',
       faqAnsEng: faq.faqAnsEng || '',
@@ -81,37 +77,64 @@ export class MngfaqComponent implements OnInit {
 
   // Handle form submission
   onSubmit(): void {
+    // Check if the form is invalid
     if (this.faqForm.invalid) {
-      Swal.fire(
-        'Validation Error',
-        'Please fill all required fields correctly.',
-        'warning'
-      );
+      // Check individual fields for validation errors
+      if (this.faqForm.get('faqEng')?.invalid) {
+        Swal.fire(
+          'Validation Error',
+          'FAQ (English) must be filled correctly. Maximum 200 characters allowed.',
+          'warning'
+        );
+        return;
+      }
+  
+      if (this.faqForm.get('faqHin')?.invalid) {
+        Swal.fire(
+          'Validation Error',
+          'एफएक्यू (हिन्दी) must be filled correctly. Maximum 200 characters allowed.',
+          'warning'
+        );
+        return;
+      }
+  
+      if (this.faqForm.get('faqAnsEng')?.invalid) {
+        Swal.fire(
+          'Validation Error',
+          'FAQ Answer (English) must be filled correctly. Maximum 500 characters allowed.',
+          'warning'
+        );
+        return;
+      }
+  
+      if (this.faqForm.get('faqAnsHin')?.invalid) {
+        Swal.fire(
+          'Validation Error',
+          'एफएक्यू उत्तर (हिन्दी) must be filled correctly. Maximum 500 characters allowed.',
+          'warning'
+        );
+        return;
+      }
       return;
     }
-
+  
+    // If all validations pass, proceed to save or update the FAQ
     const faqData: FAQ = this.faqForm.value;
-
+  
     // Create or update FAQ based on mode
     this.authService.createOrUpdateFAQ(faqData).subscribe({
       next: () => {
-        Swal.fire(
-          'Success',
-          this.isEditMode
-            ? 'FAQ updated successfully.'
-            : 'FAQ created successfully.',
-          'success'
-        );
+        Swal.fire('Success', this.isEditMode ? 'FAQ updated successfully.' : 'FAQ created successfully.', 'success');
         this.resetForm();
       },
       error: () =>
         Swal.fire('Error', 'Failed to save FAQ. Please try again.', 'error'),
     });
   }
-
+  
   // Reset the form
   resetForm(): void {
-    this.faqForm.reset({ faqId: 0 }); // Reset `faqId` to 0
+    this.faqForm.reset({ faqId: 0 });
     this.isEditMode = false;
   }
 }
