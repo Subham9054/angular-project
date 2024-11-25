@@ -1,73 +1,57 @@
 <div class="inner-area">
-    <div class=" bannerarea">
-        <div class="container">
-            <div class="bannerarea-content">
-                <div>
-                    <div class="page-title" >
-                        <h2>Frequently Asked Question (FAQs)</h2>
-                    </div>
-                    <div class="breadcrumb-area">
-                        <nav  aria-label="breadcrumb">
-                            <ol class="breadcrumb mb-0">
-                                <li class="breadcrumb-item"><a href="#"><i class="icon icon-Group-14936"></i></a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Frequently Asked Question (FAQs)</li>
-                            </ol>
-                        </nav>
-                    </div>
-                </div>
-               
-            </div>
-         
+  <div class="bannerarea">
+    <div class="container">
+      <div class="bannerarea-content">
+        <div>
+          <div class="page-title">
+            <h2>{{ 'FAQs' | translate }}</h2>
+          </div>
+          <div class="breadcrumb-area">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="#"><i class="icon icon-Group-14936"></i></a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ 'FAQs' | translate }}</li>
+              </ol>
+            </nav>
+          </div>
         </div>
-          
-      
-        
+      </div>
     </div>
-    <div class="content-area">
-        <div class="container">
-           
-            <div class="accordion faq-accordion" id="accordionPanelsStayOpenExample" >
-                <div class="accordion-item">
-                  <h2 class="accordion-header" id="panelsStayOpen-headingOne">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-                       <span class="faq-count">1</span> How can I change the website language?
-                    </button>
-                  </h2>
-                  <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
-                    <div class="accordion-body">
-                        To receive a User ID and Password, complete the registration form available on the website's registration page.
-                    </div>
-                  </div>
-                </div>
-                <div class="accordion-item">
-                  <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
-                        <span class="faq-count">2</span> How do I obtain a User ID and Password?
-                    </button>
-                  </h2>
-                  <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
-                    <div class="accordion-body">
-                        To receive a User ID and Password, complete the registration form available on the website's registration page.
-                    </div>
-                  </div>
-                </div>
-                <div class="accordion-item">
-                  <h2 class="accordion-header" id="panelsStayOpen-headingThree">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
-                        <span class="faq-count">3</span> What if I disagree with the disclaimer?
-                    </button>
-                  </h2>
-                  <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
-                    <div class="accordion-body">
-                        To receive a User ID and Password, complete the registration form available on the website's registration page.
-                    </div>
-                  </div>
-                </div>
-              </div>
+  </div>
 
+  <div class="content-area">
+    <div class="container">
+      <!-- Loading Indicator -->
+      <div *ngIf="isLoading" class="text-center">
+        <p>Loading FAQs...</p>
+      </div>
 
-          
-          
+      <!-- Error Message -->
+      <div *ngIf="errorMessage" class="alert alert-danger">
+        {{ errorMessage }}
+      </div>
+
+      <!-- FAQ Accordion -->
+      <div *ngIf="!isLoading && displayedFaqs.length > 0" class="accordion faq-accordion">
+        <div *ngFor="let faq of displayedFaqs; let i = index" class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button" type="button"
+              [class.collapsed]="activeIndex !== i"
+              [attr.aria-expanded]="activeIndex === i ? 'true' : 'false'"
+              (click)="toggleFAQ(i)">
+              <span class="faq-count">{{ i + 1 }}</span> {{ faq.faqEng }}
+            </button>
+          </h2>
+          <div class="accordion-collapse collapse" [class.show]="activeIndex === i">
+            <div class="accordion-body" [innerHTML]="faq.faqAnsEng"></div>
+          </div>
         </div>
+      </div>
+
+      <!-- No FAQs Found Message -->
+      <div *ngIf="!isLoading && displayedFaqs.length === 0" class="text-center">
+        <p>No FAQs available at the moment.</p>
+      </div>
     </div>
+  </div>
 </div>

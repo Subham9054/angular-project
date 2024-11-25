@@ -2,7 +2,7 @@
     <div class="pagetitle-section">
         <div class="row justify-content-between align-items-center">
             <div class="col-xxl-3 col-lg-4 col-md-4">
-                <h3> Faq</h3>
+                <h3>Frequently Asked Questions (FAQs)</h3>
             </div>
             <div class="col-lg-6 col-md-8">
                 <div class="utilite">
@@ -11,65 +11,74 @@
                             <span class="text-danger small"><b>(*)</b> Indicate mandatory </span>
                         </li>
                         <li class="fill-btn back-link"><a routerLink="/application/mngfaq" title="Go to Previous"><i
-                            class="bi bi-arrow-left"></i>  <span class="hide-icon"> Back to View</span></a>
-                </li>
+                            class="bi bi-arrow-left"></i>  <span class="hide-icon">Back to View</span></a>
+                        </li>
                     </ul>
                 </div>
             </div>
         </div>
-    </div>
-
-  
-
+    </div> 
     <div class="content-box content-area">
-        <div class="row">
-            <div class="col-xxl-10 col-lg-12">
-                <div class="row">
-                    <div class="col-xl-6">
-                        <div class="mb-3">
-                            <label class="form-label" for="dsn">Question</label>
-                            <input class="form-control" type="text" id="dsn">
-                        </div>
-                    </div>
-           
-                    <div class="col-xl-6">
-                        <div class="mb-3">
-                            <label class="form-label" for="qsnhn">Question (In Hindi)</label>
-                            <input type="text" class="form-control" id="qsnhn">
-                        </div>
-                    </div>
+        <form [formGroup]="faqForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <!-- FAQ ID (Hidden Field) -->
+                <input type="hidden" formControlName="faqId" />
 
-                    <div class="col-xl-6">
-                        <div class="mb-3">
-                            <label class="form-label">Answer</label>
-                            <ckeditor [editor]="editor" [data]="data"></ckeditor>
-                            <p class="text-end mb-0">
-                                <small class="text-danger">Maximum <strong>500</strong> characters</small>
-                            </p>
-                        </div>
+                <!-- FAQ Question in English -->
+                <div class="col-xl-6">
+                    <div class="mb-3">
+                        <label for="faqEng" class="form-label">FAQ (English)</label>
+                        <input type="text" id="faqEng" formControlName="faqEng" placeholder="Enter FAQ question in English" class="form-control">
+                        <small class="text-danger" *ngIf="faqForm.get('faqEng')?.invalid && faqForm.get('faqEng')?.touched">
+                            Maximum 200 characters allowed.
+                        </small>
                     </div>
-                    <div class="col-xl-6">
-                        <div class="mb-3">
-                            <label class="form-label">Answer (In Hindi)</label>
-                            <ckeditor [editor]="editor" [data]="data"></ckeditor>
-                            <p class="text-end mb-0">
-                                <small class="text-danger">Maximum <strong>500</strong> characters</small>
-                            </p>
-                        </div>
-                    </div>
-                   
                 </div>
 
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="d-flex gap-2 mt-lg-3">
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                            <button type="reset" class="btn btn-danger">Reset</button>
-                        </div>
+                <!-- FAQ Question in Hindi -->
+                <div class="col-xl-6">
+                    <div class="mb-3">
+                        <label for="faqHin" class="form-label">एफएक्यू (हिन्दी)</label>
+                        <input type="text" id="faqHin" formControlName="faqHin" placeholder="एफएक्यू प्रश्न हिंदी में दर्ज करें" class="form-control">
+                        <small class="text-danger" *ngIf="faqForm.get('faqHin')?.invalid && faqForm.get('faqHin')?.touched">
+                            अधिकतम २०० वर्णों की अनुमति है.
+                        </small>
+                    </div>
+                </div>
+            
+                <!-- FAQ Answer in English -->
+                <div class="col-xl-6">
+                    <div class="mb-3">
+                        <label for="faqAnsEng" class="form-label">FAQ Answer (English)</label>
+                        <ckeditor formControlName="faqAnsEng" [editor]="editor"></ckeditor>
+                        <p class="text-end mb-0">
+                        <small class="text-danger">Maximum <strong>500</strong> characters</small>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ Answer in Hindi -->
+                <div class="col-xl-6">
+                    <div class="mb-3">
+                      <label for="faqAnsHin" class="form-label">एफएक्यू उत्तर (हिन्दी)</label>
+                      <ckeditor formControlName="faqAnsHin" [editor]="editor"></ckeditor>
+                      <p class="text-end mb-0">
+                        <small class="text-danger">अधिकतम <strong>५००</strong> अक्षर</small>
+                      </p>
+                    </div>
+                </div>            
+            </div>
+
+            <!-- Submit and Reset Buttons -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="d-flex gap-2 mt-lg-3">
+                        <button type="submit" class="btn btn-success" [ngClass]="isEditMode ? 'btn-info' : 'btn-success'" >{{ isEditMode ? 'Update' : 'Save' }}</button>
+                        <button type="reset" class="btn btn-danger">Reset</button>
+                        <!-- <button type="button" class="btn btn-danger" (click)="resetForm()">Reset</button> -->
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
 </div>
-

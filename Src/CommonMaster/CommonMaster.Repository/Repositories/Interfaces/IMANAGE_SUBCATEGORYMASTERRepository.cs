@@ -15,7 +15,9 @@ namespace CommonMaster.Repository.Interfaces.MANAGE_SUBCATEGORYMASTER
 
         Task<List<EDITMANAGE_SUBCATEGORYMASTER>> EDIT_MANAGE_SUBCATEGORYMASTER(MANAGE_SUBCATEGORYMASTER_Model TBL);
         Task<bool> InsertComplaintSubCategory(ComplaintSubCategoryModel complaintSub);
-        Task<List<ComplaintSubCategoryModel>> viewtComplaintSubCategory(int catid, int subcatid);
+        Task<List<ViewComplaintSubCategoryModel>> viewtComplaintSubCategory(int catid, int subcatid);
+        Task<bool> UpdateComplaintSubCategory(int subcatid, UpdateComplaintSubCategoryModel complaintCategory);
+        Task<int> getdeleteCatagorybyid(int catid, int subcatid);
 
 
     }

@@ -22,9 +22,6 @@ a {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
   @include transtionDefault(all, 0.6s, ease);
-  @media (max-width:768px){
-    overflow: revert;
-  }
 }
 
 @include media-breakpoint-up(lg) {
@@ -301,7 +298,7 @@ a {
     padding: 0.8rem 1.2rem 1.2rem;
     min-width: 40rem;
     position: relative;
-    z-index:11;
+    z-index: 1;
     .drop-icon {
       position: absolute;
       right: 1rem;

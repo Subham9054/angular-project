@@ -13,6 +13,7 @@ namespace Dropdown.Repository.Repositories.Interfaces
         public Task<List<Block>> GetBlocks(int distid);
         public Task<List<GP>> GetGp(int blockid);
         public Task<List<Village>> Getvillage(int gpid);
+        public Task<List<Ward>> Getward(int villageid);
         public Task<List<ComplaintStatus>> GetComplaints();
         public Task<List<Complaintlogtype>> GetComplaintslogtype();
         public Task<List<Category>> GetCategories();

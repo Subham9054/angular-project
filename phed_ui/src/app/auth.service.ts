@@ -41,6 +41,8 @@ export class AuthService {
   private getPrioritiesUrl='https://localhost:7225/api/Dropdown/GetComplaintPriority';
   private submitsubcaturl='https://localhost:7010/Api/MANAGE_SUBCATEGORYMASTER/ComplaintSubCategory'
   private getallsubcaturl = 'https://localhost:7010/Api/MANAGE_SUBCATEGORYMASTER/ViewComplaintSubCategory';
+  private updatesubcaturl='https://localhost:7010/Api/MANAGE_SUBCATEGORYMASTER/UpdateComplaintSubCategory';
+  private deletesubcaturl= 'https://localhost:7010/Api/MANAGE_SUBCATEGORYMASTER/DeleteSubcat';
 
   //For Content Management URLs
   private getParentMenusUrl = 'http://localhost:5097/api/CMS/GetParentMenus';
@@ -56,8 +58,12 @@ export class AuthService {
   private getBannerByIdUrl = 'http://localhost:5097/api/CMS/GetBannerById';
   private getBannerByNameUrl = 'http://localhost:5097/api/CMS/GetBannerByName';
   private deleteBannerUrl = 'http://localhost:5097/api/CMS/DeleteBanner';
-  
+
+  private galleryUrl = 'http://localhost:5097/api/Gallery'; //Base URL for Managing Gallery
+  private faqUrl = 'http://localhost:5097/api/FAQ'; //Base URL for Managing FAQs
+
   constructor(private http: HttpClient, private router: Router) { }
+  
  
   // Method for user login
   login(loginPayload: { vchUserName: string, vchPassWord: string }): Observable<any> {
@@ -249,22 +255,40 @@ export class AuthService {
       catchError(this.handleError)
     );
   }
+
   submitSubcategory(registrationData: any): Observable<any> {
-    return this.http.post(this.submitsubcaturl, registrationData, {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-      responseType: 'text' // Set response type to text
-    }).pipe(
-      catchError(this.handleError)
+    return this.http.post(`${this.submitsubcaturl}`, registrationData).pipe(
+      catchError(error => {
+        console.error('Error submitting registration data:', error);
+        return throwError(error); // propagate the error
+      })
     );
   }
-
- 
-  
+    
   getComplaintSubCategory(INT_CATEGORY_ID: string, INT_SUB_CATEGORY_ID: string): Observable<any> {
     return this.http.get<any>(`${this.getallsubcaturl}?catid=${INT_CATEGORY_ID}&subcatid=${INT_SUB_CATEGORY_ID}`).pipe(
       catchError(this.handleError)  // Corrected missing parenthesis here
     );
   }
+
+  UpdateSubCategory(INT_CATEGORY_ID: string, INT_SUB_CATEGORY_ID: string): Observable<any> {
+    return this.http.get<any>(`${this.getallsubcaturl}?catid=${INT_CATEGORY_ID}&subcatid=${INT_SUB_CATEGORY_ID}`).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  updateSubCat(subcatid: string, registrationData: any) {
+    return this.http.put<any>(`${this.updatesubcaturl}?subcatid=${subcatid}`, registrationData).pipe(
+      catchError(this.handleError)
+    );
+  }
+  
+  deleteComplaintSubCategory(catid: string, subcatid: string): Observable<any> {
+    return this.http.delete<any>(`${this.deletesubcaturl}?catid=${catid}&subcatid=${subcatid}`).pipe(
+      catchError(this.handleError)
+    );
+  }
+  
   //******.....Methods For Content Managent Dynamic Work by Debasis Das.....******
   GetParentMenus(): Observable<any> {
     return this.http.get(this.getParentMenusUrl).pipe(
@@ -308,6 +332,7 @@ export class AuthService {
     );
   }  
 
+  //Methods for Manage Banner by Debasis Das
   CreateOrUpdateBanner(formData: FormData, bannerId?: number): Observable<any> {
     const headers = new HttpHeaders();
     const url = bannerId ? `${this.createOrUpdateBannerUrl}?bannerId=${bannerId}` : this.createOrUpdateBannerUrl;
@@ -342,9 +367,87 @@ export class AuthService {
     );
   }
 
+  //Methods for Manage Gallery by Debasis Das
+  createOrUpdateGallery(formData: FormData, id?: number): Observable<any> {
+    const headers = new HttpHeaders();
+    const url = id ? `${this.galleryUrl}/CreateOrUpdateGallery?galleryId=${id}` : `${this.galleryUrl}/CreateOrUpdateGallery`;
+    
+    // Use POST for both creating and updating
+    return this.http.post(url, formData, { headers }).pipe(
+        catchError(this.handleError)
+    );
+  }
+
+  getGallery(): Observable<any> {
+    return this.http.get(`${this.galleryUrl}/GetGallery`).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  getGalleryById(id: number): Observable<any> {
+    return this.http.get(`${this.galleryUrl}/GetGalleryById?galleryId=${id}`).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  getGalleryByName(name: string): Observable<any> {
+    return this.http.get(`${this.galleryUrl}/GetGalleryByName?galleryName=${name}`).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  deleteGallery(id: number): Observable<any> {
+    return this.http.delete(`${this.galleryUrl}/DeleteGallery`, { body: { galleryId: id } }).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  //Methods for Manage FAQs by Debasis Das
+  createOrUpdateFAQ(faqData: any): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });  
+    return this.http.post(`${this.faqUrl}/CreateOrUpdateFaq`, faqData, { headers }).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  getFAQs(): Observable<any> {
+    return this.http.get(`${this.faqUrl}/GetFaqs`).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  getFAQById(faqId: number): Observable<any> {
+    return this.http.get(`${this.faqUrl}/GetFaqById?faqId=${faqId}`).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  // getFAQById(id: number): Observable<FAQ> {
+  //   return this.http.get<FAQ>(`${this.baseUrl}/faq/${id}`);
+  // }
+
+  deleteFAQ(id: number): Observable<any> {
+    return this.http.delete(`${this.faqUrl}/DeleteFaq`, { body: { FaqId: id } }).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  // deleteFAQ(id: number): Observable<any> {
+  //   return this.http.delete(`${this.faqUrl}/DeleteFaqDetails?faqId=${id}`).pipe(
+  //     catchError(this.handleError)
+  //   );
+  // }
+
   // Error handling logic
   private handleError(error: any) {
     console.error('An error occurred:', error);
-    return throwError(error);
+    return throwError(() => new Error(error.message || 'Unknown error occurred'));
   }
+
+  // private handleError(error: any): Observable<never> {
+  //   console.error('An error occurred:', error); // For debugging
+  //   return throwError(error.message || 'Server Error');
+  // }
 }

@@ -4,13 +4,13 @@
       <div class="bannerarea-content">
         <div>
           <div class="page-title">
-            <h2>Complaint Registration</h2>
+            <h2>{{ 'ComplaintRegistration' | translate }}</h2>
           </div>
           <div class="breadcrumb-area">
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb  mb-0">
                 <li class="breadcrumb-item"><a href="#"><i class="icon icon-Group-14936"></i></a></li>
-                <li class="breadcrumb-item active" aria-current="page">Complaint Registration</li>
+                <li class="breadcrumb-item active" aria-current="page">{{ 'ComplaintRegistration' | translate }}</li>
               </ol>
             </nav>
           </div>
@@ -21,50 +21,46 @@
   <div class="content-area" id="targetMainContent">
     <div class="container">
       <div class="form-title">
-        <h4 class="fw-bold">Complaint Registration</h4>
-        <small class="text-danger">(<strong>*</strong>) indicates Manditory</small>
+        <h4 class="fw-bold">{{ 'ComplaintRegistration' | translate }}</h4>
+        <small class="text-danger">(<strong>*</strong>) {{ 'Mandatory' | translate }}</small>
       </div>
       <div class="row gx-xl-5">
         <div class="col-lg-6">  
           <div class="bg-light p-4 mb-3 mb-lg-0 rounded h-100">      
           <div class="row">
             <div class="col-lg-12">
-              <h4 class="page-heading mt-0">Complainant Details</h4>
+              <h4 class="page-heading mt-0">{{ 'ComplainantDetails' | translate }}</h4>
             </div>
             <!-- <div class="col-lg-4">
-          <div class="form-group">
-              <label for="Regd Date" class="form-label">Regd Date</label>
-              <input type="date" class="form-control"  >
+            <div class="form-group">
+                <label for="Regd Date" class="form-label">Regd Date</label>
+                <input type="date" class="form-control"  >
             </div>
       </div> -->
             <div class="col-xl-12">
               <div class="form-group">
-                <label for="Name" class="form-label">Name <span class="text-danger">*</span></label>
-                <input name="txtName" type="text" id="txtName" [(ngModel)]="formData.txtName" required
-                                        class="form-control" maxlength="100" />
+                <label for="Name" class="form-label">{{ 'NAME' | translate }} <span class="text-danger">*</span></label>
+                <input name="txtName" type="text" id="txtName" [(ngModel)]="formData.txtName" required class="form-control" maxlength="100" />
                 <!-- <small class="text-danger d-block text-end"> (Maximum <strong>100</strong> Characters)</small> -->
               </div>
             </div>
             <div class="col-xl-6">
               <div class="form-group">
-                <label for="Phone Number" class="form-label">Phone Number <span class="text-danger">*</span></label>
+                <label for="Phone Number" class="form-label">{{ 'PhoneNumber' | translate }} <span class="text-danger">*</span></label>
                 <div class="input-group">
                   <span class="input-group-text" id="basic-addon1">+91</span>
-                  <input name="txtPhone" type="text" maxlength="10" id="txtPhone"
-                                        [(ngModel)]="formData.txtPhone" class="form-control" />
+                  <input name="txtPhone" type="text" maxlength="10" id="txtPhone" [(ngModel)]="formData.txtPhone" class="form-control" />
                   <a class="input-group-text btn btn-primary" href="javascript:void(0);" (click)="openModal()" data-bs-toggle="modal" data-bs-target="#verifyMobileModal">
                     <i class="bi bi-check-circle"></i>
-                </a>
+                  </a>
                 </div>
-
               </div>
             </div>
             <div class="col-xl-6">
               <div class="form-group">
-                <label class="form-label">Email</label>
+                <label class="form-label">{{ 'E_Mail' | translate }}</label>
                 <div class="input-group">
-                  <input name="txtEmail" type="text" id="txtEmail"
-                                        [(ngModel)]="formData.txtEmail" class="form-control" />
+                  <input name="txtEmail" type="text" id="txtEmail" [(ngModel)]="formData.txtEmail" class="form-control" />
                   <a class="input-group-text btn btn-primary" href="javascript:void(0);" data-bs-toggle="modal"
                     data-bs-target="#verifyEmailModal"><i class="bi bi-check-circle"></i></a>
                 </div>
@@ -72,21 +68,32 @@
             </div>
             <div class="col-xl-6">
               <div class="form-group">
-                <label for="Complaint Category" class="form-label">Complaint Category <span
+                <label for="Complaint Category" class="form-label">{{ 'ComplaintCategory' | translate }} <span
                     class="text-danger">*</span></label>
-                    <select name="ddlComplaintCategory" id="ddlComplaintCategory"
+                    <!-- <select name="ddlComplaintCategory" id="ddlComplaintCategory"
                     [(ngModel)]="formData.ddlComplaintCategory"
                     (change)="onCategoryChange($event)" class="form-select">
                     <option selected value="0">Select</option>
                     <option *ngFor="let category of categories"
                         [value]="category.inT_CATEGORY_ID">{{ category.vcH_CATEGORY }}
                     </option>
-                </select>
+                </select> -->
+                <ng-select
+                [items]="categories"
+                bindLabel="vcH_CATEGORY"
+                bindValue="inT_CATEGORY_ID"
+                [(ngModel)]="formData.ddlComplaintCategory"
+                [id]="'ddlComplaintCategory'"
+                (change)="onCategoryChange($event)"
+                [placeholder]="'Select Category'"
+                [searchable]="true"
+                [clearable]="false">
+              </ng-select>
               </div>
             </div>
             <div class="col-xl-6">
               <div class="form-group">
-                <label for="Complaint Sub-Category" class="form-label">Complaint Sub-Category <span
+                <label for="Complaint Sub-Category" class="form-label">{{ 'NAME' | translate }} <span
                     class="text-danger">*</span></label>
                     <select name="ddlSubCategory" id="ddlSubCategory"
                     [(ngModel)]="formData.ddlSubCategory" class="form-select">
@@ -110,23 +117,31 @@
             <div class="col-xl-12">
               <div class="form-group"> 
                 <label for="FileUpload1" class="form-label">
-                  Upload Document/Photo <span class="text-danger">*</span>
+                  {{ 'UploadDocument' | translate }} <span class="text-danger">*</span>
                 </label>
+                <div class="input-group custom-file-input">
+                  <input type="file" name="FileUpload1" id="FileUpload1"
+                      (change)="handleFileInput($event)" class="form-control custom-fileupload" />
+                  <label class="custom-input" [ngClass]="{'custom-input-black': fileName}" for="doc">
+                      {{ fileName || 'Upload' }}
+                  </label>
+                  <label class="input-group-text custom-browse" for="doc">Browse</label>
+              </div>
                 <!-- <div class="input-group">
                   <input type="file" name="FileUpload1" id="FileUpload1" (change)="handleFileInput($event)"
                     class="form-control" />
                 </div> -->
                 <!-- <div class="d-flex align-items-center"> -->
-                <div class="input-group custom-file-input">
+                <!-- <div class="input-group custom-file-input">
                   <input type="file" name="FileUpload1" id="FileUpload1" (change)="handleFileInput($event)"
                   class="form-control custom-fileupload" />
                   <label class="custom-input" for="doc">Upload</label>
                   <label class="input-group-text custom-browse" for="doc">Browse</label>
-              </div>
+              </div> -->
               <!-- <a href="#" class="btn btn-primary" title="Add More Document/Photo"><i class="bi bi-plus-lg"></i></a>
             </div> -->
                 <small class="text-danger d-block text-end">
-                  Supported File (.pdf, .doc, .xls, .jpg, .png)
+                  {{ 'SupportedFile' | translate }}
                 </small>
               </div>
               <!-- <p class="mb-0 small text-danger text-end">
@@ -156,10 +171,10 @@
             </div> -->
             <div class="col-lg-12">
               <div class="form-group">
-                <label for="Enter Complaint Description in Brief" class="form-label"> Complaint Description</label>
+                <label for="Enter Complaint Description in Brief" class="form-label">{{ 'ComplaintDescription' | translate }}</label>
                 <textarea name="txtDetailsE" rows="3" id="txtDetailsE"
-                                    [(ngModel)]="formData.txtDetailsE" class="form-control"></textarea>
-                <small class="text-danger d-block text-end">(Maximum <strong>500</strong> Characters)</small>
+                  [(ngModel)]="formData.txtDetailsE" class="form-control"></textarea>
+                <small class="text-danger d-block text-end">{{ 'MaximumFivehundred' | translate }}</small>
               </div>
             </div>
           </div>
@@ -169,20 +184,26 @@
           <div class="bg-light p-4 rounded h-100"> 
           <div class="row">
             <div class="col-lg-12">
-              <h4 class="page-heading mt-0">Address</h4>
+              <h4 class="page-heading mt-0">{{ 'Addre' | translate }}</h4>
             </div>
             <div class="col-xl-6">
               <div class="form-group">
-                <label for="District" class="form-label">District <span class="text-danger">*</span></label>
-                <select name="ddlDistrict" id="ddlDistrict" [(ngModel)]="formData.ddlDistrict"
-                                        (change)="onDistrictChange($event)" class="form-select">
-                                        <option selected value="0">Select</option>
-                                        <option *ngFor="let district of districts" [value]="district.inT_DIST_ID">
-                                            {{ district.vcH_DIST_NAME }}
-                                        </option>
-                                    </select>
+                <label for="ddlDistrict" class="form-label">{{ 'Dist' | translate }} <span class="text-danger">*</span></label>
+                <ng-select
+                [items]="districts"
+                bindLabel="vcH_DIST_NAME"
+                bindValue="inT_DIST_ID"
+                [(ngModel)]="formData.ddlDistrict"
+                [id]="'ddlDistrict'"
+                (change)="onDistrictChange($event)"
+                [placeholder]="'Select a District'"
+                [searchable]="true"
+                [clearable]="false">
+              </ng-select>
               </div>
             </div>
+            
+            
             <!-- <div class="col-lg-4">
               <div class="form-group">
                   <label for="Mode of Complaint" class="form-label">Mode of Complaint <span class="text-danger">*</span></label>
@@ -196,50 +217,96 @@
           </div> -->
           <div class="col-xl-6">
               <div class="form-group">
-                <label for="Block" class="form-label">Block<span class="text-danger">*</span></label>
-                <select name="ddlBlock" id="ddlBlock" [(ngModel)]="formData.ddlBlock"
-                (change)="onBlockChange($event)" class="form-select">
-                <option value="0">Select</option>
-                <option *ngFor="let block of blocks" [value]="block.inT_BLOCK_ID">{{
-                    block.vcH_BLOCK_NAME }}
-                </option>
-            </select>
+                <label for="ddlBlock" class="form-label">{{ 'Blo' | translate }} <span class="text-danger">*</span></label>
+                <ng-select
+                [items]="blocks"
+                bindLabel="vcH_BLOCK_NAME"
+                bindValue="inT_BLOCK_ID"
+                [(ngModel)]="formData.ddlBlock"
+                [id]="'ddlBlock'"
+                (change)="onBlockChange($event)"
+                [placeholder]="'Select a block'"
+                [searchable]="true"
+                [clearable]="false">
+              </ng-select>
+                <!-- <select name="ddlBlock" id="ddlBlock" [(ngModel)]="formData.ddlBlock"
+                                        (change)="onBlockChange($event)" class="form-select">
+                                        <option value="0">Select</option>
+                                        <option *ngFor="let block of blocks" [value]="block.inT_BLOCK_ID">{{
+                                            block.vcH_BLOCK_NAME }}
+                                        </option>
+                                    </select> -->
               </div>
             </div>
     
             <div class="col-xl-6">
               <div class="form-group">
-                <label for="Panchyat" class="form-label">Panchyat <span class="text-danger">*</span></label>
-                <select name="ddlGp" id="ddlGp" [(ngModel)]="formData.ddlPanchayat"
+                <label for="ddlPanchayat" class="form-label">{{ 'Pan' | translate }} <span class="text-danger">*</span></label>
+                <!-- <select name="ddlGp" id="ddlGp" [(ngModel)]="formData.ddlPanchayat"
                                         (change)="onGpChange($event)" class="form-select">
                                         <option value="0">Select</option>
                                         <option *ngFor="let gp of gps" [value]="gp.inT_GP_ID">{{ gp.vcH_GP_NAME }}</option>
-                                    </select>
+                                    </select> -->
+                                    <ng-select
+                                    [items]="gps"
+                                    bindLabel="vcH_GP_NAME"
+                                    bindValue="inT_GP_ID"
+                                    [(ngModel)]="formData.ddlGp"
+                                    [id]="'ddlPanchayat'"
+                                    (change)="onGpChange($event)"
+                                    [placeholder]="'Select a Gp'"
+                                    [searchable]="true"
+                                    [clearable]="false">
+                                  </ng-select>                    
               </div>
             </div>
     
             <div class="col-xl-6">
               <div class="form-group">
-                <label for="Panchyat" class="form-label">village <span class="text-danger">*</span></label>
-                <select name="ddlVillage" id="ddlVillage" [(ngModel)]="formData.ddlVillage"
-                class="form-select">
-                <option value="0">Select</option>
-                <option *ngFor="let village of villages" [value]="village.inT_VILLAGE_ID">{{
-                    village.vcH_VILLAGE_NAME }}</option>
-            </select> 
+                <label for="ddlVillage" class="form-label">{{ 'Vill' | translate }} <span class="text-danger">*</span></label>
+                <!-- <select name="ddlVillage" id="ddlVillage" [(ngModel)]="formData.ddlVillage"
+                                        class="form-select">
+                                        <option value="0">Select</option>
+                                        <option *ngFor="let village of villages" [value]="village.inT_VILLAGE_ID">{{
+                                            village.vcH_VILLAGE_NAME }}</option>
+                                    </select> -->
+
+                                    <ng-select
+                                    [items]="villages"
+                                    bindLabel="vcH_VILLAGE_NAME"
+                                    bindValue="inT_VILLAGE_ID"
+                                    [(ngModel)]="formData.ddlVillage"
+                                    [id]="'ddlVillage'"
+                                    (change)="onVillageChange($event)"
+                                    [placeholder]="'Select a village'"
+                                    [searchable]="true"
+                                    [clearable]="false">
+                                  </ng-select>                             
               </div>
             </div>
             <div class="col-xl-6">
               <div class="form-group">
-                <label for="Panchyat" class="form-label">Ward </label>
-                <select class="form-select">
-                  <option selected>Select</option>
-                </select>
+                <label for="ddlward" class="form-label">{{ 'War' | translate }} </label>
+                <!-- <select name="ddlward" id="ddlward" [(ngModel)]="formData.ddlward" class="form-select">
+                  <option value="0">Select</option>
+                                        <option *ngFor="let ward of wards" [value]="ward.inT_WARD_ID">{{
+                                            ward.vcH_WARD_NAME }}</option>
+                </select> -->
+                                    <ng-select id="ddlward"
+                                    [items]="wards"
+                                    bindLabel="vcH_WARD_NAME"
+                                    bindValue="inT_WARD_ID"
+                                    [(ngModel)]="formData.ddlward"
+                                    [id]="'ddlward'"
+                                    [placeholder]="'Select a ward'"
+                                    [searchable]="true"
+                                    [clearable]="false">
+                                  </ng-select>   
               </div>
             </div>
             <div class="col-xl-6">
               <div class="form-group">
-                <label for="Panchyat" class="form-label">Near by Location </label>
+                <label for="Panchyat" class="form-label">{{ 'Near' | translate }}</label>
                 <div class="input-group">
                   <input type="text" name="txtlandmark" rows="3" id="txtlandmark"
                                         [(ngModel)]="formData.txtLandmark" class="form-control">
@@ -252,20 +319,19 @@
     
             <div class="col-lg-12">
               <div class="form-group">
-                <label for="Address" class="form-label">Address</label>
-                <textarea name="txtAddress" rows="3" id="txtAddress"
-                                        [(ngModel)]="formData.txtAddress" class="form-control"></textarea>
-                <small class="text-danger d-block text-end">(Maximum <strong>300</strong> Characters)</small>
+                <label for="Address" class="form-label">{{ 'Addre' | translate }}</label>
+                <textarea name="txtAddress" rows="3" id="txtAddress" [(ngModel)]="formData.txtAddress" class="form-control"></textarea>
+                <small class="text-danger d-block text-end">{{ 'MaximumThreehundred' | translate }}</small>
               </div>
             </div>
-
           </div>
           </div>
         </div>
+
         <div class="col-12 mt-4">
           <div class="d-flex gap-2 justify-content-center">
-            <a href="javascript:void(0)" class="btn btn-primary" (click)="onSubmit()">Submit</a>
-            <a href="javascript:void(0)" class="btn btn-danger" (click)="resetForm()">Reset</a>
+            <a href="javascript:void(0)" class="btn btn-primary" (click)="onSubmit()">{{ 'SUBMIT' | translate }}</a>
+            <a href="javascript:void(0)" class="btn btn-danger" (click)="resetForm()">{{ 'RESET' | translate }}</a>
           </div>
         </div>
       </div>

@@ -39,19 +39,62 @@ namespace CommonMaster.Repository.Repositories.Interfaces.MANAGE_SUBCATEGORYMAST
             }
         }
 
-        public async Task<List<ComplaintSubCategoryModel>> viewtComplaintSubCategory(int catid,int subcatid)
+        public async Task<bool> UpdateComplaintSubCategory(int subcatid,UpdateComplaintSubCategoryModel complaintSub)
+        {
+            try
+            {
+                DynamicParameters parameters = new DynamicParameters();
+                parameters.Add("subcatid", subcatid);
+                parameters.Add("catid", complaintSub.INT_CATEGORY_ID);
+                parameters.Add("vchsubcategory", complaintSub.VCH_SUB_CATEGORY);
+                parameters.Add("nvchsubcategory", complaintSub.NVCH_SUB_CATEGORY);
+                parameters.Add("escllevel", complaintSub.INT_ESCALATION_LEVEL);
+                parameters.Add("compprior", complaintSub.INT_COMPLAINT_PRIORITY);
+                parameters.Add("modifiedby", 1, DbType.Int32);
+                parameters.Add("modifiedon", DateTime.Now);
+                var result = await Connection.QueryAsync<int>("USP_UpdateComplaintSubCategory", parameters, commandType: CommandType.StoredProcedure);
+                return result.Contains(1);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public async Task<List<ViewComplaintSubCategoryModel>> viewtComplaintSubCategory(int catid,int subcatid)
         {
             try
             {
                 DynamicParameters parameters = new DynamicParameters();
                 parameters.Add("catid", catid);
                 parameters.Add("subcatid", subcatid);
-                var result = await Connection.QueryAsync<ComplaintSubCategoryModel>("USP_GetAllComplaintSubCategories", parameters, commandType: CommandType.StoredProcedure);
+                var result = await Connection.QueryAsync<ViewComplaintSubCategoryModel>("USP_GetAllComplaintSubCategories", parameters, commandType: CommandType.StoredProcedure);
                 return result.ToList();
             }
             catch (Exception ex)
             {
                 throw;
+            }
+        }
+
+        public async Task<int> getdeleteCatagorybyid(int catid,int subcatid)
+        {
+            {
+                try
+                {
+                    DynamicParameters dynamicParameters = new DynamicParameters();
+                    dynamicParameters.Add("catid", catid);
+                    dynamicParameters.Add("subcatid", subcatid);
+
+                    // Execute the stored procedure and retrieve the affected row count
+                    var result = await Connection.ExecuteScalarAsync<int>("USP_DeleteComplaintSubCategory", dynamicParameters, commandType: CommandType.StoredProcedure);
+
+                    return result;  // This will return the number of rows affected (e.g., 1 for success)
+                }
+                catch (Exception ex)
+                {
+                    throw;
+                }
             }
         }
         public async Task<int> INSERT_MANAGE_SUBCATEGORYMASTER(MANAGE_SUBCATEGORYMASTER_Model TBL)

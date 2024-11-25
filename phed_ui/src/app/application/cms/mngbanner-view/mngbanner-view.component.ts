@@ -11,16 +11,15 @@ import Swal from 'sweetalert2';
 export class MngbannerViewComponent {
   isPanelOpen = true; // Start with the panel open
 
-// Filter close btn
-isDropdownOpen = false;
-openDropdown() {
-  this.isDropdownOpen = true;
-}
+  // Filter close btn
+  isDropdownOpen = false;
+  openDropdown() {
+    this.isDropdownOpen = true;
+  }
 
-
-closeDropdown() {
-  this.isDropdownOpen = false;
-}
+  closeDropdown() {
+    this.isDropdownOpen = false;
+  }
 
   banners: any[] = [];
   noRecordsFound = false;
@@ -48,7 +47,6 @@ closeDropdown() {
             bannerImage: `http://localhost:5097${banner.bannerImage}`
           }));
           this.noRecordsFound = this.banners.length === 0;
-
           if (this.noRecordsFound) {
             Swal.fire({
               icon: 'info',
@@ -77,10 +75,9 @@ closeDropdown() {
     });
   }
 
-
   // Method to handle the edit action
   editBannerDetails(id: number) {
-    this.router.navigate(['/application/mngbanner'], { queryParams: { pageId: id } });
+    this.router.navigate([`/application/mngbanner/${id}`]);
   }
 
   // Method to handle the delete action

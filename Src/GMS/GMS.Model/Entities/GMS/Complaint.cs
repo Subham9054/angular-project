@@ -17,6 +17,7 @@ namespace GMS.Model.Entities.GMS
         public int INT_BLOCK { get; set; }
         public int INT_PANCHAYAT { get; set; }
         public int INT_VILLAGE { get; set; }
+        public int INT_WARD {  get; set; }
         public string NVCH_ADDRESS { get; set; }
         public string NVCH_COMPLIANT_DETAILS { get; set; }
         public string VCH_COMPLAINT_FILE { get; set; }
@@ -24,5 +25,6 @@ namespace GMS.Model.Entities.GMS
         public DateTime DTM_CREATED_ON { get; set; } // Assuming it will be provided from frontend or generated in the repository
         public string VCH_EMAIL { get; set; }
         public string NVCH_LANDMARK { get;set; }
+        public int INT_COMPLAINT_PRIORITY { get; set; }
     }
 }

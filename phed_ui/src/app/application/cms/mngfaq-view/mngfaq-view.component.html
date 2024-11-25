@@ -2,26 +2,20 @@
     <div class="pagetitle-section">
         <div class="row justify-content-between align-items-center">
             <div class="col-lg-4 col-md-4">
-                <h3> Faq</h3>
+                <h3>Frequently Asked Questions (FAQs)</h3>
             </div>
             <div class="col-lg-6 col-md-8">
                 <div class="utilite">
                     <ul class="mb-0">
-
-
                         <li>
                             <a href="javascript:void(0)" title="Click to Print"><i class="bi bi-printer"></i></a>
                         </li>
-
                         <li>
-                            <a href="javascript:void(0)" title="Download Excel"><i
-                                    class="bi bi-file-earmark-excel"></i></a>
+                            <a href="javascript:void(0)" title="Download Excel"><i class="bi bi-file-earmark-excel"></i></a>
                         </li>
-
                         <li>
                             <a href="javascript:void(0)" title="Click to Publish"><i class="bi bi-volume-up"></i></a>
                         </li>
-
                         <li>
                             <a href="javascript:void(0)" title="Click to Unpublish"><i class="bi bi-volume-mute"></i></a>
                         </li>
@@ -54,9 +48,8 @@
                             </div>
                         </li>
 
-                        <li class="fill-btn add-link"><a routerLink="/application/mngfaq/add" title="Click to Add"><i
-                                    class="bi bi-plus-lg"></i>
-                                    <span class="hide-icon ms-2">Add Page</span></a>
+                        <li class="fill-btn add-link"><a routerLink="/application/mngfaq/add" title="Click to Add"><i class="bi bi-plus-lg"></i>
+                            <span class="hide-icon ms-2">Add Page</span></a>
                         </li>
                     </ul>
                 </div>
@@ -64,193 +57,84 @@
         </div>
     </div>
 
-
-
     <div class="view-legand">
         <ul class="legends">
             <li><span class="bg-success"></span> Publish </li>
             <li><span class="bg-danger"></span> Unpublish </li>
         </ul>
     </div>
+
     <div class="content-box content-area p-0">
         <div class="table-responsive">
             <table class="table mb-0">
                 <thead>
                     <tr>
-                        <th width="30px">
-                            <input class="form-check-input" type="checkbox">
-                        </th>
+                        <th width="30px"><input class="form-check-input" type="checkbox"></th>
                         <th width="40px">Sl#</th>
-                        <th>Question</th>
-                        <th>Answer (In Hindi)</th>
+                        <th>FAQ (English)</th>
+                        <th>FAQ Answer (English)</th>
+                        <th>एफएक्यू (हिन्दी)</th>
+                        <th>एफएक्यू उत्तर (हिन्दी)</th>
                         <th width="100">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="publish">
+                    <tr *ngFor="let faq of faqs; let i = index">
+                        <td><input class="form-check-input" type="checkbox"></td>
+                        <td>{{ i + 1 }}</td>
+                        <td>{{ faq.faqEng }}</td>
+                        <td [innerHTML]="faq.faqAnsEng"></td>
+                        <td>{{ faq.faqHin }}</td>
+                        <td [innerHTML]="faq.faqAnsHin"></td>
                         <td>
-                            <input class="form-check-input" type="checkbox">
+                          <div class="d-flex gap-1">
+                            <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View" (click)="onView(faq)" data-bs-toggle="modal" data-bs-target="#faqModal">
+                              <i class="bi bi-eye"></i></a>
+                            <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" (click)="onEdit(faq.faqId)" title="Edit">
+                              <i class="bi bi-pencil"></i></a>
+                            <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" (click)="onDelete(faq.faqId)" title="Delete">
+                              <i class="bi bi-trash3"></i></a>
+                          </div>
                         </td>
-                        <td> 1 </td>
-                        <td>
-                            What is CM Kisan scheme?
-                        </td>
-                        <td> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ab aliquam optio ea laboriosam
-                            facilis necessitatibus illum delectus, <br>iste aut sint porro voluptate saepe
-                            reprehenderit,
-                            vero adipisci animi consequuntur excepturi autem. </td>
-                        <td>
-                            <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"
-                                    data-bs-toggle="modal" data-bs-target="#viewmodal">
-                                    <i class="bi bi-eye"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
-                                    <i class="bi bi-pencil"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" title="Delete">
-                                    <i class="bi bi-trash3"></i></a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="unpublish">
-                        <td>
-                            <input class="form-check-input" type="checkbox">
-                        </td>
-                        <td> 2 </td>
-                        <td>
-                            What is CM Kisan scheme?
-                        </td>
-                        <td> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ab aliquam optio ea laboriosam
-                            facilis necessitatibus illum delectus, <br>iste aut sint porro voluptate saepe
-                            reprehenderit,
-                            vero adipisci animi consequuntur excepturi autem. </td>
-                        <td>
-                            <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"
-                                    data-bs-toggle="modal" data-bs-target="#viewmodal">
-                                    <i class="bi bi-eye"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
-                                    <i class="bi bi-pencil"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" title="Delete">
-                                    <i class="bi bi-trash3"></i></a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="publish">
-                        <td>
-                            <input class="form-check-input" type="checkbox">
-                        </td>
-                        <td> 3 </td>
-                        <td>
-                            What is CM Kisan scheme?
-                        </td>
-                        <td> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ab aliquam optio ea laboriosam
-                            facilis necessitatibus illum delectus, <br>iste aut sint porro voluptate saepe
-                            reprehenderit,
-                            vero adipisci animi consequuntur excepturi autem. </td>
-                        <td>
-                            <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"
-                                    data-bs-toggle="modal" data-bs-target="#viewmodal">
-                                    <i class="bi bi-eye"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
-                                    <i class="bi bi-pencil"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" title="Delete">
-                                    <i class="bi bi-trash3"></i></a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="unpublish">
-                        <td>
-                            <input class="form-check-input" type="checkbox">
-                        </td>
-                        <td> 4 </td>
-                        <td>
-                            What is CM Kisan scheme?
-                        </td>
-                        <td> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ab aliquam optio ea laboriosam
-                            facilis necessitatibus illum delectus, <br>iste aut sint porro voluptate saepe
-                            reprehenderit,
-                            vero adipisci animi consequuntur excepturi autem. </td>
-                        <td>
-                            <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"
-                                    data-bs-toggle="modal" data-bs-target="#viewmodal">
-                                    <i class="bi bi-eye"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
-                                    <i class="bi bi-pencil"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" title="Delete">
-                                    <i class="bi bi-trash3"></i></a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="publish">
-                        <td>
-                            <input class="form-check-input" type="checkbox">
-                        </td>
-                        <td> 5</td>
-                        <td>
-                            What is CM Kisan scheme?
-                        </td>
-                        <td> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ab aliquam optio ea laboriosam
-                            facilis necessitatibus illum delectus, <br>iste aut sint porro voluptate saepe
-                            reprehenderit,
-                            vero adipisci animi consequuntur excepturi autem. </td>
-                        <td>
-                            <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"
-                                    data-bs-toggle="modal" data-bs-target="#viewmodal">
-                                    <i class="bi bi-eye"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
-                                    <i class="bi bi-pencil"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" title="Delete">
-                                    <i class="bi bi-trash3"></i></a>
-                            </div>
-                        </td>
-                    </tr>
+                      </tr>
                 </tbody>
             </table>
         </div>
     </div>
 </div>
 
-
-<!-- Modal View  -->
-<div class="modal fade" id="viewmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- Modal View -->
+<div class="modal fade" id="faqModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">What is CM Kisan scheme?</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body view-form">
-                <div class="row">
-                    <div class="col-xl-12">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="mb-3">
-                                    <label for="form-label">Answer</label>
-                                    <label class="form-value">
-                                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ab
-                                        aliquam optio ea laboriosam facilis necessitatibus illum delectus, iste aut sint
-                                        porro voluptate saepe reprehenderit, vero adipisci animi consequuntur excepturi
-                                        autem.</label>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-12">
-                                <div class="mb-3">
-                                    <label for="form-label">सीएम किसान योजना </label>
-                                    <label class="form-value">
-                                        लोरेम इप्सम डोलोर, सिट अमेत कंसिक्टेटुर एडिपिसिकिंग एलीट। अब आलिकम ऑप्टियो ईआ लेबरियोसाम फासिलिस आवश्यकताबुस इलुम डिलेक्टुस, इस्टे ऑट सिंट पोर्रो वोलुप्टेटे साएप रेप्रेहेंडेरिट, वेरो एडिपिस्की आनी कोंसेक्वुंटूर एक्सेप्टुरी ऑटेम।</label>
-                                </div>
-                            </div>
-
-
-                        </div>
-                    </div>
-
-                </div>
-            </div>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel" style="color:blue; font-weight: bold;">FAQ (Frequently Asked Question)</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
+        <div class="modal-body view-form">
+          <div *ngIf="selectedFaq">
+            <div class="row">
+              <div class="col-xl-12">
+                <div class="row">
+                  <div class="col-lg-6">
+                    <label class="form-value" style="color: red; font-weight: bold;">{{ selectedFaq.faqEng }}</label>
+                  </div>
+                  <div class="col-lg-12">
+                    <label class="form-label" [innerHTML]="selectedFaq.faqAnsEng"></label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <label class="form-value" style="color: red; font-weight: bold;">{{ selectedFaq.faqHin }}</label>
+                  </div>
+                  <div class="col-lg-12">
+                    <label class="form-label" [innerHTML]="selectedFaq.faqAnsHin"></label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-</div>
+  </div>

@@ -195,6 +195,7 @@ export class ComplaintregistrationComponent  {
   }
 
   handleFileInput(event: Event) {
+    debugger;
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
       this.fileToUpload = input.files[0];
