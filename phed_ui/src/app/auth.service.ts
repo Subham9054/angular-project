@@ -59,6 +59,7 @@ export class AuthService {
   private getBannerByNameUrl = 'http://localhost:5097/api/CMS/GetBannerByName';
   private deleteBannerUrl = 'http://localhost:5097/api/CMS/DeleteBanner';
 
+  private galleryUrl = 'http://localhost:5097/api/Gallery'; //Base URL for Managing Gallery
   private faqUrl = 'http://localhost:5097/api/FAQ'; //Base URL for Managing FAQs
 
   constructor(private http: HttpClient, private router: Router) { }
@@ -331,6 +332,7 @@ export class AuthService {
     );
   }  
 
+  //Methods for Manage Banner by Debasis Das
   CreateOrUpdateBanner(formData: FormData, bannerId?: number): Observable<any> {
     const headers = new HttpHeaders();
     const url = bannerId ? `${this.createOrUpdateBannerUrl}?bannerId=${bannerId}` : this.createOrUpdateBannerUrl;
@@ -365,7 +367,42 @@ export class AuthService {
     );
   }
 
-  //Methods for Manage FAQs
+  //Methods for Manage Gallery by Debasis Das
+  createOrUpdateGallery(formData: FormData, id?: number): Observable<any> {
+    const headers = new HttpHeaders();
+    const url = id ? `${this.galleryUrl}/CreateOrUpdateGallery?galleryId=${id}` : `${this.galleryUrl}/CreateOrUpdateGallery`;
+    
+    // Use POST for both creating and updating
+    return this.http.post(url, formData, { headers }).pipe(
+        catchError(this.handleError)
+    );
+  }
+
+  getGallery(): Observable<any> {
+    return this.http.get(`${this.galleryUrl}/GetGallery`).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  getGalleryById(id: number): Observable<any> {
+    return this.http.get(`${this.galleryUrl}/GetGalleryById?galleryId=${id}`).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  getGalleryByName(name: string): Observable<any> {
+    return this.http.get(`${this.galleryUrl}/GetGalleryByName?galleryName=${name}`).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  deleteGallery(id: number): Observable<any> {
+    return this.http.delete(`${this.galleryUrl}/DeleteGallery`, { body: { galleryId: id } }).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  //Methods for Manage FAQs by Debasis Das
   createOrUpdateFAQ(faqData: any): Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
