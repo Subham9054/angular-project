@@ -12,17 +12,12 @@
                         </li>
                         <li class="fill-btn back-link"><a routerLink="/application/mnggallery" title="Go to Previous"><i
                             class="bi bi-arrow-left"></i>  <span class="hide-icon ms-2"> Back to View</span></a>
-                </li>
+                        </li>
                     </ul>
                 </div>
             </div>
         </div>
-    </div>
-
-
-
-
-   
+    </div>   
 
     <div class="content-box content-area">
         <div class="row">
@@ -33,11 +28,15 @@
                             <label class="form-label" for="type">Category <span class="text-danger">*</span></label>
                             <select class="form-select" [(ngModel)]="selectedType">
                                 <option value="" selected>Select</option>
-                                <option value="photo">Category 1</option>
-                                <option value="video">Category 2</option>
+                                <option value="event">Event-Based</option>
+                                <option value="theme">Theme-Based</option>
+                                <option value="purpose">Purpose-Based</option>
+                                <option value="content">Content-Based</option>
+                                <option value="custom">Custom</option>
                             </select>
                         </div>
                     </div>
+
                     <div class="col-xl-4">
                         <div class="mb-3">
                             <label class="form-label" for="type">Type <span class="text-danger">*</span></label>
@@ -49,10 +48,11 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="row">
                     <div class="col-xl-3" *ngIf="selectedType === 'photo' || selectedType === 'video'">
                         <div class="mb-3">
-                            <label class="form-label" for="thembimg"> Thumb Image <span class="text-danger">*</span></label>
+                            <label class="form-label" for="thumbImage">Thumbnail <span class="text-danger">*</span></label>
                             <div class="custom-dropzone photoUpload" ngx-dropzone [accept]="'image/*'" (change)="onSelect($event)">
                                 <ngx-dropzone-label>
                                     <div>
@@ -63,14 +63,14 @@
                                     <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
                                 </ngx-dropzone-image-preview>
                             </div>
-                            <p class="small mb-0 text-end text-danger">Max file Size <span class="fw-bold">300 mb</span></p>
+                            <p class="small mb-0 text-end text-danger">Max file Size <span class="fw-bold">300 kb</span></p>
                         </div>
                     </div>
                     
                     
                     <div class="col-xl-5" *ngIf="selectedType === 'photo'">
                         <div class="mb-3">
-                            <label class="form-label" for="upodimg"> large Image <span class="text-danger">*</span></label>
+                            <label class="form-label" for="upodimg">Image <span class="text-danger">*</span></label>
                             <div class="custom-dropzone photoUpload" ngx-dropzone [accept]="'image/*'" (change)="onSelect($event)">
                                 <ngx-dropzone-label>
                                     <div>
@@ -84,47 +84,49 @@
                             <p class="small mb-0 text-end text-danger">Max file Size <span class="fw-bold">1 mb</span></p>
                         </div>
                     </div>
-                    
-                   
-                    <!-- <div class="col-xl-4" *ngIf="selectedType === 'video'">
-                        <div class="mb-3">
-                            <label class="form-label d-block" for="linktype">Link Type</label>
-                            <div class="form-check form-check-inline mt-1">
-                                <input class="form-check-input" type="radio" name="linkType" id="link1" value="internal" checked>
-                                <label class="form-check-label" for="link1">Internal</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="linkType" id="link2" value="external">
-                                <label class="form-check-label" for="link2">External</label>
-                            </div>
-                        </div>
-                    </div> -->
-                    
+                                       
                     <div class="col-xl-5" *ngIf="selectedType === 'video'">
                         <div class="mb-3">
                             <label class="form-label" for="videurl">Video Url</label>
                             <input type="text" class="form-control" id="videurl">
                         </div>
-                    </div>
-                   
+                    </div>                   
                 </div>
+
                 <div class="row">
                     <div class="col-xl-4">
                         <div class="mb-3">
-                            <label class="form-label" for="captionen">Caption</label>
-                            <input class="form-control" id="captionen" type="text">
+                            <label class="form-label" for="cationEng">Caption (In English)</label>
+                            <input class="form-control" id="cationEng" type="text">
                         </div>
                     </div>
 
                     <div class="col-xl-4">
                         <div class="mb-3">
-                            <label class="form-label" for="captionhn">Caption (In Hindi)</label>
-                            <input class="form-control" id="captionhn" type="text">
+                            <label class="form-label" for="captionHin">कैप्शन (हिन्दी में)</label>
+                            <input class="form-control" id="captionHin" type="text">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xl-4">
+                        <div class="mb-3">
+                            <label class="form-label" for="serialno">Serial No.</label>
+                            <input type="text" id="serialno" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="col-xl-4">
+                        <div class="mb-3">
+                            <label class="form-label" for="isPublish">Is Publish</label><br/>
+                            <input type="checkbox" id="isPublish" style="height: 35px; width: 35px;" class="form-check-input">
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
         <div class="row">
             <div class="col-lg-12">
                 <div class="d-flex gap-2 mt-lg-3">
