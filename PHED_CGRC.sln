@@ -79,13 +79,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dropdown.Repository", "Src\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Website", "Website", "{C4A66308-C929-4BBA-961C-EFF2C9C51F8C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Website.API", "Website.API\Website.API.csproj", "{574972F2-1D8E-4F81-98FE-87B6C9579685}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Website.API", "Website.API\Website.API.csproj", "{574972F2-1D8E-4F81-98FE-87B6C9579685}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Website.CORE", "Website.CORE\Website.CORE.csproj", "{405E6053-CE8D-440A-8D8D-90605F094D96}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Website.CORE", "Website.CORE\Website.CORE.csproj", "{405E6053-CE8D-440A-8D8D-90605F094D96}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Website.Model", "Website.Model\Website.Model.csproj", "{AD12676A-260A-4591-859C-5B8FB6A7CBE5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Website.Model", "Website.Model\Website.Model.csproj", "{AD12676A-260A-4591-859C-5B8FB6A7CBE5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Website.Repository", "Website.Repository\Website.Repository.csproj", "{921113E0-869A-4D6C-A50C-5124A033AF15}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Website.Repository", "Website.Repository\Website.Repository.csproj", "{921113E0-869A-4D6C-A50C-5124A033AF15}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
