@@ -8,7 +8,7 @@ import Swal from 'sweetalert2';
   templateUrl: './mngbanner-view.component.html',
   styleUrls: ['./mngbanner-view.component.scss']
 })
-export class MngbannerViewComponent {
+export class MngbannerViewComponent implements OnInit {
   isPanelOpen = true; // Start with the panel open
 
   // Filter close btn

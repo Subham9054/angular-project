@@ -48,6 +48,8 @@ import { ComplaintregistrationViewComponent } from './complaintregistration-view
 import { ComplaintSubCategoryViewComponent } from './complaint-sub-category-view/complaint-sub-category-view.component';
 
 import { NgSelectModule } from '@ng-select/ng-select';
+import { UserRegistrationComponent } from './user-registration/user-registration.component';
+import { UserRegistrationViewComponent } from './user-registration-view/user-registration-view.component';
 
 @NgModule({
   declarations: [
@@ -91,7 +93,9 @@ import { NgSelectModule } from '@ng-select/ng-select';
     ComplaintSubCategoryComponent,
     ModewiseReportComponent,
     ComplaintregistrationViewComponent,
-    ComplaintSubCategoryViewComponent
+    ComplaintSubCategoryViewComponent,
+    UserRegistrationComponent,
+    UserRegistrationViewComponent
   ],
   imports: [
     CommonModule,
