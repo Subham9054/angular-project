@@ -7,21 +7,15 @@
             <div class="col-lg-6 col-md-8">
                 <div class="utilite">
                     <ul class="mb-0">
-
-
                         <li>
                             <a href="javascript:void(0)" title="Click to Print"><i class="bi bi-printer"></i></a>
                         </li>
-
                         <li>
-                            <a href="javascript:void(0)" title="Download Excel"><i
-                                    class="bi bi-file-earmark-excel"></i></a>
+                            <a href="javascript:void(0)" title="Download Excel"><i class="bi bi-file-earmark-excel"></i></a>
                         </li>
-
                         <li>
                             <a href="javascript:void(0)" title="Click to Publish"><i class="bi bi-volume-up"></i></a>
                         </li>
-
                         <li>
                             <a href="javascript:void(0)" title="Click to Unpublish"><i class="bi bi-volume-mute"></i></a>
                         </li>
@@ -53,21 +47,14 @@
                                 </div>
                             </div>
                         </li>
-                        <li class="fill-btn add-link"><a routerLink="/application/mnggallery/add"
-                                title="Click to Add"><i class="bi bi-plus-lg"></i>
-                                <span class="hide-icon ms-2">Add Page</span></a>
+                        <li class="fill-btn add-link"><a routerLink="/application/mnggallery/add" title="Click to Add"><i class="bi bi-plus-lg"></i>
+                            <span class="hide-icon ms-2">Add Page</span></a>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
-
-
-
-
-
-
 
     <div class="view-legand">
         <ul class="legends">
@@ -76,138 +63,49 @@
         </ul>
     </div>
     <div class="content-box content-area p-0">
-        <div class="table-responsive mb-0">
-            <table class="table  mb-0">
-                <thead>
-                    <tr>
-                        <th width="30px">
-                            <input class="form-check-input" type="checkbox">
-                        </th>
-                        <th width="40px">Sl#</th>
-                        <th>Type</th>
-                        <th>Caption</th>
-                        <th>Thumb Image</th>
-                        <th width="90px">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="unpublish">
-                        <td><input class="form-check-input" type="checkbox"></td>
-                        <td>1</td>
-                        <td>Photo</td>
-                        <td>Lorem Ipsum is simply dummy text of the printing and typesetting industry</td>
-                        <td>
-                            <div class="gallery-parent">
-                                <img src="./assets/img/login-bg.png" alt="Banner text" class="galley-image">
-                            </div>
-                        </td>
-                        <td>
-                            <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"
-                                    data-bs-toggle="modal" data-bs-target="#viewmodal">
-                                    <i class="bi bi-eye"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
-                                    <i class="bi bi-pencil"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" title="Delete">
-                                    <i class="bi bi-trash3"></i></a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="publish">
-                        <td><input class="form-check-input" type="checkbox"></td>
-                        <td>2</td>
-                        <td>Photo</td>
-                        <td>Lorem Ipsum is simply dummy text of the printing and typesetting industry</td>
-                        <td>
-                            <div class="gallery-parent">
-                                <img src="./assets/img/login-bg.png" alt="Banner text" class="galley-image">
-                            </div>
-                        </td>
-                        <td>
-                            <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"
-                                    data-bs-toggle="modal" data-bs-target="#viewmodal">
-                                    <i class="bi bi-eye"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
-                                    <i class="bi bi-pencil"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" title="Delete">
-                                    <i class="bi bi-trash3"></i></a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="unpublish">
-                        <td><input class="form-check-input" type="checkbox"></td>
-                        <td>3</td>
-                        <td>Photo</td>
-                        <td>Lorem Ipsum is simply dummy text of the printing and typesetting industry</td>
-                        <td>
-                            <div class="gallery-parent">
-                                <img src="./assets/img/login-bg.png" alt="Banner text" class="galley-image">
-                            </div>
-                        </td>
-                        <td>
-                            <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"
-                                    data-bs-toggle="modal" data-bs-target="#viewmodal">
-                                    <i class="bi bi-eye"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
-                                    <i class="bi bi-pencil"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" title="Delete">
-                                    <i class="bi bi-trash3"></i></a>
-                            </div>
-                        </td>
-                    </tr>
+        <div *ngIf="noRecordsFound" class="alert alert-warning text-center mt-3">
+            No Banner is Found!!
+        </div>
 
-                    <tr class="publish">
-                        <td><input class="form-check-input" type="checkbox"></td>
-                        <td>4</td>
-                        <td>Photo</td>
-                        <td>Lorem Ipsum is simply dummy text of the printing and typesetting industry</td>
-                        <td>
-                            <div class="gallery-parent">
-                                <img src="./assets/img/login-bg.png" alt="Banner text" class="galley-image">
-                            </div>
-                        </td>
-                        <td>
-                            <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"
-                                    data-bs-toggle="modal" data-bs-target="#viewmodal">
-                                    <i class="bi bi-eye"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
-                                    <i class="bi bi-pencil"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" title="Delete">
-                                    <i class="bi bi-trash3"></i></a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="unpublish">
-                        <td><input class="form-check-input" type="checkbox"></td>
-                        <td>5</td>
-                        <td>Photo</td>
-                        <td>Lorem Ipsum is simply dummy text of the printing and typesetting industry</td>
-                        <td>
-                            <div class="gallery-parent">
-                                <img src="./assets/img/login-bg.png" alt="Banner text" class="galley-image">
-                            </div>
-                        </td>
-                        <td>
-                            <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"
-                                    data-bs-toggle="modal" data-bs-target="#viewmodal">
-                                    <i class="bi bi-eye"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
-                                    <i class="bi bi-pencil"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" title="Delete">
-                                    <i class="bi bi-trash3"></i></a>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
+        <div *ngIf="galleries.length > 0" class="table-responsive mb-0">
+            <table class="table mb-0">
+              <thead>
+                <tr>
+                  <th width="30px"><input type="checkbox"></th>
+                  <th width="40px">Sl#</th>
+                  <th>Category</th>
+                  <th>Type</th>
+                  <th>Caption (English)</th>
+                  <th>Caption (हिंदी)</th>
+                  <th style="text-align: center">ThumbImage</th>
+                  <th width="70px" style="text-align: center;">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let gallery of galleries; let i = index" [ngClass]="{'publish': gallery.isPublish, 'unpublish': !gallery.isPublish}">
+                      <td><input type="checkbox"></td>
+                      <td>{{ i + 1 }}</td>
+                      <td>{{ gallery.galleryCategory }}</td>
+                      <td>{{ gallery.galleryType }}</td>
+                      <td>{{ gallery.captionEnglish }}</td>
+                      <td>{{ gallery.captionHindi }}</td>
+                      <!-- <td>{{ gallery.thumbnail }}</td> -->
+                      <td style="text-align: center; vertical-align: middle;"><img [src]="gallery.thumbImage" alt="{{ gallery.captionEnglish }}" style="height: 50px; width: 50px;" class="img-fluid" /></td>
+                      <td>
+                        <div class="d-flex gap-1">
+                            <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"
+                            data-bs-toggle="modal" data-bs-target="#viewmodal">
+                            <i class="bi bi-eye"></i></a>
+                          <button class="btn btn-outline-primary btn-sm" (click)="editGalleryDetails(gallery.galleryId)" title="Edit"><i class="bi bi-pencil"></i></button>
+                          <button class="btn btn-outline-danger btn-sm" (click)="deleteGalleryDetails(gallery.galleryId)" title="Delete"><i class="bi bi-trash3"></i></button>
+                        </div>
+                      </td>
+                  </tr>                  
+              </tbody>
             </table>
         </div>
     </div>
 </div>
-
 
 <!-- Modal View  -->
 <div class="modal fade" id="viewmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

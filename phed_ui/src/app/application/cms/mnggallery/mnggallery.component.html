@@ -1,8 +1,8 @@
-<div class="form-cointainer">
+<div class="form-container">
     <div class="pagetitle-section">
         <div class="row justify-content-between align-items-center">
             <div class="col-xxl-3 col-lg-4 col-md-4">
-                <h3> Gallery</h3>
+                <h3>Gallery</h3>
             </div>
             <div class="col-lg-6 col-md-8">
                 <div class="utilite">
@@ -10,128 +10,126 @@
                         <li class="bg-transparent border-0">
                             <span class="text-danger small"><b>(*)</b> Indicate mandatory </span>
                         </li>
-                        <li class="fill-btn back-link"><a routerLink="/application/mnggallery" title="Go to Previous"><i
-                            class="bi bi-arrow-left"></i>  <span class="hide-icon ms-2"> Back to View</span></a>
-                </li>
+                        <li class="fill-btn back-link">
+                            <a routerLink="/application/mnggallery" title="Go to Previous">
+                                <i class="bi bi-arrow-left"></i>
+                                <span class="hide-icon ms-2">Back to View</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
         </div>
-    </div>
-
-
-
-
-   
+    </div>   
 
     <div class="content-box content-area">
-        <div class="row">
-            <div class="col-xl-10 col-lg-12">
-                <div class="row">
-                    <div class="col-xl-4">
-                        <div class="mb-3">
-                            <label class="form-label" for="type">Category <span class="text-danger">*</span></label>
-                            <select class="form-select" [(ngModel)]="selectedType">
-                                <option value="" selected>Select</option>
-                                <option value="photo">Category 1</option>
-                                <option value="video">Category 2</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-xl-4">
-                        <div class="mb-3">
-                            <label class="form-label" for="type">Type <span class="text-danger">*</span></label>
-                            <select class="form-select" [(ngModel)]="selectedType">
-                                <option value="" selected>Select</option>
-                                <option value="photo">Photo</option>
-                                <option value="video">Video</option>
-                            </select>
-                        </div>
+        <form (ngSubmit)="submitForm()">
+            <div class="row">
+                <div class="col-xl-4">
+                    <div class="mb-3">
+                        <label class="form-label" for="category">Category <span class="text-danger">*</span></label>
+                        <select class="form-select" [(ngModel)]="galleryModel.galleryCategory" name="galleryCategory" required>
+                            <option value="" disabled selected>Select Category</option>
+                            <option value="event">Event-Based</option>
+                            <option value="theme">Theme-Based</option>
+                            <option value="purpose">Purpose-Based</option>
+                            <option value="content">Content-Based</option>
+                            <option value="custom">Custom</option>
+                        </select>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-xl-3" *ngIf="selectedType === 'photo' || selectedType === 'video'">
-                        <div class="mb-3">
-                            <label class="form-label" for="thembimg"> Thumb Image <span class="text-danger">*</span></label>
-                            <div class="custom-dropzone photoUpload" ngx-dropzone [accept]="'image/*'" (change)="onSelect($event)">
-                                <ngx-dropzone-label>
-                                    <div>
-                                        <h2>Drag and Drop <span class="d-block">or</span>Click to Upload Thumb Image</h2>
-                                    </div>
-                                </ngx-dropzone-label>
-                                <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f" [removable]="true" (removed)="onRemove(f)">
-                                    <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
-                                </ngx-dropzone-image-preview>
-                            </div>
-                            <p class="small mb-0 text-end text-danger">Max file Size <span class="fw-bold">300 mb</span></p>
-                        </div>
-                    </div>
-                    
-                    
-                    <div class="col-xl-5" *ngIf="selectedType === 'photo'">
-                        <div class="mb-3">
-                            <label class="form-label" for="upodimg"> large Image <span class="text-danger">*</span></label>
-                            <div class="custom-dropzone photoUpload" ngx-dropzone [accept]="'image/*'" (change)="onSelect($event)">
-                                <ngx-dropzone-label>
-                                    <div>
-                                        <h2>Drag and Drop <span class="d-block">or</span>Click to Upload large Image</h2>
-                                    </div>
-                                </ngx-dropzone-label>
-                                <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f" [removable]="true" (removed)="onRemove(f)">
-                                    <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
-                                </ngx-dropzone-image-preview>
-                            </div>
-                            <p class="small mb-0 text-end text-danger">Max file Size <span class="fw-bold">1 mb</span></p>
-                        </div>
-                    </div>
-                    
-                   
-                    <!-- <div class="col-xl-4" *ngIf="selectedType === 'video'">
-                        <div class="mb-3">
-                            <label class="form-label d-block" for="linktype">Link Type</label>
-                            <div class="form-check form-check-inline mt-1">
-                                <input class="form-check-input" type="radio" name="linkType" id="link1" value="internal" checked>
-                                <label class="form-check-label" for="link1">Internal</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="linkType" id="link2" value="external">
-                                <label class="form-check-label" for="link2">External</label>
-                            </div>
-                        </div>
-                    </div> -->
-                    
-                    <div class="col-xl-5" *ngIf="selectedType === 'video'">
-                        <div class="mb-3">
-                            <label class="form-label" for="videurl">Video Url</label>
-                            <input type="text" class="form-control" id="videurl">
-                        </div>
-                    </div>
-                   
-                </div>
-                <div class="row">
-                    <div class="col-xl-4">
-                        <div class="mb-3">
-                            <label class="form-label" for="captionen">Caption</label>
-                            <input class="form-control" id="captionen" type="text">
-                        </div>
-                    </div>
 
-                    <div class="col-xl-4">
-                        <div class="mb-3">
-                            <label class="form-label" for="captionhn">Caption (In Hindi)</label>
-                            <input class="form-control" id="captionhn" type="text">
-                        </div>
+                <div class="col-xl-4">
+                    <div class="mb-3">
+                        <label class="form-label" for="type">Type <span class="text-danger">*</span></label>
+                        <select class="form-select" [(ngModel)]="galleryModel.galleryType" name="galleryType" (change)="onGalleryTypeChange()" required>
+                            <option value="" disabled selected>Select Type</option>
+                            <option value="photo">Photo</option>
+                            <option value="video">Video</option>
+                        </select>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="d-flex gap-2 mt-lg-3">
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                    <button type="reset" class="btn btn-danger">Reset</button>
+
+            <div class="row">
+                <div class="col-xl-3" *ngIf="selectedType === 'photo' || selectedType === 'video'">
+                    <div class="mb-3">
+                        <label class="form-label" for="thumbImage">Thumbnail <span class="text-danger">*</span></label>
+                        <div class="custom-dropzone photoUpload" ngx-dropzone [accept]="'image/*'" (change)="onThumbnailSelect($event)">
+                            <ngx-dropzone-label>
+                                <div>
+                                    <h2>Drag and Drop <span class="d-block">or</span>Click to Upload Thumb Image</h2>
+                                </div>
+                            </ngx-dropzone-label>
+                            <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of thumbnailFiles" [file]="f" [removable]="true" (removed)="onThumbnailRemove(f)">
+                                <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                            </ngx-dropzone-image-preview>
+                        </div>
+                        <p class="small mb-0 text-end text-danger">Max file Size <span class="fw-bold">300 kb</span></p>
+                    </div>
+                </div>
+
+                <div class="col-xl-5" *ngIf="selectedType === 'photo'">
+                    <div class="mb-3">
+                        <label class="form-label" for="galleryPhoto">Image <span class="text-danger">*</span></label>
+                        <div class="custom-dropzone photoUpload" ngx-dropzone [accept]="'image/*'" (change)="onImageSelect($event)">
+                            <ngx-dropzone-label>
+                                <div>
+                                    <h2>Drag and Drop <span class="d-block">or</span>Click to Upload Image</h2>
+                                </div>
+                            </ngx-dropzone-label>
+                            <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of imageFiles" [file]="f" [removable]="true" (removed)="onImageRemove(f)">
+                                <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                            </ngx-dropzone-image-preview>
+                        </div>
+                        <p class="small mb-0 text-end text-danger">Max file Size <span class="fw-bold">1 mb</span></p>
+                    </div>
+                </div>
+
+                <div class="col-xl-5" *ngIf="galleryModel.galleryType === 'video'">
+                    <div class="mb-3">
+                        <label class="form-label">Video URL <span class="text-danger">*</span></label>
+                        <input type="text" name="videoUrl" [(ngModel)]="galleryModel.videoUrl" class="form-control" required />
+                    </div>
                 </div>
             </div>
-        </div>
+
+            <div class="row">
+                <div class="col-xl-4">
+                    <div class="mb-3">
+                        <label class="form-label" for="captionEnglish">Caption (In English) <span class="text-danger">*</span></label>
+                        <input type="text" name="captionEnglish" [(ngModel)]="galleryModel.captionEnglish" class="form-control" required />
+                    </div>
+                </div>
+                <div class="col-xl-4">
+                    <div class="mb-3">
+                        <label class="form-label" for="captionHindi">Caption (हिन्दी में)</label>
+                        <input type="text" name="captionHindi" [(ngModel)]="galleryModel.captionHindi" class="form-control" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xl-4">
+                    <div class="mb-3">
+                        <label class="form-label" for="serialNo">Serial No.</label>
+                        <input type="number" name="serialNo" [(ngModel)]="galleryModel.serialNo" class="form-control">
+                    </div>
+                </div>
+                <div class="col-xl-4">
+                    <div class="mb-3">
+                        <label class="form-label" for="isPublish">Is Publish</label><br/>
+                        <input type="checkbox" name="isPublish" [(ngModel)]="galleryModel.isPublish" style="height: 35px; width: 35px;" class="form-check-input">
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex gap-2 mt-lg-3">
+                <button type="submit" class="btn btn-primary" [ngClass]="galleryModel.isEditing ? 'btn-info' : 'btn-primary'">
+                    {{ galleryModel.isEditing ? 'Update' : 'Submit' }}
+                </button>
+                <button type="button" class="btn btn-danger" (click)="resetForm()">Reset</button>
+            </div>
+        </form>
     </div>
 </div>

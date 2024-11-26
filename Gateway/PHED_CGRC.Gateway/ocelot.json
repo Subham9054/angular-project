@@ -88,11 +88,11 @@
       }
     },
     {
-      "UpstreamPathTemplate": "/gateway/MANAGE_CATEGORYMASTER/DeleteMANAGE_CATEGORYMASTER",
+      "UpstreamPathTemplate": "/gateway/GetallComplaint",
       "UpstreamHttpMethod": [
-        "Delete"
+        "Get"
       ],
-      "DownstreamPathTemplate": "/Api/MANAGE_CATEGORYMASTER/DeleteMANAGE_CATEGORYMASTER",
+      "DownstreamPathTemplate": "/Api/MANAGE_CATEGORYMASTER/GetallComplaint",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
