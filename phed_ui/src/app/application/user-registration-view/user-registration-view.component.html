@@ -1,0 +1,290 @@
+<div class="form-cointainer">
+
+  <div class="pagetitle-section">
+    <div class="row justify-content-between align-items-center">
+      <div class="col-lg-4 col-md-6">
+        <h3> User Registration</h3>
+      </div>
+      <div class="col-lg-6 col-md-6">
+        <div class="utilite">
+          <ul class="mb-0">
+
+
+            <li>
+              <a href="javascript:void(0)" title="Click to Print"><i class="bi bi-printer"></i></a>
+            </li>
+
+            <li>
+              <a href="javascript:void(0)" title="Download Excel"><i class="bi bi-file-earmark-excel"></i></a>
+            </li>
+
+            <li class="filter-dropdown dropdown">
+              <a href="javascript:void(0)" data-bs-toggle="dropdown" (click)="openDropdown()">
+                <i class="bi bi-funnel"></i> Filter
+              </a>
+
+              <div class="dropdown-menu dropdown-menu-end filter-dropdown-menu shadow border-0"
+                [ngClass]="{ 'show': isDropdownOpen }" (click)="$event.stopPropagation()">
+
+                <span class="drop-icon" (click)="closeDropdown()">
+                  <i class="bi bi-x-lg"></i>
+                </span>
+
+
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="mb-3">
+                      <label for="ddlDistrict" class="form-label">User ID</label>
+                      <input id="userid" class="form-control" type="text" />
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="mb-3">
+                      <label for="divison" class="form-label">User Full Name</label>
+                      <input id="userfullname" class="form-control" name="userfullname" type="text" />
+                    </div>
+                  </div>
+
+
+                  <div class="col-md-6">
+                    <div class="mb-3">
+                      <label for="design" class="form-label">Designation</label>
+                      <select class="form-select" id="design">
+                        <option selected>Select</option>
+                        <option value="1">DL</option>
+                        <option value="2">DD</option>
+                        <option value="3">DE</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="mb-3">
+                      <label for="block1" class="form-label">Block</label>
+                      <select class="form-select select-height" id="block1">
+                        <option value="1">ARARIA</option>
+                        <option value="2">ARWAL</option>
+                        <option value="3">AURANGABAD</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="d-flex gap-2">
+                      <button type="submit" class="btn btn-primary px-xl-4">Search</button>
+                      <button type="submit" class="btn btn-danger px-xl-4">Reset</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </li>
+
+
+            <li class="fill-btn add-link"><a routerLink="/application/user-registration/add" title="Click to Add"><i
+                  class="bi bi-plus-lg"></i>
+                Add Page</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="content-box content-area p-0">
+    <div class="table-responsive mb-0">
+      <table class="table mb-0">
+        <thead>
+          <tr>
+            <th width="40px">Sl#</th>
+            <th>User ID</th>
+            <th>User Full Name</th>
+            <th>User Password</th>
+            <th>Block</th>
+            <th>Telephone No.</th>
+            <th>Email ID</th>
+            <th width="90px">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>
+              1D25E78
+            </td>
+
+            <td>
+              Subrat Kumar Dash
+            </td>
+
+            <td>
+              26dh367
+            </td>
+
+            <td>
+              Araria
+            </td>
+
+            <td>
+              0612-364343
+            </td>
+
+            <td>
+              subratkumar@gmail.com
+            </td>
+
+            <td>
+              <div class="d-flex gap-1">
+                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
+                  <i class="bi bi-pencil"></i></a>
+                <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" title="Delete">
+                  <i class="bi bi-trash3"></i></a>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>
+              1D25E78
+            </td>
+
+            <td>
+              Subrat Kumar Dash
+            </td>
+
+            <td>
+              26dh367
+            </td>
+
+            <td>
+              Araria
+            </td>
+
+            <td>
+              0612-364343
+            </td>
+
+            <td>
+              subratkumar@gmail.com
+            </td>
+
+            <td>
+              <div class="d-flex gap-1">
+                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
+                  <i class="bi bi-pencil"></i></a>
+                <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" title="Delete">
+                  <i class="bi bi-trash3"></i></a>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>
+              1D25E78
+            </td>
+
+            <td>
+              Subrat Kumar Dash
+            </td>
+
+            <td>
+              26dh367
+            </td>
+
+            <td>
+              Araria
+            </td>
+
+            <td>
+              0612-364343
+            </td>
+
+            <td>
+              subratkumar@gmail.com
+            </td>
+
+            <td>
+              <div class="d-flex gap-1">
+                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
+                  <i class="bi bi-pencil"></i></a>
+                <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" title="Delete">
+                  <i class="bi bi-trash3"></i></a>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>
+              1D25E78
+            </td>
+
+            <td>
+              Subrat Kumar Dash
+            </td>
+
+            <td>
+              26dh367
+            </td>
+
+            <td>
+              Araria
+            </td>
+
+            <td>
+              0612-364343
+            </td>
+
+            <td>
+              subratkumar@gmail.com
+            </td>
+
+            <td>
+              <div class="d-flex gap-1">
+                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
+                  <i class="bi bi-pencil"></i></a>
+                <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" title="Delete">
+                  <i class="bi bi-trash3"></i></a>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>
+              1D25E78
+            </td>
+
+            <td>
+              Subrat Kumar Dash
+            </td>
+
+            <td>
+              26dh367
+            </td>
+
+            <td>
+              Araria
+            </td>
+
+            <td>
+              0612-364343
+            </td>
+
+            <td>
+              subratkumar@gmail.com
+            </td>
+
+            <td>
+              <div class="d-flex gap-1">
+                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
+                  <i class="bi bi-pencil"></i></a>
+                <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" title="Delete">
+                  <i class="bi bi-trash3"></i></a>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
