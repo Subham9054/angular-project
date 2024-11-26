@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <Folder Include="Repositories\Interfaces\" />
+    <Folder Include="Repositories\Interfaces\" />
   </ItemGroup>
 
   <ItemGroup>
