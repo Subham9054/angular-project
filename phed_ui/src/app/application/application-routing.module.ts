@@ -39,19 +39,24 @@ import { ComplaintSubCategoryComponent } from './complaint-sub-category/complain
 import { ModewiseReportComponent } from './modewise-report/modewise-report.component';
 import { ComplaintregistrationViewComponent } from './complaintregistration-view/complaintregistration-view.component';
 import { ComplaintSubCategoryViewComponent } from './complaint-sub-category-view/complaint-sub-category-view.component';
+import { UserRegistrationComponent } from './user-registration/user-registration.component';
+import { UserRegistrationViewComponent } from './user-registration-view/user-registration-view.component';
 
 
 const routes: Routes = [{
   path: '', component: ApplicationComponent, children: [
     { path: 'dashboard', component: DashboardComponent },
-    
+
     { path: 'demo', component: ViewComponent },
     { path: 'demo/:id', component: AddComponent },
-    
+
 
     { path: 'complaintcategory/:id', component: ComplaintcategoryComponent },
     { path:'complaintcategory',component:ComplaintcategoryViewComponent},
-    
+
+    { path:'user-registration/:id',component:UserRegistrationComponent},
+    { path:'user-registration',component:UserRegistrationViewComponent},
+
     { path: 'ComplaintSub-Category/:id', component: ComplaintSubCategoryComponent },
     { path: 'ComplaintSub-Category', component: ComplaintSubCategoryViewComponent },
 
@@ -89,10 +94,10 @@ const routes: Routes = [{
     {path:'mnggallery/:id',component:MnggalleryComponent},
     {path:'mnggallery',component:MnggalleryViewComponent},
 
-    
+
     {path:'mnglogo',component:MnglogoComponent},
 
-   
+
     {path:'mngmenu',component:MngmenuViewComponent},
     {path:'mngmenu/:id',component:MngmenuComponent},
 
