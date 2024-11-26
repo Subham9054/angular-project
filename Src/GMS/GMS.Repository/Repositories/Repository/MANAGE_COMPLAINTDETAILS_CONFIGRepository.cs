@@ -62,6 +62,39 @@ namespace GMS.Repository.Repositories.Interfaces.MANAGE_COMPLAINTDETAILS_CONFIG
                 throw;
             }
         }
+
+        public async Task<List<gmsComplaintdetails>> getGmscomplaintdetail()
+        {
+            try
+            {
+
+                {
+                    DynamicParameters dynamicParameters = new DynamicParameters();
+                    var districts = await Connection.QueryAsync<gmsComplaintdetails>("GetGmsComplaintDetails", dynamicParameters, commandType: CommandType.StoredProcedure);
+                    return districts.ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public async Task<List<gmsComplaintdetails>> Getupdatetakeaction(string token)
+        {
+            try
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("token", token);
+                var result = await Connection.QueryAsync<gmsComplaintdetails>("GetGmsupdatetakeaction", parameters, commandType: CommandType.StoredProcedure);
+                return result.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
         public async Task<int> INSERT_MANAGE_COMPLAINTDETAILS_CONFIG(MANAGE_COMPLAINTDETAILS_CONFIG_Model TBL)
         {
             var p = new DynamicParameters();

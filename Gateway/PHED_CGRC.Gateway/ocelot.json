@@ -40,6 +40,30 @@
       }
     },
     {
+      "UpstreamPathTemplate": "/gateway/GetallComplaint",
+      "UpstreamHttpMethod": [
+        "Get"
+      ],
+      "DownstreamPathTemplate": "/Api/MANAGE_CATEGORYMASTER/GetallComplaint",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7010
+        }
+      ],
+      "RateLimitOptions": {
+        "DisableRateLimitHeaders": false,
+        "QuotaExceededMessage": "<Add your message>",
+        "HttpStatusCode": 9999,
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 1
+      }
+    },
+    {
       "UpstreamPathTemplate": "/gateway/MANAGE_CATEGORYMASTER/GetMANAGE_CATEGORYMASTER",
       "UpstreamHttpMethod": [
         "Get"

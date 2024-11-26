@@ -236,202 +236,78 @@
                         <th width="40px">Sl#</th>
                         <th>Token No.</th>
                         <th>Complaint Name</th>
-                        <!-- <th>Complaint Details</th> -->
+                        <th>Complaint Details</th>
                         <th>Complaint Status</th>
                         <th>Complaint Date</th>
-                        <!-- <th>Near by Location</th> -->
+                        <th>Near by Location</th>
                         <th>Action Taken By</th>
                         <th width="100px">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td><a href="javascript:void(0);" data-bs-toggle="modal"
-                                data-bs-target="#token">202411110143</a>
+                    <tr *ngFor="let complaint of paginatedComplaints; let i = index">
+                        <td>{{ (currentPage - 1) * pageSize + i + 1 }}</td>
+                        <td>
+                            <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#token">
+                                {{ complaint.vcH_TOKENNO }}
+
+                            </a>
+                            <input type="hidden" [value]="complaint.vcH_TOKENNO" #tokenno />
                         </td>
-                        <td>Deepak kumar</td>
-                        <!-- <td>Water lekaje no</td> -->
-                        <td><span class="badge text-bg-success">Resolved</span></td>
-                        <td>11-Nov-2024</td>
-                        <!-- <td>-</td> -->
-                        <td>JE Ekma</td>
+                        <td>{{ complaint.nvcH_COMPLIANTANT_NAME }}</td>
+                        <td>{{ complaint.nvcH_COMPLIANT_DETAILS }}</td>
+                        <td>
+                            <span
+                                class="badge"
+                                [ngClass]="{
+                                    'text-bg-primary': complaint.vcH_COMPLIANT_STATUS === 'Registered & Open',
+                                    'text-bg-info-inprogress': complaint.vcH_COMPLIANT_STATUS === 'Inprogress',
+                                    'text-bg-success': complaint.vcH_COMPLIANT_STATUS === 'Resolved',
+                                    'text-bg-danger-discarded': complaint.vcH_COMPLIANT_STATUS === 'Discarded',
+                                    'text-bg-warning': complaint.vcH_COMPLIANT_STATUS === 'Registered & To be Published',
+                                    'text-bg-dark': complaint.vcH_COMPLIANT_STATUS === 'Escalated',
+                                    'text-bg-secondary': complaint.vcH_COMPLIANT_STATUS === 'Non Resolvable',
+                                    'text-bg-light': complaint.vcH_COMPLIANT_STATUS === 'Reopen',
+                                    'text-bg-danger-rejected': complaint.vcH_COMPLIANT_STATUS === 'Rejected by call center executive',
+                                    'text-bg-info-forwarded': complaint.vcH_COMPLIANT_STATUS === 'Forwarded'
+                                }"
+                            >
+                                {{ complaint.vcH_COMPLIANT_STATUS }}
+                            </span>
+                        </td>
+                        <td>{{ complaint.dtM_CREATED_ON | date: 'dd-MMM-yyyy' }}</td>
+                        <td>{{ complaint.nvcH_LANDMARK }}</td>
+                        <td>{{ complaint.vchUserName }}</td>
                         <td>
                             <div class="dropdown">
-
-                                <button class="btn btn-outline-primary btn-sm" type="button" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
+                                <button
+                                    class="btn btn-outline-primary btn-sm"
+                                    type="button"
+                                    data-bs-toggle="dropdown"
+                                    aria-expanded="false"
+                                >
                                     <i class="bi bi-caret-down"></i> Action
                                 </button>
-
-
                                 <ul class="dropdown-menu shadow border-0 dropdown-menu-end py-0">
-                                    <!-- <li>
-                                        <a href="javascript:void(0);" class="dropdown-item" title="Take Action" 
-                                        data-bs-toggle="modal" data-bs-target="#details">
-                                            <i class="bi-clock-history me-1"></i> Take Action
-                                        </a>
-                                    </li> -->
-
                                     <li>
-                                        <a href="javascript:void(0);" class="dropdown-item" title="Action History"
-                                            data-bs-toggle="modal" data-bs-target="#takehistrory">
+                                        <a
+                                            href="javascript:void(0);"
+                                            class="dropdown-item"
+                                            title="Action History"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#takehistrory"
+                                        >
                                             <i class="bi-journal-text me-1"></i> Action History
                                         </a>
                                     </li>
-                                </ul>
-                            </div>
-                        </td>
-
-
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td><a href="javascript:void(0);" data-bs-toggle="modal"
-                                data-bs-target="#token">202411110139</a></td>
-                        <td>Basant Kumar</td>
-                        <!-- <td>वार्ड न०- 13 में मेरे दरव</td> -->
-                        <td><span class="badge text-bg-warning">Pending</span></td>
-                        <td>09-Nov-2024</td>
-                        <!-- <td>-</td> -->
-                        <td>JE Section - I</td>
-                        <td>
-                            <div class="dropdown">
-
-                                <button class="btn btn-outline-primary btn-sm" type="button" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                    <i class="bi bi-caret-down"></i> Action
-                                </button>
-
-
-                                <ul class="dropdown-menu shadow border-0 dropdown-menu-end py-0">
-
-
                                     <li>
-                                        <a href="javascript:void(0);" class="dropdown-item" title="Take Action"
+                                        <!-- <a href="javascript:void(0);" class="dropdown-item" title="Take Action"
                                             data-bs-toggle="modal" data-bs-target="#details">
                                             <i class="bi-clock-history me-1"></i> Take Action
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <a href="javascript:void(0);" class="dropdown-item" title="Action History"
-                                            data-bs-toggle="modal" data-bs-target="#takehistrory">
-                                            <i class="bi-journal-text me-1"></i> Action History
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td><a href="javascript:void(0);" data-bs-toggle="modal"
-                                data-bs-target="#token">202411110138</a>
-                        </td>
-                        <td>Ram Lakhan</td>
-                        <!-- <td>वार्ड नंबर एक में सप्लाई</td> -->
-                        <td><span class="badge text-bg-success">Registered & Open</span></td>
-                        <td>08-Nov-2024</td>
-                        <!-- <td>-</td> -->
-                        <td>JE Andhratharhi</td>
-                        <td>
-                            <div class="dropdown">
-
-                                <button class="btn btn-outline-primary btn-sm" type="button" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                    <i class="bi bi-caret-down"></i> Action
-                                </button>
-
-
-                                <ul class="dropdown-menu shadow border-0 dropdown-menu-end py-0">
-                                    <li>
-                                        <a href="javascript:void(0);" class="dropdown-item" title="Take Action"
-                                            data-bs-toggle="modal" data-bs-target="#details">
-                                            <i class="bi-clock-history me-1"></i> Take Action
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <a href="javascript:void(0);" class="dropdown-item" title="Action History"
-                                            data-bs-toggle="modal" data-bs-target="#takehistrory">
-                                            <i class="bi-journal-text me-1"></i> Action History
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td><a href="javascript:void(0);" data-bs-toggle="modal"
-                                data-bs-target="#token">202411110137</a>
-                        </td>
-                        <td>Sudher Kumar</td>
-                        <!-- <td>वार्ड न०-06 में नौ सिर्गि</td> -->
-                        <td><span class="badge text-bg-success">Registered & Open</span></td>
-                        <td>08-Nov-2024</td>
-                        <!-- <td>-</td> -->
-                        <td>JE Lalganj</td>
-                        <td>
-                            <div class="dropdown">
-
-                                <button class="btn btn-outline-primary btn-sm" type="button" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                    <i class="bi bi-caret-down"></i> Action
-                                </button>
-
-
-                                <ul class="dropdown-menu shadow border-0 dropdown-menu-end py-0">
-                                    <li>
-                                        <a href="javascript:void(0);" class="dropdown-item" title="Take Action"
-                                            data-bs-toggle="modal" data-bs-target="#details">
-                                            <i class="bi-clock-history me-1"></i> Take Action
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <a href="javascript:void(0);" class="dropdown-item" title="Action History"
-                                            data-bs-toggle="modal" data-bs-target="#takehistrory">
-                                            <i class="bi-journal-text me-1"></i> Action History
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td><a href="javascript:void(0);" data-bs-toggle="modal"
-                                data-bs-target="#token">202411110135</a></td>
-                        <td>Nagendra sarma</td>
-                        <!-- <td>वार्ड न०- 10 में लीकेज हो</td> -->
-                        <td><span class="badge text-bg-success">Registered & Open</span></td>
-                        <td>07-Nov-2024</td>
-                        <!-- <td>-</td> -->
-                        <td>JE Tekari</td>
-                        <td>
-                            <div class="dropdown">
-
-                                <button class="btn btn-outline-primary btn-sm" type="button" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                    <i class="bi bi-caret-down"></i> Action
-                                </button>
-
-
-                                <ul class="dropdown-menu shadow border-0 dropdown-menu-end py-0">
-                                    <li>
-                                        <a href="javascript:void(0);" class="dropdown-item" title="Take Action"
-                                            data-bs-toggle="modal" data-bs-target="#details">
-                                            <i class="bi-clock-history me-1"></i> Take Action
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <a href="javascript:void(0);" class="dropdown-item" title="Action History"
-                                            data-bs-toggle="modal" data-bs-target="#takehistrory">
-                                            <i class="bi-journal-text me-1"></i> Action History
-                                        </a>
+                                        </a> -->
+                                        <button type="button" class="dropdown-item btn btn-link" title="Take Action" data-bs-toggle="modal" (click)="takeaction(tokenno.value)" data-bs-target="#details">
+                                        <i class="bi-clock-history me-1"></i> Take Action
+                                    </button>
                                     </li>
                                 </ul>
                             </div>
@@ -440,7 +316,25 @@
                 </tbody>
             </table>
         </div>
+        <div class="pagination-controls d-flex justify-content-between align-items-center mt-3">
+            <button
+                class="btn btn-primary"
+                [disabled]="currentPage === 1"
+                (click)="goToPage(currentPage - 1)"
+            >
+                Previous
+            </button>
+            <span>Page {{ currentPage }} of {{ totalPages }}</span>
+            <button
+                class="btn btn-primary"
+                [disabled]="currentPage === totalPages"
+                (click)="goToPage(currentPage + 1)"
+            >
+                Next
+            </button>
+        </div>
     </div>
+    
 
 </div>
 
@@ -508,13 +402,9 @@
                                 <div class="col-xl-3 col-md-6">
                                     <div class="mb-3">
                                         <label class="form-label">E-Mail</label>
-                                        <label class="form-value">testuser@gmail.com</label>
+                                        <label class="form-value">gmail.com</label>
                                     </div>
                                 </div>
-
-
-
-
                                 <div class="col-xl-3 col-md-6">
                                     <div class="mb-3">
                                         <label class="form-label"> Document/Photo</label>
@@ -551,7 +441,6 @@
                                             है अतः उचित कार्यवाई करके सप्लाई का पानी सुचारू रूप से चलाया जाय|</label>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -728,60 +617,64 @@
     <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header justify-content-between">
-                <h1 class="modal-title fs-5" id="tokenLabel"> Take Action</h1>
+                <h1 class="modal-title fs-5" id="tokenLabel" >Complaint Details</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="row">
                     <div class="col-xl-12">
                         <div class="view-forms view-form pb-0">
-                            <div class="row">
-                                <div class="col-xl-3 col-md-6">
-                                    <div class="mb-3">
-                                        <label class="form-label">Token No.</label>
-                                        <label class="form-value">202410230124</label>
+                            <div *ngFor="let item of takeactiongms">
+                                <div class="row">
+                                    <div class="col-xl-3 col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Token No.</label>
+                                            <label class="form-value">{{ item.vcH_TOKENNO }}</label>
+                                            <!-- <label class="form-value">202410230124</label> -->
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-xl-3 col-md-6">
-                                    <div class="mb-3">
-                                        <label class="form-label">Registration Date</label>
-                                        <label class="form-value">23-Oct-2024</label>
+                                    <div class="col-xl-3 col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Registration Date</label>
+                                            <label class="form-value">{{item.dtM_CREATED_ON | date: 'dd-MMM-yyyy'}}</label>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-xl-3 col-md-6">
-                                    <div class="mb-3">
-                                        <label class="form-label">Complainant Name</label>
-                                        <label class="form-value">Krishanumar</label>
+                                    <div class="col-xl-3 col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Complainant Name</label>
+                                            <label class="form-value">{{item.nvcH_LANDMARK}}</label>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-xl-3 col-md-6">
-                                    <div class="mb-3">
-                                        <label class="form-label"> Near by Location</label>
-                                        <label class="form-value">-</label>
+                                    <div class="col-xl-3 col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label"> Near by Location</label>
+                                            <label class="form-value">{{item.nvcH_COMPLIANTANT_NAME}}</label>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-xl-3 col-md-6">
-                                    <div class="mb-3">
-                                        <label class="form-label">Complaint Category</label>
-                                        <label class="form-value">Piped Water Supply Related </label>
+                                    <div class="col-xl-3 col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Complaint Category</label>
+                                            <label class="form-value">{{item.vcH_CATEGORY}} </label>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-xl-3 col-md-6">
-                                    <div class="mb-3">
-                                        <label class="form-label">Complaint Sub-Category</label>
-                                        <label class="form-value">Operator does not runs the motor</label>
+                                    <div class="col-xl-3 col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Complaint Sub-Category</label>
+                                            <label class="form-value">{{item.vcH_SUB_CATEGORY}}</label>
+                                        </div>
                                     </div>
-                                </div>
-
-
-                                <div class="col-xl-3 col-md-6">
-                                    <div class="mb-3">
-                                        <label class="form-label">Current Status</label>
-                                        <label class="form-value">Registered & Open</label>
+    
+    
+                                    <div class="col-xl-3 col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Current Status</label>
+                                            <label class="form-value">{{item.vcH_COMPLIANT_STATUS}}</label>
+                                        </div>
                                     </div>
+    
                                 </div>
-
                             </div>
+                            
                         </div>
                     </div>
                     <div class="col-xl-8">
@@ -791,7 +684,7 @@
                                     <label for="ddlDistrict" class="form-label">Status</label>
                                     <select class="form-select">
                                         <option selected>Select</option>
-                                        <option value="1">Attended & Can`t be resolved</option>
+                                        <option value="7">Attended & Can`t be resolved</option>
                                         <option value="2">Inprogress</option>
                                         <option value="3">Resolved</option>
                                     </select>
@@ -892,7 +785,7 @@
                                         <div class="col-xl-4 col-md-6">
                                             <div class="mb-3">
                                                 <label class="form-label">E-Mail</label>
-                                                <label class="form-value">testuser@gmail.com</label>
+                                                <label class="form-value">testusergmail.com</label>
                                             </div>
                                         </div>
 

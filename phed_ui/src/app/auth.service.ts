@@ -43,6 +43,8 @@ export class AuthService {
   private getallsubcaturl = 'https://localhost:7010/Api/MANAGE_SUBCATEGORYMASTER/ViewComplaintSubCategory';
   private updatesubcaturl='https://localhost:7010/Api/MANAGE_SUBCATEGORYMASTER/UpdateComplaintSubCategory';
   private deletesubcaturl= 'https://localhost:7010/Api/MANAGE_SUBCATEGORYMASTER/DeleteSubcat';
+  private gmsComplaintdetailurl="https://localhost:7024/Api/MANAGE_COMPLAINTDETAILS_CONFIG/GetGmsComplaintdetails";
+  private gmstakeactionurl="https://localhost:7024/Api/MANAGE_COMPLAINTDETAILS_CONFIG/Getgmstakeaction";
 
   //For Content Management URLs
   private getParentMenusUrl = 'http://localhost:5097/api/CMS/GetParentMenus';
@@ -284,6 +286,18 @@ export class AuthService {
   
   deleteComplaintSubCategory(catid: string, subcatid: string): Observable<any> {
     return this.http.delete<any>(`${this.deletesubcaturl}?catid=${catid}&subcatid=${subcatid}`).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  getgmsComplaintdelail(): Observable<any> {
+    return this.http.get<any>(this.gmsComplaintdetailurl).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  getgmstakeaction(token: string): Observable<any> {
+    return this.http.get<any>(`${this.gmstakeactionurl}?token=${token}`).pipe(
       catchError(this.handleError)
     );
   }
