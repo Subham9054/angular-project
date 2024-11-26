@@ -13,4 +13,10 @@ export class UserRegistrationComponent {
       this.showpassword = !this.showpassword;
       this.toggletype = this.showpassword ? 'text' : 'password';
     }
+
+    showPassword: boolean = false;
+
+  togglePasswordVisibility(): void {
+    this.showPassword = !this.showPassword;
+  }
 }
