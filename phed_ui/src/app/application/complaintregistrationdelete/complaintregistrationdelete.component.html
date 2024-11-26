@@ -751,53 +751,57 @@
                 <div class="row">
                     <div class="col-xl-12">
                         <div class="view-forms view-form pb-0">
-                            <div class="row">
-                                <div class="col-xl-3 col-md-6">
-                                    <div class="mb-3">
-                                        <label class="form-label">Token No.</label>
-                                        <label class="form-value">202410230124</label>
+                            <div *ngFor="let item of takeactiongms">
+                                <div class="row">
+                                    <div class="col-xl-3 col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Token No.</label>
+                                            <label class="form-value">{{ item.vcH_TOKENNO }}</label>
+                                            <!-- <label class="form-value">202410230124</label> -->
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-xl-3 col-md-6">
-                                    <div class="mb-3">
-                                        <label class="form-label">Registration Date</label>
-                                        <label class="form-value">23-Oct-2024</label>
+                                    <div class="col-xl-3 col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Registration Date</label>
+                                            <label class="form-value">{{item.dtM_CREATED_ON | date: 'dd-MMM-yyyy'}}</label>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-xl-3 col-md-6">
-                                    <div class="mb-3">
-                                        <label class="form-label">Complainant Name</label>
-                                        <label class="form-value">Krishanumar</label>
+                                    <div class="col-xl-3 col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Complainant Name</label>
+                                            <label class="form-value">{{item.nvcH_COMPLIANTANT_NAME}}</label>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-xl-3 col-md-6">
-                                    <div class="mb-3">
-                                        <label class="form-label"> Near by Location</label>
-                                        <label class="form-value">-</label>
+                                    <div class="col-xl-3 col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label"> Near by Location</label>
+                                            <label class="form-value">{{item.nvcH_LANDMARK}}</label>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-xl-3 col-md-6">
-                                    <div class="mb-3">
-                                        <label class="form-label">Complaint Category</label>
-                                        <label class="form-value">Piped Water Supply Related </label>
+                                    <div class="col-xl-3 col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Complaint Category</label>
+                                            <label class="form-value">{{item.vcH_CATEGORY}} </label>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-xl-3 col-md-6">
-                                    <div class="mb-3">
-                                        <label class="form-label">Complaint Sub-Category</label>
-                                        <label class="form-value">Operator does not runs the motor</label>
+                                    <div class="col-xl-3 col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Complaint Sub-Category</label>
+                                            <label class="form-value">{{item.vcH_SUB_CATEGORY}}</label>
+                                        </div>
                                     </div>
-                                </div>
-
-
-                                <div class="col-xl-3 col-md-6">
-                                    <div class="mb-3">
-                                        <label class="form-label">Current Status</label>
-                                        <label class="form-value">Registered & Open</label>
+    
+    
+                                    <div class="col-xl-3 col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Current Status</label>
+                                            <label class="form-value">{{item.vcH_COMPLIANT_STATUS}}</label>
+                                        </div>
                                     </div>
+    
                                 </div>
-
                             </div>
+                            
                         </div>
                     </div>
                     <div class="col-xl-8">
