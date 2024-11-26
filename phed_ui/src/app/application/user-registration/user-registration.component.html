@@ -26,7 +26,7 @@
     <form>
       <div class="row">
 
-         <div class="col-xxl-10 col-lg-12">
+        <div class="col-xxl-10 col-lg-12">
           <div class="row">
 
             <div class="col-xl-4 col-lg-4 col-md-6">
@@ -43,17 +43,29 @@
               </div>
             </div>
 
+
             <div class="col-xl-4 col-lg-4 col-md-6">
               <div class="iconinput password mb-3">
                 <label for="password" class="form-label">User Password</label>
-                <input id="password" name="password" autocomplete="off"
-                  class="form-control passwordinput" type="password">
-                  <a href="javascript:void(0);" (click)="enableDisableBtn()" class="enablebtn"><i
-                    class="bi" [ngClass]="showpassword ? 'bi bi-eye' : 'bi-eye-slash' "></i></a>
+                <input id="password" name="password" autocomplete="off" [type]="showPassword ? 'text' : 'password'"
+                  class="form-control passwordinput" maxlength="6">
+                <a href="javascript:void(0);" (click)="togglePasswordVisibility()" class="enablebtn">
+                  <i class="bi" [ngClass]="showPassword ? 'bi bi-eye' : 'bi-eye-slash'"></i>
+                </a>
               </div>
             </div>
 
-
+            <div class="col-xl-4 col-lg-4 col-md-6">
+              <div class="mb-3">
+                <label for="district" class="form-label">District</label>
+                <select class="form-select" id="district">
+                  <option selected>Select</option>
+                  <option value="1">ARARIA</option>
+                  <option value="2">ARWAL</option>
+                  <option value="3">AURANGABAD</option>
+                </select>
+              </div>
+            </div>
 
 
             <div class="col-xl-4 col-lg-4 col-md-6">
@@ -67,6 +79,9 @@
                 </select>
               </div>
             </div>
+
+
+
 
 
             <div class="col-xl-4 col-lg-4 col-md-6">
@@ -91,12 +106,7 @@
             <div class="col-xl-4 col-lg-4 col-md-6">
               <div class="mb-3">
                 <label for="telephone" class="form-label">Office Telephone No.</label>
-                <div class="input-group">
-                  <label class="input-group-text">0612</label>
-                  <input name="telephone" type="text" maxlength="10" id="telephone" class="form-control" />
-                  <a class="input-group-text btn btn-primary" href="javascript:void(0);" data-bs-toggle="modal"
-                    data-bs-target="#telephoneexampleModal"><i class="bi bi-check-circle"></i></a>
-                </div>
+                <input name="telephone" type="text" maxlength="10" id="telephone" class="form-control" />
               </div>
             </div>
 
@@ -152,9 +162,9 @@
                 <label for="stattus" class="form-label">Status</label>
                 <select class="form-select" id="stattus">
                   <option selected>Select</option>
-                  <option value="1">One</option>
+                  <!-- <option value="1">One</option>
                   <option value="2">Two</option>
-                  <option value="3">Three</option>
+                  <option value="3">Three</option> -->
                 </select>
               </div>
             </div>
@@ -165,9 +175,9 @@
                 <label for="group" class="form-label">Group</label>
                 <select class="form-select" id="group">
                   <option selected>Select</option>
-                  <option value="1">One</option>
+                  <!-- <option value="1">One</option>
                   <option value="2">Two</option>
-                  <option value="3">Three</option>
+                  <option value="3">Three</option> -->
                 </select>
               </div>
             </div>
@@ -292,48 +302,3 @@
 </div>
 
 
-<div class="modal fade otp-modal" id="telephoneexampleModal" tabindex="-1" aria-labelledby="mailmodalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-md">
-    <div class="modal-content">
-
-      <div class="modal-body text-center p-5">
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        <h3 class="mb-4">OTP Verification</h3>
-        <h5>Wait a while for OTP to receive
-          <small class="text-secondary d-block">Sent to your Telephone number</small>
-        </h5>
-        <div class="mx-1">
-          <div class="row">
-            <div class="col">
-              <input type="number" class="form-control form-control-lg">
-            </div>
-            <div class="col">
-              <input type="number" class="form-control form-control-lg">
-            </div>
-            <div class="col">
-              <input type="number" class="form-control form-control-lg">
-            </div>
-            <div class="col">
-              <input type="number" class="form-control form-control-lg">
-            </div>
-            <div class="col">
-              <input type="number" class="form-control form-control-lg">
-            </div>
-            <div class="col">
-              <input type="number" class="form-control form-control-lg">
-            </div>
-          </div>
-        </div>
-        <div class="my-4 d-flex justify-content-between text-secondary">Didn't receive OTP yet?
-          <div>
-            <span class="d-block">02:00 min</span>
-          </div>
-        </div>
-        <div class="d-grid">
-          <button type="button" class="btn btn-primary">Verify OTP</button>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</div>
