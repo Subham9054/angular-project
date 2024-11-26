@@ -1,5 +1,6 @@
 export const environment = {
-  production: false,
+
+  production: true,
   url: '',
   apiUrl: 'https://localhost:44303/api/', 
   errorMsg: 'Some Error Occurred',
