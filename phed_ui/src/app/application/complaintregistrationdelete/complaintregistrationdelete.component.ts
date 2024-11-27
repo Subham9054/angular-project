@@ -24,6 +24,12 @@ export class ComplaintregistrationdeleteComponent {
   subcategories: any[] = [];
   complaintstatus: any[] = [];
   complainttype: any[] = [];
+  complaintdetails: any[] = [];
+  currentPage: number = 1;
+  pageSize: number = 10; 
+  totalPages: number = 1;
+  paginatedComplaints: any[] = [];
+  takeactiongms: any[]=[];
 
   formData: any = {
     ddlDistrict: '0',
@@ -65,6 +71,13 @@ export class ComplaintregistrationdeleteComponent {
       daysOfWeekDisabled: [0, 6],
     });
 
+    const today = new Date();
+    //this.updateDates(today);
+    this.getDistricts();
+    this.getCategories();
+    this.getComplaints();
+    this.getComplaintstype();
+    this.getgmsComplaintdelail();
   }
 
   private initializeData(): void {
@@ -76,6 +89,51 @@ export class ComplaintregistrationdeleteComponent {
     
   }
 
+  getgmsComplaintdelail() {
+    this.authService.getgmsComplaintdelail().subscribe(
+      response => {
+        this.complaintdetails = response; // Assign full data
+        this.totalPages = Math.ceil(this.complaintdetails.length / this.pageSize); // Calculate total pages
+        this.updatePagination(); // Initialize pagination
+      },
+      error => {
+        console.error('Error fetching Complaint details', error);
+      }
+    );
+  }
+  updatePagination(): void {
+    const startIndex = (this.currentPage - 1) * this.pageSize;
+    const endIndex = startIndex + this.pageSize;
+    this.paginatedComplaints = this.complaintdetails.slice(startIndex, endIndex);
+  }
+  goToPage(page: number): void {
+    if (page >= 1 && page <= this.totalPages) {
+      this.currentPage = page;
+      this.updatePagination();
+    }
+  }
+  nextPage(): void {
+    if (this.currentPage < this.totalPages) {
+      this.currentPage++;
+      this.updatePagination();
+    }
+  }
+
+  takeaction(tokenno: string): void {
+    debugger;
+    alert(tokenno);
+    this.authService.getgmstakeaction(tokenno).subscribe(
+      response => {
+        this.takeactiongms = response;
+        console.log('Data fetched successfully:', response); // Optional: For debugging purposes
+      },
+      error => {
+        console.error('Error fetching Complaint status:', error);
+        // Optional: Display error to the user, e.g., through a toast or alert.
+        alert('Failed to fetch complaint status. Please try again.');
+      }
+    );
+  }
   getComplaints(): void {
     this.authService.getcomplaintstatus().subscribe(
       response => {

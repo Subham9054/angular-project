@@ -48,7 +48,45 @@ namespace GMS.API
                 return StatusCode(StatusCodes.Status500InternalServerError, new { message = "An error occurred while processing your request." });
             }
         }
+        [HttpGet("GetGmsComplaintdetails")]
+        public async Task<IActionResult> getgmscomplaintdetails()
+        {
+            try
+            {
+                var complaints = await _MANAGE_COMPLAINTDETAILS_CONFIGRepository.getGmscomplaintdetail();
+                return Ok(complaints);
+            }
+            catch
+            {
+                return BadRequest("Error in fetching Districts");
+            }
+        }
 
+        [HttpGet("Getgmstakeaction")]
+        public async Task<IActionResult> Getgmstakeaction(string token)
+        {
+            if (token == null)
+            {
+                return NotFound("Please provide token number");
+                
+            }
+            try
+            {
+                var result = await _MANAGE_COMPLAINTDETAILS_CONFIGRepository.Getupdatetakeaction(token);
+
+                if (result == null || !result.Any())
+                {
+                    return NotFound("No records found for the specified token.");
+                }
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                // Log the exception as needed
+                return StatusCode(500, "An error occurred while retrieving escalations.");
+            }
+        }
 
         [HttpPost("CreateMANAGE_COMPLAINTDETAILS_CONFIG")]
         public IActionResult MANAGE_COMPLAINTDETAILS_CONFIG(MANAGE_COMPLAINTDETAILS_CONFIG_Model TBL)
