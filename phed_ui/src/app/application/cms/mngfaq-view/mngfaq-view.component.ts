@@ -56,7 +56,7 @@ export class MngfaqViewComponent implements OnInit {
     return this.sanitizer.bypassSecurityTrustHtml(html);
   }
 
-  // Method to handle the View action
+  // Method to handle the Modal View action
   onView(faq: any): void {
     this.selectedFaq = faq;
     // Ensure to sanitize the content when viewing in modal

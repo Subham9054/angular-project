@@ -394,13 +394,13 @@ export class AuthService {
     return this.http.get(`${this.galleryUrl}/GetGalleryByName?galleryName=${name}`).pipe(
       catchError(this.handleError)
     );
-  }
+  } 
 
   deleteGallery(id: number): Observable<any> {
-    return this.http.delete(`${this.galleryUrl}/DeleteGallery`, { body: { galleryId: id } }).pipe(
+    return this.http.delete(`${this.galleryUrl}/DeleteGallery?galleryId=${id}`).pipe(
       catchError(this.handleError)
     );
-  }
+  }  
 
   //Methods for Manage FAQs by Debasis Das
   createOrUpdateFAQ(faqData: any): Observable<any> {

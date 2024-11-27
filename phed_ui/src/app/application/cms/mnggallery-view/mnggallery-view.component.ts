@@ -21,6 +21,7 @@ export class MnggalleryViewComponent implements OnInit {
   }
 
   galleries: any[] = [];
+  selectedGallery: any = null;
   noRecordsFound = false;
 
   constructor(private authService: AuthService, private router: Router) {}
@@ -70,8 +71,14 @@ export class MnggalleryViewComponent implements OnInit {
     });
   }
 
+  // Method to handle the Modal View action
+  onView(galy: any): void {
+    this.selectedGallery = galy;
+  }
+
   // Method to handle the edit action
   editGalleryDetails(id: number) {
+    // Navigate to the edit page with galleryId as a route parameter
     this.router.navigate([`/application/mnggallery/${id}`]);
   }
 
@@ -83,21 +90,22 @@ export class MnggalleryViewComponent implements OnInit {
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Yes, delete it!',
-      cancelButtonText: 'No, keep it'
+      cancelButtonText: 'No, keep it',
     }).then((result) => {
       if (result.isConfirmed) {
         this.authService.deleteGallery(id).subscribe({
           next: () => {
-            this.galleries = this.galleries.filter(gallery => gallery.galleryId !== id);
-            this.noRecordsFound = this.galleries.length === 0; // Update if no records remain
+            // Remove the deleted gallery from the array
+            this.galleries = this.galleries.filter((gallery) => gallery.galleryId !== id);
+            this.noRecordsFound = this.galleries.length === 0; // Check if no records remain
             Swal.fire('Deleted!', 'Your gallery has been deleted.', 'success');
           },
           error: (error) => {
             console.error('Error deleting gallery:', error);
-            Swal.fire('Error', 'Unable to delete gallery', 'error');
-          }
+            Swal.fire('Error', 'Unable to delete the gallery. Please try again.', 'error');
+          },
         });
       }
     });
-  }
+  }  
 }
