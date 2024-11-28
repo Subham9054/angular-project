@@ -222,5 +222,33 @@ namespace Dropdown.API.Controllers
                 return BadRequest("Error in fetching Districts");
             }
         }
+
+        [HttpGet("GetallDemo")]
+        public async Task<IActionResult> getalldemo()
+        {
+            try
+            {
+                var demos = await _dropdownRepository.GetActiveDemoAsync();
+                return Ok(demos);
+            }
+            catch
+            {
+                return BadRequest("Error in fetching demos");
+            }
+        }
+
+        [HttpGet("GetallCategoryAndSubcategory")]
+        public async Task<IActionResult> GetallCategoryAndSubcategory()
+        {
+            try
+            {
+                var demos = await _dropdownRepository.GetActivecatsubDemoAsync();
+                return Ok(demos);
+            }
+            catch
+            {
+                return BadRequest("Error in fetching demos");
+            }
+        }
     }
 }
