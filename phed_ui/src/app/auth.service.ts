@@ -12,27 +12,28 @@ export class AuthService {
   private secretKey: string = 'my-secret-key'; 
   private token: string | null = null; // Store the token
 
-  private baseUrl: string = 'http://localhost:8085/api';
+  private baseUrl: string = 'https://localhost:7197';
   
 
-  private apiUrl = 'https://localhost:7199/Login'; // Your API URL for login
+  private apiUrl = `${this.baseUrl}/gateway/Login`; // Your API URL for login
   private registrationApiUrl = 'https://localhost:7024/Api/MANAGE_COMPLAINTDETAILS_CONFIG/DetailcomplaintRegistration';
-  private complaintApiUrl = 'https://localhost:7010/Api/MANAGE_CATEGORYMASTER/ComplaintCategory';
-  private getComplaintApiUrl = 'https://localhost:7010/Api/MANAGE_CATEGORYMASTER/GetallComplaint';
-  private updateComplaintApiUrl = 'https://localhost:7010/Api/MANAGE_CATEGORYMASTER/UpdateComplaint';
+  private complaintApiUrl = `${this.baseUrl}/gateway/ComplaintCategory`;
+  private getComplaintApiUrl = `${this.baseUrl}/gateway/GetallComplaint`;
+  private updateComplaintApiUrl = `${this.baseUrl}/gateway/UpdateComplaint`;
   private getComplaintByIdApiUrl = 'http://172.27.32.0:8085/api/Complaint/GetComplaintById';
-  private deleteapiurl = 'https://localhost:7010/Api/MANAGE_CATEGORYMASTER/deleteComplaintbyid';
-  private districturl = 'https://localhost:7225/api/Dropdown/GetDistricts';  
-  private blockurl = 'https://localhost:7225/api/Dropdown/GetBlocks';
-  private gpurl = 'https://localhost:7225/api/Dropdown/GetGp';
-  private villageurl = 'https://localhost:7225/api/Dropdown/GetVillages';
-  private categoryUrl = 'https://localhost:7225/api/Dropdown/GetCategory';
-  private subcategoryUrl = 'https://localhost:7225/api/Dropdown/GetSubCategories';
-  private fileUploadUrl = 'http://172.27.32.0:8085/api/ComplaintsRegistration/UploadFile';
+  private deleteapiurl = `${this.baseUrl}/gateway/deleteComplaintbyid`;
+  private districturl =  `${this.baseUrl}/gateway/GetDistricts`;  
+  private blockurl =  `${this.baseUrl}/gateway/GetBlocks`;
+  private gpurl =  `${this.baseUrl}/gateway/GetGp`;
+  private villageurl =  `${this.baseUrl}/gateway/GetVillages`;
+  private wardurl= `${this.baseUrl}/gateway/GetWards`
+  private categoryUrl =  `${this.baseUrl}/gateway/GetCategory`;
+  private subcategoryUrl =  `${this.baseUrl}/gateway/GetSubCategories`;
+  private fileUploadUrl =  `${this.baseUrl}/gateway/UploadFile`;
   private complaintstatusUrl = 'http://172.27.32.0:8085/api/ComplaintsRegistration/GetComplaints';
-  private complainttypeurl = 'https://localhost:7225/api/Dropdown/GetComplaintstype';
-  private getdesignationurl='https://localhost:7225/api/Dropdown/GetDesignation';
-  private getloclevel='https://localhost:7225/api/Dropdown/GetLocationLevel';
+  private complainttypeurl =  `${this.baseUrl}/gateway/GetComplaintstype`;
+  private getdesignationurl= `${this.baseUrl}/gateway/GetDesignation`;
+  private getloclevel= `${this.baseUrl}/gateway/GetLocationLevel`;
   private insertescalationurl="https://localhost:7237/Api/MANAGE_ESCALATION_CONFIGDETAILS/insertescalation";
   private checkApiUrl = 'https://localhost:7237/Api/MANAGE_ESCALATION_CONFIGDETAILS/check';
   private viewEscalationurl='https://localhost:7237/Api/MANAGE_ESCALATION_CONFIGDETAILS/viewescalation';
@@ -154,6 +155,11 @@ export class AuthService {
     );
   }
 
+  wards( villageid: number): Observable<any> {
+    return this.http.get<any>(`${this.wardurl}?villageid=${villageid}`).pipe(
+      catchError(this.handleError)
+    );
+  }
   // Registration data submission
   submitRegistration(registrationData: any): Observable<any> {
     return this.http.post(this.registrationApiUrl, registrationData, {

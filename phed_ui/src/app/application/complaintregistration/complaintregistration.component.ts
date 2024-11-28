@@ -44,6 +44,7 @@ export class ComplaintregistrationComponent  {
   blocks: any[] = [];
   gps: any[] = [];
   villages: any[] = [];
+  wards: any[]=[];
   categories: any[] = [];
   subcategories: any[] = [];
   complainttype:any[]=[];
@@ -60,11 +61,12 @@ export class ComplaintregistrationComponent  {
     ddlBlock: [null],
     ddlPanchayat: [null],
     ddlVillage: [null],
+    ddlward:[null],
     ddlComplaintCategory: [null],
     ddlSubCategory: [null],
     txtDetailsE: '',
     txtLandmark: '',
-    ddlComplainttype:'0',
+    ddlComplainttype:[null],
     ddllanguage:'1'
   };
 
@@ -118,6 +120,7 @@ export class ComplaintregistrationComponent  {
   
 
   getDistricts() {
+    debugger;
     this.authService.getDistricts().subscribe(
       response => {
         this.districts = response;
@@ -175,6 +178,24 @@ export class ComplaintregistrationComponent  {
         response => {
           this.villages = response;
           console.log(this.villages);
+        },
+        error => {
+          console.error('Error fetching villages', error);
+        }
+      );
+    } else {
+      console.error('Invalid district, block, or GP ID');
+    }
+  }
+  onVillage(event: any) {
+    debugger;
+    const villageid = event.inT_VILLAGE_ID;
+    if (!isNaN(villageid)) {
+      this.authService.wards(villageid).subscribe(
+        response => {
+          console.log("OK" +response)
+          this.wards = response;
+         // console.log(this.wards);
         },
         error => {
           console.error('Error fetching villages', error);

@@ -58,8 +58,8 @@ export class ComplaintcategoryViewComponent implements OnInit {
         response => {
           console.log('complaint category delete successful', response);
           alert("complaint category delete successful");
-          this.router.navigate(['/complaintcategory-view']);
-          this.authService.getAllComplaints().subscribe();
+          // this.router.navigate(['/complaintcategory-view']);
+          // this.authService.getAllComplaints().subscribe();
           window.location.reload();
           this.loadingService.stopLoading();  // Hide loader after delete request
         },
