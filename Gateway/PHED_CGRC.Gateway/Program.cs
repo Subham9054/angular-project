@@ -6,12 +6,25 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAllOrigins",
+        builder => builder.AllowAnyOrigin()
+                          .AllowAnyMethod()
+                          .AllowAnyHeader());
+});
 
 builder.Configuration.AddJsonFile("ocelot.json", false, false);
 
 builder.Services.AddOcelot(builder.Configuration);
 var app = builder.Build();
 
+app.UseCors("AllowAllOrigins");
+
+// Enable HTTPS redirection
+app.UseHttpsRedirection();
+
+// Use Ocelot for API Gateway
 await app.UseOcelot();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -20,7 +33,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
 
 var summaries = new[]
 {

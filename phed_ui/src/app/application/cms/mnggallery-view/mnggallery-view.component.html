@@ -93,8 +93,7 @@
                       <td style="text-align: center; vertical-align: middle;"><img [src]="gallery.thumbImage" alt="{{ gallery.captionEnglish }}" style="height: 50px; width: 50px;" class="img-fluid" /></td>
                       <td>
                         <div class="d-flex gap-1">
-                            <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"
-                            data-bs-toggle="modal" data-bs-target="#viewmodal">
+                            <a href="javascript:void(0);" (click)="onView(gallery)" class="btn btn-outline-success btn-sm" title="View" data-bs-toggle="modal" data-bs-target="#galleryModal">
                             <i class="bi bi-eye"></i></a>
                           <button class="btn btn-outline-primary btn-sm" (click)="editGalleryDetails(gallery.galleryId)" title="Edit"><i class="bi bi-pencil"></i></button>
                           <button class="btn btn-outline-danger btn-sm" (click)="deleteGalleryDetails(gallery.galleryId)" title="Delete"><i class="bi bi-trash3"></i></button>
@@ -108,26 +107,36 @@
 </div>
 
 <!-- Modal View  -->
-<div class="modal fade" id="viewmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="galleryModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-md modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Gallery</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel" style="color:blue; font-weight: bold;">Gallery</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body view-form">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="img-fluid mb-3">
-                            <img src="./assets/img/login-bg.png" alt="Profile Image" class="modal-banner">
+                            <img *ngIf="selectedGallery?.thumbImage" 
+                                [src]="selectedGallery.thumbImage" 
+                                alt="Gallery Thumbnail" 
+                                class="img-fluid mb-3 modal-banner" 
+                                 style="max-height: 300px; width: auto; border: 1px solid #ddd; padding: 10px;"
+                            />
                         </div>
                     </div>
 
-                    <div class="col-md-12">
-                        <label class="form-label">Caption</label>
-                        <label class="form-value">
-                            Our government is dedicated to ensuring that every household in Bihar has access
-                            to safe, clean drinking water through the PHED's robust infrastructure.
+                    <div class="col-md-6">
+                        <label class="form-value" style="color: black; font-weight: bold;">Caption (English)</label>
+                        <label *ngIf="selectedGallery?.captionEnglish" class="form-label">
+                            {{ selectedGallery.captionEnglish }}
+                        </label>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-value" style="color: black; font-weight: bold;">Caption (हिंदी)</label>
+                        <label *ngIf="selectedGallery?.captionHindi" class="form-label">
+                            {{ selectedGallery.captionHindi }}
                         </label>
                     </div>
                 </div>

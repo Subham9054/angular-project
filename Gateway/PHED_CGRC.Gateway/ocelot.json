@@ -16,11 +16,36 @@
   },
   "Routes": [
     {
-      "UpstreamPathTemplate": "/gateway/MANAGE_CATEGORYMASTER/CreateMANAGE_CATEGORYMASTER",
+      "UpstreamPathTemplate": "/gateway/Login",
       "UpstreamHttpMethod": [
         "Post"
       ],
-      "DownstreamPathTemplate": "/Api/MANAGE_CATEGORYMASTER/CreateMANAGE_CATEGORYMASTER",
+      "DownstreamPathTemplate": "/Login",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7199
+        }
+      ],
+      "RateLimitOptions": {
+        "DisableRateLimitHeaders": false,
+        "QuotaExceededMessage": "<Add your message>",
+        "HttpStatusCode": 9999,
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 1
+      }
+    },
+    //category
+    {
+      "UpstreamPathTemplate": "/gateway/ComplaintCategory",
+      "UpstreamHttpMethod": [
+        "Post"
+      ],
+      "DownstreamPathTemplate": "/Api/MANAGE_CATEGORYMASTER/ComplaintCategory",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
@@ -64,83 +89,11 @@
       }
     },
     {
-      "UpstreamPathTemplate": "/gateway/MANAGE_CATEGORYMASTER/GetMANAGE_CATEGORYMASTER",
-      "UpstreamHttpMethod": [
-        "Get"
-      ],
-      "DownstreamPathTemplate": "/Api/MANAGE_CATEGORYMASTER/GetMANAGE_CATEGORYMASTER",
-      "DownstreamScheme": "https",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 7010
-        }
-      ],
-      "RateLimitOptions": {
-        "DisableRateLimitHeaders": false,
-        "QuotaExceededMessage": "<Add your message>",
-        "HttpStatusCode": 9999,
-        "ClientWhitelist": [],
-        "EnableRateLimiting": true,
-        "Period": "1s",
-        "PeriodTimespan": 1,
-        "Limit": 1
-      }
-    },
-    {
-      "UpstreamPathTemplate": "/gateway/GetallComplaint",
-      "UpstreamHttpMethod": [
-        "Get"
-      ],
-      "DownstreamPathTemplate": "/Api/MANAGE_CATEGORYMASTER/GetallComplaint",
-      "DownstreamScheme": "https",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 7010
-        }
-      ],
-      "RateLimitOptions": {
-        "DisableRateLimitHeaders": false,
-        "QuotaExceededMessage": "<Add your message>",
-        "HttpStatusCode": 9999,
-        "ClientWhitelist": [],
-        "EnableRateLimiting": true,
-        "Period": "1s",
-        "PeriodTimespan": 1,
-        "Limit": 1
-      }
-    },
-    {
-      "UpstreamPathTemplate": "/gateway/MANAGE_CATEGORYMASTER/GetByIDMANAGE_CATEGORYMASTER",
-      "UpstreamHttpMethod": [
-        "Get"
-      ],
-      "DownstreamPathTemplate": "/Api/MANAGE_CATEGORYMASTER/GetByIDMANAGE_CATEGORYMASTER",
-      "DownstreamScheme": "https",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 7010
-        }
-      ],
-      "RateLimitOptions": {
-        "DisableRateLimitHeaders": false,
-        "QuotaExceededMessage": "<Add your message>",
-        "HttpStatusCode": 9999,
-        "ClientWhitelist": [],
-        "EnableRateLimiting": true,
-        "Period": "1s",
-        "PeriodTimespan": 1,
-        "Limit": 1
-      }
-    },
-    {
-      "UpstreamPathTemplate": "/gateway/MANAGE_SUBCATEGORYMASTER/CreateMANAGE_SUBCATEGORYMASTER",
+      "UpstreamPathTemplate": "/gateway/UpdateComplaint",
       "UpstreamHttpMethod": [
         "Post"
       ],
-      "DownstreamPathTemplate": "/Api/MANAGE_SUBCATEGORYMASTER/CreateMANAGE_SUBCATEGORYMASTER",
+      "DownstreamPathTemplate": "/Api/MANAGE_CATEGORYMASTER/UpdateComplaint",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
@@ -160,11 +113,60 @@
       }
     },
     {
-      "UpstreamPathTemplate": "/gateway/MANAGE_SUBCATEGORYMASTER/GetMANAGE_SUBCATEGORYMASTER",
+      "UpstreamPathTemplate": "/gateway/deleteComplaintbyid",
+      "UpstreamHttpMethod": [
+        "Post"
+      ],
+      "DownstreamPathTemplate": "/Api/MANAGE_CATEGORYMASTER/deleteComplaintbyid",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7010
+        }
+      ],
+      "RateLimitOptions": {
+        "DisableRateLimitHeaders": false,
+        "QuotaExceededMessage": "<Add your message>",
+        "HttpStatusCode": 9999,
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 1
+      }
+    },
+    //subcategory
+    {
+      "UpstreamPathTemplate": "/gateway/ComplaintSubCategory",
+      "UpstreamHttpMethod": [
+        "Post"
+      ],
+      "DownstreamPathTemplate": "/Api/MANAGE_SUBCATEGORYMASTER/ComplaintSubCategory",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7010
+        }
+      ],
+      "RateLimitOptions": {
+        "DisableRateLimitHeaders": false,
+        "QuotaExceededMessage": "<Add your message>",
+        "HttpStatusCode": 9999,
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 1
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/ViewComplaintSubCategory",
       "UpstreamHttpMethod": [
         "Get"
       ],
-      "DownstreamPathTemplate": "/Api/MANAGE_SUBCATEGORYMASTER/GetMANAGE_SUBCATEGORYMASTER",
+      "DownstreamPathTemplate": "/Api/MANAGE_SUBCATEGORYMASTER/ViewComplaintSubCategory",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
@@ -184,35 +186,35 @@
       }
     },
     {
-      "UpstreamPathTemplate": "/gateway/MANAGE_SUBCATEGORYMASTER/DeleteMANAGE_SUBCATEGORYMASTER",
+      "UpstreamPathTemplate": "/gateway/UpdateComplaintSubCategory",
+      "UpstreamHttpMethod": [
+        "Put"
+      ],
+      "DownstreamPathTemplate": "/Api/MANAGE_SUBCATEGORYMASTER/UpdateComplaintSubCategory",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7010
+        }
+      ],
+      "RateLimitOptions": {
+        "DisableRateLimitHeaders": false,
+        "QuotaExceededMessage": "<Add your message>",
+        "HttpStatusCode": 9999,
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 1
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/DeleteSubcat",
       "UpstreamHttpMethod": [
         "Delete"
       ],
-      "DownstreamPathTemplate": "/Api/MANAGE_SUBCATEGORYMASTER/DeleteMANAGE_SUBCATEGORYMASTER",
-      "DownstreamScheme": "https",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 7010
-        }
-      ],
-      "RateLimitOptions": {
-        "DisableRateLimitHeaders": false,
-        "QuotaExceededMessage": "<Add your message>",
-        "HttpStatusCode": 9999,
-        "ClientWhitelist": [],
-        "EnableRateLimiting": true,
-        "Period": "1s",
-        "PeriodTimespan": 1,
-        "Limit": 1
-      }
-    },
-    {
-      "UpstreamPathTemplate": "/gateway/MANAGE_SUBCATEGORYMASTER/GetByIDMANAGE_SUBCATEGORYMASTER",
-      "UpstreamHttpMethod": [
-        "Get"
-      ],
-      "DownstreamPathTemplate": "/Api/MANAGE_SUBCATEGORYMASTER/GetByIDMANAGE_SUBCATEGORYMASTER",
+      "DownstreamPathTemplate": "/Api/MANAGE_SUBCATEGORYMASTER/DeleteSubcat",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
@@ -326,13 +328,15 @@
         "PeriodTimespan": 1,
         "Limit": 1
       }
-    },
+    }
+    //escalation
+    ,
     {
-      "UpstreamPathTemplate": "/gateway/MANAGE_ESCALATION_CONFIGDETAILS/CreateMANAGE_ESCALATION_CONFIGDETAILS",
+      "UpstreamPathTemplate": "/gateway/insertescalation",
       "UpstreamHttpMethod": [
         "Post"
       ],
-      "DownstreamPathTemplate": "/Api/MANAGE_ESCALATION_CONFIGDETAILS/CreateMANAGE_ESCALATION_CONFIGDETAILS",
+      "DownstreamPathTemplate": "/Api/MANAGE_ESCALATION_CONFIGDETAILS/insertescalation",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
@@ -352,11 +356,11 @@
       }
     },
     {
-      "UpstreamPathTemplate": "/gateway/MANAGE_ESCALATION_CONFIGDETAILS/GetMANAGE_ESCALATION_CONFIGDETAILS",
+      "UpstreamPathTemplate": "/gateway/check",
       "UpstreamHttpMethod": [
         "Get"
       ],
-      "DownstreamPathTemplate": "/Api/MANAGE_ESCALATION_CONFIGDETAILS/GetMANAGE_ESCALATION_CONFIGDETAILS",
+      "DownstreamPathTemplate": "/Api/MANAGE_ESCALATION_CONFIGDETAILS/check",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
@@ -376,35 +380,59 @@
       }
     },
     {
-      "UpstreamPathTemplate": "/gateway/MANAGE_ESCALATION_CONFIGDETAILS/DeleteMANAGE_ESCALATION_CONFIGDETAILS",
-      "UpstreamHttpMethod": [
-        "Delete"
-      ],
-      "DownstreamPathTemplate": "/Api/MANAGE_ESCALATION_CONFIGDETAILS/DeleteMANAGE_ESCALATION_CONFIGDETAILS",
-      "DownstreamScheme": "https",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 7237
-        }
-      ],
-      "RateLimitOptions": {
-        "DisableRateLimitHeaders": false,
-        "QuotaExceededMessage": "<Add your message>",
-        "HttpStatusCode": 9999,
-        "ClientWhitelist": [],
-        "EnableRateLimiting": true,
-        "Period": "1s",
-        "PeriodTimespan": 1,
-        "Limit": 1
-      }
-    },
-    {
-      "UpstreamPathTemplate": "/gateway/MANAGE_ESCALATION_CONFIGDETAILS/GetByIDMANAGE_ESCALATION_CONFIGDETAILS",
+      "UpstreamPathTemplate": "/gateway/viewescalation",
       "UpstreamHttpMethod": [
         "Get"
       ],
-      "DownstreamPathTemplate": "/Api/MANAGE_ESCALATION_CONFIGDETAILS/GetByIDMANAGE_ESCALATION_CONFIGDETAILS",
+      "DownstreamPathTemplate": "/Api/MANAGE_ESCALATION_CONFIGDETAILS/viewescalation",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7237
+        }
+      ],
+      "RateLimitOptions": {
+        "DisableRateLimitHeaders": false,
+        "QuotaExceededMessage": "<Add your message>",
+        "HttpStatusCode": 9999,
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 1
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/viewescalationeye",
+      "UpstreamHttpMethod": [
+        "Get"
+      ],
+      "DownstreamPathTemplate": "/Api/MANAGE_ESCALATION_CONFIGDETAILS/viewescalationeye",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7237
+        }
+      ],
+      "RateLimitOptions": {
+        "DisableRateLimitHeaders": false,
+        "QuotaExceededMessage": "<Add your message>",
+        "HttpStatusCode": 9999,
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 1
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/viewupdatepen",
+      "UpstreamHttpMethod": [
+        "Get"
+      ],
+      "DownstreamPathTemplate": "/Api/MANAGE_ESCALATION_CONFIGDETAILS/viewupdatepen",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
@@ -506,6 +534,319 @@
         {
           "Host": "localhost",
           "Port": 7182
+        }
+      ],
+      "RateLimitOptions": {
+        "DisableRateLimitHeaders": false,
+        "QuotaExceededMessage": "<Add your message>",
+        "HttpStatusCode": 9999,
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 1
+      }
+    },
+    //Dropdown Api
+    {
+      "UpstreamPathTemplate": "/gateway/GetDistricts",
+      "UpstreamHttpMethod": [
+        "Get"
+      ],
+      "DownstreamPathTemplate": "/api/Dropdown/GetDistricts",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7225
+        }
+      ],
+      "RateLimitOptions": {
+        "DisableRateLimitHeaders": false,
+        "QuotaExceededMessage": "<Add your message>",
+        "HttpStatusCode": 9999,
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 1
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/GetBlocks",
+      "UpstreamHttpMethod": [
+        "Get"
+      ],
+      "DownstreamPathTemplate": "/api/Dropdown/GetBlocks",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7225
+        }
+      ],
+      "RateLimitOptions": {
+        "DisableRateLimitHeaders": false,
+        "QuotaExceededMessage": "<Add your message>",
+        "HttpStatusCode": 9999,
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 1
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/GetGp",
+      "UpstreamHttpMethod": [
+        "Get"
+      ],
+      "DownstreamPathTemplate": "/api/Dropdown/GetGp",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7225
+        }
+      ],
+      "RateLimitOptions": {
+        "DisableRateLimitHeaders": false,
+        "QuotaExceededMessage": "<Add your message>",
+        "HttpStatusCode": 9999,
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 1
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/GetVillages",
+      "UpstreamHttpMethod": [
+        "Get"
+      ],
+      "DownstreamPathTemplate": "/api/Dropdown/GetVillages",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7225
+        }
+      ],
+      "RateLimitOptions": {
+        "DisableRateLimitHeaders": false,
+        "QuotaExceededMessage": "<Add your message>",
+        "HttpStatusCode": 9999,
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 1
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/GetWards",
+      "UpstreamHttpMethod": [
+        "Get"
+      ],
+      "DownstreamPathTemplate": "/api/Dropdown/GetWards",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7225
+        }
+      ],
+      "RateLimitOptions": {
+        "DisableRateLimitHeaders": false,
+        "QuotaExceededMessage": "<Add your message>",
+        "HttpStatusCode": 9999,
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 1
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/UploadFile",
+      "UpstreamHttpMethod": [
+        "Post"
+      ],
+      "DownstreamPathTemplate": "/api/Dropdown/UploadFile",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7225
+        }
+      ],
+      "RateLimitOptions": {
+        "DisableRateLimitHeaders": false,
+        "QuotaExceededMessage": "<Add your message>",
+        "HttpStatusCode": 9999,
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 1
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/GetComplaints",
+      "UpstreamHttpMethod": [
+        "Get"
+      ],
+      "DownstreamPathTemplate": "/api/Dropdown/GetComplaints",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7225
+        }
+      ],
+      "RateLimitOptions": {
+        "DisableRateLimitHeaders": false,
+        "QuotaExceededMessage": "<Add your message>",
+        "HttpStatusCode": 9999,
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 1
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/GetComplaintstype",
+      "UpstreamHttpMethod": [
+        "Get"
+      ],
+      "DownstreamPathTemplate": "/api/Dropdown/GetComplaintstype",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7225
+        }
+      ],
+      "RateLimitOptions": {
+        "DisableRateLimitHeaders": false,
+        "QuotaExceededMessage": "<Add your message>",
+        "HttpStatusCode": 9999,
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 1
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/GetCategory",
+      "UpstreamHttpMethod": [
+        "Get"
+      ],
+      "DownstreamPathTemplate": "/api/Dropdown/GetCategory",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7225
+        }
+      ],
+      "RateLimitOptions": {
+        "DisableRateLimitHeaders": false,
+        "QuotaExceededMessage": "<Add your message>",
+        "HttpStatusCode": 9999,
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 1
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/GetSubCategories",
+      "UpstreamHttpMethod": [
+        "Get"
+      ],
+      "DownstreamPathTemplate": "/api/Dropdown/GetSubCategories",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7225
+        }
+      ],
+      "RateLimitOptions": {
+        "DisableRateLimitHeaders": false,
+        "QuotaExceededMessage": "<Add your message>",
+        "HttpStatusCode": 9999,
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 1
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/GetDesignation",
+      "UpstreamHttpMethod": [
+        "Get"
+      ],
+      "DownstreamPathTemplate": "/api/Dropdown/GetDesignation",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7225
+        }
+      ],
+      "RateLimitOptions": {
+        "DisableRateLimitHeaders": false,
+        "QuotaExceededMessage": "<Add your message>",
+        "HttpStatusCode": 9999,
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 1
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/GetLocationLevel",
+      "UpstreamHttpMethod": [
+        "Get"
+      ],
+      "DownstreamPathTemplate": "/api/Dropdown/GetLocationLevel",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7225
+        }
+      ],
+      "RateLimitOptions": {
+        "DisableRateLimitHeaders": false,
+        "QuotaExceededMessage": "<Add your message>",
+        "HttpStatusCode": 9999,
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 1
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/GetComplaintPriority",
+      "UpstreamHttpMethod": [
+        "Get"
+      ],
+      "DownstreamPathTemplate": "/api/Dropdown/GetComplaintPriority",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7225
         }
       ],
       "RateLimitOptions": {
