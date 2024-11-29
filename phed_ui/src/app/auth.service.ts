@@ -15,7 +15,9 @@ export class AuthService {
   private baseUrl: string = 'https://localhost:7197';
   
 
-  private apiUrl = `${this.baseUrl}/gateway/Login`; // Your API URL for login
+  //private apiUrl = `${this.baseUrl}/gateway/Login`; // Your API URL for login
+  private apiUrl ='https://localhost:7199/Login';
+  
   private registrationApiUrl = 'https://localhost:7024/Api/MANAGE_COMPLAINTDETAILS_CONFIG/DetailcomplaintRegistration';
   private complaintApiUrl = `${this.baseUrl}/gateway/ComplaintCategory`;
   private getComplaintApiUrl = `${this.baseUrl}/gateway/GetallComplaint`;
@@ -62,6 +64,9 @@ export class AuthService {
   private getBannerByNameUrl = 'http://localhost:5097/api/CMS/GetBannerByName';
   private deleteBannerUrl = 'http://localhost:5097/api/CMS/DeleteBanner';
 
+
+
+  private eventUrl = 'http://localhost:5097/api/CMS'; //Base URL for Managing News & Events
   private galleryUrl = 'http://localhost:5097/api/Gallery'; //Base URL for Managing Gallery
   private faqUrl = 'http://localhost:5097/api/FAQ'; //Base URL for Managing FAQs
 
@@ -384,6 +389,41 @@ export class AuthService {
     const url = `${this.deleteBannerUrl}?bannerId=${id}`;
     return this.http.delete(url).pipe(
         catchError(this.handleError)
+    );
+  }
+
+  //Methods for Manage News & Events by Debasis Das
+  createOrUpdateEvent(formData: FormData, id?: number): Observable<any> {
+    const headers = new HttpHeaders();
+    const url = id ? `${this.eventUrl}/CreateOrUpdateEvent?eventId=${id}` : `${this.eventUrl}/CreateOrUpdateEvent`;
+    
+    // Use POST for both creating and updating
+    return this.http.post(url, formData, { headers }).pipe(
+        catchError(this.handleError)
+    );
+  }
+
+  getEvents(): Observable<any> {
+    return this.http.get(`${this.eventUrl}/GetEvents`).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  getEventById(id: number): Observable<any> {
+    return this.http.get(`${this.eventUrl}/GetEventById?eventId=${id}`).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  getEventByName(name: string): Observable<any> {
+    return this.http.get(`${this.eventUrl}/GetEventByName?eventName=${name}`).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  deleteEvent(id: number): Observable<any> {
+    return this.http.delete(`${this.eventUrl}/DeleteEvent?galleryId=${id}`).pipe(
+      catchError(this.handleError)
     );
   }
 
