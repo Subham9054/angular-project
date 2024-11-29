@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/auth.service';
-
 import Swal from 'sweetalert2';
 
 @Component({
@@ -26,7 +24,6 @@ export class MnggalleryComponent implements OnInit {
   selectedType: string = '';
   thumbnailFiles: File[] = [];
   imageFiles: File[] = [];
-  routerSubscription!: Subscription;
 
   constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute) {}
 
