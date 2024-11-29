@@ -12,11 +12,11 @@ export class AuthService {
   private secretKey: string = 'my-secret-key'; 
   private token: string | null = null; // Store the token
 
-  private baseUrl: string = 'https://localhost:7197';
+  private baseUrl: string = 'http://192.168.10.47:5009';
   
 
   private apiUrl = `${this.baseUrl}/gateway/Login`; // Your API URL for login
-  private registrationApiUrl = 'https://localhost:7024/Api/MANAGE_COMPLAINTDETAILS_CONFIG/DetailcomplaintRegistration';
+  private registrationApiUrl = 'http://192.168.10.47:5002/Api/MANAGE_COMPLAINTDETAILS_CONFIG/DetailcomplaintRegistration';
   private complaintApiUrl = `${this.baseUrl}/gateway/ComplaintCategory`;
   private getComplaintApiUrl = `${this.baseUrl}/gateway/GetallComplaint`;
   private updateComplaintApiUrl = `${this.baseUrl}/gateway/UpdateComplaint`;
@@ -30,22 +30,22 @@ export class AuthService {
   private categoryUrl =  `${this.baseUrl}/gateway/GetCategory`;
   private subcategoryUrl =  `${this.baseUrl}/gateway/GetSubCategories`;
   private fileUploadUrl =  `${this.baseUrl}/gateway/UploadFile`;
-  private complaintstatusUrl = 'http://172.27.32.0:8085/api/ComplaintsRegistration/GetComplaints';
+  private complaintstatusUrl = `${this.baseUrl}/gateway/GetComplaints`;
   private complainttypeurl =  `${this.baseUrl}/gateway/GetComplaintstype`;
   private getdesignationurl= `${this.baseUrl}/gateway/GetDesignation`;
   private getloclevel= `${this.baseUrl}/gateway/GetLocationLevel`;
-  private insertescalationurl="https://localhost:7237/Api/MANAGE_ESCALATION_CONFIGDETAILS/insertescalation";
-  private checkApiUrl = 'https://localhost:7237/Api/MANAGE_ESCALATION_CONFIGDETAILS/check';
-  private viewEscalationurl='https://localhost:7237/Api/MANAGE_ESCALATION_CONFIGDETAILS/viewescalation';
-  private viewEscalationurleye= 'https://localhost:7237/Api/MANAGE_ESCALATION_CONFIGDETAILS/viewescalationeye';
-  private viewupdatepenurl='https://localhost:7237/Api/MANAGE_ESCALATION_CONFIGDETAILS/viewupdatepen';
-  private getPrioritiesUrl='https://localhost:7225/api/Dropdown/GetComplaintPriority';
-  private submitsubcaturl='https://localhost:7010/Api/MANAGE_SUBCATEGORYMASTER/ComplaintSubCategory'
-  private getallsubcaturl = 'https://localhost:7010/Api/MANAGE_SUBCATEGORYMASTER/ViewComplaintSubCategory';
-  private updatesubcaturl='https://localhost:7010/Api/MANAGE_SUBCATEGORYMASTER/UpdateComplaintSubCategory';
-  private deletesubcaturl= 'https://localhost:7010/Api/MANAGE_SUBCATEGORYMASTER/DeleteSubcat';
-  private gmsComplaintdetailurl="https://localhost:7024/Api/MANAGE_COMPLAINTDETAILS_CONFIG/GetGmsComplaintdetails";
-  private gmstakeactionurl="https://localhost:7024/Api/MANAGE_COMPLAINTDETAILS_CONFIG/Getgmstakeaction";
+  private insertescalationurl=`${this.baseUrl}/gateway/insertescalation`;
+  private checkApiUrl = `${this.baseUrl}/gateway/check`;
+  private viewEscalationurl=`${this.baseUrl}/gateway/viewescalation`;
+  private viewEscalationurleye= `${this.baseUrl}/gateway/viewescalationeye`;
+  private viewupdatepenurl=`${this.baseUrl}/gateway/viewupdatepen`;
+  private getPrioritiesUrl=`${this.baseUrl}/gateway/GetComplaintPriority`;
+  private submitsubcaturl=`${this.baseUrl}/gateway/ComplaintSubCategory`;
+  private getallsubcaturl = `${this.baseUrl}/gateway/ViewComplaintSubCategory`;
+  private updatesubcaturl=`${this.baseUrl}/gateway/UpdateComplaintSubCategory`;
+  private deletesubcaturl= `${this.baseUrl}/gateway/DeleteSubcat`;
+  private gmsComplaintdetailurl="http://192.168.10.47:5002/Api/MANAGE_COMPLAINTDETAILS_CONFIG/GetGmsComplaintdetails";
+  private gmstakeactionurl="http://192.168.10.47:5002/Api/MANAGE_COMPLAINTDETAILS_CONFIG/Getgmstakeaction";
 
   //For Content Management URLs
   private getParentMenusUrl = 'http://localhost:5097/api/CMS/GetParentMenus';

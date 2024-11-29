@@ -1,6 +1,6 @@
 {
   "GlobalConfiguration": {
-    "BaseUrl": "https://localhost:7197",
+    "BaseUrl": "http://192.168.10.47:5009",
     "RequestIdKey": "e133bbb6-7b30-41d3-83e5-e0d854151b15",
     "AdministrationPath": "/administration",
     "RateLimitOptions": {
@@ -24,8 +24,8 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7199
+          "Host": "http://192.168.10.47",
+          "Port": 5004
         }
       ],
       "RateLimitOptions": {
@@ -49,8 +49,8 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7010
+          "Host": "http://192.168.10.47",
+          "Port": 5000
         }
       ],
       "RateLimitOptions": {
@@ -73,8 +73,8 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7010
+          "Host": "http://192.168.10.47",
+          "Port": 5000
         }
       ],
       "RateLimitOptions": {
@@ -97,8 +97,8 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7010
+          "Host": "http://192.168.10.47",
+          "Port": 5000
         }
       ],
       "RateLimitOptions": {
@@ -121,8 +121,8 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7010
+          "Host": "http://192.168.10.47",
+          "Port": 5000
         }
       ],
       "RateLimitOptions": {
@@ -146,8 +146,8 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7010
+          "Host": "http://192.168.10.47",
+          "Port": 5000
         }
       ],
       "RateLimitOptions": {
@@ -170,8 +170,8 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7010
+          "Host": "http://192.168.10.47",
+          "Port": 5000
         }
       ],
       "RateLimitOptions": {
@@ -194,8 +194,8 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7010
+          "Host": "http://192.168.10.47",
+          "Port": 5000
         }
       ],
       "RateLimitOptions": {
@@ -218,8 +218,8 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7010
+          "Host": "http://192.168.10.47",
+          "Port": 5000
         }
       ],
       "RateLimitOptions": {
@@ -340,8 +340,8 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7237
+          "Host": "http://192.168.10.47",
+          "Port": 5001
         }
       ],
       "RateLimitOptions": {
@@ -364,8 +364,8 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7237
+          "Host": "http://192.168.10.47",
+          "Port": 5001
         }
       ],
       "RateLimitOptions": {
@@ -388,8 +388,8 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7237
+          "Host": "http://192.168.10.47",
+          "Port": 5001
         }
       ],
       "RateLimitOptions": {
@@ -412,8 +412,8 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7237
+          "Host": "http://192.168.10.47",
+          "Port": 5001
         }
       ],
       "RateLimitOptions": {
@@ -436,8 +436,8 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7237
+          "Host": "http://192.168.10.47",
+          "Port": 5001
         }
       ],
       "RateLimitOptions": {
@@ -557,8 +557,8 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7225
+          "Host": "http://192.168.10.47",
+          "Port": 5005
         }
       ],
       "RateLimitOptions": {
@@ -581,8 +581,8 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7225
+          "Host": "http://192.168.10.47",
+          "Port": 5005
         }
       ],
       "RateLimitOptions": {
@@ -605,8 +605,8 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7225
+          "Host": "http://192.168.10.47",
+          "Port": 5005
         }
       ],
       "RateLimitOptions": {
@@ -629,8 +629,8 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7225
+          "Host": "http://192.168.10.47",
+          "Port": 5005
         }
       ],
       "RateLimitOptions": {
@@ -653,8 +653,8 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7225
+          "Host": "http://192.168.10.47",
+          "Port": 5005
         }
       ],
       "RateLimitOptions": {
@@ -677,8 +677,8 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7225
+          "Host": "http://192.168.10.47",
+          "Port": 5005
         }
       ],
       "RateLimitOptions": {
@@ -701,8 +701,8 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7225
+          "Host": "http://192.168.10.47",
+          "Port": 5005
         }
       ],
       "RateLimitOptions": {
@@ -725,8 +725,8 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7225
+          "Host": "http://192.168.10.47",
+          "Port": 5005
         }
       ],
       "RateLimitOptions": {
@@ -749,8 +749,8 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7225
+          "Host": "http://192.168.10.47",
+          "Port": 5005
         }
       ],
       "RateLimitOptions": {
@@ -773,8 +773,8 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7225
+          "Host": "http://192.168.10.47",
+          "Port": 5005
         }
       ],
       "RateLimitOptions": {
@@ -797,8 +797,8 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7225
+          "Host": "http://192.168.10.47",
+          "Port": 5005
         }
       ],
       "RateLimitOptions": {
@@ -821,8 +821,8 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7225
+          "Host": "http://192.168.10.47",
+          "Port": 5005
         }
       ],
       "RateLimitOptions": {
@@ -845,8 +845,8 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7225
+          "Host": "http://192.168.10.47",
+          "Port": 5005
         }
       ],
       "RateLimitOptions": {
