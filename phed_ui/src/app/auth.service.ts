@@ -17,6 +17,7 @@ export class AuthService {
 
   //private apiUrl = `${this.baseUrl}/gateway/Login`; // Your API URL for login
   private apiUrl ='https://localhost:7199/Login';
+  //private apiUrl ='http://172.27.29.137:80/Login';
   
   private registrationApiUrl = 'https://localhost:7024/Api/MANAGE_COMPLAINTDETAILS_CONFIG/DetailcomplaintRegistration';
   private complaintApiUrl = `${this.baseUrl}/gateway/ComplaintCategory`;
@@ -241,8 +242,7 @@ export class AuthService {
 
   checkEscalation(INT_CATEGORY_ID: string, INT_SUB_CATEGORY_ID: string): Observable<any> {
     // Make HTTP request with proper API URL and query parameters
-    return this.http.get<any>(`${this.checkApiUrl}?categoryId=${INT_CATEGORY_ID}&subcategoryId=${INT_SUB_CATEGORY_ID}`).pipe(
-        catchError(this.handleError)
+    return this.http.get<any>(`${this.checkApiUrl}?categoryId=${INT_CATEGORY_ID}&subcategoryId=${INT_SUB_CATEGORY_ID}`).pipe(catchError(this.handleError)
     );
   }
 

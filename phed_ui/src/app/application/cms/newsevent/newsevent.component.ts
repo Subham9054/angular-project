@@ -42,7 +42,7 @@ export class NewseventComponent implements OnInit {
       this.eventModel.publishDate = e.date.format('DD-MMM-YYYY'); // Update the model on date change
     });
 
-    // $('.publishDate').datetimepicker({
+    // $('.datepicker').datetimepicker({
     //   format: 'DD-MMM-YYYY',
     //   daysOfWeekDisabled: [0, 6],
     // });
@@ -50,7 +50,7 @@ export class NewseventComponent implements OnInit {
     //   format: 'LT',
     //   daysOfWeekDisabled: [0, 6],
     // });
-    // $('.publishDate').datetimepicker({
+    // $('.datetimepicker').datetimepicker({
     //   format: 'DD-MMM-YYYY LT',
     //   daysOfWeekDisabled: [0, 6],
     // });
