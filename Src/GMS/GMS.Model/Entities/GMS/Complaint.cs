@@ -44,5 +44,51 @@ namespace GMS.Model.Entities.GMS
         public string NVCH_COMPLIANT_DETAILS { get; set; }
         public string NVCH_LANDMARK { get; set; }
     }
+    public class LocationHierarchy
+    {
+        public int Status { get; set; }
+        public string Msg { get; set; }
+        public List<Result> Result { get; set; }
+    }
+
+    public class Result
+    {
+        public List<District> Districts { get; set; }
+    }
+
+    public class District
+    {
+        public string IntDistrictId { get; set; }
+        public string VchDistrictName { get; set; }
+        public List<Block> Blocks { get; set; }
+    }
+
+    public class Block
+    {
+        public string IntBlockId { get; set; }
+        public string VchBlockName { get; set; }
+        public List<Gp> Gps { get; set; }
+    }
+
+    public class Gp
+    {
+        public string IntGpId { get; set; }
+        public string VchGpName { get; set; }
+        public List<Village> Villages { get; set; }
+    }
+
+    public class Village
+    {
+        public string IntVillageId { get; set; }
+        public string VchVillageName { get; set; }
+        public List<Ward> WardList { get; set; }
+    }
+
+    public class Ward
+    {
+        public string IntWardId { get; set; }
+        public string VchWardName { get; set; }
+    }
+
 
 }
