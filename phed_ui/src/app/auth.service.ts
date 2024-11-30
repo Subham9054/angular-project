@@ -17,8 +17,7 @@ export class AuthService {
 
   //private apiUrl = `${this.baseUrl}/gateway/Login`; // Your API URL for login
   private apiUrl ='https://localhost:7199/Login';
-  //private apiUrl ='http://172.27.29.137:80/Login';
-  
+    
   private registrationApiUrl = 'https://localhost:7024/Api/MANAGE_COMPLAINTDETAILS_CONFIG/DetailcomplaintRegistration';
   private complaintApiUrl = `${this.baseUrl}/gateway/ComplaintCategory`;
   private getComplaintApiUrl = `${this.baseUrl}/gateway/GetallComplaint`;
