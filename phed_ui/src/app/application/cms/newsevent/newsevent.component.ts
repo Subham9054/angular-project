@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/auth.service';
 import Swal from 'sweetalert2';
-import * as moment from 'moment'; 
+import * as moment from 'moment';
 
 declare let $: any;
 @Component({
@@ -22,8 +22,7 @@ export class NewseventComponent implements OnInit {
     isEditing: false,
   };
   thumbnailFiles: File[] = [];
-  featureImageFiles: File[] = [];
-  
+  featureImageFiles: File[] = [];  
 
   constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute) {}
 
