@@ -54,7 +54,6 @@ if (app.Environment.IsStaging())
     app.UseSwaggerUI();
 }
 app.UseCors("AllowAllOrigins");
-
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
