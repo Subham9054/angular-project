@@ -12,11 +12,11 @@ export class AuthService {
   private secretKey: string = 'my-secret-key'; 
   private token: string | null = null; // Store the token
 
-  private baseUrl: string = 'http://192.168.10.47:5009';
+  private baseUrl: string = 'https://phed.csmpl.com/';
   
 
   private apiUrl = `${this.baseUrl}/gateway/Login`; // Your API URL for login
-  private registrationApiUrl = 'http://192.168.10.47:5002/Api/MANAGE_COMPLAINTDETAILS_CONFIG/DetailcomplaintRegistration';
+  private registrationApiUrl = `${this.baseUrl}/gateway/DetailcomplaintRegistration`;
   private complaintApiUrl = `${this.baseUrl}/gateway/ComplaintCategory`;
   private getComplaintApiUrl = `${this.baseUrl}/gateway/GetallComplaint`;
   private updateComplaintApiUrl = `${this.baseUrl}/gateway/UpdateComplaint`;
@@ -44,8 +44,8 @@ export class AuthService {
   private getallsubcaturl = `${this.baseUrl}/gateway/ViewComplaintSubCategory`;
   private updatesubcaturl=`${this.baseUrl}/gateway/UpdateComplaintSubCategory`;
   private deletesubcaturl= `${this.baseUrl}/gateway/DeleteSubcat`;
-  private gmsComplaintdetailurl="http://192.168.10.47:5002/Api/MANAGE_COMPLAINTDETAILS_CONFIG/GetGmsComplaintdetails";
-  private gmstakeactionurl="http://192.168.10.47:5002/Api/MANAGE_COMPLAINTDETAILS_CONFIG/Getgmstakeaction";
+  private gmsComplaintdetailurl=`${this.baseUrl}/gateway/GetGmsComplaintdetails`;
+  private gmstakeactionurl=`${this.baseUrl}/gateway/Getgmstakeaction`;
 
   //For Content Management URLs
   private getParentMenusUrl = 'http://localhost:5097/api/CMS/GetParentMenus';
@@ -61,7 +61,7 @@ export class AuthService {
   private getBannerByIdUrl = 'http://localhost:5097/api/CMS/GetBannerById';
   private getBannerByNameUrl = 'http://localhost:5097/api/CMS/GetBannerByName';
   private deleteBannerUrl = 'http://localhost:5097/api/CMS/DeleteBanner';
-
+  private eventUrl = 'http://localhost:5097/api/CMS'; //Base URL for Managing News & Events
   private galleryUrl = 'http://localhost:5097/api/Gallery'; //Base URL for Managing Gallery
   private faqUrl = 'http://localhost:5097/api/FAQ'; //Base URL for Managing FAQs
 
@@ -350,7 +350,75 @@ export class AuthService {
     return this.http.get(this.getMenuSubmenuUrl).pipe(
       catchError(this.handleError)
     );
-  }  
+  }
+
+  //Methods for Manage News & Events by Debasis Das
+
+  createOrUpdateEvent(formData: FormData, id?: number): Observable<any> {
+
+    const headers = new HttpHeaders();
+
+    const url = id ? `${this.eventUrl}/CreateOrUpdateEvent?eventId=${id}` : `${this.eventUrl}/CreateOrUpdateEvent`;
+
+    
+
+    // Use POST for both creating and updating
+
+    return this.http.post(url, formData, { headers }).pipe(
+
+        catchError(this.handleError)
+
+    );
+
+  }
+
+
+
+  getEvents(): Observable<any> {
+
+    return this.http.get(`${this.eventUrl}/GetEvents`).pipe(
+
+      catchError(this.handleError)
+
+    );
+
+  }
+
+
+
+  getEventById(id: number): Observable<any> {
+
+    return this.http.get(`${this.eventUrl}/GetEventById?eventId=${id}`).pipe(
+
+      catchError(this.handleError)
+
+    );
+
+  }
+
+
+
+  getEventByName(name: string): Observable<any> {
+
+    return this.http.get(`${this.eventUrl}/GetEventByName?eventName=${name}`).pipe(
+
+      catchError(this.handleError)
+
+    );
+
+  }
+
+
+
+  deleteEvent(id: number): Observable<any> {
+
+    return this.http.delete(`${this.eventUrl}/DeleteEvent?galleryId=${id}`).pipe(
+
+      catchError(this.handleError)
+
+    );
+
+  }
 
   //Methods for Manage Banner by Debasis Das
   CreateOrUpdateBanner(formData: FormData, bannerId?: number): Observable<any> {
