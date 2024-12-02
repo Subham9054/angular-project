@@ -226,35 +226,44 @@ export class ComplaintregistrationComponent  {
   }
   
   onSubmit() {
+    debugger;
+  
+    // Check if a file is uploaded
     if (!this.fileToUpload) {
       alert('Please upload a file before submitting the form.');
       return;
     }
-
-    this.uploadFile().then((fileName) => {
-      this.submitRegistrationData(fileName);
-    }).catch(error => {
-      console.error('Error uploading file:', error);
-      alert('File upload failed. Please try again.');
-    });
-  }
-
-  uploadFile(): Promise<string> {
-    return new Promise((resolve, reject) => {
-      const fileUploadData = new FormData();
-      fileUploadData.append('file', this.fileToUpload!, this.fileToUpload!.name);
   
-      this.http.post<{ message: string; fileName: string }>('https://localhost:7225/api/Dropdown/UploadFile', fileUploadData)
-        .subscribe(
+    // Call the uploadFile method from your service (returns an Observable)
+    this.authService.uploadFile(this.fileToUpload).subscribe(
+      (response) => {
+        const fileName = response.fileName;
+        this.submitRegistrationData(fileName);
+      },
+      (error) => {
+        console.error('Error uploading file:', error);
+        alert('File upload failed. Please try again.');
+      }
+    );
+  }
+  
+
+  uploadFile(): Promise<void> {
+    return new Promise((resolve, reject) => {
+      if (this.fileToUpload) {
+        this.authService.uploadFile(this.fileToUpload).toPromise().then(
           (response) => {
             console.log('File uploaded successfully', response);
-            resolve(response.fileName); // Resolving the file name from the response
+            resolve();
           },
-          error => {
+          (error) => {
             console.error('Error uploading file', error);
             reject(error);
           }
         );
+      } else {
+        reject('No file selected');
+      }
     });
   }
   

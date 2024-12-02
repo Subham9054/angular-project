@@ -12,7 +12,7 @@ export class AuthService {
   private secretKey: string = 'my-secret-key'; 
   private token: string | null = null; // Store the token
 
-  private baseUrl: string = 'https://phed.csmpl.com/';
+  private baseUrl: string = 'https://localhost:7197';
   
 
   private apiUrl = `${this.baseUrl}/gateway/Login`; // Your API URL for login
