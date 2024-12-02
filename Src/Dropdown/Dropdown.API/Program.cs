@@ -32,6 +32,7 @@ if (app.Environment.IsStaging())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
 app.UseCors("AllowAllOrigins");
 app.UseHttpsRedirection();
 app.UseAuthorization();
