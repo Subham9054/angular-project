@@ -89,11 +89,11 @@
       }
     },
     {
-      "UpstreamPathTemplate": "/gateway/UpdateComplaint",
+      "UpstreamPathTemplate": "/gateway/UpdateComplaint/{id}",
       "UpstreamHttpMethod": [
         "Post"
       ],
-      "DownstreamPathTemplate": "/Api/MANAGE_CATEGORYMASTER/UpdateComplaint",
+      "DownstreamPathTemplate": "/Api/MANAGE_CATEGORYMASTER/UpdateComplaint/{id}",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
@@ -103,9 +103,8 @@
       ],
       "RateLimitOptions": {
         "DisableRateLimitHeaders": false,
-        "QuotaExceededMessage": "<Add your message>",
-        "HttpStatusCode": 9999,
-        "ClientWhitelist": [],
+        "QuotaExceededMessage": "Rate limit exceeded.",
+        "HttpStatusCode": 429,
         "EnableRateLimiting": true,
         "Period": "1s",
         "PeriodTimespan": 1,
@@ -113,11 +112,11 @@
       }
     },
     {
-      "UpstreamPathTemplate": "/gateway/deleteComplaintbyid",
+      "UpstreamPathTemplate": "/gateway/deleteComplaintbyid/{id}",
       "UpstreamHttpMethod": [
-        "Post"
+        "Delete"
       ],
-      "DownstreamPathTemplate": "/Api/MANAGE_CATEGORYMASTER/deleteComplaintbyid",
+      "DownstreamPathTemplate": "/Api/MANAGE_CATEGORYMASTER/deleteComplaintbyid/{id}",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
@@ -188,7 +187,7 @@
     {
       "UpstreamPathTemplate": "/gateway/UpdateComplaintSubCategory",
       "UpstreamHttpMethod": [
-        "Put"
+        "Post"
       ],
       "DownstreamPathTemplate": "/Api/MANAGE_SUBCATEGORYMASTER/UpdateComplaintSubCategory",
       "DownstreamScheme": "https",
@@ -847,6 +846,54 @@
         {
           "Host": "localhost",
           "Port": 7225
+        }
+      ],
+      "RateLimitOptions": {
+        "DisableRateLimitHeaders": false,
+        "QuotaExceededMessage": "<Add your message>",
+        "HttpStatusCode": 9999,
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 1
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/GetGmsComplaintdetails",
+      "UpstreamHttpMethod": [
+        "Get"
+      ],
+      "DownstreamPathTemplate": "/Api/MANAGE_COMPLAINTDETAILS_CONFIG/GetGmsComplaintdetails",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7024
+        }
+      ],
+      "RateLimitOptions": {
+        "DisableRateLimitHeaders": false,
+        "QuotaExceededMessage": "<Add your message>",
+        "HttpStatusCode": 9999,
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 1
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/Getgmstakeaction",
+      "UpstreamHttpMethod": [
+        "Get"
+      ],
+      "DownstreamPathTemplate": "/Api/MANAGE_COMPLAINTDETAILS_CONFIG/Getgmstakeaction",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7024
         }
       ],
       "RateLimitOptions": {

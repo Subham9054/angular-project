@@ -69,6 +69,7 @@ namespace CommonMaster.API
             {
                 return BadRequest(new { message = "Invalid ID." });
             }
+
             try
             {
                 var isUpdated = await _MANAGE_CATEGORYMASTERRepository.UpdateComplaintCatagory(id, complaintCategory);
@@ -79,13 +80,13 @@ namespace CommonMaster.API
                 }
                 else
                 {
-                    return NotFound(new { message = "Update failed. Category not found or no changes made." });
+                    return NotFound(new { message = "Category not found or no changes made." });
                 }
             }
             catch (Exception ex)
             {
-                // Log exception details if needed
-                return StatusCode(StatusCodes.Status500InternalServerError, new { message = "Internal server error.", details = ex.Message });
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    new { message = "Internal server error.", details = ex.Message });
             }
         }
 
