@@ -12,13 +12,11 @@ export class AuthService {
   private secretKey: string = 'my-secret-key'; 
   private token: string | null = null; // Store the token
 
-  private baseUrl: string = 'https://localhost:7197';
+  private baseUrl: string = 'https://phed.csmpl.com/';
   
 
-  //private apiUrl = `${this.baseUrl}/gateway/Login`; // Your API URL for login
-  private apiUrl ='https://localhost:7199/Login';
-  
-  private registrationApiUrl = 'https://localhost:7024/Api/MANAGE_COMPLAINTDETAILS_CONFIG/DetailcomplaintRegistration';
+  private apiUrl = `${this.baseUrl}/gateway/Login`; // Your API URL for login
+  private registrationApiUrl = `${this.baseUrl}/gateway/DetailcomplaintRegistration`;
   private complaintApiUrl = `${this.baseUrl}/gateway/ComplaintCategory`;
   private getComplaintApiUrl = `${this.baseUrl}/gateway/GetallComplaint`;
   private updateComplaintApiUrl = `${this.baseUrl}/gateway/UpdateComplaint`;
@@ -32,22 +30,22 @@ export class AuthService {
   private categoryUrl =  `${this.baseUrl}/gateway/GetCategory`;
   private subcategoryUrl =  `${this.baseUrl}/gateway/GetSubCategories`;
   private fileUploadUrl =  `${this.baseUrl}/gateway/UploadFile`;
-  private complaintstatusUrl = 'http://172.27.32.0:8085/api/ComplaintsRegistration/GetComplaints';
+  private complaintstatusUrl = `${this.baseUrl}/gateway/GetComplaints`;
   private complainttypeurl =  `${this.baseUrl}/gateway/GetComplaintstype`;
   private getdesignationurl= `${this.baseUrl}/gateway/GetDesignation`;
   private getloclevel= `${this.baseUrl}/gateway/GetLocationLevel`;
-  private insertescalationurl="https://localhost:7237/Api/MANAGE_ESCALATION_CONFIGDETAILS/insertescalation";
-  private checkApiUrl = 'https://localhost:7237/Api/MANAGE_ESCALATION_CONFIGDETAILS/check';
-  private viewEscalationurl='https://localhost:7237/Api/MANAGE_ESCALATION_CONFIGDETAILS/viewescalation';
-  private viewEscalationurleye= 'https://localhost:7237/Api/MANAGE_ESCALATION_CONFIGDETAILS/viewescalationeye';
-  private viewupdatepenurl='https://localhost:7237/Api/MANAGE_ESCALATION_CONFIGDETAILS/viewupdatepen';
-  private getPrioritiesUrl='https://localhost:7225/api/Dropdown/GetComplaintPriority';
-  private submitsubcaturl='https://localhost:7010/Api/MANAGE_SUBCATEGORYMASTER/ComplaintSubCategory'
-  private getallsubcaturl = 'https://localhost:7010/Api/MANAGE_SUBCATEGORYMASTER/ViewComplaintSubCategory';
-  private updatesubcaturl='https://localhost:7010/Api/MANAGE_SUBCATEGORYMASTER/UpdateComplaintSubCategory';
-  private deletesubcaturl= 'https://localhost:7010/Api/MANAGE_SUBCATEGORYMASTER/DeleteSubcat';
-  private gmsComplaintdetailurl="https://localhost:7024/Api/MANAGE_COMPLAINTDETAILS_CONFIG/GetGmsComplaintdetails";
-  private gmstakeactionurl="https://localhost:7024/Api/MANAGE_COMPLAINTDETAILS_CONFIG/Getgmstakeaction";
+  private insertescalationurl=`${this.baseUrl}/gateway/insertescalation`;
+  private checkApiUrl = `${this.baseUrl}/gateway/check`;
+  private viewEscalationurl=`${this.baseUrl}/gateway/viewescalation`;
+  private viewEscalationurleye= `${this.baseUrl}/gateway/viewescalationeye`;
+  private viewupdatepenurl=`${this.baseUrl}/gateway/viewupdatepen`;
+  private getPrioritiesUrl=`${this.baseUrl}/gateway/GetComplaintPriority`;
+  private submitsubcaturl=`${this.baseUrl}/gateway/ComplaintSubCategory`;
+  private getallsubcaturl = `${this.baseUrl}/gateway/ViewComplaintSubCategory`;
+  private updatesubcaturl=`${this.baseUrl}/gateway/UpdateComplaintSubCategory`;
+  private deletesubcaturl= `${this.baseUrl}/gateway/DeleteSubcat`;
+  private gmsComplaintdetailurl=`${this.baseUrl}/gateway/GetGmsComplaintdetails`;
+  private gmstakeactionurl=`${this.baseUrl}/gateway/Getgmstakeaction`;
 
   //For Content Management URLs
   private getParentMenusUrl = 'http://localhost:5097/api/CMS/GetParentMenus';
@@ -63,9 +61,6 @@ export class AuthService {
   private getBannerByIdUrl = 'http://localhost:5097/api/CMS/GetBannerById';
   private getBannerByNameUrl = 'http://localhost:5097/api/CMS/GetBannerByName';
   private deleteBannerUrl = 'http://localhost:5097/api/CMS/DeleteBanner';
-
-
-
   private eventUrl = 'http://localhost:5097/api/CMS'; //Base URL for Managing News & Events
   private galleryUrl = 'http://localhost:5097/api/Gallery'; //Base URL for Managing Gallery
   private faqUrl = 'http://localhost:5097/api/FAQ'; //Base URL for Managing FAQs
@@ -355,7 +350,75 @@ export class AuthService {
     return this.http.get(this.getMenuSubmenuUrl).pipe(
       catchError(this.handleError)
     );
-  }  
+  }
+
+  //Methods for Manage News & Events by Debasis Das
+
+  createOrUpdateEvent(formData: FormData, id?: number): Observable<any> {
+
+    const headers = new HttpHeaders();
+
+    const url = id ? `${this.eventUrl}/CreateOrUpdateEvent?eventId=${id}` : `${this.eventUrl}/CreateOrUpdateEvent`;
+
+    
+
+    // Use POST for both creating and updating
+
+    return this.http.post(url, formData, { headers }).pipe(
+
+        catchError(this.handleError)
+
+    );
+
+  }
+
+
+
+  getEvents(): Observable<any> {
+
+    return this.http.get(`${this.eventUrl}/GetEvents`).pipe(
+
+      catchError(this.handleError)
+
+    );
+
+  }
+
+
+
+  getEventById(id: number): Observable<any> {
+
+    return this.http.get(`${this.eventUrl}/GetEventById?eventId=${id}`).pipe(
+
+      catchError(this.handleError)
+
+    );
+
+  }
+
+
+
+  getEventByName(name: string): Observable<any> {
+
+    return this.http.get(`${this.eventUrl}/GetEventByName?eventName=${name}`).pipe(
+
+      catchError(this.handleError)
+
+    );
+
+  }
+
+
+
+  deleteEvent(id: number): Observable<any> {
+
+    return this.http.delete(`${this.eventUrl}/DeleteEvent?galleryId=${id}`).pipe(
+
+      catchError(this.handleError)
+
+    );
+
+  }
 
   //Methods for Manage Banner by Debasis Das
   CreateOrUpdateBanner(formData: FormData, bannerId?: number): Observable<any> {
@@ -389,41 +452,6 @@ export class AuthService {
     const url = `${this.deleteBannerUrl}?bannerId=${id}`;
     return this.http.delete(url).pipe(
         catchError(this.handleError)
-    );
-  }
-
-  //Methods for Manage News & Events by Debasis Das
-  createOrUpdateEvent(formData: FormData, id?: number): Observable<any> {
-    const headers = new HttpHeaders();
-    const url = id ? `${this.eventUrl}/CreateOrUpdateEvent?eventId=${id}` : `${this.eventUrl}/CreateOrUpdateEvent`;
-    
-    // Use POST for both creating and updating
-    return this.http.post(url, formData, { headers }).pipe(
-        catchError(this.handleError)
-    );
-  }
-
-  getEvents(): Observable<any> {
-    return this.http.get(`${this.eventUrl}/GetEvents`).pipe(
-      catchError(this.handleError)
-    );
-  }
-
-  getEventById(id: number): Observable<any> {
-    return this.http.get(`${this.eventUrl}/GetEventById?eventId=${id}`).pipe(
-      catchError(this.handleError)
-    );
-  }
-
-  getEventByName(name: string): Observable<any> {
-    return this.http.get(`${this.eventUrl}/GetEventByName?eventName=${name}`).pipe(
-      catchError(this.handleError)
-    );
-  }
-
-  deleteEvent(id: number): Observable<any> {
-    return this.http.delete(`${this.eventUrl}/DeleteEvent?galleryId=${id}`).pipe(
-      catchError(this.handleError)
     );
   }
 
