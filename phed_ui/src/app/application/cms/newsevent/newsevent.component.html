@@ -1,5 +1,4 @@
  <div class="form-cointainer">
-
     <div class="pagetitle-section">
         <div class="row justify-content-between align-items-center">
             <div class="col-xxl-3 col-lg-4 col-md-4">
@@ -13,108 +12,115 @@
                         </li>
                         <li class="fill-btn back-link"><a routerLink="/application/newsevent" title="Go to Previous"><i
                             class="bi bi-arrow-left"></i>  <span class="hide-icon ms-2"> Back to View</span></a>
-                </li>
+                        </li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
 
-
-    
-
     <div class="content-box content-area">
-        <div class="row">
-            <div class="col-xxl-10 col-lg-12">
-                <div class="row">
-                    <div class="col-xl-4 col-md-12">
-                        <div class="mb-3">
-                            <label class="form-label" for="title">Title</label>
-                            <input type="text" class="form-control" id="title">
-                        </div>
+        <form (ngSubmit)="submitForm()">
+            <div class="row">
+                <div class="col-xl-4 col-md-12">
+                    <div class="mb-3">
+                        <label class="form-label" for="titleEnglish">Title (In English)</label>
+                        <input type="text" id="titleEnglish" name="titleEnglish" [(ngModel)]="eventModel.titleEnglish" class="form-control">
                     </div>
-
-                    <div class="col-xl-4 col-md-12">
-                        <div class="mb-3">
-                            <label class="form-label" for="titlehn">Title (In Hindi)</label>
-                            <input type="text" class="form-control" id="titlehn">
-                        </div>
+                </div>    
+                <div class="col-xl-4 col-md-12">
+                    <div class="mb-3">
+                        <label class="form-label" for="titleHindi">Title (हिंदी में)</label>
+                        <input type="text" id="titleHindi" name="titleHindi" [(ngModel)]="eventModel.titleHindi" class="form-control">
                     </div>
-                    <div class="col-xl-4 col-md-12 p-0"></div>
-                    <div class="col-xl-4 col-md-12">
-                        <div class="mb-3">
-                            <label class="form-label" for="desction">Description</label>
-                            <textarea class="form-control" id="desction" rows="3"></textarea>
-                            <p class="text-end mb-0"><small class="text-danger">Maximum <strong>500</strong> characters</small></p>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-4 col-md-12">
-                        <div class="mb-3">
-                            <label class="form-label" for="desctionhn">Description (In Hindi)</label>
-                            <textarea class="form-control" id="desctionhn" rows="3"></textarea>
-                            <p class="text-end mb-0"><small class="text-danger">Maximum <strong>500</strong> characters</small></p>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-4 col-md-12 p-0"></div>
-                    <div class="col-xl-3 col-md-12">
-                        <div class="mb-3">
-                            <label class="form-label" for="thembimg"> Thumb Image <span class="text-danger">*</span></label>
-                            <div class="custom-dropzone photoUpload" ngx-dropzone [accept]="'image/*'" (change)="onSelect($event)">
-                                <ngx-dropzone-label>
-                                    <div>
-                                        <h2>Drag and Drop <span class="d-block">or</span>Click to Upload Thumb Image</h2>
-                                    </div>
-                                </ngx-dropzone-label>
-                                <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f" [removable]="true" (removed)="onRemove(f)">
-                                    <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
-                                </ngx-dropzone-image-preview>
-                            </div>
-                            <p class="small mb-0 text-end text-danger">Max file Size <span class="fw-bold">300 mb</span></p>
-                        </div>
-                    </div>
-                    <div class="col-xl-5 col-md-12">
-                        <div class="mb-3">
-                            <label class="form-label" for="upodimg">Feature Image <span class="text-danger">*</span></label>
-                            <div class="custom-dropzone photoUpload" ngx-dropzone [accept]="'image/*'" (change)="onSelect($event)">
-                                <ngx-dropzone-label>
-                                    <div>
-                                        <h2>Drag and Drop <span class="d-block">or</span>Click to Upload Feature Image</h2>
-                                    </div>
-                                </ngx-dropzone-label>
-                                <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f" [removable]="true" (removed)="onRemove(f)">
-                                    <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
-                                </ngx-dropzone-image-preview>
-                            </div>
-                            <p class="small mb-0 text-end text-danger">Max file Size <span class="fw-bold">1 mb</span></p>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-md-12 p-0"></div>
-                    <div class="col-xl-4 col-md-12">
-                        <div class="mb-3">
-                            <label class="col-form-label">Publish Date</label>
-                            <div class="input-group">
-                                <input type="text" class="form-control datepicker" id="datepicker">
-                                <label class="input-group-text" for="datepicker"><i class="bi bi-calendar-week"></i></label>
-                            </div>
-                        </div>
-                    </div>
-
-                  
                 </div>
-                <div class="row">
-                  
+            </div>
+    
+            <div class="row">
+                <div class="col-xl-4 col-md-12">
+                    <div class="mb-3">
+                        <label class="form-label" for="descriptionEnglish">Description (In English)</label>
+                        <textarea id="descriptionEnglish" name="descriptionEnglish" [(ngModel)]="eventModel.descriptionEnglish" class="form-control"  rows="3"></textarea>
+                        <p class="text-end mb-0"><small class="text-danger">Maximum <strong>500</strong> characters</small></p>
+                    </div>
                 </div>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="d-flex gap-2 mt-lg-3">
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                            <button type="submit" class="btn btn-danger">Reset</button>
+    
+                <div class="col-xl-4 col-md-12">
+                    <div class="mb-3">
+                        <label class="form-label" for="descriptionHindi">Description (हिंदी में)</label>
+                        <textarea id="descriptionHindi" name="descriptionHindi" [(ngModel)]="eventModel.descriptionHindi" class="form-control" rows="3"></textarea>
+                        <p class="text-end mb-0"><small class="text-danger">Maximum <strong>500</strong> characters</small></p>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="row">
+                <div class="col-xl-3 col-md-12">
+                    <div class="mb-3">
+                        <label class="form-label" for="thumbImage">Thumbnail <span class="text-danger">*</span></label>
+                        <div class="custom-dropzone photoUpload" ngx-dropzone [accept]="'image/*'" (change)="onThumbnailSelect($event)">
+                            <ngx-dropzone-label>
+                                <div>
+                                    <h2>Drag and Drop <span class="d-block">or</span>Click to Upload Thumb Image</h2>
+                                </div>
+                            </ngx-dropzone-label>
+                            <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of thumbnailFiles" [file]="f" [removable]="true" (removed)="onThumbnailRemove(f)">
+                                <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                            </ngx-dropzone-image-preview>
+                        </div>
+                        <p class="small mb-0 text-end text-danger">Max file Size <span class="fw-bold">300 mb</span></p>
+                    </div>
+                </div>
+    
+                <div class="col-xl-5 col-md-12">
+                    <div class="mb-3">
+                        <label class="form-label" for="featureImage">Feature Image <span class="text-danger">*</span></label>
+                        <div class="custom-dropzone photoUpload" ngx-dropzone [accept]="'image/*'" (change)="onFeatureImageSelect($event)">
+                            <ngx-dropzone-label>
+                                <div>
+                                    <h2>Drag and Drop <span class="d-block">or</span>Click to Upload Feature Image</h2>
+                                </div>
+                            </ngx-dropzone-label>
+                            <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of featureImageFiles" [file]="f" [removable]="true" (removed)="onFeatureImageRemove(f)">
+                                <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                            </ngx-dropzone-image-preview>
+                        </div>
+                        <p class="small mb-0 text-end text-danger">Max file Size <span class="fw-bold">1 mb</span></p>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="row">
+                <div class="col-xl-3 col-md-12">
+                    <div class="mb-3">
+                        <label class="col-form-label" for="isPublish">Is Publish</label><br/>
+                        <input type="checkbox" id="isPublish" name="isPublish" [(ngModel)]="eventModel.isPublish" style="height: 35px; width: 35px;" class="form-check-input">
+                    </div>
+                </div>
+    
+                <div class="col-xl-3 col-md-12">
+                    <div class="mb-3">
+                        <label class="col-form-label" for="publishDate">Publish Date</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control publishDate" id="publishDate" name="publishDate" [(ngModel)]="eventModel.publishDate">
+                            <label class="input-group-text" for="publishDate"><i class="bi bi-calendar-week"></i></label>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+    
+            <div class="row">
+                <div class="col-xl-4 col-md-12">
+                    <div class="mb-3">
+                        <div class="d-flex gap-2 mt-lg-3">                            
+                            <button type="submit" class="btn btn-primary" [ngClass]="eventModel.isEditing ? 'btn-info' : 'btn-primary'">
+                                {{ eventModel.isEditing ? 'Update' : 'Submit' }}
+                            </button>
+                            <button type="button" class="btn btn-danger" (click)="resetForm()">Reset</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
-</div> 
+</div>
