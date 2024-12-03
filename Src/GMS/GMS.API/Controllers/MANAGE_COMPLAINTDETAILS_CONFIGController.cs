@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using PHED_CGRC.MANAGE_COMPLAINTDETAILS_CONFIG;
 using GMS.Repository.Interfaces.MANAGE_COMPLAINTDETAILS_CONFIG;
 using GMS.Model.Entities.GMS;
+using MySql.Data.MySqlClient;
 namespace GMS.API
 {
 
@@ -91,103 +92,192 @@ namespace GMS.API
 
 
         #region Mobile Team Api
-        [HttpGet("MobileOtpVerify")]
-        public async Task<IActionResult> mobileotpverify(string otp)
-        {
-            try
-            {
-                var isValid = await _MANAGE_COMPLAINTDETAILS_CONFIGRepository.mobileotpverify(otp);
-                if (isValid)
-                {
-                    return Ok("OTP Verified Successfully");
-                }
-                else
-                {
-                    return BadRequest("Invalid OTP");
-                }
-            }
-            catch
-            {
-                return BadRequest("OTP Validation Error");
-            }
-        }
+
 
         [HttpGet("GetCitizenAddressDetails")]
         public async Task<IActionResult> GetCitizenAddressDetails(string token)
         {
-            if (token == null)
+            if (string.IsNullOrEmpty(token))
             {
-                return NotFound("Please provide token number");
-
+                return BadRequest(new { Message = "Please provide a valid token number.",StatusCode=400 }); // 400 Bad Request
             }
+
             try
             {
                 var result = await _MANAGE_COMPLAINTDETAILS_CONFIGRepository.GetCitizendetails(token);
 
                 if (result == null || !result.Any())
                 {
-                    return NotFound("No records found for the specified token.");
+                    return NotFound(new { Message = "No records found for the specified token.",StatusCode=404 }); // 404 Not Found
                 }
 
-                return Ok(result);
+                return Ok(new { Message = "Citizen address details retrieved successfully.", Data = result,StatusCode=200 }); // 200 OK
             }
             catch (Exception ex)
             {
-                // Log the exception as needed
-                return StatusCode(500, "An error occurred while retrieving escalations.");
+
+                return StatusCode(500, new { Message = "An error occurred while retrieving citizen address details.", Error = ex.Message,StatusCode=500 }); // 500 Internal Server Error
             }
         }
+
 
         [HttpPost("UpdateCitizenAddressDetails")]
         public async Task<IActionResult> UpdateCitizenAddressDetails(string token, UpdateCitizen updateCitizen)
         {
-            if (token == null)
+            if (string.IsNullOrEmpty(token))
             {
-                return NotFound("Please provide token number");
-
+                return BadRequest(new { Message = "Please provide a valid token number." }); 
             }
+
             try
             {
                 var result = await _MANAGE_COMPLAINTDETAILS_CONFIGRepository.UpdateCitizendetails(token, updateCitizen);
 
                 if (result == null)
                 {
-                    return NotFound("No records found for the specified token.");
+                    return NotFound(new { Message = "No records found for the specified token.",StatusCode=400  }); 
                 }
-
-                return Ok(result);
+                return Ok(new { Message = "Citizen address details updated successfully.", Data = result,StatusCode=200 }); 
             }
             catch (Exception ex)
             {
-                // Log the exception as needed
-                return StatusCode(500, "An error occurred while retrieving escalations.");
+                return StatusCode(500, new { Message = "An error occurred while updating citizen address details.", Error = ex.Message,StatusCode=500 }); // 500 Internal Server Error
             }
         }
+
+
         [HttpGet("GetAllCitizenDetails")]
         public async Task<IActionResult> GetAllCitizenDetails(string token, string mobno)
         {
-            if (token == null && mobno == null)
+            if (string.IsNullOrEmpty(token) && string.IsNullOrEmpty(mobno))
             {
-                return NotFound("Please provide token number and mobile number");
-
+                return NotFound(new
+                {
+                    StatusCode = 404,
+                    Message = "Please provide both token number and mobile number."
+                });
             }
+
             try
             {
                 var result = await _MANAGE_COMPLAINTDETAILS_CONFIGRepository.GetallCitizendetails(token, mobno);
 
-                if (result == null)
+                if (result == null || !result.Any())
                 {
-                    return NotFound("No records found for the specified token.");
+                    return NotFound(new
+                    {
+                        StatusCode = 404,
+                        Message = "No records found for the specified token and mobile number."
+                    });
                 }
 
-                return Ok(result);
+                return Ok(new
+                {
+                    StatusCode = 200,
+                    Message = "Records retrieved successfully.",
+                    Data = result
+                });
             }
             catch (Exception ex)
             {
                 // Log the exception as needed
-                return StatusCode(500, "An error occurred while retrieving Records.");
+                return StatusCode(500, new
+                {
+                    StatusCode = 500,
+                    Message = "An error occurred while retrieving records.",
+                    Error = ex.Message // Include the exception message for debugging
+                });
             }
         }
+
+        [HttpGet("Otpgenerate")]
+        public async Task<IActionResult> Otpgenerate(string mobno)
+        {
+            if (string.IsNullOrWhiteSpace(mobno))
+            {
+                return BadRequest(new
+                {
+                    StatusCode = 400,
+                    Message = "Please provide a valid phone number."
+                });
+            }
+
+            try
+            {
+                var result = await _MANAGE_COMPLAINTDETAILS_CONFIGRepository.GenerateOtp(mobno);
+
+                if (result == null || !result)
+                {
+                    return StatusCode(500, new
+                    {
+                        StatusCode = 500,
+                        Message = "OTP generation failed. Please try again."
+                    });
+                }
+
+                return Ok(new
+                {
+                    StatusCode = 200,
+                    Message = "OTP generated successfully.",
+                    Data = result // Include any additional data, if needed
+                });
+            }
+            catch (Exception ex)
+            {
+                // Log the exception (optional)
+                Console.WriteLine($"Error: {ex.Message}");
+
+                return StatusCode(500, new
+                {
+                    StatusCode = 500,
+                    Message = "An internal error occurred while generating OTP.",
+                    Error = ex.Message
+                });
+            }
+        }
+
+
+        [HttpPost("ValidateOtp")]
+        public async Task<IActionResult> ValidateOtp(string phoneNumber, string otp)
+        {
+            if (string.IsNullOrWhiteSpace(phoneNumber) || string.IsNullOrWhiteSpace(otp))
+            {
+                return BadRequest(new { Message = "Phone number and OTP are required." });
+            }
+
+            try
+            {
+                // Validate OTP
+                var otpDetails = await _MANAGE_COMPLAINTDETAILS_CONFIGRepository.ValidateOtpAsync(phoneNumber, otp);
+
+                if (otpDetails == null)
+                {
+                    return BadRequest(new { Message = "Invalid OTP or OTP already used." });
+                }
+
+                // Check if OTP has expired
+                if (DateTime.Now > otpDetails.ExpiresOn)
+                {
+                    return BadRequest(new { Message = "OTP has expired." });
+                }
+
+                // Mark OTP as used
+                var otpMarkedAsUsed = await _MANAGE_COMPLAINTDETAILS_CONFIGRepository.MarkOtpAsUsedAsync(otpDetails.Id);
+
+                if (otpMarkedAsUsed==false)
+                {
+                    return StatusCode(500, new { Message = "Error marking OTP as used." });
+                }
+
+                return Ok(new { Message = "OTP validated successfully." });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { Message = "An error occurred.", Error = ex.Message });
+            }
+        }
+
+
         #endregion
 
         [HttpPost("CreateMANAGE_COMPLAINTDETAILS_CONFIG")]

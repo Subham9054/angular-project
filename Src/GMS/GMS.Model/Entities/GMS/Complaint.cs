@@ -149,4 +149,14 @@ namespace GMS.Model.Entities.GMS
         public string NVCH_ADDRESS { get; set; }
         public string NVCH_LANDMARK { get; set; }
     }
+    public class OTPDetails
+    {
+        public int Id { get; set; }
+        public string PhoneNumber { get; set; }
+        public string OTP { get; set; }
+        public DateTime CreatedOn { get; set; }
+        public DateTime ExpiresOn { get; set; }
+        public bool IsUsed { get; set; }
+    }
+
 }

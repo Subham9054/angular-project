@@ -94,19 +94,7 @@ namespace GMS.Repository.Repositories.Interfaces.MANAGE_COMPLAINTDETAILS_CONFIG
                 throw;
             }
         }
-        public async Task<bool> mobileotpverify(string otp)
-        {
-            if (otp == "123456")
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-
-        }
-
+     
         public async Task<List<GetCitizen>> GetCitizendetails(string token)
         {
             try
@@ -137,6 +125,8 @@ namespace GMS.Repository.Repositories.Interfaces.MANAGE_COMPLAINTDETAILS_CONFIG
                 throw;
             }
         }
+
+
         public async Task<bool> UpdateCitizendetails(string token,UpdateCitizen updateCitizen)
         {
             try
@@ -163,7 +153,73 @@ namespace GMS.Repository.Repositories.Interfaces.MANAGE_COMPLAINTDETAILS_CONFIG
                 throw;
             }
         }
-        
+
+        public async Task<bool> GenerateOtp(string phoneNumber)
+        {
+            // Generate a 6-digit OTP
+            var otp = 12345;
+                //new Random().Next(100000, 999999).ToString();
+            var expirationTime = DateTime.Now.AddMinutes(30);
+
+            try
+            {
+                DynamicParameters parameters = new DynamicParameters();
+                parameters.Add("@PhoneNumber", phoneNumber);
+                parameters.Add("@OTP", otp);
+                parameters.Add("@CreatedOn", DateTime.Now);
+                parameters.Add("@ExpiresOn", expirationTime);
+                parameters.Add("@IsUsed", false);
+                var result = await Connection.QueryAsync<int>("GenerateOtp", parameters, commandType: CommandType.StoredProcedure);
+                return result.Contains(1);
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public async Task<OTPDetails> ValidateOtpAsync(string phoneNumber, string otp)
+        {
+            try
+            {
+
+                var parameters = new DynamicParameters();
+                parameters.Add("OTP", otp);
+                parameters.Add("PhoneNumber", phoneNumber);
+                return await Connection.QueryFirstOrDefaultAsync<OTPDetails>("ValidateOtp", new { PhoneNumber = phoneNumber, OTP = otp });
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+        }
+
+        public async Task<bool> MarkOtpAsUsedAsync(int otpId)
+        {
+            try
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("otpId", otpId);  // The parameter should match the stored procedure definition
+
+                // Execute the stored procedure and retrieve the result (1 or 0)
+                var result = await Connection.QueryFirstOrDefaultAsync<int>(
+                    "MarkOtpAsUsed", // Stored procedure name
+                    parameters,      // Parameters
+                    commandType: CommandType.StoredProcedure
+                );
+
+                // Return true if the result is 1 (success), otherwise false
+                return result == 1;
+            }
+            catch (Exception ex)
+            {
+                // Handle exception (you may want to log it)
+                throw new Exception("An error occurred while marking OTP as used.", ex);
+            }
+        }
+
+
         public async Task<int> INSERT_MANAGE_COMPLAINTDETAILS_CONFIG(MANAGE_COMPLAINTDETAILS_CONFIG_Model TBL)
         {
             var p = new DynamicParameters();
