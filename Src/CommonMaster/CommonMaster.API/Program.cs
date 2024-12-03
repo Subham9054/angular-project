@@ -17,7 +17,6 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddCustomContainer(builder.Configuration);
 var app = builder.Build();
-
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
