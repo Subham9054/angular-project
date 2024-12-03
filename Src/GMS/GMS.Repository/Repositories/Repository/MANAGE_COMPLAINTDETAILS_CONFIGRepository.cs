@@ -94,7 +94,76 @@ namespace GMS.Repository.Repositories.Interfaces.MANAGE_COMPLAINTDETAILS_CONFIG
                 throw;
             }
         }
+        public async Task<bool> mobileotpverify(string otp)
+        {
+            if (otp == "123456")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
 
+        }
+
+        public async Task<List<GetCitizen>> GetCitizendetails(string token)
+        {
+            try
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("token", token);
+                var result = await Connection.QueryAsync<GetCitizen>("GetCitizenAddressDetails", parameters, commandType: CommandType.StoredProcedure);
+                return result.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public async Task<List<GetCitizenall>> GetallCitizendetails(string token,string mobno)
+        {
+            try
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("token", token);
+                parameters.Add("mobno", mobno);
+                var result = await Connection.QueryAsync<GetCitizenall>("GetCitizenallDetails", parameters, commandType: CommandType.StoredProcedure);
+                return result.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+        public async Task<bool> UpdateCitizendetails(string token,UpdateCitizen updateCitizen)
+        {
+            try
+            {
+                DynamicParameters parameters = new DynamicParameters();
+                parameters.Add("@updatedon", DateTime.Now);
+                parameters.Add("@updatedby", 1);
+                //parameters.Add("@name", updateCitizen.NVCH_COMPLIANTANT_NAME);
+                parameters.Add("@distid", updateCitizen.INT_DIST_ID);
+                parameters.Add("@blockid", updateCitizen.INT_BLOCK);
+                parameters.Add("@panchayatid", updateCitizen.INT_PANCHAYAT);
+                parameters.Add("@intVillage", updateCitizen.INT_VILLAGE);
+                parameters.Add("@intward", updateCitizen.INT_WARD);
+                parameters.Add("@address", updateCitizen.NVCH_ADDRESS);
+                parameters.Add("@token", token);
+                parameters.Add("landMark", updateCitizen.NVCH_LANDMARK);
+                var result = await Connection.QueryAsync<int>("USP_UpdateCitizen", parameters, commandType: CommandType.StoredProcedure);
+                return result.Contains(1);
+
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+        
         public async Task<int> INSERT_MANAGE_COMPLAINTDETAILS_CONFIG(MANAGE_COMPLAINTDETAILS_CONFIG_Model TBL)
         {
             var p = new DynamicParameters();

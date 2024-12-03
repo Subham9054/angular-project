@@ -13,6 +13,9 @@ namespace GMS.Repository.Interfaces.MANAGE_COMPLAINTDETAILS_CONFIG
         Task<int> DELETE_MANAGE_COMPLAINTDETAILS_CONFIG(MANAGE_COMPLAINTDETAILS_CONFIG_Model TBL);
         Task<List<VIEWMANAGE_COMPLAINTDETAILS_CONFIG>> VIEW_MANAGE_COMPLAINTDETAILS_CONFIG(MANAGE_COMPLAINTDETAILS_CONFIG_Model TBL);
         Task<List<EDITMANAGE_COMPLAINTDETAILS_CONFIG>> EDIT_MANAGE_COMPLAINTDETAILS_CONFIG(MANAGE_COMPLAINTDETAILS_CONFIG_Model TBL);
-
+        Task<bool> mobileotpverify(string otp);
+        Task<List<GetCitizen>> GetCitizendetails(string token);
+        Task<bool> UpdateCitizendetails(string token, UpdateCitizen updateCitizen);
+        Task<List<GetCitizenall>> GetallCitizendetails(string token, string mobno);
     }
 }

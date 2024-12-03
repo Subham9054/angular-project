@@ -88,6 +88,108 @@ namespace GMS.API
             }
         }
 
+
+
+        #region Mobile Team Api
+        [HttpGet("MobileOtpVerify")]
+        public async Task<IActionResult> mobileotpverify(string otp)
+        {
+            try
+            {
+                var isValid = await _MANAGE_COMPLAINTDETAILS_CONFIGRepository.mobileotpverify(otp);
+                if (isValid)
+                {
+                    return Ok("OTP Verified Successfully");
+                }
+                else
+                {
+                    return BadRequest("Invalid OTP");
+                }
+            }
+            catch
+            {
+                return BadRequest("OTP Validation Error");
+            }
+        }
+
+        [HttpGet("GetCitizenAddressDetails")]
+        public async Task<IActionResult> GetCitizenAddressDetails(string token)
+        {
+            if (token == null)
+            {
+                return NotFound("Please provide token number");
+
+            }
+            try
+            {
+                var result = await _MANAGE_COMPLAINTDETAILS_CONFIGRepository.GetCitizendetails(token);
+
+                if (result == null || !result.Any())
+                {
+                    return NotFound("No records found for the specified token.");
+                }
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                // Log the exception as needed
+                return StatusCode(500, "An error occurred while retrieving escalations.");
+            }
+        }
+
+        [HttpPost("UpdateCitizenAddressDetails")]
+        public async Task<IActionResult> UpdateCitizenAddressDetails(string token, UpdateCitizen updateCitizen)
+        {
+            if (token == null)
+            {
+                return NotFound("Please provide token number");
+
+            }
+            try
+            {
+                var result = await _MANAGE_COMPLAINTDETAILS_CONFIGRepository.UpdateCitizendetails(token, updateCitizen);
+
+                if (result == null)
+                {
+                    return NotFound("No records found for the specified token.");
+                }
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                // Log the exception as needed
+                return StatusCode(500, "An error occurred while retrieving escalations.");
+            }
+        }
+        [HttpGet("GetAllCitizenDetails")]
+        public async Task<IActionResult> GetAllCitizenDetails(string token, string mobno)
+        {
+            if (token == null && mobno == null)
+            {
+                return NotFound("Please provide token number and mobile number");
+
+            }
+            try
+            {
+                var result = await _MANAGE_COMPLAINTDETAILS_CONFIGRepository.GetallCitizendetails(token, mobno);
+
+                if (result == null)
+                {
+                    return NotFound("No records found for the specified token.");
+                }
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                // Log the exception as needed
+                return StatusCode(500, "An error occurred while retrieving Records.");
+            }
+        }
+        #endregion
+
         [HttpPost("CreateMANAGE_COMPLAINTDETAILS_CONFIG")]
         public IActionResult MANAGE_COMPLAINTDETAILS_CONFIG(MANAGE_COMPLAINTDETAILS_CONFIG_Model TBL)
         {
