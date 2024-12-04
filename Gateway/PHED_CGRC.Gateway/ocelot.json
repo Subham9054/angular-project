@@ -1,6 +1,6 @@
 {
   "GlobalConfiguration": {
-    "BaseUrl": "https://phed.csmpl.com",
+    "BaseUrl": "https://localhost:7197",
     "RequestIdKey": "e133bbb6-7b30-41d3-83e5-e0d854151b15",
     "AdministrationPath": "/administration",
     "RateLimitOptions": {
@@ -21,11 +21,11 @@
         "Post"
       ],
       "DownstreamPathTemplate": "/Login",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "10.1.1.114",
-          "Port": 5004
+          "Host": "localhost",
+          "Port": 7199
         }
       ],
       "RateLimitOptions": {
@@ -46,11 +46,11 @@
         "Post"
       ],
       "DownstreamPathTemplate": "/Api/MANAGE_CATEGORYMASTER/ComplaintCategory",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "10.1.1.114",
-          "Port": 5000
+          "Host": "localhost",
+          "Port": 7010
         }
       ],
       "RateLimitOptions": {
@@ -70,11 +70,11 @@
         "Get"
       ],
       "DownstreamPathTemplate": "/Api/MANAGE_CATEGORYMASTER/GetallComplaint",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "10.1.1.114",
-          "Port": 5000
+          "Host": "localhost",
+          "Port": 7010
         }
       ],
       "RateLimitOptions": {
@@ -89,23 +89,22 @@
       }
     },
     {
-      "UpstreamPathTemplate": "/gateway/UpdateComplaint",
+      "UpstreamPathTemplate": "/gateway/UpdateComplaint/{id}",
       "UpstreamHttpMethod": [
         "Post"
       ],
-      "DownstreamPathTemplate": "/Api/MANAGE_CATEGORYMASTER/UpdateComplaint",
-      "DownstreamScheme": "http",
+      "DownstreamPathTemplate": "/Api/MANAGE_CATEGORYMASTER/UpdateComplaint/{id}",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "10.1.1.114",
-          "Port": 5000
+          "Host": "localhost",
+          "Port": 7010
         }
       ],
       "RateLimitOptions": {
         "DisableRateLimitHeaders": false,
-        "QuotaExceededMessage": "<Add your message>",
-        "HttpStatusCode": 9999,
-        "ClientWhitelist": [],
+        "QuotaExceededMessage": "Rate limit exceeded.",
+        "HttpStatusCode": 429,
         "EnableRateLimiting": true,
         "Period": "1s",
         "PeriodTimespan": 1,
@@ -113,16 +112,16 @@
       }
     },
     {
-      "UpstreamPathTemplate": "/gateway/deleteComplaintbyid",
+      "UpstreamPathTemplate": "/gateway/deleteComplaintbyid/{id}",
       "UpstreamHttpMethod": [
-        "Post"
+        "Delete"
       ],
-      "DownstreamPathTemplate": "/Api/MANAGE_CATEGORYMASTER/deleteComplaintbyid",
-      "DownstreamScheme": "http",
+      "DownstreamPathTemplate": "/Api/MANAGE_CATEGORYMASTER/deleteComplaintbyid/{id}",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "10.1.1.114",
-          "Port": 5000
+          "Host": "localhost",
+          "Port": 7010
         }
       ],
       "RateLimitOptions": {
@@ -143,11 +142,11 @@
         "Post"
       ],
       "DownstreamPathTemplate": "/Api/MANAGE_SUBCATEGORYMASTER/ComplaintSubCategory",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "10.1.1.114",
-          "Port": 5000
+          "Host": "localhost",
+          "Port": 7010
         }
       ],
       "RateLimitOptions": {
@@ -167,11 +166,11 @@
         "Get"
       ],
       "DownstreamPathTemplate": "/Api/MANAGE_SUBCATEGORYMASTER/ViewComplaintSubCategory",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "10.1.1.114",
-          "Port": 5000
+          "Host": "localhost",
+          "Port": 7010
         }
       ],
       "RateLimitOptions": {
@@ -188,14 +187,14 @@
     {
       "UpstreamPathTemplate": "/gateway/UpdateComplaintSubCategory",
       "UpstreamHttpMethod": [
-        "Put"
+        "Post"
       ],
       "DownstreamPathTemplate": "/Api/MANAGE_SUBCATEGORYMASTER/UpdateComplaintSubCategory",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "10.1.1.114",
-          "Port": 5000
+          "Host": "localhost",
+          "Port": 7010
         }
       ],
       "RateLimitOptions": {
@@ -215,11 +214,11 @@
         "Delete"
       ],
       "DownstreamPathTemplate": "/Api/MANAGE_SUBCATEGORYMASTER/DeleteSubcat",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "10.1.1.114",
-          "Port": 5000
+          "Host": "localhost",
+          "Port": 7010
         }
       ],
       "RateLimitOptions": {
@@ -239,11 +238,11 @@
         "Post"
       ],
       "DownstreamPathTemplate": "/Api/MANAGE_COMPLAINTDETAILS_CONFIG/CreateMANAGE_COMPLAINTDETAILS_CONFIG",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "10.1.1.114",
-          "Port": 5002
+          "Host": "localhost",
+          "Port": 7024
         }
       ],
       "RateLimitOptions": {
@@ -263,11 +262,11 @@
         "Get"
       ],
       "DownstreamPathTemplate": "/Api/MANAGE_COMPLAINTDETAILS_CONFIG/GetMANAGE_COMPLAINTDETAILS_CONFIG",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "10.1.1.114",
-          "Port": 5002
+          "Host": "localhost",
+          "Port": 7024
         }
       ],
       "RateLimitOptions": {
@@ -287,11 +286,11 @@
         "Delete"
       ],
       "DownstreamPathTemplate": "/Api/MANAGE_COMPLAINTDETAILS_CONFIG/DeleteMANAGE_COMPLAINTDETAILS_CONFIG",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "10.1.1.114",
-          "Port": 5002
+          "Host": "localhost",
+          "Port": 7024
         }
       ],
       "RateLimitOptions": {
@@ -311,11 +310,11 @@
         "Get"
       ],
       "DownstreamPathTemplate": "/Api/MANAGE_COMPLAINTDETAILS_CONFIG/GetByIDMANAGE_COMPLAINTDETAILS_CONFIG",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "10.1.1.114",
-          "Port": 5002
+          "Host": "localhost",
+          "Port": 7024
         }
       ],
       "RateLimitOptions": {
@@ -337,11 +336,11 @@
         "Post"
       ],
       "DownstreamPathTemplate": "/Api/MANAGE_ESCALATION_CONFIGDETAILS/insertescalation",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "10.1.1.114",
-          "Port": 5001
+          "Host": "localhost",
+          "Port": 7237
         }
       ],
       "RateLimitOptions": {
@@ -361,11 +360,11 @@
         "Get"
       ],
       "DownstreamPathTemplate": "/Api/MANAGE_ESCALATION_CONFIGDETAILS/check",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "10.1.1.114",
-          "Port": 5001
+          "Host": "localhost",
+          "Port": 7237
         }
       ],
       "RateLimitOptions": {
@@ -385,11 +384,11 @@
         "Get"
       ],
       "DownstreamPathTemplate": "/Api/MANAGE_ESCALATION_CONFIGDETAILS/viewescalation",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "10.1.1.114",
-          "Port": 5001
+          "Host": "localhost",
+          "Port": 7237
         }
       ],
       "RateLimitOptions": {
@@ -409,11 +408,11 @@
         "Get"
       ],
       "DownstreamPathTemplate": "/Api/MANAGE_ESCALATION_CONFIGDETAILS/viewescalationeye",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "10.1.1.114",
-          "Port": 5001
+          "Host": "localhost",
+          "Port": 7237
         }
       ],
       "RateLimitOptions": {
@@ -433,11 +432,11 @@
         "Get"
       ],
       "DownstreamPathTemplate": "/Api/MANAGE_ESCALATION_CONFIGDETAILS/viewupdatepen",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "10.1.1.114",
-          "Port": 5001
+          "Host": "localhost",
+          "Port": 7237
         }
       ],
       "RateLimitOptions": {
@@ -460,7 +459,7 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "10.1.1.114",
+          "Host": "localhost",
           "Port": 7182
         }
       ],
@@ -484,7 +483,7 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "10.1.1.114",
+          "Host": "localhost",
           "Port": 7182
         }
       ],
@@ -508,7 +507,7 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "10.1.1.114",
+          "Host": "localhost",
           "Port": 7182
         }
       ],
@@ -532,7 +531,7 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "10.1.1.114",
+          "Host": "localhost",
           "Port": 7182
         }
       ],
@@ -554,11 +553,11 @@
         "Get"
       ],
       "DownstreamPathTemplate": "/api/Dropdown/GetDistricts",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "10.1.1.114",
-          "Port": 5005
+          "Host": "localhost",
+          "Port": 7225
         }
       ],
       "RateLimitOptions": {
@@ -578,11 +577,11 @@
         "Get"
       ],
       "DownstreamPathTemplate": "/api/Dropdown/GetBlocks",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "10.1.1.114",
-          "Port": 5005
+          "Host": "localhost",
+          "Port": 7225
         }
       ],
       "RateLimitOptions": {
@@ -602,11 +601,11 @@
         "Get"
       ],
       "DownstreamPathTemplate": "/api/Dropdown/GetGp",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "10.1.1.114",
-          "Port": 5005
+          "Host": "localhost",
+          "Port": 7225
         }
       ],
       "RateLimitOptions": {
@@ -626,11 +625,11 @@
         "Get"
       ],
       "DownstreamPathTemplate": "/api/Dropdown/GetVillages",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "10.1.1.114",
-          "Port": 5005
+          "Host": "localhost",
+          "Port": 7225
         }
       ],
       "RateLimitOptions": {
@@ -650,11 +649,11 @@
         "Get"
       ],
       "DownstreamPathTemplate": "/api/Dropdown/GetWards",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "10.1.1.114",
-          "Port": 5005
+          "Host": "localhost",
+          "Port": 7225
         }
       ],
       "RateLimitOptions": {
@@ -674,11 +673,11 @@
         "Post"
       ],
       "DownstreamPathTemplate": "/api/Dropdown/UploadFile",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "10.1.1.114",
-          "Port": 5005
+          "Host": "localhost",
+          "Port": 7225
         }
       ],
       "RateLimitOptions": {
@@ -698,11 +697,11 @@
         "Get"
       ],
       "DownstreamPathTemplate": "/api/Dropdown/GetComplaints",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "10.1.1.114",
-          "Port": 5005
+          "Host": "localhost",
+          "Port": 7225
         }
       ],
       "RateLimitOptions": {
@@ -722,11 +721,11 @@
         "Get"
       ],
       "DownstreamPathTemplate": "/api/Dropdown/GetComplaintstype",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "10.1.1.114",
-          "Port": 5005
+          "Host": "localhost",
+          "Port": 7225
         }
       ],
       "RateLimitOptions": {
@@ -746,11 +745,11 @@
         "Get"
       ],
       "DownstreamPathTemplate": "/api/Dropdown/GetCategory",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "10.1.1.114",
-          "Port": 5005
+          "Host": "localhost",
+          "Port": 7225
         }
       ],
       "RateLimitOptions": {
@@ -770,11 +769,11 @@
         "Get"
       ],
       "DownstreamPathTemplate": "/api/Dropdown/GetSubCategories",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "10.1.1.114",
-          "Port": 5005
+          "Host": "localhost",
+          "Port": 7225
         }
       ],
       "RateLimitOptions": {
@@ -794,11 +793,11 @@
         "Get"
       ],
       "DownstreamPathTemplate": "/api/Dropdown/GetDesignation",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "10.1.1.114",
-          "Port": 5005
+          "Host": "localhost",
+          "Port": 7225
         }
       ],
       "RateLimitOptions": {
@@ -818,11 +817,11 @@
         "Get"
       ],
       "DownstreamPathTemplate": "/api/Dropdown/GetLocationLevel",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "10.1.1.114",
-          "Port": 5005
+          "Host": "localhost",
+          "Port": 7225
         }
       ],
       "RateLimitOptions": {
@@ -842,11 +841,11 @@
         "Get"
       ],
       "DownstreamPathTemplate": "/api/Dropdown/GetComplaintPriority",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "10.1.1.114",
-          "Port": 5005
+          "Host": "localhost",
+          "Port": 7225
         }
       ],
       "RateLimitOptions": {
@@ -866,11 +865,11 @@
         "Post"
       ],
       "DownstreamPathTemplate": "/Api/MANAGE_COMPLAINTDETAILS_CONFIG/DetailcomplaintRegistration",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "10.1.1.114",
-          "Port": 5002
+          "Host": "localhost",
+          "Port": 7024
         }
       ],
       "RateLimitOptions": {
@@ -890,11 +889,11 @@
         "Get"
       ],
       "DownstreamPathTemplate": "/Api/MANAGE_COMPLAINTDETAILS_CONFIG/GetGmsComplaintdetails",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "10.1.1.114",
-          "Port": 5002
+          "Host": "localhost",
+          "Port": 7024
         }
       ],
       "RateLimitOptions": {
@@ -914,11 +913,11 @@
         "Get"
       ],
       "DownstreamPathTemplate": "/Api/MANAGE_COMPLAINTDETAILS_CONFIG/Getgmstakeaction",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "10.1.1.114",
-          "Port": 5002
+          "Host": "localhost",
+          "Port": 7024
         }
       ],
       "RateLimitOptions": {
