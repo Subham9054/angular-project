@@ -156,7 +156,7 @@ namespace GMS.Model.Entities.GMS
         public string OTP { get; set; }
         public DateTime CreatedOn { get; set; }
         public DateTime ExpiresOn { get; set; }
-        public bool IsUsed { get; set; }
+        public int IsUsed { get; set; }
     }
 
 }

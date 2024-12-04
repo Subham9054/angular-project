@@ -193,7 +193,7 @@ namespace GMS.API
         [HttpGet("Otpgenerate")]
         public async Task<IActionResult> Otpgenerate(string mobno)
         {
-            if (string.IsNullOrWhiteSpace(mobno))
+            if (string.IsNullOrWhiteSpace(mobno) || mobno.Length != 10)
             {
                 return BadRequest(new
                 {
@@ -201,6 +201,7 @@ namespace GMS.API
                     Message = "Please provide a valid phone number."
                 });
             }
+
 
             try
             {
