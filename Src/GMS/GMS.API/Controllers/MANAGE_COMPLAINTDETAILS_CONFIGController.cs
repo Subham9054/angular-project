@@ -249,7 +249,7 @@ namespace GMS.API
             try
             {
                 // Validate OTP
-                var otpDetails = await _MANAGE_COMPLAINTDETAILS_CONFIGRepository.ValidateOtpAsync(phoneNumber, otp);
+                var otpDetails = await _MANAGE_COMPLAINTDETAILS_CONFIGRepository.ValidateOtp(phoneNumber, otp);
 
                 if (otpDetails == null)
                 {
