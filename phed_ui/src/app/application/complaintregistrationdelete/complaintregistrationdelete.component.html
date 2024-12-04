@@ -369,8 +369,12 @@
                             </a>
                             <input type="hidden" [value]="complaint.vcH_TOKENNO" #tokenno />
                         </td>
-                        <td>{{ complaint.nvcH_COMPLIANTANT_NAME }}</td>
-                        <td>{{ complaint.nvcH_COMPLIANT_DETAILS }}</td>
+                        <td>{{ complaint.nvcH_COMPLIANTANT_NAME }}
+                          <input type="hidden" [value]="complaint.inT_CATEGORY_ID" #categoryId />
+                        </td>
+                        <td>{{ complaint.nvcH_COMPLIANT_DETAILS }}
+                          <input type="hidden" [value]="complaint.inT_SUB_CATEGORY_ID" #subcategoryId />
+                        </td>
                         <td>
                             <span
                                 class="badge"

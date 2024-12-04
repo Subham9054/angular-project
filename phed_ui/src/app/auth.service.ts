@@ -12,7 +12,7 @@ export class AuthService {
   private secretKey: string = 'my-secret-key'; 
   private token: string | null = null; // Store the token
 
-  private baseUrl: string = 'https://phed.csmpl.com/';
+  private baseUrl: string = 'https://localhost:7197';
   
 
   private apiUrl = `${this.baseUrl}/gateway/Login`; // Your API URL for login
@@ -20,7 +20,7 @@ export class AuthService {
   private complaintApiUrl = `${this.baseUrl}/gateway/ComplaintCategory`;
   private getComplaintApiUrl = `${this.baseUrl}/gateway/GetallComplaint`;
   private updateComplaintApiUrl = `${this.baseUrl}/gateway/UpdateComplaint`;
-  private getComplaintByIdApiUrl = 'http://172.27.32.0:8085/api/Complaint/GetComplaintById';
+  //private getComplaintByIdApiUrl = 'http://172.27.32.0:8085/api/Complaint/GetComplaintById';
   private deleteapiurl = `${this.baseUrl}/gateway/deleteComplaintbyid`;
   private districturl =  `${this.baseUrl}/gateway/GetDistricts`;  
   private blockurl =  `${this.baseUrl}/gateway/GetBlocks`;
@@ -196,10 +196,19 @@ export class AuthService {
     );
   }
 
-  updateComplaint(id: number, complaintData: { VCH_CATEGORY: string, NVCH_CATEGORY: string }): Observable<any> {
-    return this.http.post(`${this.updateComplaintApiUrl}/${id}`, complaintData)
-      .pipe(catchError(this.handleError));
-  }
+  updateComplaint(
+    id: number,
+    complaintData: { VCH_CATEGORY: string; NVCH_CATEGORY: string }
+  ): Observable<any> {
+    // Ensure `updateComplaintApiUrl` is correctly initialized in your service
+    const url = `${this.updateComplaintApiUrl}/${id}`;
+    return this.http.post(url, complaintData).pipe(
+      catchError((error) => {
+        console.error('Error in updateComplaint:', error);
+        return throwError(() => new Error('Error occurred while updating the complaint.'));
+      })
+    );
+  }  
 
   delete(id: number): Observable<any> {
     const url = `${this.deleteapiurl}/${id}`;  // Use the delete API URL with ID
@@ -213,10 +222,10 @@ export class AuthService {
     );
   }
 
-  getComplaintById(id: number): Observable<any> {
-    return this.http.get(`${this.getComplaintByIdApiUrl}/${id}`)
-      .pipe(catchError(this.handleError));
-  }
+  // getComplaintById(id: number): Observable<any> {
+  //   return this.http.get(`${this.getComplaintByIdApiUrl}/${id}`)
+  //     .pipe(catchError(this.handleError));
+  // }
   getDesignation():Observable<any>{
     return this.http.get(this.getdesignationurl).pipe(
       catchError(this.handleError)
@@ -285,8 +294,8 @@ export class AuthService {
     );
   }
 
-  updateSubCat(subcatid: string, registrationData: any) {
-    return this.http.put<any>(`${this.updatesubcaturl}?subcatid=${subcatid}`, registrationData).pipe(
+  updateSubCat(subcatid: number, registrationData: any) {
+    return this.http.post<any>(`${this.updatesubcaturl}?subcatid=${subcatid}`, registrationData).pipe(
       catchError(this.handleError)
     );
   }

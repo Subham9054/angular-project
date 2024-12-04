@@ -63,7 +63,7 @@ namespace CommonMaster.API
             }
         }
 
-        [HttpPut("UpdateComplaintSubCategory")]
+        [HttpPost("UpdateComplaintSubCategory")]
         public async Task<IActionResult> UpdateComplaintSubCategory([FromQuery] int subcatid, [FromBody] UpdateComplaintSubCategoryModel complaintCategory)
         {
             if (complaintCategory == null)

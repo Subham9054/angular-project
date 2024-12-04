@@ -38,28 +38,35 @@ export class ComplaintSubCategoryComponent {
     this.getPriorities();
   
     this.route.queryParams.subscribe(params => {
+      debugger;
       if (params['catid'] && params['subcatid']) {
         this.isUpdateMode = true;
         const catid = params['catid'];
         const subcatid = params['subcatid'];
-  
-        // Fetch dropdowns and update data only after they're loaded
-        Promise.all([this.getCategories(), this.getPriorities()])
-          .then(() => {
-            this.authService.UpdateSubCategory(catid, subcatid).subscribe(
-              data => {
-                this.updatesubcatdata = data;
-                this.bindUpdateData(); // Now bind data
-                
-              },
-              error => {
-                console.error('Error fetching escalations:', error);
-              }
-            );
-          })
-          .catch(error => console.error('Error loading dropdown data:', error));
+    
+        // Log parameters for debugging
+        console.log('Category ID:', catid, 'Sub-category ID:', subcatid);
+    
+        // Fetch categories and priorities
+        this.getCategories();
+        this.getPriorities();
+    
+        // Fetch subcategory data after dropdowns are loaded
+        this.authService.UpdateSubCategory(catid, subcatid).subscribe(
+          data => {
+            this.updatesubcatdata = data;
+            console.log('Fetched subcategory data:', this.updatesubcatdata);
+    
+            this.bindUpdateData(); // Bind the fetched data
+          },
+          error => {
+            console.error('Error fetching subcategory data:', error);
+          }
+        );
       }
     });
+    
+    
   }
   
   getCategories(): Promise<void> {
@@ -92,6 +99,7 @@ export class ComplaintSubCategoryComponent {
     });
   }
   bindUpdateData() {
+    console.log(this.updatesubcatdata);
     if (this.updatesubcatdata && this.updatesubcatdata.length > 0) {
       const escalation = this.updatesubcatdata[0];
   
@@ -161,7 +169,7 @@ export class ComplaintSubCategoryComponent {
   updateSubcat() {
     debugger;
     const subcatElement = document.getElementById('inpthidn') as HTMLInputElement;
-    const subcatid = subcatElement.value;
+    const subcatid = parseInt(subcatElement.value);
     const registrationData = {
       INT_CATEGORY_ID: this.formData.ddlComplaintCategory ,
       VCH_SUB_CATEGORY: this.formData.complaintsub ,
