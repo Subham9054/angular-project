@@ -178,21 +178,27 @@ namespace GMS.Repository.Repositories.Interfaces.MANAGE_COMPLAINTDETAILS_CONFIG
             }
         }
 
-        public async Task<OTPDetails> ValidateOtpAsync(string phoneNumber, string otp)
+        public async Task<OTPDetails> ValidateOtp(string phoneNumber, string otp)
         {
             try
             {
                 var parameters = new DynamicParameters();
-                parameters.Add("OTP", otp);
-                parameters.Add("PhoneNumber", phoneNumber);
-                var result = await Connection.QueryFirstOrDefaultAsync<OTPDetails>("ValidateOtp",parameters,commandType: CommandType.StoredProcedure);
-                return result; 
+                parameters.Add("phoneNumber", phoneNumber);  // Match the parameter name
+                parameters.Add("otp", otp);  // Match the parameter name
+
+                var result = await Connection.QueryFirstOrDefaultAsync<OTPDetails>(
+                    "ValidateOtp",
+                    parameters,
+                    commandType: CommandType.StoredProcedure);
+
+                return result;
             }
             catch (Exception ex)
             {
                 throw new Exception("An error occurred while validating the OTP.", ex);
             }
         }
+
 
 
         public async Task<bool> MarkOtpAsUsedAsync(int otpId)
