@@ -126,6 +126,21 @@ namespace GMS.Repository.Repositories.Interfaces.MANAGE_COMPLAINTDETAILS_CONFIG
             }
         }
 
+        public async Task<List<GetCitizenall>> GetallComplaints( string mobno)
+        {
+            try
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("mobno", mobno);
+                var result = await Connection.QueryAsync<GetCitizenall>("GetCitizenallComplaints", parameters, commandType: CommandType.StoredProcedure);
+                return result.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
 
         public async Task<bool> UpdateCitizendetails(string token,UpdateCitizen updateCitizen)
         {
