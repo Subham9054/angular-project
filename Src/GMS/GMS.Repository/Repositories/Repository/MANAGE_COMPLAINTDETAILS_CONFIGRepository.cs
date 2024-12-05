@@ -24,7 +24,7 @@ namespace GMS.Repository.Repositories.Interfaces.MANAGE_COMPLAINTDETAILS_CONFIG
 
 
                 DynamicParameters parameters = new DynamicParameters();
-                //var randomToken = new Random().Next(1000000000, 2147483647).ToString();
+                var randomToken = new Random().Next(1000000000, 2147483647).ToString();
                 parameters.Add("@createdon", DateTime.Now);
                 parameters.Add("@createdby", 1);
                 parameters.Add("@category", complaint.INT_CATEGORY_ID);
@@ -47,7 +47,7 @@ namespace GMS.Repository.Repositories.Interfaces.MANAGE_COMPLAINTDETAILS_CONFIG
                 parameters.Add("@address", complaint.NVCH_ADDRESS);
                 parameters.Add("@complaintdetail", complaint.NVCH_COMPLIANT_DETAILS);
                 parameters.Add("@filename", complaint.VCH_COMPLAINT_FILE);
-                parameters.Add("@token", complaint.VCH_TOKENNO);
+                parameters.Add("@token", randomToken);
                 parameters.Add("email", complaint.VCH_EMAIL);
                 parameters.Add("landMark", complaint.NVCH_LANDMARK);
                 parameters.Add("priority", 1);
@@ -118,6 +118,21 @@ namespace GMS.Repository.Repositories.Interfaces.MANAGE_COMPLAINTDETAILS_CONFIG
                 parameters.Add("token", token);
                 parameters.Add("mobno", mobno);
                 var result = await Connection.QueryAsync<GetCitizenall>("GetCitizenallDetails", parameters, commandType: CommandType.StoredProcedure);
+                return result.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public async Task<List<GetCitizenall>> GetallComplaints( string mobno)
+        {
+            try
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("mobno", mobno);
+                var result = await Connection.QueryAsync<GetCitizenall>("GetCitizenallComplaints", parameters, commandType: CommandType.StoredProcedure);
                 return result.ToList();
             }
             catch (Exception ex)

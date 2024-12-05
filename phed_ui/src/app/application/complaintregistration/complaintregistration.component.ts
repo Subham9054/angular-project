@@ -286,7 +286,7 @@ export class ComplaintregistrationComponent  {
       NVCH_COMPLIANT_DETAILS: this.formData.txtDetailsE || '',
       NVCH_LANDMARK: this.formData.txtLandmark || '',
       VCH_EMAIL: this.formData.txtEmail || '',
-      VCH_TOKENNO: this.generateToken(),
+      //VCH_TOKENNO: this.generateToken(),
       NVCH_ADDRESS: this.formData.txtAddress || '' // Ensure this is set correctly
     };
 
@@ -306,13 +306,13 @@ export class ComplaintregistrationComponent  {
       }
     );
   }
-  generateToken(): string {
-    // Generate a random 10-digit number
-    const min = 1000000000; // Smallest 10-digit number
-    const max = 9999999999; // Largest 10-digit number
-    const token = Math.floor(Math.random() * (max - min + 1)) + min;
-    return token.toString(); // Convert to string and return
-  }
+  // generateToken(): string {
+  //   // Generate a random 10-digit number
+  //   const min = 1000000000; // Smallest 10-digit number
+  //   const max = 9999999999; // Largest 10-digit number
+  //   const token = Math.floor(Math.random() * (max - min + 1)) + min;
+  //   return token.toString(); // Convert to string and return
+  // }
   resetForm() {
     this.formData = {
       ddlRecvBy: 0,

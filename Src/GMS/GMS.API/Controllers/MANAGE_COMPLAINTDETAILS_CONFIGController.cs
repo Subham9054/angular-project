@@ -190,6 +190,50 @@ namespace GMS.API
             }
         }
 
+        [HttpGet("GetAllComplaints")]
+        public async Task<IActionResult> GetAllComplaints( string mobno)
+        {
+            if ( string.IsNullOrEmpty(mobno))
+            {
+                return NotFound(new
+                {
+                    StatusCode = 404,
+                    Message = "Please provide mobile number."
+                });
+            }
+
+            try
+            {
+                var result = await _MANAGE_COMPLAINTDETAILS_CONFIGRepository.GetallComplaints( mobno);
+
+                if (result == null || !result.Any())
+                {
+                    return NotFound(new
+                    {
+                        StatusCode = 404,
+                        Message = "No records found for mobile number."
+                    });
+                }
+
+                return Ok(new
+                {
+                    StatusCode = 200,
+                    Message = "Records retrieved successfully.",
+                    Data = result
+                });
+            }
+            catch (Exception ex)
+            {
+                // Log the exception as needed
+                return StatusCode(500, new
+                {
+                    StatusCode = 500,
+                    Message = "An error occurred while retrieving records.",
+                    Error = ex.Message // Include the exception message for debugging
+                });
+            }
+        }
+
         [HttpGet("Otpgenerate")]
         public async Task<IActionResult> Otpgenerate(string mobno)
         {

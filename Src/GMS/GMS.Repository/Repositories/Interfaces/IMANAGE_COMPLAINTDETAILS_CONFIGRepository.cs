@@ -16,6 +16,7 @@ namespace GMS.Repository.Interfaces.MANAGE_COMPLAINTDETAILS_CONFIG
         Task<List<GetCitizen>> GetCitizendetails(string token);
         Task<bool> UpdateCitizendetails(string token, UpdateCitizen updateCitizen);
         Task<List<GetCitizenall>> GetallCitizendetails(string token, string mobno);
+        Task<List<GetCitizenall>> GetallComplaints(string mobno);
         Task<bool> GenerateOtp(string phoneNumber);
         Task<OTPDetails> ValidateOtp(string phoneNumber, string otp);
         Task<bool> MarkOtpAsUsedAsync(int otpId);

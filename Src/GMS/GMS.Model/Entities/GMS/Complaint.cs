@@ -21,7 +21,7 @@ namespace GMS.Model.Entities.GMS
         public string NVCH_ADDRESS { get; set; }
         public string NVCH_COMPLIANT_DETAILS { get; set; }
         public string VCH_COMPLAINT_FILE { get; set; }
-        public string VCH_TOKENNO { get; set; }
+        //public string VCH_TOKENNO { get; set; }
         public DateTime DTM_CREATED_ON { get; set; } // Assuming it will be provided from frontend or generated in the repository
         public string VCH_EMAIL { get; set; }
         public string NVCH_LANDMARK { get;set; }
