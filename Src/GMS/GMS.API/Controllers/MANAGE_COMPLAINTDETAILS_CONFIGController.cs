@@ -24,20 +24,94 @@ namespace GMS.API
             _hostingEnvironment = hostingEnvironment;
         }
 
+        //[HttpPost("DetailcomplaintRegistration")]
+        //public async Task<IActionResult> complaintRegistration([FromBody] Complaint complaint)
+        //{
+        //    if (complaint == null)
+        //    {
+        //        return BadRequest(new { message = "Provide all the data" });
+        //    }
+        //    try
+        //    {
+        //        var result = await _MANAGE_COMPLAINTDETAILS_CONFIGRepository.ComplaintRegistrationdetail(complaint);
+
+        //        if (result)
+        //        {
+        //            return Ok(new { message = "Complaint registered successfully." });
+        //        }
+        //        else
+        //        {
+        //            return StatusCode(StatusCodes.Status500InternalServerError, new { message = "Failed to register complaint." });
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return StatusCode(StatusCodes.Status500InternalServerError, new { message = "An error occurred while processing your request." });
+        //    }
+        //}
         [HttpPost("DetailcomplaintRegistration")]
-        public async Task<IActionResult> complaintRegistration([FromBody] Complaint complaint)
+        public async Task<IActionResult> ComplaintRegistration([FromForm] Complaint complaint, [FromForm] List<IFormFile> files)
         {
             if (complaint == null)
             {
                 return BadRequest(new { message = "Provide all the data" });
             }
+
+            // Validation check
+            if (!ModelState.IsValid)
+            {
+                var errorMessages = ModelState.Values.SelectMany(v => v.Errors)
+                                                      .Select(e => e.ErrorMessage)
+                                                      .ToList();
+                return BadRequest(new { errors = errorMessages });
+            }
+
             try
             {
+                // Handle file upload
+                List<string> uploadedFiles = new List<string>();
+                if (files != null && files.Count > 0)
+                {
+                    var baseFolderPath = Path.Combine(Directory.GetCurrentDirectory(), "assets");
+                    var subFolderPath = Path.Combine(baseFolderPath, "ComplaintDocuments");
+                    Directory.CreateDirectory(subFolderPath);
+
+                    foreach (var file in files)
+                    {
+                        if (file == null || file.Length == 0)
+                        {
+                            continue;
+                        }
+
+                        var uniqueNumber = DateTime.Now.ToString("yyyyMMddHHmmss");
+                        var fileExtension = Path.GetExtension(file.FileName);
+                        var originalFileName = Path.GetFileNameWithoutExtension(file.FileName);
+                        var uniqueFileName = $"{uniqueNumber}_{originalFileName}{fileExtension}";
+                        var filePath = Path.Combine(subFolderPath, uniqueFileName);
+
+                        if (System.IO.File.Exists(filePath))
+                        {
+                            return Conflict($"A file with the name {uniqueFileName} already exists.");
+                        }
+
+                        using (var stream = new FileStream(filePath, FileMode.Create))
+                        {
+                            await file.CopyToAsync(stream);
+                        }
+
+                        uploadedFiles.Add(uniqueFileName);
+                    }
+                }
+
+                // Save uploaded file names (if any) to the complaint model
+                complaint.VCH_COMPLAINT_FILE = string.Join(",", uploadedFiles);
+
+                // Process the complaint registration
                 var result = await _MANAGE_COMPLAINTDETAILS_CONFIGRepository.ComplaintRegistrationdetail(complaint);
 
                 if (result)
                 {
-                    return Ok(new { message = "Complaint registered successfully." });
+                    return Ok(new { message = "Complaint registered successfully.", uploadedFiles });
                 }
                 else
                 {
@@ -49,6 +123,9 @@ namespace GMS.API
                 return StatusCode(StatusCodes.Status500InternalServerError, new { message = "An error occurred while processing your request." });
             }
         }
+
+
+
         [HttpGet("GetGmsComplaintdetails")]
         public async Task<IActionResult> getgmscomplaintdetails()
         {
