@@ -431,22 +431,22 @@ export class ComplaintregistrationComponent  {
   // }
   resetForm() {
     this.formData = {
-      ddlRecvBy: 0,
+    ddlRecvBy: [null],
     txtName: '',
     txtPhone: '',
     txtEmail: '',
     txtAddress:'',
     //txtDocument: '',
-    ddlDistrict: '0',
-    ddlBlock: '0',
-    ddlPanchayat: '0',
-    ddlVillage: '0',
-    ddlward:'0',
-    ddlComplaintCategory: '0',
-    ddlSubCategory: '0',
+    ddlDistrict: [null],
+    ddlBlock: [null],
+    ddlPanchayat: [null],
+    ddlVillage: [null],
+    ddlward:[null],
+    ddlComplaintCategory: [null],
+    ddlSubCategory: [null],
     txtDetailsE: '',
     txtLandmark: '',
-    ddlComplainttype:'0'
+    ddlComplainttype:[null]
     };
     this.filesToUpload = [];
     this.setCurrentDate();

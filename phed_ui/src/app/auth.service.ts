@@ -65,7 +65,7 @@ export class AuthService {
   private galleryUrl = 'http://localhost:5097/api/Gallery'; //Base URL for Managing Gallery
   private faqUrl = 'http://localhost:5097/api/FAQ'; //Base URL for Managing FAQs
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient) { }
   
  
   // Method for user login
