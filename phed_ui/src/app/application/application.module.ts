@@ -50,6 +50,7 @@ import { ComplaintSubCategoryViewComponent } from './complaint-sub-category-view
 import { NgSelectModule } from '@ng-select/ng-select';
 import { UserRegistrationComponent } from './user-registration/user-registration.component';
 import { UserRegistrationViewComponent } from './user-registration-view/user-registration-view.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -117,6 +118,7 @@ import { UserRegistrationViewComponent } from './user-registration-view/user-reg
     AddComponent,
     ViewComponent,
     ComplaintcategoryComponent // Export the ComplaintcategoryComponent
-  ]
+  ],
+  providers: [DatePipe]
 })
 export class ApplicationModule { }

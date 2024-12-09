@@ -1,16 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, AfterViewChecked, OnInit } from '@angular/core';
+import * as $ from 'jquery';
+import 'eonasdan-bootstrap-datetimepicker'; // Include datetimepicker plugin
+import * as moment from 'moment';
+import { DatePipe } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/auth.service';
 import Swal from 'sweetalert2';
-import * as moment from 'moment'; 
 
-declare let $: any;
+//declare let $: any; // Declare jQuery
+
+interface UploadedThumbnailFile {
+  file: File;
+  url: string;
+}
+
+interface UploadedFeatureImageFile {
+  file: File;
+  url: string;
+}
+
 @Component({
   selector: 'app-newsevent',
   templateUrl: './newsevent.component.html',
   styleUrls: ['./newsevent.component.scss']
 })
-export class NewseventComponent implements OnInit {
+export class NewseventComponent implements OnInit, AfterViewChecked {
   eventModel: any = {
     eventId: null,
     titleEnglish: '',
@@ -21,60 +35,131 @@ export class NewseventComponent implements OnInit {
     publishDate: '',
     isEditing: false,
   };
-  thumbnailFiles: File[] = [];
-  featureImageFiles: File[] = [];
   
+  thumbnailFiles: UploadedThumbnailFile[] = [];
+  featureImageFiles: UploadedFeatureImageFile[] = [];  
 
-  constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute) {}
+  private isDatePickerInitialized = false;
+
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private datePipe: DatePipe
+  ) {}
 
   ngOnInit(): void {
     this.checkForEdit();
 
+    // Set default date if needed
     const today = moment().format('DD-MMM-YYYY'); // Get today's date in the desired format
     this.eventModel.publishDate = today; // Set today's date in the model
 
-    // Initialize datetimepicker with today's date as the default
-    $('.publishDate').datetimepicker({
-      format: 'DD-MMM-YYYY',
-      daysOfWeekDisabled: [0, 6], // Example: Disable weekends
-      defaultDate: moment(), // Set default date to today
-    }).on('dp.change', (e: any) => {
-      this.eventModel.publishDate = e.date.format('DD-MMM-YYYY'); // Update the model on date change
-    });
-
-    // $('.publishDate').datetimepicker({
+    // $('.datepicker').datetimepicker({
     //   format: 'DD-MMM-YYYY',
-    //   daysOfWeekDisabled: [0, 6],
+    //   daysOfWeekDisabled: [0, 6], // Disable weekends
     // });
     // $('.timepicker').datetimepicker({
     //   format: 'LT',
     //   daysOfWeekDisabled: [0, 6],
     // });
-    // $('.publishDate').datetimepicker({
+    // $('.datetimepicker').datetimepicker({
     //   format: 'DD-MMM-YYYY LT',
     //   daysOfWeekDisabled: [0, 6],
     // });
   } 
 
-	onThumbnailSelect(event:any) {
-		console.log(event);
-		this.thumbnailFiles.push(...event.addedFiles);
-	}
+  ngAfterViewChecked(): void {
+    if (this.eventModel.isPublish && !this.isDatePickerInitialized) {
+      this.initializeDatepicker();
+      this.isDatePickerInitialized = true;
+    } else if (!this.eventModel.isPublish && this.isDatePickerInitialized) {
+      this.isDatePickerInitialized = false;
+    }
+  }
 
-	onThumbnailRemove(event:any) {
-		console.log(event);
-		this.thumbnailFiles.splice(this.thumbnailFiles.indexOf(event), 1);
-	}
+  private initializeDatepicker(): void {
+    $('.datepicker').datetimepicker({
+      format: 'DD-MMM-YYYY',
+      daysOfWeekDisabled: [0, 6], // Disable weekends
+      defaultDate: moment(), // Set default date to today
+    }).on('dp.change', (e: any) => {
+      this.eventModel.publishDate = e.date.format('DD-MMM-YYYY'); // Update the model on date change
+    });
+  }
 
-  onFeatureImageSelect(event:any) {
-		console.log(event);
-		this.featureImageFiles.push(...event.addedFiles);
-	}
+  // onThumbnailSelect(event: any): void {
+  //   for (const file of event.addedFiles) {
+  //     const reader = new FileReader();
+  //     reader.onload = (e: any) => {
+  //       this.thumbnailFiles.push({ file, url: e.target.result });
+  //     };
+  //     reader.readAsDataURL(file);
+  //   }
+  // }
+  onThumbnailSelect(event: any): void {
+    for (const file of event.addedFiles) {
+      // Validate file size
+      if (file.size > 300 * 1024 ) {
+        Swal.fire('Error', 'File exceeds maximum size of 300KB', 'error');
+        continue; // Skip this file
+      }
+  
+      // Validate file type
+      if (!file.type.startsWith('image/')) {
+        Swal.fire('Error', 'Only image files are allowed', 'error');
+        continue; // Skip this file
+      }
+  
+      // Read and preview valid files
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.thumbnailFiles.push({ file, url: e.target.result });
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+  
+  
+  onThumbnailRemove(file: UploadedThumbnailFile): void {
+    this.thumbnailFiles = this.thumbnailFiles.filter((f) => f !== file);
+  }
 
-	onFeatureImageRemove(event:any) {
-		console.log(event);
-		this.featureImageFiles.splice(this.thumbnailFiles.indexOf(event), 1);
-	}
+  // onFeatureImageSelect(event: any): void {
+  //   for (const file of event.addedFiles) {
+  //     const reader = new FileReader();
+  //     reader.onload = (e: any) => {
+  //       this.featureImageFiles.push({ file, url: e.target.result });
+  //     };
+  //     reader.readAsDataURL(file);
+  //   }
+  // }
+  onFeatureImageSelect(event: any): void {
+    for (const file of event.addedFiles) {
+      // Validate file size
+      if (file.size > 1 * 1024 * 1024) {
+        Swal.fire('Error', 'File exceeds maximum size of 1MB', 'error');
+        continue; // Skip this file
+      }
+  
+      // Validate file type
+      if (!file.type.startsWith('image/')) {
+        Swal.fire('Error', 'Only image files are allowed', 'error');
+        continue; // Skip this file
+      }
+  
+      // Read and preview valid files
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.featureImageFiles.push({ file, url: e.target.result });
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+  
+  onFeatureImageRemove(file: UploadedFeatureImageFile): void {
+    this.featureImageFiles = this.featureImageFiles.filter((f) => f !== file);
+  }  
 
   // Check if we are in edit mode by looking for the ID in the route parameters
   checkForEdit(): void {
@@ -98,7 +183,7 @@ export class NewseventComponent implements OnInit {
           // Ensure response.data is an object, not an array
           const data = Array.isArray(response.data) ? response.data[0] : response.data;
   
-          // Map the fetched data to the galleryModel
+          // Map the fetched data to the eventModel
           this.eventModel = {
             eventId: data?.eventId || null,
             titleEnglish: data?.titleEnglish || '',
@@ -108,13 +193,36 @@ export class NewseventComponent implements OnInit {
             thumbnail: data?.thumbnail || '',
             featureImage: data?.featureImage || '',
             isPublish: data?.isPublish || false,
-            publishDate: data?.publishDate || '',
+            //publishDate: data?.publishDate || '',
+            publishDate: data?.publishDate ? this.datePipe.transform(data.publishDate, 'dd-MMM-yyyy') : '',
             isEditing: true, // Ensure editing mode is enabled
-          };
+          };          
   
-          // Populate files for thumbnails and images if provided by the backend
-          this.thumbnailFiles = data?.thumbnail ? this.mapFiles(data.thumbnail) : [];
-          this.featureImageFiles = data?.featureImage ? this.mapFiles(data.featureImage) : [];
+          // Handle thumbnail image
+          if (data.thumbnail) {
+            const baseURL = 'http://localhost:5097'; // Adjust base URL as per your API
+            const relativePath = data.thumbnail.replace(/.*wwwroot\\/, '').replace(/\\/g, '/');
+            const imageUrl = `${baseURL}/${relativePath}`; // Construct full image URL
+  
+            // Push image into the files array with preview
+            this.thumbnailFiles = [{
+              file: new File([], relativePath.split('/').pop() || '', { type: 'image/jpeg' }),
+              url: imageUrl,
+            }];
+          }
+
+          // Handle feature image
+          if (data.featureImage) {
+            const baseURL = 'http://localhost:5097'; // Adjust base URL as per your API
+            const relativePath = data.featureImage.replace(/.*wwwroot\\/, '').replace(/\\/g, '/');
+            const imageUrl = `${baseURL}/${relativePath}`; // Construct full image URL
+  
+            // Push image into the files array with preview
+            this.featureImageFiles = [{
+              file: new File([], relativePath.split('/').pop() || '', { type: 'image/jpeg' }),
+              url: imageUrl,
+            }];
+          }
         } else {
           console.error('Error fetching event details:', response?.message || 'Invalid response structure.');
           Swal.fire('Error', response?.message || 'Failed to load event details.', 'error');
@@ -124,13 +232,6 @@ export class NewseventComponent implements OnInit {
         console.error('Error fetching event details:', error);
         Swal.fire('Error', 'Failed to load event details.', 'error');
       },
-    });
-  }
-
-  private mapFiles(files: any[]): File[] {
-    return files.map((fileData: any) => {
-      const blob = new Blob([fileData.content], { type: fileData.type });
-      return new File([blob], fileData.name, { type: fileData.type });
     });
   }
 
@@ -172,16 +273,16 @@ export class NewseventComponent implements OnInit {
       return;
     }
 
-    // Validation: Publish Date if Is Publish is checked
-    if (!this.eventModel.isPublish && !this.eventModel.isEditing) {
-      Swal.fire('Validation Error', 'Please select the publish', 'error');
-      return;
-    }
+    // // Validation: Publish Date if Is Publish is checked
+    // if (!this.eventModel.isPublish && !this.eventModel.isEditing) {
+    //   Swal.fire('Validation Error', 'Please select the publish', 'error');
+    //   return;
+    // }
 
-    if (this.eventModel.isPublish && !this.eventModel.publishDate) {
-      Swal.fire('Validation Error', 'Please select a publish date.', 'error');
-      return;
-    }
+    // if (this.eventModel.isPublish && !this.eventModel.publishDate) {
+    //   Swal.fire('Validation Error', 'Please select a publish date.', 'error');
+    //   return;
+    // }
 
     // All validations passed; proceed with form submission
     const formData = new FormData();
@@ -192,18 +293,18 @@ export class NewseventComponent implements OnInit {
     formData.append('isPublish', this.eventModel.isPublish ? 'true' : 'false');
     formData.append('publishDate', this.eventModel.publishDate || '');
 
-    // Append each thumbnail file individually if available
+    // Append thumbnail file (use .file from UploadedFile object)
     if (this.thumbnailFiles.length > 0) {
-      this.thumbnailFiles.forEach((file) => {
-        formData.append('thumbnail', file, file.name);
-      });
+      formData.append('thumbnail', this.thumbnailFiles[0].file, this.thumbnailFiles[0].file.name);
     }
 
-    // Append each feature image file individually if available
+    // Append feature image file (use .file from UploadedFile object)
     if (this.featureImageFiles.length > 0) {
-      this.featureImageFiles.forEach((file) => {
-        formData.append('featureImage', file, file.name);
-      });
+      formData.append('featureImage', this.featureImageFiles[0].file, this.featureImageFiles[0].file.name);
+    }
+
+    if (this.eventModel.eventId) {
+      formData.append('eventId', this.eventModel.eventId.toString());
     }
 
     // Submit the form using the authService

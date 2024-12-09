@@ -1,5 +1,4 @@
 <div class="form-cointainer">
-
     <div class="pagetitle-section">
         <div class="row justify-content-between align-items-center">
             <div class="col-lg-4 col-md-4">
@@ -8,30 +7,22 @@
             <div class="col-lg-6 col-md-8">
                 <div class="utilite">
                     <ul class="mb-0">
-
-
                         <li>
                             <a href="javascript:void(0)" title="Click to Print"><i class="bi bi-printer"></i></a>
                         </li>
-
                         <li>
-                            <a href="javascript:void(0)" title="Download Excel"><i
-                                    class="bi bi-file-earmark-excel"></i></a>
+                            <a href="javascript:void(0)" title="Download Excel"><i class="bi bi-file-earmark-excel"></i></a>
                         </li>
-
                         <li>
                             <a href="javascript:void(0)" title="Click to Publish"><i class="bi bi-volume-up"></i></a>
                         </li>
-
                         <li>
                             <a href="javascript:void(0)" title="Click to Unpublish"><i class="bi bi-volume-mute"></i></a>
-                        </li>
-                        
+                        </li>                        
                         <li class="filter-dropdown dropdown">
                             <a href="javascript:void(0)" data-bs-toggle="dropdown" (click)="openDropdown()">
                                 <i class="bi bi-funnel"></i><span> Filter</span>
                             </a>
-
                             <div class="dropdown-menu dropdown-menu-end filter-dropdown-menu shadow border-0"
                                 [ngClass]="{ 'show': isDropdownOpen }" (click)="$event.stopPropagation()">
                                 <span class="drop-icon" (click)="closeDropdown()">
@@ -54,20 +45,14 @@
                                 </div>
                             </div>
                         </li>
-
-                        <li class="fill-btn add-link"><a routerLink="/application/newsevent/add" title="Click to Add"><i
-                                    class="bi bi-plus-lg"></i>
-                               <span> Add Page</span></a>
+                        <li class="fill-btn add-link"><a routerLink="/application/newsevent/add" title="Click to Add">
+                            <i class="bi bi-plus-lg"></i><span> Add Page</span></a>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
-
-
-
-
 
     <div class="view-legand">
         <ul class="legends">
@@ -76,143 +61,39 @@
         </ul>
     </div>
     <div class="content-box content-area p-0">
-        <div class="table-responsive">
+        <div *ngIf="noRecordsFound" class="alert alert-warning text-center mt-3">
+            No News & Events is Found!!!
+        </div>
+        <div *ngIf="eventdetails.length > 0" class="table-responsive">
             <table class="table mb-0">
                 <thead>
                     <tr>
-                        <th width="30px">
-                            <input class="form-check-input" type="checkbox">
-                        </th>
+                        <th width="30px"><input class="form-check-input" type="checkbox"></th>
                         <th width="40px">Sl#</th>
-                        <th>Title</th>
-                        <th>Thumb Image</th>
+                        <th>Title (English)</th>
+                        <th>Title (हिंदी)</th>
+                        <th style="text-align: center">Thumb Image</th>
                         <th>Publish Date</th>
-                        <th width="100">Action</th>
+                        <th width="70px" style="text-align: center;">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="publish">
-                        <td><input type="checkbox" class="form-check-input"></td>
-                        <td> 1 </td>
+                    <tr *ngFor="let item of eventdetails; let i = index" [ngClass]="{'publish': item.isPublish, 'unpublish': !item.isPublish}">
+                        <td><input type="checkbox"></td>
+                        <td>{{ i + 1 }}</td>
+                        <td>{{ item.titleEnglish }}</td>
+                        <td>{{ item.titleHindi }}</td>
+                        <!-- <td>{{ gallery.thumbnail }}</td> -->
+                        <td style="text-align: center; vertical-align: middle;"><img [src]="item.thumbImage" alt="{{ item.captionEnglish }}" style="height: 50px; width: 50px;" class="img-fluid" /></td>
+                        <!-- <td>{{ item.publishDate }}</td> -->
+                        <td>{{ item.publishDate | date:'dd-MMM-yyyy' }}</td>
                         <td>
-                            Announcement of new water supply projects for underserved areas in Bihar
-                        </td>
-                        <td>
-                            <div href="javascript:void(0);" class="img-banner">
-                                <img src="./assets/img/login-bg.png" alt="Banner text">
-                            </div>
-                        </td>
-                        <td> 01-Sep-2022 </td>
-                        <td>
-                            <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"
-                                    data-bs-toggle="modal" data-bs-target="#viewmodal">
-                                    <i class="bi bi-eye"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
-                                    <i class="bi bi-pencil"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" title="Delete">
-                                    <i class="bi bi-trash3"></i></a>
-                            </div>
-                        </td>
-                    </tr>
-
-                    <tr class="unpublish">
-                        <td><input type="checkbox" class="form-check-input"></td>
-                        <td>2</td>
-                        <td>
-                            Announcement of new water supply projects for underserved areas in Bihar
-                        </td>
-                        <td>
-                            <div href="javascript:void(0);" class="img-banner">
-                                <img src="./assets/img/login-bg.png" alt="Banner text">
-                            </div>
-                        </td>
-                        <td> 01-Sep-2022 </td>
-                        <td>
-                            <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"
-                                    data-bs-toggle="modal" data-bs-target="#viewmodal">
-                                    <i class="bi bi-eye"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
-                                    <i class="bi bi-pencil"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" title="Delete">
-                                    <i class="bi bi-trash3"></i></a>
-                            </div>
-                        </td>
-                    </tr>
-
-                    <tr class="publish">
-                        <td><input type="checkbox" class="form-check-input"></td>
-                        <td>3</td>
-                        <td>
-                            Announcement of new water supply projects for underserved areas in Bihar
-                        </td>
-                        <td>
-                            <div href="javascript:void(0);" class="img-banner">
-                                <img src="./assets/img/login-bg.png" alt="Banner text">
-                            </div>
-                        </td>
-                        <td> 01-Sep-2022 </td>
-                        <td>
-                            <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"
-                                    data-bs-toggle="modal" data-bs-target="#viewmodal">
-                                    <i class="bi bi-eye"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
-                                    <i class="bi bi-pencil"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" title="Delete">
-                                    <i class="bi bi-trash3"></i></a>
-                            </div>
-                        </td>
-                    </tr>
-
-                    <tr class="unpublish">
-                        <td><input type="checkbox" class="form-check-input"></td>
-                        <td>4</td>
-                        <td>
-                            Announcement of new water supply projects for underserved areas in Bihar
-                        </td>
-                        <td>
-                            <div href="javascript:void(0);" class="img-banner">
-                                <img src="./assets/img/login-bg.png" alt="Banner text">
-                            </div>
-                        </td>
-                        <td> 01-Sep-2022 </td>
-                        <td>
-                            <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"
-                                    data-bs-toggle="modal" data-bs-target="#viewmodal">
-                                    <i class="bi bi-eye"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
-                                    <i class="bi bi-pencil"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" title="Delete">
-                                    <i class="bi bi-trash3"></i></a>
-                            </div>
-                        </td>
-                    </tr>
-
-                    <tr class="publish">
-                        <td><input type="checkbox" class="form-check-input"></td>
-                        <td>5</td>
-                        <td>
-                            Announcement of new water supply projects for underserved areas in Bihar
-                        </td>
-                        <td>
-                            <div href="javascript:void(0);" class="img-banner">
-                                <img src="./assets/img/login-bg.png" alt="Banner text">
-                            </div>
-                        </td>
-                        <td> 01-Sep-2022 </td>
-                        <td>
-                            <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"
-                                    data-bs-toggle="modal" data-bs-target="#viewmodal">
-                                    <i class="bi bi-eye"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
-                                    <i class="bi bi-pencil"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" title="Delete">
-                                    <i class="bi bi-trash3"></i></a>
-                            </div>
+                          <div class="d-flex gap-1">
+                              <a href="javascript:void(0);" (click)="onView(item)" class="btn btn-outline-success btn-sm" title="View" data-bs-toggle="modal" data-bs-target="#eventModal">
+                              <i class="bi bi-eye"></i></a>
+                            <button class="btn btn-outline-primary btn-sm" (click)="editEventDetails(item.eventId)" title="Edit"><i class="bi bi-pencil"></i></button>
+                            <button class="btn btn-outline-danger btn-sm" (click)="deleteEventDetails(item.eventId)" title="Delete"><i class="bi bi-trash3"></i></button>
+                          </div>
                         </td>
                     </tr>
                 </tbody>
@@ -222,68 +103,69 @@
 </div>
 
 <!-- Modal View  -->
-<div class="modal fade" id="viewmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="eventModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Announcement of new water supply projects for
-                    underserved areas in Bihar</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel" style="color:blue; font-weight: bold;">News & Events</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body view-form">
                 <div class="row">
                     <div class="col-lg-8">
                         <div class="row">
-
                             <div class="col-xl-12 col-md-12">
                                 <div class="mb-3">
-                                    <label class="form-label">Title</label>
-                                    <label class="form-value">Announcement of new water supply projects for underserved
-                                        areas in Bihar.</label>
+                                    <label class="form-value">Title (In English)</label>
+                                    <label *ngIf="selectedEvents?.titleEnglish" class="form-label">
+                                        {{ selectedEvents.titleEnglish }}
+                                    </label>
                                 </div>
                             </div>
 
                             <div class="col-xl-12 col-md-12">
                                 <div class="mb-3">
-                                    <label class="form-label">Description</label>
-                                    <label class="form-value">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                        Unde ullam magni quaerat, optio blanditiis dolorum omnis quis cumque, et
-                                        suscipit harum quae, eaque eius accusamus reiciendis incidunt ipsam? Eos,
-                                        quasi.</label>
+                                    <label class="form-value">Description (In English)</label>
+                                    <label *ngIf="selectedEvents?.descriptionEnglish" class="form-label">
+                                        {{ selectedEvents.descriptionEnglish }}
+                                    </label>
                                 </div>
                             </div>
+
                             <div class="col-xl-4 col-md-12">
                                 <div class="mb-3">
-                                    <label class="form-label">Publish Date</label>
-                                    <label class="form-value">06-Nov-2024</label>
-                                </div>
-                            </div>
-                            <div class="col-xl-12 col-md-12">
-                                <div class="mb-3">
-                                    <label class="form-label">Title</label>
-                                    <label class="form-value">बिहार में अविकसित क्षेत्रों के लिए नए जल आपूर्ति
-                                        परियोजनाओं की घोषणा</label>
-                                </div>
-                            </div>
-                            <div class="col-xl-12 col-md-12">
-                                <div class="mb-3">
-                                    <label class="form-label">Description in Hindi</label>
-                                    <label class="form-value">लोरेम इप्सम डोलर सिट अमेट, कॉन्सेकट्यूर अडिपिसिसिंग एलिट।
-                                        अंडे उल्लम मैग्नी क्वाएरेट, ऑप्टियो ब्लैंडीटिस डोलोरम ओम्निस क्विस कुम्क, एट
-                                        सुस्सिपिट हारुम क्वाए, एक्यूस ईउस अक्यूसामस रीचिएंडिस इंसिडुंट इप्सम? ईओस,
-                                        क्वासी।</label>
+                                    <label class="form-value">Publish Date</label>
+                                    <label *ngIf="selectedEvents?.publishDate" class="form-label">
+                                        {{ selectedEvents.publishDate | date:'dd-MMM-yyyy' }}
+                                    </label>
                                 </div>
                             </div>
 
-                            
+                            <div class="col-xl-12 col-md-12">
+                                <div class="mb-3">
+                                    <label class="form-value">Title (हिंदी में)</label>
+                                    <label *ngIf="selectedEvents?.titleHindi" class="form-label">
+                                        {{ selectedEvents.titleHindi }}
+                                    </label>
+                                </div>
+                            </div>
 
+                            <div class="col-xl-12 col-md-12">
+                                <div class="mb-3">
+                                    <label class="form-value">Description (हिंदी में)</label>
+                                    <label *ngIf="selectedEvents?.descriptionHindi" class="form-label">
+                                        {{ selectedEvents.descriptionHindi }}
+                                    </label>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
                     <div class="col-lg-4">
                         <label class="form-label">Feature Image</label>
                         <div class="img-fluid">
-                            <img src="./assets/img/login-bg.png" alt="Banner text" class="modal-banner">
+                            <!-- <img src="./assets/img/login-bg.png" alt="Banner text" class="modal-banner"> -->
+                            <img *ngIf="selectedEvents?.featureImage" [src]="selectedEvents.featureImage" alt="Feature Image" class="modal-banner"/>
                         </div>
                     </div>
                 </div>

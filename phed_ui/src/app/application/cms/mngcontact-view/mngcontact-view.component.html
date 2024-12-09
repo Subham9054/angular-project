@@ -1,109 +1,76 @@
 <div class="form-cointainer">
-    <div class="main-tab">
+    <div class="pagetitle-section">
         <div class="row justify-content-between align-items-center">
-            <div class="col-lg-4">
-                <ul class="nav nav-tabs" routerLinkActive="active">
-                    <li class="nav-item">
-                        <a routerLink="/application/mngcontact" class="nav-link">Add</a>
-                    </li>
-                    <li class="nav-item">
-                        <a routerLink="/application/mngcontact-view" class="nav-link active">View</a>
-                    </li>
-                </ul>
+            <div class="col-lg-4 col-md-4">
+                <h3>Contact Details</h3>
+            </div>
+            <div class="col-lg-6 col-md-8">
+                <div class="utilite">
+                    <ul class="mb-0">
+                        <li>
+                            <a href="javascript:void(0)" title="Click to Print"><i class="bi bi-printer"></i></a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" title="Download Excel"><i class="bi bi-file-earmark-excel"></i></a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" title="Click to Publish"><i class="bi bi-volume-up"></i></a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" title="Click to Unpublish"><i class="bi bi-volume-mute"></i></a>
+                        </li>
+                        <li class="fill-btn add-link"><a routerLink="/application/mngcontact/add" title="Click to Add"><i class="bi bi-plus-lg"></i>
+                            <span class="hide-icon">Add Page</span></a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
+
+    <div class="view-legand">
+        <ul class="legends">
+            <li><span class="bg-success"></span> Publish </li>
+            <li><span class="bg-danger"></span> Unpublish </li>
+        </ul>
+    </div>
    
     <div class="content-box content-area p-0">
+        <div *ngIf="noRecordsFound" class="alert alert-warning text-center mt-3">
+            No Contact Details is Found!!!
+        </div>
         <div class="table-responsive mb-0">
             <table class="table table-striped mb-0">
                 <thead>
                     <tr>
+                        <th width="30px"><input class="form-check-input" type="checkbox"></th>
                         <th width="40px">Sl#</th>
-                        <th>Expire Date</th>
-                       
-                        <th width="90px">Action</th>
+                        <th>Address (In English)</th>
+                        <th>Address (हिंदी में)</th>
+                        <th>Mobile (In English)</th>
+                        <th>Mobile (हिंदी में)</th>
+                        <th>Email </th>
+                        <th width="50px" style="text-align: center;">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>-</td>
-                     
+                    <tr *ngFor="let item of contactdetails; let i = index">
+                        <td><input type="checkbox"></td>
+                        <td>{{ i + 1 }}</td>
+                        <td>{{ item.addressEnglish }}</td>
+                        <td>{{ item.addressHindi }}</td>
+                        <td>{{ item.mobileEnglish }}</td>
+                        <td>{{ item.mobileHindi }}</td>
+                        <td>{{ item.email }}</td>
                         <td>
-                            <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View">
-                                    <i class="bi bi-eye"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
-                                    <i class="bi bi-pencil"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" title="Delete">
-                                    <i class="bi bi-trash3"></i></a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>-</td>
-                      
-                        <td>
-                            <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View">
-                                    <i class="bi bi-eye"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
-                                    <i class="bi bi-pencil"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" title="Delete">
-                                    <i class="bi bi-trash3"></i></a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>-</td>
-                       
-                        <td>
-                            <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View">
-                                    <i class="bi bi-eye"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
-                                    <i class="bi bi-pencil"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" title="Delete">
-                                    <i class="bi bi-trash3"></i></a>
-                            </div>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>4</td>
-                        <td>-</td>
-                       
-                        <td>
-                            <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View">
-                                    <i class="bi bi-eye"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
-                                    <i class="bi bi-pencil"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" title="Delete">
-                                    <i class="bi bi-trash3"></i></a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>-</td>
-                       
-                        <td>
-                            <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View">
-                                    <i class="bi bi-eye"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
-                                    <i class="bi bi-pencil"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" title="Delete">
-                                    <i class="bi bi-trash3"></i></a>
-                            </div>
+                          <div class="d-flex gap-1">
+                            <button class="btn btn-outline-primary btn-sm" (click)="editContactDetails(item.contactId)" title="Edit"><i class="bi bi-pencil"></i></button>
+                            <button class="btn btn-outline-danger btn-sm" (click)="deleteContactDetails(item.contactId)" title="Delete"><i class="bi bi-trash3"></i></button>
+                          </div>
                         </td>
                     </tr>
                 </tbody>
-            </table>
+             </table>
         </div>
     </div>
 </div>
