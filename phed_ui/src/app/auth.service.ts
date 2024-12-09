@@ -49,7 +49,7 @@ export class AuthService {
   private gmsComplaintdetailurl="https://localhost:7024/Api/MANAGE_COMPLAINTDETAILS_CONFIG/GetGmsComplaintdetails";
   private gmstakeactionurl="https://localhost:7024/Api/MANAGE_COMPLAINTDETAILS_CONFIG/Getgmstakeaction";
 
-  //For Content Management URLs
+  //For Content Management URLs by Debasis Das
   private getParentMenusUrl = 'http://localhost:5097/api/CMS/GetParentMenus';
   private createOrUpdatePageUrl = 'http://localhost:5097/api/CMS/CreateOrUpdatePageLink';
   private getAllPageLinksUrl = 'http://localhost:5097/api/CMS/GetPageLinks';
@@ -66,7 +66,7 @@ export class AuthService {
 
 
 
-  private eventUrl = 'http://localhost:5097/api/CMS'; //Base URL for Managing News & Events
+  private cmsBaseURL = 'http://localhost:5097/api/CMS'; //Base URL for Managing CMS Master Pages
   private galleryUrl = 'http://localhost:5097/api/Gallery'; //Base URL for Managing Gallery
   private faqUrl = 'http://localhost:5097/api/FAQ'; //Base URL for Managing FAQs
 
@@ -391,10 +391,45 @@ export class AuthService {
     );
   }
 
+  //Methods for Manage What's New by Debasis Das
+  createOrUpdateWhatIsNew(formData: FormData, id?: number): Observable<any> {
+    const headers = new HttpHeaders();
+    const url = id ? `${this.cmsBaseURL}/CreateOrUpdateWhatIsNew?whatIsNewId=${id}` : `${this.cmsBaseURL}/CreateOrUpdateWhatIsNew`;
+    
+    // Use POST for both creating and updating
+    return this.http.post(url, formData, { headers }).pipe(
+        catchError(this.handleError)
+    );
+  }
+
+  getWhatIsNews(): Observable<any> {
+    return this.http.get(`${this.cmsBaseURL}/GetWhatIsNews`).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  getWhatIsNewById(id: number): Observable<any> {
+    return this.http.get(`${this.cmsBaseURL}/GetWhatIsNewById?whatIsNewId=${id}`).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  getWhatIsNewByName(name: string): Observable<any> {
+    return this.http.get(`${this.cmsBaseURL}/GetWhatIsNewName?whatIsNewName=${name}`).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  deleteWhatIsNew(id: number): Observable<any> {
+    return this.http.delete(`${this.cmsBaseURL}/DeleteWhatIsNew?whatIsNewId=${id}`).pipe(
+      catchError(this.handleError)
+    );
+  }  
+
   //Methods for Manage News & Events by Debasis Das
   createOrUpdateEvent(formData: FormData, id?: number): Observable<any> {
     const headers = new HttpHeaders();
-    const url = id ? `${this.eventUrl}/CreateOrUpdateEvent?eventId=${id}` : `${this.eventUrl}/CreateOrUpdateEvent`;
+    const url = id ? `${this.cmsBaseURL}/CreateOrUpdateEvent?eventId=${id}` : `${this.cmsBaseURL}/CreateOrUpdateEvent`;
     
     // Use POST for both creating and updating
     return this.http.post(url, formData, { headers }).pipe(
@@ -403,25 +438,25 @@ export class AuthService {
   }
 
   getEvents(): Observable<any> {
-    return this.http.get(`${this.eventUrl}/GetEvents`).pipe(
+    return this.http.get(`${this.cmsBaseURL}/GetEvents`).pipe(
       catchError(this.handleError)
     );
   }
 
   getEventById(id: number): Observable<any> {
-    return this.http.get(`${this.eventUrl}/GetEventById?eventId=${id}`).pipe(
+    return this.http.get(`${this.cmsBaseURL}/GetEventById?eventId=${id}`).pipe(
       catchError(this.handleError)
     );
   }
 
   getEventByName(name: string): Observable<any> {
-    return this.http.get(`${this.eventUrl}/GetEventByName?eventName=${name}`).pipe(
+    return this.http.get(`${this.cmsBaseURL}/GetEventByName?eventName=${name}`).pipe(
       catchError(this.handleError)
     );
   }
 
   deleteEvent(id: number): Observable<any> {
-    return this.http.delete(`${this.eventUrl}/DeleteEvent?galleryId=${id}`).pipe(
+    return this.http.delete(`${this.cmsBaseURL}/DeleteEvent?eventId=${id}`).pipe(
       catchError(this.handleError)
     );
   }
@@ -498,6 +533,35 @@ export class AuthService {
   //     catchError(this.handleError)
   //   );
   // }
+
+  //Methods for Manage Contacts by Debasis Das
+  createOrUpdateContact(formData: FormData, id?: number): Observable<any> {
+    const headers = new HttpHeaders();
+    const url = id ? `${this.cmsBaseURL}/CreateOrUpdateContact?contactId=${id}` : `${this.cmsBaseURL}/CreateOrUpdateContact`;
+    
+    // Use POST for both creating and updating
+    return this.http.post(url, formData, { headers }).pipe(
+        catchError(this.handleError)
+    );
+  }
+
+  getContacts(): Observable<any> {
+    return this.http.get(`${this.cmsBaseURL}/GetContacts`).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  getContactById(id: number): Observable<any> {
+    return this.http.get(`${this.cmsBaseURL}/GetContactById?contactId=${id}`).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  deleteContact(id: number): Observable<any> {
+    return this.http.delete(`${this.cmsBaseURL}/DeleteContact?contactId=${id}`).pipe(
+      catchError(this.handleError)
+    );
+  }
 
   // Error handling logic
   private handleError(error: any) {

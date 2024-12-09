@@ -3,7 +3,6 @@ import { AuthService } from 'src/app/auth.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
-declare let $: any;
 @Component({
   selector: 'app-newsevent-view',
   templateUrl: './newsevent-view.component.html',
@@ -22,7 +21,7 @@ export class NewseventViewComponent implements OnInit {
   }
 
   eventdetails: any[] = [];
-  selectedGallery: any = null;
+  selectedEvents: any = null;
   noRecordsFound = false;
 
   constructor(private authService: AuthService, private router: Router) {}
@@ -32,7 +31,7 @@ export class NewseventViewComponent implements OnInit {
     this.fetchNewsEvents();
   }
 
-  // Method to fetch banners from the service
+  // Method to fetch event details from the service
   fetchNewsEvents() {
     debugger;
     this.authService.getEvents().subscribe({
@@ -41,7 +40,8 @@ export class NewseventViewComponent implements OnInit {
           // Map the response data to include the full image URL
           this.eventdetails = response.data.map((newsEvent: any) => ({
             ...newsEvent,
-            thumbImage: `http://localhost:5097${newsEvent.thumbnail}`
+            thumbImage: `http://localhost:5097${newsEvent.thumbnail}`,
+            featureImage: `http://localhost:5097${newsEvent.featureImage}`
           }));
           this.noRecordsFound = this.eventdetails.length === 0;
           if (this.noRecordsFound) {
@@ -73,8 +73,8 @@ export class NewseventViewComponent implements OnInit {
   }
 
   // Method to handle the Modal View action
-  onView(galy: any): void {
-    this.selectedGallery = galy;
+  onView(eventImage: any): void {
+    this.selectedEvents = eventImage;
   }
 
   // Method to handle the edit action
@@ -87,23 +87,23 @@ export class NewseventViewComponent implements OnInit {
   deleteEventDetails(id: number): void {
     Swal.fire({
       title: 'Are you sure?',
-      text: 'Do you want to delete the gallery?',
+      text: 'Do you want to delete the event details?',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Yes, delete it!',
       cancelButtonText: 'No, keep it',
     }).then((result) => {
       if (result.isConfirmed) {
-        this.authService.deleteGallery(id).subscribe({
+        this.authService.deleteEvent(id).subscribe({
           next: () => {
-            // Remove the deleted gallery from the array
-            this.eventdetails = this.eventdetails.filter((gallery) => gallery.galleryId !== id);
+            // Remove the deleted event details from the array
+            this.eventdetails = this.eventdetails.filter((event) => event.eventId !== id);
             this.noRecordsFound = this.eventdetails.length === 0; // Check if no records remain
-            Swal.fire('Deleted!', 'Your gallery has been deleted.', 'success');
+            Swal.fire('Deleted!', 'Your event has been deleted.', 'success');
           },
           error: (error) => {
-            console.error('Error deleting gallery:', error);
-            Swal.fire('Error', 'Unable to delete the gallery. Please try again.', 'error');
+            console.error('Error deleting event details:', error);
+            Swal.fire('Error', 'Unable to delete the event details. Please try again.', 'error');
           },
         });
       }
