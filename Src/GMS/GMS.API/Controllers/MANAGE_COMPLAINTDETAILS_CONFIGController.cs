@@ -24,6 +24,7 @@ namespace GMS.API
             _hostingEnvironment = hostingEnvironment;
         }
 
+
         //[HttpPost("DetailcomplaintRegistration")]
         //public async Task<IActionResult> complaintRegistration([FromBody] Complaint complaint)
         //{
