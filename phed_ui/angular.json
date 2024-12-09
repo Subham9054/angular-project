@@ -33,13 +33,19 @@
               "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/assets/css/bootstrap-icons.css",
               "src/assets/css/bootstrap-datetimepicker.min.css",
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "./node_modules/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css",
               "src/styles.scss"
             ],
             "scripts": [
               "./node_modules/jquery/dist/jquery.min.js",
               "./node_modules/bootstrap/dist/js/bootstrap.bundle.js",
               "src/assets/js/moment.min.js",
-              "src/assets/js/bootstrap-datetimepicker.min.js"
+              "src/assets/js/bootstrap-datetimepicker.min.js",
+              "./node_modules/jquery/dist/jquery.min.js",
+              "./node_modules/moment/min/moment.min.js",
+              "./node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "./node_modules/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"
             ]
           },
           "configurations": {

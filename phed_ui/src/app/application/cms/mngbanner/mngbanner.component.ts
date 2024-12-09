@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { AuthService } from 'src/app/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
@@ -14,12 +14,9 @@ interface UploadedFile {
   templateUrl: './mngbanner.component.html',
   styleUrls: ['./mngbanner.component.scss'],
 })
-export class MngbannerComponent implements OnInit {
-  @ViewChild('fileInput') fileInput!: ElementRef;
-  files: UploadedFile[] = [];
-  //files: { file?: File; url?: string }[] = [];
-
+export class MngbannerComponent implements OnInit {  
   bannerId: number | undefined;
+  files: UploadedFile[] = [];
   bannerHeadingEnglish: string = '';
   bannerHeadingHindi: string = '';
   bannerContentEnglish: string = '';
@@ -107,18 +104,6 @@ export class MngbannerComponent implements OnInit {
     this.files = this.files.filter((f) => f !== file);
   }
 
-  // onSelect(event: any): void {
-  //   for (const file of event.addedFiles) {
-  //     this.files.push({ file }); // Add uploaded file
-  //   }
-  // }
-  
-  // onRemove(file: { file?: File; url?: string }): void {
-  //   this.files = this.files.filter(f => f !== file); // Remove file from the list
-  // }
-
- 
-
   submitForm(): void {
     // Validation for required fields
     if (this.bannerHeadingEnglish.trim() === '') {
@@ -163,12 +148,7 @@ export class MngbannerComponent implements OnInit {
     if (this.files.length > 0) {
       formData.append('bannerImage', this.files[0].file, this.files[0].file.name);
     }
-
-    // if (this.files.length > 0 && this.files[0].file) {
-    //   formData.append('bannerImage', this.files[0].file as File, this.files[0].file.name);
-    // }
-    
-  
+ 
     // Save or update based on editing mode
     this.authService.CreateOrUpdateBanner(formData, this.bannerId).subscribe({
       next: (response: any) => {

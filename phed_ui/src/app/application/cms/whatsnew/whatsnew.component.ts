@@ -1,11 +1,28 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from 'src/app/auth.service';
+import Swal from 'sweetalert2';
+import * as moment from 'moment';
+
 declare let $: any;
 @Component({
   selector: 'app-whatsnew',
   templateUrl: './whatsnew.component.html',
   styleUrls: ['./whatsnew.component.scss']
 })
-export class WhatsnewComponent { 
+export class WhatsnewComponent implements OnInit {
+  whatisNewModel: any = {
+    whatIsNewId: null,
+    titleEnglish: '',
+    titleHindi: '',
+    descriptionEnglish: '',
+    descriptionHindi: '',
+    isPublish: false,
+    publishDate: '',
+    createdBy: null,
+    isEditing: false,
+  };
+
    // file upload
   fileName: string = '';
 
@@ -16,20 +33,34 @@ export class WhatsnewComponent {
     }
   }
 
+  constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute) {}
+
   ngOnInit(): void {
+    const today = moment().format('DD-MMM-YYYY'); // Get today's date in the desired format
+    this.whatisNewModel.publishDate = today; // Set today's date in the model
 
-    $('.datepicker').datetimepicker({
+    // Initialize datetimepicker with today's date as the default
+    $('.publishDate').datetimepicker({
       format: 'DD-MMM-YYYY',
-      daysOfWeekDisabled: [0, 6],
+      daysOfWeekDisabled: [0, 6], // Example: Disable weekends
+      defaultDate: moment(), // Set default date to today
+    }).on('dp.change', (e: any) => {
+      this.whatisNewModel.publishDate = e.date.format('DD-MMM-YYYY'); // Update the model on date change
     });
-    $('.timepicker').datetimepicker({
-      format: 'LT',
-      daysOfWeekDisabled: [0, 6],
-    });
-    $('.datetimepicker').datetimepicker({
-      format: 'DD-MMM-YYYY LT',
-      daysOfWeekDisabled: [0, 6],
-    });
+  }
 
+  resetForm(): void {
+    this.whatisNewModel = {
+      whatIsNewId: null,
+      titleEnglish: '',
+      titleHindi: '',
+      descriptionEnglish: '',
+      descriptionHindi: '',
+      isPublish: false,
+      publishDate: '',
+      createdBy: '',
+      isEditing: false,
+    };
+    this.fileName = '';    
   }
 }
