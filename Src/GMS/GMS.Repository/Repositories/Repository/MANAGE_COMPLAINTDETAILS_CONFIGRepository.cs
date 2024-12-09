@@ -29,9 +29,9 @@ namespace GMS.Repository.Repositories.Interfaces.MANAGE_COMPLAINTDETAILS_CONFIG
                 parameters.Add("@createdby", 1);
                 parameters.Add("@category", complaint.INT_CATEGORY_ID);
                 parameters.Add("@subcategory", complaint.INT_SUB_CATEGORY_ID);
-                if (complaint.INT_COMPLIANT_LOG_TYPE == 0)
+                if (complaint.INT_COMPLIANT_LOG_TYPE == "0")
                 {
-                    parameters.Add("@complainttype", 5);
+                    parameters.Add("@complainttype", "5");
                 }
                 else
                 {

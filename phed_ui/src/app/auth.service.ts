@@ -16,7 +16,7 @@ export class AuthService {
   
 
   private apiUrl = `${this.baseUrl}/gateway/Login`; // Your API URL for login
-  private registrationApiUrl = `${this.baseUrl}/gateway/DetailcomplaintRegistration`;
+  private registrationApiUrl = 'https://localhost:7024/Api/MANAGE_COMPLAINTDETAILS_CONFIG/DetailcomplaintRegistration';
   private complaintApiUrl = `${this.baseUrl}/gateway/ComplaintCategory`;
   private getComplaintApiUrl = `${this.baseUrl}/gateway/GetallComplaint`;
   private updateComplaintApiUrl = `${this.baseUrl}/gateway/UpdateComplaint`;
@@ -65,7 +65,7 @@ export class AuthService {
   private galleryUrl = 'http://localhost:5097/api/Gallery'; //Base URL for Managing Gallery
   private faqUrl = 'http://localhost:5097/api/FAQ'; //Base URL for Managing FAQs
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient) { }
   
  
   // Method for user login
@@ -161,14 +161,24 @@ export class AuthService {
     );
   }
   // Registration data submission
-  submitRegistration(registrationData: any): Observable<any> {
-    return this.http.post(this.registrationApiUrl, registrationData, {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-      responseType: 'text' // Set response type to text
-    }).pipe(
-      catchError(this.handleError)
-    );
-  }
+  // submitRegistration(registrationData: any): Observable<any> {
+  //   return this.http.post(this.registrationApiUrl, registrationData, {
+  //     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+  //     responseType: 'text' // Set response type to text
+  //   }).pipe(
+  //     catchError(this.handleError)
+  //   );
+  // }
+  submitRegistration(formData: FormData): Observable<any> {
+    alert('1');
+    console.log('FormData Contents:');
+    formData.forEach((value, key) => {
+      console.log(`${key}:`, value);
+    });
+    return this.http.post(this.registrationApiUrl, formData);
+  }  
+  
+  
 
   // File upload method
   uploadFile(file: File): Observable<any> {
