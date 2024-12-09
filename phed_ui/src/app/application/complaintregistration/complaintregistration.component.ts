@@ -38,7 +38,7 @@ export class ComplaintregistrationComponent  {
 	}
 
   currentDate: string = '';
-  fileToUpload: File | null = null;
+  filesToUpload: File[] = [];
   documentFolderPath = 'http://localhost:44303/assets/ComplaintDocuments/';
   districts: any[] = [];
   blocks: any[] = [];
@@ -51,12 +51,12 @@ export class ComplaintregistrationComponent  {
 
 
   formData: any = {
-    ddlRecvBy: '0',
+    ddlRecvBy: [null],
     txtName: '',
     txtPhone: '',
     txtEmail: '',
     txtAddress:'',
-    txtDocument: '',
+    //txtDocument: '',
     ddlDistrict: [null],
     ddlBlock: [null],
     ddlPanchayat: [null],
@@ -83,7 +83,7 @@ export class ComplaintregistrationComponent  {
     this.authService.getcomplainttype().subscribe(
       response=>{
         this.complainttype=response;
-        //console.log(this.complaintstatus)
+        console.log(this.complainttype)
       },
       error=>{
         console.log('Error frtching Complaint status',error)
@@ -195,7 +195,7 @@ export class ComplaintregistrationComponent  {
         response => {
           console.log("OK" +response)
           this.wards = response;
-         // console.log(this.wards);
+          //console.log(this.wards);
         },
         error => {
           console.error('Error fetching villages', error);
@@ -215,97 +215,213 @@ export class ComplaintregistrationComponent  {
     this.currentDate = `${day}-${month}-${year}`;
   }
 
+  // handleFileInput(event: Event) {
+  //   debugger;
+  //   const input = event.target as HTMLInputElement;
+  //   if (input.files && input.files.length > 0) {
+  //     this.fileToUpload = input.files[0];
+  //   } else {
+  //     this.fileToUpload = null;
+  //   }
+  // }
   handleFileInput(event: Event) {
-    debugger;
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
-      this.fileToUpload = input.files[0];
+      // Convert FileList to an array and store it
+      this.filesToUpload = Array.from(input.files);
+      
     } else {
-      this.fileToUpload = null;
+      this.filesToUpload = [];
     }
   }
-  
   onSubmit() {
-    debugger;
-  
-    // Check if a file is uploaded
-    if (!this.fileToUpload) {
+    if (!this.filesToUpload || this.filesToUpload.length === 0) {
       alert('Please upload a file before submitting the form.');
       return;
     }
-  
-    // Call the uploadFile method from your service (returns an Observable)
-    this.authService.uploadFile(this.fileToUpload).subscribe(
-      (response) => {
-        const fileName = response.fileName;
-        this.submitRegistrationData(fileName);
-      },
-      (error) => {
-        console.error('Error uploading file:', error);
-        alert('File upload failed. Please try again.');
-      }
-    );
-  }
-  
 
-  uploadFile(): Promise<void> {
-    return new Promise((resolve, reject) => {
-      if (this.fileToUpload) {
-        this.authService.uploadFile(this.fileToUpload).toPromise().then(
-          (response) => {
-            console.log('File uploaded successfully', response);
-            resolve();
-          },
-          (error) => {
-            console.error('Error uploading file', error);
-            reject(error);
-          }
-        );
-      } else {
-        reject('No file selected');
-      }
+    const formData = new FormData();
+    formData.append('NVCH_COMPLIANTANT_NAME', this.formData.txtName || '');
+    formData.append('VCH_CONTACT_NO', this.formData.txtPhone || '');
+    formData.append('INT_COMPLIANT_LOG_TYPE', this.formData.ddlComplainttype ? this.formData.ddlComplainttype.toString() : '0');
+    formData.append('INT_DIST_ID', this.formData.ddlDistrict ? this.formData.ddlDistrict.toString() : '0');
+    formData.append('INT_BLOCK', this.formData.ddlBlock ? this.formData.ddlBlock.toString() : '0');
+    formData.append('INT_PANCHAYAT', this.formData.ddlPanchayat ? this.formData.ddlPanchayat.toString() : '0');
+    formData.append('INT_VILLAGE', this.formData.ddlVillage ? this.formData.ddlVillage.toString() : '0');
+    formData.append('INT_WARD', this.formData.ddlward ? this.formData.ddlward.toString() : '0');
+    formData.append('INT_CATEGORY_ID', this.formData.ddlComplaintCategory ? this.formData.ddlComplaintCategory.toString() : '0');
+    formData.append('INT_SUB_CATEGORY_ID', this.formData.ddlSubCategory ? this.formData.ddlSubCategory.toString() : '0');
+    formData.append('NVCH_COMPLIANT_DETAILS', this.formData.txtDetailsE || '');
+    formData.append('NVCH_LANDMARK', this.formData.txtLandmark || '');
+    formData.append('VCH_EMAIL', this.formData.txtEmail || '');
+    formData.append('NVCH_ADDRESS', this.formData.txtAddress || '');
+
+    this.filesToUpload.forEach(file => {
+      formData.append('files', file, file.name);
     });
-  }
-  
-  
 
-  submitRegistrationData(fileName: string) {
-    const registrationData = {
-      NVCH_COMPLIANTANT_NAME: this.formData.txtName || '',
-      VCH_CONTACT_NO: this.formData.txtPhone || '',
-      //NVCH_ADDRESS:this.formData.txtAddress,
-      VCH_COMPLAINT_FILE: fileName || this.formData.txtDocument,
-      INT_COMPLIANT_LOG_TYPE: parseInt(this.formData.ddlRecvBy, 10),
-      INT_DIST_ID: parseInt(this.formData.ddlDistrict, 10),
-      INT_BLOCK: parseInt(this.formData.ddlBlock, 10),
-      INT_PANCHAYAT: parseInt(this.formData.ddlPanchayat, 10),
-      INT_VILLAGE: parseInt(this.formData.ddlVillage, 10),
-      INT_WARD:parseInt(this.formData.ddlward,10),
-      INT_CATEGORY_ID: parseInt(this.formData.ddlComplaintCategory, 10),
-      INT_SUB_CATEGORY_ID: parseInt(this.formData.ddlSubCategory, 10),
-      NVCH_COMPLIANT_DETAILS: this.formData.txtDetailsE || '',
-      NVCH_LANDMARK: this.formData.txtLandmark || '',
-      VCH_EMAIL: this.formData.txtEmail || '',
-      //VCH_TOKENNO: this.generateToken(),
-      NVCH_ADDRESS: this.formData.txtAddress || '' // Ensure this is set correctly
-    };
-
-    // Log the payload for debugging
-    console.log('Registration Data Payload:', registrationData);
-
-    this.authService.submitRegistration(registrationData).subscribe(
-      (response) => {
-        alert('Complaint submitted successfully');
-        //alert(response); // Show the text response
+    this.authService.submitRegistration(formData).subscribe(
+      response => {
+        alert('Complaint submitted successfully.');
         this.resetForm();
-        window.location.reload();
       },
-      (error) => {
+      error => {
         console.error('Error submitting registration data:', error);
         alert('Failed to submit registration data. Please try again.');
       }
     );
   }
+//   onSubmit() {
+//     if (!this.filesToUpload || this.filesToUpload.length === 0) {
+//         alert('Please upload a file before submitting the form.');
+//         return;
+//     }
+
+//     // Create an object to hold form data
+//     const registrationData: any = {
+//         NVCH_COMPLIANTANT_NAME: this.formData.txtName || '',
+//         VCH_CONTACT_NO: this.formData.txtPhone || '',
+//         INT_COMPLIANT_LOG_TYPE: this.formData.ddlRecvBy ? parseInt(this.formData.ddlRecvBy, 10) : 0,
+//         INT_DIST_ID: this.formData.ddlDistrict ? parseInt(this.formData.ddlDistrict, 10) : 0,
+//         INT_BLOCK: this.formData.ddlBlock ? parseInt(this.formData.ddlBlock, 10) : 0,
+//         INT_PANCHAYAT: this.formData.ddlPanchayat ? parseInt(this.formData.ddlPanchayat, 10) : 0,
+//         INT_VILLAGE: this.formData.ddlVillage ? parseInt(this.formData.ddlVillage, 10) : 0,
+//         INT_WARD: this.formData.ddlWard ? parseInt(this.formData.ddlWard, 10) : 0,
+//         INT_CATEGORY_ID: this.formData.ddlComplaintCategory ? parseInt(this.formData.ddlComplaintCategory, 10) : 0,
+//         INT_SUB_CATEGORY_ID: this.formData.ddlSubCategory ? parseInt(this.formData.ddlSubCategory, 10) : 0,
+//         NVCH_COMPLIANT_DETAILS: this.formData.txtDetailsE || '',
+//         NVCH_LANDMARK: this.formData.txtLandmark || '',
+//         VCH_EMAIL: this.formData.txtEmail || '',
+//         NVCH_ADDRESS: this.formData.txtAddress || ''
+//     };
+
+//     // Convert files to base64
+//     const filePromises = this.filesToUpload.map(file => this.convertToBase64(file));
+
+//     // After all files are converted to base64, submit the form data
+//     Promise.all(filePromises).then(base64Files => {
+//         // Add the base64-encoded files to the registrationData object
+//         registrationData.files = base64Files;
+
+//         // Log the registration data (including base64 files) for debugging
+//         console.log('Registration Data:', registrationData);
+
+//         // Now, send the data to the backend (without FormData)
+//         this.authService.submitRegistration(registrationData).subscribe(
+//             response => {
+//                 alert('Complaint submitted successfully');
+//                 this.resetForm();
+//                 window.location.reload();
+//             },
+//             error => {
+//                 console.error('Error submitting registration data:', error);
+//                 if (error.error.errors) {
+//                     alert('Validation errors occurred: ' + error.error.errors.join(', '));
+//                 } else {
+//                     alert('Failed to submit registration data. Please try again.');
+//                 }
+//             }
+//         );
+//     }).catch(error => {
+//         console.error('Error converting files to base64:', error);
+//         alert('An error occurred while converting files. Please try again.');
+//     });
+// }
+
+// Helper function to convert a file to base64
+// convertToBase64(file: File): Promise<string> {
+//     return new Promise((resolve, reject) => {
+//         const reader = new FileReader();
+//         reader.onloadend = () => {
+//             resolve(reader.result as string);
+//         };
+//         reader.onerror = reject;
+//         reader.readAsDataURL(file);
+//     });
+// }
+
+
+  // onSubmit() {
+  //   debugger;
+  
+  //   // Check if a file is uploaded
+  //   if (!this.filesToUpload) {
+  //     alert('Please upload a file before submitting the form.');
+  //     return;
+  //   }
+  
+  //   // Call the uploadFile method from your service (returns an Observable)
+  //   this.authService.uploadFile(this.filesToUpload).subscribe(
+  //     (response) => {
+  //       const fileName = response.fileName;
+  //       this.submitRegistrationData(fileName);
+  //     },
+  //     (error) => {
+  //       console.error('Error uploading file:', error);
+  //       alert('File upload failed. Please try again.');
+  //     }
+  //   );
+  // }
+  
+
+  // uploadFile(): Promise<void> {
+  //   return new Promise((resolve, reject) => {
+  //     if (this.fileToUpload) {
+  //       this.authService.uploadFile(this.fileToUpload).toPromise().then(
+  //         (response) => {
+  //           console.log('File uploaded successfully', response);
+  //           resolve();
+  //         },
+  //         (error) => {
+  //           console.error('Error uploading file', error);
+  //           reject(error);
+  //         }
+  //       );
+  //     } else {
+  //       reject('No file selected');
+  //     }
+  //   });
+  // }
+  
+  
+
+  // submitRegistrationData(fileName: string) {
+  //   const registrationData = {
+  //     NVCH_COMPLIANTANT_NAME: this.formData.txtName || '',
+  //     VCH_CONTACT_NO: this.formData.txtPhone || '',
+  //     //NVCH_ADDRESS:this.formData.txtAddress,
+  //     VCH_COMPLAINT_FILE: fileName || this.formData.txtDocument,
+  //     INT_COMPLIANT_LOG_TYPE: parseInt(this.formData.ddlRecvBy, 10),
+  //     INT_DIST_ID: parseInt(this.formData.ddlDistrict, 10),
+  //     INT_BLOCK: parseInt(this.formData.ddlBlock, 10),
+  //     INT_PANCHAYAT: parseInt(this.formData.ddlPanchayat, 10),
+  //     INT_VILLAGE: parseInt(this.formData.ddlVillage, 10),
+  //     INT_WARD:parseInt(this.formData.ddlward,10),
+  //     INT_CATEGORY_ID: parseInt(this.formData.ddlComplaintCategory, 10),
+  //     INT_SUB_CATEGORY_ID: parseInt(this.formData.ddlSubCategory, 10),
+  //     NVCH_COMPLIANT_DETAILS: this.formData.txtDetailsE || '',
+  //     NVCH_LANDMARK: this.formData.txtLandmark || '',
+  //     VCH_EMAIL: this.formData.txtEmail || '',
+  //     //VCH_TOKENNO: this.generateToken(),
+  //     NVCH_ADDRESS: this.formData.txtAddress || '' // Ensure this is set correctly
+  //   };
+
+  //   // Log the payload for debugging
+  //   console.log('Registration Data Payload:', registrationData);
+
+  //   this.authService.submitRegistration(registrationData).subscribe(
+  //     (response) => {
+  //       alert('Complaint submitted successfully');
+  //       //alert(response); // Show the text response
+  //       this.resetForm();
+  //       window.location.reload();
+  //     },
+  //     (error) => {
+  //       console.error('Error submitting registration data:', error);
+  //       alert('Failed to submit registration data. Please try again.');
+  //     }
+  //   );
+  // }
   // generateToken(): string {
   //   // Generate a random 10-digit number
   //   const min = 1000000000; // Smallest 10-digit number
@@ -320,7 +436,7 @@ export class ComplaintregistrationComponent  {
     txtPhone: '',
     txtEmail: '',
     txtAddress:'',
-    txtDocument: '',
+    //txtDocument: '',
     ddlDistrict: '0',
     ddlBlock: '0',
     ddlPanchayat: '0',
@@ -332,7 +448,7 @@ export class ComplaintregistrationComponent  {
     txtLandmark: '',
     ddlComplainttype:'0'
     };
-    this.fileToUpload = null;
+    this.filesToUpload = [];
     this.setCurrentDate();
   }
 }
