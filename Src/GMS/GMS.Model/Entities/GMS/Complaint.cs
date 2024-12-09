@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,16 +18,19 @@ namespace GMS.Model.Entities.GMS
         public int INT_BLOCK { get; set; }
         public int INT_PANCHAYAT { get; set; }
         public int INT_VILLAGE { get; set; }
-        public int INT_WARD {  get; set; }
+        public int INT_WARD { get; set; }
         public string NVCH_ADDRESS { get; set; }
         public string NVCH_COMPLIANT_DETAILS { get; set; }
+
+        // Change this to IFormFile for handling file uploads
         public string VCH_COMPLAINT_FILE { get; set; }
-        //public string VCH_TOKENNO { get; set; }
-        public DateTime DTM_CREATED_ON { get; set; } // Assuming it will be provided from frontend or generated in the repository
+
+        public DateTime DTM_CREATED_ON { get; set; }
         public string VCH_EMAIL { get; set; }
-        public string NVCH_LANDMARK { get;set; }
+        public string NVCH_LANDMARK { get; set; }
         public int INT_COMPLAINT_PRIORITY { get; set; }
     }
+
     public class gmsComplaintdetails
     {
         public int INT_COMPLIANT_ID { get; set; }
