@@ -56,6 +56,17 @@ namespace Login.API.Controllers
             Users _user = await _loginRepository.login(user);
             if (_user != null && user.vchUserName == _user.vchUserName && user.vchPassWord == _user.vchPassWord)
             {
+                try
+                {
+                    HttpContext.Session.SetInt32("_UserId", Convert.ToInt32(_user.intUserId));
+                    HttpContext.Session.SetString("_Role", Convert.ToString(_user.vchUserName));
+                    HttpContext.Session.SetString("_Name", Convert.ToString(_user.vchFullName));
+                }
+                catch(Exception ex)
+                {
+                    throw;
+                }
+               
                 return _user;
             }
             return null;

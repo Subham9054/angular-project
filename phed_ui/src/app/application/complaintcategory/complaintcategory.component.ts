@@ -99,7 +99,7 @@ export class ComplaintcategoryComponent implements OnInit {
       alert('Please fill in all required fields.');
     }
   }
-
+  
   viewComplaints() {
     this.router.navigate(['/complaint-view']);
     this.authService.getAllComplaints().subscribe(); // Handle response if needed

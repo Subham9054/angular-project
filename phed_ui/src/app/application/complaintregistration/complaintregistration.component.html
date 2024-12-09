@@ -52,8 +52,8 @@
                             >
                             </ng-select>
                           </div>
-                          
                         </div>
+                        
                             <div class="col-xxl-3 col-xl-4 col-md-6">
                                 <div class="mb-3">
                                     <label for="txtName" class="form-label">Name <span class="text-danger">*</span></label>
@@ -90,50 +90,20 @@
                                 </div>
                             </div>
 
-                            <!-- <div class="col-xxl-3 col-xl-4 col-md-6">
-                                <div class="mb-3">
-                                    <label for="txtPhone" class="form-label">Photo</label>
-                                    <div class="custom-dropzone photoUpload" ngx-dropzone [accept]="'image/*'" (change)="onSelect($event)">
-                                        <ngx-dropzone-label>
-                                            <div>
-                                                <h2>Drag and Drop <span class="d-block">or</span>Click to Upload Photo</h2>
-                                            </div>
-                                        </ngx-dropzone-label>
-                                        <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f" [removable]="true" (removed)="onRemove(f)">
-                                            <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
-                                        </ngx-dropzone-image-preview>
-                                    </div>
-                                    <p class="small mb-0 text-end text-danger">Max file Size <span class="fw-bold">1 mb</span></p>                                   
-                                </div>
-                            </div> -->
-
-
+                           
                             <div class="col-xxl-3 col-xl-4 col-md-6">
                                 <div class="mb-3 ">
                                     <label class="form-label" for="doc"> Upload Document/Photo</label>
                                     <div class="input-group">
                                         <!-- The file input element -->
-                                        <input type="file" name="FileUpload1" id="FileUpload1" (change)="handleFileInput($event)"
-                                          class="form-control" />
+                                        <input type="file" [(ngModel)]="formData.txtDocument" name="FileUpload1" id="FileUpload1" (change)="handleFileInput($event)"
+                                          class="form-control" multiple />
                                       </div>
         
                                     <p class="mb-0 small text-danger text-end">Supported File (<span class="fw-bold">.pdf, .doc, .xls, .jpg, .png</span>)</p>
                                 </div>
                             </div>
-                            <!-- <div class="col-xl-12">
-                                <div class="form-group">
-                                  <label for="FileUpload1" class="form-label">
-                                    Upload Document/Photo <span class="text-danger">*</span>
-                                  </label>
-                                  <div class="input-group">
-                                    <input type="file" name="FileUpload1" id="FileUpload1" (change)="handleFileInput($event)"
-                                      class="form-control" />
-                                  </div>
-                                  <small class="text-danger d-block text-end">
-                                    Supported File (.pdf, .doc, .xls, .jpg, .png)
-                                  </small>
-                                </div>
-                              </div> -->
+                            
                     
                         <div class="col-xxl-3 col-xl-4 col-md-6">
                           <div class="mb-3">
@@ -162,28 +132,7 @@
                           </div>
                           
                         </div>
-                        <!-- <div class="col-xxl-3 col-xl-4 col-md-6">
-                            <div class="mb-3">
-                                <label for="txtDocument" class="form-label">Nature of Document</label>
-                                <input name="txtDocument" type="text" id="txtDocument" [(ngModel)]="formData.txtDocument"
-                                    class="form-control" />
-                            </div>
-                        </div> -->
-                    
-                        <!-- <div class="col-xxl-3 col-xl-4 col-md-6">
-                            <div class="mb-3 ">
-                                <label class="form-label" for="doc"> Document</label>
-                                <div class="input-group custom-file-input">
-                                    <input type="file" name="FileUpload1" id="FileUpload1" (change)="handleFileInput($event)"
-                                    class="form-control custom-fileupload" />
-                                    <label class="custom-input" for="doc">Upload</label>
-                                    <label class="input-group-text custom-browse" for="doc">Browse</label>
-                                </div>
-    
-                                <p class="mb-0 small text-danger text-end ">Supported file (<span
-                                    class="fw-bold">pdf, doc, docx, xls, xlsx</span>)</p>
-                            </div>
-                        </div> -->
+                     
                         <div class=" col-md-12">
                             <div class="mb-3">
                                 <label for="txtDetailsE" class="form-label">Complaint Description</label>
