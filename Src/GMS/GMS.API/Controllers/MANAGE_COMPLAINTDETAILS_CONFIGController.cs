@@ -68,12 +68,17 @@ namespace GMS.API
 
             try
             {
-                // Handle file upload
+                // Initialize the list to store uploaded file names
                 List<string> uploadedFiles = new List<string>();
+
+                // Handle file upload if files are provided
                 if (files != null && files.Count > 0)
                 {
-                    var baseFolderPath = Path.Combine(Directory.GetCurrentDirectory(), "assets");
-                    var subFolderPath = Path.Combine(baseFolderPath, "ComplaintDocuments");
+                    // Define the file storage path within wwwroot
+                    var webRootPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
+                    var subFolderPath = Path.Combine(webRootPath, "assets", "ComplaintDocuments");
+
+                    // Ensure directory exists
                     Directory.CreateDirectory(subFolderPath);
 
                     foreach (var file in files)
@@ -83,35 +88,48 @@ namespace GMS.API
                             continue;
                         }
 
-                        var uniqueNumber = DateTime.Now.ToString("yyyyMMddHHmmss");
-                        var fileExtension = Path.GetExtension(file.FileName);
-                        var originalFileName = Path.GetFileNameWithoutExtension(file.FileName);
-                        var uniqueFileName = $"{uniqueNumber}_{originalFileName}{fileExtension}";
-                        var filePath = Path.Combine(subFolderPath, uniqueFileName);
-
-                        if (System.IO.File.Exists(filePath))
+                        // Validate file extension (only allow certain types)
+                        var allowedExtensions = new[] { ".jpg", ".jpeg", ".png", ".pdf", ".docx" };
+                        var fileExtension = Path.GetExtension(file.FileName).ToLower();
+                        if (!allowedExtensions.Contains(fileExtension))
                         {
-                            return Conflict($"A file with the name {uniqueFileName} already exists.");
+                            return BadRequest(new { message = "Invalid file type. Only jpg, jpeg, png, pdf, and docx are allowed." });
                         }
 
+                        // Validate file size (example: max 5MB)
+                        if (file.Length > 5 * 1024 * 1024)
+                        {
+                            return BadRequest(new { message = "File size exceeds the 5MB limit." });
+                        }
+
+                        // Create a unique file name
+                        var uniqueFileName = $"{DateTime.Now:yyyyMMddHHmmss}_{Path.GetFileNameWithoutExtension(file.FileName)}{Path.GetExtension(file.FileName)}";
+                        var filePath = Path.Combine(subFolderPath, uniqueFileName);
+
+                        // Save the file to the server
                         using (var stream = new FileStream(filePath, FileMode.Create))
                         {
                             await file.CopyToAsync(stream);
                         }
 
+                        // Add the file name to the list
                         uploadedFiles.Add(uniqueFileName);
                     }
                 }
 
-                // Save uploaded file names (if any) to the complaint model
-                complaint.VCH_COMPLAINT_FILE = string.Join(",", uploadedFiles);
+                // Save the uploaded file names in the complaint object (if any)
+                complaint.VCH_COMPLAINT_FILE = uploadedFiles.Any() ? string.Join(",", uploadedFiles) : null;
 
                 // Process the complaint registration
                 var result = await _MANAGE_COMPLAINTDETAILS_CONFIGRepository.ComplaintRegistrationdetail(complaint);
 
                 if (result)
                 {
-                    return Ok(new { message = "Complaint registered successfully.", uploadedFiles });
+                    return Ok(new
+                    {
+                        message = "Complaint registered successfully.",
+                        uploadedFiles = uploadedFiles
+                    });
                 }
                 else
                 {
@@ -120,10 +138,16 @@ namespace GMS.API
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, new { message = "An error occurred while processing your request." });
+                // Optionally log the exception
+                // _logger.LogError(ex, "An error occurred during complaint registration");
+
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    message = "An error occurred while processing your request.",
+                    error = ex.Message
+                });
             }
         }
-
 
 
         [HttpGet("GetGmsComplaintdetails")]

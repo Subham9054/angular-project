@@ -9,7 +9,7 @@ namespace GMS.Model.Entities.GMS
 {
     public class Complaint
     {
-        public int INT_CATEGORY_ID { get; set; }
+        public string INT_CATEGORY_ID { get; set; }
         public int INT_COMPLIANT_LOG_TYPE { get; set; }
         public int INT_SUB_CATEGORY_ID { get; set; }
         public string VCH_CONTACT_NO { get; set; }
@@ -24,6 +24,7 @@ namespace GMS.Model.Entities.GMS
 
         // Change this to IFormFile for handling file uploads
         public string VCH_COMPLAINT_FILE { get; set; }
+        public IList<IFormFile> files { get; set; }
 
         public DateTime DTM_CREATED_ON { get; set; }
         public string VCH_EMAIL { get; set; }
