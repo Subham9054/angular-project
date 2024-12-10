@@ -12,7 +12,8 @@ namespace Login.Repository.Repositories.Interfaces
     public interface ILoginRepository
     {
         public Task<Users> login(Users user);
-       // public Task<LoginEntity> login(LoginEntity user);
-       // Task<List<LoginEntity>> GetChecklogindetails(LoginEntity TBL);
+        public Task<bool> Registration(Registration registration);
+        // public Task<LoginEntity> login(LoginEntity user);
+        // Task<List<LoginEntity>> GetChecklogindetails(LoginEntity TBL);
     }
 }
