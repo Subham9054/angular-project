@@ -11,6 +11,7 @@ namespace GMS.API
     [ApiController]
     [Route("Api/[controller]")]
     public class MANAGE_COMPLAINTDETAILS_CONFIGController : ControllerBase
+
     {
 
         public IConfiguration Configuration;

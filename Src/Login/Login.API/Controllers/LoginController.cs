@@ -12,6 +12,7 @@ using Microsoft.IdentityModel.Tokens;
 
 using Microsoft.Extensions.Configuration;
 using Login.Core.Helper;
+using Newtonsoft.Json;
 
 namespace Login.API.Controllers
 {
@@ -124,6 +125,93 @@ namespace Login.API.Controllers
             }
 
             return response;
+        }
+
+
+
+
+        //[HttpPost("UserRegistration")]
+        //public async Task<IActionResult> UserRegistration([FromBody] Registration registration)
+        //{
+
+        //    if (registration == null)
+        //    {
+        //        return BadRequest("Provide All The Data");
+        //    }
+        //    if (registration.vchPassWord != null)
+        //    {
+        //        var password = Md5Encryption.MD5Encryption(registration.vchPassWord);
+        //        registration.vchPassWord = password;
+        //    }
+        //    try
+        //    {
+        //        var regd = await _loginRepository.Registration(registration);
+        //        return Ok(regd);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw;
+        //    }
+
+        //}
+        [HttpPost("UserRegistration")]
+        public async Task<IActionResult> UserRegistration([FromBody] dynamic requestedAllData)
+        {
+            try
+            {
+                if (requestedAllData == null || requestedAllData.REQUEST_DATA == null)
+                {
+                    return BadRequest("Invalid REQUEST_DATA.");
+                }
+                string base64DecodedData = Encoding.UTF8.GetString(Convert.FromBase64String((string)requestedAllData.REQUEST_DATA));
+                dynamic requestedData = JsonConvert.DeserializeObject(base64DecodedData);
+                var req = JsonConvert.DeserializeObject<Dictionary<string, object>>(JsonConvert.SerializeObject(requestedData));
+                var registration = new Registration
+                {
+                    vchUserName = req.ContainsKey("vchUserName") ? req["vchUserName"]?.ToString() : null,
+                    vchPassWord = req.ContainsKey("vchPassWord") ? req["vchPassWord"]?.ToString() : null,
+                    vchFullName = req.ContainsKey("vchFullName") ? req["vchFullName"]?.ToString() : null,
+                    intLevelDetailId = req.ContainsKey("intLevelDetailId") ? Convert.ToInt32(req["intLevelDetailId"]) : 0,
+                    intDesignationId = req.ContainsKey("intDesignationId") ? Convert.ToInt32(req["intDesignationId"]) : 0,
+                    vchMobTel = req.ContainsKey("vchMobTel") ? req["vchMobTel"]?.ToString() : null,
+                    vchEmail = req.ContainsKey("vchEmail") ? req["vchEmail"]?.ToString() : null,
+                    vchGender = req.ContainsKey("vchGender") ? req["vchGender"]?.ToString() : null,
+                    intGroupID = req.ContainsKey("intGroupID") ? Convert.ToInt32(req["intGroupID"]) : 0,
+                    vchOffTel = req.ContainsKey("vchOffTel") ? req["vchOffTel"]?.ToString() : null,
+                    bitStatus = req.ContainsKey("bitStatus") ? Convert.ToInt32(req["bitStatus"]) : 0,
+                    intCreatedBy = req.ContainsKey("intCreatedBy") ? req["intCreatedBy"]?.ToString() : null
+                };
+                if (registration == null || string.IsNullOrWhiteSpace(registration.vchPassWord))
+                {
+                    return BadRequest("Provide all the required data.");
+                }
+                registration.vchPassWord = Md5Encryption.MD5Encryption(registration.vchPassWord);
+                var regd = await _loginRepository.Registration(registration);
+                if (regd != null)
+                {
+                    return Ok(new
+                    {
+                        Success = true,
+                        Message = "Registration successful",
+                        Data = regd
+                    });
+                }
+
+                return BadRequest(new
+                {
+                    Success = false,
+                    Message = "Registration failed. Please try again."
+                });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new
+                {
+                    Success = false,
+                    Message = "An internal server error occurred.",
+                    Error = ex.Message
+                });
+            }
         }
     }
 }
