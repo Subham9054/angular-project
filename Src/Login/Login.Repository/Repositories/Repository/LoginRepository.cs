@@ -39,5 +39,32 @@ namespace Login.Repository.Repositories.Repository
             }
         }
 
+        public async Task<bool> Registration(Registration registration)
+        {
+            try
+            {
+                DynamicParameters parameters = new DynamicParameters();
+                parameters.Add("@vchUserName", registration.vchUserName);
+                parameters.Add("@vchPassWord", registration.vchPassWord);
+                parameters.Add("@vchFullName", registration.vchFullName);
+                parameters.Add("@intLevelDetailId", registration.intLevelDetailId);
+                parameters.Add("@intDesignationId", registration.intDesignationId);
+                parameters.Add("@vchMobTel", registration.vchMobTel);
+                parameters.Add("@vchEmail", registration.vchEmail);
+                parameters.Add("@intRaUserId", 1);
+                parameters.Add("@vchOffTel", registration.vchOffTel);
+                parameters.Add("@vchGender", registration.vchGender);
+                parameters.Add("@bitStatus", registration.bitStatus);
+                parameters.Add("@intCreatedBy", registration.intCreatedBy);
+                parameters.Add("@Action", "INSERT");
+                int rowsAffected = await Connection.ExecuteAsync("USP_Registration_insert", parameters, commandType: CommandType.StoredProcedure);
+                return rowsAffected > 0;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
     }
 }
