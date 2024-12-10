@@ -8,7 +8,7 @@
         <div class="utilite float-end mb-1">
           <ul class="mb-0">
             <li class="bg-transparent border-0">
-              <span class="text-danger small"><b>(*)</b>  Indicate mandatory </span>
+              <span class="text-danger small"><b>(*)</b> Indicate mandatory </span>
             </li>
             <li class="fill-btn back-link"><a routerLink="/application/user-registration" title="Go to Previous"><i
                   class="bi bi-arrow-left"></i> Back to View</a>
@@ -23,7 +23,7 @@
   <div class="content-box content-area">
 
 
-    <form>
+    <form [formGroup]="userRegistration" autocomplete="off" (ngSubmit)="submitForm()">
       <div class="row">
 
         <div class="col-xxl-10 col-lg-12">
@@ -31,15 +31,16 @@
 
             <div class="col-xl-4 col-lg-4 col-md-6">
               <div class="mb-3">
-                <label for="userid" class="form-label">User ID</label>
-                <input id="userid" class="form-control" type="text" />
+                <label for="userid" class="form-label">User Name</label>
+                <input placeholder="User Name" formControlName="userid" id="userid" class="form-control" type="text" />
               </div>
             </div>
 
             <div class="col-xl-4 col-lg-4 col-md-6">
               <div class="mb-3">
-                <label for="userfullname" class="form-label">User Full Name</label>
-                <input id="userfullname" class="form-control" name="userfullname" type="text" />
+                <label for="userfullname" class="form-label">Full Name</label>
+                <input placeholder="Full Name" formControlName="userfullname" id="userfullname" class="form-control"
+                  name="userfullname" type="text" />
               </div>
             </div>
 
@@ -47,8 +48,9 @@
             <div class="col-xl-4 col-lg-4 col-md-6">
               <div class="iconinput password mb-3">
                 <label for="password" class="form-label">User Password</label>
-                <input id="password" name="password" autocomplete="off" [type]="showPassword ? 'text' : 'password'"
-                  class="form-control passwordinput" maxlength="6">
+                <input placeholder="User Password" id="password" formControlName="password" name="password"
+                  autocomplete="off" [type]="showPassword ? 'text' : 'password'" class="form-control passwordinput"
+                  maxlength="6">
                 <a href="javascript:void(0);" (click)="togglePasswordVisibility()" class="enablebtn">
                   <i class="bi" [ngClass]="showPassword ? 'bi bi-eye' : 'bi-eye-slash'"></i>
                 </a>
@@ -58,12 +60,9 @@
             <div class="col-xl-4 col-lg-4 col-md-6">
               <div class="mb-3">
                 <label for="district" class="form-label">District</label>
-                <select class="form-select" id="district">
-                  <option selected>Select</option>
-                  <option value="1">ARARIA</option>
-                  <option value="2">ARWAL</option>
-                  <option value="3">AURANGABAD</option>
-                </select>
+                <ng-select formControlName="district" [items]="districts" bindLabel="vcH_DIST_NAME"
+                  bindValue="inT_DIST_ID" placeholder="Select" (change)="onDistrictChange($event)">
+                </ng-select>
               </div>
             </div>
 
@@ -71,27 +70,22 @@
             <div class="col-xl-4 col-lg-4 col-md-6">
               <div class="mb-3">
                 <label for="blcokname" class="form-label">Block</label>
-                <select class="form-select" id="blcokname">
-                  <option selected>Select</option>
-                  <option value="1">ARARIA</option>
-                  <option value="2">ARWAL</option>
-                  <option value="3">AURANGABAD</option>
-                </select>
+                <ng-select formControlName="block" [items]="blocks" bindLabel="vcH_BLOCK_NAME" bindValue="inT_BLOCK_ID"
+                  placeholder="Select">
+                </ng-select>
               </div>
             </div>
-
-
 
 
 
             <div class="col-xl-4 col-lg-4 col-md-6">
               <div class="mb-3">
                 <label for="degonation" class="form-label">Designation</label>
-                <select class="form-select" id="degonation">
-                  <option selected>Select</option>
-                  <option value="1">DL</option>
-                  <option value="2">DD</option>
-                  <option value="3">DE</option>
+                <select formControlName="Designation" name="ddlDesignation" [id]="'ddlDesignation'" class="form-select">
+                  <option value="0" selected>-Select-</option>
+                  <option *ngFor="let designation of designations" [value]="designation.inT_DESIG_ID">
+                    {{ designation.nvcH_DESIG_NAME }}
+                  </option>
                 </select>
               </div>
             </div>
@@ -99,14 +93,16 @@
             <div class="col-xl-4 col-lg-4 col-md-6">
               <div class="mb-3">
                 <label for="arrayname" class="form-label">Array Name</label>
-                <input name="txtEmail" type="text" id="arrayname" class="form-control" />
+                <input placeholder="Array Name" formControlName="ArrayName" name="ArrayName" type="text" id="arrayname"
+                  class="form-control" />
               </div>
             </div>
 
             <div class="col-xl-4 col-lg-4 col-md-6">
               <div class="mb-3">
                 <label for="telephone" class="form-label">Office Telephone No.</label>
-                <input name="telephone" type="text" maxlength="10" id="telephone" class="form-control" />
+                <input placeholder="Office Telephone No." name="telephone" formControlName="telephone" type="text"
+                  maxlength="10" id="telephone" class="form-control" />
               </div>
             </div>
 
@@ -116,7 +112,8 @@
                 <label for="Mobileno" class="form-label">Mobile No.</label>
                 <div class="input-group">
                   <label class="input-group-text">+91</label>
-                  <input name="Mobileno" type="text" maxlength="10" id="Mobileno" class="form-control" />
+                  <input placeholder="Mobile No." name="Mobileno" type="text" maxlength="10" id="Mobileno"
+                    class="form-control" formControlName="Mobileno" />
                   <a class="input-group-text btn btn-primary" href="javascript:void(0);" data-bs-toggle="modal"
                     data-bs-target="#exampleModal"><i class="bi bi-check-circle"></i></a>
                 </div>
@@ -128,7 +125,8 @@
               <div class="mb-3">
                 <label for="textmail" class="form-label">Email ID</label>
                 <div class="input-group">
-                  <input name="txtEmail" type="text" id="textmail" class="form-control" />
+                  <input placeholder="Email ID" name="txtEmail" type="text" id="textmail" class="form-control"
+                    formControlName="txtEmail" />
                   <a class="input-group-text btn btn-primary" href="javascript:void(0);" data-bs-toggle="modal"
                     data-bs-target="#mailmodal"><i class="bi bi-check-circle"></i></a>
                 </div>
@@ -142,15 +140,18 @@
               <div class="mb-3">
                 <label for="gender" class="form-label d-block mb-2">Gender</label>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="Gender" id="male" value="option1" checked>
+                  <input class="form-check-input" formControlName="Gender" type="radio" name="Gender" id="male"
+                    value="option1" checked>
                   <label class="form-check-label" for="male">Male</label>
                 </div>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="Gender" id="female" value="option2">
+                  <input class="form-check-input" formControlName="Gender" type="radio" name="Gender" id="female"
+                    value="option2">
                   <label class="form-check-label" for="female">female</label>
                 </div>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="Gender" id="others" value="option2">
+                  <input class="form-check-input" formControlName="Gender" type="radio" name="Gender" id="others"
+                    value="option3">
                   <label class="form-check-label" for="others">Others</label>
                 </div>
               </div>
@@ -160,11 +161,10 @@
             <div class="col-xl-4 col-lg-4 col-md-6">
               <div class="mb-3">
                 <label for="stattus" class="form-label">Status</label>
-                <select class="form-select" id="stattus">
-                  <option selected>Select</option>
-                  <!-- <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option> -->
+                <select formControlName="status" class="form-select" id="status">
+                  <option value="" selected>Select</option>
+                  <option value="1">Active</option>
+                  <option value="2">Inactive</option>
                 </select>
               </div>
             </div>
@@ -173,11 +173,11 @@
             <div class="col-xl-4 col-lg-4 col-md-6">
               <div class="mb-3">
                 <label for="group" class="form-label">Group</label>
-                <select class="form-select" id="group">
-                  <option selected>Select</option>
-                  <!-- <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option> -->
+                <select formControlName="group" class="form-select" id="group">
+                  <option value="0" selected>Select</option>
+                  <option value="1">A</option>
+                  <option value="2">B</option>
+                  <option value="3">C</option>
                 </select>
               </div>
             </div>
@@ -300,5 +300,3 @@
     </div>
   </div>
 </div>
-
-
