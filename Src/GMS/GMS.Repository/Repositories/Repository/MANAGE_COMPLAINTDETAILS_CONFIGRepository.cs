@@ -169,11 +169,10 @@ namespace GMS.Repository.Repositories.Interfaces.MANAGE_COMPLAINTDETAILS_CONFIG
             }
         }
 
-        public async Task<bool> GenerateOtp(string phoneNumber)
+        public async Task<string> GenerateOtp(string phoneNumber)
         {
             // Generate a 6-digit OTP
-            var otp = 12345;
-                //new Random().Next(100000, 999999).ToString();
+            var otp = new Random().Next(100000, 999999).ToString(); ;
             var expirationTime = DateTime.Now.AddMinutes(30);
 
             try
@@ -184,12 +183,12 @@ namespace GMS.Repository.Repositories.Interfaces.MANAGE_COMPLAINTDETAILS_CONFIG
                 parameters.Add("@CreatedOn", DateTime.Now);
                 parameters.Add("@ExpiresOn", expirationTime);
                 parameters.Add("@IsUsed", false);
-                var result = await Connection.QueryAsync<int>("GenerateOtp", parameters, commandType: CommandType.StoredProcedure);
-                return result.Contains(1);
+                var result = await Connection.QueryAsync<string>("GenerateOtp", parameters, commandType: CommandType.StoredProcedure);
+                return result.FirstOrDefault();
             }
             catch (Exception ex)
             {
-                return false;
+                throw;
             }
         }
 
