@@ -60,7 +60,6 @@ export class UserRegistrationComponent {
   submitForm() {
     const formData = this.userRegistration.value;
     if (this.validate_userRegistration_form(formData)) {
-      console.log(1);
       this.commonService.insertData(this.userRegistration.value, 'complaint/ComplaintForm/submitForm').subscribe({
         next: (response: any) => {
           const responseData = response.RESPONSE_DATA;
