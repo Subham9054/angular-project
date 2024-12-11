@@ -20,6 +20,7 @@ builder.Services.AddCors(options =>
                           .AllowAnyMethod()
                           .AllowAnyHeader());
 });
+
 var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -39,6 +40,7 @@ if (app.Environment.IsStaging())
 }
 // Apply the specific CORS policy
 app.UseCors("AllowAllOrigins");
+app.UseCors("AllowOrigin");
 
 // Ensure HTTPS redirection is in place
 app.UseHttpsRedirection();
