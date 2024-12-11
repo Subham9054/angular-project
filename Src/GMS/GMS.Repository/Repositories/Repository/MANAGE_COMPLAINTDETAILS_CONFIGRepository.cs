@@ -11,6 +11,7 @@ using MySql.Data.MySqlClient;
 using GMS.Model.Entities.GMS;
 namespace GMS.Repository.Repositories.Interfaces.MANAGE_COMPLAINTDETAILS_CONFIG
 {
+#pragma warning disable
     public class MANAGE_COMPLAINTDETAILS_CONFIGRepository : db_PHED_CGRCRepositoryBase, IMANAGE_COMPLAINTDETAILS_CONFIGRepository
     {
         public MANAGE_COMPLAINTDETAILS_CONFIGRepository(Idb_PHED_CGRCConnectionFactory db_PHED_CGRCConnectionFactory) : base(db_PHED_CGRCConnectionFactory)
@@ -110,13 +111,14 @@ namespace GMS.Repository.Repositories.Interfaces.MANAGE_COMPLAINTDETAILS_CONFIG
             }
         }
 
-        public async Task<List<GetCitizenall>> GetallCitizendetails(string token,string mobno)
+        public async Task<List<GetCitizenall>> GetallCitizendetails( string token,string mobno)
         {
             try
             {
                 var parameters = new DynamicParameters();
-                parameters.Add("token", token);
-                parameters.Add("mobno", mobno);
+                parameters.Add("p_token", token);
+                parameters.Add("p_mobno", mobno);
+                
                 var result = await Connection.QueryAsync<GetCitizenall>("GetCitizenallDetails", parameters, commandType: CommandType.StoredProcedure);
                 return result.ToList();
             }
@@ -196,16 +198,14 @@ namespace GMS.Repository.Repositories.Interfaces.MANAGE_COMPLAINTDETAILS_CONFIG
         {
             try
             {
+                Console.WriteLine($"Parameters: PhoneNumber = {phoneNumber}, OTP = {otp}");
+                OTPDetails res = new OTPDetails();
                 var parameters = new DynamicParameters();
-                parameters.Add("phoneNumber", phoneNumber);  // Match the parameter name
-                parameters.Add("otp", otp);  // Match the parameter name
-
-                var result = await Connection.QueryFirstOrDefaultAsync<OTPDetails>(
-                    "ValidateOtp",
-                    parameters,
-                    commandType: CommandType.StoredProcedure);
-
-                return result;
+                parameters.Add("p_phoneNumber", phoneNumber.Trim());
+                parameters.Add("p_otp", otp.Trim());
+                res = await Connection.QueryFirstOrDefaultAsync<OTPDetails>("ValidateOtp", parameters,commandType: CommandType.StoredProcedure);
+                Console.WriteLine($"Query Result: {res}");
+                return res;
             }
             catch (Exception ex)
             {

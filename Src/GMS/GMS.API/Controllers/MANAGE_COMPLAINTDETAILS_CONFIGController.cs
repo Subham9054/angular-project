@@ -248,7 +248,7 @@ namespace GMS.API
 
 
         [HttpGet("GetAllCitizenDetails")]
-        public async Task<IActionResult> GetAllCitizenDetails(string token, string mobno)
+        public async Task<IActionResult> GetAllCitizenDetails([FromQuery] string? token, [FromQuery] string? mobno)
         {
             if (string.IsNullOrEmpty(token) && string.IsNullOrEmpty(mobno))
             {
@@ -364,8 +364,8 @@ namespace GMS.API
                 return Ok(new
                 {
                     StatusCode = 200,
-                    Message = "Your OTP is "+result,
-                    Data = result // Include any additional data, if needed
+                    Message = "Your OTP is "+result
+                    //Data = result // Include any additional data, if needed
                 });
             }
             catch (Exception ex)
@@ -422,7 +422,7 @@ namespace GMS.API
                     return StatusCode(500, new { StatusCode = 500, Message = "Error marking OTP as used." });
                 }
 
-                return Ok(new { Message = "OTP validated successfully." });
+                return StatusCode(200,new {StatusCode=200, Message = "OTP validated successfully." });
             }
             catch (Exception ex)
             {
