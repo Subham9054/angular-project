@@ -123,12 +123,13 @@ namespace GMS.API
                 // Process the complaint registration
                 var result = await _MANAGE_COMPLAINTDETAILS_CONFIGRepository.ComplaintRegistrationdetail(complaint);
 
-                if (result)
+                if (result!=null)
                 {
                     return Ok(new
                     {
                         message = "Complaint registered successfully.",
-                        uploadedFiles = uploadedFiles
+                        uploadedFiles = uploadedFiles,
+                        Data = result
                     });
                 }
                 else
@@ -364,8 +365,8 @@ namespace GMS.API
                 return Ok(new
                 {
                     StatusCode = 200,
-                    Message = "Your OTP is "+result
-                    //Data = result // Include any additional data, if needed
+                    Message = "Your OTP is "+result,
+                    Data = result // Include any additional data, if needed
                 });
             }
             catch (Exception ex)

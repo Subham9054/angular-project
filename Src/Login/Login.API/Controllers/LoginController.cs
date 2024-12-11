@@ -191,8 +191,9 @@ namespace Login.API.Controllers
                 var regd = await _loginRepository.Registration(registration);
                 if (regd != null)
                 {
-                    return Ok(new
+                    return StatusCode(200,new
                     {
+                        StatusCode=200,
                         Success = true,
                         Message = "Registration successful",
                         Data = regd

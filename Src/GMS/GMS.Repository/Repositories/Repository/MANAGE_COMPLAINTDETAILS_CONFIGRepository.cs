@@ -18,7 +18,7 @@ namespace GMS.Repository.Repositories.Interfaces.MANAGE_COMPLAINTDETAILS_CONFIG
         {
 
         }
-        public async Task<bool> ComplaintRegistrationdetail(Complaint complaint)
+        public async Task<string> ComplaintRegistrationdetail(Complaint complaint)
         {
             try
             {
@@ -53,8 +53,8 @@ namespace GMS.Repository.Repositories.Interfaces.MANAGE_COMPLAINTDETAILS_CONFIG
                 parameters.Add("landMark", complaint.NVCH_LANDMARK);
                 parameters.Add("priority", 1);
                 parameters.Add("@action", "INSERT");
-                var result = await Connection.QueryAsync<int>("USP_complaintRegistration_insert", parameters, commandType: CommandType.StoredProcedure);
-                return result.Contains(1);
+                var result = await Connection.QueryAsync<string>("USP_complaintRegistration_insert", parameters, commandType: CommandType.StoredProcedure);
+                return result.FirstOrDefault();
 
 
             }

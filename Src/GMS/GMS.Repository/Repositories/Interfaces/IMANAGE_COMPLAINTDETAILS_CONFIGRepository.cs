@@ -5,7 +5,7 @@ namespace GMS.Repository.Interfaces.MANAGE_COMPLAINTDETAILS_CONFIG
 {
     public interface IMANAGE_COMPLAINTDETAILS_CONFIGRepository
     {
-        Task<bool> ComplaintRegistrationdetail(Complaint complaint);
+        Task<string> ComplaintRegistrationdetail(Complaint complaint);
         Task<List<gmsComplaintdetails>> getGmscomplaintdetail();
         Task<List<gmsComplaintdetails>> Getupdatetakeaction(string token);
         Task<int> INSERT_MANAGE_COMPLAINTDETAILS_CONFIG(MANAGE_COMPLAINTDETAILS_CONFIG_Model TBL);
