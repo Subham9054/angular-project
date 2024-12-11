@@ -1,4 +1,4 @@
-@CMS.API_HostAddress = http://localhost:5223
+@CMS.API_HostAddress = http://localhost:5234
 
 GET {{CMS.API_HostAddress}}/weatherforecast/
 Accept: application/json

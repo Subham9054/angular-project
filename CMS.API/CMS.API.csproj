@@ -12,7 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CMS.Model\CMS.Model.csproj" />
-    <ProjectReference Include="..\CMS.Repositories\CMS.Repository.csproj" />
+    <ProjectReference Include="..\CMS.Repositories\CMS.Repositories.csproj" />
   </ItemGroup>
 
 </Project>
