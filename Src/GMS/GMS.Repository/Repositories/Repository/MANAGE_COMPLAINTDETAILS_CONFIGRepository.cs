@@ -11,13 +11,14 @@ using MySql.Data.MySqlClient;
 using GMS.Model.Entities.GMS;
 namespace GMS.Repository.Repositories.Interfaces.MANAGE_COMPLAINTDETAILS_CONFIG
 {
+#pragma warning disable
     public class MANAGE_COMPLAINTDETAILS_CONFIGRepository : db_PHED_CGRCRepositoryBase, IMANAGE_COMPLAINTDETAILS_CONFIGRepository
     {
         public MANAGE_COMPLAINTDETAILS_CONFIGRepository(Idb_PHED_CGRCConnectionFactory db_PHED_CGRCConnectionFactory) : base(db_PHED_CGRCConnectionFactory)
         {
 
         }
-        public async Task<bool> ComplaintRegistrationdetail(Complaint complaint)
+        public async Task<string> ComplaintRegistrationdetail(Complaint complaint)
         {
             try
             {
@@ -52,8 +53,8 @@ namespace GMS.Repository.Repositories.Interfaces.MANAGE_COMPLAINTDETAILS_CONFIG
                 parameters.Add("landMark", complaint.NVCH_LANDMARK);
                 parameters.Add("priority", 1);
                 parameters.Add("@action", "INSERT");
-                var result = await Connection.QueryAsync<int>("USP_complaintRegistration_insert", parameters, commandType: CommandType.StoredProcedure);
-                return result.Contains(1);
+                var result = await Connection.QueryAsync<string>("USP_complaintRegistration_insert", parameters, commandType: CommandType.StoredProcedure);
+                return result.FirstOrDefault();
 
 
             }
@@ -110,13 +111,14 @@ namespace GMS.Repository.Repositories.Interfaces.MANAGE_COMPLAINTDETAILS_CONFIG
             }
         }
 
-        public async Task<List<GetCitizenall>> GetallCitizendetails(string token,string mobno)
+        public async Task<List<GetCitizenall>> GetallCitizendetails( string token,string mobno)
         {
             try
             {
                 var parameters = new DynamicParameters();
-                parameters.Add("token", token);
-                parameters.Add("mobno", mobno);
+                parameters.Add("p_token", token);
+                parameters.Add("p_mobno", mobno);
+                
                 var result = await Connection.QueryAsync<GetCitizenall>("GetCitizenallDetails", parameters, commandType: CommandType.StoredProcedure);
                 return result.ToList();
             }
@@ -169,11 +171,10 @@ namespace GMS.Repository.Repositories.Interfaces.MANAGE_COMPLAINTDETAILS_CONFIG
             }
         }
 
-        public async Task<bool> GenerateOtp(string phoneNumber)
+        public async Task<string> GenerateOtp(string phoneNumber)
         {
             // Generate a 6-digit OTP
-            var otp = 12345;
-                //new Random().Next(100000, 999999).ToString();
+            var otp = new Random().Next(100000, 999999).ToString(); ;
             var expirationTime = DateTime.Now.AddMinutes(30);
 
             try
@@ -184,12 +185,12 @@ namespace GMS.Repository.Repositories.Interfaces.MANAGE_COMPLAINTDETAILS_CONFIG
                 parameters.Add("@CreatedOn", DateTime.Now);
                 parameters.Add("@ExpiresOn", expirationTime);
                 parameters.Add("@IsUsed", false);
-                var result = await Connection.QueryAsync<int>("GenerateOtp", parameters, commandType: CommandType.StoredProcedure);
-                return result.Contains(1);
+                var result = await Connection.QueryAsync<string>("GenerateOtp", parameters, commandType: CommandType.StoredProcedure);
+                return result.FirstOrDefault();
             }
             catch (Exception ex)
             {
-                return false;
+                throw;
             }
         }
 
@@ -197,16 +198,14 @@ namespace GMS.Repository.Repositories.Interfaces.MANAGE_COMPLAINTDETAILS_CONFIG
         {
             try
             {
+                Console.WriteLine($"Parameters: PhoneNumber = {phoneNumber}, OTP = {otp}");
+                OTPDetails res = new OTPDetails();
                 var parameters = new DynamicParameters();
-                parameters.Add("phoneNumber", phoneNumber);  // Match the parameter name
-                parameters.Add("otp", otp);  // Match the parameter name
-
-                var result = await Connection.QueryFirstOrDefaultAsync<OTPDetails>(
-                    "ValidateOtp",
-                    parameters,
-                    commandType: CommandType.StoredProcedure);
-
-                return result;
+                parameters.Add("p_phoneNumber", phoneNumber.Trim());
+                parameters.Add("p_otp", otp.Trim());
+                res = await Connection.QueryFirstOrDefaultAsync<OTPDetails>("ValidateOtp", parameters,commandType: CommandType.StoredProcedure);
+                Console.WriteLine($"Query Result: {res}");
+                return res;
             }
             catch (Exception ex)
             {
