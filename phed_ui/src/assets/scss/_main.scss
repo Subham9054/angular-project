@@ -1649,3 +1649,35 @@ div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-confirm) {
     margin-bottom: 0.5rem;
   }
 }
+
+
+// .upload-cus {
+//   position: relative;
+//   display: flex;
+//   align-items: center;
+//   justify-content: space-between;
+
+//   .x-icon {
+//     display: none;
+//     color: #d13e4a;
+//     font-size: 0.95rem;
+//     z-index: 10;
+//     position: absolute;
+//     right: -7px;
+//     top: -5px;
+//     width: 15px;
+//     height: 15px;
+//     border-radius: 50%;
+//   }
+
+//   .upload-btn:hover {
+//     .x-icon {
+//       display: block;
+//     }
+//   }
+
+//   .btn-outline-danger:hover {
+//     background-color: #d13e4a84 !important;
+//     color: white;
+//   }
+// }

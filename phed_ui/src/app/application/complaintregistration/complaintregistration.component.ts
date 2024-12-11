@@ -23,7 +23,7 @@ export class ComplaintregistrationComponent  {
 //     this.otpInputs.toArray()[index + 1].nativeElement.focus();
 //   }
 // }
-  
+
 
   files: File[] = [];
 
@@ -70,6 +70,40 @@ export class ComplaintregistrationComponent  {
     ddllanguage:'1'
   };
 
+// Upload File
+ // Array to hold uploaded files
+ uploadedFiles: File[] = [];
+
+ // This method is called when a file is selected
+ onFileSelected(event: any): void {
+   const files = event.target.files;
+   if (files && files.length > 0) {
+     for (let i = 0; i < files.length; i++) {
+       // Limit the number of files to 4
+       if (this.uploadedFiles.length < 4) {
+         this.uploadedFiles.push(files[i]);
+       } else {
+         alert("You can upload only 4 files.");
+         break;
+       }
+     }
+   }
+ }
+
+ // This method is called when the close (x) icon is clicked for a file
+ removeFile(index: number): void {
+   // Remove the file from the array
+   this.uploadedFiles.splice(index, 1);
+ }
+
+
+
+
+
+
+
+
+
   constructor(private http: HttpClient, private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
@@ -103,7 +137,7 @@ export class ComplaintregistrationComponent  {
   }
 
   onCategoryChange(event: any) {
-    debugger;
+
     // Directly use the event as the selected category ID
     const catid = event.inT_CATEGORY_ID;  // event contains the selected category ID directly
     if (catid && !isNaN(catid)) {
@@ -117,10 +151,10 @@ export class ComplaintregistrationComponent  {
       );
     }
   }
-  
+
 
   getDistricts() {
-    debugger;
+
     this.authService.getDistricts().subscribe(
       response => {
         this.districts = response;
@@ -132,7 +166,7 @@ export class ComplaintregistrationComponent  {
     );
   }
   onUpdateClick() {
-    this.router.navigate(['/registrationupdate']); 
+    this.router.navigate(['/registrationupdate']);
   }
   onDistrictChange(event: any) {
     const distId = event.inT_DIST_ID
@@ -153,7 +187,7 @@ export class ComplaintregistrationComponent  {
   }
 
   onBlockChange(event: any) {
-    debugger;
+
     const blockId = event.inT_BLOCK_ID
     if (!isNaN(blockId)) {
       this.authService.getGps(blockId).subscribe(
@@ -171,7 +205,7 @@ export class ComplaintregistrationComponent  {
   }
 
   onGpChange(event: any) {
-    debugger;
+
     const gpId = event.inT_GP_ID;
     if (!isNaN(gpId)) {
       this.authService.getVillages(gpId).subscribe(
@@ -188,7 +222,7 @@ export class ComplaintregistrationComponent  {
     }
   }
   onVillage(event: any) {
-    debugger;
+
     const villageid = event.inT_VILLAGE_ID;
     if (!isNaN(villageid)) {
       this.authService.wards(villageid).subscribe(
@@ -216,7 +250,7 @@ export class ComplaintregistrationComponent  {
   }
 
   // handleFileInput(event: Event) {
-  //   debugger;
+  //
   //   const input = event.target as HTMLInputElement;
   //   if (input.files && input.files.length > 0) {
   //     this.fileToUpload = input.files[0];
@@ -229,7 +263,7 @@ export class ComplaintregistrationComponent  {
     if (input.files && input.files.length > 0) {
       // Convert FileList to an array and store it
       this.filesToUpload = Array.from(input.files);
-      
+
     } else {
       this.filesToUpload = [];
     }
@@ -342,14 +376,14 @@ export class ComplaintregistrationComponent  {
 
 
   // onSubmit() {
-  //   debugger;
-  
+  //
+
   //   // Check if a file is uploaded
   //   if (!this.filesToUpload) {
   //     alert('Please upload a file before submitting the form.');
   //     return;
   //   }
-  
+
   //   // Call the uploadFile method from your service (returns an Observable)
   //   this.authService.uploadFile(this.filesToUpload).subscribe(
   //     (response) => {
@@ -362,7 +396,7 @@ export class ComplaintregistrationComponent  {
   //     }
   //   );
   // }
-  
+
 
   // uploadFile(): Promise<void> {
   //   return new Promise((resolve, reject) => {
@@ -382,8 +416,8 @@ export class ComplaintregistrationComponent  {
   //     }
   //   });
   // }
-  
-  
+
+
 
   // submitRegistrationData(fileName: string) {
   //   const registrationData = {
