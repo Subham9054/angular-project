@@ -52,7 +52,7 @@ export class UserRegistrationComponent {
 
     });
   }
-
+ 
   ngOnInit(): void {
     this.getDistricts();
     this.getDesignation();
@@ -60,8 +60,10 @@ export class UserRegistrationComponent {
   submitForm() {
     const formData = this.userRegistration.value;
     if (this.validate_userRegistration_form(formData)) {
-      this.commonService.insertData(this.userRegistration.value, 'complaint/ComplaintForm/submitForm').subscribe({
+      console.log(1);
+      this.commonService.insertData(this.userRegistration.value, '/gateway/UserRegistration').subscribe({
         next: (response: any) => {
+          console.log(response);
           const responseData = response.RESPONSE_DATA;
           const respToken = response.RESPONSE_TOKEN;
           const verifyToken = CryptoJS.HmacSHA256(responseData, environment.apiHashingKey).toString();
