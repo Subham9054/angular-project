@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CMS.Repository.Repositories.Repository.BaseRepository
+namespace CMS.Model
 {
-    public interface Idb_PHED_CGRCRepositoryBase:IDisposable
+    public class ComplaintCountsDto
     {
+        public string? Mobile { get; set; }
     }
 }
