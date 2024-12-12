@@ -18,6 +18,95 @@ namespace CMS.Repositories.Repositories.CmsRepository
         {
         }
 
+        #region Manage Page Content Repository
+        public async Task<int> CreateOrUpdatePageContentAsync(PageContentModel creOrUpdPageContent)
+        {
+            var parameters = new DynamicParameters();
+            try
+            {
+                parameters.Add("P_Action", "CreOrUpd");
+
+                if (creOrUpdPageContent.ContentId == 0)
+                {
+                    // Creating a new page content
+                    parameters.Add("P_ContentId", null);
+                    parameters.Add("P_PageTitleEnglish", creOrUpdPageContent.PageTitleEnglish);
+                    parameters.Add("P_PageTitleHindi", creOrUpdPageContent.PageTitleHindi);
+                    parameters.Add("P_PageAlias", creOrUpdPageContent.PageAlias);
+                    parameters.Add("P_ReadMore", creOrUpdPageContent.ReadMore);
+                    parameters.Add("P_LinkType", creOrUpdPageContent.LinkType);
+                    parameters.Add("P_OpenWindow", creOrUpdPageContent.OpenWindow);
+                    parameters.Add("P_SnippetEnglish", creOrUpdPageContent.SnippetEnglish);
+                    parameters.Add("P_SnippetHindi", creOrUpdPageContent.SnippetHindi);
+                    parameters.Add("P_ContentEnglish", creOrUpdPageContent.ContentEnglish);
+                    parameters.Add("P_ContentHindi", creOrUpdPageContent.ContentHindi);
+                    parameters.Add("P_FeatureImage", creOrUpdPageContent.FeatureImage);
+                    parameters.Add("P_MetaTitle", creOrUpdPageContent.MetaTitle);
+                    parameters.Add("P_MetaKeyword", creOrUpdPageContent.MetaKeyword);
+                    parameters.Add("P_MetaDescription", creOrUpdPageContent.MetaDescription);
+                    parameters.Add("P_IsPublish", creOrUpdPageContent.IsPublish);
+                    parameters.Add("P_PublishDate", creOrUpdPageContent.PublishDate);
+                    parameters.Add("P_CreatedBy", creOrUpdPageContent.CreatedBy);
+                }
+                else
+                {
+                    // Updating an existing page content
+                    parameters.Add("P_ContentId", creOrUpdPageContent.ContentId);
+                    parameters.Add("P_PageTitleEnglish", creOrUpdPageContent.PageTitleEnglish);
+                    parameters.Add("P_PageTitleHindi", creOrUpdPageContent.PageTitleHindi);
+                    parameters.Add("P_PageAlias", creOrUpdPageContent.PageAlias);
+                    parameters.Add("P_ReadMore", creOrUpdPageContent.ReadMore);
+                    parameters.Add("P_LinkType", creOrUpdPageContent.LinkType);
+                    parameters.Add("P_OpenWindow", creOrUpdPageContent.OpenWindow);
+                    parameters.Add("P_SnippetEnglish", creOrUpdPageContent.SnippetEnglish);
+                    parameters.Add("P_SnippetHindi", creOrUpdPageContent.SnippetHindi);
+                    parameters.Add("P_ContentEnglish", creOrUpdPageContent.ContentEnglish);
+                    parameters.Add("P_ContentHindi", creOrUpdPageContent.ContentHindi);
+                    parameters.Add("P_FeatureImage", creOrUpdPageContent.FeatureImage);
+                    parameters.Add("P_MetaTitle", creOrUpdPageContent.MetaTitle);
+                    parameters.Add("P_MetaKeyword", creOrUpdPageContent.MetaKeyword);
+                    parameters.Add("P_MetaDescription", creOrUpdPageContent.MetaDescription);
+                    parameters.Add("P_IsPublish", creOrUpdPageContent.IsPublish);
+                    parameters.Add("P_PublishDate", creOrUpdPageContent.PublishDate);
+                    parameters.Add("P_CreatedBy", creOrUpdPageContent.CreatedBy);
+                }
+
+                // Execute the stored procedure
+                await Connection.ExecuteAsync("USP_ManagePageContentDetails", parameters, commandType: CommandType.StoredProcedure);
+
+                // If no exceptions, return a success code (1 for successful operation)
+                return 1;
+            }
+            catch (SqlException ex)
+            {
+                // Handle specific SQL exceptions like duplicate entry (error 45000 from stored procedure)
+                if (ex.Number == 45000)
+                {
+                    throw new Exception("Duplicate entry for Page Content.");
+                }
+                throw new Exception("An unexpected SQL error occurred. Please try again later.", ex);
+            }
+            catch (Exception ex)
+            {
+                // Handle any other general exceptions
+                throw new Exception("An unexpected error occurred. Please try again later.", ex);
+            }
+        }
+        public async Task<List<PageContentModel>> GetPageContentsAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<List<PageContentModel>> GetPageContentByIdAsync(int contentId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<int> DeletePageContentAsync(int contentId)
+        {
+            throw new NotImplementedException();
+        }        
+        #endregion
 
         #region Citizen Mobile App API Repository
         public async Task<ComplaintCountsModel> GetComplaintCountsAsync(string mobile)
@@ -201,7 +290,7 @@ namespace CMS.Repositories.Repositories.CmsRepository
                 // Handle general exceptions
                 throw new Exception("An unexpected error occurred. Please try again later.", ex);
             }
-        }
+        }        
         #endregion
     }
 }

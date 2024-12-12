@@ -10,6 +10,12 @@ namespace CMS.Repositories.Repositories.CmsRepository
     public interface IContentManagementRepository
     {
 
+        #region Manage Page Content Interface
+        Task<int> CreateOrUpdatePageContentAsync(PageContentModel creOrUpdPageContent);
+        Task<int> DeletePageContentAsync(int contentId);
+        Task<List<PageContentModel>> GetPageContentsAsync();
+        Task<List<PageContentModel>> GetPageContentByIdAsync(int contentId);
+        #endregion
 
         #region Citizen Mobile App API Interface
         Task<ComplaintCountsModel> GetComplaintCountsAsync(string mobile);
