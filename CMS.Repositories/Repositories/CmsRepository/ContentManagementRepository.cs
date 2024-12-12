@@ -147,6 +147,101 @@ namespace CMS.Repositories.Repositories.CmsRepository
         }
         #endregion
 
+        #region Demography Mapping Repository
+        public async Task<List<CircleModel>> GetCirclesAsync()
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            try
+            {
+                parameters.Add("P_Action", "GetCir");
+                parameters.Add("P_CircleId", null, DbType.Int32);
+                parameters.Add("P_DivisionId", null, DbType.Int32);
+                parameters.Add("P_SubDivisionId", null, DbType.Int32);
+
+                var contacts = await Connection.QueryAsync<CircleModel>("USP_DemographyMapping", parameters, commandType: CommandType.StoredProcedure);
+
+                return contacts.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An unexpected error occurred while fetching circle details. Please try again later.", ex);
+            }
+        }
+
+        public async Task<List<DivisionModel>> GetDivisionsAsync(int circleId)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            try
+            {
+                // Adding circleId to the parameters to pass it to the stored procedure
+                parameters.Add("P_CircleId", circleId);
+                parameters.Add("P_Action", "GetDiv");
+                parameters.Add("P_DivisionId", null, DbType.Int32);
+                parameters.Add("P_SubDivisionId", null, DbType.Int32);
+
+                // Execute stored procedure to get data
+                var result = await Connection.QueryAsync<DivisionModel>("USP_DemographyMapping", parameters, commandType: CommandType.StoredProcedure);
+
+                // Return the list of results or an empty list if no results are found
+                return result.ToList();
+            }
+            catch (Exception ex)
+            {
+                // Handle exception and throw with a custom message
+                throw new Exception("An unexpected error occurred while fetching division details. Please try again later.", ex);
+            }
+        }
+
+        public async Task<List<SubDivisionModel>> GetSubDivisionsAsync(int divisionId)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            try
+            {
+                // Adding divisionId to the parameters to pass it to the stored procedure
+                parameters.Add("P_DivisionId", divisionId);
+                parameters.Add("P_Action", "GetSubDiv");
+                parameters.Add("P_CircleId", null, DbType.Int32);
+                parameters.Add("P_SubDivisionId", null, DbType.Int32);
+
+                // Execute stored procedure to get data
+                var result = await Connection.QueryAsync<SubDivisionModel>("USP_DemographyMapping", parameters, commandType: CommandType.StoredProcedure);
+
+                // Return the list of results or an empty list if no results are found
+                return result.ToList();
+            }
+            catch (Exception ex)
+            {
+                // Handle exception and throw with a custom message
+                throw new Exception("An unexpected error occurred while fetching sub-division details. Please try again later.", ex);
+            }
+        }
+
+
+        public async Task<List<SectionModel>> GetSectionsAsync(int subDivisionId)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            try
+            {
+                // Adding subDivisionId to the parameters to pass it to the stored procedure
+                parameters.Add("P_SubDivisionId", subDivisionId);
+                parameters.Add("P_Action", "GetSec");
+                parameters.Add("P_CircleId", null, DbType.Int32);
+                parameters.Add("P_DivisionId", null, DbType.Int32);
+
+                // Execute stored procedure to get data
+                var result = await Connection.QueryAsync<SectionModel>("USP_DemographyMapping", parameters, commandType: CommandType.StoredProcedure);
+
+                // Return the list of results or an empty list if no results are found
+                return result.ToList();
+            }
+            catch (Exception ex)
+            {
+                // Handle exception and throw with a custom message
+                throw new Exception("An unexpected error occurred while fetching section details. Please try again later.", ex);
+            }
+        }
+        #endregion
+
         #region Manage Designation (User Role Management) Master Page Repository
         public async Task<int> CreateOrUpdateDesignationAsync(DesignationModel creOrUpdDesignation)
         {
@@ -290,7 +385,9 @@ namespace CMS.Repositories.Repositories.CmsRepository
                 // Handle general exceptions
                 throw new Exception("An unexpected error occurred. Please try again later.", ex);
             }
-        }        
+        }
+
+        
         #endregion
     }
 }

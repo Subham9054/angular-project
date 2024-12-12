@@ -22,6 +22,13 @@ namespace CMS.Repositories.Repositories.CmsRepository
         Task<ComplaintDetailsDrillDownModel> GetComplaintDetailsDrillDownAsync(string mobile, int complaintStatusId);
         #endregion
 
+        #region Demography Mapping Interface
+        Task<List<CircleModel>> GetCirclesAsync();        
+        Task<List<DivisionModel>> GetDivisionsAsync(int circleId);
+        Task<List<SubDivisionModel>> GetSubDivisionsAsync(int divisionId);
+        Task<List<SectionModel>> GetSectionsAsync(int subDivisionId);
+        #endregion
+
         #region Manage Designation (User Role Management) Master Page Interface
         Task<int> CreateOrUpdateDesignationAsync(DesignationModel creOrUpdDesignation);
         Task<int> DeleteDesignationAsync(int desigId);
