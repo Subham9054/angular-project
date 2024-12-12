@@ -21,33 +21,64 @@ namespace CMS.API.Controllers
         }
 
         #region Citizen Mobile App API
-        [HttpGet("GetComplaintCounts")]
-        public async Task<IActionResult> GetComplaintCounts([FromQuery(Name = "Mobile")] string mobile)
+        [HttpPost("GetComplaintCounts")]
+        public async Task<IActionResult> GetComplaintCounts([FromBody] ComplaintCountsDto comCounts)
         {
             // Validate input parameters
-            if (string.IsNullOrWhiteSpace(mobile))
+            if (comCounts == null || string.IsNullOrWhiteSpace(comCounts.Mobile))
             {
-                return BadRequest(new
-                {
-                    Success = false,
-                    Message = "Mobile must be provided.",
-                    StatusCode = StatusCodes.Status400BadRequest
-                });
+                return BadRequest(new { Success = false, Message = "Mobile must be provided.", StatusCode = StatusCodes.Status400BadRequest });
             }
+
             try
             {
-                var complaintCounts = await _contentManagementRepository.GetComplaintCountsAsync(mobile);
+                var complaintCounts = await _contentManagementRepository.GetComplaintCountsAsync(comCounts.Mobile);
                 if (complaintCounts != null)
                 {
                     return Ok(new { Success = true, Data = complaintCounts, StatusCode = StatusCodes.Status200OK });
                 }
+
                 return NotFound(new { Success = false, Message = "Complaint count details are not found.", StatusCode = StatusCodes.Status404NotFound });
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, new { Success = false, Message = ex.Message, StatusCode = StatusCodes.Status500InternalServerError });
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    Success = false,
+                    Message = ex.Message,
+                    StatusCode = StatusCodes.Status500InternalServerError
+                });
             }
         }
+
+
+        //[HttpGet("GetComplaintCounts")]
+        //public async Task<IActionResult> GetComplaintCounts([FromQuery(Name = "Mobile")] string mobile)
+        //{
+        //    // Validate input parameters
+        //    if (string.IsNullOrWhiteSpace(mobile))
+        //    {
+        //        return BadRequest(new
+        //        {
+        //            Success = false,
+        //            Message = "Mobile must be provided.",
+        //            StatusCode = StatusCodes.Status400BadRequest
+        //        });
+        //    }
+        //    try
+        //    {
+        //        var complaintCounts = await _contentManagementRepository.GetComplaintCountsAsync(mobile);
+        //        if (complaintCounts != null)
+        //        {
+        //            return Ok(new { Success = true, Data = complaintCounts, StatusCode = StatusCodes.Status200OK });
+        //        }
+        //        return NotFound(new { Success = false, Message = "Complaint count details are not found.", StatusCode = StatusCodes.Status404NotFound });
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return StatusCode(StatusCodes.Status500InternalServerError, new { Success = false, Message = ex.Message, StatusCode = StatusCodes.Status500InternalServerError });
+        //    }
+        //}
 
         [HttpGet("GetComplaintDetailsDrillDown")]
         public async Task<IActionResult> GetComplaintDetailsDrillDown([FromQuery(Name = "MobileNo")] string mobile, [FromQuery(Name = "ComplaintPriority")] int complaintStatusId)
