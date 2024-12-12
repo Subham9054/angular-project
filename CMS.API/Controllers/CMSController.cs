@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CMS.API.Controllers
 {
-    [Route("api/[controller]/[action]")]
+    [Route("Api/[controller]")]
     [ApiController]
     public class CMSController : ControllerBase
     {
@@ -21,7 +21,7 @@ namespace CMS.API.Controllers
         }
 
         #region Citizen Mobile App API
-        [HttpGet]
+        [HttpGet("GetComplaintCounts")]
         public async Task<IActionResult> GetComplaintCounts([FromQuery(Name = "Mobile")] string mobile)
         {
             // Validate input parameters
@@ -49,7 +49,7 @@ namespace CMS.API.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpGet("GetComplaintDetailsDrillDown")]
         public async Task<IActionResult> GetComplaintDetailsDrillDown([FromQuery(Name = "MobileNo")] string mobile, [FromQuery(Name = "ComplaintPriority")] int complaintStatusId)
         {
             // Validate input parameters
@@ -90,7 +90,7 @@ namespace CMS.API.Controllers
         #endregion
 
         #region Manage Designation Master Page
-        [HttpPost]
+        [HttpPost("CreateOrUpdateDesignation")]
         public async Task<IActionResult> CreateOrUpdateDesignation([FromForm] DesignationModel designationDetails)
         {
             if (designationDetails == null)
@@ -114,8 +114,7 @@ namespace CMS.API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, new { Success = false, Message = ex.Message, StatusCode = StatusCodes.Status500InternalServerError });
             }
         }
-
-        [HttpGet]
+        [HttpGet("GetDesignations")]
         public async Task<IActionResult> GetDesignations()
         {
             try
@@ -132,8 +131,7 @@ namespace CMS.API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, new { Success = false, Message = ex.Message, StatusCode = StatusCodes.Status500InternalServerError });
             }
         }
-
-        [HttpGet]
+        [HttpGet("GetDesignationById")]
         public async Task<IActionResult> GetDesignationById(int designationId)
         {
             if (designationId <= 0)
@@ -155,8 +153,7 @@ namespace CMS.API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, new { Success = false, Message = ex.Message, StatusCode = StatusCodes.Status500InternalServerError });
             }
         }
-
-        [HttpDelete]
+        [HttpDelete("DeleteDesignation")]
         public async Task<IActionResult> DeleteDesignation(int designationId)
         {
             if (designationId <= 0)
@@ -179,8 +176,7 @@ namespace CMS.API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, new { Success = false, Message = ex.Message, StatusCode = StatusCodes.Status500InternalServerError });
             }
         }
-
-        [HttpPost]
+        [HttpPost("ChangePassword")]
         public async Task<IActionResult> ChangePassword([FromQuery] UserDetailsModel userDetails)
         {
             if (userDetails == null)
