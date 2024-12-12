@@ -1,6 +1,50 @@
 .disabled {
-    pointer-events: none; 
+    pointer-events: none;
     opacity: 0.5;
     border: 1px solid #ddd;
     color: #ddd;
 }
+.upload-cus{
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.upload-btn{
+  display: flex;
+  gap: 0.3rem;
+}
+.btn-dwonload{
+  padding: 0 8px;
+    color: #ff0404;
+    // border-left: 1px solid #e8e3e3;
+    margin-bottom: 4px;
+}
+.upload-div{
+  border-left: 1px solid #e8e3e3;
+}
+.upload-btn > .upload-div:first-child {
+  border: none;
+}
+.upload-cus  .x-icon{
+  display: none;
+}
+.upload-cus .upload-btn:hover .x-icon{
+  display: block;
+}
+
+.upload-cus .btn-outline-danger:hover{
+  background-color: #d13e4a84 !important;
+  color:white;
+}
+
+.x-icon {
+  color: #0d0c0c;
+  font-size: 1.2rem;
+  z-index: 10;
+  position: absolute;
+  right: -7px;
+  top: -8px;
+}
+
+
