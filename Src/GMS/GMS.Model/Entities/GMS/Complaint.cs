@@ -163,5 +163,9 @@ namespace GMS.Model.Entities.GMS
         public DateTime ExpiresOn { get; set; }
         public int IsUsed { get; set; }
     }
+    public class OtpGenerate
+    {
+       public string mobno {  get; set; }
+    }
 
 }

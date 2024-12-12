@@ -337,9 +337,9 @@ namespace GMS.API
         }
 
         [HttpPost("Otpgenerate")]
-        public async Task<IActionResult> Otpgenerate(string mobno)
+        public async Task<IActionResult> Otpgenerate([FromBody] OtpGenerate otpGenerate)
         {
-            if (string.IsNullOrWhiteSpace(mobno) || mobno.Length != 10)
+            if (string.IsNullOrWhiteSpace(otpGenerate.mobno) || otpGenerate.mobno.Length != 10)
             {
                 return BadRequest(new
                 {
@@ -351,7 +351,7 @@ namespace GMS.API
 
             try
             {
-                var result = await _MANAGE_COMPLAINTDETAILS_CONFIGRepository.GenerateOtp(mobno);
+                var result = await _MANAGE_COMPLAINTDETAILS_CONFIGRepository.GenerateOtp(otpGenerate.mobno);
 
                 if (result == null)
                 {
