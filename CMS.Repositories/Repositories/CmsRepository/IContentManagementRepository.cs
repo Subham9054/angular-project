@@ -17,6 +17,14 @@ namespace CMS.Repositories.Repositories.CmsRepository
         Task<List<PageContentModel>> GetPageContentByIdAsync(int contentId);
         #endregion
 
+        #region What is New Master Page Interface
+        Task<int> CreateOrUpdateWhatIsNewAsync(WhatIsNewModel creOrUpdWhatIsNew);
+        Task<int> DeleteWhatIsNewAsync(int whatIsNewId);
+        Task<List<WhatIsNewModel>> GetWhatIsNewsAsync();
+        Task<List<WhatIsNewModel>> GetWhatIsNewByIdAsync(int whatIsNewId);
+        Task<List<WhatIsNewModel>> GetWhatIsNewByNameAsync(string whatIsNewName);
+        #endregion
+
         #region Citizen Mobile App API Interface
         Task<ComplaintCountsModel> GetComplaintCountsAsync(string mobile);
         Task<ComplaintDetailsDrillDownModel> GetComplaintDetailsDrillDownAsync(string mobile, int complaintStatusId);
