@@ -190,53 +190,6 @@ namespace GMS.API
                 return StatusCode(500, "An error occurred while retrieving escalations.");
             }
         }
-        [HttpGet("GetAllDetailsagainsttoken")]
-        public async Task<IActionResult> GetAllDetailsagainsttoken(string token, int catid, int subcatid)
-        {
-            // Validate input parameters
-            if (string.IsNullOrEmpty(token) || catid <= 0 || subcatid <= 0)
-            {
-                return BadRequest(new
-                {
-                    StatusCode = 400,
-                    Message = "Please provide a valid complaint token, category ID, and subcategory ID."
-                });
-            }
-
-            try
-            {
-                // Fetch data from repository
-                var result = await _MANAGE_COMPLAINTDETAILS_CONFIGRepository.Getalldetailagaintstoken(token, catid, subcatid);
-
-                // Check if any records are found
-                if (result == null || !result.Any())
-                {
-                    return NotFound(new
-                    {
-                        StatusCode = 404,
-                        Message = "No records found for the specified token, category, and subcategory."
-                    });
-                }
-
-                // Return success response
-                return Ok(new
-                {
-                    StatusCode = 200,
-                    Message = "Records retrieved successfully.",
-                    Data = result
-                });
-            }
-            catch (Exception ex)
-            {
-                // Log the exception here if needed
-                return StatusCode(500, new
-                {
-                    StatusCode = 500,
-                    Message = "An error occurred while retrieving records. Please try again later.",
-                    Error = ex.Message // Include detailed error for debugging (optional in production)
-                });
-            }
-        }
 
 
 
@@ -295,32 +248,32 @@ namespace GMS.API
         }
 
 
-        [HttpPost("GetAllCitizenDetails")]
-        public async Task<IActionResult> GetAllCitizenDetails([FromBody] GetAllCitizenDetails getAllCitizenDetails)
+        [HttpGet("GetAllCitizenDetails")]
+        public async Task<IActionResult> GetAllCitizenDetails([FromQuery] string? token, [FromQuery] string? mobno)
         {
-            if (string.IsNullOrEmpty( getAllCitizenDetails.token) && string.IsNullOrEmpty(getAllCitizenDetails.mobno))
+            if (string.IsNullOrEmpty(token) && string.IsNullOrEmpty(mobno))
             {
-                return StatusCode(200,new
+                return NotFound(new
                 {
-                    StatusCode = 400,
+                    StatusCode = 404,
                     Message = "Please provide both token number and mobile number."
                 });
             }
 
             try
             {
-                var result = await _MANAGE_COMPLAINTDETAILS_CONFIGRepository.GetallCitizendetails(getAllCitizenDetails.token, getAllCitizenDetails.mobno);
+                var result = await _MANAGE_COMPLAINTDETAILS_CONFIGRepository.GetallCitizendetails(token, mobno);
 
                 if (result == null || !result.Any())
                 {
-                    return StatusCode(200,new
+                    return NotFound(new
                     {
-                        StatusCode = 201,
+                        StatusCode = 404,
                         Message = "No records found for the specified token and mobile number."
                     });
                 }
 
-                return StatusCode(400,new
+                return Ok(new
                 {
                     StatusCode = 200,
                     Message = "Records retrieved successfully.",
@@ -339,10 +292,10 @@ namespace GMS.API
             }
         }
 
-        [HttpPost("GetAllComplaints")]
-        public async Task<IActionResult> GetAllComplaints([FromBody] OtpGenerate getallcomplaint)
+        [HttpGet("GetAllComplaints")]
+        public async Task<IActionResult> GetAllComplaints( string mobno)
         {
-            if ( string.IsNullOrEmpty(getallcomplaint.mobno))
+            if ( string.IsNullOrEmpty(mobno))
             {
                 return NotFound(new
                 {
@@ -353,7 +306,7 @@ namespace GMS.API
 
             try
             {
-                var result = await _MANAGE_COMPLAINTDETAILS_CONFIGRepository.GetallComplaints(getallcomplaint.mobno);
+                var result = await _MANAGE_COMPLAINTDETAILS_CONFIGRepository.GetallComplaints( mobno);
 
                 if (result == null || !result.Any())
                 {
@@ -384,9 +337,9 @@ namespace GMS.API
         }
 
         [HttpPost("Otpgenerate")]
-        public async Task<IActionResult> Otpgenerate([FromBody] OtpGenerate otpGenerate)
+        public async Task<IActionResult> Otpgenerate(string mobno)
         {
-            if (string.IsNullOrWhiteSpace(otpGenerate.mobno) || otpGenerate.mobno.Length != 10)
+            if (string.IsNullOrWhiteSpace(mobno) || mobno.Length != 10)
             {
                 return BadRequest(new
                 {
@@ -398,7 +351,7 @@ namespace GMS.API
 
             try
             {
-                var result = await _MANAGE_COMPLAINTDETAILS_CONFIGRepository.GenerateOtp(otpGenerate.mobno);
+                var result = await _MANAGE_COMPLAINTDETAILS_CONFIGRepository.GenerateOtp(mobno);
 
                 if (result == null)
                 {
