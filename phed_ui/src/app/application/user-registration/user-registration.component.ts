@@ -60,8 +60,7 @@ export class UserRegistrationComponent {
   submitForm() {
     const formData = this.userRegistration.value;
     if (this.validate_userRegistration_form(formData)) {
-      console.log(1);
-      this.commonService.insertData(this.userRegistration.value, '/gateway/UserRegistration').subscribe({
+      this.commonService.insertData(this.userRegistration.value, 'gateway/UserRegistration').subscribe({
         next: (response: any) => {
           console.log(response);
           const responseData = response.RESPONSE_DATA;
