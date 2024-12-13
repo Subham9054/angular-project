@@ -239,7 +239,46 @@ namespace GMS.Repository.Repositories.Interfaces.MANAGE_COMPLAINTDETAILS_CONFIG
             }
         }
 
+        public async Task<List<ComplaintDetailsTokenResponse>> Getalldetailagaintstoken(string token, int catid, int subcatid)
+        {
+            try
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("p_VCH_TOKENNO", token);
+                parameters.Add("categoryid", catid);
+                parameters.Add("subcategoryid", subcatid);
 
+                using (var multi = await Connection.QueryMultipleAsync("USP_GetComplaintDetailstoken", parameters, commandType: CommandType.StoredProcedure))
+                {
+                    var complaintDetails = multi.Read<ComplaintDetailsTokenResponse>().ToList();
+
+                    foreach (var complaint in complaintDetails)
+                    {
+                        complaint.Intimations = multi.Read<IntimationDetails>().ToList();
+                    }
+
+                    foreach (var complaint in complaintDetails)
+                    {
+                        complaint.ActionSummaries = multi.Read<ActionSummary>().ToList();
+                    }
+
+                    foreach (var complaint in complaintDetails)
+                    {
+                        complaint.Escalations = multi.Read<EscalationDetails>().ToList();
+                    }
+
+                    return complaintDetails;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle exception (optional: log the exception)
+                throw;
+            }
+        }
+
+
+        #region Codegencode
         public async Task<int> INSERT_MANAGE_COMPLAINTDETAILS_CONFIG(MANAGE_COMPLAINTDETAILS_CONFIG_Model TBL)
         {
             var p = new DynamicParameters();
@@ -614,5 +653,7 @@ namespace GMS.Repository.Repositories.Interfaces.MANAGE_COMPLAINTDETAILS_CONFIG
             return results.ToList();
 
         }
+        #endregion
+
     }
 }
