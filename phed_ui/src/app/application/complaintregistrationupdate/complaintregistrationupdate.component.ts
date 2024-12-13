@@ -96,13 +96,19 @@ export class ComplaintregistrationupdateComponent implements OnInit {
 
   }
   dataBasedOnToken: any;
+  intimations: any;
+  actions: any;
+  escalations: any;
   GetAllDetailsagainsttokenurl(categoryId: any, subCategoryId: any, Token: any) {
     console.log(Token);
 
     this.authService.GetAllDetailsagainsttokenurlWithToken(Token, categoryId, subCategoryId).subscribe(
       response => {
-        this.dataBasedOnToken = response; // Assign full data
+        this.dataBasedOnToken = response;
         console.log(this.dataBasedOnToken);
+        this.intimations = this.dataBasedOnToken.data[0].intimations;
+        this.actions = this.dataBasedOnToken.data[0].actionSummaries;
+        this.escalations = this.dataBasedOnToken.data[0].escalations;
 
       },
       error => {

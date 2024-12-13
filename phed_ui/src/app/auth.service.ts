@@ -275,7 +275,8 @@ export class AuthService {
 
   GetAllDetailsagainsttokenurlWithToken(TOKEN: string, INT_CATEGORY_ID: string, INT_SUB_CATEGORY_ID: string): Observable<any> {
     // Make HTTP request with proper API URL and query parameters
-    return this.http.get<any>(`${this.GetAllDetailsagainsttokenurl}?token=${TOKEN}&categoryId=${INT_CATEGORY_ID}&subcategoryId=${INT_SUB_CATEGORY_ID}`).pipe(
+
+    return this.http.get<any>(`${this.GetAllDetailsagainsttokenurl}?token=${TOKEN}&catid=${INT_CATEGORY_ID}&subcatid=${INT_SUB_CATEGORY_ID}`).pipe(
       catchError(this.handleError)
     );
   }
