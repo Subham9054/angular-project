@@ -1,14 +1,9 @@
 ﻿using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace CMS.Repository.Factory
+namespace CMS.Repositories.Factory
 {
-    public class db_PHED_CGRCConnectionFactory:Idb_PHED_CGRCConnectionFactory
+    public class PhedConnectionFactory : IPhedConnectionFactory
     {
         /// <summary>
         /// The connection string
@@ -19,7 +14,7 @@ namespace CMS.Repository.Factory
         /// Initializes a new instance of the <see cref="ConnectionFactory"/> class.
         /// </summary>
         /// <param name="connectionString">The connection string.</param>
-        public db_PHED_CGRCConnectionFactory(string connectionString)
+        public PhedConnectionFactory(string connectionString)
         {
             _connectionString = connectionString;
         }

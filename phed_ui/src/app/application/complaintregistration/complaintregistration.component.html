@@ -7,14 +7,14 @@
             <div class="col-lg-6 col-md-6">
                 <div class="utilite mb-1">
                     <ul class="mb-0">
-                       
+
 
                         <li class="bg-transparent border-0">
                             <span class="text-danger small"><b>(*)</b> Indicate mandatory </span>
                         </li>
 
-                      
-                        
+
+
                         <li class="fill-btn back-link"><a routerLink="/application/complaintregistration" title="Go to Previous"><i
                             class="bi bi-arrow-left"></i> Back to View</a>
                     </ul>
@@ -29,7 +29,7 @@
                     <h5 class="page-heading">Complainant Details</h5>
                     <div class="row">
 
-                      
+
 
                         <div class="col-xxl-3 col-xl-4 col-md-6">
                             <div class="mb-3">
@@ -53,7 +53,7 @@
                             </ng-select>
                           </div>
                         </div>
-                        
+
                             <div class="col-xxl-3 col-xl-4 col-md-6">
                                 <div class="mb-3">
                                     <label for="txtName" class="form-label">Name <span class="text-danger">*</span></label>
@@ -63,7 +63,7 @@
                                         Characters)</p> -->
                                 </div>
                             </div>
-    
+
                             <div class="col-xxl-3 col-xl-4 col-md-6">
                                 <div class="mb-3">
                                     <label for="txtPhone" class="form-label">Phone</label>
@@ -73,7 +73,7 @@
                                         [(ngModel)]="formData.txtPhone" class="form-control" />
                                         <a class="input-group-text btn btn-primary" href="javascript:void(0);" data-bs-toggle="modal"
                                          data-bs-target="#exampleModal"><i class="bi bi-check-circle"></i></a>
-                                    </div>                                    
+                                    </div>
                                 </div>
                             </div>
 
@@ -86,25 +86,83 @@
                                         [(ngModel)]="formData.txtEmail" class="form-control" />
                                         <a class="input-group-text btn btn-primary" href="javascript:void(0);" data-bs-toggle="modal"
                                          data-bs-target="#mailmodal"><i class="bi bi-check-circle"></i></a>
-                                    </div>                                    
+                                    </div>
                                 </div>
                             </div>
 
-                           
                             <div class="col-xxl-3 col-xl-4 col-md-6">
-                                <div class="mb-3 ">
-                                    <label class="form-label" for="doc"> Upload Document/Photo</label>
-                                    <div class="input-group">
-                                        <!-- The file input element -->
-                                        <input type="file" [(ngModel)]="formData.txtDocument" name="FileUpload1" id="FileUpload1" (change)="handleFileInput($event)"
-                                          class="form-control" multiple />
+                              <div class="mb-3">
+                                <div class="upload-cus">
+                                  <label class="form-label" for="doc">Upload Document/Photo</label>
+                                  <div class="upload-btn">
+                                    <div *ngFor="let file of uploadedFiles; let i = index" class="d-flex align-items-center position-relative upload-div">
+                                      <!-- Download button visible by default -->
+                                      <a *ngIf="file" href="javascript:void(0);" class="btn-dwonload" title="Download">
+                                        <i class="bi bi-download"></i>
+                                      </a>
+
+                                      <!-- Close button visible on hover -->
+                                      <a *ngIf="file" href="javascript:void(0);" class="x-icon" (click)="removeFile(i)">
+                                        <i class="bi bi-x"></i>
+                                      </a>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <!-- File input field for uploading multiple files -->
+                                <input type="file" name="FileUpload1" id="FileUpload1" class="form-control" (change)="onFileSelected($event)" multiple />
+                                <p class="mb-0 small text-danger text-end">
+                                  Supported File (<span class="fw-bold">.pdf, .doc, .xls, .jpg, .png</span>)
+                                </p>
+                              </div>
+                            </div>
+
+
+                            <!-- <div class="col-xxl-3 col-xl-4 col-md-6">
+                              <div class="mb-3">
+                                <div class="upload-cus">
+                                  <label class="form-label mb-0" for="doc"> Upload Document/Photo</label>
+                                  <div class="upload-btn">
+                                    <div *ngFor="let file of uploadedFiles; let i = index" class="d-flex align-items-center">
+                                      <a *ngIf="file" href="javascript:void(0);" class="btn-dwonload" title="Download">
+                                        <i class="bi bi-download"></i>
+                                      </a>
+                                      <a *ngIf="file" href="javascript:void(0);" class="x-icon" (click)="removeFile(i)">
+                                        <i class="bi bi-x"></i>
+                                      </a>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <input type="file" name="FileUpload1" id="FileUpload1" class="form-control" (change)="onFileSelected($event)" multiple />
+                                <p class="mb-0 small text-danger text-end">
+                                  Supported File (<span class="fw-bold">.pdf, .doc, .xls, .jpg, .png</span>)
+                                </p>
+                              </div>
+                            </div> -->
+
+
+                            <!-- <div class="col-xxl-3 col-xl-4 col-md-6">
+                                <div class="mb-3">
+                                    <div class="upload-cus">
+                                      <label class="form-label mb-0" for="doc"> Upload Document/Photo</label>
+                                      <div class="upload-btn">
+                                        <a href="javascript:void(0);" class="btn btn-sm btn-outline-danger" title="Download">
+                                          <i class="bi bi-download"></i>
+                                        </a>
+                                        <a href="javascript:void(0);" class="x-icon"><i class="bi bi-x-circle"></i></a>
                                       </div>
-        
+                                    </div>
+
+                                    <input type="file" [(ngModel)]="formData.txtDocument" name="FileUpload1" id="FileUpload1" (change)="handleFileInput($event)"
+                                      class="form-control" multiple />
+
+
                                     <p class="mb-0 small text-danger text-end">Supported File (<span class="fw-bold">.pdf, .doc, .xls, .jpg, .png</span>)</p>
                                 </div>
-                            </div>
-                            
-                    
+                            </div> -->
+
+
                         <div class="col-xxl-3 col-xl-4 col-md-6">
                           <div class="mb-3">
                             <label for="ddlComplaintCategory" class="form-label">Complaint Category</label>
@@ -116,9 +174,9 @@
                               placeholder="Select"
                               (change)="onCategoryChange($event)">
                             </ng-select>
-                          </div>         
+                          </div>
                         </div>
-                        
+
                         <div class="col-xxl-3 col-xl-4 col-md-6">
                           <div class="mb-3">
                             <label for="ddlSubCategory" class="form-label">SubCategory</label>
@@ -130,9 +188,9 @@
                               placeholder="Select">
                             </ng-select>
                           </div>
-                          
+
                         </div>
-                     
+
                         <div class=" col-md-12">
                             <div class="mb-3">
                                 <label for="txtDetailsE" class="form-label">Complaint Description</label>
@@ -140,16 +198,16 @@
                                     [(ngModel)]="formData.txtDetailsE" class="form-control"></textarea>
                                 <p class="text-danger text-end small mb-0 ">(Maximum <span class="fw-bold">500</span>
                                     Characters)</p>
-                                    
+
                             </div>
                         </div>
                      </div>
 
                      <h5 class="page-heading">Address Details</h5>
-                       
-                   
-                  
-                     
+
+
+
+
                     <div class="col-xl-9 col-lg-12">
                         <div class="row">
                             <div class="col-xl-4 col-md-6">
@@ -163,9 +221,9 @@
                                   placeholder="Select"
                                   (change)="onDistrictChange($event)">
                                 </ng-select>
-                              </div>                              
+                              </div>
                             </div>
-    
+
                             <div class="col-xl-4 col-md-6">
                               <div class="mb-3">
                                 <label for="ddlBlock" class="form-label">Block</label>
@@ -177,7 +235,7 @@
                                   placeholder="Select"
                                   (change)="onBlockChange($event)">
                                 </ng-select>
-                              </div>                              
+                              </div>
                             </div>
                             <div class="col-xl-4 col-md-6">
                               <div class="mb-3">
@@ -190,9 +248,9 @@
                                   placeholder="Select"
                                   (change)="onGpChange($event)">
                                 </ng-select>
-                              </div>                              
+                              </div>
                             </div>
-    
+
                             <div class="col-xl-4 col-md-6">
                               <div class="mb-3">
                                 <label for="ddlVillage" class="form-label">Village</label>
@@ -205,9 +263,9 @@
                                   (change)="onVillage($event)">
                                 </ng-select>
                               </div>
-                              
+
                             </div>
-    
+
                             <div class="col-xl-4 col-md-6">
                                 <div class="mb-3">
                                     <label for="ddlward" class="form-label">Ward</label>
@@ -220,8 +278,8 @@
                                 </ng-select>
                                 </div>
                             </div>
-    
-    
+
+
                             <div class="col-xl-4 col-md-6">
                                 <div class="mb-3">
                                     <label for="ddllocation" class="form-label">Near by Location</label>
@@ -233,23 +291,23 @@
                                     </div>
                                 </div>
                             </div>
-    
-    
+
+
                             <div class="col-lg-12 col-md-12">
                                 <div class="mb-3">
                                     <label for="txtAddress" class="form-label">Address</label>
                                     <textarea name="txtAddress" rows="3" id="txtAddress"
                                         [(ngModel)]="formData.txtAddress" class="form-control"></textarea>
-                                 
+
                                         <p class="text-danger text-end  small mb-0">(Maximum <span class="fw-bold">200</span>
                                             Characters)</p>
                                 </div>
                             </div>
-                     
-                            
+
+
                         </div>
                     </div>
-                    
+
                     <div class="row">
                         <div class="col-xl-5">
                             <div class="form-actions mt-lg-3">
@@ -260,7 +318,7 @@
                             </div>
                         </div>
                     </div>
-                      
+
                 </div>
             </div>
         </div>
@@ -273,7 +331,7 @@
   aria-hidden="true">
   <div class="modal-dialog modal-md">
     <div class="modal-content">
-      
+
       <div class="modal-body text-center p-5">
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         <h3 class="mb-4">OTP Verification</h3>
@@ -312,7 +370,7 @@
           <button type="button" class="btn btn-primary">Verify OTP</button>
         </div>
       </div>
-     
+
     </div>
   </div>
 </div>
@@ -346,7 +404,7 @@
       </div>
     </div>
   </div> -->
-  
+
 
 
 
@@ -354,7 +412,7 @@
   aria-hidden="true">
   <div class="modal-dialog modal-md">
     <div class="modal-content">
-      
+
       <div class="modal-body text-center p-5">
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         <h3 class="mb-4">OTP Verification</h3>
@@ -392,7 +450,7 @@
           <button type="button" class="btn btn-primary">Verify OTP</button>
         </div>
       </div>
-     
+
     </div>
   </div>
-</div> 
+</div>

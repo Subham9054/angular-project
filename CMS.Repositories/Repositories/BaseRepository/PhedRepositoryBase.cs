@@ -1,4 +1,4 @@
-﻿using CMS.Repository.Factory;
+﻿using CMS.Repositories.Factory;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CMS.Repository.Repositories.Repository.BaseRepository
+namespace CMS.Repositories.Repositories.BaseRepository
 {
-    public class db_PHED_CGRCRepositoryBase:Idb_PHED_CGRCRepositoryBase
+    public class PhedRepositoryBase : IPhedRepositoryBase
     {
         /// <summary>
         /// Gets the connection.
@@ -25,7 +25,7 @@ namespace CMS.Repository.Repositories.Repository.BaseRepository
         /// Initializes a new instance of the <see cref="RepositoryBase{TEntity}"/> class.
         /// </summary>
         /// <param name="connectionFactory">The connection factory.</param>
-        protected db_PHED_CGRCRepositoryBase(Idb_PHED_CGRCConnectionFactory connectionFactory)
+        protected PhedRepositoryBase(IPhedConnectionFactory connectionFactory)
         {
             try
             {
@@ -67,7 +67,7 @@ namespace CMS.Repository.Repositories.Repository.BaseRepository
         /// <summary>
         /// Finalizes an instance of the <see cref="RepositoryBase{TEntity}"/> class.
         /// </summary>
-        ~db_PHED_CGRCRepositoryBase()
+        ~PhedRepositoryBase()
         {
             Dispose(false);
         }

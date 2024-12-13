@@ -13,6 +13,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.Extensions.Configuration;
 using Login.Core.Helper;
 using Newtonsoft.Json;
+using System.Text.Json;
 
 namespace Login.API.Controllers
 {
@@ -159,27 +160,28 @@ namespace Login.API.Controllers
         {
             try
             {
-                if (requestedAllData == null || requestedAllData.REQUEST_DATA == null)
+                if (!requestedAllData.TryGetProperty("REQUEST_DATA", out JsonElement requestDataElement) || requestDataElement.ValueKind == JsonValueKind.Null)
                 {
                     return BadRequest("Invalid REQUEST_DATA.");
                 }
-                string base64DecodedData = Encoding.UTF8.GetString(Convert.FromBase64String((string)requestedAllData.REQUEST_DATA));
-                dynamic requestedData = JsonConvert.DeserializeObject(base64DecodedData);
-                var req = JsonConvert.DeserializeObject<Dictionary<string, object>>(JsonConvert.SerializeObject(requestedData));
+                string base64DecodedData = Encoding.UTF8.GetString(Convert.FromBase64String(requestDataElement.GetString()));
+
+                // Deserialize the Base64-decoded data into a Dictionary
+                var req = JsonConvert.DeserializeObject<Dictionary<string, object>>(base64DecodedData);
                 var registration = new Registration
                 {
-                    vchUserName = req.ContainsKey("vchUserName") ? req["vchUserName"]?.ToString() : null,
-                    vchPassWord = req.ContainsKey("vchPassWord") ? req["vchPassWord"]?.ToString() : null,
-                    vchFullName = req.ContainsKey("vchFullName") ? req["vchFullName"]?.ToString() : null,
-                    intLevelDetailId = req.ContainsKey("intLevelDetailId") ? Convert.ToInt32(req["intLevelDetailId"]) : 0,
-                    intDesignationId = req.ContainsKey("intDesignationId") ? Convert.ToInt32(req["intDesignationId"]) : 0,
-                    vchMobTel = req.ContainsKey("vchMobTel") ? req["vchMobTel"]?.ToString() : null,
-                    vchEmail = req.ContainsKey("vchEmail") ? req["vchEmail"]?.ToString() : null,
-                    vchGender = req.ContainsKey("vchGender") ? req["vchGender"]?.ToString() : null,
-                    intGroupID = req.ContainsKey("intGroupID") ? Convert.ToInt32(req["intGroupID"]) : 0,
-                    vchOffTel = req.ContainsKey("vchOffTel") ? req["vchOffTel"]?.ToString() : null,
-                    bitStatus = req.ContainsKey("bitStatus") ? Convert.ToInt32(req["bitStatus"]) : 0,
-                    intCreatedBy = req.ContainsKey("intCreatedBy") ? req["intCreatedBy"]?.ToString() : null
+                    vchUserName = req.ContainsKey("userid") ? req["userid"]?.ToString() : null,
+                    vchPassWord = req.ContainsKey("password") ? req["password"]?.ToString() : null,
+                    vchFullName = req.ContainsKey("userfullname") ? req["userfullname"]?.ToString() : null,
+                    intLevelDetailId = req.ContainsKey("block") ? Convert.ToInt32(req["block"]) : 0,
+                    intDesignationId = req.ContainsKey("Designation") ? Convert.ToInt32(req["Designation"]) : 0,
+                    vchMobTel = req.ContainsKey("Mobileno") ? req["Mobileno"]?.ToString() : null,
+                    vchEmail = req.ContainsKey("txtEmail") ? req["txtEmail"]?.ToString() : null,
+                    vchGender = req.ContainsKey("Gender") ? req["Gender"]?.ToString() : null,
+                    intGroupID = req.ContainsKey("group") ? Convert.ToInt32(req["group"]) : 0,
+                    vchOffTel = req.ContainsKey("telephone") ? req["telephone"]?.ToString() : null,
+                    bitStatus = req.ContainsKey("status") ? Convert.ToInt32(req["status"]) : 0,
+                    intCreatedBy = req.ContainsKey("ArrayName") ? req["ArrayName"]?.ToString() : null
                 };
                 if (registration == null || string.IsNullOrWhiteSpace(registration.vchPassWord))
                 {
@@ -189,8 +191,9 @@ namespace Login.API.Controllers
                 var regd = await _loginRepository.Registration(registration);
                 if (regd != null)
                 {
-                    return Ok(new
+                    return StatusCode(200,new
                     {
+                        StatusCode=200,
                         Success = true,
                         Message = "Registration successful",
                         Data = regd

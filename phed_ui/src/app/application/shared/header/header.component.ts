@@ -10,10 +10,12 @@ import Swal from 'sweetalert2'; // Import SweetAlert2
 })
 export class HeaderComponent {
   toggleLayoutBtn: boolean = false;
+  fullName: string | null = null;
 
   constructor(private eRef: ElementRef, private router: Router, private authService: AuthService) { }
 
   ngOnInit(): void {
+    this.fullName = sessionStorage.getItem('fullName');
     // Toggle layout
     if (localStorage.getItem('layoutType') === '') {
       this.setLayout('');

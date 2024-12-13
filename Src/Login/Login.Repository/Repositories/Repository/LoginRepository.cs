@@ -44,27 +44,30 @@ namespace Login.Repository.Repositories.Repository
             try
             {
                 DynamicParameters parameters = new DynamicParameters();
-                parameters.Add("@vchUserName", registration.vchUserName);
-                parameters.Add("@vchPassWord", registration.vchPassWord);
-                parameters.Add("@vchFullName", registration.vchFullName);
-                parameters.Add("@intLevelDetailId", registration.intLevelDetailId);
-                parameters.Add("@intDesignationId", registration.intDesignationId);
-                parameters.Add("@vchMobTel", registration.vchMobTel);
-                parameters.Add("@vchEmail", registration.vchEmail);
-                parameters.Add("@intRaUserId", 1);
-                parameters.Add("@vchOffTel", registration.vchOffTel);
-                parameters.Add("@vchGender", registration.vchGender);
-                parameters.Add("@bitStatus", registration.bitStatus);
-                parameters.Add("@intCreatedBy", registration.intCreatedBy);
+                parameters.Add("@p_vchUserName", registration.vchUserName);
+                parameters.Add("@p_vchPassWord", registration.vchPassWord);
+                parameters.Add("@p_vchFullName", registration.vchFullName);
+                parameters.Add("@p_intLevelDetailId", registration.intLevelDetailId);
+                parameters.Add("@p_intDesignationId", registration.intDesignationId);
+                parameters.Add("@p_vchMobTel", registration.vchMobTel);
+                parameters.Add("@p_vchEmail", registration.vchEmail);
+                parameters.Add("@p_intRaUserId", 1); // Assuming a default value of 1
+                parameters.Add("@p_vchOffTel", registration.vchOffTel);
+                parameters.Add("@p_vchGender", registration.vchGender);
+                parameters.Add("@p_bitStatus", registration.bitStatus);
+                parameters.Add("@p_intCreatedBy", 1); // Assuming a default value of 1
                 parameters.Add("@Action", "INSERT");
+
                 int rowsAffected = await Connection.ExecuteAsync("USP_Registration_insert", parameters, commandType: CommandType.StoredProcedure);
                 return rowsAffected > 0;
             }
             catch (Exception ex)
             {
+                // Log the exception (optional)
                 throw;
             }
         }
+
 
     }
 }
