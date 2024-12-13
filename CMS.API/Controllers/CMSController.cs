@@ -120,6 +120,111 @@ namespace CMS.API.Controllers
         }
         #endregion
 
+        #region Demography Mapping API
+        [HttpGet("GetCircles")]
+        public async Task<IActionResult> GetCircles()
+        {
+            try
+            {
+                // Fetch circle details using the repository
+                var circles = await _contentManagementRepository.GetCirclesAsync();
+
+                if (circles != null && circles.Any())
+                {
+                    return StatusCode(200,new { Message= "Circle details are fetched successfully.", Data = circles, StatusCode=200 });
+                }
+
+                return NotFound(new { Success = false, Message = "Circle details not found.", StatusCode = StatusCodes.Status404NotFound });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { Success = false, Message = ex.Message, StatusCode = StatusCodes.Status500InternalServerError });
+            }
+        }
+
+        [HttpPost("GetDivisions")]
+        public async Task<IActionResult> GetDivisions([FromBody] DivisionDto divisionDto)
+        {
+            // Validate input parameters
+            if (divisionDto == null || divisionDto.CircleId <= 0)
+            {
+                return BadRequest(new { Success = false, Message = "Valid CircleId must be provided.", StatusCode = StatusCodes.Status400BadRequest });
+            }
+
+            try
+            {
+                // Fetch division details using the repository method
+                var divisions = await _contentManagementRepository.GetDivisionsAsync(divisionDto.CircleId);
+
+                if (divisions != null)
+                {
+                    return StatusCode(200, new { Message = "Division details are fetched successfully.", Data = divisions, StatusCode = 200 });
+                    //return Ok(new { Success = true, Data = division, StatusCode = StatusCodes.Status200OK });
+                }
+
+                return NotFound(new { Success = false, Message = "Division details are not found.", StatusCode = StatusCodes.Status404NotFound });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { Success = false, Message = ex.Message, StatusCode = StatusCodes.Status500InternalServerError });
+            }
+        }
+
+        [HttpPost("GetSubDivisions")]
+        public async Task<IActionResult> GetSubDivisions([FromBody] SubDivisionDto subDivisionDto)
+        {
+            // Validate input parameters
+            if (subDivisionDto == null || subDivisionDto.DivisionId <= 0)
+            {
+                return BadRequest(new { Success = false, Message = "Valid DivisionId must be provided.", StatusCode = StatusCodes.Status400BadRequest });
+            }
+
+            try
+            {
+                // Fetch division details using the repository method
+                var subDivisions = await _contentManagementRepository.GetSubDivisionsAsync(subDivisionDto.DivisionId);
+
+                if (subDivisions != null)
+                {
+                    return StatusCode(200, new { Message = "Sub-Division details are fetched successfully.", Data = subDivisions, StatusCode = 200 });
+                }
+
+                return NotFound(new { Success = false, Message = "Sub-Division details are not found.", StatusCode = StatusCodes.Status404NotFound });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { Success = false, Message = ex.Message, StatusCode = StatusCodes.Status500InternalServerError });
+            }
+        }
+
+        [HttpPost("GetSections")]
+        public async Task<IActionResult> GetSections([FromBody] SectionDto sectionDto)
+        {
+            // Validate input parameters
+            if (sectionDto == null || sectionDto.SubDivisionId <= 0)
+            {
+                return BadRequest(new { Success = false, Message = "Valid SubDivisionId must be provided.", StatusCode = StatusCodes.Status400BadRequest });
+            }
+
+            try
+            {
+                // Fetch section details using the repository method
+                var sections = await _contentManagementRepository.GetSectionsAsync(sectionDto.SubDivisionId);
+
+                if (sections != null)
+                {
+                    return StatusCode(200, new { Message = "Section details are fetched successfully.", Data = sections, StatusCode = 200 });
+                }
+
+                return NotFound(new { Success = false, Message = "Section details are not found.", StatusCode = StatusCodes.Status404NotFound });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { Success = false, Message = ex.Message, StatusCode = StatusCodes.Status500InternalServerError });
+            }
+        }
+        #endregion
+
         #region Manage Designation Master Page
         [HttpPost("CreateOrUpdateDesignation")]
         public async Task<IActionResult> CreateOrUpdateDesignation([FromForm] DesignationModel designationDetails)
