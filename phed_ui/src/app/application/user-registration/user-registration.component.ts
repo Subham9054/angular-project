@@ -60,7 +60,7 @@ export class UserRegistrationComponent {
   submitForm() {
     const formData = this.userRegistration.value;
     if (this.validate_userRegistration_form(formData)) {
-      this.commonService.insertData(this.userRegistration.value, 'complaint/ComplaintForm/submitForm').subscribe({
+      this.commonService.insertData(this.userRegistration.value, 'gateway/UserRegistration').subscribe({
         next: (response: any) => {
           const responseData = response.RESPONSE_DATA;
           const respToken = response.RESPONSE_TOKEN;

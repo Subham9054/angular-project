@@ -10,9 +10,9 @@
                         <li class="bg-transparent border-0">
                             <span class="text-danger small"><b>(*)</b> Indicate mandatory </span>
                         </li>
-                        <li class="fill-btn back-link"><a routerLink="/application/demographymapping" title="Go to Previous"><i
-                            class="bi bi-arrow-left"></i> Back to View</a>
-                </li>
+                        <li class="fill-btn back-link"><a routerLink="/application/demographymapping"
+                                title="Go to Previous"><i class="bi bi-arrow-left"></i> Back to View</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -20,15 +20,17 @@
     </div>
 
 
-   
+
 
     <div class="content-box content-area">
+        <form [formGroup]="demographymap" autocomplete="off"></form>
         <div class="row">
             <div class="col-xxl-10 col-lg-12">
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="mb-3">
-                            <label for="circle" class="form-label">Circle</label>
+                            <label for="circle" class="form-label">Circle <span
+                                    class="text-danger small"><b>*</b></span></label>
                             <select class="form-select" id="circle">
                                 <option selected>Select</option>
                                 <option value="1">Ara</option>
@@ -42,7 +44,8 @@
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="mb-3">
-                            <label for="divison" class="form-label">Division</label>
+                            <label for="divison" class="form-label">Division <span
+                                    class="text-danger small"><b>*</b></span></label>
                             <select class="form-select" id="divison">
                                 <option selected>Select</option>
                                 <option value="1">Ara</option>
@@ -54,7 +57,8 @@
 
                     <div class="col-lg-4">
                         <div class="mb-3">
-                            <label for="sub-disvison" class="form-label">Sub-Division</label>
+                            <label for="sub-disvison" class="form-label">Sub-Division <span
+                                    class="text-danger small"><b>*</b></span></label>
                             <select class="form-select" id="sub-disvison">
                                 <option selected>Select</option>
                                 <option value="1">Ara</option>
@@ -68,7 +72,8 @@
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="mb-3">
-                            <label for="Section" class="form-label">Section</label>
+                            <label for="Section" class="form-label">Section <span
+                                    class="text-danger small"><b>*</b></span></label>
                             <select class="form-select" id="Section">
                                 <option selected>Select</option>
                                 <option value="1">Ara</option>
@@ -80,13 +85,18 @@
 
                     <div class="col-lg-4">
                         <div class="mb-3">
-                            <label for="district" class="form-label">District</label>
-                            <select class="form-select" id="district">
+                            <label for="district" class="form-label">District <span
+                                    class="text-danger small"><b>*</b></span></label>
+                            <!-- <select class="form-select" id="district">
                                 <option selected>Select</option>
                                 <option value="1">ARARIA</option>
                                 <option value="2">ARARIA</option>
                                 <option value="3">AURANGABAD</option>
-                            </select>
+                            </select> -->
+                            <ng-select formControlName="district" [items]="districts" bindLabel="vcH_DIST_NAME"
+                                bindValue="inT_DIST_ID" placeholder="Select" (change)="onDistrictChange($event)">
+                            </ng-select>
+
                         </div>
                     </div>
                 </div>
@@ -94,12 +104,14 @@
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="mb-3">
-                            <label for="block1" class="form-label">Block</label>
+                            <label for="block1" class="form-label">Block <span
+                                    class="text-danger small"><b>*</b></span></label>
                             <select class="form-select select-height" multiple id="block1" [(ngModel)]="selectedBlocks">
-                                <option value="1">ARARIA</option>
-                                <option value="2">ARWAL</option>
-                                <option value="3">AURANGABAD</option>
+                                <option *ngFor="let block of blocks" [value]="block.inT_BLOCK_ID">
+                                    {{ block.vcH_BLOCK_NAME }}
+                                </option>
                             </select>
+
                         </div>
                     </div>
                     <div class="col-lg-1">
@@ -121,14 +133,14 @@
                         <div class="mb-3">
                             <label for="block2" class="form-label">&nbsp;</label>
                             <select class="form-select select-height" multiple id="block2">
-                                <option *ngFor="let block of selectedInSecondList" [value]="block.value">
-                                    {{ block.name }}
+                                <option *ngFor="let block of selectedInSecondList" [value]="block.inT_BLOCK_ID">
+                                    {{ block.vcH_BLOCK_NAME }}
                                 </option>
                             </select>
                         </div>
                     </div>
                 </div>
-                
+
 
             </div>
             <div class="row">
