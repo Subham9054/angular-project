@@ -551,14 +551,14 @@
                                     <tbody>
                                         <tr *ngFor="let action of actions; let i = index">
                                             <td>{{ i + 1 }}</td>
-                                            <td>{{ action?.actionDetails }}</td>
+                                            <td> Action {{ i + 1}}</td>
                                             <td>{{ action?.actionTakenBy }}</td>
                                             <td>{{ action?.complaintStatus }}</td>
                                             <td>{{ action?.actionTakingAuthority }}</td>
-                                            <td>{{ action?.remarks }}</td>
+                                            <td>{{ action?.remark }}</td>
                                             <td>{{ action?.attachedDocument || 'N/A' }}</td>
                                             <!-- Shows 'N/A' if no document is attached -->
-                                            <td>{{ action?.actionTakenOn | date:'dd-MMM-yyyy' }}</td>
+                                            <td>{{ action?.dateOfEscalation | date:'dd-MMM-yyyy' }}</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -584,7 +584,7 @@
                                     <tbody>
                                         <tr *ngFor="let escalation of escalations; let i = index">
                                             <td>{{ i + 1 }}</td>
-                                            <td>{{ escalation.inT_ESCALATION_LEVELID }}</td>
+                                            <td> Level {{ i + 1 }}</td>
                                             <td>{{ escalation.nvcH_DESIGNATION_NAME }}</td>
                                             <td>{{ escalation.vcH_STANDARD_DAYS }}</td>
                                         </tr>

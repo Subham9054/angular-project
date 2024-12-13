@@ -26,19 +26,15 @@
         <div class="form-section">
             <div class="row">
                 <div class="col-xxl-10 col-lg-12">
-                    
+
                     <div class="row">
                         <div class="col-lg-4">
                             <div class="mb-3">
-                                <label for="Complaint Category" class="form-label">Complaint Category <span class="text-danger">*</span></label>
-                                <ng-select
-                                  [items]="categories"
-                                  bindLabel="vcH_CATEGORY"
-                                  bindValue="inT_CATEGORY_ID"
-                                  [(ngModel)]="formData.ddlComplaintCategory"
-                                  [placeholder]="'Select a category'"
-                                  [searchable]="true"
-                                  [clearable]="false">
+                                <label for="Complaint Category" class="form-label">Complaint Category <span
+                                        class="text-danger">*</span></label>
+                                <ng-select [items]="categories" bindLabel="vcH_CATEGORY" bindValue="inT_CATEGORY_ID"
+                                    [(ngModel)]="formData.ddlComplaintCategory" [placeholder]="'Select a category'"
+                                    [searchable]="true" [clearable]="false">
                                 </ng-select>
                             </div>
                         </div>
@@ -49,40 +45,40 @@
                             <div class="mb-3">
                                 <label for="complaintsub" class="form-label">Complaint Sub-Category <span
                                         class="text-danger">*</span></label>
-                                <input type="text" [(ngModel)]="formData.complaintsub" required class="form-control" id="complaintsub" maxlength="100">
+                                <input type="text" [(ngModel)]="formData.complaintsub" required class="form-control"
+                                    id="complaintsub" maxlength="100">
                             </div>
                         </div>
-                    
+
                         <div class="col-lg-4">
                             <div class="mb-3">
                                 <label for="complaintsubhn" class="form-label">Complaint Sub-Category (In Hindi)</label>
-                                <input type="text" [(ngModel)]="formData.complaintsubhn" required class="form-control" id="complaintsubhn" maxlength="100">
+                                <input type="text" [(ngModel)]="formData.complaintsubhn" required class="form-control"
+                                    id="complaintsubhn" maxlength="100">
                                 <input type="hidden" id="inpthidn" [value]="formData.inT_SUB_CATEGORY_ID" />
                             </div>
                         </div>
                     </div>
-                      
+
                     <div class="row">
                         <div class="col-lg-4">
                             <div class="mb-3">
-                                <label for="Complaint Priority" class="form-label">Complaint Priority <span class="text-danger">*</span></label>
-                                <ng-select
-                                  [items]="priorities"
-                                  bindLabel="vcH_COMPLIANT_PRORITY"
-                                  bindValue="inT_COMPLAINT_PRIORITY"
-                                  [(ngModel)]="formData.ddlcomplaintPriority"
-                                  [placeholder]="'Select Complaint Priority'"
-                                  [searchable]="true"
-                                  [clearable]="false">
+                                <label for="Complaint Priority" class="form-label">Complaint Priority <span
+                                        class="text-danger">*</span></label>
+                                <ng-select [items]="priorities" bindLabel="vcH_COMPLIANT_PRORITY"
+                                    bindValue="inT_COMPLAINT_PRIORITY" [(ngModel)]="formData.ddlcomplaintPriority"
+                                    [placeholder]="'Select Complaint Priority'" [searchable]="true" [clearable]="false">
                                 </ng-select>
                             </div>
                         </div>
-                    
-                    
+
+
                         <div class="col-lg-4">
                             <div class="mb-3">
-                                <label for="escallabel" class="form-label">Escalation Level <span class="text-danger">*</span></label>
-                                <input type="text" [(ngModel)]="formData.escallabel" required class="form-control" id="escallabel" maxlength="100">
+                                <label for="escallabel" class="form-label">Escalation Level <span
+                                        class="text-danger">*</span></label>
+                                <input type="text" autocomplete="off" [(ngModel)]="formData.escallabel" required
+                                    class="form-control" id="escallabel" maxlength="1">
                             </div>
                         </div>
                     </div>
@@ -90,8 +86,10 @@
                     <div class="row">
                         <div class="col-xl-5">
                             <div class="mt-lg-3 d-flex gap-2">
-                                <button *ngIf="isUpdateMode" type="button" name="btnUpdate" (click)="updateSubcat()" class="btn btn-primary">Update</button>
-                                <button *ngIf="!isUpdateMode" type="button" name="btnSubmit" (click)="submitSubcat()" class="btn btn-primary">Submit</button>
+                                <button *ngIf="isUpdateMode" type="button" name="btnUpdate" (click)="updateSubcat()"
+                                    class="btn btn-primary">Update</button>
+                                <button *ngIf="!isUpdateMode" type="button" name="btnSubmit" (click)="submitSubcat()"
+                                    class="btn btn-primary">Submit</button>
                                 <button type="button" name="btnReset" class="btn btn-danger">Reset</button>
                             </div>
                         </div>

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { error } from 'jquery';
 import { AuthService } from 'src/app/auth.service';
+import { AlertHelper } from 'src/app/core/helper/alert-helper';
+import { LoadingService } from 'src/app/loading.service';
 declare let $: any;
 @Component({
   selector: 'app-complaintregistrationupdate',
@@ -53,7 +55,10 @@ export class ComplaintregistrationupdateComponent implements OnInit {
     ddlComplainttype: '0'
   };
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService,
+    private alertHelper: AlertHelper,
+    private loadingService: LoadingService,
+  ) { }
 
   // ngOnInit(): void {
   //   this.initializeData();
@@ -113,17 +118,20 @@ export class ComplaintregistrationupdateComponent implements OnInit {
       },
       error => {
         console.error('Error fetching Complaint details', error);
+        this.alertHelper.errorAlert('Error fetching Complaint details', "Error");
       }
     );
   }
 
 
   getgmsComplaintdelail() {
+    this.loadingService.startLoading();
     this.authService.getgmsComplaintdelail().subscribe(
       response => {
         this.complaintdetails = response; // Assign full data
         this.totalPages = Math.ceil(this.complaintdetails.length / this.pageSize); // Calculate total pages
         this.updatePagination(); // Initialize pagination
+        this.loadingService.stopLoading();
       },
       error => {
         console.error('Error fetching Complaint details', error);

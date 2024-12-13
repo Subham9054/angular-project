@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/auth.service';
+
 import * as CryptoJS from 'crypto-js';
+import { ValidatorChecklistService } from 'src/app/services/validator-checklist.service';
+import { LoadingService } from 'src/app/loading.service';
+import { AlertHelper } from 'src/app/core/helper/alert-helper';
 
 
 @Component({
@@ -18,7 +22,14 @@ export class ComplaintcategoryComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public vldChkLst: ValidatorChecklistService,
+    private loadingService: LoadingService,
+    private alertHelper: AlertHelper,
+
+
+
+
   ) { }
 
   ngOnInit() {
@@ -51,24 +62,56 @@ export class ComplaintcategoryComponent implements OnInit {
   }
 
   submitComplaint() {
-    if (this.VCH_CATEGORY && this.NVCH_CATEGORY) {
+    let errFlag = 0;
+    let complaintCategoryE = this.VCH_CATEGORY;
+    let complaintCategoryH = this.NVCH_CATEGORY;
+
+    if (
+      errFlag == 0 && !this.vldChkLst.blankCheck(complaintCategoryE, `Complaint Category can not be blank`, 'complaintCategoryE')
+    ) {
+      errFlag = 1;
+    }
+    if (errFlag == 0 && !this.vldChkLst.isSpecialCharKey('complaintCategoryE', complaintCategoryE,
+      `Complaint Category`)
+    ) {
+      errFlag = 1;
+    }
+    if (errFlag == 0 && !this.vldChkLst.maxLength('complaintCategoryE', complaintCategoryE, 50,
+      `Complaint Category`)
+    ) {
+      errFlag = 1;
+    }
+
+    if (
+      errFlag == 0 && !this.vldChkLst.blankCheck(complaintCategoryH, `Complaint Category(In Hindi) can not be blank`, 'complaintCategoryH')
+    ) {
+      errFlag = 1;
+    }
+
+
+    if (errFlag == 0) {
       const complaintData = {
         VCH_CATEGORY: this.VCH_CATEGORY,
         NVCH_CATEGORY: this.NVCH_CATEGORY
       };
+      this.loadingService.startLoading();
+
       this.authService.submitComplaint(complaintData).subscribe(
         (response) => {
-          alert('Complaint category submitted successfully!');
-          this.resetForm();
+          if (response) {
+            this.loadingService.stopLoading();
+            this.alertHelper.successAlert('Complaint category submitted successfully!', "Success", "success");
+            this.resetForm();
+          }
+
         },
         (error) => {
-          console.error('Error submitting complaint', error);
-          alert('Failed to submit the complaint category.');
+          this.loadingService.stopLoading();
+          this.alertHelper.errorAlert('Failed to submit the complaint category.', "Error");
         }
       );
-    } else {
-      alert('Please fill in all required fields.');
     }
+
   }
 
   updateComplaint() {
