@@ -10,16 +10,16 @@ declare let $: any;
 })
 export class ComplaintregistrationupdateComponent implements OnInit {
 
- // Filter close btn
- isDropdownOpen = false;
- openDropdown() {
-   this.isDropdownOpen = true;
- }
+  // Filter close btn
+  isDropdownOpen = false;
+  openDropdown() {
+    this.isDropdownOpen = true;
+  }
 
 
- closeDropdown() {
-   this.isDropdownOpen = false;
- }
+  closeDropdown() {
+    this.isDropdownOpen = false;
+  }
 
   isPanelOpen = false; // Start with the panel open
 
@@ -37,10 +37,10 @@ export class ComplaintregistrationupdateComponent implements OnInit {
   complainttype: any[] = [];
   complaintdetails: any[] = [];
   currentPage: number = 1;
-  pageSize: number = 10; 
+  pageSize: number = 10;
   totalPages: number = 1;
   paginatedComplaints: any[] = [];
-  takeactiongms : any[] = [];
+  takeactiongms: any[] = [];
 
 
   formData: any = {
@@ -53,7 +53,7 @@ export class ComplaintregistrationupdateComponent implements OnInit {
     ddlComplainttype: '0'
   };
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) { }
 
   // ngOnInit(): void {
   //   this.initializeData();
@@ -83,6 +83,7 @@ export class ComplaintregistrationupdateComponent implements OnInit {
     this.getComplaints();
     this.getComplaintstype();
     this.getgmsComplaintdelail();
+
   }
   private initializeData(): void {
     const today = new Date();
@@ -92,10 +93,31 @@ export class ComplaintregistrationupdateComponent implements OnInit {
     this.getComplaints();
     this.getComplaintstype();
     this.getgmsComplaintdelail();
-    
+
+  }
+  dataBasedOnToken: any;
+  intimations: any;
+  actions: any;
+  escalations: any;
+  GetAllDetailsagainsttokenurl(categoryId: any, subCategoryId: any, Token: any) {
+    console.log(Token);
+
+    this.authService.GetAllDetailsagainsttokenurlWithToken(Token, categoryId, subCategoryId).subscribe(
+      response => {
+        this.dataBasedOnToken = response;
+        console.log(this.dataBasedOnToken);
+        this.intimations = this.dataBasedOnToken.data[0].intimations;
+        this.actions = this.dataBasedOnToken.data[0].actionSummaries;
+        this.escalations = this.dataBasedOnToken.data[0].escalations;
+
+      },
+      error => {
+        console.error('Error fetching Complaint details', error);
+      }
+    );
   }
 
-  
+
   getgmsComplaintdelail() {
     this.authService.getgmsComplaintdelail().subscribe(
       response => {
@@ -112,6 +134,8 @@ export class ComplaintregistrationupdateComponent implements OnInit {
     const startIndex = (this.currentPage - 1) * this.pageSize;
     const endIndex = startIndex + this.pageSize;
     this.paginatedComplaints = this.complaintdetails.slice(startIndex, endIndex);
+    console.log(this.paginatedComplaints);
+
   }
   goToPage(page: number): void {
     if (page >= 1 && page <= this.totalPages) {
@@ -125,7 +149,7 @@ export class ComplaintregistrationupdateComponent implements OnInit {
       this.updatePagination();
     }
   }
-  
+
   // Method to go to the previous page
   previousPage(): void {
     if (this.currentPage > 1) {
@@ -149,7 +173,7 @@ export class ComplaintregistrationupdateComponent implements OnInit {
       }
     );
   }
-  
+
 
 
   getComplaints(): void {
