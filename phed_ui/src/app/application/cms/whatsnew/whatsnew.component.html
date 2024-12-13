@@ -20,7 +20,7 @@
     </div> 
 
     <div class="content-box content-area">
-        <form (ngSubmit)="submitForm()">            
+        <form (ngSubmit)="submitForm()">
             <div class="row">
                 <div class="col-xl-4 col-md-12">
                     <div class="mb-3">
@@ -51,24 +51,27 @@
                         <p class="text-end mb-0"><small class="text-danger">Maximum <strong>500</strong> characters</small></p>
                     </div>
                 </div>
-            </div>            
+            </div>
 
             <div class="row">
                 <div class="col-xl-4 col-md-12">
                     <div class="mb-3">
-                        <label class="form-label" for="docFileUpload">Upload Document/Photo</label>
-                        <div class="input-group custom-file-input">
-                            <input type="file" name="docFileUpload" id="docFileUpload"
-                                (change)="handleFileInput($event)" class="form-control custom-fileupload" />
-                            <label class="custom-input" [ngClass]="{'custom-input-black': fileName}" for="doc">
-                                {{ fileName || 'Upload' }}
+                        <label for="docFileUpload" class="form-label">Upload Document/Photo</label>
+                        <div class="input-group custom-file-input">                            
+                            <input type="file" id="docFileUpload" name="docFileUpload" (change)="handleFileInput($event)" accept=".jpeg, .jpg, .png, .doc, .pdf" class="form-control custom-fileupload">
+                            <label class="custom-input" [ngClass]="{'custom-input-black': documentFileName}" for="doc">
+                                {{ documentFileName || 'Upload' }}
                             </label>
-                            <label class="input-group-text custom-browse" for="doc">Browse</label>
+                            <label class="input-group-text custom-browse" for="doc">Browse</label>                            
                         </div>
-                        <p class="text-end mb-0"><small class="text-danger">Max size <strong>10 MB</strong>
-                            (.pdf)</small></p>
+                        <p class="text-end mb-0"><small class="text-danger">Max size <strong>10 MB</strong>(.pdf)</small></p>
                     </div>
-                </div>                
+                    <!-- Document File Preview -->
+                    <div *ngIf="documentFilePreview || existingIconUrl">
+                        <img [src]="documentFilePreview || existingIconUrl" alt="Image preview" class="img-fluid" style="max-width: 50px; max-height: 50px;" />
+                    </div>
+                </div>
+
                 <div class="col-xl-4 col-md-12">
                     <div class="mb-3">
                         <label class="col-form-label" for="isPublish">Is Publish</label><br/>
@@ -82,7 +85,7 @@
                     <div class="mb-3">
                         <label class="col-form-label" for="publishDate">Publish Date</label>
                         <div class="input-group">
-                            <input type="text" class="form-control publishDate" id="publishDate" name="publishDate" [(ngModel)]="whatisNewModel.publishDate">
+                            <input type="text" class="form-control datepicker" id="publishDate" name="publishDate" [(ngModel)]="whatisNewModel.publishDate">
                             <label class="input-group-text" for="publishDate"><i class="bi bi-calendar-week"></i></label>
                         </div>
                     </div>

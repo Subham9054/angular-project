@@ -1,4 +1,4 @@
-import { Component, AfterViewChecked, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewChecked } from '@angular/core';
 import * as $ from 'jquery';
 import 'eonasdan-bootstrap-datetimepicker'; // Include datetimepicker plugin
 import * as moment from 'moment';

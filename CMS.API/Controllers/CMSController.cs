@@ -2,6 +2,7 @@
 using CMS.Repositories.Repositories.CmsRepository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.StaticFiles;
 
 namespace CMS.API.Controllers
 {
@@ -19,6 +20,7 @@ namespace CMS.API.Controllers
             _hostingEnvironment = hostingEnvironment;
             _contentManagementRepository = contentManagementRepository;
         }
+
 
         #region Citizen Mobile App API
         [HttpPost("GetComplaintCounts")]

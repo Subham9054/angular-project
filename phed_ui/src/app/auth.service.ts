@@ -55,7 +55,6 @@ export class AuthService {
   private getPageLinkByIdUrl = 'http://localhost:5097/api/CMS/GetPageLinkById';
   private deletePageLinkUrl = 'http://localhost:5097/api/CMS/DeletePageLink';
   private getMenuSubmenuUrl = 'http://localhost:5097/api/CMS/GetMenuSubmenu';
-
   
   private createOrUpdateBannerUrl = 'http://localhost:5097/api/CMS/CreateOrUpdateBanner';
   private getAllBannersUrl = 'http://localhost:5097/api/CMS/GetBanners';
@@ -68,6 +67,8 @@ export class AuthService {
   private galleryUrl = 'http://localhost:5097/api/Gallery'; //Base URL for Managing Gallery
   private faqUrl = 'http://localhost:5097/api/FAQ'; //Base URL for Managing FAQs
 
+
+  // http://localhost:5234/Api/CMS/GetDesignations
   constructor(private http: HttpClient) { }
   
  
