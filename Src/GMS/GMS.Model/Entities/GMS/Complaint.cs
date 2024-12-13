@@ -216,6 +216,7 @@ namespace GMS.Model.Entities.GMS
         public string ActionTakingAuthority { get; set; }
         public string AttachedDocument { get; set; }
         public DateTime? DateOfEscalation { get; set; }
+        public string Remark { get; set; }
     }
 
     public class EscalationDetails
