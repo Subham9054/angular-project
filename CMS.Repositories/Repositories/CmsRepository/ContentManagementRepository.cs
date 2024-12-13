@@ -105,7 +105,171 @@ namespace CMS.Repositories.Repositories.CmsRepository
         public async Task<int> DeletePageContentAsync(int contentId)
         {
             throw new NotImplementedException();
-        }        
+        }
+        #endregion
+
+        #region What is New Master Page Repository
+        public async Task<int> CreateOrUpdateWhatIsNewAsync(WhatIsNewModel creOrUpdWhatIsNew)
+        {
+            var parameters = new DynamicParameters();
+            try
+            {
+                parameters.Add("P_Action", "CreOrUpd");
+
+                if (creOrUpdWhatIsNew.WhatIsNewId == 0 || creOrUpdWhatIsNew.WhatIsNewId == null)
+                {
+                    parameters.Add("P_WhatIsNewId", null);
+                    parameters.Add("P_TitleEnglish", creOrUpdWhatIsNew.TitleEnglish);
+                    parameters.Add("P_TitleHindi", creOrUpdWhatIsNew.TitleHindi);
+                    parameters.Add("P_DescriptionEnglish", creOrUpdWhatIsNew.DescriptionEnglish);
+                    parameters.Add("P_DescriptionHindi", creOrUpdWhatIsNew.DescriptionHindi);
+                    parameters.Add("P_Document", creOrUpdWhatIsNew.Document);
+                    parameters.Add("P_IsPublish", creOrUpdWhatIsNew.IsPublish);
+                    parameters.Add("P_PublishDate", creOrUpdWhatIsNew.PublishDate);
+                    parameters.Add("P_CreatedBy", creOrUpdWhatIsNew.CreatedBy);
+                }
+                else
+                {
+                    parameters.Add("P_WhatIsNewId", creOrUpdWhatIsNew.WhatIsNewId);
+                    parameters.Add("P_TitleEnglish", creOrUpdWhatIsNew.TitleEnglish);
+                    parameters.Add("P_TitleHindi", creOrUpdWhatIsNew.TitleHindi);
+                    parameters.Add("P_DescriptionEnglish", creOrUpdWhatIsNew.DescriptionEnglish);
+                    parameters.Add("P_DescriptionHindi", creOrUpdWhatIsNew.DescriptionHindi);
+                    parameters.Add("P_Document", creOrUpdWhatIsNew.Document);
+                    parameters.Add("P_IsPublish", creOrUpdWhatIsNew.IsPublish);
+                    parameters.Add("P_PublishDate", creOrUpdWhatIsNew.PublishDate);
+                    parameters.Add("P_CreatedBy", creOrUpdWhatIsNew.CreatedBy);
+                }
+
+                // Execute the stored procedure
+                await Connection.ExecuteAsync("USP_WhatIsNewDetails", parameters, commandType: CommandType.StoredProcedure);
+
+                // If no exceptions, return a success code (1 for successful operation)
+                return 1;
+            }
+            catch (SqlException ex)
+            {
+                // Handle specific SQL exceptions like duplicate entry (error 45000 from stored procedure)
+                if (ex.Number == 45000)
+                {
+                    throw new Exception("Duplicate entry for what is new details.");
+                }
+                throw new Exception("An unexpected SQL error occurred. Please try again later.", ex);
+            }
+            catch (Exception ex)
+            {
+                // Handle any other general exceptions
+                throw new Exception("An unexpected error occurred. Please try again later.", ex);
+            }
+        }
+
+        public async Task<int> DeleteWhatIsNewAsync(int whatIsNewId)
+        {
+            var parameters = new DynamicParameters();
+            try
+            {
+                parameters.Add("P_Action", "Delete");
+                parameters.Add("P_WhatIsNewId", whatIsNewId);
+                parameters.Add("P_TitleEnglish", null);
+                parameters.Add("P_TitleHindi", null);
+                parameters.Add("P_DescriptionEnglish", null);
+                parameters.Add("P_DescriptionHindi", null);
+                parameters.Add("P_Document", null);
+                parameters.Add("P_IsPublish", null);
+                parameters.Add("P_PublishDate", null);
+                parameters.Add("P_CreatedBy", 1);
+
+                // Execute the stored procedure for deletion
+                await Connection.ExecuteAsync("USP_WhatIsNewDetails", parameters, commandType: CommandType.StoredProcedure);
+
+                // Return success code
+                return 1;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while deleting the what is new details.", ex);
+            }
+        }
+
+        public async Task<List<WhatIsNewModel>> GetWhatIsNewsAsync()
+        {
+            DynamicParameters dyParam = new DynamicParameters();
+            try
+            {
+                dyParam.Add("P_Action", "GetAll");
+                dyParam.Add("P_WhatIsNewId", null, DbType.Int32);
+                dyParam.Add("P_TitleEnglish", null, DbType.String);
+                dyParam.Add("P_TitleHindi", null, DbType.String);
+                dyParam.Add("P_DescriptionEnglish", null, DbType.String);
+                dyParam.Add("P_DescriptionHindi", null, DbType.String);
+                dyParam.Add("P_Document", null, DbType.String);
+                dyParam.Add("P_IsPublish", null, DbType.Boolean);
+                dyParam.Add("P_PublishDate", null, DbType.DateTime);
+                dyParam.Add("P_CreatedBy", null, DbType.Int32);
+
+                var whatIsNews = await Connection.QueryAsync<WhatIsNewModel>("USP_WhatIsNewDetails", dyParam, commandType: CommandType.StoredProcedure);
+
+                return whatIsNews.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An unexpected error occurred while fetching what is new details. Please try again later.", ex);
+            }
+        }
+
+        public async Task<List<WhatIsNewModel>> GetWhatIsNewByIdAsync(int whatIsNewId)
+        {
+            var parameters = new DynamicParameters();
+            try
+            {
+                parameters.Add("P_Action", "GetById");
+                parameters.Add("P_WhatIsNewId", whatIsNewId);
+                parameters.Add("P_TitleEnglish", null, DbType.String);
+                parameters.Add("P_TitleHindi", null, DbType.String);
+                parameters.Add("P_DescriptionEnglish", null, DbType.String);
+                parameters.Add("P_DescriptionHindi", null, DbType.String);
+                parameters.Add("P_Document", null, DbType.String);
+                parameters.Add("P_IsPublish", null, DbType.Boolean);
+                parameters.Add("P_PublishDate", null, DbType.DateTime);
+                parameters.Add("P_CreatedBy", null, DbType.Int32);
+
+                // Execute the stored procedure and get the banner by its ID
+                var result = await Connection.QueryAsync<WhatIsNewModel>("USP_WhatIsNewDetails", parameters, commandType: CommandType.StoredProcedure);
+
+                return result.ToList(); // Return the result as a list
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while retrieving the what is new details by ID.", ex);
+            }
+        }
+
+        public async Task<List<WhatIsNewModel>> GetWhatIsNewByNameAsync(string whatIsNewName)
+        {
+            var parameters = new DynamicParameters();
+            try
+            {
+                parameters.Add("P_Action", "GetByName");
+                parameters.Add("P_WhatIsNewId", null, DbType.Int32);
+                parameters.Add("P_TitleEnglish", whatIsNewName);
+                parameters.Add("P_TitleHindi", null, DbType.String);
+                parameters.Add("P_DescriptionEnglish", null, DbType.String);
+                parameters.Add("P_DescriptionHindi", null, DbType.String);
+                parameters.Add("P_Document", null, DbType.String);
+                parameters.Add("P_IsPublish", null, DbType.Boolean);
+                parameters.Add("P_PublishDate", null, DbType.DateTime);
+                parameters.Add("P_CreatedBy", null, DbType.Int32);
+
+                // Execute the stored procedure and get the banner by its ID
+                var result = await Connection.QueryAsync<WhatIsNewModel>("USP_WhatIsNewDetails", parameters, commandType: CommandType.StoredProcedure);
+
+                return result.ToList(); // Return the result as a list
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while retrieving the what is new details by Name.", ex);
+            }
+        }
         #endregion
 
         #region Citizen Mobile App API Repository
@@ -385,9 +549,7 @@ namespace CMS.Repositories.Repositories.CmsRepository
                 // Handle general exceptions
                 throw new Exception("An unexpected error occurred. Please try again later.", ex);
             }
-        }
-
-        
+        }       
         #endregion
     }
 }
