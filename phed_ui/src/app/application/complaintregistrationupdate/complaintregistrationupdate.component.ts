@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { error } from 'jquery';
 import { AuthService } from 'src/app/auth.service';
@@ -10,16 +10,32 @@ declare let $: any;
 })
 export class ComplaintregistrationupdateComponent implements OnInit {
 
-  // Filter close btn
-  isDropdownOpen = false;
-  openDropdown() {
-    this.isDropdownOpen = true;
-  }
 
+  activeDropdown: number | null = null; // Track the active dropdown index
 
-  closeDropdown() {
-    this.isDropdownOpen = false;
+    toggleDropdown(index: number) {
+        this.activeDropdown = this.activeDropdown === index ? null : index;
+    }
+
+  @HostListener('document:click', ['$event'])
+  onClickOutside(event: MouseEvent) {
+      const target = event.target as HTMLElement;
+      if (!target.closest('.dropdown')) {
+          this.activeDropdown = null;
+      }
+
   }
+ 
+ // Filter close btn
+ isDropdownOpen = false;
+
+ toggleDropdownnew() {
+     this.isDropdownOpen = !this.isDropdownOpen;
+ }
+ 
+ closeDropdown() {
+     this.isDropdownOpen = false;
+ }
 
   isPanelOpen = false; // Start with the panel open
 
@@ -122,6 +138,7 @@ export class ComplaintregistrationupdateComponent implements OnInit {
     this.authService.getgmsComplaintdelail().subscribe(
       response => {
         this.complaintdetails = response; // Assign full data
+        console.log(this.complaintdetails);
         this.totalPages = Math.ceil(this.complaintdetails.length / this.pageSize); // Calculate total pages
         this.updatePagination(); // Initialize pagination
       },
@@ -164,7 +181,7 @@ export class ComplaintregistrationupdateComponent implements OnInit {
     this.authService.getgmstakeaction(tokenno).subscribe(
       response => {
         this.takeactiongms = response;
-        console.log('Data fetched successfully:', response); // Optional: For debugging purposes
+        console.log('Data fetched successfully takeactiongms:', response); // Optional: For debugging purposes
       },
       error => {
         console.error('Error fetching Complaint status:', error);
