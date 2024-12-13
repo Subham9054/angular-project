@@ -38,7 +38,7 @@ body{
             height: 4rem;
         }
 
-      
+
     }
 
     h1 {
@@ -55,7 +55,7 @@ body{
         }
 
         @media (max-width:320px) {
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             line-height: 20px;
         }
     }
@@ -113,7 +113,7 @@ body{
         &:focus {
             box-shadow: none;
         }
-       
+
         &::placeholder {
             color: #ddd;
         }
@@ -136,7 +136,7 @@ body{
             padding: 2px 5px;
         }
 
-      
+
 
         &.password {
             i {
@@ -209,7 +209,7 @@ body{
      .col-md-6 {
         width: 80%;
     }
-   } 
+   }
 }
 @media (max-width:576px) {
     .login-wrapp{
@@ -232,7 +232,7 @@ body{
      .col-md-6 {
         width: 100%;
     }
-   } 
+   }
 }
 
 

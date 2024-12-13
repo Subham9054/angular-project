@@ -123,12 +123,13 @@ namespace GMS.API
                 // Process the complaint registration
                 var result = await _MANAGE_COMPLAINTDETAILS_CONFIGRepository.ComplaintRegistrationdetail(complaint);
 
-                if (result)
+                if (result!=null)
                 {
                     return Ok(new
                     {
                         message = "Complaint registered successfully.",
-                        uploadedFiles = uploadedFiles
+                        uploadedFiles = uploadedFiles,
+                        Data = result
                     });
                 }
                 else
@@ -248,7 +249,7 @@ namespace GMS.API
 
 
         [HttpGet("GetAllCitizenDetails")]
-        public async Task<IActionResult> GetAllCitizenDetails(string token, string mobno)
+        public async Task<IActionResult> GetAllCitizenDetails([FromQuery] string? token, [FromQuery] string? mobno)
         {
             if (string.IsNullOrEmpty(token) && string.IsNullOrEmpty(mobno))
             {
@@ -335,7 +336,7 @@ namespace GMS.API
             }
         }
 
-        [HttpGet("Otpgenerate")]
+        [HttpPost("Otpgenerate")]
         public async Task<IActionResult> Otpgenerate(string mobno)
         {
             if (string.IsNullOrWhiteSpace(mobno) || mobno.Length != 10)
@@ -352,7 +353,7 @@ namespace GMS.API
             {
                 var result = await _MANAGE_COMPLAINTDETAILS_CONFIGRepository.GenerateOtp(mobno);
 
-                if (result == null || !result)
+                if (result == null)
                 {
                     return StatusCode(500, new
                     {
@@ -364,7 +365,7 @@ namespace GMS.API
                 return Ok(new
                 {
                     StatusCode = 200,
-                    Message = "OTP generated successfully.",
+                    Message = "Your OTP is "+result,
                     Data = result // Include any additional data, if needed
                 });
             }
@@ -382,46 +383,93 @@ namespace GMS.API
             }
         }
 
-
         [HttpPost("ValidateOtp")]
-        public async Task<IActionResult> ValidateOtp(string phoneNumber, string otp)
+        public async Task<IActionResult> ValidateOtp([FromBody] ValidateOtpRequest request)
         {
-            if (string.IsNullOrWhiteSpace(phoneNumber) || string.IsNullOrWhiteSpace(otp))
+            if (request == null || string.IsNullOrWhiteSpace(request.PhoneNumber) || string.IsNullOrWhiteSpace(request.Otp))
             {
-                return BadRequest(new { Message = "Phone number and OTP are required." });
+                return StatusCode(200,new {StatusCode=400, Message = "Phone number and OTP are required." });
+            }
+            if(request.PhoneNumber.Length != 10)
+            {
+                return StatusCode(200,new { StatusCode = 400, Message = "Please Enter Valid Phone number" });
+            }
+            if (request.Otp.Length != 6)
+            {
+                return StatusCode(200, new { StatusCode = 400, Message = "Please Enter Valid Otp" });
             }
 
             try
             {
                 // Validate OTP
-                var otpDetails = await _MANAGE_COMPLAINTDETAILS_CONFIGRepository.ValidateOtp(phoneNumber, otp);
+                var otpDetails = await _MANAGE_COMPLAINTDETAILS_CONFIGRepository.ValidateOtp(request.PhoneNumber, request.Otp);
 
                 if (otpDetails == null)
                 {
-                    return BadRequest(new { Message = "Invalid OTP or OTP already used." });
+                    return StatusCode(201, new { StatusCode = 201, Message = "Invalid OTP or OTP already used." });
                 }
 
                 // Check if OTP has expired
                 if (DateTime.Now > otpDetails.ExpiresOn)
                 {
-                    return BadRequest(new { Message = "OTP has expired." });
+                    return StatusCode(201, new { StatusCode = 201, Message = "OTP has expired." });
                 }
 
                 // Mark OTP as used
                 var otpMarkedAsUsed = await _MANAGE_COMPLAINTDETAILS_CONFIGRepository.MarkOtpAsUsedAsync(otpDetails.Id);
 
-                if (otpMarkedAsUsed==false)
+                if (!otpMarkedAsUsed)
                 {
-                    return StatusCode(500, new { Message = "Error marking OTP as used." });
+                    return StatusCode(500, new { StatusCode = 500, Message = "Error marking OTP as used." });
                 }
 
-                return Ok(new { Message = "OTP validated successfully." });
+                return StatusCode(200,new {StatusCode=200, Message = "OTP validated successfully." });
             }
             catch (Exception ex)
             {
                 return StatusCode(500, new { Message = "An error occurred.", Error = ex.Message });
             }
         }
+
+        //[HttpPost("ValidateOtp")]
+        //public async Task<IActionResult> ValidateOtp(string phoneNumber, string otp)
+        //{
+        //    if (string.IsNullOrWhiteSpace(phoneNumber) || string.IsNullOrWhiteSpace(otp))
+        //    {
+        //        return BadRequest(new { Message = "Phone number and OTP are required." });
+        //    }
+
+        //    try
+        //    {
+        //        // Validate OTP
+        //        var otpDetails = await _MANAGE_COMPLAINTDETAILS_CONFIGRepository.ValidateOtp(phoneNumber, otp);
+
+        //        if (otpDetails == null)
+        //        {
+        //            return StatusCode(201,new {Statuscode=201, Message = "Invalid OTP or OTP already used." });
+        //        }
+
+        //        // Check if OTP has expired
+        //        if (DateTime.Now > otpDetails.ExpiresOn)
+        //        {
+        //            return StatusCode(201,new { Statuscode = 201, Message = "OTP has expired." });
+        //        }
+
+        //        // Mark OTP as used
+        //        var otpMarkedAsUsed = await _MANAGE_COMPLAINTDETAILS_CONFIGRepository.MarkOtpAsUsedAsync(otpDetails.Id);
+
+        //        if (otpMarkedAsUsed==false)
+        //        {
+        //            return StatusCode(500, new {StatusCode=500, Message = "Error marking OTP as used." });
+        //        }
+
+        //        return Ok(new { Message = "OTP validated successfully." });
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return StatusCode(500, new { Message = "An error occurred.", Error = ex.Message });
+        //    }
+        //}
 
 
         #endregion
