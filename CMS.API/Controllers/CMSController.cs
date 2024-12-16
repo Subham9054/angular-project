@@ -21,6 +21,312 @@ namespace CMS.API.Controllers
             _contentManagementRepository = contentManagementRepository;
         }
 
+        #region Manage Pages
+        [HttpPost]
+        public async Task<IActionResult> CreateOrUpdatePageLink([FromForm] PageLinkModel pageLink, [FromForm] IFormFile? iconFile)
+        {
+            if (pageLink == null)
+            {
+                return BadRequest(new { Success = false, Message = "Page Link data cannot be null." });
+            }
+
+            try
+            {
+                // Handle file upload if a new iconFile is provided
+                if (iconFile != null && iconFile.Length > 0)
+                {
+                    // Set directory path and ensure it exists
+                    var folderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "assets", "icons");
+                    if (!Directory.Exists(folderPath))
+                    {
+                        Directory.CreateDirectory(folderPath);
+                    }
+
+                    // Set unique file name to avoid overwriting
+                    var fileName = $"{Guid.NewGuid()}_{Path.GetFileName(iconFile.FileName)}";
+                    var filePath = Path.Combine(folderPath, fileName);
+
+                    // Save the file to wwwroot/assets/icons
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await iconFile.CopyToAsync(stream);
+                    }
+
+                    // Set the file path to be saved in the database
+                    pageLink.Icon = $"/assets/icons/{fileName}";
+                }
+                else if (string.IsNullOrEmpty(pageLink.Icon))
+                {
+                    var existingPageLink = await _contentManagementRepository.GetPageLinkByIdAsync(pageLink.PageId!.Value);
+                    if (existingPageLink != null && existingPageLink.Count > 0)
+                    {
+                        // Assuming that the first element of existingPageLink has the Icon property you want to retain
+                        pageLink.Icon = existingPageLink.FirstOrDefault()?.Icon; // Retain the existing icon path
+                    }
+                }
+
+                // Call repository to create or update the page link
+                var result = await _contentManagementRepository.CreateOrUpdatePageLinkAsync(pageLink);
+                if (result > 0)
+                {
+                    return Ok(new { Success = true, Message = "Page Link Menu saved successfully.", StatusCode = StatusCodes.Status200OK });
+                }
+
+                return BadRequest(new { Success = false, Message = "Failed to save Page Link Menu.", StatusCode = StatusCodes.Status400BadRequest });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { Success = false, Message = ex.Message, StatusCode = StatusCodes.Status500InternalServerError });
+            }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetPageLinks()
+        {
+            try
+            {
+                var pageLinks = await _contentManagementRepository.GetPageLinkAsync();
+                if (pageLinks != null && pageLinks.Any())
+                {
+                    return Ok(new { Success = true, Data = pageLinks, StatusCode = StatusCodes.Status200OK });
+                }
+                return NotFound(new { Success = false, Message = "No page links are found.", StatusCode = StatusCodes.Status404NotFound });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { Success = false, Message = ex.Message, StatusCode = StatusCodes.Status500InternalServerError });
+            }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetPageLinkById(int pageId)
+        {
+            if (pageId <= 0)
+            {
+                return BadRequest(new { Success = false, Message = "Invalid Page ID.", StatusCode = StatusCodes.Status400BadRequest });
+            }
+
+            try
+            {
+                var pageLink = await _contentManagementRepository.GetPageLinkByIdAsync(pageId);
+                if (pageLink != null)
+                {
+                    return Ok(new { Success = true, Data = pageLink, StatusCode = StatusCodes.Status200OK });
+                }
+                return NotFound(new { Success = false, Message = "Page link is not found.", StatusCode = StatusCodes.Status404NotFound });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { Success = false, Message = ex.Message, StatusCode = StatusCodes.Status500InternalServerError });
+            }
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> DeletePageLink(int pageId)
+        {
+            if (pageId <= 0)
+            {
+                return BadRequest(new { Success = false, Message = "Invalid Page Link Menu ID.", StatusCode = StatusCodes.Status400BadRequest });
+            }
+
+            try
+            {
+                // Call the repository to delete the header menu
+                var result = await _contentManagementRepository.DeletePageLinkAsync(pageId);
+                if (result > 0)
+                {
+                    return Ok(new { Success = true, Message = "Page Link Menu deleted successfully.", StatusCode = StatusCodes.Status200OK });
+                }
+                return BadRequest(new { Success = false, Message = "Failed to delete Page Link Menu.", StatusCode = StatusCodes.Status400BadRequest });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { Success = false, Message = ex.Message, StatusCode = StatusCodes.Status500InternalServerError });
+            }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetParentMenus()
+        {
+            try
+            {
+                var parentMenus = await _contentManagementRepository.GetParentMenusAsync();
+                if (parentMenus != null && parentMenus.Any())
+                {
+                    return Ok(new { Success = true, Data = parentMenus, StatusCode = StatusCodes.Status200OK });
+                }
+                return NotFound(new { Success = false, Message = "No page links are found.", StatusCode = StatusCodes.Status404NotFound });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { Success = false, Message = ex.Message, StatusCode = StatusCodes.Status500InternalServerError });
+            }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetMenuSubmenu()
+        {
+            try
+            {
+                var headerMenus = await _contentManagementRepository.GetMenuSubmenuAsync();
+
+                // Check if headerMenus is not null and if the Data property contains any items
+                if (headerMenus != null && headerMenus.Data != null && headerMenus.Data.Any())
+                {
+                    return Ok(new { Success = true, Data = headerMenus, StatusCode = StatusCodes.Status200OK });
+                }
+                return NotFound(new { Success = false, Message = "No Header Menus found.", StatusCode = StatusCodes.Status404NotFound });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { Success = false, Message = ex.Message, StatusCode = StatusCodes.Status500InternalServerError });
+            }
+        }
+        #endregion
+
+        #region Banner Master Page
+        [HttpPost]
+        public async Task<IActionResult> CreateOrUpdateBanner([FromForm] BannerModel banner, [FromForm] IFormFile? bannerImage)
+        {
+            if (banner == null)
+            {
+                return BadRequest(new { Success = false, Message = "Bannner data cannot be null." });
+            }
+
+            try
+            {
+                // Handle file upload if a new iconFile is provided
+                if (bannerImage != null && bannerImage.Length > 0)
+                {
+                    // Set directory path and ensure it exists
+                    var folderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "assets", "banners");
+                    if (!Directory.Exists(folderPath))
+                    {
+                        Directory.CreateDirectory(folderPath);
+                    }
+
+                    // Set unique file name to avoid overwriting
+                    var fileName = $"{Guid.NewGuid()}_{Path.GetFileName(bannerImage.FileName)}";
+                    var filePath = Path.Combine(folderPath, fileName);
+
+                    // Save the file to wwwroot/assets/icons
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await bannerImage.CopyToAsync(stream);
+                    }
+
+                    // Set the file path to be saved in the database
+                    banner.BannerImage = $"/assets/banners/{fileName}";
+                }
+                else if (string.IsNullOrEmpty(banner.BannerImage))
+                {
+                    var existingbanner = await _contentManagementRepository.GetBannerByIdAsync(banner.BannerId!.Value);
+                    if (existingbanner != null && existingbanner.Count > 0)
+                    {
+                        // Assuming that the first element of existingPageLink has the Icon property you want to retain
+                        banner.BannerImage = existingbanner.FirstOrDefault()?.BannerImage; // Retain the existing icon path
+                    }
+                }
+
+                // Call repository to create or update the banner details
+                var result = await _contentManagementRepository.CreateOrUpdateBannerDetailsAsync(banner);
+                if (result > 0)
+                {
+                    return Ok(new { Success = true, Message = "Banner details saved successfully.", StatusCode = StatusCodes.Status200OK });
+                }
+
+                return BadRequest(new { Success = false, Message = "Failed to save banner details.", StatusCode = StatusCodes.Status400BadRequest });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { Success = false, Message = ex.Message, StatusCode = StatusCodes.Status500InternalServerError });
+            }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetBanners()
+        {
+            try
+            {
+                var banners = await _contentManagementRepository.GetBannersAsync();
+                if (banners != null && banners.Any())
+                {
+                    return Ok(new { Success = true, Data = banners, StatusCode = StatusCodes.Status200OK });
+                }
+                return NotFound(new { Success = false, Message = "Banner details are not found.", StatusCode = StatusCodes.Status404NotFound });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { Success = false, Message = ex.Message, StatusCode = StatusCodes.Status500InternalServerError });
+            }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetBannerById(int bannerId)
+        {
+            if (bannerId <= 0)
+            {
+                return BadRequest(new { Success = false, Message = "Invalid Banner ID.", StatusCode = StatusCodes.Status400BadRequest });
+            }
+
+            try
+            {
+                var banner = await _contentManagementRepository.GetBannerByIdAsync(bannerId);
+                if (banner != null)
+                {
+                    return Ok(new { Success = true, Data = banner, StatusCode = StatusCodes.Status200OK });
+                }
+                return NotFound(new { Success = false, Message = "Banner Details are not found.", StatusCode = StatusCodes.Status404NotFound });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { Success = false, Message = ex.Message, StatusCode = StatusCodes.Status500InternalServerError });
+            }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetBannerByName(string bannerName)
+        {
+            try
+            {
+                var banner = await _contentManagementRepository.GetBannerByNameAsync(bannerName);
+                if (banner != null)
+                {
+                    return Ok(new { Success = true, Data = banner, StatusCode = StatusCodes.Status200OK });
+                }
+                return NotFound(new { Success = false, Message = "Banner Details are not found.", StatusCode = StatusCodes.Status404NotFound });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { Success = false, Message = ex.Message, StatusCode = StatusCodes.Status500InternalServerError });
+            }
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> DeleteBanner(int bannerId)
+        {
+            if (bannerId <= 0)
+            {
+                return BadRequest(new { Success = false, Message = "Invalid Banner ID.", StatusCode = StatusCodes.Status400BadRequest });
+            }
+
+            try
+            {
+                // Call the repository to soft delete the banner details
+                var result = await _contentManagementRepository.DeleteBannerDetailsAsync(bannerId);
+                if (result > 0)
+                {
+                    return Ok(new { Success = true, Message = "Banner deleted successfully.", StatusCode = StatusCodes.Status200OK });
+                }
+                return BadRequest(new { Success = false, Message = "Failed to delete banner details.", StatusCode = StatusCodes.Status400BadRequest });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { Success = false, Message = ex.Message, StatusCode = StatusCodes.Status500InternalServerError });
+            }
+        }
+        #endregion
+
         #region What is New Master Page
         [HttpPost("CreateOrUpdateWhatIsNew")]
         public async Task<IActionResult> CreateOrUpdateWhatIsNew([FromForm] WhatIsNewModel whatIsNewModel, [FromForm] IFormFile? documentFile)
@@ -211,6 +517,267 @@ namespace CMS.API.Controllers
 
         #endregion
 
+        #region News & Events Master Page
+        [HttpPost]
+        public async Task<IActionResult> CreateOrUpdateEvent([FromForm] NewsEventsModel newsEvents, [FromForm] IFormFile? thumbnail, [FromForm] IFormFile? featureImage)
+        {
+            if (newsEvents == null)
+            {
+                return BadRequest(new { Success = false, Message = "News and Events data cannot be null." });
+            }
+
+            try
+            {
+                // Handle thumbnail upload
+                if (thumbnail != null && thumbnail.Length > 0)
+                {
+                    var thumbnailFolderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "assets", "events", "thumbnails");
+                    if (!Directory.Exists(thumbnailFolderPath))
+                    {
+                        Directory.CreateDirectory(thumbnailFolderPath);
+                    }
+
+                    // Generate a unique file name using GUID and original file extension
+                    var thumbnailFileName = $"{Guid.NewGuid()}_{Path.GetFileName(thumbnail.FileName)}";
+                    var thumbnailFilePath = Path.Combine(thumbnailFolderPath, thumbnailFileName);
+
+                    using (var stream = new FileStream(thumbnailFilePath, FileMode.Create))
+                    {
+                        await thumbnail.CopyToAsync(stream);
+                    }
+
+                    // Save the thumbnail path to the database
+                    newsEvents.Thumbnail = $"/assets/events/thumbnails/{thumbnailFileName}";
+                }
+                else if (string.IsNullOrEmpty(newsEvents.Thumbnail))
+                {
+                    // If no new thumbnail is uploaded, retain the existing thumbnail path
+                    var existingEvent = await _contentManagementRepository.GetEventByIdAsync(newsEvents.EventId!.Value);
+                    if (existingEvent != null && existingEvent.Count > 0)
+                    {
+                        newsEvents.Thumbnail = existingEvent.FirstOrDefault()?.Thumbnail; // Retain the existing thumbnail path
+                    }
+                }
+
+                // Handle feature image upload
+                if (featureImage != null && featureImage.Length > 0)
+                {
+                    var featureImageFolderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "assets", "events", "images");
+                    if (!Directory.Exists(featureImageFolderPath))
+                    {
+                        Directory.CreateDirectory(featureImageFolderPath);
+                    }
+
+                    var featureImageFileName = $"{Guid.NewGuid()}_{Path.GetFileName(featureImage.FileName)}";
+                    var featureImageFilePath = Path.Combine(featureImageFolderPath, featureImageFileName);
+
+                    using (var stream = new FileStream(featureImageFilePath, FileMode.Create))
+                    {
+                        await featureImage.CopyToAsync(stream);
+                    }
+
+                    // Save the feature image path to the database
+                    newsEvents.FeatureImage = $"/assets/events/images/{featureImageFileName}";
+                }
+                else if (string.IsNullOrEmpty(newsEvents.FeatureImage))
+                {
+                    var existingEvent = await _contentManagementRepository.GetEventByIdAsync(newsEvents.EventId!.Value);
+                    if (existingEvent != null && existingEvent.Count > 0)
+                    {
+                        newsEvents.FeatureImage = existingEvent.FirstOrDefault()?.FeatureImage; // Retain the existing feature image path
+                    }
+                }
+
+                // Call repository to create or update event details
+                var result = await _contentManagementRepository.CreateOrUpdateEventAsync(newsEvents);
+                if (result > 0)
+                {
+                    return Ok(new { Success = true, Message = "Event details saved successfully.", StatusCode = StatusCodes.Status200OK });
+                }
+
+                return BadRequest(new { Success = false, Message = "Failed to save event details.", StatusCode = StatusCodes.Status400BadRequest });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { Success = false, Message = ex.Message, StatusCode = StatusCodes.Status500InternalServerError });
+            }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetEvents()
+        {
+            try
+            {
+                var events = await _contentManagementRepository.GetEventsAsync();
+                if (events != null && events.Any())
+                {
+                    return Ok(new { Success = true, Data = events, StatusCode = StatusCodes.Status200OK });
+                }
+                return NotFound(new { Success = false, Message = "Events details are not found.", StatusCode = StatusCodes.Status404NotFound });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { Success = false, Message = ex.Message, StatusCode = StatusCodes.Status500InternalServerError });
+            }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetEventById(int eventId)
+        {
+            if (eventId <= 0)
+            {
+                return BadRequest(new { Success = false, Message = "Invalid Event ID.", StatusCode = StatusCodes.Status400BadRequest });
+            }
+
+            try
+            {
+                var eventDetails = await _contentManagementRepository.GetEventByIdAsync(eventId);
+                if (eventDetails != null)
+                {
+                    return Ok(new { Success = true, Data = eventDetails, StatusCode = StatusCodes.Status200OK });
+                }
+                return NotFound(new { Success = false, Message = "Event details are not found.", StatusCode = StatusCodes.Status404NotFound });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { Success = false, Message = ex.Message, StatusCode = StatusCodes.Status500InternalServerError });
+            }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetEventByName(string eventName)
+        {
+            try
+            {
+                var eventdetails = await _contentManagementRepository.GetEventByNameAsync(eventName);
+                if (eventdetails != null)
+                {
+                    return Ok(new { Success = true, Data = eventdetails, StatusCode = StatusCodes.Status200OK });
+                }
+                return NotFound(new { Success = false, Message = "Event details are not found.", StatusCode = StatusCodes.Status404NotFound });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { Success = false, Message = ex.Message, StatusCode = StatusCodes.Status500InternalServerError });
+            }
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> DeleteEvent(int eventId)
+        {
+            if (eventId <= 0)
+            {
+                return BadRequest(new { Success = false, Message = "Invalid Event ID.", StatusCode = StatusCodes.Status400BadRequest });
+            }
+
+            try
+            {
+                // Call the repository to soft delete the event details
+                var result = await _contentManagementRepository.DeleteEventAsync(eventId);
+                if (result > 0)
+                {
+                    return Ok(new { Success = true, Message = "Event details deleted successfully.", StatusCode = StatusCodes.Status200OK });
+                }
+                return BadRequest(new { Success = false, Message = "Failed to delete event details.", StatusCode = StatusCodes.Status400BadRequest });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { Success = false, Message = ex.Message, StatusCode = StatusCodes.Status500InternalServerError });
+            }
+        }
+        #endregion
+
+        #region Contact Details Master Page
+        [HttpPost]
+        public async Task<IActionResult> CreateOrUpdateContact([FromForm] ContactDetailsModel contactDetails)
+        {
+            if (contactDetails == null)
+            {
+                return BadRequest(new { Success = false, Message = "Contact data cannot be null." });
+            }
+
+            try
+            {
+                // Call repository to create or update event details
+                var result = await _contentManagementRepository.CreateOrUpdateContactAsync(contactDetails);
+                if (result > 0)
+                {
+                    return Ok(new { Success = true, Message = "Contact details saved successfully.", StatusCode = StatusCodes.Status200OK });
+                }
+
+                return BadRequest(new { Success = false, Message = "Failed to save contact details.", StatusCode = StatusCodes.Status400BadRequest });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { Success = false, Message = ex.Message, StatusCode = StatusCodes.Status500InternalServerError });
+            }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetContacts()
+        {
+            try
+            {
+                var events = await _contentManagementRepository.GetContactsAsync();
+                if (events != null && events.Any())
+                {
+                    return Ok(new { Success = true, Data = events, StatusCode = StatusCodes.Status200OK });
+                }
+                return NotFound(new { Success = false, Message = "Contact details are not found.", StatusCode = StatusCodes.Status404NotFound });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { Success = false, Message = ex.Message, StatusCode = StatusCodes.Status500InternalServerError });
+            }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetContactById(int contactId)
+        {
+            if (contactId <= 0)
+            {
+                return BadRequest(new { Success = false, Message = "Invalid Contact ID.", StatusCode = StatusCodes.Status400BadRequest });
+            }
+
+            try
+            {
+                var contactDetails = await _contentManagementRepository.GetContactByIdAsync(contactId);
+                if (contactDetails != null)
+                {
+                    return Ok(new { Success = true, Data = contactDetails, StatusCode = StatusCodes.Status200OK });
+                }
+                return NotFound(new { Success = false, Message = "Contact details are not found.", StatusCode = StatusCodes.Status404NotFound });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { Success = false, Message = ex.Message, StatusCode = StatusCodes.Status500InternalServerError });
+            }
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> DeleteContact(int contactId)
+        {
+            if (contactId <= 0)
+            {
+                return BadRequest(new { Success = false, Message = "Invalid Contact ID.", StatusCode = StatusCodes.Status400BadRequest });
+            }
+
+            try
+            {
+                // Call the repository to soft delete the event details
+                var result = await _contentManagementRepository.DeleteContactAsync(contactId);
+                if (result > 0)
+                {
+                    return Ok(new { Success = true, Message = "Contact details deleted successfully.", StatusCode = StatusCodes.Status200OK });
+                }
+                return BadRequest(new { Success = false, Message = "Failed to delete contact details.", StatusCode = StatusCodes.Status400BadRequest });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { Success = false, Message = ex.Message, StatusCode = StatusCodes.Status500InternalServerError });
+            }
+        }
+        #endregion        
 
         #region Citizen Mobile App API
         [HttpPost("GetComplaintCounts")]
