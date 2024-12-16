@@ -20,6 +20,5 @@ namespace GMS.Repository.Interfaces.MANAGE_COMPLAINTDETAILS_CONFIG
         Task<string> GenerateOtp(string phoneNumber);
         Task<OTPDetails> ValidateOtp(string phoneNumber, string otp);
         Task<bool> MarkOtpAsUsedAsync(int otpId);
-        Task<List<ComplaintDetailsTokenResponse>> Getalldetailagaintstoken(string token, int catid,int subcatid);
     }
 }

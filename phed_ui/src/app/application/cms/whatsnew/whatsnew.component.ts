@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewChecked } from '@angular/core';
 import * as $ from 'jquery';
 import 'eonasdan-bootstrap-datetimepicker'; // Include datetimepicker plugin
 import * as moment from 'moment';
@@ -7,86 +7,32 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/auth.service';
 import Swal from 'sweetalert2';
 
-// declare let $: any;
 @Component({
   selector: 'app-whatsnew',
   templateUrl: './whatsnew.component.html',
   styleUrls: ['./whatsnew.component.scss']
 })
-export class WhatsnewComponent implements OnInit {
+export class WhatsnewComponent implements OnInit, AfterViewChecked {
   whatisNewModel: any = {
     whatIsNewId: null,
     titleEnglish: '',
     titleHindi: '',
     descriptionEnglish: '',
     descriptionHindi: '',
-    document: '',
     filePath: '',
-    fileName: '',
+    fileName: '',   
     isPublish: false,
     publishDate: '',
     createdBy: null,
     isEditing: false,
   };
-
+  
   // file upload
-  fileName: string = '';
-
-  // handleFileInput(event: any) {
-  //   const file = event.target.files[0];
-  //   if (file) {
-  //     this.fileName = file.name;
-  //   }
-  // }
-
-
-  // handleFileInput(event: any) {
-  //   const file = event.target.files[0];
-  //   if (file) {
-  //     // Validate file size (10 MB limit)
-  //     if (file.size > 10 * 1024 * 1024) { 
-  //       Swal.fire('Validation Error', 'File size should not exceed 10 MB.', 'error');
-  //       return;
-  //     }
+  documentFileName: string = '';
+  documentFile: File | null = null;
+  documentFilePreview: string | ArrayBuffer | null = null;
+  existingIconUrl: string | null = null;
   
-  //     // Validate file extension
-  //     const allowedExtensions = ['pdf', 'jpeg', 'jpg', 'png'];
-  //     const fileExtension = file.name.split('.').pop()?.toLowerCase();
-  //     if (!allowedExtensions.includes(fileExtension || '')) {
-  //       Swal.fire('Validation Error', 'Only PDF, JPEG, JPG, or PNG files are allowed.', 'error');
-  //       return;
-  //     }
-  
-  //     // If all validations pass, assign file name
-  //     this.fileName = file.name;
-  //   }
-  // }
-
-  handleFileInput(event: any): void {
-    const file = event.target.files[0];
-    if (file) {
-      this.fileName = file.name;
-      if (!this.validateFile(this.fileName)) {
-        return;
-      }
-      const reader = new FileReader();
-      reader.onload = (e: any) => {
-        this.whatisNewModel.filePath = e.target.result;
-      };
-      reader.readAsDataURL(file);
-    }
-  }
-
-  validateFile(fileName: string): boolean {
-    const allowedExtensions = ['pdf', 'jpeg', 'jpg', 'png'];
-    const fileExtension = fileName.split('.').pop()?.toLowerCase();
-    if (!allowedExtensions.includes(fileExtension || '')) {
-      Swal.fire('Validation Error', 'Only PDF, JPEG, JPG, or PNG files are allowed.', 'error');
-      return false;
-    }
-    return true;
-  }
-
   private isDatePickerInitialized = false;
 
   constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute, private datePipe: DatePipe) {}
@@ -94,7 +40,7 @@ export class WhatsnewComponent implements OnInit {
   ngOnInit(): void {
     this.checkForEdit();
     this.whatisNewModel.publishDate = moment().format('DD-MMM-YYYY');; // Set today's date in the model
-  } 
+  }
 
   ngAfterViewChecked(): void {
     if (this.whatisNewModel.isPublish && !this.isDatePickerInitialized) {
@@ -114,6 +60,51 @@ export class WhatsnewComponent implements OnInit {
       this.whatisNewModel.publishDate = e.date.format('DD-MMM-YYYY'); // Update the model on date change
     });
   }
+
+  // handleFileInput(event: any) {
+  //   const file = event.target.files[0];
+  //   if (file) {
+  //     this.fileName = file.name;
+  //   }
+  // }   
+
+  handleFileInput(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files[0]) {
+      const file = input.files[0];
+
+      // Validate the file
+      if (!this.validateFile(file)) {
+        return; // Exit if validation fails
+      }
+
+      this.documentFileName = file.name;
+      this.documentFile = file;
+
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.documentFilePreview = reader.result;
+      };
+
+      reader.readAsDataURL(file);
+    }
+  }
+
+  private validateFile(file: File): boolean {
+    if (file.size > 10 * 1024 * 1024) { 
+      Swal.fire('Validation Error', 'File size should not exceed 10 MB.', 'error');
+      return false;
+    }
+  
+    const allowedExtensions = ['pdf', 'jpeg', 'jpg', 'png'];
+    const fileExtension = file.name.split('.').pop()?.toLowerCase();
+    if (!allowedExtensions.includes(fileExtension || '')) {
+      Swal.fire('Validation Error', 'Only PDF, JPEG, JPG, or PNG files are allowed.', 'error');
+      return false;
+    }
+  
+    return true;
+  }  
 
   // Check if we are in edit mode by looking for the ID in the route parameters
   checkForEdit(): void {
@@ -136,33 +127,34 @@ export class WhatsnewComponent implements OnInit {
         if (response?.success && response.data) {
           // Ensure response.data is an object, not an array
           const data = Array.isArray(response.data) ? response.data[0] : response.data;
-  
-          // Map the fetched data to the eventModel
+
+          // Map the fetched data to the whatisNewModel
           this.whatisNewModel = {
-            getWhatIsNewById: data?.getWhatIsNewById || null,
+            whatIsNewId: data?.whatIsNewId || null,
             titleEnglish: data?.titleEnglish || '',
             titleHindi: data?.titleHindi || '',
             descriptionEnglish: data?.descriptionEnglish || '',
             descriptionHindi: data?.descriptionHindi || '',
-            document: data?.document || '',
+            filePath: data?.filePath || '',
+            fileName: data?.fileName || '',
             isPublish: data?.isPublish || false,
-            //publishDate: data?.publishDate || '',
             publishDate: data?.publishDate ? this.datePipe.transform(data.publishDate, 'dd-MMM-yyyy') : '',
-            isEditing: true, // Ensure editing mode is enabled
-          };          
-  
-          // Handle document/photo
-          if (data.document) {
+            createdBy: data?.createdBy || null,
+            isEditing: true, // Enable editing mode
+          };
+
+          // Handle document/photo preview
+          if (data.filePath) {
             const baseURL = 'http://localhost:5097'; // Adjust base URL as per your API
-            const relativePath = data.whatnews.replace(/.*wwwroot\\/, '').replace(/\\/g, '/');
-            const imageUrl = `${baseURL}/${relativePath}`; // Construct full image URL
-  
-            // Push image into the files array with preview
-            // this.fileName = [{
-            //   file: new File([], relativePath.split('/').pop() || '', { type: 'image/jpeg' }),
-            //   url: imageUrl,
-            // }];
-          }          
+            const relativePath = data.filePath.replace(/.*wwwroot\\/, '').replace(/\\/g, '/');
+            this.documentFilePreview = `${baseURL}/${relativePath}`; // Construct full preview URL
+          } else {
+            this.documentFilePreview = null;
+          }
+
+          // Set existing icon URL if available
+          this.existingIconUrl = this.documentFilePreview;
+
         } else {
           console.error('Error fetching what is new details:', response?.message || 'Invalid response structure.');
           Swal.fire('Error', response?.message || 'Failed to load what is new details.', 'error');
@@ -211,18 +203,24 @@ export class WhatsnewComponent implements OnInit {
       return;
     }
 
-    // if (!this.whatisNewModel.descriptionEnglish || this.whatisNewModel.descriptionEnglish.trim() === '' || this.whatisNewModel.descriptionEnglish.length > 500) {
-    //   const errorMessage = !this.whatisNewModel.descriptionEnglish || this.whatisNewModel.descriptionEnglish.trim() === '' 
+    // if (!this.whatisNewModel.descriptionHindi || this.whatisNewModel.descriptionHindi.trim() === '' || this.whatisNewModel.descriptionHindi.length > 500) {
+    //   const errorMessage = !this.whatisNewModel.descriptionHindi || this.whatisNewModel.descriptionHindi.trim() === '' 
     //     ? 'कृपया हिंदी में विवरण दर्ज करें।' 
     //     : 'हिंदी में विवरण ५०० अक्षरों से अधिक नहीं हो सकता।';
     //   Swal.fire('Validation Error', errorMessage, 'error');
     //   return;
     // }
-    
-    // Validate File
-    if (this.fileName && !this.validateFile(this.fileName)) {
+
+    // Validation: File Upload
+    if (!this.documentFile) {
+      Swal.fire('Validation Error', 'Please upload a document or photo.', 'error');
       return;
-    }  
+    }
+
+    // Validate the uploaded file
+    if (!this.validateFile(this.documentFile)) {
+      return;
+    }
 
     // // Validation: Publish Date if Is Publish is checked
     // if (!this.eventModel.isPublish && !this.eventModel.isEditing) {
@@ -245,8 +243,8 @@ export class WhatsnewComponent implements OnInit {
     formData.append('publishDate', this.whatisNewModel.publishDate || '');    
 
     // Append document/photo file
-    if (this.fileName) {
-      formData.append('document', this.fileName);
+    if (this.documentFile) {
+      formData.append('documentFile', this.documentFile);
     }
 
     if (this.whatisNewModel.whatIsNewId) {
@@ -280,7 +278,10 @@ export class WhatsnewComponent implements OnInit {
       isPublish: false,
       publishDate: moment().format('DD-MMM-YYYY'),
       isEditing: false,
-    };
-    this.fileName = '';
+    };    
+    this.documentFile = null;
+    this.documentFileName = '';  
+    this.documentFilePreview = null;
+    this.existingIconUrl = null;
   }
 }

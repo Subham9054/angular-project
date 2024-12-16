@@ -123,7 +123,7 @@ namespace CMS.Repositories.Repositories.CmsRepository
                     parameters.Add("P_TitleHindi", creOrUpdWhatIsNew.TitleHindi);
                     parameters.Add("P_DescriptionEnglish", creOrUpdWhatIsNew.DescriptionEnglish);
                     parameters.Add("P_DescriptionHindi", creOrUpdWhatIsNew.DescriptionHindi);
-                    parameters.Add("P_Document", creOrUpdWhatIsNew.Document);
+                    parameters.Add("P_Document", creOrUpdWhatIsNew.DocumentFile);
                     parameters.Add("P_IsPublish", creOrUpdWhatIsNew.IsPublish);
                     parameters.Add("P_PublishDate", creOrUpdWhatIsNew.PublishDate);
                     parameters.Add("P_CreatedBy", creOrUpdWhatIsNew.CreatedBy);
@@ -135,7 +135,7 @@ namespace CMS.Repositories.Repositories.CmsRepository
                     parameters.Add("P_TitleHindi", creOrUpdWhatIsNew.TitleHindi);
                     parameters.Add("P_DescriptionEnglish", creOrUpdWhatIsNew.DescriptionEnglish);
                     parameters.Add("P_DescriptionHindi", creOrUpdWhatIsNew.DescriptionHindi);
-                    parameters.Add("P_Document", creOrUpdWhatIsNew.Document);
+                    parameters.Add("P_Document", creOrUpdWhatIsNew.DocumentFile);
                     parameters.Add("P_IsPublish", creOrUpdWhatIsNew.IsPublish);
                     parameters.Add("P_PublishDate", creOrUpdWhatIsNew.PublishDate);
                     parameters.Add("P_CreatedBy", creOrUpdWhatIsNew.CreatedBy);
