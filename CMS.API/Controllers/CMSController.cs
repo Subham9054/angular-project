@@ -22,7 +22,7 @@ namespace CMS.API.Controllers
         }
 
         #region Manage Pages
-        [HttpPost]
+        [HttpPost("CreateOrUpdatePageLink")]
         public async Task<IActionResult> CreateOrUpdatePageLink([FromForm] PageLinkModel pageLink, [FromForm] IFormFile? iconFile)
         {
             if (pageLink == null)
@@ -78,9 +78,9 @@ namespace CMS.API.Controllers
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, new { Success = false, Message = ex.Message, StatusCode = StatusCodes.Status500InternalServerError });
             }
-        }
+        }        
 
-        [HttpGet]
+        [HttpGet("GetPageLinks")]
         public async Task<IActionResult> GetPageLinks()
         {
             try
@@ -98,7 +98,7 @@ namespace CMS.API.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpGet("GetPageLinkById")]
         public async Task<IActionResult> GetPageLinkById(int pageId)
         {
             if (pageId <= 0)
@@ -121,7 +121,7 @@ namespace CMS.API.Controllers
             }
         }
 
-        [HttpDelete]
+        [HttpDelete("DeletePageLink")]
         public async Task<IActionResult> DeletePageLink(int pageId)
         {
             if (pageId <= 0)
@@ -145,7 +145,7 @@ namespace CMS.API.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpGet("GetParentMenus")]
         public async Task<IActionResult> GetParentMenus()
         {
             try
@@ -163,7 +163,7 @@ namespace CMS.API.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpGet("GetMenuSubmenu")]
         public async Task<IActionResult> GetMenuSubmenu()
         {
             try
@@ -185,7 +185,7 @@ namespace CMS.API.Controllers
         #endregion
 
         #region Banner Master Page
-        [HttpPost]
+        [HttpPost("CreateOrUpdateBanner")]
         public async Task<IActionResult> CreateOrUpdateBanner([FromForm] BannerModel banner, [FromForm] IFormFile? bannerImage)
         {
             if (banner == null)
@@ -243,7 +243,7 @@ namespace CMS.API.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpGet("GetBanners")]
         public async Task<IActionResult> GetBanners()
         {
             try
@@ -261,7 +261,7 @@ namespace CMS.API.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpGet("GetBannerById")]
         public async Task<IActionResult> GetBannerById(int bannerId)
         {
             if (bannerId <= 0)
@@ -284,7 +284,7 @@ namespace CMS.API.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpGet("GetBannerByName")]
         public async Task<IActionResult> GetBannerByName(string bannerName)
         {
             try
@@ -302,7 +302,7 @@ namespace CMS.API.Controllers
             }
         }
 
-        [HttpDelete]
+        [HttpDelete("DeleteBanner")]
         public async Task<IActionResult> DeleteBanner(int bannerId)
         {
             if (bannerId <= 0)
@@ -405,120 +405,119 @@ namespace CMS.API.Controllers
             }
         }
 
-        //[HttpGet("GetWhatIsNewById")]
-        //public async Task<IActionResult> GetWhatIsNewById(int whatIsNewId)
-        //{
-        //    if (whatIsNewId <= 0)
-        //    {
-        //        return BadRequest(new { Success = false, Message = "Invalid What's New ID.", StatusCode = StatusCodes.Status400BadRequest });
-        //    }
+        [HttpGet("GetWhatIsNewById")]
+        public async Task<IActionResult> GetWhatIsNewById(int whatIsNewId)
+        {
+            if (whatIsNewId <= 0)
+            {
+                return BadRequest(new { Success = false, Message = "Invalid What's New ID.", StatusCode = StatusCodes.Status400BadRequest });
+            }
 
-        //    try
-        //    {
-        //        var whatIsNew = await _contentManagementRepository.GetWhatIsNewByIdAsync(whatIsNewId);
-        //        if (whatIsNew != null)
-        //        {
-        //            return Ok(new { Success = true, Data = whatIsNew, StatusCode = StatusCodes.Status200OK });
-        //        }
-        //        return NotFound(new { Success = false, Message = "What's new details are not found.", StatusCode = StatusCodes.Status404NotFound });
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return StatusCode(StatusCodes.Status500InternalServerError, new { Success = false, Message = ex.Message, StatusCode = StatusCodes.Status500InternalServerError });
-        //    }
-        //}
+            try
+            {
+                var whatIsNew = await _contentManagementRepository.GetWhatIsNewByIdAsync(whatIsNewId);
+                if (whatIsNew != null)
+                {
+                    return Ok(new { Success = true, Data = whatIsNew, StatusCode = StatusCodes.Status200OK });
+                }
+                return NotFound(new { Success = false, Message = "What's new details are not found.", StatusCode = StatusCodes.Status404NotFound });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { Success = false, Message = ex.Message, StatusCode = StatusCodes.Status500InternalServerError });
+            }
+        }
 
-        //[HttpGet("GetWhatIsNewName")]
-        //public async Task<IActionResult> GetWhatIsNewName(string whatIsNewName)
-        //{
-        //    try
-        //    {
-        //        var whatIsNew = await _contentManagementRepository.GetWhatIsNewByNameAsync(whatIsNewName);
-        //        if (whatIsNew != null)
-        //        {
-        //            return Ok(new { Success = true, Data = whatIsNew, StatusCode = StatusCodes.Status200OK });
-        //        }
-        //        return NotFound(new { Success = false, Message = "What's new details are not found.", StatusCode = StatusCodes.Status404NotFound });
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return StatusCode(StatusCodes.Status500InternalServerError, new { Success = false, Message = ex.Message, StatusCode = StatusCodes.Status500InternalServerError });
-        //    }
-        //}
+        [HttpGet("GetWhatIsNewName")]
+        public async Task<IActionResult> GetWhatIsNewName(string whatIsNewName)
+        {
+            try
+            {
+                var whatIsNew = await _contentManagementRepository.GetWhatIsNewByNameAsync(whatIsNewName);
+                if (whatIsNew != null)
+                {
+                    return Ok(new { Success = true, Data = whatIsNew, StatusCode = StatusCodes.Status200OK });
+                }
+                return NotFound(new { Success = false, Message = "What's new details are not found.", StatusCode = StatusCodes.Status404NotFound });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { Success = false, Message = ex.Message, StatusCode = StatusCodes.Status500InternalServerError });
+            }
+        }
 
-        //[HttpDelete("DeleteWhatIsNew")]
-        //public async Task<IActionResult> DeleteWhatIsNew(int whatIsNewId)
-        //{
-        //    if (whatIsNewId <= 0)
-        //    {
-        //        return BadRequest(new { Success = false, Message = "Invalid What's New ID.", StatusCode = StatusCodes.Status400BadRequest });
-        //    }
+        [HttpDelete("DeleteWhatIsNew")]
+        public async Task<IActionResult> DeleteWhatIsNew(int whatIsNewId)
+        {
+            if (whatIsNewId <= 0)
+            {
+                return BadRequest(new { Success = false, Message = "Invalid What's New ID.", StatusCode = StatusCodes.Status400BadRequest });
+            }
 
-        //    try
-        //    {
-        //        // Call the repository to soft delete the event details
-        //        var result = await _contentManagementRepository.DeleteWhatIsNewAsync(whatIsNewId);
-        //        if (result > 0)
-        //        {
-        //            return Ok(new { Success = true, Message = "What's new details deleted successfully.", StatusCode = StatusCodes.Status200OK });
-        //        }
-        //        return BadRequest(new { Success = false, Message = "Failed to delete what's new profile details.", StatusCode = StatusCodes.Status400BadRequest });
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return StatusCode(StatusCodes.Status500InternalServerError, new { Success = false, Message = ex.Message, StatusCode = StatusCodes.Status500InternalServerError });
-        //    }
-        //}
+            try
+            {
+                // Call the repository to soft delete the event details
+                var result = await _contentManagementRepository.DeleteWhatIsNewAsync(whatIsNewId);
+                if (result > 0)
+                {
+                    return Ok(new { Success = true, Message = "What's new details deleted successfully.", StatusCode = StatusCodes.Status200OK });
+                }
+                return BadRequest(new { Success = false, Message = "Failed to delete what's new profile details.", StatusCode = StatusCodes.Status400BadRequest });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { Success = false, Message = ex.Message, StatusCode = StatusCodes.Status500InternalServerError });
+            }
+        }
 
-        //[HttpGet("DownloadDocument")]
-        //public async Task<IActionResult> DownloadDocument(int whatIsNewId)
-        //{
-        //    if (whatIsNewId <= 0)
-        //    {
-        //        return BadRequest(new { Success = false, Message = "Invalid What's New ID.", StatusCode = StatusCodes.Status400BadRequest });
-        //    }
+        [HttpGet("DownloadDocument")]
+        public async Task<IActionResult> DownloadDocument(int whatIsNewId)
+        {
+            if (whatIsNewId <= 0)
+            {
+                return BadRequest(new { Success = false, Message = "Invalid What's New ID.", StatusCode = StatusCodes.Status400BadRequest });
+            }
 
-        //    try
-        //    {
-        //        // Fetch the document details by ID
-        //        var documentDetailsList = await _contentManagementRepository.GetWhatIsNewByIdAsync(whatIsNewId);
-        //        var documentDetails = documentDetailsList.FirstOrDefault();
+            try
+            {
+                // Fetch the document details by ID
+                var documentDetailsList = await _contentManagementRepository.GetWhatIsNewByIdAsync(whatIsNewId);
+                var documentDetails = documentDetailsList.FirstOrDefault();
 
-        //        if (documentDetails == null || string.IsNullOrEmpty(documentDetails.DocumentFile))
-        //        {
-        //            return NotFound(new { Success = false, Message = "Document not found.", StatusCode = StatusCodes.Status404NotFound });
-        //        }
+                if (documentDetails == null || string.IsNullOrEmpty(documentDetails.DocumentFile))
+                {
+                    return NotFound(new { Success = false, Message = "Document not found.", StatusCode = StatusCodes.Status404NotFound });
+                }
 
-        //        // Convert the relative URL path to a full file path
-        //        var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", documentDetails.DocumentFile.TrimStart('/'));
-        //        if (!System.IO.File.Exists(filePath))
-        //        {
-        //            return NotFound(new { Success = false, Message = "Document file not found.", StatusCode = StatusCodes.Status404NotFound });
-        //        }
+                // Convert the relative URL path to a full file path
+                var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", documentDetails.DocumentFile.TrimStart('/'));
+                if (!System.IO.File.Exists(filePath))
+                {
+                    return NotFound(new { Success = false, Message = "Document file not found.", StatusCode = StatusCodes.Status404NotFound });
+                }
 
-        //        // Get MIME type
-        //        var contentType = "application/octet-stream"; // Default MIME type
-        //        var extension = Path.GetExtension(filePath).ToLowerInvariant();
-        //        var provider = new FileExtensionContentTypeProvider();
-        //        if (provider.TryGetContentType(filePath, out string? resolvedContentType))
-        //        {
-        //            contentType = resolvedContentType;
-        //        }
+                // Get MIME type
+                var contentType = "application/octet-stream"; // Default MIME type
+                var extension = Path.GetExtension(filePath).ToLowerInvariant();
+                var provider = new FileExtensionContentTypeProvider();
+                if (provider.TryGetContentType(filePath, out string? resolvedContentType))
+                {
+                    contentType = resolvedContentType;
+                }
 
-        //        // Return the file for download
-        //        var fileBytes = await System.IO.File.ReadAllBytesAsync(filePath);
-        //        return File(fileBytes, contentType, Path.GetFileName(filePath));
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return StatusCode(StatusCodes.Status500InternalServerError, new { Success = false, Message = ex.Message, StatusCode = StatusCodes.Status500InternalServerError });
-        //    }
-        //}
-
+                // Return the file for download
+                var fileBytes = await System.IO.File.ReadAllBytesAsync(filePath);
+                return File(fileBytes, contentType, Path.GetFileName(filePath));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { Success = false, Message = ex.Message, StatusCode = StatusCodes.Status500InternalServerError });
+            }
+        }
         #endregion
 
         #region News & Events Master Page
-        [HttpPost]
+        [HttpPost("CreateOrUpdateEvent")]
         public async Task<IActionResult> CreateOrUpdateEvent([FromForm] NewsEventsModel newsEvents, [FromForm] IFormFile? thumbnail, [FromForm] IFormFile? featureImage)
         {
             if (newsEvents == null)
@@ -603,7 +602,7 @@ namespace CMS.API.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpGet("GetEvents")]
         public async Task<IActionResult> GetEvents()
         {
             try
@@ -621,7 +620,7 @@ namespace CMS.API.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpGet("GetEventById")]
         public async Task<IActionResult> GetEventById(int eventId)
         {
             if (eventId <= 0)
@@ -644,7 +643,7 @@ namespace CMS.API.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpGet("GetEventByName")]
         public async Task<IActionResult> GetEventByName(string eventName)
         {
             try
@@ -662,7 +661,7 @@ namespace CMS.API.Controllers
             }
         }
 
-        [HttpDelete]
+        [HttpDelete("DeleteEvent")]
         public async Task<IActionResult> DeleteEvent(int eventId)
         {
             if (eventId <= 0)
@@ -687,8 +686,288 @@ namespace CMS.API.Controllers
         }
         #endregion
 
+        #region Gallery Master Page
+        [HttpPost("CreateOrUpdateGallery")]
+        public async Task<IActionResult> CreateOrUpdateGallery([FromForm] GalleryModel gallery, [FromForm] IFormFile? thumbnail, [FromForm] IFormFile? image)
+        {
+            if (gallery == null)
+            {
+                return BadRequest(new { Success = false, Message = "Gallery data cannot be null." });
+            }
+
+            try
+            {
+                if (string.IsNullOrEmpty(gallery.GalleryType))
+                {
+                    return BadRequest(new { Success = false, Message = "GalleryType is required." });
+                }
+
+                if (gallery.GalleryType.Equals("Photo", StringComparison.OrdinalIgnoreCase))
+                {
+                    // Handle thumbnail upload
+                    if (thumbnail != null && thumbnail.Length > 0)
+                    {
+                        var folderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "assets", "gallery", "thumbnails");
+                        if (!Directory.Exists(folderPath))
+                        {
+                            Directory.CreateDirectory(folderPath);
+                        }
+
+                        var fileName = $"{Guid.NewGuid()}_{Path.GetFileName(thumbnail.FileName)}";
+                        var filePath = Path.Combine(folderPath, fileName);
+
+                        using (var stream = new FileStream(filePath, FileMode.Create))
+                        {
+                            await thumbnail.CopyToAsync(stream);
+                        }
+
+                        gallery.Thumbnail = $"/assets/gallery/thumbnails/{fileName}";
+                    }
+
+                    // Handle gallery image upload
+                    if (image != null && image.Length > 0)
+                    {
+                        var folderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "assets", "gallery", "photos");
+                        if (!Directory.Exists(folderPath))
+                        {
+                            Directory.CreateDirectory(folderPath);
+                        }
+
+                        var fileName = $"{Guid.NewGuid()}_{Path.GetFileName(image.FileName)}";
+                        var filePath = Path.Combine(folderPath, fileName);
+
+                        using (var stream = new FileStream(filePath, FileMode.Create))
+                        {
+                            await image.CopyToAsync(stream);
+                        }
+
+                        gallery.Image = $"/assets/gallery/photos/{fileName}";
+                    }
+                }
+                else if (gallery.GalleryType.Equals("Video", StringComparison.OrdinalIgnoreCase))
+                {
+                    // Validate that a video URL is provided
+                    if (string.IsNullOrEmpty(gallery.VideoUrl))
+                    {
+                        return BadRequest(new { Success = false, Message = "Video URL is required for GalleryType 'Video'." });
+                    }
+
+                    // Handle thumbnail upload
+                    if (thumbnail != null && thumbnail.Length > 0)
+                    {
+                        var folderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "assets", "gallery", "thumbnails");
+                        if (!Directory.Exists(folderPath))
+                        {
+                            Directory.CreateDirectory(folderPath);
+                        }
+
+                        var fileName = $"{Guid.NewGuid()}_{Path.GetFileName(thumbnail.FileName)}";
+                        var filePath = Path.Combine(folderPath, fileName);
+
+                        using (var stream = new FileStream(filePath, FileMode.Create))
+                        {
+                            await thumbnail.CopyToAsync(stream);
+                        }
+
+                        gallery.Thumbnail = $"/assets/gallery/thumbnails/{fileName}";
+                    }
+                }
+                else
+                {
+                    return BadRequest(new { Success = false, Message = "Invalid GalleryType. Accepted values are 'Photo' or 'Video'." });
+                }
+
+                // Call repository to create or update the gallery details
+                var result = await _contentManagementRepository.CreateOrUpdateGalleryDetailsAsync(gallery);
+                if (result > 0)
+                {
+                    return Ok(new { Success = true, Message = "Gallery details saved successfully.", StatusCode = StatusCodes.Status200OK });
+                }
+
+                return BadRequest(new { Success = false, Message = "Failed to save gallery details.", StatusCode = StatusCodes.Status400BadRequest });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { Success = false, Message = ex.Message, StatusCode = StatusCodes.Status500InternalServerError });
+            }
+        }        
+
+        [HttpGet("GetGallery")]
+        public async Task<IActionResult> GetGallery()
+        {
+            try
+            {
+                var galleries = await _contentManagementRepository.GetGalleryAsync();
+                if (galleries != null && galleries.Any())
+                {
+                    return Ok(new { Success = true, Data = galleries, StatusCode = StatusCodes.Status200OK });
+                }
+                return NotFound(new { Success = false, Message = "Gallery details are not found.", StatusCode = StatusCodes.Status404NotFound });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { Success = false, Message = ex.Message, StatusCode = StatusCodes.Status500InternalServerError });
+            }
+        }
+
+        [HttpGet("GetGalleryById")]
+        public async Task<IActionResult> GetGalleryById(int galleryId)
+        {
+            if (galleryId <= 0)
+            {
+                return BadRequest(new { Success = false, Message = "Invalid Gallery ID.", StatusCode = StatusCodes.Status400BadRequest });
+            }
+
+            try
+            {
+                var banner = await _contentManagementRepository.GetGalleryByIdAsync(galleryId);
+                if (banner != null)
+                {
+                    return Ok(new { Success = true, Data = banner, StatusCode = StatusCodes.Status200OK });
+                }
+                return NotFound(new { Success = false, Message = "Gallery Details are not found.", StatusCode = StatusCodes.Status404NotFound });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { Success = false, Message = ex.Message, StatusCode = StatusCodes.Status500InternalServerError });
+            }
+        }
+
+        [HttpGet("GetGalleryByName")]
+        public async Task<IActionResult> GetGalleryByName(string galleryName)
+        {
+            try
+            {
+                var gallery = await _contentManagementRepository.GetGalleryByNameAsync(galleryName);
+                if (gallery != null)
+                {
+                    return Ok(new { Success = true, Data = gallery, StatusCode = StatusCodes.Status200OK });
+                }
+                return NotFound(new { Success = false, Message = "Gallery Details are not found.", StatusCode = StatusCodes.Status404NotFound });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { Success = false, Message = ex.Message, StatusCode = StatusCodes.Status500InternalServerError });
+            }
+        }
+            
+        [HttpDelete("DeleteGallery")]
+        public async Task<IActionResult> DeleteGallery([FromQuery] int galleryId)
+        {
+            if (galleryId <= 0)
+            {
+                return BadRequest(new { Success = false, Message = "Invalid Gallery ID.", StatusCode = StatusCodes.Status400BadRequest });
+            }
+
+            try
+            {
+                // Call the repository to delete the header menu
+                var result = await _contentManagementRepository.DeleteGalleryDetailsAsync(galleryId);
+                if (result > 0)
+                {
+                    return Ok(new { Success = true, Message = "Gallery deleted successfully.", StatusCode = StatusCodes.Status200OK });
+                }
+                return BadRequest(new { Success = false, Message = "Failed to delete gallery details.", StatusCode = StatusCodes.Status400BadRequest });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { Success = false, Message = ex.Message, StatusCode = StatusCodes.Status500InternalServerError });
+            }
+        }
+        #endregion
+
+        #region FAQ Master Page
+        [HttpPost("CreateOrUpdateFaq")]
+        public async Task<IActionResult> CreateOrUpdateFaq([FromBody] FaqModel faqModel)
+        {
+
+            if (faqModel == null)
+            {
+                return BadRequest(new { Success = false, Message = "FAQ data cannot be null." });
+            }
+
+            try
+            {
+                var result = await _contentManagementRepository.CreateOrUpdateFaqAsync(faqModel);
+                if (result > 0)
+                {
+                    return Ok(new { Success = true, Message = "FAQ saved successfully.", StatusCode = StatusCodes.Status200OK });
+                }
+                return BadRequest(new { Success = false, Message = "Failed to save FAQ.", StatusCode = StatusCodes.Status400BadRequest });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { Success = false, Message = ex.Message, StatusCode = StatusCodes.Status500InternalServerError });
+            }
+        }        
+
+        [HttpGet("GetFaqs")]
+        public async Task<IActionResult> GetFaqs()
+        {
+            try
+            {
+                var faqs = await _contentManagementRepository.GetFaqsAsync();
+                if (faqs != null && faqs.Any())
+                {
+                    return Ok(new { Success = true, Data = faqs, StatusCode = StatusCodes.Status200OK });
+                }
+                return NotFound(new { Success = false, Message = "No FAQs found.", StatusCode = StatusCodes.Status404NotFound });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { Success = false, Message = ex.Message, StatusCode = StatusCodes.Status500InternalServerError });
+            }
+        }
+
+        [HttpGet("GetFaqById")]
+        public async Task<IActionResult> GetFaqById(int faqId)
+        {
+            if (faqId <= 0)
+            {
+                return BadRequest(new { Success = false, Message = "Invalid FAQ ID.", StatusCode = StatusCodes.Status400BadRequest });
+            }
+
+            try
+            {
+                var faqs = await _contentManagementRepository.GetFaqByIdAsync(faqId);
+                if (faqs != null && faqs.Any())
+                {
+                    return Ok(new { Success = true, Data = faqs, StatusCode = StatusCodes.Status200OK });
+                }
+                return NotFound(new { Success = false, Message = "FAQ not found.", StatusCode = StatusCodes.Status404NotFound });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { Success = false, Message = ex.Message, StatusCode = StatusCodes.Status500InternalServerError });
+            }
+        }
+
+        [HttpDelete("DeleteFaq")]
+        public async Task<IActionResult> DeleteFaq([FromBody] FaqModel delFaq)
+        {
+            if (delFaq?.FaqId <= 0)
+            {
+                return BadRequest(new { Success = false, Message = "Invalid FAQ ID.", StatusCode = StatusCodes.Status400BadRequest });
+            }
+
+            try
+            {
+                var result = await _contentManagementRepository.DeleteFaqAsync(delFaq!);
+                if (result > 0)
+                {
+                    return Ok(new { Success = true, Message = "FAQ deleted successfully.", StatusCode = StatusCodes.Status200OK });
+                }
+                return BadRequest(new { Success = false, Message = "Failed to delete FAQ.", StatusCode = StatusCodes.Status400BadRequest });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { Success = false, Message = ex.Message, StatusCode = StatusCodes.Status500InternalServerError });
+            }
+        }
+        #endregion
+
         #region Contact Details Master Page
-        [HttpPost]
+        [HttpPost("CreateOrUpdateContact")]
         public async Task<IActionResult> CreateOrUpdateContact([FromForm] ContactDetailsModel contactDetails)
         {
             if (contactDetails == null)
@@ -713,7 +992,7 @@ namespace CMS.API.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpGet("GetContacts")]
         public async Task<IActionResult> GetContacts()
         {
             try
@@ -731,7 +1010,7 @@ namespace CMS.API.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpGet("GetContactById")]
         public async Task<IActionResult> GetContactById(int contactId)
         {
             if (contactId <= 0)
@@ -754,7 +1033,7 @@ namespace CMS.API.Controllers
             }
         }
 
-        [HttpDelete]
+        [HttpDelete("DeleteContact")]
         public async Task<IActionResult> DeleteContact(int contactId)
         {
             if (contactId <= 0)

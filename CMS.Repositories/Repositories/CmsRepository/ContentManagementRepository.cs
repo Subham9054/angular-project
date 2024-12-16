@@ -75,36 +75,7 @@ namespace CMS.Repositories.Repositories.CmsRepository
                 // Handle any other general exceptions
                 throw new Exception("An unexpected error occurred. Please try again later.", ex);
             }
-        }
-
-        public async Task<int> DeletePageLinkAsync(int pageId)
-        {
-            var parameters = new DynamicParameters();
-            try
-            {
-                parameters.Add("P_Action", "Delete");
-                parameters.Add("P_PageId", pageId);
-                parameters.Add("P_PageNameEng", null);
-                parameters.Add("P_PageNameHin", null);
-                parameters.Add("P_IsSubMenu", null);
-                parameters.Add("P_ParentId", null);
-                parameters.Add("P_Position", null);
-                parameters.Add("P_IsExternal", null);
-                parameters.Add("P_URL", null);
-                parameters.Add("P_Icon", null);
-                parameters.Add("P_CreatedBy", 1);
-
-                // Execute the stored procedure for deletion
-                await Connection.ExecuteAsync("USP_ManagePageMenus", parameters, commandType: CommandType.StoredProcedure);
-
-                // Return success code
-                return 1;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("An error occurred while deleting the page nemu link.", ex);
-            }
-        }
+        }        
 
         public async Task<List<PageLinkModel>> GetPageLinkAsync()
         {
@@ -159,6 +130,35 @@ namespace CMS.Repositories.Repositories.CmsRepository
             catch (Exception ex)
             {
                 throw new Exception("An error occurred while retrieving the header menu by ID.", ex);
+            }
+        }
+
+        public async Task<int> DeletePageLinkAsync(int pageId)
+        {
+            var parameters = new DynamicParameters();
+            try
+            {
+                parameters.Add("P_Action", "Delete");
+                parameters.Add("P_PageId", pageId);
+                parameters.Add("P_PageNameEng", null);
+                parameters.Add("P_PageNameHin", null);
+                parameters.Add("P_IsSubMenu", null);
+                parameters.Add("P_ParentId", null);
+                parameters.Add("P_Position", null);
+                parameters.Add("P_IsExternal", null);
+                parameters.Add("P_URL", null);
+                parameters.Add("P_Icon", null);
+                parameters.Add("P_CreatedBy", 1);
+
+                // Execute the stored procedure for deletion
+                await Connection.ExecuteAsync("USP_ManagePageMenus", parameters, commandType: CommandType.StoredProcedure);
+
+                // Return success code
+                return 1;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while deleting the page nemu link.", ex);
             }
         }
 
@@ -247,129 +247,7 @@ namespace CMS.Repositories.Repositories.CmsRepository
 
             return response;
         }
-        #endregion
-
-        #region Manage Page Content Repository
-        public async Task<int> CreateOrUpdatePageContentAsync(PageContentModel creOrUpdPageContent)
-        {
-            var parameters = new DynamicParameters();
-            try
-            {
-                parameters.Add("P_Action", "CreOrUpd");
-
-                if (creOrUpdPageContent.ContentId == 0)
-                {
-                    // Creating a new page content
-                    parameters.Add("P_ContentId", null);
-                    parameters.Add("P_PageTitleEnglish", creOrUpdPageContent.PageTitleEnglish);
-                    parameters.Add("P_PageTitleHindi", creOrUpdPageContent.PageTitleHindi);
-                    parameters.Add("P_PageAlias", creOrUpdPageContent.PageAlias);
-                    parameters.Add("P_ReadMore", creOrUpdPageContent.ReadMore);
-                    parameters.Add("P_LinkType", creOrUpdPageContent.LinkType);
-                    parameters.Add("P_WindowType", creOrUpdPageContent.WindowType);
-                    parameters.Add("P_SnippetEnglish", creOrUpdPageContent.SnippetEnglish);
-                    parameters.Add("P_SnippetHindi", creOrUpdPageContent.SnippetHindi);
-                    parameters.Add("P_ContentEnglish", creOrUpdPageContent.ContentEnglish);
-                    parameters.Add("P_ContentHindi", creOrUpdPageContent.ContentHindi);
-                    parameters.Add("P_FeatureImage", creOrUpdPageContent.FeatureImage);
-                    parameters.Add("P_MetaTitle", creOrUpdPageContent.MetaTitle);
-                    parameters.Add("P_MetaKeyword", creOrUpdPageContent.MetaKeyword);
-                    parameters.Add("P_MetaDescription", creOrUpdPageContent.MetaDescription);
-                    parameters.Add("P_IsPublish", creOrUpdPageContent.IsPublish);
-                    parameters.Add("P_PublishDate", creOrUpdPageContent.PublishDate);
-                    parameters.Add("P_CreatedBy", creOrUpdPageContent.CreatedBy);
-                }
-                else
-                {
-                    // Updating an existing page content
-                    parameters.Add("P_ContentId", creOrUpdPageContent.ContentId);
-                    parameters.Add("P_PageTitleEnglish", creOrUpdPageContent.PageTitleEnglish);
-                    parameters.Add("P_PageTitleHindi", creOrUpdPageContent.PageTitleHindi);
-                    parameters.Add("P_PageAlias", creOrUpdPageContent.PageAlias);
-                    parameters.Add("P_ReadMore", creOrUpdPageContent.ReadMore);
-                    parameters.Add("P_LinkType", creOrUpdPageContent.LinkType);
-                    parameters.Add("P_WindowType", creOrUpdPageContent.WindowType);
-                    parameters.Add("P_SnippetEnglish", creOrUpdPageContent.SnippetEnglish);
-                    parameters.Add("P_SnippetHindi", creOrUpdPageContent.SnippetHindi);
-                    parameters.Add("P_ContentEnglish", creOrUpdPageContent.ContentEnglish);
-                    parameters.Add("P_ContentHindi", creOrUpdPageContent.ContentHindi);
-                    parameters.Add("P_FeatureImage", creOrUpdPageContent.FeatureImage);
-                    parameters.Add("P_MetaTitle", creOrUpdPageContent.MetaTitle);
-                    parameters.Add("P_MetaKeyword", creOrUpdPageContent.MetaKeyword);
-                    parameters.Add("P_MetaDescription", creOrUpdPageContent.MetaDescription);
-                    parameters.Add("P_IsPublish", creOrUpdPageContent.IsPublish);
-                    parameters.Add("P_PublishDate", creOrUpdPageContent.PublishDate);
-                    parameters.Add("P_CreatedBy", creOrUpdPageContent.CreatedBy);
-                }
-
-                // Execute the stored procedure
-                await Connection.ExecuteAsync("USP_ManagePageContentDetails", parameters, commandType: CommandType.StoredProcedure);
-
-                // If no exceptions, return a success code (1 for successful operation)
-                return 1;
-            }
-            catch (SqlException ex)
-            {
-                // Handle specific SQL exceptions like duplicate entry (error 45000 from stored procedure)
-                if (ex.Number == 45000)
-                {
-                    throw new Exception("Duplicate entry for Page Content.");
-                }
-                throw new Exception("An unexpected SQL error occurred. Please try again later.", ex);
-            }
-            catch (Exception ex)
-            {
-                // Handle any other general exceptions
-                throw new Exception("An unexpected error occurred. Please try again later.", ex);
-            }
-        }
-
-        public async Task<int> DeletePageContentAsync(int contentId)
-        {
-            var parameters = new DynamicParameters();
-            try
-            {
-                parameters.Add("P_Action", "Delete");
-                parameters.Add("P_PageTitleEnglish", null);
-                parameters.Add("P_PageTitleHindi", null);
-                parameters.Add("P_PageAlias", null);
-                parameters.Add("P_ReadMore", null);
-                parameters.Add("P_LinkType", null);
-                parameters.Add("P_WindowType", null);
-                parameters.Add("P_SnippetEnglish", null);
-                parameters.Add("P_SnippetHindi", null);
-                parameters.Add("P_ContentEnglish", null);
-                parameters.Add("P_ContentHindi", null);
-                parameters.Add("P_FeatureImage", null);
-                parameters.Add("P_MetaTitle", null);
-                parameters.Add("P_MetaKeyword", null);
-                parameters.Add("P_MetaDescription", null);
-                parameters.Add("P_IsPublish", null);
-                parameters.Add("P_PublishDate", null);
-                parameters.Add("P_CreatedBy", 1);
-
-                // Execute the stored procedure for deletion
-                await Connection.ExecuteAsync("USP_ManagePageContentDetails", parameters, commandType: CommandType.StoredProcedure);
-
-                // Return success code
-                return 1;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("An error occurred while deleting the what is new details.", ex);
-            }
-        }
-
-        public async Task<List<PageContentModel>> GetPageContentsAsync()
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<List<PageContentModel>> GetPageContentByIdAsync(int contentId)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
+        #endregion        
 
         #region Banner Master Page Repository
         public async Task<int> CreateOrUpdateBannerDetailsAsync(BannerModel creOrUpdBanner)
@@ -424,35 +302,7 @@ namespace CMS.Repositories.Repositories.CmsRepository
                 // Handle any other general exceptions
                 throw new Exception("An unexpected error occurred. Please try again later.", ex);
             }
-        }
-
-        public async Task<int> DeleteBannerDetailsAsync(int bannerId)
-        {
-            var parameters = new DynamicParameters();
-            try
-            {
-                parameters.Add("P_Action", "Delete");
-                parameters.Add("P_BannerId", bannerId);
-                parameters.Add("P_BannerImage", null);
-                parameters.Add("P_BannerHeadingEng", null);
-                parameters.Add("P_BannerHeadingHin", null);
-                parameters.Add("P_BannerContentEng", null);
-                parameters.Add("P_BannerContentHin", null);
-                parameters.Add("P_SerialNo", null);
-                parameters.Add("P_IsPublish", null);
-                parameters.Add("P_CreatedBy", 1);
-
-                // Execute the stored procedure for deletion
-                await Connection.ExecuteAsync("USP_ManageBannerDetails", parameters, commandType: CommandType.StoredProcedure);
-
-                // Return success code
-                return 1;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("An error occurred while deleting the banner details.", ex);
-            }
-        }
+        }        
 
         public async Task<List<BannerModel>> GetBannersAsync()
         {
@@ -533,6 +383,156 @@ namespace CMS.Repositories.Repositories.CmsRepository
                 throw new Exception("An error occurred while retrieving the banner details by Name.", ex);
             }
         }
+
+        public async Task<int> DeleteBannerDetailsAsync(int bannerId)
+        {
+            var parameters = new DynamicParameters();
+            try
+            {
+                parameters.Add("P_Action", "Delete");
+                parameters.Add("P_BannerId", bannerId);
+                parameters.Add("P_BannerImage", null);
+                parameters.Add("P_BannerHeadingEng", null);
+                parameters.Add("P_BannerHeadingHin", null);
+                parameters.Add("P_BannerContentEng", null);
+                parameters.Add("P_BannerContentHin", null);
+                parameters.Add("P_SerialNo", null);
+                parameters.Add("P_IsPublish", null);
+                parameters.Add("P_CreatedBy", 1);
+
+                // Execute the stored procedure for deletion
+                await Connection.ExecuteAsync("USP_ManageBannerDetails", parameters, commandType: CommandType.StoredProcedure);
+
+                // Return success code
+                return 1;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while deleting the banner details.", ex);
+            }
+        }
+        #endregion
+
+        #region Manage Page Content Repository
+        public async Task<int> CreateOrUpdatePageContentAsync(PageContentModel creOrUpdPageContent)
+        {
+            var parameters = new DynamicParameters();
+            try
+            {
+                parameters.Add("P_Action", "CreOrUpd");
+
+                if (creOrUpdPageContent.ContentId == 0)
+                {
+                    // Creating a new page content
+                    parameters.Add("P_ContentId", null);
+                    parameters.Add("P_PageTitleEnglish", creOrUpdPageContent.PageTitleEnglish);
+                    parameters.Add("P_PageTitleHindi", creOrUpdPageContent.PageTitleHindi);
+                    parameters.Add("P_PageAlias", creOrUpdPageContent.PageAlias);
+                    parameters.Add("P_ReadMore", creOrUpdPageContent.ReadMore);
+                    parameters.Add("P_LinkType", creOrUpdPageContent.LinkType);
+                    parameters.Add("P_WindowType", creOrUpdPageContent.WindowType);
+                    parameters.Add("P_SnippetEnglish", creOrUpdPageContent.SnippetEnglish);
+                    parameters.Add("P_SnippetHindi", creOrUpdPageContent.SnippetHindi);
+                    parameters.Add("P_ContentEnglish", creOrUpdPageContent.ContentEnglish);
+                    parameters.Add("P_ContentHindi", creOrUpdPageContent.ContentHindi);
+                    parameters.Add("P_FeatureImage", creOrUpdPageContent.FeatureImage);
+                    parameters.Add("P_MetaTitle", creOrUpdPageContent.MetaTitle);
+                    parameters.Add("P_MetaKeyword", creOrUpdPageContent.MetaKeyword);
+                    parameters.Add("P_MetaDescription", creOrUpdPageContent.MetaDescription);
+                    parameters.Add("P_IsPublish", creOrUpdPageContent.IsPublish);
+                    parameters.Add("P_PublishDate", creOrUpdPageContent.PublishDate);
+                    parameters.Add("P_CreatedBy", creOrUpdPageContent.CreatedBy);
+                }
+                else
+                {
+                    // Updating an existing page content
+                    parameters.Add("P_ContentId", creOrUpdPageContent.ContentId);
+                    parameters.Add("P_PageTitleEnglish", creOrUpdPageContent.PageTitleEnglish);
+                    parameters.Add("P_PageTitleHindi", creOrUpdPageContent.PageTitleHindi);
+                    parameters.Add("P_PageAlias", creOrUpdPageContent.PageAlias);
+                    parameters.Add("P_ReadMore", creOrUpdPageContent.ReadMore);
+                    parameters.Add("P_LinkType", creOrUpdPageContent.LinkType);
+                    parameters.Add("P_WindowType", creOrUpdPageContent.WindowType);
+                    parameters.Add("P_SnippetEnglish", creOrUpdPageContent.SnippetEnglish);
+                    parameters.Add("P_SnippetHindi", creOrUpdPageContent.SnippetHindi);
+                    parameters.Add("P_ContentEnglish", creOrUpdPageContent.ContentEnglish);
+                    parameters.Add("P_ContentHindi", creOrUpdPageContent.ContentHindi);
+                    parameters.Add("P_FeatureImage", creOrUpdPageContent.FeatureImage);
+                    parameters.Add("P_MetaTitle", creOrUpdPageContent.MetaTitle);
+                    parameters.Add("P_MetaKeyword", creOrUpdPageContent.MetaKeyword);
+                    parameters.Add("P_MetaDescription", creOrUpdPageContent.MetaDescription);
+                    parameters.Add("P_IsPublish", creOrUpdPageContent.IsPublish);
+                    parameters.Add("P_PublishDate", creOrUpdPageContent.PublishDate);
+                    parameters.Add("P_CreatedBy", creOrUpdPageContent.CreatedBy);
+                }
+
+                // Execute the stored procedure
+                await Connection.ExecuteAsync("USP_ManagePageContentDetails", parameters, commandType: CommandType.StoredProcedure);
+
+                // If no exceptions, return a success code (1 for successful operation)
+                return 1;
+            }
+            catch (SqlException ex)
+            {
+                // Handle specific SQL exceptions like duplicate entry (error 45000 from stored procedure)
+                if (ex.Number == 45000)
+                {
+                    throw new Exception("Duplicate entry for Page Content.");
+                }
+                throw new Exception("An unexpected SQL error occurred. Please try again later.", ex);
+            }
+            catch (Exception ex)
+            {
+                // Handle any other general exceptions
+                throw new Exception("An unexpected error occurred. Please try again later.", ex);
+            }
+        }        
+
+        public async Task<List<PageContentModel>> GetPageContentsAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<List<PageContentModel>> GetPageContentByIdAsync(int contentId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<int> DeletePageContentAsync(int contentId)
+        {
+            var parameters = new DynamicParameters();
+            try
+            {
+                parameters.Add("P_Action", "Delete");
+                parameters.Add("P_PageTitleEnglish", null);
+                parameters.Add("P_PageTitleHindi", null);
+                parameters.Add("P_PageAlias", null);
+                parameters.Add("P_ReadMore", null);
+                parameters.Add("P_LinkType", null);
+                parameters.Add("P_WindowType", null);
+                parameters.Add("P_SnippetEnglish", null);
+                parameters.Add("P_SnippetHindi", null);
+                parameters.Add("P_ContentEnglish", null);
+                parameters.Add("P_ContentHindi", null);
+                parameters.Add("P_FeatureImage", null);
+                parameters.Add("P_MetaTitle", null);
+                parameters.Add("P_MetaKeyword", null);
+                parameters.Add("P_MetaDescription", null);
+                parameters.Add("P_IsPublish", null);
+                parameters.Add("P_PublishDate", null);
+                parameters.Add("P_CreatedBy", 1);
+
+                // Execute the stored procedure for deletion
+                await Connection.ExecuteAsync("USP_ManagePageContentDetails", parameters, commandType: CommandType.StoredProcedure);
+
+                // Return success code
+                return 1;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while deleting the what is new details.", ex);
+            }
+        }
         #endregion
 
         #region What is New Master Page Repository
@@ -588,35 +588,7 @@ namespace CMS.Repositories.Repositories.CmsRepository
                 // Handle any other general exceptions
                 throw new Exception("An unexpected error occurred. Please try again later.", ex);
             }
-        }
-
-        public async Task<int> DeleteWhatIsNewAsync(int whatIsNewId)
-        {
-            var parameters = new DynamicParameters();
-            try
-            {
-                parameters.Add("P_Action", "Delete");
-                parameters.Add("P_WhatIsNewId", whatIsNewId);
-                parameters.Add("P_TitleEnglish", null);
-                parameters.Add("P_TitleHindi", null);
-                parameters.Add("P_DescriptionEnglish", null);
-                parameters.Add("P_DescriptionHindi", null);
-                parameters.Add("P_Document", null);
-                parameters.Add("P_IsPublish", null);
-                parameters.Add("P_PublishDate", null);
-                parameters.Add("P_CreatedBy", 1);
-
-                // Execute the stored procedure for deletion
-                await Connection.ExecuteAsync("USP_WhatIsNewDetails", parameters, commandType: CommandType.StoredProcedure);
-
-                // Return success code
-                return 1;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("An error occurred while deleting the what is new details.", ex);
-            }
-        }
+        }        
 
         public async Task<List<WhatIsNewModel>> GetWhatIsNewsAsync()
         {
@@ -697,6 +669,34 @@ namespace CMS.Repositories.Repositories.CmsRepository
                 throw new Exception("An error occurred while retrieving the what is new details by Name.", ex);
             }
         }
+
+        public async Task<int> DeleteWhatIsNewAsync(int whatIsNewId)
+        {
+            var parameters = new DynamicParameters();
+            try
+            {
+                parameters.Add("P_Action", "Delete");
+                parameters.Add("P_WhatIsNewId", whatIsNewId);
+                parameters.Add("P_TitleEnglish", null);
+                parameters.Add("P_TitleHindi", null);
+                parameters.Add("P_DescriptionEnglish", null);
+                parameters.Add("P_DescriptionHindi", null);
+                parameters.Add("P_Document", null);
+                parameters.Add("P_IsPublish", null);
+                parameters.Add("P_PublishDate", null);
+                parameters.Add("P_CreatedBy", 1);
+
+                // Execute the stored procedure for deletion
+                await Connection.ExecuteAsync("USP_WhatIsNewDetails", parameters, commandType: CommandType.StoredProcedure);
+
+                // Return success code
+                return 1;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while deleting the what is new details.", ex);
+            }
+        }
         #endregion
 
         #region News & Events Master Page Repository
@@ -753,35 +753,6 @@ namespace CMS.Repositories.Repositories.CmsRepository
             {
                 // Handle any other general exceptions
                 throw new Exception("An unexpected error occurred. Please try again later.", ex);
-            }
-        }
-
-        public async Task<int> DeleteEventAsync(int eventId)
-        {
-            var parameters = new DynamicParameters();
-            try
-            {
-                parameters.Add("P_Action", "Delete");
-                parameters.Add("P_EventId", eventId);
-                parameters.Add("P_TitleEnglish", null);
-                parameters.Add("P_TitleHindi", null);
-                parameters.Add("P_DescriptionEnglish", null);
-                parameters.Add("P_DescriptionHindi", null);
-                parameters.Add("P_Thumbnail", null);
-                parameters.Add("P_FeatureImage", null);
-                parameters.Add("P_IsPublish", null);
-                parameters.Add("P_PublishDate", null);
-                parameters.Add("P_CreatedBy", 1);
-
-                // Execute the stored procedure for deletion
-                await Connection.ExecuteAsync("USP_ManageNewsEventsDetails", parameters, commandType: CommandType.StoredProcedure);
-
-                // Return success code
-                return 1;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("An error occurred while deleting the event details.", ex);
             }
         }
 
@@ -867,6 +838,350 @@ namespace CMS.Repositories.Repositories.CmsRepository
                 throw new Exception("An error occurred while retrieving the event details by Name.", ex);
             }
         }
+
+        public async Task<int> DeleteEventAsync(int eventId)
+        {
+            var parameters = new DynamicParameters();
+            try
+            {
+                parameters.Add("P_Action", "Delete");
+                parameters.Add("P_EventId", eventId);
+                parameters.Add("P_TitleEnglish", null);
+                parameters.Add("P_TitleHindi", null);
+                parameters.Add("P_DescriptionEnglish", null);
+                parameters.Add("P_DescriptionHindi", null);
+                parameters.Add("P_Thumbnail", null);
+                parameters.Add("P_FeatureImage", null);
+                parameters.Add("P_IsPublish", null);
+                parameters.Add("P_PublishDate", null);
+                parameters.Add("P_CreatedBy", 1);
+
+                // Execute the stored procedure for deletion
+                await Connection.ExecuteAsync("USP_ManageNewsEventsDetails", parameters, commandType: CommandType.StoredProcedure);
+
+                // Return success code
+                return 1;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while deleting the event details.", ex);
+            }
+        }
+        #endregion
+
+        #region Gallery Master Page Repository
+        public async Task<int> CreateOrUpdateGalleryDetailsAsync(GalleryModel creOrUpdGallery)
+        {
+            var parameters = new DynamicParameters();
+            try
+            {
+                parameters.Add("P_Action", "CreOrUpd");
+
+                if (creOrUpdGallery.GalleryId == 0)
+                {
+                    parameters.Add("P_GalleryId", null);
+                    parameters.Add("P_GalleryCategory", creOrUpdGallery.GalleryCategory);
+                    parameters.Add("P_GalleryType", creOrUpdGallery.GalleryType);
+                    parameters.Add("P_Thumbnail", creOrUpdGallery.Thumbnail);
+                    parameters.Add("P_Image", creOrUpdGallery.Image);
+                    parameters.Add("P_VideoUrl", creOrUpdGallery.VideoUrl);
+                    parameters.Add("P_CaptionEnglish", creOrUpdGallery.CaptionEnglish);
+                    parameters.Add("P_CaptionHindi", creOrUpdGallery.CaptionHindi);
+                    parameters.Add("P_SerialNo", creOrUpdGallery.SerialNo);
+                    parameters.Add("P_IsPublish", creOrUpdGallery.IsPublish);
+                    parameters.Add("P_CreatedBy", creOrUpdGallery.CreatedBy);
+                }
+                else
+                {
+                    parameters.Add("P_GalleryId", creOrUpdGallery.GalleryId);
+                    parameters.Add("P_GalleryCategory", creOrUpdGallery.GalleryCategory);
+                    parameters.Add("P_GalleryType", creOrUpdGallery.GalleryType);
+                    parameters.Add("P_Thumbnail", creOrUpdGallery.Thumbnail);
+                    parameters.Add("P_Image", creOrUpdGallery.Image);
+                    parameters.Add("P_VideoUrl", creOrUpdGallery.VideoUrl);
+                    parameters.Add("P_CaptionEnglish", creOrUpdGallery.CaptionEnglish);
+                    parameters.Add("P_CaptionHindi", creOrUpdGallery.CaptionHindi);
+                    parameters.Add("P_SerialNo", creOrUpdGallery.SerialNo);
+                    parameters.Add("P_IsPublish", creOrUpdGallery.IsPublish);
+                    parameters.Add("P_CreatedBy", creOrUpdGallery.CreatedBy);
+                }
+
+                // Execute the stored procedure
+                await Connection.ExecuteAsync("USP_ManageGalleryDetails", parameters, commandType: CommandType.StoredProcedure);
+
+                // If no exceptions, return a success code (1 for successful operation)
+                return 1;
+            }
+            catch (SqlException ex)
+            {
+                // Handle specific SQL exceptions like duplicate entry (error 45000 from stored procedure)
+                if (ex.Number == 45000)
+                {
+                    throw new Exception("Duplicate entry for Gallery.");
+                }
+                throw new Exception("An unexpected SQL error occurred. Please try again later.", ex);
+            }
+            catch (Exception ex)
+            {
+                // Handle any other general exceptions
+                throw new Exception("An unexpected error occurred. Please try again later.", ex);
+            }
+        }        
+
+        public async Task<List<GalleryModel>> GetGalleryAsync()
+        {
+            DynamicParameters dyParam = new DynamicParameters();
+            try
+            {
+                dyParam.Add("P_Action", "GetAll");
+                dyParam.Add("P_GalleryId", null, DbType.Int32);
+                dyParam.Add("P_GalleryCategory", null, DbType.String);
+                dyParam.Add("P_GalleryType", null, DbType.String);
+                dyParam.Add("P_Thumbnail", null, DbType.String);
+                dyParam.Add("P_Image", null, DbType.String);
+                dyParam.Add("P_VideoUrl", null, DbType.String);
+                dyParam.Add("P_CaptionEnglish", null, DbType.String);
+                dyParam.Add("P_CaptionHindi", null, DbType.String);
+                dyParam.Add("P_SerialNo", null, DbType.Int32);
+                dyParam.Add("P_IsPublish", null, DbType.Boolean);
+                dyParam.Add("P_CreatedBy", null, DbType.Int32);
+
+                var banners = await Connection.QueryAsync<GalleryModel>("USP_ManageGalleryDetails", dyParam, commandType: CommandType.StoredProcedure);
+
+                return banners.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An unexpected error occurred while fetching gallery. Please try again later.", ex);
+            }
+        }
+
+        public async Task<List<GalleryModel>> GetGalleryByIdAsync(int galleryId)
+        {
+            var parameters = new DynamicParameters();
+            try
+            {
+                parameters.Add("P_Action", "GetById");
+                parameters.Add("P_GalleryId", galleryId);
+                parameters.Add("P_GalleryCategory", null, DbType.String);
+                parameters.Add("P_GalleryType", null, DbType.String);
+                parameters.Add("P_Thumbnail", null, DbType.String);
+                parameters.Add("P_Image", null, DbType.String);
+                parameters.Add("P_VideoUrl", null, DbType.String);
+                parameters.Add("P_CaptionEnglish", null, DbType.String);
+                parameters.Add("P_CaptionHindi", null, DbType.String);
+                parameters.Add("P_SerialNo", null, DbType.Int32);
+                parameters.Add("P_IsPublish", null, DbType.Boolean);
+                parameters.Add("P_CreatedBy", null, DbType.Int32);
+
+                // Execute the stored procedure and get the banner by its ID
+                var result = await Connection.QueryAsync<GalleryModel>("USP_ManageGalleryDetails", parameters, commandType: CommandType.StoredProcedure);
+
+                return result.ToList(); // Return the result as a list
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while retrieving the gallery details by ID.", ex);
+            }
+        }
+
+        public async Task<List<GalleryModel>> GetGalleryByNameAsync(string galleryName)
+        {
+            var parameters = new DynamicParameters();
+            try
+            {
+                parameters.Add("P_Action", "GetByName");
+                parameters.Add("P_GalleryId", null, DbType.Int32);
+                parameters.Add("P_GalleryCategory", null, DbType.String);
+                parameters.Add("P_GalleryType", null, DbType.String);
+                parameters.Add("P_Thumbnail", null, DbType.String);
+                parameters.Add("P_Image", null, DbType.String);
+                parameters.Add("P_VideoUrl", null, DbType.String);
+                parameters.Add("P_CaptionEnglish", galleryName);
+                parameters.Add("P_CaptionHindi", null, DbType.String);
+                parameters.Add("P_SerialNo", null, DbType.Int32);
+                parameters.Add("P_IsPublish", null, DbType.Boolean);
+                parameters.Add("P_CreatedBy", null, DbType.Int32);
+
+                // Execute the stored procedure and get the banner by its ID
+                var result = await Connection.QueryAsync<GalleryModel>("USP_ManageGalleryDetails", parameters, commandType: CommandType.StoredProcedure);
+
+                return result.ToList(); // Return the result as a list
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while retrieving the gallery details by Name.", ex);
+            }
+        }
+
+        public async Task<int> DeleteGalleryDetailsAsync(int galleryId)
+        {
+            var parameters = new DynamicParameters();
+            try
+            {
+                parameters.Add("P_Action", "Delete");
+                parameters.Add("P_GalleryId", galleryId);
+                parameters.Add("P_GalleryCategory", null);
+                parameters.Add("P_GalleryType", null);
+                parameters.Add("P_Thumbnail", null);
+                parameters.Add("P_Image", null);
+                parameters.Add("P_VideoUrl", null);
+                parameters.Add("P_CaptionEnglish", null);
+                parameters.Add("P_CaptionHindi", null);
+                parameters.Add("P_SerialNo", null);
+                parameters.Add("P_IsPublish", null);
+                parameters.Add("P_CreatedBy", 1);
+
+                // Execute the stored procedure for deletion
+                await Connection.ExecuteAsync("USP_ManageGalleryDetails", parameters, commandType: CommandType.StoredProcedure);
+
+                // Return success code
+                return 1;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while deleting the gallery details.", ex);
+            }
+        }
+        #endregion
+
+        #region FAQ Master Page Repository
+        public async Task<int> CreateOrUpdateFaqAsync(FaqModel creOrUpdFaq)
+        {
+            var parameters = new DynamicParameters();
+            try
+            {
+                parameters.Add("P_Action", "CreOrUpd");
+                if (creOrUpdFaq.FaqId == 0)
+                {
+                    // Creating a new FAQ
+                    parameters.Add("P_FaqEng", creOrUpdFaq.FaqEng);
+                    parameters.Add("P_FaqHin", creOrUpdFaq.FaqHin);
+                    parameters.Add("P_FaqAnsEng", creOrUpdFaq.FaqAnsEng);
+                    parameters.Add("P_FaqAnsHin", creOrUpdFaq.FaqAnsHin);
+                    parameters.Add("P_CreatedBy", creOrUpdFaq.CreatedBy);
+                    parameters.Add("P_FaqId", null, DbType.Int32);
+                    parameters.Add("P_UpdatedBy", null, DbType.Int32);
+                }
+                else
+                {
+                    // Updating an existing FAQ
+                    parameters.Add("P_FaqId", creOrUpdFaq.FaqId);
+                    parameters.Add("P_FaqEng", creOrUpdFaq.FaqEng);
+                    parameters.Add("P_FaqHin", creOrUpdFaq.FaqHin);
+                    parameters.Add("P_FaqAnsEng", creOrUpdFaq.FaqAnsEng);
+                    parameters.Add("P_FaqAnsHin", creOrUpdFaq.FaqAnsHin);
+                    parameters.Add("P_UpdatedBy", creOrUpdFaq.CreatedBy);
+                    parameters.Add("P_CreatedBy", null, DbType.Int32);
+                }
+
+                // Add output parameter for the result
+                parameters.Add("Result", dbType: DbType.Int32, direction: ParameterDirection.Output);
+
+                // Execute the stored procedure
+                var faq = await Connection.ExecuteAsync("USP_ManageFAQ", parameters, commandType: CommandType.StoredProcedure);
+
+                // Return the result from the output parameter
+                return parameters.Get<int>("Result");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An unexpected error occurred. Please try again later.", ex);
+            }
+        }        
+
+        public async Task<List<FaqModel>> GetFaqsAsync()
+        {
+            DynamicParameters dyParam = new DynamicParameters();
+            try
+            {
+                dyParam.Add("P_Action", "GetFAQs");
+                dyParam.Add("P_FaqId", null, DbType.Int32);
+                dyParam.Add("P_FaqEng", null, DbType.String);
+                dyParam.Add("P_FaqHin", null, DbType.String);
+                dyParam.Add("P_FaqAnsEng", null, DbType.String);
+                dyParam.Add("P_FaqAnsHin", null, DbType.String);
+                dyParam.Add("P_CreatedBy", null, DbType.Int32);
+                dyParam.Add("P_UpdatedBy", null, DbType.Int32);
+
+                // Add output parameter for the result
+                dyParam.Add("@Result", dbType: DbType.Int32, direction: ParameterDirection.Output);
+
+                // Execute the stored procedure to get all FAQs
+                var faqs = await Connection.QueryAsync<FaqModel>("USP_ManageFAQ", dyParam, commandType: CommandType.StoredProcedure);
+
+                // Retrieve the output parameter value if needed
+                int result = dyParam.Get<int>("Result");
+
+                // Return the list of FAQs
+                return faqs.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An unexpected error occurred while fetching FAQs. Please try again later.", ex);
+            }
+        }
+
+        public async Task<List<FaqModel>> GetFaqByIdAsync(int faqId)
+        {
+            DynamicParameters dyParam = new DynamicParameters();
+            try
+            {
+                dyParam.Add("P_Action", "GetFAQById");
+                dyParam.Add("P_FaqId", faqId);
+                dyParam.Add("P_FaqEng", null, DbType.String);
+                dyParam.Add("P_FaqHin", null, DbType.String);
+                dyParam.Add("P_FaqAnsEng", null, DbType.String);
+                dyParam.Add("P_FaqAnsHin", null, DbType.String);
+                dyParam.Add("P_CreatedBy", null, DbType.Int32);
+                dyParam.Add("P_UpdatedBy", null, DbType.Int32);
+
+                // Add output parameter for the result
+                dyParam.Add("@Result", dbType: DbType.Int32, direction: ParameterDirection.Output);
+
+                // Execute the stored procedure to get the FAQ by ID
+                var faqs = await Connection.QueryAsync<FaqModel>("USP_ManageFAQ", dyParam, commandType: CommandType.StoredProcedure);
+
+                // Retrieve the output parameter value if needed
+                int result = dyParam.Get<int>("Result");
+
+                // Return the list of FAQs (could be a single item or an empty list)
+                return faqs.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An unexpected error occurred while fetching the FAQ. Please try again later.", ex);
+            }
+        }
+
+        public async Task<int> DeleteFaqAsync(FaqModel delFaqAsy)
+        {
+            DynamicParameters dyParam = new DynamicParameters();
+            try
+            {
+                dyParam.Add("P_Action", "Delete");
+                dyParam.Add("P_FaqId", delFaqAsy.FaqId);
+                dyParam.Add("P_FaqEng", null, DbType.String);
+                dyParam.Add("P_FaqHin", null, DbType.String);
+                dyParam.Add("P_FaqAnsEng", null, DbType.String);
+                dyParam.Add("P_FaqAnsHin", null, DbType.String);
+                dyParam.Add("P_CreatedBy", null, DbType.Int32);
+                dyParam.Add("P_UpdatedBy", delFaqAsy.CreatedBy);
+
+                // Add output parameter for the result
+                dyParam.Add("@Result", dbType: DbType.Int32, direction: ParameterDirection.Output);
+
+                // Execute the stored procedure to perform the soft delete
+                await Connection.ExecuteAsync("USP_ManageFAQ", dyParam, commandType: CommandType.StoredProcedure);
+
+                // Return the result from the output parameter
+                return dyParam.Get<int>("@Result");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An unexpected error occurred while deleting the FAQ. Please try again later.", ex);
+            }
+        }
         #endregion
 
         #region Contact Details Master Page Repository
@@ -920,34 +1235,7 @@ namespace CMS.Repositories.Repositories.CmsRepository
                 // Handle any other general exceptions
                 throw new Exception("An unexpected error occurred. Please try again later.", ex);
             }
-        }
-
-        public async Task<int> DeleteContactAsync(int contactId)
-        {
-            var parameters = new DynamicParameters();
-            try
-            {
-                parameters.Add("P_Action", "Delete");
-                parameters.Add("P_ContactId", contactId);
-                parameters.Add("P_AddressEnglish", null);
-                parameters.Add("P_AddressHindi", null);
-                parameters.Add("P_MobileEnglish", null);
-                parameters.Add("P_MobileHindi", null);
-                parameters.Add("P_Email", null);
-                parameters.Add("P_EmbeddedUrl", null);
-                parameters.Add("P_CreatedBy", 1);
-
-                // Execute the stored procedure for deletion
-                await Connection.ExecuteAsync("USP_ManageContactDetails", parameters, commandType: CommandType.StoredProcedure);
-
-                // Return success code
-                return 1;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("An error occurred while deleting the contact details.", ex);
-            }
-        }
+        }        
 
         public async Task<List<ContactDetailsModel>> GetContactsAsync()
         {
@@ -997,6 +1285,33 @@ namespace CMS.Repositories.Repositories.CmsRepository
             catch (Exception ex)
             {
                 throw new Exception("An error occurred while retrieving the contact details by ID.", ex);
+            }
+        }
+
+        public async Task<int> DeleteContactAsync(int contactId)
+        {
+            var parameters = new DynamicParameters();
+            try
+            {
+                parameters.Add("P_Action", "Delete");
+                parameters.Add("P_ContactId", contactId);
+                parameters.Add("P_AddressEnglish", null);
+                parameters.Add("P_AddressHindi", null);
+                parameters.Add("P_MobileEnglish", null);
+                parameters.Add("P_MobileHindi", null);
+                parameters.Add("P_Email", null);
+                parameters.Add("P_EmbeddedUrl", null);
+                parameters.Add("P_CreatedBy", 1);
+
+                // Execute the stored procedure for deletion
+                await Connection.ExecuteAsync("USP_ManageContactDetails", parameters, commandType: CommandType.StoredProcedure);
+
+                // Return success code
+                return 1;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while deleting the contact details.", ex);
             }
         }
         #endregion
