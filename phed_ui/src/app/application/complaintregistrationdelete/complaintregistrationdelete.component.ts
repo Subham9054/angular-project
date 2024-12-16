@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { AuthService } from 'src/app/auth.service';
 declare let $: any;
 @Component({
@@ -8,6 +8,20 @@ declare let $: any;
 })
 export class ComplaintregistrationdeleteComponent {
 
+  activeDropdown: number | null = null; // Track the active dropdown index
+
+  toggleDropdown(index: number) {
+      this.activeDropdown = this.activeDropdown === index ? null : index;
+  }
+
+@HostListener('document:click', ['$event'])
+onClickOutside(event: MouseEvent) {
+    const target = event.target as HTMLElement;
+    if (!target.closest('.dropdown')) {
+        this.activeDropdown = null;
+    }
+
+}
 
   isPanelOpen = false; // Start with the panel open
 
