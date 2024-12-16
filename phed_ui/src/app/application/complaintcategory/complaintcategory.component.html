@@ -30,16 +30,16 @@
         <div class="col-xxl-3 col-lg-4 col-md-6">
           <div class="mb-3">
             <label for="complaintCategoryE" class="form-label">Complaint Category </label>
-            <input id="complaintCategoryE" class="form-control" [(ngModel)]="VCH_CATEGORY" name="complaintCategoryE"
-              required />
+            <input id="complaintCategoryE" autocomplete="off" placeholder="Complaint Category" maxlength="50"
+              class="form-control" [(ngModel)]="VCH_CATEGORY" name="complaintCategoryE" required />
           </div>
         </div>
 
         <div class="col-xxl-3 col-lg-4 col-md-6">
           <div class="mb-3">
             <label for="complaintCategoryH" class="form-label">Complaint Category (In Hindi)</label>
-            <input id="complaintCategoryH" class="form-control" [(ngModel)]="NVCH_CATEGORY" name="complaintCategoryH"
-              required />
+            <input id="complaintCategoryH" autocomplete="off" placeholder="Complaint Category (In Hindi)"
+              class="form-control" maxlength="70" [(ngModel)]="NVCH_CATEGORY" name="complaintCategoryH" required />
           </div>
         </div>
       </div>
