@@ -9,6 +9,14 @@ namespace CMS.Repositories.Repositories.CmsRepository
 {
     public interface IContentManagementRepository
     {
+        #region Manage Pages or Menu Interface
+        Task<int> CreateOrUpdatePageLinkAsync(PageLinkModel creOrUpdPageLink);
+        Task<int> DeletePageLinkAsync(int pageId);
+        Task<List<PageLinkModel>> GetPageLinkAsync();
+        Task<List<PageLinkModel>> GetPageLinkByIdAsync(int pageId);
+        Task<List<PageLinkModel>> GetParentMenusAsync();
+        Task<PageManagementModel> GetMenuSubmenuAsync();
+        #endregion
 
         #region Manage Page Content Interface
         Task<int> CreateOrUpdatePageContentAsync(PageContentModel creOrUpdPageContent);
@@ -17,12 +25,35 @@ namespace CMS.Repositories.Repositories.CmsRepository
         Task<List<PageContentModel>> GetPageContentByIdAsync(int contentId);
         #endregion
 
+        #region Banner Master Page Interface
+        Task<int> CreateOrUpdateBannerDetailsAsync(BannerModel creOrUpdBanner);
+        Task<int> DeleteBannerDetailsAsync(int bannerId);
+        Task<List<BannerModel>> GetBannersAsync();
+        Task<List<BannerModel>> GetBannerByIdAsync(int bannerId);
+        Task<List<BannerModel>> GetBannerByNameAsync(string bannerName);
+        #endregion
+
         #region What is New Master Page Interface
         Task<int> CreateOrUpdateWhatIsNewAsync(WhatIsNewModel creOrUpdWhatIsNew);
         Task<int> DeleteWhatIsNewAsync(int whatIsNewId);
         Task<List<WhatIsNewModel>> GetWhatIsNewsAsync();
         Task<List<WhatIsNewModel>> GetWhatIsNewByIdAsync(int whatIsNewId);
         Task<List<WhatIsNewModel>> GetWhatIsNewByNameAsync(string whatIsNewName);
+        #endregion
+
+        #region News & Events Master Page Interface
+        Task<int> CreateOrUpdateEventAsync(NewsEventsModel creOrUpdEvent);
+        Task<int> DeleteEventAsync(int eventId);
+        Task<List<NewsEventsModel>> GetEventsAsync();
+        Task<List<NewsEventsModel>> GetEventByIdAsync(int eventId);
+        Task<List<NewsEventsModel>> GetEventByNameAsync(string eventName);
+        #endregion
+
+        #region Contact Details Master Page Interface
+        Task<int> CreateOrUpdateContactAsync(ContactDetailsModel creOrUpdContact);
+        Task<int> DeleteContactAsync(int contactId);
+        Task<List<ContactDetailsModel>> GetContactsAsync();
+        Task<List<ContactDetailsModel>> GetContactByIdAsync(int eventId);
         #endregion
 
         #region Citizen Mobile App API Interface
