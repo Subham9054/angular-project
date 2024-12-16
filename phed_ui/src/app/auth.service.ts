@@ -70,11 +70,10 @@ export class AuthService {
   private getBannerByNameUrl = 'http://localhost:5097/api/CMS/GetBannerByName';
   private deleteBannerUrl = 'http://localhost:5097/api/CMS/DeleteBanner';
 
-  //private cmsBaseURL = 'http://localhost:7197/api/CMS'; //Base URL for Managing CMS Master Pages
   private cmsBaseURL = 'http://localhost:5234/Api/CMS'; //Base URL for Managing CMS Master Pages
   //private cmsBaseURL = 'http://localhost:5097/api/CMS'; //Base URL for Managing CMS Master Pages
-  private galleryUrl = 'http://localhost:5097/api/Gallery'; //Base URL for Managing Gallery
-  private faqUrl = 'http://localhost:5097/api/FAQ'; //Base URL for Managing FAQs
+  //private galleryUrl = 'http://localhost:5097/api/Gallery'; //Base URL for Managing Gallery
+  //private faqUrl = 'http://localhost:5097/api/FAQ'; //Base URL for Managing FAQs
 
  
   constructor(private http: HttpClient) { }  
@@ -497,7 +496,7 @@ export class AuthService {
   //Methods for Manage Gallery by Debasis Das
   createOrUpdateGallery(formData: FormData, id?: number): Observable<any> {
     const headers = new HttpHeaders();
-    const url = id ? `${this.galleryUrl}/CreateOrUpdateGallery?galleryId=${id}` : `${this.galleryUrl}/CreateOrUpdateGallery`;
+    const url = id ? `${this.cmsBaseURL}/CreateOrUpdateGallery?galleryId=${id}` : `${this.cmsBaseURL}/CreateOrUpdateGallery`;
     
     // Use POST for both creating and updating
     return this.http.post(url, formData, { headers }).pipe(
@@ -506,25 +505,25 @@ export class AuthService {
   }
 
   getGallery(): Observable<any> {
-    return this.http.get(`${this.galleryUrl}/GetGallery`).pipe(
+    return this.http.get(`${this.cmsBaseURL}/GetGallery`).pipe(
       catchError(this.handleError)
     );
   }
 
   getGalleryById(id: number): Observable<any> {
-    return this.http.get(`${this.galleryUrl}/GetGalleryById?galleryId=${id}`).pipe(
+    return this.http.get(`${this.cmsBaseURL}/GetGalleryById?galleryId=${id}`).pipe(
       catchError(this.handleError)
     );
   }
 
   getGalleryByName(name: string): Observable<any> {
-    return this.http.get(`${this.galleryUrl}/GetGalleryByName?galleryName=${name}`).pipe(
+    return this.http.get(`${this.cmsBaseURL}/GetGalleryByName?galleryName=${name}`).pipe(
       catchError(this.handleError)
     );
   } 
 
   deleteGallery(id: number): Observable<any> {
-    return this.http.delete(`${this.galleryUrl}/DeleteGallery?galleryId=${id}`).pipe(
+    return this.http.delete(`${this.cmsBaseURL}/DeleteGallery?galleryId=${id}`).pipe(
       catchError(this.handleError)
     );
   }  
@@ -534,19 +533,19 @@ export class AuthService {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });  
-    return this.http.post(`${this.faqUrl}/CreateOrUpdateFaq`, faqData, { headers }).pipe(
+    return this.http.post(`${this.cmsBaseURL}/CreateOrUpdateFaq`, faqData, { headers }).pipe(
       catchError(this.handleError)
     );
   }
 
   getFAQs(): Observable<any> {
-    return this.http.get(`${this.faqUrl}/GetFaqs`).pipe(
+    return this.http.get(`${this.cmsBaseURL}/GetFaqs`).pipe(
       catchError(this.handleError)
     );
   }
 
   getFAQById(faqId: number): Observable<any> {
-    return this.http.get(`${this.faqUrl}/GetFaqById?faqId=${faqId}`).pipe(
+    return this.http.get(`${this.cmsBaseURL}/GetFaqById?faqId=${faqId}`).pipe(
       catchError(this.handleError)
     );
   }
@@ -556,7 +555,7 @@ export class AuthService {
   // }
 
   deleteFAQ(id: number): Observable<any> {
-    return this.http.delete(`${this.faqUrl}/DeleteFaq`, { body: { FaqId: id } }).pipe(
+    return this.http.delete(`${this.cmsBaseURL}/DeleteFaq`, { body: { FaqId: id } }).pipe(
       catchError(this.handleError)
     );
   }
