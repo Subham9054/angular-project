@@ -398,38 +398,44 @@
                         <td>{{ complaint.nvcH_LANDMARK }}</td>
                         <td>{{ complaint.vchUserName }}</td>
                         <td>
-                            <div class="dropdown">
-                                <button
-                                    class="btn btn-outline-primary btn-sm"
-                                    type="button"
-                                    data-bs-toggle="dropdown"
-                                    aria-expanded="false"
-                                >
-                                    <i class="bi bi-caret-down"></i> Action
-                                </button>
-                                <ul class="dropdown-menu shadow border-0 dropdown-menu-end py-0">
-                                    <li>
-                                        <a
-                                            href="javascript:void(0);"
-                                            class="dropdown-item"
-                                            title="Action History"
-                                            data-bs-toggle="modal"
-                                            data-bs-target="#takehistrory"
-                                        >
-                                            <i class="bi-journal-text me-1"></i> Action History
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <!-- <a href="javascript:void(0);" class="dropdown-item" title="Take Action"
-                                            data-bs-toggle="modal" data-bs-target="#details">
-                                            <i class="bi-clock-history me-1"></i> Take Action
-                                        </a> -->
-                                        <button type="button" class="dropdown-item btn btn-link" title="Take Action" data-bs-toggle="modal" (click)="takeaction(tokenno.value)" data-bs-target="#details">
+                          <div class="dropdown">
+                            <button
+                                id="dropdownToggle{{ i }}"
+                                class="btn btn-outline-primary btn-sm dropdown-toggle"
+                                type="button"
+                                (click)="toggleDropdown(i)"
+                                aria-expanded="false"
+                            >
+                                <i class="bi bi-caret-down"></i> Action
+                            </button>
+                        
+                            <ul class="dropdown-menu" [id]="'dropdownMenu' + i" [class.show]="activeDropdown === i">
+                                <li>
+                                    <a
+                                        href="javascript:void(0);"
+                                        class="dropdown-item"
+                                        title="Action History"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#takehistrory"
+                                    >
+                                        <i class="bi-journal-text me-1"></i> Action History
+                                    </a>
+                                </li>
+                                <li>
+                                    <button
+                                        type="button"
+                                        class="dropdown-item btn btn-link"
+                                        title="Take Action"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#details"
+                                        (click)="takeaction(tokenno.value)"
+                                    >
                                         <i class="bi-clock-history me-1"></i> Take Action
                                     </button>
-                                    </li>
-                                </ul>
-                            </div>
+                                </li>
+                            </ul>
+                        </div>
+                        
                         </td>
                     </tr>
                 </tbody>

@@ -89,34 +89,19 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div class="col-xxl-3 col-xl-4 col-md-6">
-                              <div class="mb-3">
-                                <div class="upload-cus">
-                                  <label class="form-label" for="doc">Upload Document/Photo</label>
-                                  <div class="upload-btn">
-                                    <div *ngFor="let file of uploadedFiles; let i = index" class="d-flex align-items-center position-relative upload-div">
-                                      <!-- Download button visible by default -->
-                                      <a *ngIf="file" href="javascript:void(0);" class="btn-dwonload" title="Download">
-                                        <i class="bi bi-download"></i>
-                                      </a>
-
-                                      <!-- Close button visible on hover -->
-                                      <a *ngIf="file" href="javascript:void(0);" class="x-icon" (click)="removeFile(i)">
-                                        <i class="bi bi-x"></i>
-                                      </a>
+                              <div class="mb-3 ">
+                                  <label class="form-label" for="doc"> Upload Document/Photo</label>
+                                  <div class="input-group">
+                                      <!-- The file input element -->
+                                      <input type="file" [(ngModel)]="formData.txtDocument" name="FileUpload1" id="FileUpload1" (change)="handleFileInput($event)"
+                                        class="form-control" multiple />
                                     </div>
-                                  </div>
-                                </div>
-
-                                <!-- File input field for uploading multiple files -->
-                                <input type="file" name="FileUpload1" id="FileUpload1" class="form-control" (change)="onFileSelected($event)" multiple />
-                                <p class="mb-0 small text-danger text-end">
-                                  Supported File (<span class="fw-bold">.pdf, .doc, .xls, .jpg, .png</span>)
-                                </p>
+      
+                                  <p class="mb-0 small text-danger text-end">Supported File (<span class="fw-bold">.pdf, .doc, .xls, .jpg, .png</span>)</p>
                               </div>
-                            </div>
-
+                          </div>
+                          
 
                             <!-- <div class="col-xxl-3 col-xl-4 col-md-6">
                               <div class="mb-3">
