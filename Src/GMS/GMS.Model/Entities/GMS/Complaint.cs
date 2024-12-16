@@ -188,7 +188,7 @@ namespace GMS.Model.Entities.GMS
         public string VCH_CATEGORY { get; set; }
         public int INT_SUB_CATEGORY_ID { get; set; }
         public string VCH_SUB_CATEGORY { get; set; }
-        public DateTime DTM_CREATED_ON { get; set; } 
+        public DateTime DTM_CREATED_ON { get; set; }
         public string VCH_EMAIL { get; set; }
         public string NVCH_COMPLIANTANT_NAME { get; set; }
         public string VCH_TOKENNO { get; set; }
@@ -233,10 +233,10 @@ namespace GMS.Model.Entities.GMS
         public string VCH_STANDARD_DAYS { get; set; }
     }
 
-    public class GetAllCitizenDetails 
+    public class GetAllCitizenDetails
     {
-        public string token {  get; set; }
-        public string mobno {  get; set; }
+        public string token { get; set; }
+        public string mobno { get; set; }
     }
 
 

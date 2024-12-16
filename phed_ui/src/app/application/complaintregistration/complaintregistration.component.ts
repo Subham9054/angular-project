@@ -279,7 +279,6 @@ export class ComplaintregistrationComponent  {
     }
   }
   onSubmit() {
-    debugger;
     if (!this.filesToUpload || this.filesToUpload.length === 0) {
       alert('Please upload a file before submitting the form.');
       return;

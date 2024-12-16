@@ -35,7 +35,7 @@ namespace CMS.Repositories.Repositories.CmsRepository
                     parameters.Add("P_PageAlias", creOrUpdPageContent.PageAlias);
                     parameters.Add("P_ReadMore", creOrUpdPageContent.ReadMore);
                     parameters.Add("P_LinkType", creOrUpdPageContent.LinkType);
-                    parameters.Add("P_OpenWindow", creOrUpdPageContent.OpenWindow);
+                    parameters.Add("P_WindowType", creOrUpdPageContent.WindowType);
                     parameters.Add("P_SnippetEnglish", creOrUpdPageContent.SnippetEnglish);
                     parameters.Add("P_SnippetHindi", creOrUpdPageContent.SnippetHindi);
                     parameters.Add("P_ContentEnglish", creOrUpdPageContent.ContentEnglish);
@@ -57,7 +57,7 @@ namespace CMS.Repositories.Repositories.CmsRepository
                     parameters.Add("P_PageAlias", creOrUpdPageContent.PageAlias);
                     parameters.Add("P_ReadMore", creOrUpdPageContent.ReadMore);
                     parameters.Add("P_LinkType", creOrUpdPageContent.LinkType);
-                    parameters.Add("P_OpenWindow", creOrUpdPageContent.OpenWindow);
+                    parameters.Add("P_WindowType", creOrUpdPageContent.WindowType);
                     parameters.Add("P_SnippetEnglish", creOrUpdPageContent.SnippetEnglish);
                     parameters.Add("P_SnippetHindi", creOrUpdPageContent.SnippetHindi);
                     parameters.Add("P_ContentEnglish", creOrUpdPageContent.ContentEnglish);
@@ -92,6 +92,43 @@ namespace CMS.Repositories.Repositories.CmsRepository
                 throw new Exception("An unexpected error occurred. Please try again later.", ex);
             }
         }
+
+        public async Task<int> DeletePageContentAsync(int contentId)
+        {
+            var parameters = new DynamicParameters();
+            try
+            {
+                parameters.Add("P_Action", "Delete");
+                parameters.Add("P_PageTitleEnglish", null);
+                parameters.Add("P_PageTitleHindi", null);
+                parameters.Add("P_PageAlias", null);
+                parameters.Add("P_ReadMore", null);
+                parameters.Add("P_LinkType", null);
+                parameters.Add("P_WindowType", null);
+                parameters.Add("P_SnippetEnglish", null);
+                parameters.Add("P_SnippetHindi", null);
+                parameters.Add("P_ContentEnglish", null);
+                parameters.Add("P_ContentHindi", null);
+                parameters.Add("P_FeatureImage", null);
+                parameters.Add("P_MetaTitle", null);
+                parameters.Add("P_MetaKeyword", null);
+                parameters.Add("P_MetaDescription", null);
+                parameters.Add("P_IsPublish", null);
+                parameters.Add("P_PublishDate", null);
+                parameters.Add("P_CreatedBy", 1);
+
+                // Execute the stored procedure for deletion
+                await Connection.ExecuteAsync("USP_ManagePageContentDetails", parameters, commandType: CommandType.StoredProcedure);
+
+                // Return success code
+                return 1;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while deleting the what is new details.", ex);
+            }
+        }
+
         public async Task<List<PageContentModel>> GetPageContentsAsync()
         {
             throw new NotImplementedException();
@@ -100,12 +137,7 @@ namespace CMS.Repositories.Repositories.CmsRepository
         public async Task<List<PageContentModel>> GetPageContentByIdAsync(int contentId)
         {
             throw new NotImplementedException();
-        }
-
-        public async Task<int> DeletePageContentAsync(int contentId)
-        {
-            throw new NotImplementedException();
-        }
+        }        
         #endregion
 
         #region What is New Master Page Repository
@@ -123,7 +155,7 @@ namespace CMS.Repositories.Repositories.CmsRepository
                     parameters.Add("P_TitleHindi", creOrUpdWhatIsNew.TitleHindi);
                     parameters.Add("P_DescriptionEnglish", creOrUpdWhatIsNew.DescriptionEnglish);
                     parameters.Add("P_DescriptionHindi", creOrUpdWhatIsNew.DescriptionHindi);
-                    parameters.Add("P_Document", creOrUpdWhatIsNew.Document);
+                    parameters.Add("P_Document", creOrUpdWhatIsNew.DocumentFile);
                     parameters.Add("P_IsPublish", creOrUpdWhatIsNew.IsPublish);
                     parameters.Add("P_PublishDate", creOrUpdWhatIsNew.PublishDate);
                     parameters.Add("P_CreatedBy", creOrUpdWhatIsNew.CreatedBy);
@@ -135,7 +167,7 @@ namespace CMS.Repositories.Repositories.CmsRepository
                     parameters.Add("P_TitleHindi", creOrUpdWhatIsNew.TitleHindi);
                     parameters.Add("P_DescriptionEnglish", creOrUpdWhatIsNew.DescriptionEnglish);
                     parameters.Add("P_DescriptionHindi", creOrUpdWhatIsNew.DescriptionHindi);
-                    parameters.Add("P_Document", creOrUpdWhatIsNew.Document);
+                    parameters.Add("P_Document", creOrUpdWhatIsNew.DocumentFile);
                     parameters.Add("P_IsPublish", creOrUpdWhatIsNew.IsPublish);
                     parameters.Add("P_PublishDate", creOrUpdWhatIsNew.PublishDate);
                     parameters.Add("P_CreatedBy", creOrUpdWhatIsNew.CreatedBy);

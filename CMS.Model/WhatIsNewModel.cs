@@ -13,7 +13,7 @@ namespace CMS.Model
         public string? TitleHindi { get; set; }
         public string? DescriptionEnglish { get; set; }
         public string? DescriptionHindi { get; set; }
-        public string? Document { get; set; }
+        public string? DocumentFile { get; set; }
         public bool IsPublish { get; set; }
         public DateTime PublishDate { get; set; }
         public int? CreatedBy { get; set; }

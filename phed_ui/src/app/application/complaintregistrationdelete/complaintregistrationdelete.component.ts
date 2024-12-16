@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { AuthService } from 'src/app/auth.service';
 import { AlertHelper } from 'src/app/core/helper/alert-helper';
 import { LoadingService } from 'src/app/loading.service';
@@ -10,6 +10,20 @@ declare let $: any;
 })
 export class ComplaintregistrationdeleteComponent {
 
+  activeDropdown: number | null = null; // Track the active dropdown index
+
+  toggleDropdown(index: number) {
+      this.activeDropdown = this.activeDropdown === index ? null : index;
+  }
+
+@HostListener('document:click', ['$event'])
+onClickOutside(event: MouseEvent) {
+    const target = event.target as HTMLElement;
+    if (!target.closest('.dropdown')) {
+        this.activeDropdown = null;
+    }
+
+}
 
   isPanelOpen = false; // Start with the panel open
 

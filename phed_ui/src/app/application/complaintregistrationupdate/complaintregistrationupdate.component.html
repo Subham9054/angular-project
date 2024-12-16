@@ -20,10 +20,13 @@
                         </li>
 
 
-                        <li class="filter-dropdown dropdown">
-                            <a href="javascript:void(0)" data-bs-toggle="dropdown" (click)="openDropdown()">
-                                <i class="bi bi-funnel"></i> Filter
-                            </a>
+                      
+                        
+
+                            <li class="filter-dropdown dropdown">
+                                <a href="javascript:void(0)" data-bs-toggle="dropdown" (click)="toggleDropdownnew()">
+                                    <i class="bi bi-funnel"></i> Filter
+                                </a>
 
                             <div class="dropdown-menu dropdown-menu-end filter-dropdown-menu shadow border-0"
                                 [ngClass]="{ 'show': isDropdownOpen }" (click)="$event.stopPropagation()">
@@ -169,11 +172,16 @@
                             </div>
 
                         </li>
+
+                        
                     </ul>
                 </div>
             </div>
         </div>
     </div>
+
+
+    
 
 
     <!-- <div class="view-forms pb-1">
@@ -249,19 +257,20 @@
                         <td>{{ (currentPage - 1) * pageSize + i + 1 }}</td>
                         <td>
                             <a href="javascript:void(0);"
-                                (click)="GetAllDetailsagainsttokenurl(complaint.inT_CATEGORY_ID,complaint.inT_SUB_CATEGORY_ID,complaint.vcH_TOKENNO)"
-                                data-bs-toggle="modal" data-bs-target="#token">
-                                {{ complaint.vcH_TOKENNO }}
-
-                            </a>
-                            <input type="hidden" [value]="complaint.inT_CATEGORY_ID" #catid />
-                            <input type="hidden" [value]="complaint.inT_SUB_CATEGORY_ID" #subcatid />
-                            <input type="hidden" [value]="complaint.vcH_TOKENNO" #tokenno />
+                            (click)="GetAllDetailsagainsttokenurl(complaint.inT_CATEGORY_ID,complaint.inT_SUB_CATEGORY_ID,complaint.vcH_TOKENNO)"
+                            data-bs-toggle="modal" data-bs-target="#token">
+                            {{ complaint.vcH_TOKENNO }}
+                        </a>
+                        <input type="hidden" [value]="complaint.inT_CATEGORY_ID" #catid />
+                        <input type="hidden" [value]="complaint.inT_SUB_CATEGORY_ID" #subcatid />
+                        <input type="hidden" [value]="complaint.vcH_TOKENNO" #tokenno />
                         </td>
                         <td>{{ complaint.nvcH_COMPLIANTANT_NAME }}</td>
                         <td>{{ complaint.nvcH_COMPLIANT_DETAILS }}</td>
                         <td>
-                            <span class="badge" [ngClass]="{
+                            <span
+                                class="badge"
+                                [ngClass]="{
                                     'text-bg-primary': complaint.vcH_COMPLIANT_STATUS === 'Registered & Open',
                                     'text-bg-info-inprogress': complaint.vcH_COMPLIANT_STATUS === 'Inprogress',
                                     'text-bg-success': complaint.vcH_COMPLIANT_STATUS === 'Resolved',
@@ -272,7 +281,8 @@
                                     'text-bg-light': complaint.vcH_COMPLIANT_STATUS === 'Reopen',
                                     'text-bg-danger-rejected': complaint.vcH_COMPLIANT_STATUS === 'Rejected by call center executive',
                                     'text-bg-info-forwarded': complaint.vcH_COMPLIANT_STATUS === 'Forwarded'
-                                }">
+                                }"
+                            >
                                 {{ complaint.vcH_COMPLIANT_STATUS }}
                             </span>
                         </td>
@@ -281,46 +291,68 @@
                         <td>{{ complaint.vchUserName }}</td>
                         <td>
                             <div class="dropdown">
-                                <button class="btn btn-outline-primary btn-sm" type="button" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
+                                <button
+                                    id="dropdownToggle{{ i }}"
+                                    class="btn btn-outline-primary btn-sm dropdown-toggle"
+                                    type="button"
+                                    (click)="toggleDropdown(i)"
+                                    aria-expanded="false"
+                                >
                                     <i class="bi bi-caret-down"></i> Action
                                 </button>
-                                <ul class="dropdown-menu shadow border-0 dropdown-menu-end py-0">
+                            
+                                <ul class="dropdown-menu" [id]="'dropdownMenu' + i" [class.show]="activeDropdown === i">
                                     <li>
-                                        <a href="javascript:void(0);" class="dropdown-item" title="Action History"
-                                            data-bs-toggle="modal" data-bs-target="#takehistrory">
+                                        <a
+                                            href="javascript:void(0);"
+                                            class="dropdown-item"
+                                            title="Action History"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#takehistrory"
+                                        >
                                             <i class="bi-journal-text me-1"></i> Action History
                                         </a>
                                     </li>
                                     <li>
-                                        <!-- <a href="javascript:void(0);" class="dropdown-item" title="Take Action"
-                                            data-bs-toggle="modal" data-bs-target="#details">
-                                            <i class="bi-clock-history me-1"></i> Take Action
-                                        </a> -->
-                                        <button type="button" class="dropdown-item btn btn-link" title="Take Action"
-                                            data-bs-toggle="modal" (click)="takeaction(tokenno.value)"
-                                            data-bs-target="#details">
+                                        <button
+                                            type="button"
+                                            class="dropdown-item btn btn-link"
+                                            title="Take Action"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#details"
+                                            (click)="takeaction(tokenno.value)"
+                                        >
                                             <i class="bi-clock-history me-1"></i> Take Action
                                         </button>
                                     </li>
                                 </ul>
                             </div>
+                            
                         </td>
                     </tr>
+                    
                 </tbody>
             </table>
         </div>
         <div class="pagination-controls d-flex justify-content-between align-items-center mt-3">
-            <button class="btn btn-primary" [disabled]="currentPage === 1" (click)="goToPage(currentPage - 1)">
+            <button
+                class="btn btn-primary"
+                [disabled]="currentPage === 1"
+                (click)="goToPage(currentPage - 1)"
+            >
                 Previous
             </button>
             <span>Page {{ currentPage }} of {{ totalPages }}</span>
-            <button class="btn btn-primary" [disabled]="currentPage === totalPages" (click)="goToPage(currentPage + 1)">
+            <button
+                class="btn btn-primary"
+                [disabled]="currentPage === totalPages"
+                (click)="goToPage(currentPage + 1)"
+            >
                 Next
             </button>
         </div>
     </div>
-
+    
 
 </div>
 
@@ -606,7 +638,7 @@
     <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header justify-content-between">
-                <h1 class="modal-title fs-5" id="tokenLabel">Complaint Details</h1>
+                <h1 class="modal-title fs-5" id="tokenLabel" >Complaint Details</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -625,8 +657,7 @@
                                     <div class="col-xl-3 col-md-6">
                                         <div class="mb-3">
                                             <label class="form-label">Registration Date</label>
-                                            <label class="form-value">{{item.dtM_CREATED_ON | date:
-                                                'dd-MMM-yyyy'}}</label>
+                                            <label class="form-value">{{item.dtM_CREATED_ON | date: 'dd-MMM-yyyy'}}</label>
                                         </div>
                                     </div>
                                     <div class="col-xl-3 col-md-6">
@@ -653,18 +684,18 @@
                                             <label class="form-value">{{item.vcH_SUB_CATEGORY}}</label>
                                         </div>
                                     </div>
-
-
+    
+    
                                     <div class="col-xl-3 col-md-6">
                                         <div class="mb-3">
                                             <label class="form-label">Current Status</label>
                                             <label class="form-value">{{item.vcH_COMPLIANT_STATUS}}</label>
                                         </div>
                                     </div>
-
+    
                                 </div>
                             </div>
-
+                            
                         </div>
                     </div>
                     <div class="col-xl-8">
@@ -904,8 +935,7 @@
                                                 <strong class="d-block">JE Pandaul (Level 1, +91-7050555110)</strong>
                                             </li>
                                             <li>Action Taken on- <strong class="d-block">12-Nov-2024</strong></li>
-                                            <li>Status- <strong class="d-block"><span
-                                                        class="badge text-bg-primary">Complaint Received</span></strong>
+                                            <li>Status- <strong class="d-block"><span class="badge text-bg-primary">Complaint Received</span></strong>
                                             </li>
                                         </ul>
                                     </div>

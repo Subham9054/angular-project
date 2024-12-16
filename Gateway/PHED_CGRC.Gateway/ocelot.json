@@ -884,6 +884,54 @@
       }
     },
     {
+      "UpstreamPathTemplate": "/gateway/GetallDemo",
+      "UpstreamHttpMethod": [
+        "Get"
+      ],
+      "DownstreamPathTemplate": "/api/Dropdown/GetallDemo",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7225
+        }
+      ],
+      "RateLimitOptions": {
+        "DisableRateLimitHeaders": false,
+        "QuotaExceededMessage": "<Add your message>",
+        "HttpStatusCode": 9999,
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 1
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/GetallCategoryAndSubcategory",
+      "UpstreamHttpMethod": [
+        "Get"
+      ],
+      "DownstreamPathTemplate": "/api/Dropdown/GetallCategoryAndSubcategory",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7225
+        }
+      ],
+      "RateLimitOptions": {
+        "DisableRateLimitHeaders": false,
+        "QuotaExceededMessage": "<Add your message>",
+        "HttpStatusCode": 9999,
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 1
+      }
+    },
+    {
       "UpstreamPathTemplate": "/gateway/DetailcomplaintRegistration",
       "UpstreamHttpMethod": [
         "Post"
@@ -1123,7 +1171,7 @@
         "Limit": 1
       }
     },
-    //jejcms
+    //Debasis_cms
     {
       "UpstreamPathTemplate": "/gateway/GetCmsComplaintCategory",
       "UpstreamHttpMethod": [

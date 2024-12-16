@@ -123,7 +123,7 @@ namespace GMS.API
                 // Process the complaint registration
                 var result = await _MANAGE_COMPLAINTDETAILS_CONFIGRepository.ComplaintRegistrationdetail(complaint);
 
-                if (result!=null)
+                if (result != null)
                 {
                     return Ok(new
                     {
@@ -171,7 +171,7 @@ namespace GMS.API
             if (token == null)
             {
                 return NotFound("Please provide token number");
-                
+
             }
             try
             {
@@ -248,7 +248,7 @@ namespace GMS.API
         {
             if (string.IsNullOrEmpty(token))
             {
-                return BadRequest(new { Message = "Please provide a valid token number.",StatusCode=400 }); // 400 Bad Request
+                return BadRequest(new { Message = "Please provide a valid token number.", StatusCode = 400 }); // 400 Bad Request
             }
 
             try
@@ -257,15 +257,15 @@ namespace GMS.API
 
                 if (result == null || !result.Any())
                 {
-                    return NotFound(new { Message = "No records found for the specified token.",StatusCode=404 }); // 404 Not Found
+                    return NotFound(new { Message = "No records found for the specified token.", StatusCode = 404 }); // 404 Not Found
                 }
 
-                return Ok(new { Message = "Citizen address details retrieved successfully.", Data = result,StatusCode=200 }); // 200 OK
+                return Ok(new { Message = "Citizen address details retrieved successfully.", Data = result, StatusCode = 200 }); // 200 OK
             }
             catch (Exception ex)
             {
 
-                return StatusCode(500, new { Message = "An error occurred while retrieving citizen address details.", Error = ex.Message,StatusCode=500 }); // 500 Internal Server Error
+                return StatusCode(500, new { Message = "An error occurred while retrieving citizen address details.", Error = ex.Message, StatusCode = 500 }); // 500 Internal Server Error
             }
         }
 
@@ -275,7 +275,7 @@ namespace GMS.API
         {
             if (string.IsNullOrEmpty(token))
             {
-                return BadRequest(new { Message = "Please provide a valid token number." }); 
+                return BadRequest(new { Message = "Please provide a valid token number." });
             }
 
             try
@@ -284,13 +284,13 @@ namespace GMS.API
 
                 if (result == null)
                 {
-                    return NotFound(new { Message = "No records found for the specified token.",StatusCode=400  }); 
+                    return NotFound(new { Message = "No records found for the specified token.", StatusCode = 400 });
                 }
-                return Ok(new { Message = "Citizen address details updated successfully.", Data = result,StatusCode=200 }); 
+                return Ok(new { Message = "Citizen address details updated successfully.", Data = result, StatusCode = 200 });
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new { Message = "An error occurred while updating citizen address details.", Error = ex.Message,StatusCode=500 }); // 500 Internal Server Error
+                return StatusCode(500, new { Message = "An error occurred while updating citizen address details.", Error = ex.Message, StatusCode = 500 }); // 500 Internal Server Error
             }
         }
 
@@ -298,9 +298,9 @@ namespace GMS.API
         [HttpPost("GetAllCitizenDetails")]
         public async Task<IActionResult> GetAllCitizenDetails([FromBody] GetAllCitizenDetails getAllCitizenDetails)
         {
-            if (string.IsNullOrEmpty( getAllCitizenDetails.token) && string.IsNullOrEmpty(getAllCitizenDetails.mobno))
+            if (string.IsNullOrEmpty(getAllCitizenDetails.token) && string.IsNullOrEmpty(getAllCitizenDetails.mobno))
             {
-                return StatusCode(200,new
+                return StatusCode(200, new
                 {
                     StatusCode = 400,
                     Message = "Please provide both token number and mobile number."
@@ -313,14 +313,14 @@ namespace GMS.API
 
                 if (result == null || !result.Any())
                 {
-                    return StatusCode(200,new
+                    return StatusCode(200, new
                     {
                         StatusCode = 201,
                         Message = "No records found for the specified token and mobile number."
                     });
                 }
 
-                return StatusCode(400,new
+                return StatusCode(400, new
                 {
                     StatusCode = 200,
                     Message = "Records retrieved successfully.",
@@ -342,7 +342,7 @@ namespace GMS.API
         [HttpPost("GetAllComplaints")]
         public async Task<IActionResult> GetAllComplaints([FromBody] OtpGenerate getallcomplaint)
         {
-            if ( string.IsNullOrEmpty(getallcomplaint.mobno))
+            if (string.IsNullOrEmpty(getallcomplaint.mobno))
             {
                 return NotFound(new
                 {
@@ -412,7 +412,7 @@ namespace GMS.API
                 return Ok(new
                 {
                     StatusCode = 200,
-                    Message = "Your OTP is "+result,
+                    Message = "Your OTP is " + result,
                     Data = result // Include any additional data, if needed
                 });
             }
@@ -435,11 +435,11 @@ namespace GMS.API
         {
             if (request == null || string.IsNullOrWhiteSpace(request.PhoneNumber) || string.IsNullOrWhiteSpace(request.Otp))
             {
-                return StatusCode(200,new {StatusCode=400, Message = "Phone number and OTP are required." });
+                return StatusCode(200, new { StatusCode = 400, Message = "Phone number and OTP are required." });
             }
-            if(request.PhoneNumber.Length != 10)
+            if (request.PhoneNumber.Length != 10)
             {
-                return StatusCode(200,new { StatusCode = 400, Message = "Please Enter Valid Phone number" });
+                return StatusCode(200, new { StatusCode = 400, Message = "Please Enter Valid Phone number" });
             }
             if (request.Otp.Length != 6)
             {
@@ -470,7 +470,7 @@ namespace GMS.API
                     return StatusCode(500, new { StatusCode = 500, Message = "Error marking OTP as used." });
                 }
 
-                return StatusCode(200,new {StatusCode=200, Message = "OTP validated successfully." });
+                return StatusCode(200, new { StatusCode = 200, Message = "OTP validated successfully." });
             }
             catch (Exception ex)
             {
