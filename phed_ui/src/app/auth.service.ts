@@ -17,7 +17,6 @@ export class AuthService {
 
   private apiUrl = `${this.baseUrl}/gateway/Login`; // Your API URL for login
   private userregdurl=`${this.baseUrl}/gateway/UserRegistration`;
-  private registrationApiUrl = `${this.baseUrl}/gateway/DetailcomplaintRegistration`;
   private complaintApiUrl = `${this.baseUrl}/gateway/ComplaintCategory`;
   private getComplaintApiUrl = `${this.baseUrl}/gateway/GetallComplaint`;
   private updateComplaintApiUrl = `${this.baseUrl}/gateway/UpdateComplaint`;
@@ -45,8 +44,17 @@ export class AuthService {
   private getallsubcaturl = `${this.baseUrl}/gateway/ViewComplaintSubCategory`;
   private updatesubcaturl=`${this.baseUrl}/gateway/UpdateComplaintSubCategory`;
   private deletesubcaturl= `${this.baseUrl}/gateway/DeleteSubcat`;
+  //GMS
+  private registrationApiUrl = `${this.baseUrl}/gateway/DetailcomplaintRegistration`;
   private gmsComplaintdetailurl=`${this.baseUrl}/gateway/GetGmsComplaintdetails`;
   private gmstakeactionurl=`${this.baseUrl}/gateway/Getgmstakeaction`;
+  private GetAllDetailsagainsttokenurl=`${this.baseUrl}/gateway/GetAllDetailsagainsttoken`;
+  private GetCitizenAddressDetailsurl=`${this.baseUrl}/gateway/GetCitizenAddressDetails`;
+  private UpdateCitizenAddressDetailsurl=`${this.baseUrl}/gateway/UpdateCitizenAddressDetails`;
+  private GetAllCitizenDetailsurl=`${this.baseUrl}/gateway/GetAllCitizenDetails`;
+  private GetAllComplaintsurl=`${this.baseUrl}/gateway/GetAllComplaints`;
+  private Otpgenerateurl=`${this.baseUrl}/gateway/Otpgenerate`;
+  private ValidateOtpurl=`${this.baseUrl}/gateway/ValidateOtp`;
 
   //For Content Management URLs
   private getParentMenusUrl = 'http://localhost:5097/api/CMS/GetParentMenus';
@@ -479,6 +487,13 @@ export class AuthService {
     );
   }
 
+  GetAllDetailsagainsttokenurlWithToken(TOKEN: string, INT_CATEGORY_ID: string, INT_SUB_CATEGORY_ID: string): Observable<any> {
+    // Make HTTP request with proper API URL and query parameters
+ 
+    return this.http.get<any>(`${this.GetAllDetailsagainsttokenurl}?token=${TOKEN}&catid=${INT_CATEGORY_ID}&subcatid=${INT_SUB_CATEGORY_ID}`).pipe(
+      catchError(this.handleError)
+    );
+  }
   //Methods for Manage Gallery by Debasis Das
   createOrUpdateGallery(formData: FormData, id?: number): Observable<any> {
     const headers = new HttpHeaders();

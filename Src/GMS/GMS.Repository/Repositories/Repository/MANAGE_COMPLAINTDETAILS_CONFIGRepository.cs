@@ -44,7 +44,7 @@ namespace GMS.Repository.Repositories.Interfaces.MANAGE_COMPLAINTDETAILS_CONFIG
                 parameters.Add("@blockid", complaint.INT_BLOCK);
                 parameters.Add("@panchayatid", complaint.INT_PANCHAYAT);
                 parameters.Add("@intVillage", complaint.INT_VILLAGE);
-                parameters.Add("@intward",complaint.INT_WARD);
+                parameters.Add("@intward", complaint.INT_WARD);
                 parameters.Add("@address", complaint.NVCH_ADDRESS);
                 parameters.Add("@complaintdetail", complaint.NVCH_COMPLIANT_DETAILS);
                 parameters.Add("@filename", complaint.VCH_COMPLAINT_FILE);
@@ -95,7 +95,7 @@ namespace GMS.Repository.Repositories.Interfaces.MANAGE_COMPLAINTDETAILS_CONFIG
                 throw;
             }
         }
-     
+
         public async Task<List<GetCitizen>> GetCitizendetails(string token)
         {
             try
@@ -111,14 +111,14 @@ namespace GMS.Repository.Repositories.Interfaces.MANAGE_COMPLAINTDETAILS_CONFIG
             }
         }
 
-        public async Task<List<GetCitizenall>> GetallCitizendetails( string token,string mobno)
+        public async Task<List<GetCitizenall>> GetallCitizendetails(string token, string mobno)
         {
             try
             {
                 var parameters = new DynamicParameters();
                 parameters.Add("p_token", token);
                 parameters.Add("p_mobno", mobno);
-                
+
                 var result = await Connection.QueryAsync<GetCitizenall>("GetCitizenallDetails", parameters, commandType: CommandType.StoredProcedure);
                 return result.ToList();
             }
@@ -128,7 +128,7 @@ namespace GMS.Repository.Repositories.Interfaces.MANAGE_COMPLAINTDETAILS_CONFIG
             }
         }
 
-        public async Task<List<GetCitizenall>> GetallComplaints( string mobno)
+        public async Task<List<GetCitizenall>> GetallComplaints(string mobno)
         {
             try
             {
@@ -144,7 +144,7 @@ namespace GMS.Repository.Repositories.Interfaces.MANAGE_COMPLAINTDETAILS_CONFIG
         }
 
 
-        public async Task<bool> UpdateCitizendetails(string token,UpdateCitizen updateCitizen)
+        public async Task<bool> UpdateCitizendetails(string token, UpdateCitizen updateCitizen)
         {
             try
             {
@@ -203,7 +203,7 @@ namespace GMS.Repository.Repositories.Interfaces.MANAGE_COMPLAINTDETAILS_CONFIG
                 var parameters = new DynamicParameters();
                 parameters.Add("p_phoneNumber", phoneNumber.Trim());
                 parameters.Add("p_otp", otp.Trim());
-                res = await Connection.QueryFirstOrDefaultAsync<OTPDetails>("ValidateOtp", parameters,commandType: CommandType.StoredProcedure);
+                res = await Connection.QueryFirstOrDefaultAsync<OTPDetails>("ValidateOtp", parameters, commandType: CommandType.StoredProcedure);
                 Console.WriteLine($"Query Result: {res}");
                 return res;
             }
@@ -239,7 +239,46 @@ namespace GMS.Repository.Repositories.Interfaces.MANAGE_COMPLAINTDETAILS_CONFIG
             }
         }
 
+        public async Task<List<ComplaintDetailsTokenResponse>> Getalldetailagaintstoken(string token, int catid, int subcatid)
+        {
+            try
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("p_VCH_TOKENNO", token);
+                parameters.Add("categoryid", catid);
+                parameters.Add("subcategoryid", subcatid);
 
+                using (var multi = await Connection.QueryMultipleAsync("USP_GetComplaintDetailstoken", parameters, commandType: CommandType.StoredProcedure))
+                {
+                    var complaintDetails = multi.Read<ComplaintDetailsTokenResponse>().ToList();
+
+                    foreach (var complaint in complaintDetails)
+                    {
+                        complaint.Intimations = multi.Read<IntimationDetails>().ToList();
+                    }
+
+                    foreach (var complaint in complaintDetails)
+                    {
+                        complaint.ActionSummaries = multi.Read<ActionSummary>().ToList();
+                    }
+
+                    foreach (var complaint in complaintDetails)
+                    {
+                        complaint.Escalations = multi.Read<EscalationDetails>().ToList();
+                    }
+
+                    return complaintDetails;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle exception (optional: log the exception)
+                throw;
+            }
+        }
+
+
+        #region Codegencode
         public async Task<int> INSERT_MANAGE_COMPLAINTDETAILS_CONFIG(MANAGE_COMPLAINTDETAILS_CONFIG_Model TBL)
         {
             var p = new DynamicParameters();
@@ -614,5 +653,7 @@ namespace GMS.Repository.Repositories.Interfaces.MANAGE_COMPLAINTDETAILS_CONFIG
             return results.ToList();
 
         }
+        #endregion
+
     }
 }

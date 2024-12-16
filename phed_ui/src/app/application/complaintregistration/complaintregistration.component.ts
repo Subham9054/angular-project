@@ -258,12 +258,22 @@ export class ComplaintregistrationComponent  {
   //     this.fileToUpload = null;
   //   }
   // }
+  // handleFileInput(event: Event) {
+  //   const input = event.target as HTMLInputElement;
+  //   if (input.files && input.files.length > 0) {
+  //     // Convert FileList to an array and store it
+  //     this.filesToUpload = Array.from(input.files);
+
+  //   } else {
+  //     this.filesToUpload = [];
+  //   }
+  // }
   handleFileInput(event: Event) {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
       // Convert FileList to an array and store it
       this.filesToUpload = Array.from(input.files);
-
+      
     } else {
       this.filesToUpload = [];
     }
