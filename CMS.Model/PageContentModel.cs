@@ -14,7 +14,7 @@ namespace CMS.Model
         public string? PageAlias { get; set; }
         public string? ReadMore { get; set; }
         public string? LinkType { get; set; }
-        public string? OpenWindow { get; set; }
+        public string? WindowType { get; set; }
         public string? SnippetEnglish { get; set; }
         public string? SnippetHindi { get; set; }
         public string? ContentEnglish { get; set; }

@@ -21,6 +21,196 @@ namespace CMS.API.Controllers
             _contentManagementRepository = contentManagementRepository;
         }
 
+        #region What is New Master Page
+        [HttpPost("CreateOrUpdateWhatIsNew")]
+        public async Task<IActionResult> CreateOrUpdateWhatIsNew([FromForm] WhatIsNewModel whatIsNewModel, [FromForm] IFormFile? documentFile)
+        {
+            if (whatIsNewModel == null)
+            {
+                return BadRequest(new { Success = false, Message = "What's new data cannot be null." });
+            }
+
+            try
+            {
+                // Handle document upload
+                if (documentFile != null && documentFile.Length > 0)
+                {
+                    var documentFolderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "assets", "whatnews");
+
+                    // Create directory if it does not exist
+                    if (!Directory.Exists(documentFolderPath))
+                    {
+                        Directory.CreateDirectory(documentFolderPath);
+                    }
+
+                    // Generate a unique file name using GUID and original file extension to avoid overwriting
+                    var documentFileName = $"{Guid.NewGuid()}_{Path.GetFileName(documentFile.FileName)}";
+                    var documentFilePath = Path.Combine(documentFolderPath, documentFileName);
+
+                    // Save the file to wwwroot/assets/whatnews
+                    using (var stream = new FileStream(documentFilePath, FileMode.Create))
+                    {
+                        await documentFile.CopyToAsync(stream);
+                    }
+
+                    // Save the document path to the database
+                    whatIsNewModel.DocumentFile = $"/assets/whatnews/{documentFileName}";
+                }
+                else if (string.IsNullOrEmpty(whatIsNewModel.DocumentFile))
+                {
+                    // If no new document is uploaded, retain the existing document path
+                    var existingWhatIsNew = await _contentManagementRepository.GetWhatIsNewByIdAsync(whatIsNewModel.WhatIsNewId!.Value);
+                    if (existingWhatIsNew != null && existingWhatIsNew.Count > 0)
+                    {
+                        whatIsNewModel.DocumentFile = existingWhatIsNew.FirstOrDefault()?.DocumentFile; // Retain the existing document path
+                    }
+                }
+
+                // Call repository to create or update what is new details
+                var result = await _contentManagementRepository.CreateOrUpdateWhatIsNewAsync(whatIsNewModel);
+                if (result > 0)
+                {
+                    return Ok(new { Success = true, Message = "What's new details saved successfully.", StatusCode = StatusCodes.Status200OK });
+                }
+
+                return BadRequest(new { Success = false, Message = "Failed to save what's new details.", StatusCode = StatusCodes.Status400BadRequest });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { Success = false, Message = ex.Message, StatusCode = StatusCodes.Status500InternalServerError });
+            }
+        }
+
+        [HttpGet("GetWhatIsNews")]
+        public async Task<IActionResult> GetWhatIsNews()
+        {
+            try
+            {
+                var whatIsNews = await _contentManagementRepository.GetWhatIsNewsAsync();
+                if (whatIsNews != null && whatIsNews.Any())
+                {
+                    return Ok(new { Success = true, Data = whatIsNews, StatusCode = StatusCodes.Status200OK });
+                }
+                return NotFound(new { Success = false, Message = "What's News details are not found.", StatusCode = StatusCodes.Status404NotFound });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { Success = false, Message = ex.Message, StatusCode = StatusCodes.Status500InternalServerError });
+            }
+        }
+
+        //[HttpGet("GetWhatIsNewById")]
+        //public async Task<IActionResult> GetWhatIsNewById(int whatIsNewId)
+        //{
+        //    if (whatIsNewId <= 0)
+        //    {
+        //        return BadRequest(new { Success = false, Message = "Invalid What's New ID.", StatusCode = StatusCodes.Status400BadRequest });
+        //    }
+
+        //    try
+        //    {
+        //        var whatIsNew = await _contentManagementRepository.GetWhatIsNewByIdAsync(whatIsNewId);
+        //        if (whatIsNew != null)
+        //        {
+        //            return Ok(new { Success = true, Data = whatIsNew, StatusCode = StatusCodes.Status200OK });
+        //        }
+        //        return NotFound(new { Success = false, Message = "What's new details are not found.", StatusCode = StatusCodes.Status404NotFound });
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return StatusCode(StatusCodes.Status500InternalServerError, new { Success = false, Message = ex.Message, StatusCode = StatusCodes.Status500InternalServerError });
+        //    }
+        //}
+
+        //[HttpGet("GetWhatIsNewName")]
+        //public async Task<IActionResult> GetWhatIsNewName(string whatIsNewName)
+        //{
+        //    try
+        //    {
+        //        var whatIsNew = await _contentManagementRepository.GetWhatIsNewByNameAsync(whatIsNewName);
+        //        if (whatIsNew != null)
+        //        {
+        //            return Ok(new { Success = true, Data = whatIsNew, StatusCode = StatusCodes.Status200OK });
+        //        }
+        //        return NotFound(new { Success = false, Message = "What's new details are not found.", StatusCode = StatusCodes.Status404NotFound });
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return StatusCode(StatusCodes.Status500InternalServerError, new { Success = false, Message = ex.Message, StatusCode = StatusCodes.Status500InternalServerError });
+        //    }
+        //}
+
+        //[HttpDelete("DeleteWhatIsNew")]
+        //public async Task<IActionResult> DeleteWhatIsNew(int whatIsNewId)
+        //{
+        //    if (whatIsNewId <= 0)
+        //    {
+        //        return BadRequest(new { Success = false, Message = "Invalid What's New ID.", StatusCode = StatusCodes.Status400BadRequest });
+        //    }
+
+        //    try
+        //    {
+        //        // Call the repository to soft delete the event details
+        //        var result = await _contentManagementRepository.DeleteWhatIsNewAsync(whatIsNewId);
+        //        if (result > 0)
+        //        {
+        //            return Ok(new { Success = true, Message = "What's new details deleted successfully.", StatusCode = StatusCodes.Status200OK });
+        //        }
+        //        return BadRequest(new { Success = false, Message = "Failed to delete what's new profile details.", StatusCode = StatusCodes.Status400BadRequest });
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return StatusCode(StatusCodes.Status500InternalServerError, new { Success = false, Message = ex.Message, StatusCode = StatusCodes.Status500InternalServerError });
+        //    }
+        //}
+
+        //[HttpGet("DownloadDocument")]
+        //public async Task<IActionResult> DownloadDocument(int whatIsNewId)
+        //{
+        //    if (whatIsNewId <= 0)
+        //    {
+        //        return BadRequest(new { Success = false, Message = "Invalid What's New ID.", StatusCode = StatusCodes.Status400BadRequest });
+        //    }
+
+        //    try
+        //    {
+        //        // Fetch the document details by ID
+        //        var documentDetailsList = await _contentManagementRepository.GetWhatIsNewByIdAsync(whatIsNewId);
+        //        var documentDetails = documentDetailsList.FirstOrDefault();
+
+        //        if (documentDetails == null || string.IsNullOrEmpty(documentDetails.DocumentFile))
+        //        {
+        //            return NotFound(new { Success = false, Message = "Document not found.", StatusCode = StatusCodes.Status404NotFound });
+        //        }
+
+        //        // Convert the relative URL path to a full file path
+        //        var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", documentDetails.DocumentFile.TrimStart('/'));
+        //        if (!System.IO.File.Exists(filePath))
+        //        {
+        //            return NotFound(new { Success = false, Message = "Document file not found.", StatusCode = StatusCodes.Status404NotFound });
+        //        }
+
+        //        // Get MIME type
+        //        var contentType = "application/octet-stream"; // Default MIME type
+        //        var extension = Path.GetExtension(filePath).ToLowerInvariant();
+        //        var provider = new FileExtensionContentTypeProvider();
+        //        if (provider.TryGetContentType(filePath, out string? resolvedContentType))
+        //        {
+        //            contentType = resolvedContentType;
+        //        }
+
+        //        // Return the file for download
+        //        var fileBytes = await System.IO.File.ReadAllBytesAsync(filePath);
+        //        return File(fileBytes, contentType, Path.GetFileName(filePath));
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return StatusCode(StatusCodes.Status500InternalServerError, new { Success = false, Message = ex.Message, StatusCode = StatusCodes.Status500InternalServerError });
+        //    }
+        //}
+
+        #endregion
+
 
         #region Citizen Mobile App API
         [HttpPost("GetComplaintCounts")]
