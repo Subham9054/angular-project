@@ -327,6 +327,10 @@ namespace CMS.API.Controllers
         }
         #endregion
 
+        #region Page Content Master Page
+
+        #endregion
+
         #region What is New Master Page
         [HttpPost("CreateOrUpdateWhatIsNew")]
         public async Task<IActionResult> CreateOrUpdateWhatIsNew([FromForm] WhatIsNewModel whatIsNewModel, [FromForm] IFormFile? documentFile)

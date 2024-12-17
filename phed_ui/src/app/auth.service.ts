@@ -57,20 +57,34 @@ export class AuthService {
   private ValidateOtpurl=`${this.baseUrl}/gateway/ValidateOtp`;
 
   //For Content Management URLs
-  private getParentMenusUrl = 'http://localhost:5097/api/CMS/GetParentMenus';
-  private createOrUpdatePageUrl = 'http://localhost:5097/api/CMS/CreateOrUpdatePageLink';
-  private getAllPageLinksUrl = 'http://localhost:5097/api/CMS/GetPageLinks';
-  private getPageLinkByIdUrl = 'http://localhost:5097/api/CMS/GetPageLinkById';
-  private deletePageLinkUrl = 'http://localhost:5097/api/CMS/DeletePageLink';
-  private getMenuSubmenuUrl = 'http://localhost:5097/api/CMS/GetMenuSubmenu';
+  private getParentMenusUrl = 'http://localhost:5234/api/CMS/GetParentMenus';
+  private createOrUpdatePageUrl = 'http://localhost:5234/api/CMS/CreateOrUpdatePageLink';
+  private getAllPageLinksUrl = 'http://localhost:5234/api/CMS/GetPageLinks';
+  private getPageLinkByIdUrl = 'http://localhost:5234/api/CMS/GetPageLinkById';
+  private deletePageLinkUrl = 'http://localhost:5234/api/CMS/DeletePageLink';
+  private getMenuSubmenuUrl = 'http://localhost:5234/api/CMS/GetMenuSubmenu';
   
-  private createOrUpdateBannerUrl = 'http://localhost:5097/api/CMS/CreateOrUpdateBanner';
-  private getAllBannersUrl = 'http://localhost:5097/api/CMS/GetBanners';
-  private getBannerByIdUrl = 'http://localhost:5097/api/CMS/GetBannerById';
-  private getBannerByNameUrl = 'http://localhost:5097/api/CMS/GetBannerByName';
-  private deleteBannerUrl = 'http://localhost:5097/api/CMS/DeleteBanner';
+  private createOrUpdateBannerUrl = 'http://localhost:5234/api/CMS/CreateOrUpdateBanner';
+  private getAllBannersUrl = 'http://localhost:5234/api/CMS/GetBanners';
+  private getBannerByIdUrl = 'http://localhost:5234/api/CMS/GetBannerById';
+  private getBannerByNameUrl = 'http://localhost:5234/api/CMS/GetBannerByName';
+  private deleteBannerUrl = 'http://localhost:5234/api/CMS/DeleteBanner';
 
   private cmsBaseURL = 'http://localhost:5234/Api/CMS'; //Base URL for Managing CMS Master Pages
+
+  // private getParentMenusUrl = 'http://localhost:5097/api/CMS/GetParentMenus';
+  // private createOrUpdatePageUrl = 'http://localhost:5097/api/CMS/CreateOrUpdatePageLink';
+  // private getAllPageLinksUrl = 'http://localhost:5097/api/CMS/GetPageLinks';
+  // private getPageLinkByIdUrl = 'http://localhost:5097/api/CMS/GetPageLinkById';
+  // private deletePageLinkUrl = 'http://localhost:5097/api/CMS/DeletePageLink';
+  // private getMenuSubmenuUrl = 'http://localhost:5097/api/CMS/GetMenuSubmenu';
+  
+  // private createOrUpdateBannerUrl = 'http://localhost:5097/api/CMS/CreateOrUpdateBanner';
+  // private getAllBannersUrl = 'http://localhost:5097/api/CMS/GetBanners';
+  // private getBannerByIdUrl = 'http://localhost:5097/api/CMS/GetBannerById';
+  // private getBannerByNameUrl = 'http://localhost:5097/api/CMS/GetBannerByName';
+  // private deleteBannerUrl = 'http://localhost:5097/api/CMS/DeleteBanner';
+
   //private cmsBaseURL = 'http://localhost:5097/api/CMS'; //Base URL for Managing CMS Master Pages
   //private galleryUrl = 'http://localhost:5097/api/Gallery'; //Base URL for Managing Gallery
   //private faqUrl = 'http://localhost:5097/api/FAQ'; //Base URL for Managing FAQs
