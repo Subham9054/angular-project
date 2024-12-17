@@ -62,7 +62,7 @@
                         <th width="40px">Sl#</th>
                         <th>Complaint Category</th>
                         <th>Complaint Sub-Category</th>
-                        <th>Complaint Sub-Category (In Hindi)</th>
+                        <!-- <th>Complaint Sub-Category (In Hindi)</th> -->
                         <th>Complaint Priority</th>
                         <th>Escalation Level</th>
                         <th width="90px">Action</th>
@@ -73,7 +73,7 @@
                         <td>{{ i + 1 }}</td>
                         <td>{{ subCategory.vcH_CATEGORY }} <input type="hidden" [value]="subCategory.inT_CATEGORY_ID" /></td>
                         <td>{{ subCategory.vcH_SUB_CATEGORY }}<input type="hidden" [value]="subCategory.inT_SUB_CATEGORY_ID" /></td>
-                        <td>{{ subCategory.nvcH_SUB_CATEGORY || '-' }}</td>
+                        <!-- <td>{{ subCategory.nvcH_SUB_CATEGORY || '-' }}</td> -->
                         <td>{{ subCategory.vcH_COMPLIANT_PRORITY }}</td>
                         <td>{{ subCategory.inT_ESCALATION_LEVEL }}</td>
                         <td>
@@ -83,20 +83,20 @@
                               (click)="Updateview(subCategory.inT_CATEGORY_ID, subCategory.inT_SUB_CATEGORY_ID)">
                               <i class="bi bi-pencil"></i>
                             </a>
-                          
+
                               <!-- Delete Button -->
                               <button class="btn btn-outline-danger btn-sm" title="Delete"
                                       (click)="deleteSubCategory(subCategory.inT_CATEGORY_ID, subCategory.inT_SUB_CATEGORY_ID)">
                                 <i class="bi bi-trash"></i>
                               </button>
-                          
+
                               <!-- Hidden inputs for category and sub-category IDs -->
                               <input type="hidden" [value]="subCategory.inT_CATEGORY_ID" />
                               <input type="hidden" [value]="subCategory.inT_SUB_CATEGORY_ID" />
                             </div>
                           </td>
-                          
-                          
+
+
                     </tr>
                 </tbody>
             </table>

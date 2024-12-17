@@ -80,6 +80,7 @@
         </div>
     </div>
 </div>
+
 <div class="dash-card">
     <div class="row">
         <div class="col-xl-12 mt-3">
@@ -87,6 +88,17 @@
                 <div class="card-header d-flex align-items-center">
                     <h5 class="mb-0">Location Wise Complaint</h5>
                     <div class="custom-tab">
+
+                      <div class="card-year">
+                        <select class="form-select form-select-sm">
+                          <option selected>Select Year</option>
+                          <option value="0">2024</option>
+                          <option value="1">2023</option>
+                          <option value="2">2022</option>
+                          <option value="3">2021</option>
+                        </select>
+                      </div>
+
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link me-1 active" id="graph-tab" data-bs-toggle="tab"
@@ -102,7 +114,7 @@
                 </div>
                 <div class="card-body">
                     <div class="tab-content" id="myTabContent">
-                        <div class="bg-light p-3 pb-0 mb-3">
+                        <!-- <div class="bg-light p-3 pb-0 mb-3">
                             <div class="row justify-content-end">
                                 <div class="col-xl-4">
                                     <div class="row  justify-content-end">
@@ -119,261 +131,262 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="tab-pane fade active show" id="graph-tab-pane" role="tabpanel"
                             aria-labelledby="graph-tab" tabindex="0">
+                            <div class="graph-wrapper">
                             <highcharts-chart [Highcharts]="Highcharts" [options]="chartOptions"
-                                style="width: 100%; display: block;"></highcharts-chart>
+                                style="width: 100%; display: block;"></highcharts-chart></div>
                         </div>
 
                         <div class="tab-pane fade" id="table-tab-pane" role="tabpanel" aria-labelledby="table-tab"
                             tabindex="0">
-                            <div class="table-responsive custom-table mt-3">
-                                <table class="table  mb-0 table-bordered">
+                            <div class="table-responsive fix-table-head">
+                                <table class="table mb-0">
                                     <thead>
                                         <tr>
                                             <th>District Name</th>
-                                            <th>Received</th>
-                                            <th>Pending</th>
-                                            <th>Resolved</th>
+                                            <th class="text-end">Received</th>
+                                            <th class="text-end">Pending</th>
+                                            <th class="text-end">Resolved</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
                                             <td>Araria</td>
-                                            <td><span class="badge text-bg-primary text-white">1459</span></td>
-                                            <td><span class="badge text-bg-warning text-white">1223</span></td>
-                                            <td><span class="badge text-bg-success">114</span></td>
+                                            <td class="text-end"><span class="text-primary">1459</span></td>
+                                            <td class="text-end"><span class="text-warning">1223</span></td>
+                                            <td class="text-end"><span class="text-success">114</span></td>
                                         </tr>
                                         <tr>
                                             <td>Arwal</td>
-                                            <td><span class="badge text-bg-primary text-white">218</span></td>
-                                            <td><span class="badge text-bg-warning text-white">44</span></td>
-                                            <td><span class="badge text-bg-success">172</span></td>
+                                            <td class="text-end"><span class="text-primary">218</span></td>
+                                            <td class="text-end"><span class="text-warning">44</span></td>
+                                            <td class="text-end"><span class="text-success">172</span></td>
                                         </tr>
                                         <tr>
                                             <td>Aurangabad</td>
-                                            <td><span class="badge text-bg-primary text-white">823</span></td>
-                                            <td><span class="badge text-bg-warning text-white">140</span></td>
-                                            <td><span class="badge text-bg-success">681</span></td>
+                                            <td class="text-end"><span class="text-primary">823</span></td>
+                                            <td class="text-end"><span class="text-warning">140</span></td>
+                                            <td class="text-end"><span class="text-success">681</span></td>
                                         </tr>
                                         <tr>
                                             <td>Banka</td>
-                                            <td><span class="badge text-bg-primary text-white">635</span></td>
-                                            <td><span class="badge text-bg-warning text-white">438</span></td>
-                                            <td><span class="badge text-bg-success">195</span></td>
+                                            <td class="text-end"><span class="text-primary">635</span></td>
+                                            <td class="text-end"><span class="text-warning">438</span></td>
+                                            <td class="text-end"><span class="text-success">195</span></td>
                                         </tr>
                                         <tr>
                                             <td>Begusarai</td>
-                                            <td><span class="badge text-bg-primary text-white">1920</span></td>
-                                            <td><span class="badge text-bg-warning text-white">1590</span></td>
-                                            <td><span class="badge text-bg-success">75</span></td>
+                                            <td class="text-end"><span class="text-primary">1920</span></td>
+                                            <td class="text-end"><span class="text-warning">1590</span></td>
+                                            <td class="text-end"><span class="text-success">75</span></td>
                                         </tr>
                                         <tr>
                                             <td>Bhagalpur</td>
-                                            <td><span class="badge text-bg-primary text-white">1174</span></td>
-                                            <td><span class="badge text-bg-warning text-white">141</span></td>
-                                            <td><span class="badge text-bg-success">1033</span></td>
+                                            <td class="text-end"><span class="text-primary">1174</span></td>
+                                            <td class="text-end"><span class="text-warning">141</span></td>
+                                            <td class="text-end"><span class="text-success">1033</span></td>
                                         </tr>
                                         <tr>
                                             <td>Bhojpur</td>
-                                            <td><span class="badge text-bg-primary text-white">1182</span></td>
-                                            <td><span class="badge text-bg-warning text-white">1033</span></td>
-                                            <td><span class="badge text-bg-success">75</span></td>
+                                            <td class="text-end"><span class="text-primary">1182</span></td>
+                                            <td class="text-end"><span class="text-warning">1033</span></td>
+                                            <td class="text-end"><span class="text-success">75</span></td>
                                         </tr>
                                         <tr>
                                             <td>Buxar</td>
-                                            <td><span class="badge text-bg-primary text-white">898</span></td>
-                                            <td><span class="badge text-bg-warning text-white">189</span></td>
-                                            <td><span class="badge text-bg-success">707</span></td>
+                                            <td class="text-end"><span class="text-primary">898</span></td>
+                                            <td class="text-end"><span class="text-warning">189</span></td>
+                                            <td class="text-end"><span class="text-success">707</span></td>
                                         </tr>
                                         <tr>
                                             <td>Darbhanga</td>
-                                            <td><span class="badge text-bg-primary text-white">1962</span></td>
-                                            <td><span class="badge text-bg-warning text-white">1113</span></td>
-                                            <td><span class="badge text-bg-success">649</span></td>
+                                            <td class="text-end"><span class="text-primary">1962</span></td>
+                                            <td class="text-end"><span class="text-warning">1113</span></td>
+                                            <td class="text-end"><span class="text-success">649</span></td>
                                         </tr>
                                         <tr>
                                             <td>Gaya</td>
-                                            <td><span class="badge text-bg-primary text-white">1738</span></td>
-                                            <td><span class="badge text-bg-warning text-white">404</span></td>
-                                            <td><span class="badge text-bg-success">1327</span></td>
+                                            <td class="text-end"><span class="text-primary">1738</span></td>
+                                            <td class="text-end"><span class="text-warning">404</span></td>
+                                            <td class="text-end"><span class="text-success">1327</span></td>
                                         </tr>
                                         <tr>
                                             <td>Gopalganj</td>
-                                            <td><span class="badge text-bg-primary text-white">1319</span></td>
-                                            <td><span class="badge text-bg-warning text-white">211</span></td>
-                                            <td><span class="badge text-bg-success">1105</span></td>
+                                            <td class="text-end"><span class="text-primary">1319</span></td>
+                                            <td class="text-end"><span class="text-warning">211</span></td>
+                                            <td class="text-end"><span class="text-success">1105</span></td>
                                         </tr>
                                         <tr>
                                             <td>Jamui</td>
-                                            <td><span class="badge text-bg-primary text-white">522</span></td>
-                                            <td><span class="badge text-bg-warning text-white">65</span></td>
-                                            <td><span class="badge text-bg-success">455</span></td>
+                                            <td class="text-end"><span class="text-primary">522</span></td>
+                                            <td class="text-end"><span class="text-warning">65</span></td>
+                                            <td class="text-end"><span class="text-success">455</span></td>
                                         </tr>
                                         <tr>
                                             <td>Jehanabad</td>
-                                            <td><span class="badge text-bg-primary text-white">520</span></td>
-                                            <td><span class="badge text-bg-warning text-white">124</span></td>
-                                            <td><span class="badge text-bg-success">338</span></td>
+                                            <td class="text-end"><span class="text-primary">520</span></td>
+                                            <td class="text-end"><span class="text-warning">124</span></td>
+                                            <td class="text-end"><span class="text-success">338</span></td>
                                         </tr>
                                         <tr>
                                             <td>Kaimur</td>
-                                            <td><span class="badge text-bg-primary text-white">561</span></td>
-                                            <td><span class="badge text-bg-warning text-white">550</span></td>
-                                            <td><span class="badge text-bg-success">5</span></td>
+                                            <td class="text-end"><span class="text-primary">561</span></td>
+                                            <td class="text-end"><span class="text-warning">550</span></td>
+                                            <td class="text-end"><span class="text-success">5</span></td>
                                         </tr>
                                         <tr>
                                             <td>Katihar</td>
-                                            <td><span class="badge text-bg-primary text-white">812</span></td>
-                                            <td><span class="badge text-bg-warning text-white">635</span></td>
-                                            <td><span class="badge text-bg-success">96</span></td>
+                                            <td class="text-end"><span class="text-primary">812</span></td>
+                                            <td class="text-end"><span class="text-warning">635</span></td>
+                                            <td class="text-end"><span class="text-success">96</span></td>
                                         </tr>
                                         <tr>
                                             <td>Khagaria</td>
-                                            <td><span class="badge text-bg-primary text-white">855</span></td>
-                                            <td><span class="badge text-bg-warning text-white">829</span></td>
-                                            <td><span class="badge text-bg-success">24</span></td>
+                                            <td class="text-end"><span class="text-primary">855</span></td>
+                                            <td class="text-end"><span class="text-warning">829</span></td>
+                                            <td class="text-end"><span class="text-success">24</span></td>
                                         </tr>
                                         <tr>
                                             <td>Kishanganj</td>
-                                            <td><span class="badge text-bg-primary text-white">513</span></td>
-                                            <td><span class="badge text-bg-warning text-white">388</span></td>
-                                            <td><span class="badge text-bg-success">6</span></td>
+                                            <td class="text-end"><span class="text-primary">513</span></td>
+                                            <td class="text-end"><span class="text-warning">388</span></td>
+                                            <td class="text-end"><span class="text-success">6</span></td>
                                         </tr>
                                         <tr>
                                             <td>Lakhisarai</td>
-                                            <td><span class="badge text-bg-primary text-white">417</span></td>
-                                            <td><span class="badge text-bg-warning text-white">323</span></td>
-                                            <td><span class="badge text-bg-success">82</span></td>
+                                            <td class="text-end"><span class="text-primary">417</span></td>
+                                            <td class="text-end"><span class="text-warning">323</span></td>
+                                            <td class="text-end"><span class="text-success">82</span></td>
                                         </tr>
                                         <tr>
                                             <td>Madhepura</td>
-                                            <td><span class="badge text-bg-primary text-white">853</span></td>
-                                            <td><span class="badge text-bg-warning text-white">751</span></td>
-                                            <td><span class="badge text-bg-success">28</span></td>
+                                            <td class="text-end"><span class="text-primary">853</span></td>
+                                            <td class="text-end"><span class="text-warning">751</span></td>
+                                            <td class="text-end"><span class="text-success">28</span></td>
                                         </tr>
                                         <tr>
                                             <td>Madhubani</td>
-                                            <td><span class="badge text-bg-primary text-white">1200</span></td>
-                                            <td><span class="badge text-bg-warning text-white">251</span></td>
-                                            <td><span class="badge text-bg-success">834</span></td>
+                                            <td class="text-end"><span class="text-primary">1200</span></td>
+                                            <td class="text-end"><span class="text-warning">251</span></td>
+                                            <td class="text-end"><span class="text-success">834</span></td>
                                         </tr>
                                         <tr>
                                             <td>Munger</td>
-                                            <td><span class="badge text-bg-primary text-white">735</span></td>
-                                            <td><span class="badge text-bg-warning text-white">113</span></td>
-                                            <td><span class="badge text-bg-success">622</span></td>
+                                            <td class="text-end"><span class="text-primary">735</span></td>
+                                            <td class="text-end"><span class="text-warning">113</span></td>
+                                            <td class="text-end"><span class="text-success">622</span></td>
                                         </tr>
                                         <tr>
                                             <td>Muzaffarpur</td>
-                                            <td><span class="badge text-bg-primary text-white">3335</span></td>
-                                            <td><span class="badge text-bg-warning text-white">638</span></td>
-                                            <td><span class="badge text-bg-success">2590</span></td>
+                                            <td class="text-end"><span class="text-primary">3335</span></td>
+                                            <td class="text-end"><span class="text-warning">638</span></td>
+                                            <td class="text-end"><span class="text-success">2590</span></td>
                                         </tr>
                                         <tr>
                                             <td>Nalanda</td>
-                                            <td><span class="badge text-bg-primary text-white">1613</span></td>
-                                            <td><span class="badge text-bg-warning text-white">218</span></td>
-                                            <td><span class="badge text-bg-success">1351</span></td>
+                                            <td class="text-end"><span class="text-primary">1613</span></td>
+                                            <td class="text-end"><span class="text-warning">218</span></td>
+                                            <td class="text-end"><span class="text-success">1351</span></td>
                                         </tr>
                                         <tr>
                                             <td>Nawada</td>
-                                            <td><span class="badge text-bg-primary text-white">845</span></td>
-                                            <td><span class="badge text-bg-warning text-white">326</span></td>
-                                            <td><span class="badge text-bg-success">495</span></td>
+                                            <td class="text-end"><span class="text-primary">845</span></td>
+                                            <td class="text-end"><span class="text-warning">326</span></td>
+                                            <td class="text-end"><span class="text-success">495</span></td>
                                         </tr>
                                         <tr>
                                             <td>Pashchim Champaran</td>
-                                            <td><span class="badge text-bg-primary text-white">1493</span></td>
-                                            <td><span class="badge text-bg-warning text-white">169</span></td>
-                                            <td><span class="badge text-bg-success">1296</span></td>
+                                            <td class="text-end"><span class="text-primary">1493</span></td>
+                                            <td class="text-end"><span class="text-warning">169</span></td>
+                                            <td class="text-end"><span class="text-success">1296</span></td>
                                         </tr>
                                         <tr>
                                             <td>Patna</td>
-                                            <td><span class="badge text-bg-primary text-white">3025</span></td>
-                                            <td><span class="badge text-bg-warning text-white">428</span></td>
-                                            <td><span class="badge text-bg-success">2551</span></td>
+                                            <td class="text-end"><span class="text-primary">3025</span></td>
+                                            <td class="text-end"><span class="text-warning">428</span></td>
+                                            <td class="text-end"><span class="text-success">2551</span></td>
                                         </tr>
                                         <tr>
                                             <td>Purbia Champaran</td>
-                                            <td><span class="badge text-bg-primary text-white">2891</span></td>
-                                            <td><span class="badge text-bg-warning text-white">1391</span></td>
-                                            <td><span class="badge text-bg-success">1454</span></td>
+                                            <td class="text-end"><span class="text-primary">2891</span></td>
+                                            <td class="text-end"><span class="text-warning">1391</span></td>
+                                            <td class="text-end"><span class="text-success">1454</span></td>
                                         </tr>
                                         <tr>
                                             <td>Purnia</td>
-                                            <td><span class="badge text-bg-primary text-white">1064</span></td>
-                                            <td><span class="badge text-bg-warning text-white">933</span></td>
-                                            <td><span class="badge text-bg-success">23</span></td>
+                                            <td class="text-end"><span class="text-primary">1064</span></td>
+                                            <td class="text-end"><span class="text-warning">933</span></td>
+                                            <td class="text-end"><span class="text-success">23</span></td>
                                         </tr>
                                         <tr>
                                             <td>Rohtas</td>
-                                            <td><span class="badge text-bg-primary text-white">660</span></td>
-                                            <td><span class="badge text-bg-warning text-white">211</span></td>
-                                            <td><span class="badge text-bg-success">449</span></td>
+                                            <td class="text-end"><span class="text-primary">660</span></td>
+                                            <td class="text-end"><span class="text-warning">211</span></td>
+                                            <td class="text-end"><span class="text-success">449</span></td>
                                         </tr>
                                         <tr>
                                             <td>Saharsa</td>
-                                            <td><span class="badge text-bg-primary text-white">937</span></td>
-                                            <td><span class="badge text-bg-warning text-white">902</span></td>
-                                            <td><span class="badge text-bg-success">34</span></td>
+                                            <td class="text-end"><span class="text-primary">937</span></td>
+                                            <td class="text-end"><span class="text-warning">902</span></td>
+                                            <td class="text-end"><span class="text-success">34</span></td>
                                         </tr>
                                         <tr>
                                             <td>Samastipur</td>
-                                            <td><span class="badge text-bg-primary text-white">4859</span></td>
-                                            <td><span class="badge text-bg-warning text-white">4015</span></td>
-                                            <td><span class="badge text-bg-success">126</span></td>
+                                            <td class="text-end"><span class="text-primary">4859</span></td>
+                                            <td class="text-end"><span class="text-warning">4015</span></td>
+                                            <td class="text-end"><span class="text-success">126</span></td>
                                         </tr>
                                         <tr>
                                             <td>Saran</td>
-                                            <td><span class="badge text-bg-primary text-white">2460</span></td>
-                                            <td><span class="badge text-bg-warning text-white">2326</span></td>
-                                            <td><span class="badge text-bg-success">112</span></td>
+                                            <td class="text-end"><span class="text-primary">2460</span></td>
+                                            <td class="text-end"><span class="text-warning">2326</span></td>
+                                            <td class="text-end"><span class="text-success">112</span></td>
                                         </tr>
                                         <tr>
                                             <td>Sheikhpura</td>
-                                            <td><span class="badge text-bg-primary text-white">303</span></td>
-                                            <td><span class="badge text-bg-warning text-white">275</span></td>
-                                            <td><span class="badge text-bg-success">24</span></td>
+                                            <td class="text-end"><span class="text-primary">303</span></td>
+                                            <td class="text-end"><span class="text-warning">275</span></td>
+                                            <td class="text-end"><span class="text-success">24</span></td>
                                         </tr>
                                         <tr>
                                             <td>Sheohar</td>
-                                            <td><span class="badge text-bg-primary text-white">377</span></td>
-                                            <td><span class="badge text-bg-warning text-white">67</span></td>
-                                            <td><span class="badge text-bg-success">306</span></td>
+                                            <td class="text-end"><span class="text-primary">377</span></td>
+                                            <td class="text-end"><span class="text-warning">67</span></td>
+                                            <td class="text-end"><span class="text-success">306</span></td>
                                         </tr>
                                         <tr>
                                             <td>Sitamarhi</td>
-                                            <td><span class="badge text-bg-primary text-white">1602</span></td>
-                                            <td><span class="badge text-bg-warning text-white">291</span></td>
-                                            <td><span class="badge text-bg-success">1080</span></td>
+                                            <td class="text-end"><span class="text-primary">1602</span></td>
+                                            <td class="text-end"><span class="text-warning">291</span></td>
+                                            <td class="text-end"><span class="text-success">1080</span></td>
                                         </tr>
                                         <tr>
                                             <td>Siwan</td>
-                                            <td><span class="badge text-bg-primary text-white">1014</span></td>
-                                            <td><span class="badge text-bg-warning text-white">998</span></td>
-                                            <td><span class="badge text-bg-success">8</span></td>
+                                            <td class="text-end"><span class="text-primary">1014</span></td>
+                                            <td class="text-end"><span class="text-warning">998</span></td>
+                                            <td class="text-end"><span class="text-success">8</span></td>
                                         </tr>
                                         <tr>
                                             <td>Supaul</td>
-                                            <td><span class="badge text-bg-primary text-white">687</span></td>
-                                            <td><span class="badge text-bg-warning text-white">668</span></td>
-                                            <td><span class="badge text-bg-success">15</span></td>
+                                            <td class="text-end"><span class="text-primary">687</span></td>
+                                            <td class="text-end"><span class="text-warning">668</span></td>
+                                            <td class="text-end"><span class="text-success">15</span></td>
                                         </tr>
                                         <tr>
                                             <td>Vaishali</td>
-                                            <td><span class="badge text-bg-primary text-white">4625</span></td>
-                                            <td><span class="badge text-bg-warning text-white">3289</span></td>
-                                            <td><span class="badge text-bg-success">686</span></td>
+                                            <td class="text-end"><span class="text-primary">4625</span></td>
+                                            <td class="text-end"><span class="text-warning">3289</span></td>
+                                            <td class="text-end"><span class="text-success">686</span></td>
                                         </tr>
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <td>Grand Total</td>
-                                            <td>52106</td>
-                                            <td>27700</td>
-                                            <td>21223</td>
+                                            <td class="grand-total">Grand Total</td>
+                                            <td class="text-end"><span class="badge text-bg-primary">52106</span></td>
+                                            <td class="text-end waring-td"><span class="badge text-bg-warning">27700</span></td>
+                                            <td class="text-end waring-td"><span class="badge text-bg-success">21223</span></td>
                                         </tr>
                                     </tfoot>
                                 </table>
@@ -388,8 +401,18 @@
         <div class="col-xl-12 mt-3">
             <div class="card">
                 <div class="card-header d-flex align-content-center">
-                    <h5 class="mb-0">Category Wise Complaint</h5>
+                    <h5 class="mb-0 mt-2">Category Wise Complaint</h5>
                     <div class="custom-tab">
+                      <div class="card-year">
+                        <select class="form-select form-select-sm">
+                            <option selected>Select Year</option>
+                            <option value="0">2024</option>
+                            <option value="1">2023</option>
+                            <option value="2">2022</option>
+                            <option value="3">2021</option>
+                        </select>
+                    </div>
+
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link me-1 active" id="catagory-tab" data-bs-toggle="tab"
@@ -406,7 +429,7 @@
                 </div>
                 <div class="card-body">
                     <div class="tab-content" id="myTabContent">
-                        <div class="bg-light p-3 pb-0 mb-3">
+                        <!-- <div class="bg-light p-3 pb-0 mb-3">
                             <div class="row justify-content-end">
                                 <div class="col-xl-4">
                                     <div class="row  justify-content-end">
@@ -423,105 +446,543 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="tab-pane fade active show" id="catagory-tab-pane" role="tabpanel"
                             aria-labelledby="catagory-tab" tabindex="0">
-                        <div class="graph-wrapper">
+                        <div class="graph-wrapper-catagory">
                             <highcharts-chart [Highcharts]="Highcharts" [options]="container"
                                 style="width: 100%; display: block;"></highcharts-chart>
                         </div>
                         </div>
                         <div class="tab-pane fade" id="catagory1-tab-pane" role="tabpanel" aria-labelledby="catagory1-tab"
                             tabindex="0">
-                            <div class="table-responsive mt-3">
-                                <table class="table mb-0 table-bordered">
+                            <div class="table-responsive fix-table-headed">
+                                <table class="table mb-0">
                                     <thead>
                                         <tr>
                                             <th>Category Name</th>
-                                            <th>Received</th>
-                                            <th>Pending</th>
-                                            <th>Resolved</th>
+                                            <th class="text-end">Received</th>
+                                            <th class="text-end">Pending</th>
+                                            <th class="text-end">Resolved</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
                                             <td>Handpump Tubewell Related</td>
-                                            <td><span class="badge text-bg-primary text-white">3642</span></td>
-                                            <td><span class="badge text-bg-warning text-white">1589</span></td>
-                                            <td><span class="badge text-bg-success">1882</span></td>
+                                            <td class="text-end"><span class="text-primary">3642</span></td>
+                                            <td class="text-end"><span class="text-warning">1589</span></td>
+                                            <td class="text-end"><span class="text-success">1882</span></td>
                                         </tr>
                                         <tr>
                                             <td>Piped Water Supply Related</td>
-                                            <td><span class="badge text-bg-primary text-white">46256</span></td>
-                                            <td><span class="badge text-bg-warning text-white">24886</span></td>
-                                            <td><span class="badge text-bg-success">18500</span></td>
+                                            <td class="text-end"><span class="text-primary">46256</span></td>
+                                            <td class="text-end"><span class="text-warning">24886</span></td>
+                                            <td class="text-end"><span class="text-success">18500</span></td>
                                         </tr>
                                         <tr>
                                             <td>Water Quality Related</td>
-                                            <td><span class="badge text-bg-primary text-white">726</span></td>
-                                            <td><span class="badge text-bg-warning text-white">461</span></td>
-                                            <td><span class="badge text-bg-success">236</span></td>
+                                            <td class="text-end"><span class="text-primary">726</span></td>
+                                            <td class="text-end"><span class="text-warning">461</span></td>
+                                            <td class="text-end"><span class="text-success">236</span></td>
                                         </tr>
                                         <tr>
                                             <td>Miscellaneous</td>
-                                            <td><span class="badge text-bg-primary text-white">1482</span></td>
-                                            <td><span class="badge text-bg-warning text-white">764</span></td>
-                                            <td><span class="badge text-bg-success">605</span></td>
+                                            <td class="text-end"><span class="text-primary">1482</span></td>
+                                            <td class="text-end"><span class="text-warning">764</span></td>
+                                            <td class="text-end"><span class="text-success">605</span></td>
                                         </tr>
 
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <td>Grand Total</td>
-                                            <td>52106</td>
-                                            <td>27700</td>
-                                            <td>21223</td>
+                                            <td class="grand-total">Grand Total</td>
+                                            <td class="text-end"><span class="badge text-bg-primary">52106</span></td>
+                                            <td class="text-end waring-td"><span class="badge text-bg-warning">27700</span></td>
+                                            <td class="text-end waring-td"><span class="badge text-bg-success">21223</span></td>
                                         </tr>
                                     </tfoot>
                                 </table>
                             </div>
-                        </div>
+
+
+                            <!-- <div class="table-responsive fix-table-head">
+                              <table class="table  mb-0">
+                                <thead>
+                                  <tr>
+                                    <th>Industrial Area</th>
+                                    <th>Total Plot</th>
+                                    <th>Land Allotted</th>
+                                    <th>Vacant Land</th>
+                                  </tr>
+
+                                </thead>
+                                <tbody>
+
+                                  <tr>
+                                    <td>vchIndustrialName</td>
+
+
+                                    <td>
+                                      totalArea??0
+                                    </td>
+
+                                    <td>
+                                      totalArea??0
+                                    </td>
+                                    <td>
+                                      totalArea??0
+                                    </td>
+                                  </tr>
+
+
+                                  <tr>
+                                    <td>vchIndustrialName</td>
+
+
+                                    <td>
+                                      totalArea??0
+                                    </td>
+
+                                    <td>
+                                      totalArea??0
+                                    </td>
+                                    <td>
+                                      totalArea??0
+                                    </td>
+                                  </tr>
+
+                                  <tr>
+                                    <td>vchIndustrialName</td>
+
+
+                                    <td>
+                                      totalArea??0
+                                    </td>
+
+                                    <td>
+                                      totalArea??0
+                                    </td>
+                                    <td>
+                                      totalArea??0
+                                    </td>
+                                  </tr>
+
+                                  <tr>
+                                    <td>vchIndustrialName</td>
+
+
+                                    <td>
+                                      totalArea??0
+                                    </td>
+
+                                    <td>
+                                      totalArea??0
+                                    </td>
+                                    <td>
+                                      totalArea??0
+                                    </td>
+                                  </tr>
+
+                                  <tr>
+                                    <td>vchIndustrialName</td>
+
+
+                                    <td>
+                                      totalArea??0
+                                    </td>
+
+                                    <td>
+                                      totalArea??0
+                                    </td>
+                                    <td>
+                                      totalArea??0
+                                    </td>
+                                  </tr>
+
+                                  <tr>
+                                    <td>vchIndustrialName</td>
+
+
+                                    <td>
+                                      totalArea??0
+                                    </td>
+
+                                    <td>
+                                      totalArea??0
+                                    </td>
+                                    <td>
+                                      totalArea??0
+                                    </td>
+                                  </tr>
+
+                                  <tr>
+                                    <td>vchIndustrialName</td>
+
+
+                                    <td>
+                                      totalArea??0
+                                    </td>
+
+                                    <td>
+                                      totalArea??0
+                                    </td>
+                                    <td>
+                                      totalArea??0
+                                    </td>
+                                  </tr>
+
+                                  <tr>
+                                    <td>vchIndustrialName</td>
+
+
+                                    <td>
+                                      totalArea??0
+                                    </td>
+
+                                    <td>
+                                      totalArea??0
+                                    </td>
+                                    <td>
+                                      totalArea??0
+                                    </td>
+                                  </tr>
+
+                                  <tr>
+                                    <td>vchIndustrialName</td>
+
+
+                                    <td>
+                                      totalArea??0
+                                    </td>
+
+                                    <td>
+                                      totalArea??0
+                                    </td>
+                                    <td>
+                                      totalArea??0
+                                    </td>
+                                  </tr>
+
+                                  <tr>
+                                    <td>vchIndustrialName</td>
+
+
+                                    <td>
+                                      totalArea??0
+                                    </td>
+
+                                    <td>
+                                      totalArea??0
+                                    </td>
+                                    <td>
+                                      totalArea??0
+                                    </td>
+                                  </tr>
+
+                                  <tr>
+                                    <td>vchIndustrialName</td>
+
+
+                                    <td>
+                                      totalArea??0
+                                    </td>
+
+                                    <td>
+                                      totalArea??0
+                                    </td>
+                                    <td>
+                                      totalArea??0
+                                    </td>
+                                  </tr>
+
+                                   <tr>
+                                    <td>vchIndustrialName</td>
+
+
+                                    <td>
+                                      totalArea??0
+                                    </td>
+
+                                    <td>
+                                      totalArea??0
+                                    </td>
+                                    <td>
+                                      totalArea??0
+                                    </td>
+                                  </tr>
+
+
+                                  <tr>
+                                    <td>vchIndustrialName</td>
+
+
+                                    <td>
+                                      totalArea??0
+                                    </td>
+
+                                    <td>
+                                      totalArea??0
+                                    </td>
+                                    <td>
+                                      totalArea??0
+                                    </td>
+                                  </tr>
+
+                                  <tr>
+                                    <td>vchIndustrialName</td>
+
+
+                                    <td>
+                                      totalArea??0
+                                    </td>
+
+                                    <td>
+                                      totalArea??0
+                                    </td>
+                                    <td>
+                                      totalArea??0
+                                    </td>
+                                  </tr>
+
+                                  <tr>
+                                    <td>vchIndustrialName</td>
+
+
+                                    <td>
+                                      totalArea??0
+                                    </td>
+
+                                    <td>
+                                      totalArea??0
+                                    </td>
+                                    <td>
+                                      totalArea??0
+                                    </td>
+                                  </tr>
+
+                                  <tr>
+                                    <td>vchIndustrialName</td>
+
+
+                                    <td>
+                                      totalArea??0
+                                    </td>
+
+                                    <td>
+                                      totalArea??0
+                                    </td>
+                                    <td>
+                                      totalArea??0
+                                    </td>
+                                  </tr>
+
+                                  <tr>
+                                    <td>vchIndustrialName</td>
+
+
+                                    <td>
+                                      totalArea??0
+                                    </td>
+
+                                    <td>
+                                      totalArea??0
+                                    </td>
+                                    <td>
+                                      totalArea??0
+                                    </td>
+                                  </tr>
+
+                                  <tr>
+                                    <td>vchIndustrialName</td>
+
+
+                                    <td>
+                                      totalArea??0
+                                    </td>
+
+                                    <td>
+                                      totalArea??0
+                                    </td>
+                                    <td>
+                                      totalArea??0
+                                    </td>
+                                  </tr>
+
+                                   <tr>
+                                    <td>vchIndustrialName</td>
+
+
+                                    <td>
+                                      totalArea??0
+                                    </td>
+
+                                    <td>
+                                      totalArea??0
+                                    </td>
+                                    <td>
+                                      totalArea??0
+                                    </td>
+                                  </tr>
+
+
+                                  <tr>
+                                    <td>vchIndustrialName</td>
+
+
+                                    <td>
+                                      totalArea??0
+                                    </td>
+
+                                    <td>
+                                      totalArea??0
+                                    </td>
+                                    <td>
+                                      totalArea??0
+                                    </td>
+                                  </tr>
+
+                                  <tr>
+                                    <td>vchIndustrialName</td>
+
+
+                                    <td>
+                                      totalArea??0
+                                    </td>
+
+                                    <td>
+                                      totalArea??0
+                                    </td>
+                                    <td>
+                                      totalArea??0
+                                    </td>
+                                  </tr>
+
+                                  <tr>
+                                    <td>vchIndustrialName</td>
+
+
+                                    <td>
+                                      totalArea??0
+                                    </td>
+
+                                    <td>
+                                      totalArea??0
+                                    </td>
+                                    <td>
+                                      totalArea??0
+                                    </td>
+                                  </tr>
+
+                                  <tr>
+                                    <td>vchIndustrialName</td>
+
+
+                                    <td>
+                                      totalArea??0
+                                    </td>
+
+                                    <td>
+                                      totalArea??0
+                                    </td>
+                                    <td>
+                                      totalArea??0
+                                    </td>
+                                  </tr>
+
+                                  <tr>
+                                    <td>vchIndustrialName</td>
+
+
+                                    <td>
+                                      totalArea??0
+                                    </td>
+
+                                    <td>
+                                      totalArea??0
+                                    </td>
+                                    <td>
+                                      totalArea??0
+                                    </td>
+                                  </tr>
+
+                                  <tr>
+                                    <td>vchIndustrialName</td>
+
+
+                                    <td>
+                                      totalArea??0
+                                    </td>
+
+                                    <td>
+                                      totalArea??0
+                                    </td>
+                                    <td>
+                                      totalArea??0
+                                    </td>
+                                  </tr>
+
+                                   <tr>
+                                    <td>vchIndustrialName</td>
+
+
+                                    <td>
+                                      totalArea??0
+                                    </td>
+
+                                    <td>
+                                      totalArea??0
+                                    </td>
+                                    <td>
+                                      totalArea??0
+                                    </td>
+                                  </tr>
+
+                                </tbody>
+                              </table>
+                            </div> -->
+
+                          </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-xl-12 mt-3">
             <div class="card">
-                <div class="card-header">
+                <div class="card-header py-3">
                     <h5 class="mb-0">My Queue of Complaints</h5>
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive myquere-table">
-                        <table class="table mb-0 table-bordered">
+                    <div class="table-responsive fix-table-queue">
+                        <table class="table mb-0">
                             <thead>
                                 <tr>
                                     <th width="40px">Sl#</th>
                                     <th>Token No.</th>
-                                    <th>Complainant Name</th>
-                                    <th>Complaint Details</th>
-                                    <th>Complaint Status</th>
-                                    <th>Complaint Date</th>
+                                    <th>Name</th>
+                                    <!-- <th>Details</th> -->
+                                    <th>Status</th>
+                                    <th>Date</th>
                                     <th>Action Taken By</th>
-                                    <th>ATA Mobile Number</th>
-                                    <th width="50px">Action</th>
+                                    <th>ATA Mobile No.</th>
+                                    <th width="70px">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>1</td>
+                                    <td width="40px">1</td>
                                     <td>
                                         <a href="javascript:void(0);" data-bs-toggle="modal"
                                             data-bs-target="#token">202410280042</a>
                                     </td>
                                     <td>Anant Prasad Yadav</td>
-                                    <td>
+                                    <!-- <td>
                                         वार्ड न० -02 में नल जल क
-                                    </td>
-                                    <td>Registered & Open</td>
+                                    </td> -->
+                                    <td>Registered</td>
                                     <td>28-Oct-2024</td>
                                     <td>JE Supaul</td>
                                     <td>9955403126</td>
-                                    <td>
+                                    <td width="70px">
                                         <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#details"
                                             class="btn btn-outline-primary btn-sm">
                                             <i class="bi bi-eye"></i>
@@ -529,20 +990,20 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>2</td>
+                                    <td width="40px">2</td>
                                     <td>
                                         <a href="javascript:void(0);" data-bs-toggle="modal"
                                             data-bs-target="#token">202410280041</a>
                                     </td>
                                     <td>Pankaj Kumar</td>
-                                    <td>
+                                    <!-- <td>
                                         वार्ड न०-12 में मुझे हाउस
-                                    </td>
-                                    <td>Registered & Open</td>
+                                    </td> -->
+                                    <td>Registered</td>
                                     <td>28-Oct-2024</td>
                                     <td>JE Manjha</td>
                                     <td>8541847378</td>
-                                    <td>
+                                    <td width="70px">
                                         <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#details"
                                             class="btn btn-outline-primary btn-sm">
                                             <i class="bi bi-eye"></i>
@@ -550,20 +1011,20 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>3</td>
+                                    <td width="40px">3</td>
                                     <td>
                                         <a href="javascript:void(0);" data-bs-toggle="modal"
                                             data-bs-target="#token">202410280040</a>
                                     </td>
                                     <td>Pranshu Aditya</td>
-                                    <td>
+                                    <!-- <td>
                                         30 OCT 2024 की रात में व
-                                    </td>
-                                    <td>Registered & Open</td>
+                                    </td> -->
+                                    <td>Registered</td>
                                     <td>28-Oct-2024</td>
                                     <td>JE Section -I</td>
                                     <td>9110999615</td>
-                                    <td>
+                                    <td width="70px">
                                         <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#details"
                                             class="btn btn-outline-primary btn-sm">
                                             <i class="bi bi-eye"></i>
@@ -571,20 +1032,20 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>4</td>
+                                    <td width="40px">4</td>
                                     <td>
                                         <a href="javascript:void(0);" data-bs-toggle="modal"
                                             data-bs-target="#token">202410280039</a>
                                     </td>
                                     <td>Md.Ansari</td>
-                                    <td>
+                                    <!-- <td>
                                         वार्ड न०-01 में मुझे हाउस
-                                    </td>
-                                    <td>Registered & Open</td>
+                                    </td> -->
+                                    <td>Registered</td>
                                     <td>28-Oct-2024</td>
                                     <td>JE Teghra</td>
                                     <td>--</td>
-                                    <td>
+                                    <td width="70px">
                                         <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#details"
                                             class="btn btn-outline-primary btn-sm">
                                             <i class="bi bi-eye"></i>
@@ -592,20 +1053,20 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>5</td>
+                                    <td width="40px">5</td>
                                     <td>
                                         <a href="javascript:void(0);" data-bs-toggle="modal"
                                             data-bs-target="#token">202410280038</a>
                                     </td>
                                     <td>Sonu</td>
-                                    <td>
+                                    <!-- <td>
                                         वार्ड न०-17 में स्टाटर ज
-                                    </td>
-                                    <td>Registered & Open</td>
+                                    </td> -->
+                                    <td>Registered</td>
                                     <td>28-Oct-2024</td>
                                     <td>JE Chandi</td>
                                     <td>9304250389</td>
-                                    <td>
+                                    <td width="70px">
                                         <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#details"
                                             class="btn btn-outline-primary btn-sm">
                                             <i class="bi bi-eye"></i>
@@ -819,7 +1280,7 @@
                             <table class="table mb-0 table-bordered">
                                 <thead>
                                     <tr>
-                                        <th width="40px">Sl#</th>
+                                        <th>Sl#</th>
                                         <th>Action Taken By</th>
                                         <th>Action Taken On</th>
                                         <th width="190px">Status</th>
@@ -830,7 +1291,7 @@
                                         <td>1</td>
                                         <td>JE UdaKishanganj (8544428938)</td>
                                         <td>23-Oct-2024</td>
-                                        <td>Registered & Open</td>
+                                        <td>Registered</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -846,7 +1307,7 @@
                             <table class="table mb-0 table-bordered">
                                 <thead>
                                     <tr>
-                                        <th width="40px">Sl#</th>
+                                        <th>Sl#</th>
                                         <th>Action Details</th>
                                         <th>Action Taken By</th>
                                         <th>Complaint Status</th>
@@ -881,7 +1342,7 @@
                             <table class="table mb-0 table-bordered">
                                 <thead>
                                     <tr>
-                                        <th width="40px">Sl#</th>
+                                        <th>Sl#</th>
                                         <th>Escalation Level</th>
                                         <th>Designation</th>
                                         <th width="100px">Date of Escalation</th>
@@ -961,7 +1422,7 @@
                                         <label class="form-value">Piped Water Supply Related </label>
                                     </div>
                                 </div>
-                                <div class="col-xl-3 col-md-6">
+                                <div class="col-xl-6 col-md-6">
                                     <div class="mb-3">
                                         <label class="form-label">Complaint Sub-Category</label>
                                         <label class="form-value">Operator does not runs the motor</label>

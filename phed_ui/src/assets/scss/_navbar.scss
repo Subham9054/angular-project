@@ -128,8 +128,14 @@
           color: $blue !important;
         }
       }
-    }
 
+    }
+    .custom-drop{
+      // display: none;
+      // @media (max-width:576px){
+      //   display: block;
+      // }
+    }
     .indicator {
       background: $red;
       box-shadow: $box-shadow;
@@ -140,7 +146,7 @@
       padding: 1px;
       position: absolute;
       top: 2px;
-      right: -3px;  
+      right: -3px;
       text-align: center;
       transition: top 0.1s ease-out;
       font-size: 0.675rem;
@@ -223,13 +229,13 @@
     background-color: #e8eef59c;
     top: 7px;
 
-    @media (max-width: 530px) {
-      top: -1px;
+    @media (max-width: 576px) {
+      background-color: transparent;
     }
   }
-  @media (max-width: 530px) {
-    display: none !important;
-  }
+  // @media (max-width: 530px) {
+  //   display: none !important;
+  // }
 }
 
 .nav-flag {
