@@ -8,6 +8,7 @@ namespace GMS.Repository.Interfaces.MANAGE_COMPLAINTDETAILS_CONFIG
         Task<string> ComplaintRegistrationdetail(Complaint complaint);
         Task<List<gmsComplaintdetails>> getGmscomplaintdetail();
         Task<List<gmsComplaintdetails>> Getupdatetakeaction(string token);
+        Task<List<ComplaintDetails>> Getgmsactionhistory(string token);
         Task<int> INSERT_MANAGE_COMPLAINTDETAILS_CONFIG(MANAGE_COMPLAINTDETAILS_CONFIG_Model TBL);
         Task<int> UPDATE_MANAGE_COMPLAINTDETAILS_CONFIG(MANAGE_COMPLAINTDETAILS_CONFIG_Model TBL);
         Task<int> DELETE_MANAGE_COMPLAINTDETAILS_CONFIG(MANAGE_COMPLAINTDETAILS_CONFIG_Model TBL);
