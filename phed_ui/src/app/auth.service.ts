@@ -26,7 +26,7 @@ export class AuthService {
   private blockurl =  `${this.baseUrl}/gateway/GetBlocks`;
   private gpurl =  `${this.baseUrl}/gateway/GetGp`;
   private villageurl =  `${this.baseUrl}/gateway/GetVillages`;
-  private wardurl= `${this.baseUrl}/gateway/GetWards`
+  private wardurl= `${this.baseUrl}/gateway/GetWards`;
   private categoryUrl =  `${this.baseUrl}/gateway/GetCategory`;
   private subcategoryUrl =  `${this.baseUrl}/gateway/GetSubCategories`;
   private fileUploadUrl =  `${this.baseUrl}/gateway/UploadFile`;
@@ -48,6 +48,7 @@ export class AuthService {
   private registrationApiUrl = `${this.baseUrl}/gateway/DetailcomplaintRegistration`;
   private gmsComplaintdetailurl=`${this.baseUrl}/gateway/GetGmsComplaintdetails`;
   private gmstakeactionurl=`${this.baseUrl}/gateway/Getgmstakeaction`;
+  private gmsactionhistoryurl=`${this.baseUrl}/gateway/Getgmsactionhistory`;
   private GetAllDetailsagainsttokenurl=`${this.baseUrl}/gateway/GetAllDetailsagainsttoken`;
   private GetCitizenAddressDetailsurl=`${this.baseUrl}/gateway/GetCitizenAddressDetails`;
   private UpdateCitizenAddressDetailsurl=`${this.baseUrl}/gateway/UpdateCitizenAddressDetails`;
@@ -194,7 +195,6 @@ export class AuthService {
   //   );
   // }
   submitRegistration(formData: FormData): Observable<any> {
-    alert('1');
     console.log('FormData Contents:');
     formData.forEach((value, key) => {
       console.log(`${key}:`, value);
@@ -352,6 +352,11 @@ export class AuthService {
     );
   }
   
+  getgmsactionhistory(token: string): Observable<any> {
+    return this.http.get<any>(`${this.gmsactionhistoryurl}?token=${token}`).pipe(
+      catchError(this.handleError)
+    );
+  }
   //******.....Methods For Content Managent Dynamic Work by Debasis Das.....******
   GetParentMenus(): Observable<any> {
     return this.http.get(this.getParentMenusUrl).pipe(

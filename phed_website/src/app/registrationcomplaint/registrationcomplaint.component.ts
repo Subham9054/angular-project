@@ -205,13 +205,12 @@ padZero(value: number): string {
   }
   
   onBlockChange(event: any) {
-    debugger;
-    const blockId = event.inT_BLOCK_ID;
+
+    const blockId = event.inT_BLOCK_ID
     if (!isNaN(blockId)) {
       this.authService.getGps(blockId).subscribe(
         response => {
           this.gps = response;
-          this.formData.ddlPanchayat = [];
           console.log(this.gps);
         },
         error => {
@@ -224,9 +223,8 @@ padZero(value: number): string {
   }
 
   onGpChange(event: any) {
-    debugger;
+
     const gpId = event.inT_GP_ID;
-    this.gpnid=gpId;
     if (!isNaN(gpId)) {
       this.authService.getVillages(gpId).subscribe(
         response => {
@@ -241,18 +239,22 @@ padZero(value: number): string {
       console.error('Invalid district, block, or GP ID');
     }
   }
+  onVillage(event: any) {
 
-  onVillageChange(event: any) {
     const villageid = event.inT_VILLAGE_ID;
     if (!isNaN(villageid)) {
-      this.authService.getWards(villageid).subscribe(
+      this.authService.wards(villageid).subscribe(
         response => {
+          console.log("OK" +response)
           this.wards = response;
+          //console.log(this.wards);
         },
         error => {
-          console.error('Error fetching wards', error);
+          console.error('Error fetching villages', error);
         }
       );
+    } else {
+      console.error('Invalid district, block, or GP ID');
     }
   }
   // onSubmit() {
@@ -419,7 +421,10 @@ padZero(value: number): string {
     this.filesToUpload.forEach(file => {
       formData.append('files', file, file.name);
     });
-
+    debugger;
+    formData.forEach((value, key) => {
+      console.log(`${key}:`, value);
+    });
     this.authService.submitRegistration(formData).subscribe(
       response => {
         Swal.fire({
