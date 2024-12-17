@@ -7,36 +7,23 @@
             <div class="col-lg-6 col-md-8">
                 <div class="utilite">
                     <ul class="mb-0">
-                       
-
                         <li>
                             <a href="javascript:void(0)" title="Click to Print"><i class="bi bi-printer"></i></a>
                         </li>
-
                         <li>
                             <a href="javascript:void(0)" title="Download Excel"><i class="bi bi-file-earmark-excel"></i></a>
-                        </li>
-                        
+                        </li>                        
                         <li>
                             <a href="javascript:void(0)" title="Click to Publish"><i class="bi bi-volume-up"></i></a>
                         </li>
-
                         <li>
                             <a href="javascript:void(0)" title="Click to Unpublish"><i class="bi bi-volume-mute"></i></a>
-                        </li>
-                        <!-- <li [ngClass]="isPanelOpen ? 'active-filter' : ''">
-                            <a href="javascript:void(0)" title="{{ isPanelOpen ? 'Click to Close Filter' : 'Click to Open Filter' }}" 
-                               (click)="togglePanel()">
-                                <i class="bi bi-funnel"></i> Filter
-                            </a>
-                        </li> -->
+                        </li>                        
                         <li class="filter-dropdown dropdown">
                             <a href="javascript:void(0)" data-bs-toggle="dropdown" (click)="openDropdown()">
                                 <i class="bi bi-funnel"></i><span class="hide-icon ms-2"> Filter</span>
                             </a>
-
-                            <div class="dropdown-menu dropdown-menu-end filter-dropdown-menu shadow border-0"
-                                [ngClass]="{ 'show': isDropdownOpen }" (click)="$event.stopPropagation()">
+                            <div class="dropdown-menu dropdown-menu-end filter-dropdown-menu shadow border-0" [ngClass]="{ 'show': isDropdownOpen }" (click)="$event.stopPropagation()">
                                 <span class="drop-icon" (click)="closeDropdown()">
                                     <i class="bi bi-x-lg"></i>
                                 </span>
@@ -57,8 +44,10 @@
                                 </div>
                             </div>
                         </li>
-                        <li class="fill-btn add-link"><a routerLink="/application/whatsnew/add"  title="Click to Add"><i class="bi bi-plus-lg"></i>
-                            <span class="hide-icon ms-2">Add Page</span></a>
+                        <li class="fill-btn add-link">
+                            <a routerLink="/application/whatsnew/add" title="Click to Add">
+                                <i class="bi bi-plus-lg"></i><span class="hide-icon ms-2">Add Page</span>
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -66,159 +55,50 @@
         </div>
     </div>
 
-
-   
-  
     <div class="view-legand">
         <ul class="legends">
             <li><span class="bg-success"></span> Publish </li>
             <li><span class="bg-danger"></span> Unpublish </li>
         </ul>
     </div>
+
     <div class="content-box content-area p-0">
+        <div *ngIf="noRecordsFound" class="alert alert-warning text-center mt-3">
+            No What is New Found!!
+        </div>
         <div class="table-responsive">
             <table class="table mb-0">
                 <thead>
                     <tr>
-                        <th width="30px">
-                            <input class="form-check-input" type="checkbox">
-                        </th>
+                        <th width="30px"><input class="form-check-input" type="checkbox"></th>
                         <th width="40px">Sl#</th>
-                        <th>Title</th>
-                        <th>Published on</th>
+                        <th>Title</th>                        
                         <th>Description</th>
-                        <th>Document</th>
-                        <th width="90px">Action</th>
+                        <th>Published On</th>
+                        <th style="text-align: center;">Document</th>
+                        <th width="70px" style="text-align: center;">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="publish">
-                        <td><input class="form-check-input" type="checkbox"></td>
-                        <td> 1 </td>
-                        <td>
-                            Tender for demo
-                        </td>
-                        <td> 01-Sep-2022 </td>
-                       <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde ullam magni quaerat, 
-                        <br>optio blanditiis dolorum omnis quis cumque, et suscipit harum quae, eaque eius <br>
-                        accusamus reiciendis incidunt ipsam? Eos, quasi.</td>
-                        <td>
+                    <tr *ngFor="let item of whatIsNewDetails; let i = index" [ngClass]="{'publish': item.isPublish, 'unpublish': !item.isPublish}">
+                        <td><input type="checkbox"></td>
+                        <td>{{ i + 1 }}</td>                        
+                        <td>{{ item.titleEnglish }}</td>                        
+                        <td>{{ item.descriptionEnglish }}</td>
+                        <td>{{ item.publishDate | date:'dd-MMM-yyyy' }}</td>
+                        <td style="text-align: center;">
                             <a href="javascript:void(0);" class="btn btn-sm btn-outline-danger" title="Download"><i class="bi bi-download"></i></a>
                         </td>
+                        <!-- <td style="text-align: center;">
+                            <a href="javascript:void(0);" class="btn btn-sm btn-outline-danger" (click)="downloadDocument(item.whatIsNewId)" title="Download"><i class="bi bi-download"></i></a>
+                        </td> -->
                         <td>
-                            <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"
-                                data-bs-toggle="modal" data-bs-target="#viewmodal">
-                                    <i class="bi bi-eye"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
-                                    <i class="bi bi-pencil"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" title="Delete">
-                                    <i class="bi bi-trash3"></i></a>
-                            </div>
-                        </td>
-                    </tr>
-
-                    <tr class="unpublish">
-                        <td><input class="form-check-input" type="checkbox"></td>
-                        <td>2</td>
-                        <td>
-                            Tender for demo
-                        </td>
-                        <td> 20-Aug-2022 </td>
-                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde ullam magni quaerat, 
-                            <br>optio blanditiis dolorum omnis quis cumque, et suscipit harum quae, eaque eius <br>
-                            accusamus reiciendis incidunt ipsam? Eos, quasi.</td>
-                            <td>
-                                <a href="javascript:void(0);" class="btn btn-sm btn-outline-danger" title="Download"><i class="bi bi-download"></i></a>
-                            </td>
-                        <td>
-                            <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"
-                                data-bs-toggle="modal" data-bs-target="#viewmodal">
-                                    <i class="bi bi-eye"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
-                                    <i class="bi bi-pencil"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" title="Delete">
-                                    <i class="bi bi-trash3"></i></a>
-                            </div>
-                        </td>
-                    </tr>
-
-                    <tr class="unpublish">
-                        <td><input class="form-check-input" type="checkbox"></td>
-                        <td>3</td>
-                        <td>
-                            Tender for demo
-                        </td>
-                        <td> 20-Aug-2022 </td>
-                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde ullam magni quaerat, 
-                            <br>optio blanditiis dolorum omnis quis cumque, et suscipit harum quae, eaque eius <br>
-                            accusamus reiciendis incidunt ipsam? Eos, quasi.</td>
-                            <td>
-                                <a href="javascript:void(0);" class="btn btn-sm btn-outline-danger" title="Download"><i class="bi bi-download"></i></a>
-                            </td>
-                        <td>
-                            <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"
-                                data-bs-toggle="modal" data-bs-target="#viewmodal">
-                                    <i class="bi bi-eye"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
-                                    <i class="bi bi-pencil"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" title="Delete">
-                                    <i class="bi bi-trash3"></i></a>
-                            </div>
-                        </td>
-                    </tr>
-
-                    <tr class="publish">
-                        <td><input class="form-check-input" type="checkbox"></td>
-                        <td>4</td>
-                        <td>
-                            Tender for demo
-                        </td>
-                        <td> 20-Aug-2022 </td>
-                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde ullam magni quaerat, 
-                            <br>optio blanditiis dolorum omnis quis cumque, et suscipit harum quae, eaque eius <br>
-                            accusamus reiciendis incidunt ipsam? Eos, quasi.</td>
-                            <td>
-                                <a href="javascript:void(0);" class="btn btn-sm btn-outline-danger" title="Download"><i class="bi bi-download"></i></a>
-                            </td>
-                        <td>
-                            <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"
-                                data-bs-toggle="modal" data-bs-target="#viewmodal">
-                                    <i class="bi bi-eye"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
-                                    <i class="bi bi-pencil"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" title="Delete">
-                                    <i class="bi bi-trash3"></i></a>
-                            </div>
-                        </td>
-                    </tr>
-
-                    <tr class="unpublish">
-                        <td><input class="form-check-input" type="checkbox"></td>
-                        <td>5</td>
-                        <td>
-                            Tender for demo
-                        </td>
-                        <td> 20-Aug-2022 </td>
-                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde ullam magni quaerat, 
-                            <br>optio blanditiis dolorum omnis quis cumque, et suscipit harum quae, eaque eius <br>
-                            accusamus reiciendis incidunt ipsam? Eos, quasi.</td>
-                            <td>
-                                <a href="javascript:void(0);" class="btn btn-sm btn-outline-danger" title="Download"><i class="bi bi-download"></i></a>
-                            </td>
-                        <td>
-                            <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"
-                                data-bs-toggle="modal" data-bs-target="#viewmodal">
-                                    <i class="bi bi-eye"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
-                                    <i class="bi bi-pencil"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" title="Delete">
-                                    <i class="bi bi-trash3"></i></a>
-                            </div>
+                          <div class="d-flex gap-1">
+                              <a href="javascript:void(0);" (click)="onView(item)" class="btn btn-outline-success btn-sm" title="View" data-bs-toggle="modal" data-bs-target="#wahtIsNewModal">
+                              <i class="bi bi-eye"></i></a>
+                            <button class="btn btn-outline-primary btn-sm" (click)="editWhatIsNewDetails(item.whatIsNewId)" title="Edit"><i class="bi bi-pencil"></i></button>
+                            <button class="btn btn-outline-danger btn-sm" (click)="deleteWhatIsNewDetails(item.whatIsNewId)" title="Delete"><i class="bi bi-trash3"></i></button>
+                          </div>
                         </td>
                     </tr>
                 </tbody>
@@ -227,13 +107,12 @@
     </div>
 </div>
 
-
 <!-- Modal View  -->
-<div class="modal fade" id="viewmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="wahtIsNewModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Tender for demo</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel" style="color:blue; font-weight: bold;">What Is New</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body view-form">
@@ -242,8 +121,10 @@
                         <div class="row">
                             <div class="col-xl-6 col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label d-block">Published on</label>
-                                    <label class="form-value">01-Sep-2022</label>
+                                    <label class="form-label d-block">Published On</label>
+                                    <label *ngIf="selectedWhatIsNews?.publishDate" class="form-value">
+                                        {{ selectedWhatIsNews.publishDate | date:'dd-MMM-yyyy'}}
+                                    </label>
                                 </div>
                             </div>
                 
@@ -256,37 +137,41 @@
                                 </div>
                             </div>
 
-                       
-                            <!-- <div class="col-xl-6 col-md-12">
+                            <div class="col-xl-6 col-md-12">
                                 <div class="mb-3">
-                                    <label class="form-label">Title</label>
-                                    <label class="form-value">Tender for demo</label>
+                                    <label class="form-label">Title (In English)</label>
+                                    <label *ngIf="selectedWhatIsNews?.titleEnglish" class="form-value">
+                                        {{ selectedWhatIsNews.titleEnglish }}
+                                    </label>
                                 </div>
-                            </div> -->
-                
-                           
+                            </div>
                         
                             <div class="col-xl-12 col-md-12">
                                 <div class="mb-3">
-                                    <label class="form-label">Description</label>
-                                    <label class="form-value">Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde ullam magni quaerat, optio blanditiis dolorum omnis quis cumque, et suscipit harum quae, eaque eius accusamus reiciendis incidunt ipsam? Eos, quasi.</label>
+                                    <label class="form-label">Description (In English)</label>
+                                    <label *ngIf="selectedWhatIsNews?.descriptionEnglish" class="form-value">
+                                        {{ selectedWhatIsNews.descriptionEnglish }}
+                                    </label>
                                 </div>
                             </div>
+                            
                             <div class="col-xl-6 col-md-12">
                                 <div class="mb-3">
-                                    <label class="form-label">Title (In Hindi)</label>
-                                    <label class="form-value">डेमो के लिए टेंडर</label>
+                                    <label class="form-label">Title (हिंदी में)</label>
+                                    <label *ngIf="selectedWhatIsNews?.titleHindi" class="form-value">
+                                        {{ selectedWhatIsNews.titleHindi }}
+                                    </label>
                                 </div>
                             </div>
                             <div class="col-xl-12 col-md-12">
                                 <div class="mb-3">
-                                    <label class="form-label">Description (In Hindi)</label>
-                                    <label class="form-value">लोरेम इप्सम डोलोर sit amet कंसिक्टेटुर एडिपिसिकिंग एलीट। उन्डे उल्लम मैग्नी क्वाएरत, ऑप्टियो ब्लैंडिटियस डोलोरम ओम्निस क्यूस कुम्के, एट सुसिपिट हारम क्वाए, ईक्वे eius अकुसामस रीसीडिंड्स इन्सिडुंट इप्साम? ईओस, क्वासी।</label>
+                                    <label class="form-label">Description (हिंदी में)</label>
+                                    <label *ngIf="selectedWhatIsNews?.descriptionHindi" class="form-value">
+                                        {{ selectedWhatIsNews.descriptionHindi }}
+                                    </label>
                                 </div>
                             </div>
                         </div>
-                       
-
                     </div>
                 </div>
             </div>

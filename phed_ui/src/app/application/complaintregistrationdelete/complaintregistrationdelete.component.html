@@ -344,41 +344,42 @@
         </div>
     </div> -->
 
-    <div class="content-box content-area p-0">
-        <div class="table-responsive mb-0">
-            <table class="table mb-0">
-                <thead>
-                    <tr>
-                        <th width="40px">Sl#</th>
-                        <th>Token No.</th>
-                        <th>Complaint Name</th>
-                        <th>Complaint Details</th>
-                        <th>Complaint Status</th>
-                        <th>Complaint Date</th>
-                        <th>Near by Location</th>
-                        <th>Action Taken By</th>
-                        <th width="100px">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let complaint of paginatedComplaints; let i = index">
-                        <td>{{ (currentPage - 1) * pageSize + i + 1 }}</td>
-                        <td>
-                            <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#token">
-                                {{ complaint.vcH_TOKENNO }}
-                            </a>
-                            <input type="hidden" [value]="complaint.vcH_TOKENNO" #tokenno />
-                        </td>
-                        <td>{{ complaint.nvcH_COMPLIANTANT_NAME }}
-                          <input type="hidden" [value]="complaint.inT_CATEGORY_ID" #categoryId />
-                        </td>
-                        <td>{{ complaint.nvcH_COMPLIANT_DETAILS }}
-                          <input type="hidden" [value]="complaint.inT_SUB_CATEGORY_ID" #subcategoryId />
-                        </td>
-                        <td>
-                            <span
-                                class="badge"
-                                [ngClass]="{
+  <div class="content-box content-area p-0">
+    <div class="table-responsive mb-0">
+      <table class="table mb-0">
+        <thead>
+          <tr>
+            <th width="40px">Sl#</th>
+            <th>Token No.</th>
+            <th>Complaint Name</th>
+            <th>Complaint Details</th>
+            <th>Complaint Status</th>
+            <th>Complaint Date</th>
+            <th>Near by Location</th>
+            <th>Action Taken By</th>
+            <th width="100px">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let complaint of paginatedComplaints; let i = index">
+            <td>{{ (currentPage - 1) * pageSize + i + 1 }}</td>
+            <td>
+              <a (click)="GetAllDetailsagainsttokenurl(complaint.inT_CATEGORY_ID,complaint.inT_SUB_CATEGORY_ID,complaint.vcH_TOKENNO)"
+                href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#token">
+                {{ complaint.vcH_TOKENNO }}
+              </a>
+              <input type="hidden" [value]="complaint.inT_CATEGORY_ID" #catid />
+              <input type="hidden" [value]="complaint.inT_SUB_CATEGORY_ID" #subcatid />
+              <input type="hidden" [value]="complaint.vcH_TOKENNO" #tokenno />
+            </td>
+            <td>{{ complaint.nvcH_COMPLIANTANT_NAME }}
+              <input type="hidden" [value]="complaint.inT_CATEGORY_ID" #categoryId />
+            </td>
+            <td>{{ complaint.nvcH_COMPLIANT_DETAILS }}
+              <input type="hidden" [value]="complaint.inT_SUB_CATEGORY_ID" #subcategoryId />
+            </td>
+            <td>
+              <span class="badge" [ngClass]="{
                                     'text-bg-primary': complaint.vcH_COMPLIANT_STATUS === 'Registered & Open',
                                     'text-bg-info-inprogress': complaint.vcH_COMPLIANT_STATUS === 'Inprogress',
                                     'text-bg-success': complaint.vcH_COMPLIANT_STATUS === 'Resolved',
@@ -389,346 +390,326 @@
                                     'text-bg-light': complaint.vcH_COMPLIANT_STATUS === 'Reopen',
                                     'text-bg-danger-rejected': complaint.vcH_COMPLIANT_STATUS === 'Rejected by call center executive',
                                     'text-bg-info-forwarded': complaint.vcH_COMPLIANT_STATUS === 'Forwarded'
-                                }"
-                            >
-                                {{ complaint.vcH_COMPLIANT_STATUS }}
-                            </span>
-                        </td>
-                        <td>{{ complaint.dtM_CREATED_ON | date: 'dd-MMM-yyyy' }}</td>
-                        <td>{{ complaint.nvcH_LANDMARK }}</td>
-                        <td>{{ complaint.vchUserName }}</td>
-                        <td>
-                            <div class="dropdown">
-                                <button
-                                    class="btn btn-outline-primary btn-sm"
-                                    type="button"
-                                    data-bs-toggle="dropdown"
-                                    aria-expanded="false"
-                                >
-                                    <i class="bi bi-caret-down"></i> Action
-                                </button>
-                                <ul class="dropdown-menu shadow border-0 dropdown-menu-end py-0">
-                                    <li>
-                                        <a
-                                            href="javascript:void(0);"
-                                            class="dropdown-item"
-                                            title="Action History"
-                                            data-bs-toggle="modal"
-                                            data-bs-target="#takehistrory"
-                                        >
-                                            <i class="bi-journal-text me-1"></i> Action History
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <!-- <a href="javascript:void(0);" class="dropdown-item" title="Take Action"
+                                }">
+                {{ complaint.vcH_COMPLIANT_STATUS }}
+              </span>
+            </td>
+            <td>{{ complaint.dtM_CREATED_ON | date: 'dd-MMM-yyyy' }}</td>
+            <td>{{ complaint.nvcH_LANDMARK }}</td>
+            <td>{{ complaint.vchUserName }}</td>
+            <td>
+              <div class="dropdown">
+                <button class="btn btn-outline-primary btn-sm" type="button" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  <i class="bi bi-caret-down"></i> Action
+                </button>
+                <ul class="dropdown-menu shadow border-0 dropdown-menu-end py-0">
+                  <li>
+                    <a href="javascript:void(0);" class="dropdown-item" title="Action History" data-bs-toggle="modal"
+                      data-bs-target="#takehistrory">
+                      <i class="bi-journal-text me-1"></i> Action History
+                    </a>
+                  </li>
+                  <li>
+                    <!-- <a href="javascript:void(0);" class="dropdown-item" title="Take Action"
                                             data-bs-toggle="modal" data-bs-target="#details">
                                             <i class="bi-clock-history me-1"></i> Take Action
                                         </a> -->
-                                        <button type="button" class="dropdown-item btn btn-link" title="Take Action" data-bs-toggle="modal" (click)="takeaction(tokenno.value)" data-bs-target="#details">
-                                        <i class="bi-clock-history me-1"></i> Take Action
-                                    </button>
-                                    </li>
-                                </ul>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="pagination-controls d-flex justify-content-between align-items-center mt-3">
-            <button
-                class="btn btn-primary"
-                [disabled]="currentPage === 1"
-                (click)="goToPage(currentPage - 1)"
-            >
-                Previous
-            </button>
-            <span>Page {{ currentPage }} of {{ totalPages }}</span>
-            <button
-                class="btn btn-primary"
-                [disabled]="currentPage === totalPages"
-                (click)="goToPage(currentPage + 1)"
-            >
-                Next
-            </button>
-        </div>
+                    <button type="button" class="dropdown-item btn btn-link" title="Take Action" data-bs-toggle="modal"
+                      (click)="takeaction(tokenno.value)" data-bs-target="#details">
+                      <i class="bi-clock-history me-1"></i> Take Action
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
+    <div class="pagination-controls d-flex justify-content-between align-items-center mt-3">
+      <button class="btn btn-primary" [disabled]="currentPage === 1" (click)="goToPage(currentPage - 1)">
+        Previous
+      </button>
+      <span>Page {{ currentPage }} of {{ totalPages }}</span>
+      <button class="btn btn-primary" [disabled]="currentPage === totalPages" (click)="goToPage(currentPage + 1)">
+        Next
+      </button>
+    </div>
+  </div>
 </div>
 
 <!-- Modal Start::Token -->
-<div class="modal fade" id="token" tabindex="-1" aria-labelledby="tokenLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="modal-header justify-content-between">
-        <h1 class="modal-title fs-4" id="tokenLabel">Status of Registered Complaint</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<div *ngIf="dataBasedOnToken">
+  <div class="modal fade" id="token" tabindex="-1" aria-labelledby="tokenLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header justify-content-between">
+          <h1 class="modal-title fs-4" id="tokenLabel">Status of Registered Complaint</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 
-      </div>
-      <div class="modal-body view-form">
-        <div class="modal-logo">
-          <img src="./assets/img/bihar-logo-black.png" alt="Govt. of Bihar Logo" class="me-1 me-lg-3">
-          <div>
-            <h1>HAR GHAR NAL KA JAL</h1>
-            <p>Public Health Engineering Department</p>
-            <small>Government of Bihar </small>
-          </div>
-          <div class="ms-auto">
-            <a href="javascript:void(0)" ngbTooltip="Click to Print" class="btn btn-outline-danger btn-sm"><i
-                class="bi bi-printer me-1"></i>Print</a>
-          </div>
         </div>
-
-        <div class="row">
-          <div class="col-xl-12">
-            <h5 class="page-heading">Complainant Details</h5>
-          </div>
-          <div class="col-xl-12">
-            <div class="view-forms">
-              <div class="row">
-
-                <div class="col-xl-3 col-md-6">
-                  <div class="mb-3">
-                    <label class="form-label">Complaint No.</label>
-                    <label class="form-value">202410230124</label>
-                  </div>
-                </div>
-
-                <div class="col-xl-3 col-md-6">
-                  <div class="mb-3">
-                    <label class="form-label">Registration Date</label>
-                    <label class="form-value">23-Oct-2024</label>
-                  </div>
-                </div>
-
-                <div class="col-xl-3 col-md-6">
-                  <div class="mb-3">
-                    <label class="form-label">Mode of Complaint</label>
-                    <label class="form-value">Helpline</label>
-                  </div>
-                </div>
-
-                <div class="col-xl-3 col-md-6">
-                  <div class="mb-3">
-                    <label class="form-label">Name</label>
-                    <label class="form-value">Krishanumar</label>
-                  </div>
-                </div>
-
-                <div class="col-xl-3 col-md-6">
-                  <div class="mb-3">
-                    <label class="form-label">Phone No.</label>
-                    <label class="form-value">8789952814</label>
-                  </div>
-                </div>
-
-              <div class="col-xl-3 col-md-6">
-                <div class="mb-3">
-                  <label class="form-label">E-Mail</label>
-                  <label class="form-value">testusergmail.com</label>
-                </div>
-              </div>
-
-
-
-                <div class="col-xl-3 col-md-6">
-                  <div class="mb-3">
-                    <label class="form-label"> Document/Photo</label>
-                    <label class="form-value">
-                      <div class="d-flex gap-1">
-                        <a href="javascript:void(0);" class="btn btn-sm btn-outline-danger"><i
-                            class="bi bi-download"></i> Download</a>
-                        <!-- <a href="javascript:void(0);" class="btn btn-sm btn-outline-danger"><i class="bi bi-download"></i></a> -->
-                      </div>
-                    </label>
-                  </div>
-                </div>
-
-                <div class="col-xl-3 col-md-6">
-                  <div class="mb-3">
-                    <label class="form-label">Complaint Category</label>
-                    <label class="form-value">Piped Water Supply Related</label>
-                  </div>
-                </div>
-
-                <div class="col-xl-3 col-md-6">
-                  <div class="mb-3">
-                    <label class="form-label">Complaint Sub-Category</label>
-                    <label class="form-value">Operator does not runs the motor</label>
-                  </div>
-                </div>
-
-
-                <div class="col-xl-9 col-md-12">
-                  <div class="mb-3">
-                    <label class="form-label">Complaint Details</label>
-                    <label class="form-value">पंप चालक वार्ड न०- 11 में सप्लाई का पानी समय से नहीं
-                      चलाता
-                      है अतः उचित कार्यवाई करके सप्लाई का पानी सुचारू रूप से चलाया जाय|</label>
-                  </div>
-                </div>
-
-              </div>
+        <div class="modal-body view-form">
+          <div class="modal-logo">
+            <img src="./assets/img/bihar-logo-black.png" alt="Govt. of Bihar Logo" class="me-1 me-lg-3">
+            <div>
+              <h1>HAR GHAR NAL KA JAL</h1>
+              <p>Public Health Engineering Department</p>
+              <small>Government of Bihar </small>
+            </div>
+            <div class="ms-auto">
+              <a href="javascript:void(0)" ngbTooltip="Click to Print" class="btn btn-outline-danger btn-sm"><i
+                  class="bi bi-printer me-1"></i>Print</a>
             </div>
           </div>
-        </div>
 
-        <div class="row">
-          <div class="col-xl-12">
-            <h5 class="page-heading">Address Details</h5>
-          </div>
-          <div class="col-xl-12">
-            <div class="view-forms">
-              <div class="row">
-                <div class="col-xl-3 col-md-6">
-                  <div class="mb-3">
-                    <label class="form-label">District</label>
-                    <label class="form-value">Madhepura</label>
-                  </div>
-                </div>
-                <div class="col-xl-3 col-md-6">
-                  <div class="mb-3">
-                    <label class="form-label">Block</label>
-                    <label class="form-value">Chausa</label>
-                  </div>
-                </div>
-                <div class="col-xl-3 col-md-6">
-                  <div class="mb-3">
-                    <label class="form-label">Gram Panchayat</label>
-                    <label class="form-value">Arajipur West</label>
-                  </div>
-                </div>
+          <div class="row">
+            <div class="col-xl-12">
+              <h5 class="page-heading">Complainant Details</h5>
+            </div>
+            <div class="col-xl-12">
+              <div class="view-forms">
+                <div class="row">
 
-                <div class="col-xl-3 col-md-6">
-                  <div class="mb-3">
-                    <label class="form-label">Village</label>
-                    <label class="form-value">-</label>
+                  <div class="col-xl-3 col-md-6">
+                    <div class="mb-3">
+                      <label class="form-label">Complaint No.</label>
+                      <label class="form-value">{{dataBasedOnToken.data[0].vcH_TOKENNO}}</label>
+                    </div>
                   </div>
-                </div>
 
-                <div class="col-xl-3 col-md-6">
-                  <div class="mb-3">
-                    <label class="form-label">Ward</label>
-                    <label class="form-value">Ara</label>
+                  <div class="col-xl-3 col-md-6">
+                    <div class="mb-3">
+                      <label class="form-label">Registration Date</label>
+                      <label class="form-value">{{dataBasedOnToken.data[0].dtM_CREATED_ON |
+                        date:'dd-MM-yyyy' }}</label>
+                    </div>
                   </div>
-                </div>
-                <div class="col-xl-3 col-md-6">
-                  <div class="mb-3">
-                    <label class="form-label">Near by Location</label>
-                    <label class="form-value">Patna</label>
+
+                  <div class="col-xl-3 col-md-6">
+                    <div class="mb-3">
+                      <label class="form-label">Mode of Complaint</label>
+                      <label class="form-value">{{dataBasedOnToken.data[0].vcH_COMPLIANT_LOG_TYPE}}</label>
+                    </div>
                   </div>
-                </div>
-                <div class="col-xl-6 col-md-12">
-                  <div class="mb-3">
-                    <label class="form-label">Address</label>
-                    <label class="form-value">Lorem ipsum dolor, sit amet consectetur adipisicing
-                      elit.
-                      Ipsam, natus.</label>
+
+                  <div class="col-xl-3 col-md-6">
+                    <div class="mb-3">
+                      <label class="form-label">Name</label>
+                      <label class="form-value">{{dataBasedOnToken.data[0].nvcH_COMPLIANTANT_NAME}}</label>
+                    </div>
                   </div>
+
+                  <div class="col-xl-3 col-md-6">
+                    <div class="mb-3">
+                      <label class="form-label">Phone No.</label>
+                      <label class="form-value">{{
+                        dataBasedOnToken?.data[0]?.vcH_CONTACT_NO}}</label>
+                    </div>
+                  </div>
+
+                  <div class="col-xl-3 col-md-6">
+                    <div class="mb-3">
+                      <label class="form-label">E-Mail</label>
+                      <label class="form-value">{{ dataBasedOnToken?.data[0]?.vcH_EMAIL}}</label>
+                    </div>
+                  </div>
+
+
+
+                  <div class="col-xl-3 col-md-6">
+                    <div class="mb-3">
+                      <label class="form-label"> Document/Photo</label>
+                      <label class="form-value">
+                        <div class="d-flex gap-1">
+                          <a href="javascript:void(0);" class="btn btn-sm btn-outline-danger"><i
+                              class="bi bi-download"></i> Download</a>
+                          <!-- <a href="javascript:void(0);" class="btn btn-sm btn-outline-danger"><i class="bi bi-download"></i></a> -->
+                        </div>
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="col-xl-3 col-md-6">
+                    <div class="mb-3">
+                      <label class="form-label">Complaint Category</label>
+                      <label class="form-value">{{
+                        dataBasedOnToken?.data[0]?.vcH_CATEGORY}}</label>
+                    </div>
+                  </div>
+
+                  <div class="col-xl-3 col-md-6">
+                    <div class="mb-3">
+                      <label class="form-label">Complaint Sub-Category</label>
+                      <label class="form-value">{{
+                        dataBasedOnToken?.data[0]?.vcH_SUB_CATEGORY}}</label>
+                    </div>
+                  </div>
+
+
+                  <div class="col-xl-9 col-md-12">
+                    <div class="mb-3">
+                      <label class="form-label">Complaint Details</label>
+                      <label class="form-value">{{
+                        dataBasedOnToken?.data[0]?.nvcH_COMPLIANT_DETAILS}}</label>
+                    </div>
+                  </div>
+
                 </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <div class="row">
-          <div class="col-xl-12">
-            <h5 class="page-heading">Intimation Sent To</h5>
-          </div>
-          <div class="col-xl-12">
-            <div class="table-responsive mb-3">
-              <table class="table mb-0 table-bordered">
-                <thead>
-                  <tr>
-                    <th width="40px">Sl#</th>
-                    <th>Action Taken By</th>
-                    <th>Action Taken On</th>
-                    <th width="190px">Status</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>JE UdaKishanganj (+91-8544428938)</td>
-                    <td>23-Oct-2024</td>
-                    <td>Registered & Open</td>
-                  </tr>
-                </tbody>
-              </table>
+          <div class="row">
+            <div class="col-xl-12">
+              <h5 class="page-heading">Address Details</h5>
+            </div>
+            <div class="col-xl-12">
+              <div class="view-forms">
+                <div class="row">
+                  <div class="col-xl-3 col-md-6">
+                    <div class="mb-3">
+                      <label class="form-label">District</label>
+                      <label class="form-value">{{
+                        dataBasedOnToken?.data[0]?.vcH_DISTNAME}}</label>
+                    </div>
+                  </div>
+                  <div class="col-xl-3 col-md-6">
+                    <div class="mb-3">
+                      <label class="form-label">Block</label>
+                      <label class="form-value">{{
+                        dataBasedOnToken?.data[0]?.vcH_BLOCKNAME}}</label>
+                    </div>
+                  </div>
+                  <div class="col-xl-3 col-md-6">
+                    <div class="mb-3">
+                      <label class="form-label">Gram Panchayat</label>
+                      <label class="form-value">{{
+                        dataBasedOnToken?.data[0]?.vcH_PANCHAYAT}}</label>
+                    </div>
+                  </div>
+
+                  <div class="col-xl-3 col-md-6">
+                    <div class="mb-3">
+                      <label class="form-label">Village</label>
+                      <label class="form-value">{{
+                        dataBasedOnToken?.data[0]?.vcH_VILLAGE}}</label>
+                    </div>
+                  </div>
+
+                  <div class="col-xl-3 col-md-6">
+                    <div class="mb-3">
+                      <label class="form-label">Ward</label>
+                      <label class="form-value">{{ dataBasedOnToken?.data[0]?.vcH_WARD}}</label>
+                    </div>
+                  </div>
+                  <div class="col-xl-3 col-md-6">
+                    <div class="mb-3">
+                      <label class="form-label">Near by Location</label>
+                      <label class="form-value">{{
+                        dataBasedOnToken?.data[0]?.nvcH_LANDMARK}}</label>
+                    </div>
+                  </div>
+                  <div class="col-xl-6 col-md-12">
+                    <div class="mb-3">
+                      <label class="form-label">Address</label>
+                      <label class="form-value">{{
+                        dataBasedOnToken?.data[0]?.nvcH_ADDRESS}}</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-xl-12">
-            <h5 class="page-heading">Summary Of Action Taken</h5>
-          </div>
-          <div class="col-xl-12">
-            <div class="table-responsive mb-3">
-              <table class="table mb-0 table-bordered">
-                <thead>
-                  <tr>
-                    <th width="40px">Sl#</th>
-                    <th>Action Details</th>
-                    <th>Action Taken By</th>
-                    <th>Complaint Status</th>
-                    <th>Action Taking Authority</th>
-                    <th>Remarks</th>
-                    <th>Attached Document</th>
-                    <th>Action Taken on</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>Action 1</td>
-                    <td>JE UdaKishanganj</td>
-                    <td>Registered & Open</td>
-                    <td>JE UdaKishanganj</td>
-                    <td>Complaint Received</td>
-                    <td></td>
-                    <td>23-Oct-2024</td>
-                  </tr>
-                </tbody>
-              </table>
+
+          <div class="row">
+            <div class="col-xl-12">
+              <h5 class="page-heading">Intimation Sent To</h5>
+            </div>
+            <div class="col-xl-12">
+              <div class="table-responsive mb-3">
+                <table class="table mb-0 table-bordered">
+                  <thead>
+                    <tr>
+                      <th width="40px">Sl#</th>
+                      <th>Action Taken By</th>
+                      <th>Action Taken On</th>
+                      <th width="190px">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody *ngFor="let intimation of intimations; let i = index">
+                    <tr>
+                      <td>{{ i + 1 }}</td>
+                      <td>{{ intimation?.actionTakenBy }}</td>
+                      <td>{{ intimation?.actionTakenOn | date:'dd-MMM-yyyy' }}</td>
+                      <td>{{ intimation?.complaintStatus }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-xl-12">
-            <h5 class="page-heading">Escalation Level</h5>
+          <div class="row">
+            <div class="col-xl-12">
+              <h5 class="page-heading">Summary Of Action Taken</h5>
+            </div>
+            <div class="col-xl-12">
+              <div class="table-responsive mb-3">
+                <table class="table mb-0 table-bordered">
+                  <thead>
+                    <tr>
+                      <th width="40px">Sl#</th>
+                      <th>Action Details</th>
+                      <th>Action Taken By</th>
+                      <th>Complaint Status</th>
+                      <th>Action Taking Authority</th>
+                      <th>Remarks</th>
+                      <th>Attached Document</th>
+                      <th>Action Taken on</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let action of actions; let i = index">
+                      <td>{{ i + 1 }}</td>
+                      <td>Action {{ i + 1}}</td>
+                      <td>{{ action?.actionTakenBy }}</td>
+                      <td>{{ action?.complaintStatus }}</td>
+                      <td>{{ action?.actionTakingAuthority }}</td>
+                      <td>{{ action?.remark }}</td>
+                      <td>{{ action?.attachedDocument || 'N/A' }}</td>
+                      <td>{{ action?.dateOfEscalation | date:'dd-MMM-yyyy' }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
-          <div class="col-xl-12">
-            <div class="table-responsive mb-0">
-              <table class="table mb-0 table-bordered">
-                <thead>
-                  <tr>
-                    <th width="40px">Sl#</th>
-                    <th>Escalation Level</th>
-                    <th>Designation</th>
-                    <th width="100px">Date of Escalation</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>Level 1</td>
-                    <td>JE</td>
-                    <td>28-Oct-2024</td>
-                  </tr>
+          <div class="row">
+            <div class="col-xl-12">
+              <h5 class="page-heading">Escalation Level</h5>
+            </div>
+            <div class="col-xl-12">
+              <div class="table-responsive mb-0">
+                <table class="table mb-0 table-bordered">
+                  <thead>
+                    <tr>
+                      <th width="40px">Sl#</th>
+                      <th>Escalation Level</th>
+                      <th>Designation</th>
+                      <th width="100px">Date of Escalation</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let escalation of escalations; let i = index">
+                      <td>{{ i + 1 }}</td>
+                      <td> Level {{ i + 1 }}</td>
+                      <td>{{ escalation.nvcH_DESIGNATION_NAME }}</td>
+                      <td>{{ escalation.vcH_STANDARD_DAYS }}</td>
+                    </tr>
 
-                  <tr>
-                    <td>2</td>
-                    <td>Level 2</td>
-                    <td>SDO</td>
-                    <td>31-Oct-2024</td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td>Level 3</td>
-                    <td>EE</td>
-                    <td>07-Nov-2024</td>
-                  </tr>
-                </tbody>
-              </table>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
@@ -740,119 +721,106 @@
 
 <!-- Modal Start::Details -->
 <div class="modal fade" id="details" tabindex="-1" aria-labelledby="tokenLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable">
-        <div class="modal-content">
-            <div class="modal-header justify-content-between">
-                <h1 class="modal-title fs-5" id="tokenLabel"> Take Action</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
+  <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header justify-content-between">
+        <h1 class="modal-title fs-5" id="tokenLabel"> Take Action</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-xl-12">
+            <div class="view-forms view-form pb-0">
+              <div *ngFor="let item of takeactiongms">
                 <div class="row">
-                    <div class="col-xl-12">
-                        <div class="view-forms view-form pb-0">
-                            <div *ngFor="let item of takeactiongms">
-                                <div class="row">
-                                    <div class="col-xl-3 col-md-6">
-                                        <div class="mb-3">
-                                            <label class="form-label">Token No.</label>
-                                            <label class="form-value">{{ item.vcH_TOKENNO }}</label>
-                                            <!-- <label class="form-value">202410230124</label> -->
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-3 col-md-6">
-                                        <div class="mb-3">
-                                            <label class="form-label">Registration Date</label>
-                                            <label class="form-value">{{item.dtM_CREATED_ON | date: 'dd-MMM-yyyy'}}</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-3 col-md-6">
-                                        <div class="mb-3">
-                                            <label class="form-label">Complainant Name</label>
-                                            <label class="form-value">{{item.nvcH_COMPLIANTANT_NAME}}</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-3 col-md-6">
-                                        <div class="mb-3">
-                                            <label class="form-label"> Near by Location</label>
-                                            <label class="form-value">{{item.nvcH_LANDMARK}}</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-3 col-md-6">
-                                        <div class="mb-3">
-                                            <label class="form-label">Complaint Category</label>
-                                            <label class="form-value">{{item.vcH_CATEGORY}} </label>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-3 col-md-6">
-                                        <div class="mb-3">
-                                            <label class="form-label">Complaint Sub-Category</label>
-                                            <label class="form-value">{{item.vcH_SUB_CATEGORY}}</label>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="col-xl-3 col-md-6">
-                                        <div class="mb-3">
-                                            <label class="form-label">Current Status</label>
-                                            <label class="form-value">{{item.vcH_COMPLIANT_STATUS}}</label>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                        </div>
+                  <div class="col-xl-3 col-md-6">
+                    <div class="mb-3">
+                      <label class="form-label">Token No.</label>
+                      <label class="form-value">{{ item.vcH_TOKENNO }}</label>
+                      <!-- <label class="form-value">202410230124</label> -->
                     </div>
-                    <div class="col-xl-8">
-                        <div class="row">
-                            <div class="col-xl-6 col-md-6">
-                                <div class="mb-3">
-                                    <label for="ddlstaus" class="form-label">Status</label>
-                                    <select class="form-select" id="ddlstaus">
-                                        <option selected>Select</option>
-                                        <option value="8">Reopen</option>
-                                        <option value="3">Verified</option>
-                                    </select>
-                                </div>
-                            </div>
-
-
-                            <div class="col-xl-6 col-md-6">
-                              <div class="mb-3">
-                                  <label for="forwardto" class="form-label">Forward To</label>
-                                  <select class="form-select" id="forwardto">
-                                      <option selected>Select</option>
-                                      <option value="8">DL</option>
-                                      <option value="3">DD</option>
-                                  </select>
-                              </div>
-                          </div>
-
-                            <div class="col-xl-12">
-                                <div class="mb-3">
-                                    <label for="ddlremark" class="form-label">Remarks</label>
-                                    <textarea class="form-control" id="ddlremark" rows="2"></textarea>
-                                    <p class="text-danger text-end  small mb-0">(Maximum <span
-                                            class="fw-bold">500</span>
-                                        Characters)</p>
-                                </div>
-                            </div>
-                        </div>
+                  </div>
+                  <div class="col-xl-3 col-md-6">
+                    <div class="mb-3">
+                      <label class="form-label">Registration Date</label>
+                      <label class="form-value">{{item.dtM_CREATED_ON | date: 'dd-MMM-yyyy'}}</label>
                     </div>
-                    <div class="col-xl-12">
-                        <div class="row">
-                            <div class="col-xl-5">
-                                <div class="d-flex gap-1">
-                                    <a href="javascript:void(0);" class="btn btn-primary">Submit</a>
-                                    <a href="javascript:void(0);" class="btn btn-danger">Reset</a>
-                                </div>
-                            </div>
-                        </div>
+                  </div>
+                  <div class="col-xl-3 col-md-6">
+                    <div class="mb-3">
+                      <label class="form-label">Complainant Name</label>
+                      <label class="form-value">{{item.nvcH_COMPLIANTANT_NAME}}</label>
                     </div>
+                  </div>
+                  <div class="col-xl-3 col-md-6">
+                    <div class="mb-3">
+                      <label class="form-label"> Near by Location</label>
+                      <label class="form-value">{{item.nvcH_LANDMARK}}</label>
+                    </div>
+                  </div>
+                  <div class="col-xl-3 col-md-6">
+                    <div class="mb-3">
+                      <label class="form-label">Complaint Category</label>
+                      <label class="form-value">{{item.vcH_CATEGORY}} </label>
+                    </div>
+                  </div>
+                  <div class="col-xl-3 col-md-6">
+                    <div class="mb-3">
+                      <label class="form-label">Complaint Sub-Category</label>
+                      <label class="form-value">{{item.vcH_SUB_CATEGORY}}</label>
+                    </div>
+                  </div>
+
+
+                  <div class="col-xl-3 col-md-6">
+                    <div class="mb-3">
+                      <label class="form-label">Current Status</label>
+                      <label class="form-value">{{item.vcH_COMPLIANT_STATUS}}</label>
+                    </div>
+                  </div>
+
                 </div>
+              </div>
+
             </div>
+          </div>
+          <div class="col-xl-8">
+            <div class="row">
+              <div class="col-xl-6 col-md-6">
+                <div class="mb-3">
+                  <label for="ddlDistrict" class="form-label">Status</label>
+                  <select class="form-select">
+                    <option selected>Select</option>
+                    <option value="8">Reopen</option>
+                    <option value="3">Verified</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-xl-12">
+                <div class="mb-3">
+                  <label for="ddlDistrict" class="form-label">Remarks</label>
+                  <textarea class="form-control" id="exampleFormControlTextarea1" style="height: 60px; width: 350px;"
+                    rows="2"></textarea>
+                  <p class="text-danger text-end  small mb-0">(Maximum <span class="fw-bold">500</span>
+                    Characters)</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-12">
+            <div class="row">
+              <div class="col-xl-5">
+                <div class="d-flex gap-1">
+                  <a href="javascript:void(0);" class="btn btn-primary">Submit</a>
+                  <a href="javascript:void(0);" class="btn btn-danger">Reset</a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </div>
 <!-- Modal End::Token -->
 

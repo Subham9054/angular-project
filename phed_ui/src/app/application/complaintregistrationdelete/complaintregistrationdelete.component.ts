@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { AuthService } from 'src/app/auth.service';
+import { AlertHelper } from 'src/app/core/helper/alert-helper';
+import { LoadingService } from 'src/app/loading.service';
 declare let $: any;
 @Component({
   selector: 'app-complaintregistrationdelete',
@@ -8,13 +10,31 @@ declare let $: any;
 })
 export class ComplaintregistrationdeleteComponent {
 
+  activeDropdown: number | null = null; // Track the active dropdown index
+
+  toggleDropdown(index: number) {
+      this.activeDropdown = this.activeDropdown === index ? null : index;
+  }
+
+@HostListener('document:click', ['$event'])
+onClickOutside(event: MouseEvent) {
+    const target = event.target as HTMLElement;
+    if (!target.closest('.dropdown')) {
+        this.activeDropdown = null;
+    }
+
+}
 
   isPanelOpen = false; // Start with the panel open
 
   togglePanel() {
     this.isPanelOpen = !this.isPanelOpen; // Toggle the panel state
   }
-  
+  dataBasedOnToken: any;
+  intimations: any;
+  actions: any;
+  escalations: any;
+
   registrationDate: string = '';
   toDate: string = '';
   districts: any[] = [];
@@ -26,10 +46,10 @@ export class ComplaintregistrationdeleteComponent {
   complainttype: any[] = [];
   complaintdetails: any[] = [];
   currentPage: number = 1;
-  pageSize: number = 10; 
+  pageSize: number = 10;
   totalPages: number = 1;
   paginatedComplaints: any[] = [];
-  takeactiongms: any[]=[];
+  takeactiongms: any[] = [];
 
   formData: any = {
     ddlDistrict: '0',
@@ -41,18 +61,19 @@ export class ComplaintregistrationdeleteComponent {
     ddlComplainttype: '0'
   };
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private alertHelper: AlertHelper,
+    private loadingService: LoadingService,) { }
 
-// Filter
-// isDropdownOpen = false;
+  // Filter
+  // isDropdownOpen = false;
 
-// toggleDropdown() {
-//     this.isDropdownOpen = !this.isDropdownOpen;
-// }
+  // toggleDropdown() {
+  //     this.isDropdownOpen = !this.isDropdownOpen;
+  // }
 
-// closeDropdown() {
-//     this.isDropdownOpen = false;
-// }    
+  // closeDropdown() {
+  //     this.isDropdownOpen = false;
+  // }    
 
 
 
@@ -86,15 +107,34 @@ export class ComplaintregistrationdeleteComponent {
     this.getCategories();
     this.getComplaints();
     this.getComplaintstype();
-    
+
+  }
+  GetAllDetailsagainsttokenurl(categoryId: any, subCategoryId: any, Token: any) {
+
+    this.authService.GetAllDetailsagainsttokenurlWithToken(Token, categoryId, subCategoryId).subscribe(
+      response => {
+        this.dataBasedOnToken = response;
+        console.log(this.dataBasedOnToken);
+        this.intimations = this.dataBasedOnToken.data[0].intimations;
+        this.actions = this.dataBasedOnToken.data[0].actionSummaries;
+        this.escalations = this.dataBasedOnToken.data[0].escalations;
+
+      },
+      error => {
+        console.error('Error fetching Complaint details', error);
+        this.alertHelper.errorAlert('Error fetching Complaint details', "Error");
+      }
+    );
   }
 
   getgmsComplaintdelail() {
+    this.loadingService.startLoading();
     this.authService.getgmsComplaintdelail().subscribe(
       response => {
         this.complaintdetails = response; // Assign full data
         this.totalPages = Math.ceil(this.complaintdetails.length / this.pageSize); // Calculate total pages
         this.updatePagination(); // Initialize pagination
+        this.loadingService.stopLoading();
       },
       error => {
         console.error('Error fetching Complaint details', error);
@@ -182,7 +222,7 @@ export class ComplaintregistrationdeleteComponent {
       console.error('Invalid category ID');
     }
   }
- 
+
   getDistricts(): void {
     this.authService.getDistricts().subscribe(
       response => {
@@ -234,15 +274,15 @@ export class ComplaintregistrationdeleteComponent {
   // toggleSearchBox() {
   //   this.isSearchBoxOpen = !this.isSearchBoxOpen; // Toggle the visibility of the search box.
   // }
- // Filter close btn
- isDropdownOpen = false;
- openDropdown() {
-   this.isDropdownOpen = true;
- }
+  // Filter close btn
+  isDropdownOpen = false;
+  openDropdown() {
+    this.isDropdownOpen = true;
+  }
 
 
- closeDropdown() {
-   this.isDropdownOpen = false;
- }
-  
+  closeDropdown() {
+    this.isDropdownOpen = false;
+  }
+
 }

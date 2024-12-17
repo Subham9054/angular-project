@@ -11,13 +11,14 @@ using MySql.Data.MySqlClient;
 using GMS.Model.Entities.GMS;
 namespace GMS.Repository.Repositories.Interfaces.MANAGE_COMPLAINTDETAILS_CONFIG
 {
+#pragma warning disable
     public class MANAGE_COMPLAINTDETAILS_CONFIGRepository : db_PHED_CGRCRepositoryBase, IMANAGE_COMPLAINTDETAILS_CONFIGRepository
     {
         public MANAGE_COMPLAINTDETAILS_CONFIGRepository(Idb_PHED_CGRCConnectionFactory db_PHED_CGRCConnectionFactory) : base(db_PHED_CGRCConnectionFactory)
         {
 
         }
-        public async Task<bool> ComplaintRegistrationdetail(Complaint complaint)
+        public async Task<string> ComplaintRegistrationdetail(Complaint complaint)
         {
             try
             {
@@ -43,7 +44,7 @@ namespace GMS.Repository.Repositories.Interfaces.MANAGE_COMPLAINTDETAILS_CONFIG
                 parameters.Add("@blockid", complaint.INT_BLOCK);
                 parameters.Add("@panchayatid", complaint.INT_PANCHAYAT);
                 parameters.Add("@intVillage", complaint.INT_VILLAGE);
-                parameters.Add("@intward",complaint.INT_WARD);
+                parameters.Add("@intward", complaint.INT_WARD);
                 parameters.Add("@address", complaint.NVCH_ADDRESS);
                 parameters.Add("@complaintdetail", complaint.NVCH_COMPLIANT_DETAILS);
                 parameters.Add("@filename", complaint.VCH_COMPLAINT_FILE);
@@ -52,8 +53,8 @@ namespace GMS.Repository.Repositories.Interfaces.MANAGE_COMPLAINTDETAILS_CONFIG
                 parameters.Add("landMark", complaint.NVCH_LANDMARK);
                 parameters.Add("priority", 1);
                 parameters.Add("@action", "INSERT");
-                var result = await Connection.QueryAsync<int>("USP_complaintRegistration_insert", parameters, commandType: CommandType.StoredProcedure);
-                return result.Contains(1);
+                var result = await Connection.QueryAsync<string>("USP_complaintRegistration_insert", parameters, commandType: CommandType.StoredProcedure);
+                return result.FirstOrDefault();
 
 
             }
@@ -94,7 +95,7 @@ namespace GMS.Repository.Repositories.Interfaces.MANAGE_COMPLAINTDETAILS_CONFIG
                 throw;
             }
         }
-     
+
         public async Task<List<GetCitizen>> GetCitizendetails(string token)
         {
             try
@@ -110,13 +111,14 @@ namespace GMS.Repository.Repositories.Interfaces.MANAGE_COMPLAINTDETAILS_CONFIG
             }
         }
 
-        public async Task<List<GetCitizenall>> GetallCitizendetails(string token,string mobno)
+        public async Task<List<GetCitizenall>> GetallCitizendetails(string token, string mobno)
         {
             try
             {
                 var parameters = new DynamicParameters();
-                parameters.Add("token", token);
-                parameters.Add("mobno", mobno);
+                parameters.Add("p_token", token);
+                parameters.Add("p_mobno", mobno);
+
                 var result = await Connection.QueryAsync<GetCitizenall>("GetCitizenallDetails", parameters, commandType: CommandType.StoredProcedure);
                 return result.ToList();
             }
@@ -126,7 +128,7 @@ namespace GMS.Repository.Repositories.Interfaces.MANAGE_COMPLAINTDETAILS_CONFIG
             }
         }
 
-        public async Task<List<GetCitizenall>> GetallComplaints( string mobno)
+        public async Task<List<GetCitizenall>> GetallComplaints(string mobno)
         {
             try
             {
@@ -142,7 +144,7 @@ namespace GMS.Repository.Repositories.Interfaces.MANAGE_COMPLAINTDETAILS_CONFIG
         }
 
 
-        public async Task<bool> UpdateCitizendetails(string token,UpdateCitizen updateCitizen)
+        public async Task<bool> UpdateCitizendetails(string token, UpdateCitizen updateCitizen)
         {
             try
             {
@@ -169,11 +171,10 @@ namespace GMS.Repository.Repositories.Interfaces.MANAGE_COMPLAINTDETAILS_CONFIG
             }
         }
 
-        public async Task<bool> GenerateOtp(string phoneNumber)
+        public async Task<string> GenerateOtp(string phoneNumber)
         {
             // Generate a 6-digit OTP
-            var otp = 12345;
-                //new Random().Next(100000, 999999).ToString();
+            var otp = new Random().Next(100000, 999999).ToString(); ;
             var expirationTime = DateTime.Now.AddMinutes(30);
 
             try
@@ -184,12 +185,12 @@ namespace GMS.Repository.Repositories.Interfaces.MANAGE_COMPLAINTDETAILS_CONFIG
                 parameters.Add("@CreatedOn", DateTime.Now);
                 parameters.Add("@ExpiresOn", expirationTime);
                 parameters.Add("@IsUsed", false);
-                var result = await Connection.QueryAsync<int>("GenerateOtp", parameters, commandType: CommandType.StoredProcedure);
-                return result.Contains(1);
+                var result = await Connection.QueryAsync<string>("GenerateOtp", parameters, commandType: CommandType.StoredProcedure);
+                return result.FirstOrDefault();
             }
             catch (Exception ex)
             {
-                return false;
+                throw;
             }
         }
 
@@ -197,16 +198,14 @@ namespace GMS.Repository.Repositories.Interfaces.MANAGE_COMPLAINTDETAILS_CONFIG
         {
             try
             {
+                Console.WriteLine($"Parameters: PhoneNumber = {phoneNumber}, OTP = {otp}");
+                OTPDetails res = new OTPDetails();
                 var parameters = new DynamicParameters();
-                parameters.Add("phoneNumber", phoneNumber);  // Match the parameter name
-                parameters.Add("otp", otp);  // Match the parameter name
-
-                var result = await Connection.QueryFirstOrDefaultAsync<OTPDetails>(
-                    "ValidateOtp",
-                    parameters,
-                    commandType: CommandType.StoredProcedure);
-
-                return result;
+                parameters.Add("p_phoneNumber", phoneNumber.Trim());
+                parameters.Add("p_otp", otp.Trim());
+                res = await Connection.QueryFirstOrDefaultAsync<OTPDetails>("ValidateOtp", parameters, commandType: CommandType.StoredProcedure);
+                Console.WriteLine($"Query Result: {res}");
+                return res;
             }
             catch (Exception ex)
             {
@@ -240,7 +239,46 @@ namespace GMS.Repository.Repositories.Interfaces.MANAGE_COMPLAINTDETAILS_CONFIG
             }
         }
 
+        public async Task<List<ComplaintDetailsTokenResponse>> Getalldetailagaintstoken(string token, int catid, int subcatid)
+        {
+            try
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("p_VCH_TOKENNO", token);
+                parameters.Add("categoryid", catid);
+                parameters.Add("subcategoryid", subcatid);
 
+                using (var multi = await Connection.QueryMultipleAsync("USP_GetComplaintDetailstoken", parameters, commandType: CommandType.StoredProcedure))
+                {
+                    var complaintDetails = multi.Read<ComplaintDetailsTokenResponse>().ToList();
+
+                    foreach (var complaint in complaintDetails)
+                    {
+                        complaint.Intimations = multi.Read<IntimationDetails>().ToList();
+                    }
+
+                    foreach (var complaint in complaintDetails)
+                    {
+                        complaint.ActionSummaries = multi.Read<ActionSummary>().ToList();
+                    }
+
+                    foreach (var complaint in complaintDetails)
+                    {
+                        complaint.Escalations = multi.Read<EscalationDetails>().ToList();
+                    }
+
+                    return complaintDetails;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle exception (optional: log the exception)
+                throw;
+            }
+        }
+
+
+        #region Codegencode
         public async Task<int> INSERT_MANAGE_COMPLAINTDETAILS_CONFIG(MANAGE_COMPLAINTDETAILS_CONFIG_Model TBL)
         {
             var p = new DynamicParameters();
@@ -615,5 +653,7 @@ namespace GMS.Repository.Repositories.Interfaces.MANAGE_COMPLAINTDETAILS_CONFIG
             return results.ToList();
 
         }
+        #endregion
+
     }
 }

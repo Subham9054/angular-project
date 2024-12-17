@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { error } from 'jquery';
 import { AuthService } from 'src/app/auth.service';
+import { AlertHelper } from 'src/app/core/helper/alert-helper';
+import { LoadingService } from 'src/app/loading.service';
 declare let $: any;
 @Component({
   selector: 'app-complaintregistrationupdate',
@@ -10,15 +12,31 @@ declare let $: any;
 })
 export class ComplaintregistrationupdateComponent implements OnInit {
 
+
+  activeDropdown: number | null = null; // Track the active dropdown index
+
+    toggleDropdown(index: number) {
+        this.activeDropdown = this.activeDropdown === index ? null : index;
+    }
+
+  @HostListener('document:click', ['$event'])
+  onClickOutside(event: MouseEvent) {
+      const target = event.target as HTMLElement;
+      if (!target.closest('.dropdown')) {
+          this.activeDropdown = null;
+      }
+
+  }
+ 
  // Filter close btn
  isDropdownOpen = false;
- openDropdown() {
-   this.isDropdownOpen = true;
+
+ toggleDropdownnew() {
+     this.isDropdownOpen = !this.isDropdownOpen;
  }
-
-
+ 
  closeDropdown() {
-   this.isDropdownOpen = false;
+     this.isDropdownOpen = false;
  }
 
   isPanelOpen = false; // Start with the panel open
@@ -53,7 +71,10 @@ export class ComplaintregistrationupdateComponent implements OnInit {
     ddlComplainttype: '0'
   };
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService,
+    private alertHelper: AlertHelper,
+    private loadingService: LoadingService,
+  ) { }
 
   // ngOnInit(): void {
   //   this.initializeData();
@@ -95,13 +116,38 @@ export class ComplaintregistrationupdateComponent implements OnInit {
     
   }
 
-  
+  dataBasedOnToken: any;
+  intimations: any;
+  actions: any;
+  escalations: any;
+GetAllDetailsagainsttokenurl(categoryId: any, subCategoryId: any, Token: any) {
+  console.log(Token);
+
+    this.authService.GetAllDetailsagainsttokenurlWithToken(Token, categoryId, subCategoryId).subscribe(
+      response => {
+        this.dataBasedOnToken = response;
+        console.log(this.dataBasedOnToken);
+        this.intimations = this.dataBasedOnToken.data[0].intimations;
+        this.actions = this.dataBasedOnToken.data[0].actionSummaries;
+        this.escalations = this.dataBasedOnToken.data[0].escalations;
+
+      },
+      error => {
+        console.error('Error fetching Complaint details', error);
+        this.alertHelper.errorAlert('Error fetching Complaint details', "Error");
+      }
+    );
+  }
+
   getgmsComplaintdelail() {
+    this.loadingService.startLoading();
     this.authService.getgmsComplaintdelail().subscribe(
       response => {
         this.complaintdetails = response; // Assign full data
+        console.log(this.complaintdetails);
         this.totalPages = Math.ceil(this.complaintdetails.length / this.pageSize); // Calculate total pages
         this.updatePagination(); // Initialize pagination
+        this.loadingService.stopLoading();
       },
       error => {
         console.error('Error fetching Complaint details', error);
@@ -140,7 +186,7 @@ export class ComplaintregistrationupdateComponent implements OnInit {
     this.authService.getgmstakeaction(tokenno).subscribe(
       response => {
         this.takeactiongms = response;
-        console.log('Data fetched successfully:', response); // Optional: For debugging purposes
+        console.log('Data fetched successfully takeactiongms:', response); // Optional: For debugging purposes
       },
       error => {
         console.error('Error fetching Complaint status:', error);
