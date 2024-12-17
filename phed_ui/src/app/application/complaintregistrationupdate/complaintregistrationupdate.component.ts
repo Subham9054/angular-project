@@ -181,8 +181,8 @@ GetAllDetailsagainsttokenurl(categoryId: any, subCategoryId: any, Token: any) {
   }
 
   takeaction(tokenno: string): void {
-    debugger;
-    alert(tokenno);
+    //debugger;
+    //alert(tokenno);
     this.authService.getgmstakeaction(tokenno).subscribe(
       response => {
         this.takeactiongms = response;
