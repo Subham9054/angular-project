@@ -54,6 +54,7 @@ namespace GMS.Model.Entities.GMS
         public int Status { get; set; }
         public string Msg { get; set; }
         public List<Result> Result { get; set; }
+
     }
 
     public class Result
