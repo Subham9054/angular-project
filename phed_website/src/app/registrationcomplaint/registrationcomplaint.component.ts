@@ -36,7 +36,7 @@ export class RegistrationcomplaintComponent implements OnInit {
   complainttype: any[] = [];
   gpnid: number=0;
   wrdid: number=0;
-
+  filesToUpload: File[] = [];
   
   formData: any = {
     ddlRecvBy: 0,
@@ -95,11 +95,11 @@ selectedItem: any;
   handleFileInput(event: Event) {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
-      this.fileToUpload = input.files[0];
-      this.fileName = this.fileToUpload.name;  // Capture the file name
+      // Convert FileList to an array and store it
+      this.filesToUpload = Array.from(input.files);
+      
     } else {
-      this.fileToUpload = null;
-      this.fileName = '';  // Clear the file name if no file is selected
+      this.filesToUpload = [];
     }
   }
   
@@ -255,19 +255,19 @@ padZero(value: number): string {
       );
     }
   }
-  onSubmit() {
-    if (!this.fileToUpload) {
-      alert('Please upload a file before submitting the form.');
-      return;
-    }
+  // onSubmit() {
+  //   if (!this.fileToUpload) {
+  //     alert('Please upload a file before submitting the form.');
+  //     return;
+  //   }
 
-    this.uploadFile().then((fileName) => {
-      this.submitRegistrationData(fileName);
-    }).catch(error => {
-      console.error('Error uploading file:', error);
-      Swal.fire('Error', 'File upload failed. Please try again.', 'error');
-    });
-  }
+  //   this.uploadFile().then((fileName) => {
+  //     this.submitRegistrationData(fileName);
+  //   }).catch(error => {
+  //     console.error('Error uploading file:', error);
+  //     Swal.fire('Error', 'File upload failed. Please try again.', 'error');
+  //   });
+  // }
 
   mobOtp() {
     const otpInput = this.otpValues.join('');
@@ -318,81 +318,123 @@ padZero(value: number): string {
     this.stopTimer();
   }
 
-  uploadFile(): Promise<string> {
-    return new Promise((resolve, reject) => {
-      const fileUploadData = new FormData();
-      fileUploadData.append('file', this.fileToUpload!, this.fileToUpload!.name);
+  // uploadFile(): Promise<string> {
+  //   return new Promise((resolve, reject) => {
+  //     const fileUploadData = new FormData();
+  //     fileUploadData.append('file', this.fileToUpload!, this.fileToUpload!.name);
   
-      this.http.post<{ message: string; fileName: string }>('https://localhost:7225/api/Dropdown/UploadFile', fileUploadData)
-        .subscribe(
-          (response) => {
-            resolve(response.fileName);
-          },
-          error => {
-            Swal.fire('Error', 'File upload failed: ' + error.message, 'error');
-            reject(error);
-          }
-        );
+  //     this.http.post<{ message: string; fileName: string }>('https://localhost:7225/api/Dropdown/UploadFile', fileUploadData)
+  //       .subscribe(
+  //         (response) => {
+  //           resolve(response.fileName);
+  //         },
+  //         error => {
+  //           Swal.fire('Error', 'File upload failed: ' + error.message, 'error');
+  //           reject(error);
+  //         }
+  //       );
+  //   });
+  // }
+  
+
+  // submitRegistrationData(fileName: string) {
+  //   const wardid= $('#ddlward').attr('ng-reflect-model');
+  //   const wi=wardid.value;
+  //   alert(wi);
+  //   debugger;
+  //   const registrationData = {
+  //     NVCH_COMPLIANTANT_NAME: this.formData.txtName || '',
+  //     VCH_CONTACT_NO: this.formData.txtPhone || '',
+	//     VCH_COMPLAINT_FILE: fileName || this.formData.txtDocument,
+  //     INT_COMPLIANT_LOG_TYPE: parseInt(this.formData.ddlRecvBy, 10),
+  //     INT_DIST_ID: parseInt(this.formData.ddlDistrict, 10),
+  //     INT_BLOCK: parseInt(this.formData.ddlBlock, 10),
+  //     INT_PANCHAYAT: this.gpnid, //parseInt(this.formData.ddlPanchayat, 10),
+  //     INT_VILLAGE: parseInt(this.formData.ddlVillage, 10),
+  //     //INT_WARD : document.getElementById('ddlward') as HTMLInputElement,
+  //     INT_WARD: parseInt($('#ddlward').attr('ng-reflect-model'),10),
+  //     INT_CATEGORY_ID: parseInt(this.formData.ddlComplaintCategory, 10),
+  //     INT_SUB_CATEGORY_ID: parseInt(this.formData.ddlSubCategory, 10),
+  //     NVCH_COMPLIANT_DETAILS: this.formData.txtDetailsE || '',
+  //     NVCH_LANDMARK: this.formData.txtLandmark || '',
+  //     VCH_EMAIL: this.formData.txtEmail || '',
+  //     VCH_TOKENNO: this.generateToken(),
+  //     NVCH_ADDRESS: this.formData.txtAddress || ''
+  //   };
+
+  //   this.authService.submitRegistration(registrationData).subscribe(
+  //     (response) => {
+  //       console.log(response);
+  //       Swal.fire({
+  //         title: 'Success!',
+  //         text: 'Complaint submitted successfully',
+  //         icon: 'success',
+  //         confirmButtonText: 'OK'
+  //       }).then((result) => {
+  //         if (result.isConfirmed) {
+  //           this.resetForm();
+  //           // Optional: navigate to a specific page or refresh specific parts instead of reloading
+  //         }
+  //       });
+  //     },
+  //     (error) => {
+  //       Swal.fire({
+  //         title: 'Error',
+  //         text: 'Failed to submit registration data. Please try again.',
+  //         icon: 'error',
+  //         confirmButtonText: 'OK'
+  //       });
+  //     }
+  //   );
+    
+  // }
+
+  // generateToken(): string {
+  //   const min = 1000000000;
+  //   const max = 9999999999;
+  //   return (Math.floor(Math.random() * (max - min + 1)) + min).toString();
+  // }
+  onSubmit() {
+    if (!this.filesToUpload || this.filesToUpload.length === 0) {
+      alert('Please upload a file before submitting the form.');
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append('NVCH_COMPLIANTANT_NAME', this.formData.txtName || '');
+    formData.append('VCH_CONTACT_NO', this.formData.txtPhone || '');
+    formData.append('INT_COMPLIANT_LOG_TYPE', this.formData.ddlComplainttype ? this.formData.ddlComplainttype.toString() : '0');
+    formData.append('INT_DIST_ID', this.formData.ddlDistrict ? this.formData.ddlDistrict.toString() : '0');
+    formData.append('INT_BLOCK', this.formData.ddlBlock ? this.formData.ddlBlock.toString() : '0');
+    formData.append('INT_PANCHAYAT', this.formData.ddlPanchayat ? this.formData.ddlPanchayat.toString() : '0');
+    formData.append('INT_VILLAGE', this.formData.ddlVillage ? this.formData.ddlVillage.toString() : '0');
+    formData.append('INT_WARD', this.formData.ddlward ? this.formData.ddlward.toString() : '0');
+    formData.append('INT_CATEGORY_ID', this.formData.ddlComplaintCategory ? this.formData.ddlComplaintCategory.toString() : '0');
+    formData.append('INT_SUB_CATEGORY_ID', this.formData.ddlSubCategory ? this.formData.ddlSubCategory.toString() : '0');
+    formData.append('NVCH_COMPLIANT_DETAILS', this.formData.txtDetailsE || '');
+    formData.append('NVCH_LANDMARK', this.formData.txtLandmark || '');
+    formData.append('VCH_EMAIL', this.formData.txtEmail || '');
+    formData.append('NVCH_ADDRESS', this.formData.txtAddress || '');
+
+    this.filesToUpload.forEach(file => {
+      formData.append('files', file, file.name);
     });
-  }
-  
 
-  submitRegistrationData(fileName: string) {
-    const wardid= $('#ddlward').attr('ng-reflect-model');
-    const wi=wardid.value;
-    alert(wi);
-    debugger;
-    const registrationData = {
-      NVCH_COMPLIANTANT_NAME: this.formData.txtName || '',
-      VCH_CONTACT_NO: this.formData.txtPhone || '',
-	    VCH_COMPLAINT_FILE: fileName || this.formData.txtDocument,
-      INT_COMPLIANT_LOG_TYPE: parseInt(this.formData.ddlRecvBy, 10),
-      INT_DIST_ID: parseInt(this.formData.ddlDistrict, 10),
-      INT_BLOCK: parseInt(this.formData.ddlBlock, 10),
-      INT_PANCHAYAT: this.gpnid, //parseInt(this.formData.ddlPanchayat, 10),
-      INT_VILLAGE: parseInt(this.formData.ddlVillage, 10),
-      //INT_WARD : document.getElementById('ddlward') as HTMLInputElement,
-      INT_WARD: parseInt($('#ddlward').attr('ng-reflect-model'),10),
-      INT_CATEGORY_ID: parseInt(this.formData.ddlComplaintCategory, 10),
-      INT_SUB_CATEGORY_ID: parseInt(this.formData.ddlSubCategory, 10),
-      NVCH_COMPLIANT_DETAILS: this.formData.txtDetailsE || '',
-      NVCH_LANDMARK: this.formData.txtLandmark || '',
-      VCH_EMAIL: this.formData.txtEmail || '',
-      VCH_TOKENNO: this.generateToken(),
-      NVCH_ADDRESS: this.formData.txtAddress || ''
-    };
-
-    this.authService.submitRegistration(registrationData).subscribe(
-      (response) => {
-        console.log(response);
+    this.authService.submitRegistration(formData).subscribe(
+      response => {
         Swal.fire({
           title: 'Success!',
-          text: 'Complaint submitted successfully',
+          text: 'Complaint submitted successfully.',
           icon: 'success',
           confirmButtonText: 'OK'
-        }).then((result) => {
-          if (result.isConfirmed) {
-            this.resetForm();
-            // Optional: navigate to a specific page or refresh specific parts instead of reloading
-          }
         });
+        this.resetForm();
       },
-      (error) => {
-        Swal.fire({
-          title: 'Error',
-          text: 'Failed to submit registration data. Please try again.',
-          icon: 'error',
-          confirmButtonText: 'OK'
-        });
+      error => {
+        console.error('Error submitting registration data:', error);
+        alert('Failed to submit registration data. Please try again.');
       }
     );
-    
-  }
-
-  generateToken(): string {
-    const min = 1000000000;
-    const max = 9999999999;
-    return (Math.floor(Math.random() * (max - min + 1)) + min).toString();
   }
 
   resetForm() {
