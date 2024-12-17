@@ -117,7 +117,6 @@ export class ComplaintregistrationupdateComponent implements OnInit {
   escalations: any;
 GetAllDetailsagainsttokenurl(categoryId: any, subCategoryId: any, Token: any) {
   console.log(Token);
-
   this.authService.GetAllDetailsagainsttokenurlWithToken(Token, categoryId, subCategoryId).subscribe(
     response => {
       this.dataBasedOnToken = response;
@@ -172,8 +171,8 @@ GetAllDetailsagainsttokenurl(categoryId: any, subCategoryId: any, Token: any) {
   }
 
   takeaction(tokenno: string): void {
-    debugger;
-    alert(tokenno);
+    //debugger;
+    //alert(tokenno);
     this.authService.getgmstakeaction(tokenno).subscribe(
       response => {
         this.takeactiongms = response;
