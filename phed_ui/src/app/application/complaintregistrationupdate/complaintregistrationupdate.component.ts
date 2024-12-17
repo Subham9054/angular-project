@@ -122,22 +122,19 @@ export class ComplaintregistrationupdateComponent implements OnInit {
   escalations: any;
 GetAllDetailsagainsttokenurl(categoryId: any, subCategoryId: any, Token: any) {
   console.log(Token);
-
-    this.authService.GetAllDetailsagainsttokenurlWithToken(Token, categoryId, subCategoryId).subscribe(
-      response => {
-        this.dataBasedOnToken = response;
-        console.log(this.dataBasedOnToken);
-        this.intimations = this.dataBasedOnToken.data[0].intimations;
-        this.actions = this.dataBasedOnToken.data[0].actionSummaries;
-        this.escalations = this.dataBasedOnToken.data[0].escalations;
-
-      },
-      error => {
-        console.error('Error fetching Complaint details', error);
-        this.alertHelper.errorAlert('Error fetching Complaint details', "Error");
-      }
-    );
-  }
+  this.authService.GetAllDetailsagainsttokenurlWithToken(Token, categoryId, subCategoryId).subscribe(
+    response => {
+      this.dataBasedOnToken = response;
+      console.log(this.dataBasedOnToken);
+      this.intimations = this.dataBasedOnToken.data[0].intimations;
+      this.actions = this.dataBasedOnToken.data[0].actionSummaries;
+      this.escalations = this.dataBasedOnToken.data[0].escalations;
+    },
+    error => {
+      console.error('Error fetching Complaint details', error);
+    }
+  );
+}
 
   getgmsComplaintdelail() {
     this.loadingService.startLoading();

@@ -8,6 +8,8 @@ import { CommonserviceService } from 'src/app/services/commonservice.service';
 import { environment } from 'src/environments/environment';
 import { Buffer } from 'buffer';
 import * as CryptoJS from 'crypto-js';
+import { AlertHelper } from 'src/app/core/helper/alert-helper';
+
 
 
 @Component({
@@ -32,7 +34,7 @@ export class UserRegistrationComponent {
     private fb: FormBuilder,
     public vldChkLst: ValidatorChecklistService,
     public commonService: CommonserviceService,
-
+    public alerthelper :AlertHelper,
 
   ) {
     this.userRegistration = this.fb.group({
@@ -70,6 +72,10 @@ export class UserRegistrationComponent {
           if (respToken == verifyToken) {
             let res: any = Buffer.from(responseData, 'base64');
             res = JSON.parse(res.toString());
+            if (response.status === 200) {
+              this.alerthelper.successAlert("User Created Successfully!","Success", "success");
+              this.userRegistration.reset(); // Use reset() for FormGroup
+            }
             // if (res.status == 200 || res.status == 202) {
             //   let resultValue = res.complainId;
             //   const encryptedResult = this.encDec.encText(resultValue.toString());
