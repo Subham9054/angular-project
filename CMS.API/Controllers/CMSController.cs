@@ -21,7 +21,7 @@ namespace CMS.API.Controllers
             _contentManagementRepository = contentManagementRepository;
         }
 
-        #region Manage Pages
+        #region Manage Pages or Menus
         [HttpPost("CreateOrUpdatePageLink")]
         public async Task<IActionResult> CreateOrUpdatePageLink([FromForm] PageLinkModel pageLink, [FromForm] IFormFile? iconFile)
         {
@@ -328,7 +328,127 @@ namespace CMS.API.Controllers
         #endregion
 
         #region Page Content Master Page
+        [HttpPost("CreateOrUpdatePageContent")]
+        public async Task<IActionResult> CreateOrUpdatePageContent([FromForm] PageContentModel pageContent, [FromForm] IFormFile? featureImage)
+        {
+            if (pageContent == null)
+            {
+                return BadRequest(new { Success = false, Message = "Page content data cannot be null." });
+            }
 
+            try
+            {
+                // Handle file upload if a new Feature Iamge is provided
+                if (featureImage != null && featureImage.Length > 0)
+                {
+                    // Set directory path and ensure it exists
+                    var folderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "assets", "pagecontentfeatureimages");
+                    if (!Directory.Exists(folderPath))
+                    {
+                        Directory.CreateDirectory(folderPath);
+                    }
+
+                    // Set unique file name to avoid overwriting
+                    var fileName = $"{Guid.NewGuid()}_{Path.GetFileName(featureImage.FileName)}";
+                    var filePath = Path.Combine(folderPath, fileName);
+
+                    // Save the file to wwwroot/assets/pagecontentfeatureimages
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await featureImage.CopyToAsync(stream);
+                    }
+
+                    // Set the file path to be saved in the database
+                    pageContent.FeatureImage = $"/assets/pagecontentfeatureimages/{fileName}";
+                }
+                else if (string.IsNullOrEmpty(pageContent.FeatureImage))
+                {
+                    var existingPageContent = await _contentManagementRepository.GetPageContentByIdAsync(pageContent.ContentId!.Value);
+                    if (existingPageContent != null && existingPageContent.Count > 0)
+                    {                        
+                        pageContent.FeatureImage = existingPageContent.FirstOrDefault()?.FeatureImage; // Retain the existing feature image path
+                    }
+                }
+
+                // Call repository to create or update the banner details
+                var result = await _contentManagementRepository.CreateOrUpdatePageContentAsync(pageContent);
+                if (result > 0)
+                {
+                    return Ok(new { Success = true, Message = "Page content details saved successfully.", StatusCode = StatusCodes.Status200OK });
+                }
+
+                return BadRequest(new { Success = false, Message = "Failed to save page content details.", StatusCode = StatusCodes.Status400BadRequest });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { Success = false, Message = ex.Message, StatusCode = StatusCodes.Status500InternalServerError });
+            }
+        }
+
+        [HttpGet("GetPageContents")]
+        public async Task<IActionResult> GetPageContents()
+        {
+            try
+            {
+                var pageContents = await _contentManagementRepository.GetPageContentsAsync();
+                if (pageContents != null && pageContents.Any())
+                {
+                    return Ok(new { Success = true, Data = pageContents, StatusCode = StatusCodes.Status200OK });
+                }
+                return NotFound(new { Success = false, Message = "Page content details are not found.", StatusCode = StatusCodes.Status404NotFound });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { Success = false, Message = ex.Message, StatusCode = StatusCodes.Status500InternalServerError });
+            }
+        }
+
+        [HttpGet("GetPageContentById")]
+        public async Task<IActionResult> GetPageContentById(int contentId)
+        {
+            if (contentId <= 0)
+            {
+                return BadRequest(new { Success = false, Message = "Invalid Page Content ID.", StatusCode = StatusCodes.Status400BadRequest });
+            }
+
+            try
+            {
+                var pageContent = await _contentManagementRepository.GetPageContentByIdAsync(contentId);
+                if (pageContent != null)
+                {
+                    return Ok(new { Success = true, Data = pageContent, StatusCode = StatusCodes.Status200OK });
+                }
+                return NotFound(new { Success = false, Message = "Page content details are not found.", StatusCode = StatusCodes.Status404NotFound });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { Success = false, Message = ex.Message, StatusCode = StatusCodes.Status500InternalServerError });
+            }
+        }        
+
+        [HttpDelete("DeletePageContent")]
+        public async Task<IActionResult> DeletePageContent(int contentId)
+        {
+            if (contentId <= 0)
+            {
+                return BadRequest(new { Success = false, Message = "Invalid Page Content ID.", StatusCode = StatusCodes.Status400BadRequest });
+            }
+
+            try
+            {
+                // Call the repository to soft delete the page content details
+                var result = await _contentManagementRepository.DeletePageContentAsync(contentId);
+                if (result > 0)
+                {
+                    return Ok(new { Success = true, Message = "Page content details deleted successfully.", StatusCode = StatusCodes.Status200OK });
+                }
+                return BadRequest(new { Success = false, Message = "Failed to delete page content details.", StatusCode = StatusCodes.Status400BadRequest });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { Success = false, Message = ex.Message, StatusCode = StatusCodes.Status500InternalServerError });
+            }
+        }
         #endregion
 
         #region What is New Master Page
