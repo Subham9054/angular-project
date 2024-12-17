@@ -11,267 +11,198 @@
                             <span class="text-danger small"><b>(*)</b> Indicate mandatory </span>
                         </li>
                         <li class="fill-btn back-link"><a routerLink="/application/pagecontent" title="Go to Previous"><i
-                            class="bi bi-arrow-left"></i> <span class="hide-icon ms-2"> Back to View</span></a>
-                </li>
+                            class="bi bi-arrow-left"></i> <span class="hide-icon ms-2">Back to View</span></a>
+                        </li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
 
-
-  
-
     <div class="content-box content-area">
-        <div class="content-page">
-            <div class="content-left">
-                <div class="row">
-                    <div class="col-xl-6 col-md-6">
-                        <div class="mb-3">
-                            <label class="form-label" for="patitle">Page Title</label>
-                            <input class="form-control" type="text" id="patitle">
-                        </div>
-                    </div>
-
-                    <div class="col-xl-6 col-md-6">
-                        <div class="mb-3">
-                            <label class="form-label" for="patitlehn">Page Title (In Hindi)</label>
-                            <input type="text" class="form-control" id="patitlehn">
-                        </div>
-                    </div>
-
-                    <div class="col-xl-6 col-md-6">
-                        <div class="mb-3">
-                            <label class="form-label" for="pagealias">Page Alias</label>
-                            <input class="form-control" type="text" id="pagealias">
-                        </div>
-                    </div>
-
-                    <div class="col-xl-6 col-md-6">
-                        <div class="mb-3">
-                            <label class="form-label" for="readmore">Read More</label>
-                            <input class="form-control" type="text" id="readmore">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-xl-6 col-md-6">
-                        <div class="mb-3">
-                            <label class="form-label d-block" for="linktype">Link Type</label>
-                            <div class="form-check form-check-inline mt-1">
-                                <input class="form-check-input" type="radio" name="link type" id="link1" value="option1"
-                                    checked>
-                                <label class="form-check-label" for="link1">Internal</label>
+        <form (ngSubmit)="submitForm()">
+            <div class="content-page">
+                <div class="content-left">
+                    <div class="row">
+                        <div class="col-xl-6 col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label" for="pageTitleEnglish">Page Title (In English)</label>
+                                <input  type="text" id="pageTitleEnglish" name="pageTitleEnglish" [(ngModel)]="contentModel.pageTitleEnglish" class="form-control">
                             </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="link type" id="link2"
-                                    value="option2">
-                                <label class="form-check-label" for="link2">External</label>
+                        </div>
+    
+                        <div class="col-xl-6 col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label" for="pageTitleHindi">Page Title (हिंदी में)</label>
+                                <input type="text" id="pageTitleHindi" name="pageTitleHindi" [(ngModel)]="contentModel.pageTitleHindi" class="form-control">
+                            </div>
+                        </div>
+    
+                        <div class="col-xl-6 col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label" for="pageAlias">Page Alias</label>
+                                <input type="text" id="pageAlias" name="pageAlias" [(ngModel)]="contentModel.pageAlias" class="form-control">
+                            </div>
+                        </div>
+    
+                        <div class="col-xl-6 col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label" for="readMore">Read More</label>
+                                <input type="text" id="readMore" name="readMore" [(ngModel)]="contentModel.readMore" class="form-control">
                             </div>
                         </div>
                     </div>
-
-                    <div class="col-xl-6 col-md-6">
-                        <div class="mb-3">
-                            <label class="form-label d-block">Open in Window</label>
-                            <div class="form-check form-check-inline mt-1">
-                                <input class="form-check-input" type="radio" name="Window Status" id="status1"
-                                    value="option1">
-                                <label class="form-check-label" for="status1">Same Window</label>
+    
+                    <div class="row">
+                        <div class="col-xl-6 col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label d-block" for="linkType">Link Type</label>
+                                <div class="form-check form-check-inline mt-1">
+                                    <input type="radio" name="linkType" id="linkInternal" value="Internal" class="form-check-input" checked>
+                                    <label class="form-check-label" for="linkInternal">Internal</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input type="radio" name="linkType" id="linkExternal" value="External" class="form-check-input">
+                                    <label class="form-check-label" for="linkExternal">External</label>
+                                </div>
                             </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="Window Status" id="status2"
-                                    value="option2" checked>
-                                <label class="form-check-label" for="status2">New Window</label>
+                        </div>
+    
+                        <div class="col-xl-6 col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label d-block">Open in Window</label>
+                                <div class="form-check form-check-inline mt-1">
+                                    <input type="radio" name="windowType" id="sameWindow" value="Same Window" class="form-check-input">
+                                    <label class="form-check-label" for="sameWindow">Same Window</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input type="radio" name="windowType" id="newWindow" value="New Window" class="form-check-input" checked>
+                                    <label class="form-check-label" for="newWindow">New Window</label>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-xl-6">
-                        <div class="mb-3">
-                            <label class="form-label" for="snipeng">Snippet</label>
-                            <textarea class="form-control" id="snipeng" rows="3"></textarea>
-                            <p class="text-end mb-0">
-                                <small class="text-danger">Maximum <strong>500</strong> characters</small>
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-6">
-                        <div class="mb-3">
-                            <label class="form-label" for="snipenghn">Snippet (In Hindi)</label>
-                            <textarea class="form-control" id="snipenghn" rows="3"></textarea>
-                            <p class="text-end mb-0">
-                                <small class="text-danger">Maximum <strong>500</strong> characters</small>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-xl-12">
-                        <div class="mb-3">
-                            <label class="form-label">Content</label>
-                            <ckeditor [editor]="editor" [data]="data"></ckeditor>
-                            <p class="text-end mb-0">
-                                <small class="text-danger">Maximum <strong>700</strong> characters</small>
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-12">
-                        <div class="mb-3">
-                            <label class="form-label">Content (In Hindi)</label>
-                            <ckeditor [editor]="editor" [data]="data"></ckeditor>
-                            <p class="text-end mb-0">
-                                <small class="text-danger">Maximum <strong>700</strong> characters</small>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-xl-12">
-                        <div class="mb-3 upload-doc">
-                            <label class="form-label" for="uploadfile">Feature Image</label>
-                            <div class="custom-dropzone photoUpload" ngx-dropzone [accept]="'image/*'"
-                                (change)="onSelect($event)">
-                                <ngx-dropzone-label>
-                                    <div>
-                                        <h2>Drag and Drop <span class="d-block">or</span>Click to Upload Feature Image
-                                        </h2>
-                                    </div>
-                                </ngx-dropzone-label>
-                                <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files"
-                                    [file]="f" [removable]="true" (removed)="onRemove(f)">
-                                    <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
-                                </ngx-dropzone-image-preview>
+    
+                    <div class="row">
+                        <div class="col-xl-6">
+                            <div class="mb-3">
+                                <label class="form-label" for="snippetEnglish">Snippet (In English)</label>
+                                <textarea id="snippetEnglish" name="snippetEnglish" [(ngModel)]="contentModel.snippetEnglish" class="form-control" rows="3"></textarea>
+                                <p class="text-end mb-0">
+                                    <small class="text-danger">Maximum <strong>500</strong> characters</small>
+                                </p>
                             </div>
-                            <p class="small mb-0 text-end text-danger">Max file Size <span class="fw-bold">1 mb</span>
-                            </p>
+                        </div>
+    
+                        <div class="col-xl-6">
+                            <div class="mb-3">
+                                <label class="form-label" for="snippetHindi">Snippet (हिंदी में)</label>
+                                <textarea id="snippetHindi" name="snippetHindi" [(ngModel)]="contentModel.snippetHindi" class="form-control" rows="3"></textarea>
+                                <p class="text-end mb-0">
+                                    <small class="text-danger">Maximum <strong>500</strong> characters</small>
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <div class="content-right">
-                <div class="bg-light p-4 h-100">
+    
                     <div class="row">
                         <div class="col-xl-12">
                             <div class="mb-3">
-                                <label class="form-label" for="metatitle">Meta Title</label>
-                                <input class="form-control" type="text" id="metatitle">
+                                <label class="form-label" for="contentEnglish">Content (In English)</label>
+                                <ckeditor id="contentEnglish" name="contentEnglish" [editor]="editor" [(ngModel)]="contentModel.contentEnglish"></ckeditor>
+                                <p class="text-end mb-0">
+                                    <small class="text-danger">Maximum <strong>700</strong> characters</small>
+                                </p>
                             </div>
                         </div>
+    
                         <div class="col-xl-12">
                             <div class="mb-3">
-                                <label class="form-label" for="metekeyword">Meta Keyword</label>
-                                <input class="form-control" type="text" id="metekeyword">
+                                <label class="form-label" for="contentHindi">Content (हिंदी में)</label>
+                                <ckeditor id="contentHindi" name="contentHindi" [editor]="editor" [data]="data" [(ngModel)]="contentModel.contentHindi"></ckeditor>
+                                <p class="text-end mb-0">
+                                    <small class="text-danger">Maximum <strong>700</strong> characters</small>
+                                </p>
                             </div>
                         </div>
+                    </div>
+    
+                    <div class="row">
                         <div class="col-xl-12">
                             <div class="mb-3">
-                                <label class="form-label" for="metedescription">Meta Description</label>
-                                <textarea class="form-control" id="metedescription" rows="4"></textarea>
+                                <label class="form-label" for="featureImage">Feature Image <span class="text-danger">*</span></label>
+                                <div class="custom-dropzone photoUpload" ngx-dropzone [accept]="'image/*'" (change)="onFeatureImageSelect($event)">
+                                    <ngx-dropzone-label>
+                                        <div>
+                                            <h2>Drag and Drop <span class="d-block">or</span>Click to Upload Feature Image</h2>
+                                        </div>
+                                    </ngx-dropzone-label>
+                                    <!-- Preview saved image when editing -->
+                                    <div *ngFor="let f of featureImageFiles">
+                                      <img *ngIf="f.url" [src]="f.url" alt="Feature Image" class="img-thumbnail">
+                                      <ngx-dropzone-label>{{ f.file.name }} ({{ f.file.type }})</ngx-dropzone-label>
+                                      <span class="remove-icon" (click)="onFeatureImageRemove(f)">&times;</span>
+                                      <!-- <button class="btn btn-danger btn-sm" (click)="onRemove(f)">Remove</button> -->
+                                    </div>
+                                </div>
+                                <p class="small mb-0 text-end text-danger">Max file Size <span class="fw-bold">1 mb</span></p>                        
                             </div>
                         </div>
                     </div>
                 </div>
+    
+                <div class="content-right">
+                    <div class="bg-light p-4 h-100">
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="mb-3">
+                                    <label class="form-label" for="metaTitle">Meta Title</label>
+                                    <input type="text" id="metaTitle" name="metaTitle" [(ngModel)]="contentModel.metaTitle" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-xl-12">
+                                <div class="mb-3">
+                                    <label class="form-label" for="metaKeyword">Meta Keyword</label>
+                                    <input type="text" id="metaKeyword" name="metaKeyword" [(ngModel)]="contentModel.metaKeyword" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-xl-12">
+                                <div class="mb-3">
+                                    <label class="form-label" for="metaDescription">Meta Description</label>
+                                    <textarea type="text" id="metaDescription" name="metaDescription" [(ngModel)]="contentModel.metaDescription" class="form-control" rows="3"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>                
             </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="d-flex gap-2 mt-lg-3">
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                    <button type="reset" class="btn btn-danger">Reset</button>
+    
+            <div class="row">
+                <div class="col-xl-3">
+                    <div class="mb-3">
+                        <label class="col-form-label" for="isPublish">Is Publish</label><br/>
+                        <input type="checkbox" id="isPublish" name="isPublish" [(ngModel)]="contentModel.isPublish" style="height: 30px; width: 30px;" class="form-check-input">
+                    </div>
                 </div>
+                <div class="col-xl-3" *ngIf="contentModel.isPublish">
+                    <div class="mb-3">
+                        <label class="col-form-label" for="publishDate">Publish Date</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control datepicker" id="publishDate" name="publishDate" [(ngModel)]="contentModel.publishDate">
+                            <label class="input-group-text" for="publishDate"><i class="bi bi-calendar-week"></i></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3">
+                    <div class="d-flex gap-2 mt-lg-3">                            
+                        <button type="submit" style="margin-top: 20px;" class="btn btn-primary" [ngClass]="contentModel.isEditing ? 'btn-info' : 'btn-primary'">
+                            {{ contentModel.isEditing ? 'Update' : 'Submit' }}
+                        </button>
+                        <button type="button" style="margin-top: 20px;" class="btn btn-danger" (click)="resetForm()">Reset</button>
+                    </div>
+                </div>
+                <div class="col-xl-3"></div>
             </div>
-        </div>
+        </form>        
     </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <div class="form-cointainer">
-    <div class="main-tab">
-        <div class="row justify-content-between align-items-center">
-            <div class="col-xxl-3 col-lg-4 col-md-6">
-                <ul class="nav nav-tabs" routerLinkActive="active">
-                    <li class="nav-item">
-                        <a routerLink="/application/pagecontent" class="nav-link active">Add</a>
-                    </li>
-                    <li class="nav-item">
-                        <a routerLink="/application/pagecontent-view" class="nav-link">View</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="col-lg-6 col-md-6">
-                <div class="utilite float-end">
-                    <ul class="mb-0">
-                        <li class="bg-transparent border-0">
-                            <span class="text-danger small"><b>(*)</b> Indicate mandatory</span>
-                        </li>
-
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="content-box content-area pb-1">
-        <div class="form-section">
-            <div class="row">
-
-                <div class="col-xxl-3 col-lg-4">
-                    <div class="mb-3">
-                        <label for="name" class="form-label">Page Name</label>
-                        <select class="form-select">
-                            <option selected>-Select-</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="col-xl-9 col-lg-9">
-                  
-                </div>
-
-                <div class="col-xxl-6 col-lg-6">
-                    <div class="mb-3">
-                        <label for="name" class="form-label">Content</label>
-                        <ckeditor [editor]="editor" [data]="data"></ckeditor>
-                    </div>
-                </div>
-
-                <div class="col-xl-6 col-lg-6">
-                  
-                </div>
-
-                <div class="col-xxl-3 col-lg-4">
-                    <div class="mb-3">
-                        <button type="submit" class="btn btn-primary me-2">Submit</button>
-                        <button type="reset" class="btn btn-danger">Reset</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> -->

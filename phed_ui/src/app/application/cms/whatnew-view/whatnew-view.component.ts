@@ -39,7 +39,7 @@ export class WhatnewViewComponent implements OnInit {
           // Map the response data to include the full image URL
           this.whatIsNewDetails = response.data.map((whatNew: any) => ({
             ...whatNew,
-            document: `http://localhost:5097${whatNew.whatnews}`            
+            document: `http://localhost:5234${whatNew.whatnews}`            
           }));
           this.noRecordsFound = this.whatIsNewDetails.length === 0;
           if (this.noRecordsFound) {
@@ -140,7 +140,7 @@ export class WhatnewViewComponent implements OnInit {
             Swal.fire('Deleted!', 'Your waht is new detail has been deleted.', 'success');
           },
           error: (error) => {
-            console.error('Error deleting event details:', error);
+            console.error('Error deleting what is new details:', error);
             Swal.fire('Error', 'Unable to delete the what is new details. Please try again.', 'error');
           },
         });
