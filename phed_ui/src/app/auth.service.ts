@@ -199,9 +199,7 @@ export class AuthService {
       console.log(`${key}:`, value);
     });
     return this.http.post(this.registrationApiUrl, formData);
-  }  
-  
-  
+  }
 
   // File upload method
   uploadFile(file: File): Observable<any> {
