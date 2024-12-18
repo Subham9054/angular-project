@@ -15,30 +15,31 @@ export class ComplaintregistrationupdateComponent implements OnInit {
 
 
   activeDropdown: number | null = null; // Track the active dropdown index
+  Object: any;
 
-    toggleDropdown(index: number) {
-        this.activeDropdown = this.activeDropdown === index ? null : index;
-    }
+  toggleDropdown(index: number) {
+    this.activeDropdown = this.activeDropdown === index ? null : index;
+  }
 
   @HostListener('document:click', ['$event'])
   onClickOutside(event: MouseEvent) {
-      const target = event.target as HTMLElement;
-      if (!target.closest('.dropdown')) {
-          this.activeDropdown = null;
-      }
+    const target = event.target as HTMLElement;
+    if (!target.closest('.dropdown')) {
+      this.activeDropdown = null;
+    }
 
   }
- 
- // Filter close btn
- isDropdownOpen = false;
 
- toggleDropdownnew() {
-     this.isDropdownOpen = !this.isDropdownOpen;
- }
- 
- closeDropdown() {
-     this.isDropdownOpen = false;
- }
+  // Filter close btn
+  isDropdownOpen = false;
+
+  toggleDropdownnew() {
+    this.isDropdownOpen = !this.isDropdownOpen;
+  }
+
+  closeDropdown() {
+    this.isDropdownOpen = false;
+  }
 
   isPanelOpen = false; // Start with the panel open
 
@@ -56,12 +57,12 @@ export class ComplaintregistrationupdateComponent implements OnInit {
   complainttype: any[] = [];
   complaintdetails: any[] = [];
   currentPage: number = 1;
-  pageSize: number = 10; 
+  pageSize: number = 10;
   totalPages: number = 1;
   paginatedComplaints: any[] = [];
-  takeactiongms : any[] = [];
-  actionhistorygms: any = {};
- 
+  takeactiongms: any[] = [];
+  actionhistorygms: any;
+
 
 
   formData: any = {
@@ -79,13 +80,6 @@ export class ComplaintregistrationupdateComponent implements OnInit {
     private loadingService: LoadingService,
   ) { }
 
-  // ngOnInit(): void {
-  //   this.initializeData();
-  //   $('.datepicker').datetimepicker({
-  //     format: 'DD-MMM-YYYY',
-  //     daysOfWeekDisabled: [0, 6],
-  //   });
-  // }
   ngOnInit(): void {
 
     // $('.datepicker').datetimepicker({
@@ -116,28 +110,28 @@ export class ComplaintregistrationupdateComponent implements OnInit {
     this.getComplaints();
     this.getComplaintstype();
     this.getgmsComplaintdelail();
-    
+
   }
 
   dataBasedOnToken: any;
   intimations: any;
   actions: any;
   escalations: any;
-GetAllDetailsagainsttokenurl(categoryId: any, subCategoryId: any, Token: any) {
-  console.log(Token);
-  this.authService.GetAllDetailsagainsttokenurlWithToken(Token, categoryId, subCategoryId).subscribe(
-    response => {
-      this.dataBasedOnToken = response;
-      console.log(this.dataBasedOnToken);
-      this.intimations = this.dataBasedOnToken.data[0].intimations;
-      this.actions = this.dataBasedOnToken.data[0].actionSummaries;
-      this.escalations = this.dataBasedOnToken.data[0].escalations;
-    },
-    error => {
-      console.error('Error fetching Complaint details', error);
-    }
-  );
-}
+  GetAllDetailsagainsttokenurl(categoryId: any, subCategoryId: any, Token: any) {
+    console.log(Token);
+    this.authService.GetAllDetailsagainsttokenurlWithToken(Token, categoryId, subCategoryId).subscribe(
+      response => {
+        this.dataBasedOnToken = response;
+        console.log(this.dataBasedOnToken);
+        this.intimations = this.dataBasedOnToken.data[0].intimations;
+        this.actions = this.dataBasedOnToken.data[0].actionSummaries;
+        this.escalations = this.dataBasedOnToken.data[0].escalations;
+      },
+      error => {
+        console.error('Error fetching Complaint details', error);
+      }
+    );
+  }
 
 
   getgmsComplaintdelail() {
@@ -172,7 +166,7 @@ GetAllDetailsagainsttokenurl(categoryId: any, subCategoryId: any, Token: any) {
       this.updatePagination();
     }
   }
-  
+
   // Method to go to the previous page
   previousPage(): void {
     if (this.currentPage > 1) {
@@ -197,21 +191,21 @@ GetAllDetailsagainsttokenurl(categoryId: any, subCategoryId: any, Token: any) {
     );
   }
 
-  
+
   actionhistory(tokenno: string): void {
     //debugger;
     this.authService.getgmsactionhistory(tokenno).subscribe(
-        response => {
-            // Check if the response is an array or an object
-            this.actionhistorygms = response;
-            console.log('Fetched data:', this.actionhistorygms);
-        },
-        error => {
-            console.error('Error fetching complaint history:', error);
-            alert('Failed to fetch complaint details.');
-        }
+      response => {
+        // Check if the response is an array or an object
+        this.actionhistorygms = response;
+        console.log('Fetched data:', this.actionhistorygms[0]);
+      },
+      error => {
+        console.error('Error fetching complaint history:', error);
+        alert('Failed to fetch complaint details.');
+      }
     );
-}
+  }
 
 
 
