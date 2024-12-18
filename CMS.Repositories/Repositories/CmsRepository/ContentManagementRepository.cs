@@ -565,6 +565,7 @@ namespace CMS.Repositories.Repositories.CmsRepository
             try
             {
                 parameters.Add("P_Action", "Delete");
+                parameters.Add("P_ContentId", contentId);
                 parameters.Add("P_PageTitleEnglish", null);
                 parameters.Add("P_PageTitleHindi", null);
                 parameters.Add("P_PageAlias", null);

@@ -8,38 +8,36 @@ import Swal from 'sweetalert2';
   templateUrl: './pagecontent-view.component.html',
   styleUrls: ['./pagecontent-view.component.scss']
 })
-export class PagecontentViewComponent {
-  // Filter close btn
-  isDropdownOpen = false;
+export class PagecontentViewComponent implements OnInit {
+  isDropdownOpen = false;  // Filter close btn / Dropdown control
+  pageContentDetails: any[] = [];
+  selectedPageContents: any = null;
+  noRecordsFound = false;
+
+  constructor(private authService: AuthService, private router: Router) {}
+
+  ngOnInit(): void {    
+    this.fetchPageContents();
+  }
+
   openDropdown() {
     this.isDropdownOpen = true;
   }
 
   closeDropdown() {
     this.isDropdownOpen = false;
-  }
-  
-  pageContentDetails: any[] = [];
-  selectedPageContents: any = null;
-  noRecordsFound = false;
-  
-  constructor(private authService: AuthService, private router: Router) {}
-  
-  ngOnInit(): void {
-    debugger;
-    this.fetchPageContents();
-  }
+  } 
   
   // Method to fetch page content details from the service
-  fetchPageContents() {
-    debugger;
+  fetchPageContents() {   
     this.authService.getPageContents().subscribe({
       next: (response) => {
         if (response && response.success) {
           // Map the response data to include the full image URL
           this.pageContentDetails = response.data.map((contentDetails: any) => ({
-            ...contentDetails,
-            document: `http://localhost:5234${contentDetails.pageContents}`            
+            ...contentDetails,            
+            // featureImage: `http://localhost:5234${contentDetails.featureImage}`
+            featureImage: `http://localhost:5097${contentDetails.featureImage}`
           }));
           this.noRecordsFound = this.pageContentDetails.length === 0;
           if (this.noRecordsFound) {
@@ -56,11 +54,11 @@ export class PagecontentViewComponent {
             title: 'Failed to Fetch Page Contents.',
             text: 'Could not retrieve page content details.',
           });
-        }
+        }        
       },
       error: (error) => {
         console.error('Error fetching page content details.', error);
-        this.noRecordsFound = true;
+        this.noRecordsFound = true;        
         Swal.fire({
           icon: 'error',
           title: 'Error',
@@ -69,8 +67,8 @@ export class PagecontentViewComponent {
       }
     });
   }
-  
-  // Method to handle the Modal View action
+
+  // Method to handle the Modal View action (View specific page content)
   onView(pageContents: any): void {
     this.selectedPageContents = pageContents;
   }
@@ -101,7 +99,7 @@ export class PagecontentViewComponent {
           },
           error: (error) => {
             console.error('Error deleting event details:', error);
-            Swal.fire('Error', 'Unable to delete the what is new details. Please try again.', 'error');
+            Swal.fire('Error', 'Unable to delete the page content details. Please try again.', 'error');
           },
         });
       }
