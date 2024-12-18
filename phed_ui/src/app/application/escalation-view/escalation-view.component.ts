@@ -3,6 +3,8 @@ import { AuthService } from 'src/app/auth.service';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import Swal from 'sweetalert2';
+import * as CryptoJS from 'crypto-js';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-escalation-view',
@@ -10,34 +12,35 @@ import Swal from 'sweetalert2';
   styleUrls: ['./escalation-view.component.scss']
 })
 export class EscalationViewComponent {
+  secretKey: any = environment.apiHashingKey;
   // Filter close btn
- isDropdownOpen = false;
- openDropdown() {
-   this.isDropdownOpen = true;
- }
+  isDropdownOpen = false;
+  openDropdown() {
+    this.isDropdownOpen = true;
+  }
 
 
- closeDropdown() {
-   this.isDropdownOpen = false;
- }
+  closeDropdown() {
+    this.isDropdownOpen = false;
+  }
 
   // Search filter
-  isPanelOpen = false; 
+  isPanelOpen = false;
 
   togglePanel() {
-    this.isPanelOpen = !this.isPanelOpen; 
+    this.isPanelOpen = !this.isPanelOpen;
   }
   escalations: any[] = [];
   categories: any[] = [];
   subcategories: any[] = [];
   selectedEscalations: any = [];
 
-  formData: any = { 
+  formData: any = {
     ddlComplaintCategory: '0',
     ddlSubCategory: '0',
   };
 
-  constructor(private http: HttpClient, private authService: AuthService, private router: Router) {}
+  constructor(private http: HttpClient, private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
     this.getCategories();
@@ -64,7 +67,7 @@ export class EscalationViewComponent {
   //     alert("Please select subcategory.");
   //     return;
   //   }
-    
+
   //   this.authService.viewEscalation(catdropdown, subcatdropdown).subscribe(
   //     data => {
   //       this.escalations = data;
@@ -79,7 +82,7 @@ export class EscalationViewComponent {
   onSearch() {
     const catdropdown = this.formData.ddlComplaintCategory;
     const subcatdropdown = this.formData.ddlSubCategory;
-  
+
     if (catdropdown !== "0" && subcatdropdown === "0") {
       Swal.fire({
         icon: 'warning',
@@ -88,7 +91,7 @@ export class EscalationViewComponent {
       });
       return;
     }
-  
+
     this.authService.viewEscalation(catdropdown, subcatdropdown).subscribe(
       data => {
         this.escalations = data;
@@ -108,7 +111,7 @@ export class EscalationViewComponent {
       }
     );
   }
-  
+
   onCategoryChange(event: any) {
     const catid = parseInt(event.target.value, 10);
     if (!isNaN(catid)) {
@@ -128,10 +131,8 @@ export class EscalationViewComponent {
 
   // Method to set the selected escalation details for the modal
   viewEscalationDetails(categoryId: string, subCategoryId: string): void {
-    // alert(categoryId);
-    // alert(subCategoryId);
-    const catid=categoryId;
-    const subcatid=subCategoryId;
+    const catid = categoryId;
+    const subcatid = subCategoryId;
     this.authService.viewEscalationeye(catid, subcatid).subscribe(
       data => {
         this.selectedEscalations = data;
@@ -141,22 +142,32 @@ export class EscalationViewComponent {
       }
     );
   }
-  Updateview(categoryId: string, subCategoryId: string,escalationlevelId:string){
-    // alert(categoryId);
-    // alert(subCategoryId);
-    // alert(escalationlevelId);
-    const catid=categoryId;
-    const subcatid=subCategoryId;
-    const esclid=escalationlevelId;
+
+
+
+
+
+  Updateview(categoryId: string, subCategoryId: string, escalationlevelId: string) {
+    // const secretKey = 'your-secret-key';
+    const catid = categoryId;
+    const subcatid = subCategoryId;
+    const esclid = escalationlevelId;
+    // Encrypting the parameters
+    const encryptedCategory = CryptoJS.AES.encrypt(categoryId, this.secretKey).toString();
+    const encryptedSubCategory = CryptoJS.AES.encrypt(subCategoryId, this.secretKey).toString();
+    const encryptedComplaintId = CryptoJS.AES.encrypt(escalationlevelId, this.secretKey).toString();
+    const numberRepresentation = parseInt(CryptoJS.MD5(encryptedComplaintId).toString(CryptoJS.enc.Hex).slice(0, 8), 16);
+
     this.router.navigate(['/application/escalation/add'], {
       queryParams: {
-        catid: categoryId,
-        subcatid: subCategoryId,
-        esclid: escalationlevelId
+        catid: encryptedCategory,
+        subcatid: encryptedSubCategory,
+        esclid: encryptedComplaintId
+
       }
     });
-   
-}
+
+  }
 
 }
 
