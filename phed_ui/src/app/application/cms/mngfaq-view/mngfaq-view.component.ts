@@ -10,17 +10,18 @@ import Swal from 'sweetalert2';
   styleUrls: ['./mngfaq-view.component.scss']
 })
 export class MngfaqViewComponent implements OnInit {
+  isDropdownOpen = false;
   faqs: any[] = [];
   selectedFaq: any = null;
   noRecordsFound: boolean = false;
 
   constructor(private authService: AuthService, private router: Router, private sanitizer: DomSanitizer) {}
 
-  // Filter close btn
-  isDropdownOpen = false;
+  // Filter close btn  
   openDropdown() {
     this.isDropdownOpen = true;
   }
+  
   closeDropdown() {
     this.isDropdownOpen = false;
   }

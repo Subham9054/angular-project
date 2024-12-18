@@ -70,7 +70,7 @@ export class AuthService {
   private getBannerByNameUrl = 'http://localhost:5234/api/CMS/GetBannerByName';
   private deleteBannerUrl = 'http://localhost:5234/api/CMS/DeleteBanner';
 
-  private cmsBaseURL = 'http://localhost:5234/Api/CMS'; //Base URL for Managing CMS Master Pages
+  // private cmsBaseURL = 'http://localhost:5234/Api/CMS'; //Base URL for Managing CMS Master Pages
 
   // private getParentMenusUrl = 'http://localhost:5097/api/CMS/GetParentMenus';
   // private createOrUpdatePageUrl = 'http://localhost:5097/api/CMS/CreateOrUpdatePageLink';
@@ -85,7 +85,7 @@ export class AuthService {
   // private getBannerByNameUrl = 'http://localhost:5097/api/CMS/GetBannerByName';
   // private deleteBannerUrl = 'http://localhost:5097/api/CMS/DeleteBanner';
 
-  //private cmsBaseURL = 'http://localhost:5097/api/CMS'; //Base URL for Managing CMS Master Pages
+  private cmsBaseURL = 'http://localhost:5097/api/CMS'; //Base URL for Managing CMS Master Pages
   //private galleryUrl = 'http://localhost:5097/api/Gallery'; //Base URL for Managing Gallery
   //private faqUrl = 'http://localhost:5097/api/FAQ'; //Base URL for Managing FAQs
 
