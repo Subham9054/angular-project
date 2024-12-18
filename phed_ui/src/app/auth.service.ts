@@ -14,7 +14,6 @@ export class AuthService {
 
   private baseUrl: string = 'https://localhost:7197';
   
-
   private apiUrl = `${this.baseUrl}/gateway/Login`; // Your API URL for login
   private userregdurl=`${this.baseUrl}/gateway/UserRegistration`;
   private complaintApiUrl = `${this.baseUrl}/gateway/ComplaintCategory`;
@@ -26,7 +25,7 @@ export class AuthService {
   private blockurl =  `${this.baseUrl}/gateway/GetBlocks`;
   private gpurl =  `${this.baseUrl}/gateway/GetGp`;
   private villageurl =  `${this.baseUrl}/gateway/GetVillages`;
-  private wardurl= `${this.baseUrl}/gateway/GetWards`
+  private wardurl= `${this.baseUrl}/gateway/GetWards`;
   private categoryUrl =  `${this.baseUrl}/gateway/GetCategory`;
   private subcategoryUrl =  `${this.baseUrl}/gateway/GetSubCategories`;
   private fileUploadUrl =  `${this.baseUrl}/gateway/UploadFile`;
@@ -48,6 +47,7 @@ export class AuthService {
   private registrationApiUrl = `${this.baseUrl}/gateway/DetailcomplaintRegistration`;
   private gmsComplaintdetailurl=`${this.baseUrl}/gateway/GetGmsComplaintdetails`;
   private gmstakeactionurl=`${this.baseUrl}/gateway/Getgmstakeaction`;
+  private gmsactionhistoryurl=`${this.baseUrl}/gateway/Getgmsactionhistory`;
   private GetAllDetailsagainsttokenurl=`${this.baseUrl}/gateway/GetAllDetailsagainsttoken`;
   private GetCitizenAddressDetailsurl=`${this.baseUrl}/gateway/GetCitizenAddressDetails`;
   private UpdateCitizenAddressDetailsurl=`${this.baseUrl}/gateway/UpdateCitizenAddressDetails`;
@@ -194,15 +194,12 @@ export class AuthService {
   //   );
   // }
   submitRegistration(formData: FormData): Observable<any> {
-    alert('1');
     console.log('FormData Contents:');
     formData.forEach((value, key) => {
       console.log(`${key}:`, value);
     });
     return this.http.post(this.registrationApiUrl, formData);
-  }  
-  
-  
+  }
 
   // File upload method
   uploadFile(file: File): Observable<any> {
@@ -352,6 +349,11 @@ export class AuthService {
     );
   }
   
+  getgmsactionhistory(token: string): Observable<any> {
+    return this.http.get<any>(`${this.gmsactionhistoryurl}?token=${token}`).pipe(
+      catchError(this.handleError)
+    );
+  }
   //******.....Methods For Content Managent Dynamic Work by Debasis Das.....******
   GetParentMenus(): Observable<any> {
     return this.http.get(this.getParentMenusUrl).pipe(
@@ -427,6 +429,35 @@ export class AuthService {
     const url = `${this.deleteBannerUrl}?bannerId=${id}`;
     return this.http.delete(url).pipe(
         catchError(this.handleError)
+    );
+  }
+
+  //Methods for Manage Page Content by Debasis Das
+  createOrUpdatePageContent(formData: FormData, id?: number): Observable<any> {
+    const headers = new HttpHeaders();
+    const url = id ? `${this.cmsBaseURL}/CreateOrUpdatePageContent?contentId=${id}` : `${this.cmsBaseURL}/CreateOrUpdatePageContent`;
+    
+    // Use POST for both creating and updating
+    return this.http.post(url, formData, { headers }).pipe(
+        catchError(this.handleError)
+    );
+  }
+
+  getPageContents(): Observable<any> {
+    return this.http.get(`${this.cmsBaseURL}/GetPageContents`).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  getPageContentById(id: number): Observable<any> {
+    return this.http.get(`${this.cmsBaseURL}/GetPageContentById?contentId=${id}`).pipe(
+      catchError(this.handleError)
+    );
+  }  
+
+  deletePageContent(id: number): Observable<any> {
+    return this.http.delete(`${this.cmsBaseURL}/DeletePageContent?contentId=${id}`).pipe(
+      catchError(this.handleError)
     );
   }
 

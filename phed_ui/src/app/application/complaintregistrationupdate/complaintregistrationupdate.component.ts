@@ -10,6 +10,7 @@ declare let $: any;
   templateUrl: './complaintregistrationupdate.component.html',
   styleUrls: ['./complaintregistrationupdate.component.scss'],
 })
+
 export class ComplaintregistrationupdateComponent implements OnInit {
 
 
@@ -59,6 +60,8 @@ export class ComplaintregistrationupdateComponent implements OnInit {
   totalPages: number = 1;
   paginatedComplaints: any[] = [];
   takeactiongms : any[] = [];
+  actionhistorygms: any = {};
+ 
 
 
   formData: any = {
@@ -122,22 +125,20 @@ export class ComplaintregistrationupdateComponent implements OnInit {
   escalations: any;
 GetAllDetailsagainsttokenurl(categoryId: any, subCategoryId: any, Token: any) {
   console.log(Token);
+  this.authService.GetAllDetailsagainsttokenurlWithToken(Token, categoryId, subCategoryId).subscribe(
+    response => {
+      this.dataBasedOnToken = response;
+      console.log(this.dataBasedOnToken);
+      this.intimations = this.dataBasedOnToken.data[0].intimations;
+      this.actions = this.dataBasedOnToken.data[0].actionSummaries;
+      this.escalations = this.dataBasedOnToken.data[0].escalations;
+    },
+    error => {
+      console.error('Error fetching Complaint details', error);
+    }
+  );
+}
 
-    this.authService.GetAllDetailsagainsttokenurlWithToken(Token, categoryId, subCategoryId).subscribe(
-      response => {
-        this.dataBasedOnToken = response;
-        console.log(this.dataBasedOnToken);
-        this.intimations = this.dataBasedOnToken.data[0].intimations;
-        this.actions = this.dataBasedOnToken.data[0].actionSummaries;
-        this.escalations = this.dataBasedOnToken.data[0].escalations;
-
-      },
-      error => {
-        console.error('Error fetching Complaint details', error);
-        this.alertHelper.errorAlert('Error fetching Complaint details', "Error");
-      }
-    );
-  }
 
   getgmsComplaintdelail() {
     this.loadingService.startLoading();
@@ -195,7 +196,25 @@ GetAllDetailsagainsttokenurl(categoryId: any, subCategoryId: any, Token: any) {
       }
     );
   }
+
   
+  actionhistory(tokenno: string): void {
+    //debugger;
+    this.authService.getgmsactionhistory(tokenno).subscribe(
+        response => {
+            // Check if the response is an array or an object
+            this.actionhistorygms = response;
+            console.log('Fetched data:', this.actionhistorygms);
+        },
+        error => {
+            console.error('Error fetching complaint history:', error);
+            alert('Failed to fetch complaint details.');
+        }
+    );
+}
+
+
+
 
 
   getComplaints(): void {

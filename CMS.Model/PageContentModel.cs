@@ -8,7 +8,7 @@ namespace CMS.Model
 {
     public class PageContentModel
     {
-        public int ContentId { get; set; }
+        public int? ContentId { get; set; }
         public string? PageTitleEnglish { get; set; }
         public string? PageTitleHindi { get; set; }
         public string? PageAlias { get; set; }

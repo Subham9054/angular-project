@@ -95,6 +95,20 @@ namespace GMS.Repository.Repositories.Interfaces.MANAGE_COMPLAINTDETAILS_CONFIG
                 throw;
             }
         }
+        public async Task<List<ComplaintDetails>> Getgmsactionhistory(string token)
+        {
+            try
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("p_TokenNo", token);
+                var result = await Connection.QueryAsync<ComplaintDetails>("GetComplaintDetailsByTokenNo", parameters, commandType: CommandType.StoredProcedure);
+                return result.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
 
         public async Task<List<GetCitizen>> GetCitizendetails(string token)
         {

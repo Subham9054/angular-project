@@ -421,7 +421,7 @@ namespace CMS.Repositories.Repositories.CmsRepository
             {
                 parameters.Add("P_Action", "CreOrUpd");
 
-                if (creOrUpdPageContent.ContentId == 0)
+                if (creOrUpdPageContent.ContentId == 0 || creOrUpdPageContent.ContentId == null)
                 {
                     // Creating a new page content
                     parameters.Add("P_ContentId", null);
@@ -490,12 +490,73 @@ namespace CMS.Repositories.Repositories.CmsRepository
 
         public async Task<List<PageContentModel>> GetPageContentsAsync()
         {
-            throw new NotImplementedException();
+            DynamicParameters parameters = new DynamicParameters();
+            try
+            {
+                parameters.Add("P_Action", "GetAll");
+                parameters.Add("P_ContentId", null, DbType.Int32);
+                parameters.Add("P_PageTitleEnglish", null, DbType.String);
+                parameters.Add("P_PageTitleHindi", null, DbType.String);
+                parameters.Add("P_PageAlias", null, DbType.String);
+                parameters.Add("P_ReadMore", null, DbType.String);
+                parameters.Add("P_LinkType", null, DbType.String);
+                parameters.Add("P_WindowType", null, DbType.String);
+                parameters.Add("P_SnippetEnglish", null, DbType.String);
+                parameters.Add("P_SnippetHindi", null, DbType.String);
+                parameters.Add("P_ContentEnglish", null, DbType.String);
+                parameters.Add("P_ContentHindi", null, DbType.String);
+                parameters.Add("P_FeatureImage", null, DbType.String);
+                parameters.Add("P_MetaTitle", null, DbType.String);
+                parameters.Add("P_MetaKeyword", null, DbType.String);
+                parameters.Add("P_MetaDescription", null, DbType.String);
+                parameters.Add("P_IsPublish", null, DbType.Boolean);
+                parameters.Add("P_PublishDate", null, DbType.DateTime);
+                parameters.Add("P_CreatedBy", null, DbType.Int32);
+
+                var pageContents = await Connection.QueryAsync<PageContentModel>("USP_ManagePageContentDetails", parameters, commandType: CommandType.StoredProcedure);
+
+                return pageContents.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An unexpected error occurred while fetching page content details. Please try again later.", ex);
+            }
         }
 
         public async Task<List<PageContentModel>> GetPageContentByIdAsync(int contentId)
         {
-            throw new NotImplementedException();
+            var parameters = new DynamicParameters();
+            try
+            {
+                parameters.Add("P_Action", "GetById");
+                parameters.Add("P_ContentId", contentId);
+                parameters.Add("P_PageTitleEnglish", null, DbType.String);
+                parameters.Add("P_PageTitleHindi", null, DbType.String);
+                parameters.Add("P_PageAlias", null, DbType.String);
+                parameters.Add("P_ReadMore", null, DbType.String);
+                parameters.Add("P_LinkType", null, DbType.String);
+                parameters.Add("P_WindowType", null, DbType.String);
+                parameters.Add("P_SnippetEnglish", null, DbType.String);
+                parameters.Add("P_SnippetHindi", null, DbType.String);
+                parameters.Add("P_ContentEnglish", null, DbType.String);
+                parameters.Add("P_ContentHindi", null, DbType.String);
+                parameters.Add("P_FeatureImage", null, DbType.String);
+                parameters.Add("P_MetaTitle", null, DbType.String);
+                parameters.Add("P_MetaKeyword", null, DbType.String);
+                parameters.Add("P_MetaDescription", null, DbType.String);
+                parameters.Add("P_IsPublish", null, DbType.Boolean);
+                parameters.Add("P_PublishDate", null, DbType.DateTime);
+                parameters.Add("P_CreatedBy", null, DbType.Int32);
+
+                // Execute the stored procedure and get the banner by its ID
+                var result = await Connection.QueryAsync<PageContentModel>("USP_ManagePageContentDetails", parameters, commandType: CommandType.StoredProcedure);
+
+                return result.ToList(); // Return the result as a list
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while retrieving the what is new details by ID.", ex);
+            }
         }
 
         public async Task<int> DeletePageContentAsync(int contentId)
@@ -530,7 +591,7 @@ namespace CMS.Repositories.Repositories.CmsRepository
             }
             catch (Exception ex)
             {
-                throw new Exception("An error occurred while deleting the what is new details.", ex);
+                throw new Exception("An error occurred while deleting the page content details.", ex);
             }
         }
         #endregion

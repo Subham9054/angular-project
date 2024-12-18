@@ -83,7 +83,7 @@
                     <tr *ngFor="let item of whatIsNewDetails; let i = index" [ngClass]="{'publish': item.isPublish, 'unpublish': !item.isPublish}">
                         <td><input type="checkbox"></td>
                         <td>{{ i + 1 }}</td>                        
-                        <td>{{ item.titleEnglish }}</td>                        
+                        <td>{{ item.titleEnglish }}</td>
                         <td>{{ item.descriptionEnglish }}</td>
                         <td>{{ item.publishDate | date:'dd-MMM-yyyy' }}</td>
                         <td style="text-align: center;">
