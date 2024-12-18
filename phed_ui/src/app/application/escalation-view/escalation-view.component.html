@@ -32,12 +32,14 @@
                       <label for="ddlComplaintCategory" class="form-label">Complaint Category</label>
 
                      <select name="ddlComplaintCategory" id="ddlComplaintCategory"
-                        [(ngModel)]="formData.ddlComplaintCategory" (change)="onCategoryChange($event)"
+                        [(ngModel)]="formData.ddlComplaintCategory" 
+                        (change)="onCategoryChange($event)"
                         class="form-select">
                         <option selected value="0">Select</option>
                         <option *ngFor="let category of categories" [value]="category.inT_CATEGORY_ID">{{
                           category.vcH_CATEGORY }}
                         </option>
+                    
                       </select>
                       
                      
