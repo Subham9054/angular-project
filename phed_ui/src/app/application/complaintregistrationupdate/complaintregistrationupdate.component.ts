@@ -82,18 +82,18 @@ export class ComplaintregistrationupdateComponent implements OnInit {
 
   ngOnInit(): void {
 
-    $('.datepicker').datetimepicker({
-      format: 'DD-MMM-YYYY',
-      daysOfWeekDisabled: [0, 6],
-    });
-    $('.timepicker').datetimepicker({
-      format: 'LT',
-      daysOfWeekDisabled: [0, 6],
-    });
-    $('.datetimepicker').datetimepicker({
-      format: 'DD-MMM-YYYY LT',
-      daysOfWeekDisabled: [0, 6],
-    });
+    // $('.datepicker').datetimepicker({
+    //   format: 'DD-MMM-YYYY',
+    //   daysOfWeekDisabled: [0, 6],
+    // });
+    // $('.timepicker').datetimepicker({
+    //   format: 'LT',
+    //   daysOfWeekDisabled: [0, 6],
+    // });
+    // $('.datetimepicker').datetimepicker({
+    //   format: 'DD-MMM-YYYY LT',
+    //   daysOfWeekDisabled: [0, 6],
+    // });
     const today = new Date();
     //this.updateDates(today);
     this.getDistricts();

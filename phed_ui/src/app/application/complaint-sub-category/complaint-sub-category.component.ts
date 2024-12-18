@@ -158,11 +158,11 @@ export class ComplaintSubCategoryComponent {
     ) {
       errFlag = 1;
     }
-    if (errFlag == 0 && !this.vldChkLst.isSpecialCharKey('complaintsub', complaintsub,
-      `Complaint Sub-Category`)
-    ) {
-      errFlag = 1;
-    }
+    // if (errFlag == 0 && !this.vldChkLst.isSpecialCharKey('complaintsub', complaintsub,
+    //   `Complaint Sub-Category`)
+    // ) {
+    //   errFlag = 1;
+    // }
     if (errFlag == 0 && !this.vldChkLst.maxLength('complaintsub', complaintsub, 50,
       `Complaint Sub-Category`)
     ) {
@@ -174,11 +174,11 @@ export class ComplaintSubCategoryComponent {
     ) {
       errFlag = 1;
     }
-    if (errFlag == 0 && !this.vldChkLst.isSpecialCharKey('complaintsubhn', complaintsubhn,
-      `Complaint Sub-Category (In Hindi)`)
-    ) {
-      errFlag = 1;
-    }
+    // if (errFlag == 0 && !this.vldChkLst.isSpecialCharKey('complaintsubhn', complaintsubhn,
+    //   `Complaint Sub-Category (In Hindi)`)
+    // ) {
+    //   errFlag = 1;
+    // }
     if (errFlag == 0 && !this.vldChkLst.maxLength('complaintsubhn', complaintsubhn, 50,
       `Complaint Sub-Category (In Hindi)`)
     ) {

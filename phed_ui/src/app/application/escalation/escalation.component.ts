@@ -81,6 +81,7 @@ export class EscalationComponent implements OnInit, AfterViewInit, AfterViewChec
 
 
         this.authService.UpdateEscalation(this.categoryId, this.subCategoryId, this.escalationId).subscribe(
+          
           data => {
             this.escalations = data;
             this.bindUpdateData();
@@ -199,11 +200,16 @@ export class EscalationComponent implements OnInit, AfterViewInit, AfterViewChec
     this.isTimePickerInitialized = false;
   }
 
-  removeRow(index: number) {
-    this.rows.splice(index, 1);
-    this.formData.ddlDesignation.splice(index, 1);
-    this.formData.ddlLocLevel.splice(index, 1);
-    this.isTimePickerInitialized = false;
+  // removeRow(index: number) {
+  //   this.rows.splice(index, 1);
+  //   this.formData.ddlDesignation.splice(index, 1);
+  //   this.formData.ddlLocLevel.splice(index, 1);
+  //   this.isTimePickerInitialized = false;
+  // }
+
+  removeRow(index: number): void {
+    // Remove the row at the specified index from the escalation1 array
+    this.escalation1.splice(index, 1);
   }
 
   ngAfterViewInit(): void {
@@ -226,12 +232,14 @@ export class EscalationComponent implements OnInit, AfterViewInit, AfterViewChec
 
 
   viewEscalationDetails(categoryId: string, subCategoryId: string): void {
+    debugger;
     const catid = categoryId;
     const subcatid = subCategoryId;
     this.authService.viewEscalationeye(catid, subcatid).subscribe(
       data => {
         this.escalation1 = data;
-        this.formData.ddlDesignation = this.escalation1.map((row: any) => row.inT_DESIG_ID);
+        console.log(this.escalation1);
+        this.formData.ddlDesignation = this.escalation1.map((row: any) => row.inT_DESIG_LEVELID);
         // this.formData.ddlESCALATION_LEVELID = this.escalation1.map((row: any) => row.inT_ESCALATION_LEVELID);
 
       },
@@ -256,54 +264,57 @@ export class EscalationComponent implements OnInit, AfterViewInit, AfterViewChec
     }
   }
 
-  // submitForm() {
-  //   const submissionData: SubmissionData = {
-  //     INT_CATEGORY_ID: this.formData.ddlComplaintCategory,
-  //     INT_SUB_CATEGORY_ID: this.formData.ddlSubCategory,
-  //     INT_ESCALATION_LEVELID: this.escalationLevel,
-  //     escalationDetails: this.rows.map((row, index) => ({
-  //       INT_DESIG_ID: this.formData.ddlDesignation[index],
-  //       INT_DESIG_LEVELID: this.formData.ddlLocLevel[index],
-  //       VCH_STANDARD_DAYS: (document.getElementById(`hrtext${index}`) as HTMLInputElement).value,
-  //       // standardDays: '' // Update if needed
-  //       standardDays: (document.getElementById(`hrtext${index}`) as HTMLInputElement).value || '' 
-  //     })).filter(detail => detail.INT_DESIG_ID && detail.INT_DESIG_LEVELID && detail.VCH_STANDARD_DAYS)
-  //   };
-
-  //   if (submissionData.INT_CATEGORY_ID !== "0" && submissionData.INT_SUB_CATEGORY_ID === "0") {
-  //     Swal.fire({
-  //       icon: 'warning',
-  //       title: 'Oops...',
-  //       text: 'Please select a subcategory.',
-  //     });
-  //     return; // Stop execution if the condition is met
-  //   }
-
-  //   if (submissionData.escalationDetails.length === 0) {
-  //     alert('No valid escalation details to submit.');
-  //     return;
-  //   }
-
-  //   this.authService.submitEscalationData(submissionData).subscribe(
-  //     response => {
-  //       console.log('Data submitted successfully', response);
-  //       alert('Data submitted successfully');
-  //     },
-  //     error => {
-  //       console.error('Error submitting data', error);
-  //       if (error.error && error.error.errors) {
-  //         console.error('Validation Errors:', error.error.errors);
-  //         alert('Validation Errors: ' + JSON.stringify(error.error.errors));
-  //       } else {
-  //         alert('Error submitting data: ' + error.message);
-  //       }
-  //     }
-  //   );
-  // }
-
-
-
   submitForm() {
+    const submissionData: SubmissionData = {
+      INT_CATEGORY_ID: this.formData.ddlComplaintCategory,
+      INT_SUB_CATEGORY_ID: this.formData.ddlSubCategory,
+      INT_ESCALATION_LEVELID: this.escalationLevel,
+      escalationDetails: this.rows.map((row, index) => ({
+        INT_DESIG_ID: this.formData.ddlDesignation[index],
+        INT_DESIG_LEVELID: this.formData.ddlLocLevel[index],
+        VCH_STANDARD_DAYS: (document.getElementById(`hrtext${index}`) as HTMLInputElement).value,
+        // standardDays: '' // Update if needed
+        standardDays: (document.getElementById(`hrtext${index}`) as HTMLInputElement).value || '' 
+      })).filter(detail => detail.INT_DESIG_ID && detail.INT_DESIG_LEVELID && detail.VCH_STANDARD_DAYS)
+    };
+
+    if (submissionData.INT_CATEGORY_ID !== "0" && submissionData.INT_SUB_CATEGORY_ID === "0") {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Oops...',
+        text: 'Please select a subcategory.',
+      });
+      return; // Stop execution if the condition is met
+    }
+
+    if (submissionData.escalationDetails.length === 0) {
+      alert('No valid escalation details to submit.');
+      return;
+    }
+
+    this.authService.submitEscalationData(submissionData).subscribe(
+      response => {
+        console.log('Data submitted successfully', response);
+        alert('Data submitted successfully');
+      },
+      error => {
+        console.error('Error submitting data', error);
+        if (error.error && error.error.errors) {
+          console.error('Validation Errors:', error.error.errors);
+          alert('Validation Errors: ' + JSON.stringify(error.error.errors));
+        } else {
+          alert('Error submitting data: ' + error.message);
+        }
+      }
+    );
+  }
+
+
+
+
+
+
+  updateform() {
     const submissionData: SubmissionData = {
       INT_CATEGORY_ID: this.formData.ddlComplaintCategory,
       INT_SUB_CATEGORY_ID: this.formData.ddlSubCategory,
@@ -339,12 +350,10 @@ export class EscalationComponent implements OnInit, AfterViewInit, AfterViewChec
     }
 
     if (submissionData.escalationDetails.length === 0) {
-      alert('No valid escalation details to submit.');
+      alert('No valid escalation details to update.');
       return;
     }
 
-    // Proceed with the submission or update logic
-    // This will depend on whether it's an update or new submission
   }
 
 
