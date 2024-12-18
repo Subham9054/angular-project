@@ -11,29 +11,32 @@
                             <span class="text-danger small"><b>(*)</b> Indicate mandatory </span>
                         </li>
                         <li class="fill-btn back-link"><a routerLink="/application/escalation" title="Go to Previous"><i
-                            class="bi bi-arrow-left"></i> Back to View</a>
-                </li>
+                                    class="bi bi-arrow-left"></i> Back to View</a>
+                        </li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
     <div class="content-box content-area">
+
+
         <div class="row">
             <div class="col-xl-4 col-lg-4 col-sm-6">
                 <div *ngIf="isUpdateMode" class="mb-3">
                     <label for="categoryName" class="form-label">Complaint Category</label>
-                    <input type="text" id="categoryName" [(ngModel)]="formData.categoryName" class="form-control" readonly>
+                    <input type="text" id="categoryName" [(ngModel)]="formData.categoryName" class="form-control"
+                        readonly>
                     <input type="hidden" [(ngModel)]="formData.ddlComplaintCategory">
                 </div>
                 <div *ngIf="!isUpdateMode" class="mb-3">
                     <label for="ddlComplaintCategory" class="form-label">Complaint Category</label>
                     <select name="ddlComplaintCategory" id="ddlComplaintCategory"
-                        [(ngModel)]="formData.ddlComplaintCategory"
-                        (change)="onCategoryChange($event)" class="form-select">
+                        [(ngModel)]="formData.ddlComplaintCategory" (change)="onCategoryChange($event)"
+                        class="form-select">
                         <option selected value="0">Select</option>
-                        <option *ngFor="let category of categories"
-                            [value]="category.inT_CATEGORY_ID">{{ category.vcH_CATEGORY }}
+                        <option *ngFor="let category of categories" [value]="category.inT_CATEGORY_ID">{{
+                            category.vcH_CATEGORY }}
                         </option>
                     </select>
                 </div>
@@ -41,18 +44,21 @@
             <div class="col-xl-4 col-lg-4 col-sm-6">
                 <div *ngIf="isUpdateMode" class="mb-3">
                     <label for="subcategoryName" class="form-label">Complaint Sub-Category</label>
-                    <input type="text" id="subcategoryName" [(ngModel)]="formData.subcategoryName" class="form-control" readonly>
+                    <input type="text" id="subcategoryName" [(ngModel)]="formData.subcategoryName" class="form-control"
+                        readonly>
                     <input type="hidden" [(ngModel)]="formData.ddlSubCategory">
                 </div>
+
+
                 <div *ngIf="!isUpdateMode" class="mb-3">
                     <label for="ddlSubCategory" class="form-label">Complaint Sub-Category</label>
-                    <select name="ddlSubCategory" id="ddlSubCategory"
-                    [(ngModel)]="formData.ddlSubCategory" (change)="Checked($event)" class="form-select">
-                <option value="0">Select</option>
-                <option *ngFor="let subcategory of subcategories"
-                        [value]="subcategory.inT_SUB_CATEGORY_ID">{{ subcategory.vcH_SUB_CATEGORY }}
-                </option>
-                </select>
+                    <select name="ddlSubCategory" id="ddlSubCategory" [(ngModel)]="formData.ddlSubCategory"
+                        (change)="Checked($event)" class="form-select">
+                        <option value="0">Select</option>
+                        <option *ngFor="let subcategory of subcategories" [value]="subcategory.inT_SUB_CATEGORY_ID">{{
+                            subcategory.vcH_SUB_CATEGORY }}
+                        </option>
+                    </select>
                 </div>
             </div>
         </div>
@@ -109,55 +115,54 @@
                                 <td>
                                     <input type="text" [id]="'hrtext' + i" class="form-control">
                                 </td>
-                                <!-- <td>
-                                    <input type="text" [id]="'vchStandardDays' + i" class="form-control" placeholder="Enter Standard Days">
-                                </td> -->
+
                                 <td>
                                     <div class="d-flex gap-1">
-                                        <a href="javascript:void(0);" title="Delete"
-                                            class="btn btn-outline-danger" (click)="removeRow(i)">
+                                        <a href="javascript:void(0);" title="Delete" class="btn btn-outline-danger"
+                                            (click)="removeRow(i)">
                                             <i class="bi bi-trash3"></i>
                                         </a>
                                     </div>
                                 </td>
                             </tr>
                         </tbody>
+
                         <tbody *ngIf="isUpdateMode">
-                            <tr *ngFor="let row of escalations; let i = index">
+                            <tr *ngFor="let row of escalation1; let i = index">
                                 <td>{{ i + 1 }}</td>
                                 <td>
-                                <select name="ddlDesignation" [id]="'ddlDesignation' + i"
+                                    <select name="ddlDesignation" [id]="'ddlDesignation' + i"
                                         [(ngModel)]="formData.ddlDesignation[i]" class="form-select">
-                                    <option *ngFor="let designation of designations" 
+                                        <option *ngFor="let designation of designations"
                                             [value]="designation.inT_DESIG_ID">
-                                    {{ designation.nvcH_DESIG_NAME }}
-                                    </option>
-                                </select>
+                                            {{ designation.nvcH_DESIG_NAME }}
+                                        </option>
+                                    </select>
                                 </td>
                                 <td>
-                                <select name="ddlLocLevel" [id]="'ddlLocLevel' + i"
-                                        [(ngModel)]="formData.ddlLocLevel[i]" class="form-select">
-                                    <option value="0">-Select-</option>
-                                    <option *ngFor="let locationlevel of locationlevels"
+                                    <select name="ddlLocLevel" [id]="'ddlLocLevel' + i"
+                                        [(ngModel)]="formData.ddlDesignation[i]" class="form-select">
+                                        <option value="0">-Select-</option>
+                                        <option *ngFor="let locationlevel of locationlevels"
                                             [value]="locationlevel.inT_LEVEL_ID">
-                                    {{ locationlevel.inT_LEVEL_ID }}
-                                    </option>
-                                </select>
+                                            {{ locationlevel.inT_LEVEL_ID }}
+                                        </option>
+                                    </select>
                                 </td>
                                 <td>
-                                <input type="text" [id]="'hrtext' + i" class="form-control">
+                                    <input type="text" [id]="'hrtext' + i" class="form-control"
+                                        [(ngModel)]="escalation1[i].vcH_STANDARD_DAYS" />
                                 </td>
                                 <td>
-                                <div class="d-flex gap-1">
-                                    <a href="javascript:void(0);" title="Delete"
-                                        class="btn btn-outline-danger" (click)="removeRow(i)">
-                                    <i class="bi bi-trash3"></i>
-                                    </a>
-                                </div>
+                                    <div class="d-flex gap-1">
+                                        <a href="javascript:void(0);" title="Delete" class="btn btn-outline-danger"
+                                            (click)="removeRow(i)">
+                                            <i class="bi bi-trash3"></i>
+                                        </a>
+                                    </div>
                                 </td>
                             </tr>
-                            </tbody>
-                            
+                        </tbody>
                     </table>
                 </div>
             </div>
@@ -165,7 +170,10 @@
         <div class="row">
             <div class="col-xxl-3 col-lg-4 col-sm-6">
                 <div class="d-flex gap-2 mt-lg-3">
-                    <button type="submit" class="btn btn-primary" (click)="submitForm()">Submit</button>
+                    <button *ngIf="isUpdateMode" type="submit" class="btn btn-primary"
+                        (click)="submitForm()">Update</button>
+                    <button *ngIf="!isUpdateMode" type="submit" class="btn btn-primary"
+                        (click)="submitForm()">Submit</button>
                     <button type="reset" class="btn btn-danger">Reset</button>
                 </div>
             </div>

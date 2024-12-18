@@ -10,6 +10,7 @@ declare let $: any;
   templateUrl: './complaintregistrationupdate.component.html',
   styleUrls: ['./complaintregistrationupdate.component.scss'],
 })
+
 export class ComplaintregistrationupdateComponent implements OnInit {
 
 
@@ -59,6 +60,8 @@ export class ComplaintregistrationupdateComponent implements OnInit {
   totalPages: number = 1;
   paginatedComplaints: any[] = [];
   takeactiongms : any[] = [];
+  actionhistorygms: any = {};
+ 
 
 
   formData: any = {
@@ -136,6 +139,7 @@ GetAllDetailsagainsttokenurl(categoryId: any, subCategoryId: any, Token: any) {
   );
 }
 
+
   getgmsComplaintdelail() {
     this.loadingService.startLoading();
     this.authService.getgmsComplaintdelail().subscribe(
@@ -192,7 +196,25 @@ GetAllDetailsagainsttokenurl(categoryId: any, subCategoryId: any, Token: any) {
       }
     );
   }
+
   
+  actionhistory(tokenno: string): void {
+    //debugger;
+    this.authService.getgmsactionhistory(tokenno).subscribe(
+        response => {
+            // Check if the response is an array or an object
+            this.actionhistorygms = response;
+            console.log('Fetched data:', this.actionhistorygms);
+        },
+        error => {
+            console.error('Error fetching complaint history:', error);
+            alert('Failed to fetch complaint details.');
+        }
+    );
+}
+
+
+
 
 
   getComplaints(): void {

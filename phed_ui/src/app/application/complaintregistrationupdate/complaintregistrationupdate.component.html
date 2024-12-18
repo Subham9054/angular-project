@@ -309,6 +309,7 @@
                                             title="Action History"
                                             data-bs-toggle="modal"
                                             data-bs-target="#takehistrory"
+                                            (click)="actionhistory(tokenno.value)"
                                         >
                                             <i class="bi-journal-text me-1"></i> Action History
                                         </a>
@@ -634,125 +635,10 @@
 <!-- Modal End::Token -->
 
 <!-- Modal Start::Details -->
-<div class="modal fade" id="details" tabindex="-1" aria-labelledby="tokenLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable">
-        <div class="modal-content">
-            <div class="modal-header justify-content-between">
-                <h1 class="modal-title fs-5" id="tokenLabel" >Complaint Details</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-xl-12">
-                        <div class="view-forms view-form pb-0">
-                            <div *ngFor="let item of takeactiongms">
-                                <div class="row">
-                                    <div class="col-xl-3 col-md-6">
-                                        <div class="mb-3">
-                                            <label class="form-label">Token No.</label>
-                                            <label class="form-value">{{ item.vcH_TOKENNO }}</label>
-                                            <!-- <label class="form-value">202410230124</label> -->
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-3 col-md-6">
-                                        <div class="mb-3">
-                                            <label class="form-label">Registration Date</label>
-                                            <label class="form-value">{{item.dtM_CREATED_ON | date: 'dd-MMM-yyyy'}}</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-3 col-md-6">
-                                        <div class="mb-3">
-                                            <label class="form-label">Complainant Name</label>
-                                            <label class="form-value">{{item.nvcH_COMPLIANTANT_NAME}}</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-3 col-md-6">
-                                        <div class="mb-3">
-                                            <label class="form-label"> Near by Location</label>
-                                            <label class="form-value">{{item.nvcH_LANDMARK}}</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-3 col-md-6">
-                                        <div class="mb-3">
-                                            <label class="form-label">Complaint Category</label>
-                                            <label class="form-value">{{item.vcH_CATEGORY}} </label>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-3 col-md-6">
-                                        <div class="mb-3">
-                                            <label class="form-label">Complaint Sub-Category</label>
-                                            <label class="form-value">{{item.vcH_SUB_CATEGORY}}</label>
-                                        </div>
-                                    </div>
-    
-    
-                                    <div class="col-xl-3 col-md-6">
-                                        <div class="mb-3">
-                                            <label class="form-label">Current Status</label>
-                                            <label class="form-value">{{item.vcH_COMPLIANT_STATUS}}</label>
-                                        </div>
-                                    </div>
-    
-                                </div>
-                            </div>
-                            
-                        </div>
-                    </div>
-                    <div class="col-xl-8">
-                        <div class="row">
-                            <div class="col-xl-6 col-md-6">
-                                <div class="mb-3">
-                                    <label for="ddlDistrict" class="form-label">Status</label>
-                                    <select class="form-select">
-                                        <option selected>Select</option>
-                                        <option value="7">Attended & Can`t be resolved</option>
-                                        <option value="2">Inprogress</option>
-                                        <option value="3">Resolved</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-xl-6 col-md-6">
-                                <label for="ddlDistrict" class="form-label">Reference Document</label>
-                                <div class="input-group">
-                                    <input type="file" class="form-control custom-fileupload" id="doc">
-                                    <label class="custom-input" for="doc">Upload</label>
-                                    <label class="input-group-text custom-browse" for="doc">Browse</label>
-                                </div>
-                                <p class="text-danger text-end small mb-0"> Only <span class="fw-bold">(.jpg,
-                                        .png,
-                                        .doc, .xls, .pdf)</span> files
-                                    allowed</p>
 
 
-
-                            </div>
-                            <div class="col-xl-12">
-                                <div class="mb-3">
-                                    <label for="ddlDistrict" class="form-label">Remarks</label>
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                                    <p class="text-danger text-end  small mb-0">(Maximum <span
-                                            class="fw-bold">100</span>
-                                        Characters)</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-12">
-                        <div class="row">
-                            <div class="col-xl-5">
-                                <div class="d-flex gap-1">
-                                    <a href="javascript:void(0);" class="btn btn-primary">Submit</a>
-                                    <a href="javascript:void(0);" class="btn btn-danger">Reset</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 <!-- Modal End::Token -->
+
 
 <!-- Modal Start::Take Action -->
 <div class="modal fade" id="takehistrory" tabindex="-1" aria-labelledby="tokenLabel" aria-hidden="true">
@@ -775,38 +661,38 @@
                                         <div class="col-xl-4 col-md-6">
                                             <div class="mb-3">
                                                 <label class="form-label">Complaint No.</label>
-                                                <label class="form-value">202410230124</label>
+                                                <label class="form-value">{{ actionhistorygms?.vcH_TOKENNO }}</label>
                                             </div>
                                         </div>
                                         <div class="col-xl-4 col-md-6">
                                             <div class="mb-3">
                                                 <label class="form-label">Registration Date</label>
-                                                <label class="form-value">23-Oct-2024</label>
+                                                <label class="form-value">{{ actionhistorygms?.dtM_CREATED_ON }}</label>
                                             </div>
                                         </div>
                                         <div class="col-xl-4 col-md-6">
                                             <div class="mb-3">
                                                 <label class="form-label">Mode of Complaint</label>
-                                                <label class="form-value">Helpline</label>
+                                                <label class="form-value">{{ actionhistorygms?.vcH_COMPLIANT_LOG_TYPE }}</label>
                                             </div>
                                         </div>
 
                                         <div class="col-xl-4 col-md-6">
                                             <div class="mb-3">
                                                 <label class="form-label">Name</label>
-                                                <label class="form-value">Krishanumar</label>
+                                                <label class="form-value">{{ actionhistorygms?.nvcH_COMPLIANTANT_NAME }}</label>
                                             </div>
                                         </div>
                                         <div class="col-xl-4 col-md-6">
                                             <div class="mb-3">
                                                 <label class="form-label">Phone No.</label>
-                                                <label class="form-value">8789952814</label>
+                                                <label class="form-value">{{ actionhistorygms?.vcH_CONTACT_NO }}</label>
                                             </div>
                                         </div>
                                         <div class="col-xl-4 col-md-6">
                                             <div class="mb-3">
                                                 <label class="form-label">E-Mail</label>
-                                                <label class="form-value">testusergmail.com</label>
+                                                <label class="form-value">{{ actionhistorygms?.vcH_EMAIL }}</label>
                                             </div>
                                         </div>
 
@@ -830,14 +716,14 @@
                                         <div class="col-xl-4 col-md-6">
                                             <div class="mb-3">
                                                 <label class="form-label">Complaint Category</label>
-                                                <label class="form-value">Piped Water Supply Related</label>
+                                                <label class="form-value">{{ actionhistorygms?.vcH_CATEGORY }}</label>
                                             </div>
                                         </div>
 
                                         <div class="col-xl-4 col-md-6">
                                             <div class="mb-3">
                                                 <label class="form-label">Complaint Sub-Category</label>
-                                                <label class="form-value">Operator does not runs the motor</label>
+                                                <label class="form-value">{{ actionhistorygms?.vcH_SUB_CATEGORY }}</label>
                                             </div>
                                         </div>
 
@@ -845,10 +731,7 @@
                                         <div class="col-xl-12 col-md-12">
                                             <div class="mb-3">
                                                 <label class="form-label">Complaint Details</label>
-                                                <label class="form-value">पंप चालक वार्ड न०- 11 में सप्लाई का पानी समय
-                                                    से नहीं चलाता
-                                                    है अतः उचित कार्यवाई करके सप्लाई का पानी सुचारू रूप से चलाया
-                                                    जाय|</label>
+                                                <label class="form-value">{{ actionhistorygms?.nvcH_COMPLIANT_DETAILS }}</label>
                                             </div>
                                         </div>
 
@@ -867,47 +750,45 @@
                                         <div class="col-xl-4 col-md-6">
                                             <div class="mb-3">
                                                 <label class="form-label">District</label>
-                                                <label class="form-value">Madhepura</label>
+                                                <label class="form-value">{{ actionhistorygms.vcH_DISTNAME }}</label>
                                             </div>
                                         </div>
                                         <div class="col-xl-4 col-md-6">
                                             <div class="mb-3">
                                                 <label class="form-label">Block</label>
-                                                <label class="form-value">Chausa</label>
+                                                <label class="form-value">{{ actionhistorygms.vcH_BLOCKNAME }}</label>
                                             </div>
                                         </div>
                                         <div class="col-xl-4 col-md-6">
                                             <div class="mb-3">
                                                 <label class="form-label">Gram Panchayat</label>
-                                                <label class="form-value">Arajipur Wests</label>
+                                                <label class="form-value">{{ actionhistorygms.vcH_PANCHAYAT }}</label>
                                             </div>
                                         </div>
 
                                         <div class="col-xl-4 col-md-6">
                                             <div class="mb-3">
                                                 <label class="form-label">Village</label>
-                                                <label class="form-value">-</label>
+                                                <label class="form-value">{{ actionhistorygms.vcH_VILLAGE }}  </label>
                                             </div>
                                         </div>
 
                                         <div class="col-xl-4 col-md-6">
                                             <div class="mb-3">
                                                 <label class="form-label">Ward</label>
-                                                <label class="form-value">Ara</label>
+                                                <label class="form-value">{{ actionhistorygms.vcH_WARD }}</label>
                                             </div>
                                         </div>
                                         <div class="col-xl-4 col-md-6">
                                             <div class="mb-3">
                                                 <label class="form-label">Near by Location</label>
-                                                <label class="form-value">Patna</label>
+                                                <label class="form-value">{{ actionhistorygms.nvcH_LANDMARK }}</label>
                                             </div>
                                         </div>
                                         <div class="col-xl-8 col-md-12">
                                             <div class="mb-3">
                                                 <label class="form-label">Address</label>
-                                                <label class="form-value">Lorem ipsum dolor, sit amet consectetur
-                                                    adipisicing elit.
-                                                    Ipsam, natus.</label>
+                                                <label class="form-value">{{ actionhistorygms?.nvcH_ADDRESS }}</label>
                                             </div>
                                         </div>
                                     </div>
@@ -921,9 +802,9 @@
                                 <li class="stepProgress-item is-done ">
                                     <div class="complate">
                                         <ul>
-                                            <li>Complaint Number- <strong class="d-block">202411110143</strong></li>
-                                            <li>Registration Date- <strong class="d-block">11-Nov-2024</strong></li>
-                                            <li>Complaint Name- <strong class="d-block">Deepak kumar</strong></li>
+                                            <li>Complaint Number- <strong class="d-block">{{ actionhistorygms.vcH_TOKENNO }}</strong></li>
+                                            <li>Registration Date- <strong class="d-block">{{ actionhistorygms.vcH_DISTNAME }}</strong></li>
+                                            <li>Complaintant Name- <strong class="d-block">{{ actionhistorygms.nvcH_COMPLIANTANT_NAME }}</strong></li>
                                         </ul>
                                     </div>
                                 </li>

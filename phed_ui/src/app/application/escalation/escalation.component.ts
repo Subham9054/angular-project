@@ -3,6 +3,10 @@ import { AuthService } from 'src/app/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import Swal from 'sweetalert2';
+import * as CryptoJS from 'crypto-js';
+import { environment } from 'src/environments/environment';
+import { error } from 'jquery';
+
 
 declare let $: any;
 
@@ -11,6 +15,7 @@ interface EscalationDetail {
   INT_DESIG_LEVELID: string; // Adjust type as necessary
   VCH_STANDARD_DAYS: string;
   standardDays: string;
+
 }
 
 interface SubmissionData {
@@ -36,20 +41,28 @@ export class EscalationComponent implements OnInit, AfterViewInit, AfterViewChec
   locationlevels: any[] = [];
   isUpdateMode: boolean = false;
   escalations: any[] = [];
+  categoryId: any;
+  subCategoryId: any;
+  escalationId: any;
+  secretKey: any = environment.apiHashingKey;
+  selectedEscalations: any = [];
+  escalation1: any = [];
 
   formData: any = {
     ddlComplaintCategory: '0',
     ddlSubCategory: '0',
     ddlDesignation: [],
     ddlLocLevel: [],
+    ddlESCALATION_LEVELID: []
   };
 
-  constructor(private http: HttpClient, private authService: AuthService, private router: Router, private route: ActivatedRoute) {}
+  constructor(private http: HttpClient, private authService: AuthService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.getCategories();
     this.getDesignation();
     this.getLocationlevel();
+
 
     this.route.queryParams.subscribe(params => {
       if (params['catid'] && params['subcatid'] && params['esclid']) {
@@ -58,10 +71,20 @@ export class EscalationComponent implements OnInit, AfterViewInit, AfterViewChec
         const subcatid = params['subcatid'];
         const esclid = params['esclid'];
 
-        this.authService.UpdateEscalation(catid, subcatid, esclid).subscribe(
+
+        // Decrypt the categories if they are passed as encrypted
+        this.categoryId = this.decryptData(params['catid'], this.secretKey);
+        this.subCategoryId = this.decryptData(params['subcatid'], this.secretKey);
+        this.escalationId = this.decryptData(params['esclid'], this.secretKey);
+
+
+
+
+        this.authService.UpdateEscalation(this.categoryId, this.subCategoryId, this.escalationId).subscribe(
           data => {
             this.escalations = data;
             this.bindUpdateData();
+            this.viewEscalationDetails(this.categoryId, this.subCategoryId);
           },
           error => {
             console.error('Error fetching escalations:', error);
@@ -70,13 +93,17 @@ export class EscalationComponent implements OnInit, AfterViewInit, AfterViewChec
       }
     });
   }
+  // Method to decrypt data
+  decryptData(encryptedData: string, secretKey: string): string {
+    const bytes = CryptoJS.AES.decrypt(encryptedData, secretKey);
+    return bytes.toString(CryptoJS.enc.Utf8);
+  }
 
   bindUpdateData() {
-    debugger;
     if (this.escalations && this.escalations.length > 0) {
       const escalation = this.escalations[0];
-      
-       // Set location level
+
+      // Set location level
       this.formData.ddlComplaintCategory = escalation.inT_CATEGORY_ID;
       this.formData.categoryName = escalation.vcH_CATEGORY;
       this.formData.ddlSubCategory = escalation.inT_SUB_CATEGORY_ID;
@@ -84,10 +111,10 @@ export class EscalationComponent implements OnInit, AfterViewInit, AfterViewChec
       this.escalationLevel = escalation.inT_ESCALATION_LEVELID;
 
       for (let i = 0; i < this.escalations.length; i++) {
-      // Set Designation and Location Level based on escalation data
-      this.formData.ddlDesignation[i] = this.escalations[i].inT_DESIG_ID;
-      this.formData.ddlLocLevel[i] = this.escalations[i].inT_LEVEL_ID;
-    }
+        // Set Designation and Location Level based on escalation data
+        this.formData.ddlDesignation[i] = this.escalations[i].inT_DESIG_ID;
+        this.formData.ddlLocLevel[i] = this.escalations[i].inT_LEVEL_ID;
+      }
       this.generateRows();
     }
   }
@@ -128,6 +155,7 @@ export class EscalationComponent implements OnInit, AfterViewInit, AfterViewChec
       }
     );
   }
+
 
   getLocationlevel() {
     this.authService.getLocation().subscribe(
@@ -196,6 +224,22 @@ export class EscalationComponent implements OnInit, AfterViewInit, AfterViewChec
     });
   }
 
+
+  viewEscalationDetails(categoryId: string, subCategoryId: string): void {
+    const catid = categoryId;
+    const subcatid = subCategoryId;
+    this.authService.viewEscalationeye(catid, subcatid).subscribe(
+      data => {
+        this.escalation1 = data;
+        this.formData.ddlDesignation = this.escalation1.map((row: any) => row.inT_DESIG_ID);
+        // this.formData.ddlESCALATION_LEVELID = this.escalation1.map((row: any) => row.inT_ESCALATION_LEVELID);
+
+      },
+      error => {
+        console.error('Error fetching escalations:', error);
+      }
+    );
+  }
   onCategoryChange(event: any) {
     const catid = parseInt(event.target.value, 10);
     if (!isNaN(catid)) {
@@ -212,18 +256,81 @@ export class EscalationComponent implements OnInit, AfterViewInit, AfterViewChec
     }
   }
 
+  // submitForm() {
+  //   const submissionData: SubmissionData = {
+  //     INT_CATEGORY_ID: this.formData.ddlComplaintCategory,
+  //     INT_SUB_CATEGORY_ID: this.formData.ddlSubCategory,
+  //     INT_ESCALATION_LEVELID: this.escalationLevel,
+  //     escalationDetails: this.rows.map((row, index) => ({
+  //       INT_DESIG_ID: this.formData.ddlDesignation[index],
+  //       INT_DESIG_LEVELID: this.formData.ddlLocLevel[index],
+  //       VCH_STANDARD_DAYS: (document.getElementById(`hrtext${index}`) as HTMLInputElement).value,
+  //       // standardDays: '' // Update if needed
+  //       standardDays: (document.getElementById(`hrtext${index}`) as HTMLInputElement).value || '' 
+  //     })).filter(detail => detail.INT_DESIG_ID && detail.INT_DESIG_LEVELID && detail.VCH_STANDARD_DAYS)
+  //   };
+
+  //   if (submissionData.INT_CATEGORY_ID !== "0" && submissionData.INT_SUB_CATEGORY_ID === "0") {
+  //     Swal.fire({
+  //       icon: 'warning',
+  //       title: 'Oops...',
+  //       text: 'Please select a subcategory.',
+  //     });
+  //     return; // Stop execution if the condition is met
+  //   }
+
+  //   if (submissionData.escalationDetails.length === 0) {
+  //     alert('No valid escalation details to submit.');
+  //     return;
+  //   }
+
+  //   this.authService.submitEscalationData(submissionData).subscribe(
+  //     response => {
+  //       console.log('Data submitted successfully', response);
+  //       alert('Data submitted successfully');
+  //     },
+  //     error => {
+  //       console.error('Error submitting data', error);
+  //       if (error.error && error.error.errors) {
+  //         console.error('Validation Errors:', error.error.errors);
+  //         alert('Validation Errors: ' + JSON.stringify(error.error.errors));
+  //       } else {
+  //         alert('Error submitting data: ' + error.message);
+  //       }
+  //     }
+  //   );
+  // }
+
+
+
+
+
+
   submitForm() {
     const submissionData: SubmissionData = {
       INT_CATEGORY_ID: this.formData.ddlComplaintCategory,
       INT_SUB_CATEGORY_ID: this.formData.ddlSubCategory,
       INT_ESCALATION_LEVELID: this.escalationLevel,
-      escalationDetails: this.rows.map((row, index) => ({
-        INT_DESIG_ID: this.formData.ddlDesignation[index],
-        INT_DESIG_LEVELID: this.formData.ddlLocLevel[index],
-        VCH_STANDARD_DAYS: (document.getElementById(`hrtext${index}`) as HTMLInputElement).value,
-        standardDays: '' // Update if needed
-      })).filter(detail => detail.INT_DESIG_ID && detail.INT_DESIG_LEVELID && detail.VCH_STANDARD_DAYS)
+      escalationDetails: this.rows.map((row, index) => {
+        const standardDaysValue = (document.getElementById(`hrtext${index}`) as HTMLInputElement)?.value;
+
+        // Log the row and standard days value for debugging
+        console.log('Row data:', row, 'Standard Days Value:', standardDaysValue);
+
+        return {
+          INT_DESIG_ID: this.formData.ddlDesignation[index],
+          INT_DESIG_LEVELID: this.formData.ddlLocLevel[index],
+          VCH_STANDARD_DAYS: standardDaysValue,
+          standardDays: standardDaysValue || ''
+        };
+      }).filter(detail => {
+        // Log each detail before filtering
+        console.log('Filtered detail:', detail);
+        return detail.INT_DESIG_ID && detail.INT_DESIG_LEVELID && detail.VCH_STANDARD_DAYS;
+      })
     };
+
+    console.log('Escalation Details:', submissionData.escalationDetails);
 
     if (submissionData.INT_CATEGORY_ID !== "0" && submissionData.INT_SUB_CATEGORY_ID === "0") {
       Swal.fire({
@@ -239,20 +346,9 @@ export class EscalationComponent implements OnInit, AfterViewInit, AfterViewChec
       return;
     }
 
-    this.authService.submitEscalationData(submissionData).subscribe(
-      response => {
-        console.log('Data submitted successfully', response);
-        alert('Data submitted successfully');
-      },
-      error => {
-        console.error('Error submitting data', error);
-        if (error.error && error.error.errors) {
-          console.error('Validation Errors:', error.error.errors);
-          alert('Validation Errors: ' + JSON.stringify(error.error.errors));
-        } else {
-          alert('Error submitting data: ' + error.message);
-        }
-      }
-    );
   }
+
+
+
+
 }

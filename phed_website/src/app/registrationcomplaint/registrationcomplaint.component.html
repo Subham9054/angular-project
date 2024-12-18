@@ -188,18 +188,15 @@
             </div>
             <div class="col-xl-6">
               <div class="form-group">
-                <label for="ddlDistrict" class="form-label">{{ 'Dist' | translate }} <span class="text-danger">*</span></label>
+                <label for="ddlDistrict" class="form-label">District</label>
                 <ng-select
-                [items]="districts"
-                bindLabel="vcH_DIST_NAME"
-                bindValue="inT_DIST_ID"
-                [(ngModel)]="formData.ddlDistrict"
-                [id]="'ddlDistrict'"
-                (change)="onDistrictChange($event)"
-                [placeholder]="'Select a District'"
-                [searchable]="true"
-                [clearable]="false">
-              </ng-select>
+                  [items]="districts"
+                  bindLabel="vcH_DIST_NAME"
+                  bindValue="inT_DIST_ID"
+                  [(ngModel)]="formData.ddlDistrict"
+                  placeholder="Select"
+                  (change)="onDistrictChange($event)">
+                </ng-select>
               </div>
             </div>
             
@@ -217,18 +214,15 @@
           </div> -->
           <div class="col-xl-6">
               <div class="form-group">
-                <label for="ddlBlock" class="form-label">{{ 'Blo' | translate }} <span class="text-danger">*</span></label>
+                <label for="ddlBlock" class="form-label">Block</label>
                 <ng-select
-                [items]="blocks"
-                bindLabel="vcH_BLOCK_NAME"
-                bindValue="inT_BLOCK_ID"
-                [(ngModel)]="formData.ddlBlock"
-                [id]="'ddlBlock'"
-                (change)="onBlockChange($event)"
-                [placeholder]="'Select a block'"
-                [searchable]="true"
-                [clearable]="false">
-              </ng-select>
+                  [items]="blocks"
+                  bindLabel="vcH_BLOCK_NAME"
+                  bindValue="inT_BLOCK_ID"
+                  [(ngModel)]="formData.ddlBlock"
+                  placeholder="Select"
+                  (change)="onBlockChange($event)">
+                </ng-select>
                 <!-- <select name="ddlBlock" id="ddlBlock" [(ngModel)]="formData.ddlBlock"
                                         (change)="onBlockChange($event)" class="form-select">
                                         <option value="0">Select</option>
@@ -241,67 +235,41 @@
     
             <div class="col-xl-6">
               <div class="form-group">
-                <label for="ddlPanchayat" class="form-label">{{ 'Pan' | translate }} <span class="text-danger">*</span></label>
-                <!-- <select name="ddlGp" id="ddlGp" [(ngModel)]="formData.ddlPanchayat"
-                                        (change)="onGpChange($event)" class="form-select">
-                                        <option value="0">Select</option>
-                                        <option *ngFor="let gp of gps" [value]="gp.inT_GP_ID">{{ gp.vcH_GP_NAME }}</option>
-                                    </select> -->
-                                    <ng-select
-                                    [items]="gps"
-                                    bindLabel="vcH_GP_NAME"
-                                    bindValue="inT_GP_ID"
-                                    [(ngModel)]="formData.ddlGp"
-                                    [id]="'ddlPanchayat'"
-                                    (change)="onGpChange($event)"
-                                    [placeholder]="'Select a Gp'"
-                                    [searchable]="true"
-                                    [clearable]="false">
-                                  </ng-select>                    
+                <label for="ddlGp" class="form-label">Gram Panchayat</label>
+                  <ng-select
+                                  [items]="gps"
+                                  bindLabel="vcH_GP_NAME"
+                                  bindValue="inT_GP_ID"
+                                  [(ngModel)]="formData.ddlPanchayat"
+                                  placeholder="Select"
+                                  (change)="onGpChange($event)">
+                  </ng-select>
               </div>
             </div>
     
             <div class="col-xl-6">
               <div class="form-group">
-                <label for="ddlVillage" class="form-label">{{ 'Vill' | translate }} <span class="text-danger">*</span></label>
-                <!-- <select name="ddlVillage" id="ddlVillage" [(ngModel)]="formData.ddlVillage"
-                                        class="form-select">
-                                        <option value="0">Select</option>
-                                        <option *ngFor="let village of villages" [value]="village.inT_VILLAGE_ID">{{
-                                            village.vcH_VILLAGE_NAME }}</option>
-                                    </select> -->
-
-                                    <ng-select
-                                    [items]="villages"
-                                    bindLabel="vcH_VILLAGE_NAME"
-                                    bindValue="inT_VILLAGE_ID"
-                                    [(ngModel)]="formData.ddlVillage"
-                                    [id]="'ddlVillage'"
-                                    (change)="onVillageChange($event)"
-                                    [placeholder]="'Select a village'"
-                                    [searchable]="true"
-                                    [clearable]="false">
-                                  </ng-select>                             
+                <label for="ddlVillage" class="form-label">Village</label>
+                <ng-select
+                  [items]="villages"
+                  bindLabel="vcH_VILLAGE_NAME"
+                  bindValue="inT_VILLAGE_ID"
+                  [(ngModel)]="formData.ddlVillage"
+                  placeholder="Select"
+                  (change)="onVillage($event)">
+                </ng-select>                         
               </div>
             </div>
             <div class="col-xl-6">
               <div class="form-group">
-                <label for="ddlward" class="form-label">{{ 'War' | translate }} </label>
-                <!-- <select name="ddlward" id="ddlward" [(ngModel)]="formData.ddlward" class="form-select">
-                  <option value="0">Select</option>
-                                        <option *ngFor="let ward of wards" [value]="ward.inT_WARD_ID">{{
-                                            ward.vcH_WARD_NAME }}</option>
-                </select> -->
-                                    <ng-select id="ddlward"
-                                    [items]="wards"
-                                    bindLabel="vcH_WARD_NAME"
-                                    bindValue="inT_WARD_ID"
-                                    [(ngModel)]="formData.ddlward"
-                                    [id]="'ddlward'"
-                                    [placeholder]="'Select a ward'"
-                                    [searchable]="true"
-                                    [clearable]="false">
-                                  </ng-select>   
+                <label for="ddlward" class="form-label">Ward</label>
+                <ng-select
+              [items]="wards"
+              bindLabel="vcH_WARD_NAME"
+              bindValue="inT_WARD_ID"
+              [(ngModel)]="formData.ddlward"
+              placeholder="Select">
+            </ng-select>
               </div>
             </div>
             <div class="col-xl-6">
