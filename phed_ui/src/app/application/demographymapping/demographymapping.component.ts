@@ -13,17 +13,9 @@ import { ValidatorChecklistService } from 'src/app/services/validator-checklist.
   styleUrls: ['./demographymapping.component.scss']
 })
 export class DemographymappingComponent {
-  // Original list of blocks
-  // blocks = [
-  //   { inT_BLOCK_ID: '1', vcH_BLOCK_NAME: 'ARARIA' },
-  //   { value: '2', name: 'ARWAL' },
-  //   { value: '3', name: 'AURANGABAD' }
-  // ];
 
-  // Bind selected items from the first select
   selectedBlocks: string[] = [];
 
-  // Bind items moved to the second select
   selectedInSecondList: { inT_BLOCK_ID: string, vcH_BLOCK_NAME: string }[] = [];
   districts: any[] = [];
   gps: any[] = [];
@@ -31,6 +23,10 @@ export class DemographymappingComponent {
   villages: any[] = [];
   designations: any[] = [];
   demographymap: FormGroup;
+  circle: any;
+  division: any;
+  subDivision: any;
+  section: any;
 
 
   constructor(private http: HttpClient,
@@ -51,22 +47,11 @@ export class DemographymappingComponent {
   }
   ngOnInit(): void {
     this.getDistricts();
+    this.getCircle();
+
   }
 
-  // moveSelectedToSecond() {
-  //   // Move selected items from the first select to the second
-  //   this.selectedBlocks.forEach(selectedValue => {
-  //     const index = this.blocks.findIndex(block => block.value === selectedValue);
-  //     if (index !== -1) {
-  //       this.selectedInSecondList.push(this.blocks[index]);
-  //       this.blocks.splice(index, 1);
-  //     }
-  //   });
-  //   // Clear selected items after moving
-  //   this.selectedBlocks = [];
-  // }
   moveSelectedToSecond() {
-    // Move selected items from the first select to the second
     this.selectedBlocks.forEach(selectedValue => {
       const index = this.blocks.findIndex(block => block.inT_BLOCK_ID === selectedValue);
       if (index !== -1) {
@@ -74,16 +59,25 @@ export class DemographymappingComponent {
         this.blocks.splice(index, 1);
       }
     });
-    // Clear selected items after moving
     this.selectedBlocks = [];
 
   }
-
   moveAllToSecond() {
-    // Move all items from the first select to the second
-    this.selectedInSecondList.push(...this.blocks);
-    this.blocks = [];
+
+    this.selectedBlocks.forEach(selectedValue => {
+      const index = this.selectedInSecondList.findIndex(block => block.inT_BLOCK_ID === selectedValue);
+      if (index !== -1) {
+        this.blocks.push(this.selectedInSecondList[index]);
+        this.selectedInSecondList.splice(index, 1);
+      }
+    });
+    this.selectedBlocks = [];
   }
+
+  // moveAllToSecond() {
+  //   this.selectedInSecondList.push(...this.blocks);
+  //   this.blocks = [];
+  // }
 
   getDistricts() {
     this.authService.getDistricts().subscribe(
@@ -97,7 +91,25 @@ export class DemographymappingComponent {
       }
     );
   }
+
+  getCircle() {
+    this.authService.GetCircle().subscribe(
+      response => {
+        this.circle = response.data;
+        console.log(this.circle);
+
+
+      },
+      error => {
+        console.error('Error fetching districts', error);
+      }
+    );
+  }
+
   onDistrictChange(event: any) {
+    this.blocks = [];
+    this.selectedInSecondList = [];
+
     const distId = event.inT_DIST_ID
     if (!isNaN(distId)) {
       this.authService.getBlocks(distId).subscribe(
@@ -108,6 +120,64 @@ export class DemographymappingComponent {
 
           this.gps = [];
           this.villages = [];
+        },
+        error => {
+          console.error('Error fetching blocks', error);
+        }
+      );
+    } else {
+      console.error('Invalid district ID');
+    }
+  }
+
+  onCircleChange(event: any) {
+    const circleId = event.circleId
+    if (!isNaN(circleId)) {
+      this.authService.GetDivision(circleId).subscribe(
+        response => {
+          this.division = response.data;
+
+          console.log(response);
+
+          this.gps = [];
+          this.villages = [];
+        },
+        error => {
+          console.error('Error fetching blocks', error);
+        }
+      );
+    } else {
+      console.error('Invalid district ID');
+    }
+  }
+
+  onDivisionChange(event: any) {
+    const divisionId = event.divisionId
+    if (!isNaN(divisionId)) {
+      this.authService.GetSubDivision(divisionId).subscribe(
+        response => {
+          this.subDivision = response.data;
+
+          console.log(this.subDivision);
+
+          this.gps = [];
+          this.villages = [];
+        },
+        error => {
+          console.error('Error fetching blocks', error);
+        }
+      );
+    } else {
+      console.error('Invalid district ID');
+    }
+  }
+
+  onSubDivisionChange(event: any) {
+    const subDivisionId = event.subDivisionId
+    if (!isNaN(subDivisionId)) {
+      this.authService.GetSection(subDivisionId).subscribe(
+        response => {
+          this.section = response.data;
         },
         error => {
           console.error('Error fetching blocks', error);
