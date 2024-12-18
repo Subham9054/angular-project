@@ -303,6 +303,9 @@ export class EscalationComponent implements OnInit, AfterViewInit, AfterViewChec
 
 
 
+
+
+
   submitForm() {
     const submissionData: SubmissionData = {
       INT_CATEGORY_ID: this.formData.ddlComplaintCategory,
@@ -343,8 +346,6 @@ export class EscalationComponent implements OnInit, AfterViewInit, AfterViewChec
       return;
     }
 
-    // Proceed with the submission or update logic
-    // This will depend on whether it's an update or new submission
   }
 
 
