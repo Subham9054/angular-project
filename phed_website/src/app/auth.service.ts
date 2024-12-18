@@ -8,15 +8,16 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AuthService {
+  private baseUrl: string = 'https://localhost:7197';
 
-  private districturl = 'http://192.168.10.47:5009/gateway/GetDistricts';  
-  private blockurl = 'http://192.168.10.47:5009/gateway/GetBlocks';
-  private gpurl = 'http://192.168.10.47:5009/gateway/GetGp';
-  private villageurl = 'http://192.168.10.47:5009/gateway/GetVillages';
-  private wardurl = '192.168.10.47:5006/api/Dropdown/GetWards';
-  private registrationApiUrl= 'http://192.168.10.47:5009/gateway/DetailcomplaintRegistration';
-  private categoryUrl = 'http://192.168.10.47:5009/gateway/GetCategory';
-  private subcategoryUrl = 'http://192.168.10.47:5009/gateway/GetSubCategories';
+  private districturl =  `${this.baseUrl}/gateway/GetDistricts`;  
+  private blockurl =  `${this.baseUrl}/gateway/GetBlocks`;
+  private gpurl =  `${this.baseUrl}/gateway/GetGp`;
+  private villageurl =  `${this.baseUrl}/gateway/GetVillages`;
+  private wardurl= `${this.baseUrl}/gateway/GetWards`;
+  private categoryUrl =  `${this.baseUrl}/gateway/GetCategory`;
+  private subcategoryUrl =  `${this.baseUrl}/gateway/GetSubCategories`;
+  private registrationApiUrl= 'https://localhost:7024/Api/MANAGE_COMPLAINTDETAILS_CONFIG/DetailcomplaintRegistration';
   private fileUploadUrl = 'http://192.168.10.47:5009/gateway/UploadFile';
 
 
@@ -60,19 +61,27 @@ export class AuthService {
     );
   }
   
-  getWards( villageid: number): Observable<any> {
+  wards( villageid: number): Observable<any> {
     return this.http.get<any>(`${this.wardurl}?villageid=${villageid}`).pipe(
       catchError(this.handleError)
     );
   }
-  submitRegistration(registrationData: any): Observable<any> {
-    return this.http.post(this.registrationApiUrl, registrationData, {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-      responseType: 'text' // Assuming the API returns text response, change this if necessary
-    }).pipe(
-      catchError(this.handleError) // Proper error handling
-    );
-}
+  // submitRegistration(registrationData: any): Observable<any> {
+  //   return this.http.post(this.registrationApiUrl, registrationData, {
+  //     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+  //     responseType: 'text' // Assuming the API returns text response, change this if necessary
+  //   }).pipe(
+  //     catchError(this.handleError) // Proper error handling
+  //   );
+  // }
+
+  submitRegistration(formData: FormData): Observable<any> {
+    console.log('FormData Contents:');
+    formData.forEach((value, key) => {
+      console.log(`${key}:`, value);
+    });
+    return this.http.post(this.registrationApiUrl, formData);
+  }  
 
 
   uploadFile(file: File): Observable<any> {

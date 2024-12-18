@@ -7,4 +7,5 @@ export const environment = {
   tokenmismatch: 'Token Mismatch',
   apiHashingKey: '22CSMTOOL2022',
   serviceURLComplain: 'https://localhost:7197',  //for backend 
+
 };

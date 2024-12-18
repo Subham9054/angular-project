@@ -31,6 +31,36 @@ namespace GMS.Model.Entities.GMS
         public string? NVCH_LANDMARK { get; set; }
         public string? INT_COMPLAINT_PRIORITY { get; set; }
     }
+    public class ComplaintDetails
+    {
+        public string VCH_DISTNAME { get; set; }
+        public int INT_DIST_ID { get; set; }
+        public string VCH_BLOCKNAME { get; set; }
+        public int INT_BLOCK { get; set; }
+        public string VCH_PANCHAYAT { get; set; }
+        public int INT_PANCHAYAT { get; set; }
+        public string VCH_VILLAGE { get; set; }
+        public int INT_VILLAGE { get; set; }
+        public string VCH_WARD { get; set; }
+        public int INT_WARD { get; set; }
+        public string NVCH_ADDRESS { get; set; }
+        public string NVCH_LANDMARK { get; set; }
+        public string VCH_COMPLAINT_FILE { get; set; }
+        public int INT_CATEGORY_ID { get; set; }
+        public string VCH_CATEGORY { get; set; }
+        public int INT_SUB_CATEGORY_ID { get; set; }
+        public string VCH_SUB_CATEGORY { get; set; }
+        public string DTM_CREATED_ON { get; set; }
+        public string VCH_EMAIL { get; set; }
+        public string NVCH_COMPLIANTANT_NAME { get; set; }
+        public long VCH_TOKENNO { get; set; }
+        public string VCH_CONTACT_NO { get; set; }
+        public int INT_COMPLAINT_PRIORITY { get; set; }
+        public string VCH_COMPLIANT_STATUS { get; set; }
+        public int INT_COMPLIANT_LOG_TYPE { get; set; }
+        public string VCH_COMPLIANT_LOG_TYPE { get; set; }
+        public string NVCH_COMPLIANT_DETAILS { get; set; }
+    }
 
     public class gmsComplaintdetails
     {

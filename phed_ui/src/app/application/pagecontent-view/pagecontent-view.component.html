@@ -2,45 +2,28 @@
     <div class="pagetitle-section">
         <div class="row justify-content-between align-items-center">
             <div class="col-lg-4">
-                <h3> Page Content</h3>
-                <!-- <p>Manage your page</p> -->
+                <h3>Page Content</h3>
             </div>
             <div class="col-lg-6 col-md-6">
                 <div class="utilite">
                     <ul class="mb-0">
-                       
-
                         <li>
                             <a href="javascript:void(0)" title="Click to Print"><i class="bi bi-printer"></i></a>
                         </li>
-
                         <li>
                             <a href="javascript:void(0)" title="Download Excel"><i class="bi bi-file-earmark-excel"></i></a>
                         </li>
-
-
                         <li>
                             <a href="javascript:void(0)" title="Click to Publish"><i class="bi bi-volume-up"></i></a>
                         </li>
-
                         <li>
                             <a href="javascript:void(0)" title="Click to Unpublish"><i class="bi bi-volume-mute"></i></a>
                         </li>
-
-                        
-                        <!-- <li [ngClass]="isPanelOpen ? 'active-filter' : ''">
-                            <a href="javascript:void(0)" title="{{ isPanelOpen ? 'Click to Close Filter' : 'Click to Open Filter' }}" 
-                               (click)="togglePanel()">
-                                <i class="bi bi-funnel"></i> Filter
-                            </a>
-                        </li> -->
                         <li class="filter-dropdown dropdown">
                             <a href="javascript:void(0)" data-bs-toggle="dropdown" (click)="openDropdown()">
                                 <i class="bi bi-funnel"></i> <span class="hide-icon ms-2">Filter</span>
                             </a>
-
-                            <div class="dropdown-menu dropdown-menu-end filter-dropdown-menu shadow border-0"
-                                [ngClass]="{ 'show': isDropdownOpen }" (click)="$event.stopPropagation()">
+                            <div class="dropdown-menu dropdown-menu-end filter-dropdown-menu shadow border-0" [ngClass]="{ 'show': isDropdownOpen }" (click)="$event.stopPropagation()">
                                 <span class="drop-icon" (click)="closeDropdown()">
                                     <i class="bi bi-x-lg"></i>
                                 </span>
@@ -70,29 +53,6 @@
         </div>
     </div>
 
-
-
-    <!-- <div id="collapseExample" class="collapse show" [ngClass]="{'show': isPanelOpen}">
-        <div class="content-box search-box">
-            <div class="row">
-                <div class="col-xxl-3 col-lg-4 col-md-6">
-                    <div class="mb-3">
-                        <label class="form-label" for="patitle">Page Title</label>
-                        <input class="form-control" type="text" id="patitle">
-                    </div>
-                </div>
-              
-                
-                <div class="col-xxl-3 col-lg-4 col-md-6">
-                    <div class="mb-3">
-                        <label class="form-label d-md-block d-none">&nbsp;</label>
-                        <button type="submit" class="btn btn-primary me-2">Search</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> -->
-  
     <div class="view-legand">
         <ul class="legends">
             <li><span class="bg-success"></span> Publish </li>
@@ -100,137 +60,38 @@
         </ul>
     </div>
     <div class="content-box content-area p-0">
+        <div *ngIf="noRecordsFound" class="alert alert-warning text-center mt-3">
+            No Page Contents Found!!
+        </div>
         <div class="table-responsive mb-0">
             <table class="table mb-0">
                 <thead>
                     <tr>
-                        <th width="30px">
-                            <input type="checkbox" class="form-check-input">
-                        </th>
+                        <th width="30px"><input type="checkbox" class="form-check-input"></th>
                         <th width="40px">Sl#</th>
-                        <th>Page Title</th>
-                        <!-- <th>Page Title (In Hindi)</th> -->
+                        <th>Page Title</th>                        
                         <th>Snippet</th>
-                        <th>Feature Image</th>
-                        <!-- <th>Snippet (In Hindi)</th> -->
-                        <th width="90px">Action</th>
+                        <th style="text-align: center;">Feature Image</th>                        
+                        <th width="70px" style="text-align: center;">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="publish">
-                        <td><input type="checkbox" class="form-check-input"></td>
-                        <td>1</td>
-                        <td>Parking Lots</td>
-                        <!-- <td>पार्किंग स्थल</td> -->
-                        <td>The Public Health Engineering Department (PHED), Govt of Bihar has the overall responsibility <br>
-                            of managing and monitoring activities to enhance public health in the state of Bihar</td>
-                        <div href="javascript:void(0);" class="img-banner">
-                            <img src="./assets/img/login-bg.png" alt="Banner text">
-                        </div>
-                        <!-- <td>बिहार सरकार का लोक स्वास्थ्य अभियंत्रण विभाग (PHED) राज्य में सार्वजनिक स्वास्थ्य को बढ़ावा देने के लिए गतिविधियों का प्रबंधन और निगरानी करने की पूरी जिम्मेदारी निभाता है।</td> -->
+                    <tr *ngFor="let item of pageContentDetails; let i = index" [ngClass]="{'publish': item.isPublish, 'unpublish': !item.isPublish}">
+                        <td><input type="checkbox"></td>
+                        <td>{{ i + 1 }}</td>                        
+                        <td>{{ item.pageTitleEnglish }}</td>
+                        <td>{{ item.snippetEnglish }}</td>
+                        <td><img [src]="item.featureImageFiles" alt="Feature Image" class="img-banner"></td>                    
                         <td>
-                            <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"
-                                data-bs-toggle="modal" data-bs-target="#viewmodal">
-                                    <i class="bi bi-eye"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
-                                    <i class="bi bi-pencil"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" title="Delete">
-                                    <i class="bi bi-trash3"></i></a>
-                            </div>
+                          <div class="d-flex gap-1">
+                              <a href="javascript:void(0);" (click)="onView(item)" class="btn btn-outline-success btn-sm" title="View" data-bs-toggle="modal" data-bs-target="#wahtIsNewModal">
+                              <i class="bi bi-eye"></i></a>
+                            <button class="btn btn-outline-primary btn-sm" (click)="editPageContentDetails(item.contentId)" title="Edit"><i class="bi bi-pencil"></i></button>
+                            <button class="btn btn-outline-danger btn-sm" (click)="deletePageContentDetails(item.contentId)" title="Delete"><i class="bi bi-trash3"></i></button>
+                          </div>
                         </td>
                     </tr>
-                    <tr class="unpublish">
-                        <td><input type="checkbox" class="form-check-input"></td>
-                        <td>2</td>
-                        <td>Parking Lots</td>
-                        <!-- <td>पार्किंग स्थल</td> -->
-                        <td>The Public Health Engineering Department (PHED), Govt of Bihar has the overall responsibility <br>
-                            of managing and monitoring activities to enhance public health in the state of Bihar</td>
-                        <div href="javascript:void(0);" class="img-banner">
-                            <img src="./assets/img/login-bg.png" alt="Banner text">
-                        </div>
-                        <!-- <td>बिहार सरकार का लोक स्वास्थ्य अभियंत्रण विभाग (PHED) राज्य में सार्वजनिक स्वास्थ्य को बढ़ावा देने के लिए गतिविधियों का प्रबंधन और निगरानी करने की पूरी जिम्मेदारी निभाता है।</td> -->
-                        <td>
-                            <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"  data-bs-toggle="modal" data-bs-target="#viewmodal">
-                                    <i class="bi bi-eye"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
-                                    <i class="bi bi-pencil"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" title="Delete">
-                                    <i class="bi bi-trash3"></i></a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="publish">
-                        <td><input type="checkbox" class="form-check-input"></td>
-                        <td>3</td>
-                        <td>Parking Lots</td>
-                        <!-- <td>पार्किंग स्थल</td> -->
-                        <td>The Public Health Engineering Department (PHED), Govt of Bihar has the overall responsibility <br>
-                            of managing and monitoring activities to enhance public health in the state of Bihar</td>
-                        <div href="javascript:void(0);" class="img-banner">
-                            <img src="./assets/img/login-bg.png" alt="Banner text">
-                        </div>
-                        <!-- <td>बिहार सरकार का लोक स्वास्थ्य अभियंत्रण विभाग (PHED) राज्य में सार्वजनिक स्वास्थ्य को बढ़ावा देने के लिए गतिविधियों का प्रबंधन और निगरानी करने की पूरी जिम्मेदारी निभाता है।</td> -->
-                        <td>
-                            <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"  data-bs-toggle="modal" data-bs-target="#viewmodal">
-                                    <i class="bi bi-eye"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
-                                    <i class="bi bi-pencil"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" title="Delete">
-                                    <i class="bi bi-trash3"></i></a>
-                            </div>
-                        </td>
-                    </tr>
-
-                    <tr class="unpublish">
-                        <td><input type="checkbox" class="form-check-input"></td>
-                        <td>4</td>
-                        <td>Parking Lots</td>
-                        <!-- <td>पार्किंग स्थल</td> -->
-                        <td>The Public Health Engineering Department (PHED), Govt of Bihar has the overall responsibility <br>
-                            of managing and monitoring activities to enhance public health in the state of Bihar</td>
-                        <div href="javascript:void(0);" class="img-banner">
-                            <img src="./assets/img/login-bg.png" alt="Banner text">
-                        </div>
-                        <!-- <td>बिहार सरकार का लोक स्वास्थ्य अभियंत्रण विभाग (PHED) राज्य में सार्वजनिक स्वास्थ्य को बढ़ावा देने के लिए गतिविधियों का प्रबंधन और निगरानी करने की पूरी जिम्मेदारी निभाता है।</td> -->
-                        <td>
-                            <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"  data-bs-toggle="modal" data-bs-target="#viewmodal">
-                                    <i class="bi bi-eye"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
-                                    <i class="bi bi-pencil"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" title="Delete">
-                                    <i class="bi bi-trash3"></i></a>
-                            </div>
-                        </td>
-                    </tr>
-
-                    <tr class="publish">
-                        <td><input type="checkbox" class="form-check-input"></td>
-                        <td>5</td>
-                        <td>Parking Lots</td>
-                        <!-- <td>पार्किंग स्थल</td> -->
-                        <td>The Public Health Engineering Department (PHED), Govt of Bihar has the overall responsibility <br>
-                            of managing and monitoring activities to enhance public health in the state of Bihar</td>
-                        <div href="javascript:void(0);" class="img-banner">
-                            <img src="./assets/img/login-bg.png" alt="Banner text">
-                        </div>
-                        <!-- <td>बिहार सरकार का लोक स्वास्थ्य अभियंत्रण विभाग (PHED) राज्य में सार्वजनिक स्वास्थ्य को बढ़ावा देने के लिए गतिविधियों का प्रबंधन और निगरानी करने की पूरी जिम्मेदारी निभाता है।</td> -->
-                        <td>
-                            <div class="d-flex gap-1">
-                                <a href="javascript:void(0);" class="btn btn-outline-success btn-sm" title="View"  data-bs-toggle="modal" data-bs-target="#viewmodal">
-                                    <i class="bi bi-eye"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm" title="Edit">
-                                    <i class="bi bi-pencil"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" title="Delete">
-                                    <i class="bi bi-trash3"></i></a>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
+                </tbody>                
             </table>
         </div>
     </div>
