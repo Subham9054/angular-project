@@ -79,7 +79,7 @@ a {
     // border-radius: 6px;
     border-radius: 6px;
     // overflow: hidden;
-    border-bottom: 0;
+    // border-bottom: 0;
     @include box-shadow(0 0.125rem 0.25rem rgba($black, 0.2));
 
     &.search-box {
@@ -102,7 +102,11 @@ a {
     .table {
       overflow: hidden;
       border-radius: 6px;
+
     }
+    .table tr:last-child td{
+      border-bottom: none;
+  }
   }
 }
 
@@ -305,6 +309,12 @@ a {
       top: 0.7rem;
       font-size: 1rem;
       cursor: pointer;
+      i{
+        &:hover{
+          color:red;
+          // dwwh
+        }
+      }
     }
 
     .form-label {
