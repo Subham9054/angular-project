@@ -41,6 +41,7 @@ export class ComplaintSubCategoryViewComponent {
     );
   }
   subCatData() {
+    debugger;
     const catid = this.formData?.ddlComplaintCategory ?? 0;
     const subcatid = this.formData?.ddlSubCategory ?? 0;
   

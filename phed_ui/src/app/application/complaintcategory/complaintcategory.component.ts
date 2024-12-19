@@ -71,11 +71,11 @@ export class ComplaintcategoryComponent implements OnInit {
     ) {
       errFlag = 1;
     }
-    if (errFlag == 0 && !this.vldChkLst.isSpecialCharKey('complaintCategoryE', complaintCategoryE,
-      `Complaint Category`)
-    ) {
-      errFlag = 1;
-    }
+    // if (errFlag == 0 && !this.vldChkLst.isSpecialCharKey('complaintCategoryE', complaintCategoryE,
+    //   `Complaint Category`)
+    // ) {
+    //   errFlag = 1;
+    // }
     if (errFlag == 0 && !this.vldChkLst.maxLength('complaintCategoryE', complaintCategoryE, 50,
       `Complaint Category`)
     ) {

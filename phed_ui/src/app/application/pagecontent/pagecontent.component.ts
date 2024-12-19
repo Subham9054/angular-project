@@ -161,7 +161,8 @@ export class PagecontentComponent  implements OnInit, AfterViewChecked {
 
           // Handle feature image
           if (data.featureImage) {
-            const baseURL = 'http://localhost:5234'; // Adjust base URL as per your API
+            const baseURL = 'http://localhost:5097'; // Adjust base URL as per your API
+            // const baseURL = 'http://localhost:5234'; // Adjust base URL as per your API
             const relativePath = data.featureImage.replace(/.*wwwroot\\/, '').replace(/\\/g, '/');
             const imageUrl = `${baseURL}/${relativePath}`; // Construct full image URL
   
@@ -362,8 +363,8 @@ export class PagecontentComponent  implements OnInit, AfterViewChecked {
       pageTitleHindi: '',
       pageAlias: '',
       readMore: '',
-      linkType: null,
-      openWindow: '',
+      linkType: '',
+      windowType: '',
       snippetEnglish: '',
       snippetHindi: '',
       contentEnglish: '',

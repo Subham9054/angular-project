@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth.service';
 import { LoadingService } from 'src/app/loading.service'; // Correct import path
 import * as CryptoJS from 'crypto-js';
+import { environment } from 'src/environments/environment';
+
 
 @Component({
   selector: 'app-complaintcategory-view',
@@ -16,7 +18,7 @@ export class ComplaintcategoryViewComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     private loadingService: LoadingService  // Inject LoadingService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.loadingService.startLoading();  // Show loader when API request starts
@@ -34,7 +36,7 @@ export class ComplaintcategoryViewComponent implements OnInit {
   }
 
   updateComplaint(complaint: any) {
-    const secretKey = 'your-secret-key';
+    const secretKey = environment.apiHashingKey;
     // Encrypting the parameters
     const encryptedCategory = CryptoJS.AES.encrypt(complaint.vcH_CATEGORY, secretKey).toString();
     const encryptedSubCategory = CryptoJS.AES.encrypt(complaint.nvcH_CATEGORY, secretKey).toString();
