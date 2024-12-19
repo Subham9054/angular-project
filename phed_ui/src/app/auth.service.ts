@@ -341,11 +341,21 @@ export class AuthService {
     );
   }
 
-  getgmsComplaintdelail(): Observable<any> {
-    return this.http.get<any>(this.gmsComplaintdetailurl).pipe(
-      catchError(this.handleError)
-    );
+//   getgmsComplaintdelail(payload: { userid: string | null }): Observable<any> {
+//     return this.http.post<any>(this.gmsComplaintdetailurl, payload).pipe(
+//       catchError(this.handleError)
+//     );
+// }
+getgmsComplaintdelail(Userdata: { userid: number | null }): Observable<any> {
+  const apiUrl = this.gmsComplaintdetailurl;
+  if (Userdata.userid === null) {
+    console.error('User ID is null');
   }
+  return this.http.post<any>(apiUrl, Userdata).pipe(
+    catchError(this.handleError)
+  );
+}
+
 
   getgmstakeaction(token: string): Observable<any> {
     return this.http.get<any>(`${this.gmstakeactionurl}?token=${token}`).pipe(

@@ -150,13 +150,12 @@ namespace GMS.API
             }
         }
 
-
-        [HttpGet("GetGmsComplaintdetails")]
-        public async Task<IActionResult> getgmscomplaintdetails()
+        [HttpPost("GetGmsComplaintdetails")]
+        public async Task<IActionResult> getgmscomplaintdetails([FromBody]Userdata userdata)
         {
             try
             {
-                var complaints = await _MANAGE_COMPLAINTDETAILS_CONFIGRepository.getGmscomplaintdetail();
+                var complaints = await _MANAGE_COMPLAINTDETAILS_CONFIGRepository.getGmscomplaintdetail(userdata.userid);
                 return Ok(complaints);
             }
             catch
