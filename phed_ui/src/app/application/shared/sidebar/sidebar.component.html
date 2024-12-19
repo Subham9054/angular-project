@@ -23,22 +23,25 @@
             </li> -->
 
             <li class="sidebar-item" routerLinkActive="active">
-                <a data-bs-target="#mngMaster" data-bs-toggle="collapse" class="sidebar-link collapsed" (click)="$event.stopPropagation();">
+                <a data-bs-target="#mngMaster" data-bs-toggle="collapse" class="sidebar-link collapsed"
+                    (click)="$event.stopPropagation();">
                     <i class="bi bi-journal-check"></i> <span class="align-middle">Common Master</span> </a>
-                <ul id="mngMaster" class="sidebar-dropdown list-unstyled collapse" routerLinkActive="show" data-bs-parent="#sidebar">
+                <ul id="mngMaster" class="sidebar-dropdown list-unstyled collapse" routerLinkActive="show"
+                    data-bs-parent="#sidebar">
                     <li class="sidebar-item">
-                        <a class="sidebar-link" routerLinkActive="active" routerLink="/application/complaintcategory"
-                            >Complaint Category </a>
+                        <a class="sidebar-link" routerLinkActive="active"
+                            routerLink="/application/complaintcategory">Complaint Category </a>
                     </li>
                     <li class="sidebar-item">
-                        <a class="sidebar-link"  routerLink="/application/ComplaintSub-Category" routerLinkActive="active">
-                        Complaint Sub-Category </a>
+                        <a class="sidebar-link" routerLink="/application/ComplaintSub-Category"
+                            routerLinkActive="active">
+                            Complaint Sub-Category </a>
                     </li>
 
                     <li class="sidebar-item">
-                      <a class="sidebar-link"  routerLink="/application/user-registration" routerLinkActive="active">
-                     User Registration </a>
-                  </li>
+                        <a class="sidebar-link" routerLink="/application/user-registration" routerLinkActive="active">
+                            User Registration </a>
+                    </li>
 
                 </ul>
             </li>
@@ -47,7 +50,8 @@
                 <a data-bs-target="#mngConfig" data-bs-toggle="collapse" class="sidebar-link collapsed"
                     routerLinkActive="active" (click)="$event.stopPropagation();">
                     <i class="bi bi-gear"></i> <span class="align-middle">Config</span> </a>
-                <ul id="mngConfig" class="sidebar-dropdown list-unstyled collapse"  routerLinkActive="show" data-bs-parent="#sidebar">
+                <ul id="mngConfig" class="sidebar-dropdown list-unstyled collapse" routerLinkActive="show"
+                    data-bs-parent="#sidebar">
                     <li class="sidebar-item"><a class="sidebar-link" routerLink="/application/escalation"
                             routerLinkActive="active">Escalation</a></li>
                     <li class="sidebar-item"><a class="sidebar-link" routerLink="/application/demographymapping"
@@ -59,19 +63,20 @@
                 <a data-bs-target="#mngGMS" data-bs-toggle="collapse" class="sidebar-link collapsed"
                     routerLinkActive="active" (click)="$event.stopPropagation();">
                     <i class="bi bi-journal-check"></i> <span class="align-middle">GMS</span> </a>
-                <ul id="mngGMS" class="sidebar-dropdown list-unstyled collapse"  routerLinkActive="show" data-bs-parent="#sidebar">
+                <ul id="mngGMS" class="sidebar-dropdown list-unstyled collapse" routerLinkActive="show"
+                    data-bs-parent="#sidebar">
                     <li class="sidebar-item">
                         <a class="sidebar-link" routerLink="/application/complaintregistration"
                             routerLinkActive="active">Register Complaint</a>
                     </li>
                     <li class="sidebar-item">
-                        <a class="sidebar-link"
-                            routerLink="/application/complaintregistrationupdate" routerLinkActive="active">
+                        <a class="sidebar-link" routerLink="/application/complaintregistrationupdate"
+                            routerLinkActive="active">
                             Update Status</a>
                     </li>
                     <li class="sidebar-item">
-                        <a class="sidebar-link"
-                            routerLink="/application/complaintregistrationdelete" routerLinkActive="active">Close  Complaint</a>
+                        <a class="sidebar-link" routerLink="/application/complaintregistrationdelete"
+                            routerLinkActive="active">Close Complaint</a>
                     </li>
                 </ul>
             </li>
@@ -80,7 +85,8 @@
                 <a data-bs-target="#misRept" data-bs-toggle="collapse" class="sidebar-link collapsed"
                     routerLinkActive="active" (click)="$event.stopPropagation();">
                     <i class="bi bi-list-check"></i> <span class="align-middle">MIS Reports</span> </a>
-                <ul id="misRept" class="sidebar-dropdown list-unstyled collapse"  routerLinkActive="show" data-bs-parent="#sidebar">
+                <ul id="misRept" class="sidebar-dropdown list-unstyled collapse" routerLinkActive="show"
+                    data-bs-parent="#sidebar">
                     <li class="sidebar-item"><a class="sidebar-link"
                             routerLink="/application/complaint-category-wise-reports"
                             routerLinkActive="active">Complaint Category Wise Report</a></li>
@@ -93,7 +99,8 @@
                 <a data-bs-target="#cms" data-bs-toggle="collapse" class="sidebar-link collapsed"
                     routerLinkActive="active" (click)="$event.stopPropagation();">
                     <i class="bi bi-alarm"></i> <span class="align-middle">CMS</span> </a>
-                <ul id="cms" class="sidebar-dropdown list-unstyled collapse"  routerLinkActive="show" data-bs-parent="#sidebar">
+                <ul id="cms" class="sidebar-dropdown list-unstyled collapse" routerLinkActive="show"
+                    data-bs-parent="#sidebar">
 
                     <!-- <li class="sidebar-item">
                         <a class="sidebar-link" routerLink="/application/page"
@@ -111,27 +118,33 @@
                     </li>
 
                     <li class="sidebar-item">
-                        <a class="sidebar-link" routerLink="/application/mngbanner" routerLinkActive="active"> Banner</a>
+                        <a class="sidebar-link" routerLink="/application/mngbanner" routerLinkActive="active">
+                            Banner</a>
                     </li>
 
                     <li class="sidebar-item">
-                        <a class="sidebar-link" routerLink="/application/minister-profile" routerLinkActive="active"> Minister Profile</a>
+                        <a class="sidebar-link" routerLink="/application/minister-profile" routerLinkActive="active">
+                            Minister Profile</a>
                     </li>
 
                     <li class="sidebar-item">
-                        <a class="sidebar-link" routerLink="/application/pagecontent" routerLinkActive="active"> Content</a>
+                        <a class="sidebar-link" routerLink="/application/pagecontent" routerLinkActive="active">
+                            Content</a>
                     </li>
 
                     <li class="sidebar-item">
-                        <a class="sidebar-link" routerLink="/application/whatsnew" routerLinkActive="active"> Whats New</a>
+                        <a class="sidebar-link" routerLink="/application/whatsnew" routerLinkActive="active"> Whats
+                            New</a>
                     </li>
 
                     <li class="sidebar-item">
-                        <a class="sidebar-link" routerLink="/application/newsevent" routerLinkActive="active">News & Events</a>
+                        <a class="sidebar-link" routerLink="/application/newsevent" routerLinkActive="active">News &
+                            Events</a>
                     </li>
 
                     <li class="sidebar-item">
-                        <a class="sidebar-link" routerLink="/application/mnggallery" routerLinkActive="active"> Gallery</a>
+                        <a class="sidebar-link" routerLink="/application/mnggallery" routerLinkActive="active">
+                            Gallery</a>
                     </li>
 
                     <li class="sidebar-item">
@@ -139,7 +152,8 @@
                     </li>
 
                     <li class="sidebar-item">
-                        <a class="sidebar-link" routerLink="/application/mngcontact" routerLinkActive="active"> Contact</a>
+                        <a class="sidebar-link" routerLink="/application/mngcontact" routerLinkActive="active">
+                            Contact</a>
                     </li>
 
                 </ul>
