@@ -100,7 +100,7 @@ onClickOutside(event: MouseEvent) {
     this.getComplaintstype();
     this.getgmsComplaintdelail();
     var roleId = sessionStorage.getItem('roleid');
-    alert(roleId);
+    //alert(roleId);
     this.userid = roleId ? parseInt(roleId, 10) : null;
   }
 
@@ -132,7 +132,7 @@ onClickOutside(event: MouseEvent) {
 
   getgmsComplaintdelail() {
     debugger;
-    alert(sessionStorage.getItem('roleid'));
+    //alert(sessionStorage.getItem('roleid'));
     this.loadingService.startLoading();
 
     const roleid = sessionStorage.getItem('roleid');
