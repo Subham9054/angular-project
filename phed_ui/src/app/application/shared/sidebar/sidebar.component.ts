@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent {
+  abcd = false;
 
 
-  
 }

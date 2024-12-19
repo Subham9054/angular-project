@@ -18,7 +18,7 @@
                             <a href="javascript:void(0)" title="Download Excel"><i
                                     class="bi bi-file-earmark-excel"></i></a>
                         </li>
-                     
+
                         <li class="filter-dropdown dropdown">
                             <!-- <a href="javascript:void(0)" data-bs-toggle="dropdown" (click)="openDropdown()"> -->
                             <a href="javascript:void(0)" data-bs-toggle="dropdown">
@@ -27,13 +27,13 @@
                             <div class="dropdown-menu dropdown-menu-end filter-dropdown-menu shadow border-0">
                             <!-- <div class="dropdown-menu dropdown-menu-end filter-dropdown-menu shadow border-0"
                             [ngClass]="{ 'show': isDropdownOpen }" (click)="$event.stopPropagation()"> -->
-                            
+
                                 <span class="drop-icon" (click)="closeDropdown()">
                                     <i class="bi bi-x-lg"></i>
                                 </span>
-                            
+
                                 <div class="row">
-                            
+
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label class="form-label">Complaint Category</label>
@@ -57,7 +57,7 @@
                                             </div>
                                         </div>
                                     </div>
-                            
+
                                     <div class="col-md-6">
                                         <div class="mb-lg-0 mb-3">
                                             <label class="form-label">Date To</label>
@@ -68,7 +68,7 @@
                                             </div>
                                         </div>
                                     </div>
-                            
+
                                     <div class="col-md-6">
                                         <div class="mb-lg-0">
                                             <div class="d-flex gap-2">
@@ -77,7 +77,7 @@
                                             </div>
                                         </div>
                                     </div>
-                            
+
                                 </div>
                             </div>
                         </li>
@@ -89,7 +89,7 @@
 
 
 
-    
+
     <div class="content-box content-area p-0">
         <div class="table-responsive">
             <table class="table mb-0">
@@ -97,68 +97,68 @@
                     <tr>
                         <th width="40px">Sl#</th>
                         <th>Complaint Category</th>
-                        <th class="text-end">Total Received (in #)</th>
-                        <th class="text-end">Total Solved (in #)</th>
-                        <th class="text-end">Total Pending (in #)</th>
-                        <th class="text-end">Total Attended & Can`t be resolved (in #)</th>
-                        <th class="text-end">Total Verified (in #)</th>
+                        <th class="text-end"> Received</th>
+                        <th class="text-end"> Solved</th>
+                        <th class="text-end"> Pending</th>
+                        <th class="text-end"> Attended & Can`t be resolved</th>
+                        <th class="text-end"> Verified</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>1</td>
                         <td>Handpump Tubewell Related</td>
-                        <td class="text-end">209</td>
-                        <td class="text-end">103</td>
-                        <td class="text-end">209</td>
+                        <td class="text-end"><span class="text-primary">209</span></td>
+                        <td class="text-end"><span class="text-success">103</span></td>
+                        <td class="text-end"><span class="text-warning">1,045</span></td>
                         <td class="text-end">103</td>
                         <td class="text-end">103</td>
                     </tr>
                     <tr>
                         <td>2</td>
                         <td>Piped Water Supply Related</td>
-                        <td class="text-end">209</td>
-                        <td class="text-end">103</td>
-                        <td class="text-end">209</td>
+                         <td class="text-end"><span class="text-primary">209</span></td>
+                        <td class="text-end"><span class="text-success">103</span></td>
+                         <td class="text-end"><span class="text-warning">1,045</span></td>
                         <td class="text-end">103</td>
                         <td class="text-end">103</td>
                     </tr>
                     <tr>
                         <td>3</td>
                         <td>Water Quality Related</td>
-                        <td class="text-end">209</td>
-                        <td class="text-end">103</td>
-                        <td class="text-end">209</td>
+                         <td class="text-end"><span class="text-primary">209</span></td>
+                        <td class="text-end"><span class="text-success">103</span></td>
+                         <td class="text-end"><span class="text-warning">1,045</span></td>
                         <td class="text-end">103</td>
                         <td class="text-end">103</td>
                     </tr>
                     <tr>
                         <td>4</td>
                         <td>Swachh Bharat Mission</td>
-                        <td class="text-end">209</td>
-                        <td class="text-end">103</td>
-                        <td class="text-end">209</td>
+                         <td class="text-end"><span class="text-primary">209</span></td>
+                        <td class="text-end"><span class="text-success">103</span></td>
+                         <td class="text-end"><span class="text-warning">1,045</span></td>
                         <td class="text-end">103</td>
                         <td class="text-end">103</td>
                     </tr>
                     <tr>
                         <td>5</td>
                         <td>Miscellaneous</td>
-                        <td class="text-end">209</td>
-                        <td class="text-end">103</td>
-                        <td class="text-end">209</td>
+                         <td class="text-end"><span class="text-primary">209</span></td>
+                        <td class="text-end"><span class="text-success">103</span></td>
+                         <td class="text-end"><span class="text-warning">1,045</span></td>
                         <td class="text-end">103</td>
                         <td class="text-end">103</td>
                     </tr>
                 </tbody>
                 <tfoot>
                     <tr>
-                        <th colspan="2" class="text-end">Total</th>
-                        <th class="text-end">4019</th>
-                        <th class="text-end">2124</th>
-                        <th class="text-end">1595</th>
-                        <th class="text-end">300</th>
-                        <th class="text-end">926</th>
+                        <td colspan="2">Grand Total</td>
+                        <td class="text-end"><span class="badge text-bg-primary">1,045</span></td>
+                        <td class="text-end"><span class="badge text-bg-success">515</span></td>
+                        <td class="text-end"><span class="badge text-bg-warning">1595</span></td>
+                        <td class="text-end">515</td>
+                        <td class="text-end">515</td>
                     </tr>
                 </tfoot>
             </table>
