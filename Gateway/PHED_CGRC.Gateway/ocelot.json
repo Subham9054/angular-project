@@ -958,7 +958,7 @@
     {
       "UpstreamPathTemplate": "/gateway/GetGmsComplaintdetails",
       "UpstreamHttpMethod": [
-        "Get"
+        "Post"
       ],
       "DownstreamPathTemplate": "/Api/MANAGE_COMPLAINTDETAILS_CONFIG/GetGmsComplaintdetails",
       "DownstreamScheme": "https",

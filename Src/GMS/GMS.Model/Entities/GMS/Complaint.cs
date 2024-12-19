@@ -268,6 +268,9 @@ namespace GMS.Model.Entities.GMS
         public string token { get; set; }
         public string mobno { get; set; }
     }
-
+    public class Userdata
+    {
+        public int? userid { get; set; } // Nullable int for handling null values
+    }
 
 }

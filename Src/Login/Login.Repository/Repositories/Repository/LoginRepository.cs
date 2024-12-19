@@ -20,8 +20,7 @@ namespace Login.Repository.Repositories.Repository
 
         }
         public async Task<Users> login(Users user)
-        {
-            {
+        { 
                 try
                 {
                     //var password = Md5Encryption.MD5Encryption(user.vchPassWord);
@@ -36,7 +35,6 @@ namespace Login.Repository.Repositories.Repository
                 {
                     throw;
                 }
-            }
         }
 
         public async Task<bool> Registration(Registration registration)
