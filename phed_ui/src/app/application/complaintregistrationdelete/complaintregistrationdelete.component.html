@@ -402,14 +402,14 @@
                 <div class="dropdown">
                   <button
                       id="dropdownToggle{{ i }}"
-                      class="btn btn-outline-primary btn-sm dropdown-toggle"
+                      class="btn btn-outline-primary btn-sm"
                       type="button"
                       (click)="toggleDropdown(i)"
                       aria-expanded="false"
                   >
                       <i class="bi bi-caret-down"></i> Action
                   </button>
-              
+
                   <ul class="dropdown-menu" [id]="'dropdownMenu' + i" [class.show]="activeDropdown === i">
                       <li>
                           <a
@@ -436,9 +436,9 @@
                       </li>
                   </ul>
               </div>
-              
+
               </div>
-              
+
           </td>
           </tr>
         </tbody>
@@ -457,276 +457,274 @@
 </div>
 
 <!-- Modal Start::Token -->
-<div *ngIf="dataBasedOnToken">
-  <div class="modal fade" id="token" tabindex="-1" aria-labelledby="tokenLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable">
-      <div class="modal-content">
-        <div class="modal-header justify-content-between">
-          <h1 class="modal-title fs-4" id="tokenLabel">Status of Registered Complaint</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<div class="modal fade" id="token" tabindex="-1" aria-labelledby="tokenLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header justify-content-between">
+        <h1 class="modal-title fs-4" id="tokenLabel">Status of Registered Complaint</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 
+      </div>
+      <div class="modal-body view-form" *ngIf="dataBasedOnToken">
+        <div class="modal-logo">
+          <img src="./assets/img/bihar-logo-black.png" alt="Govt. of Bihar Logo" class="me-1 me-lg-3">
+          <div>
+            <h1>HAR GHAR NAL KA JAL</h1>
+            <p>Public Health Engineering Department</p>
+            <small>Government of Bihar </small>
+          </div>
+          <div class="ms-auto">
+            <a href="javascript:void(0)" ngbTooltip="Click to Print" class="btn btn-outline-danger btn-sm"><i
+                class="bi bi-printer me-1"></i>Print</a>
+          </div>
         </div>
-        <div class="modal-body view-form">
-          <div class="modal-logo">
-            <img src="./assets/img/bihar-logo-black.png" alt="Govt. of Bihar Logo" class="me-1 me-lg-3">
-            <div>
-              <h1>HAR GHAR NAL KA JAL</h1>
-              <p>Public Health Engineering Department</p>
-              <small>Government of Bihar </small>
-            </div>
-            <div class="ms-auto">
-              <a href="javascript:void(0)" ngbTooltip="Click to Print" class="btn btn-outline-danger btn-sm"><i
-                  class="bi bi-printer me-1"></i>Print</a>
-            </div>
+
+        <div class="row">
+          <div class="col-xl-12">
+            <h5 class="page-heading">Complainant Details</h5>
           </div>
+          <div class="col-xl-12">
+            <div class="view-forms">
+              <div class="row">
 
-          <div class="row">
-            <div class="col-xl-12">
-              <h5 class="page-heading">Complainant Details</h5>
-            </div>
-            <div class="col-xl-12">
-              <div class="view-forms">
-                <div class="row">
-
-                  <div class="col-xl-3 col-md-6">
-                    <div class="mb-3">
-                      <label class="form-label">Complaint No.</label>
-                      <label class="form-value">{{dataBasedOnToken.data[0].vcH_TOKENNO}}</label>
-                    </div>
+                <div class="col-xl-3 col-md-6">
+                  <div class="mb-3">
+                    <label class="form-label">Complaint No.</label>
+                    <label class="form-value">{{dataBasedOnToken.data[0].vcH_TOKENNO}}</label>
                   </div>
-
-                  <div class="col-xl-3 col-md-6">
-                    <div class="mb-3">
-                      <label class="form-label">Registration Date</label>
-                      <label class="form-value">{{dataBasedOnToken.data[0].dtM_CREATED_ON |
-                        date:'dd-MM-yyyy' }}</label>
-                    </div>
-                  </div>
-
-                  <div class="col-xl-3 col-md-6">
-                    <div class="mb-3">
-                      <label class="form-label">Mode of Complaint</label>
-                      <label class="form-value">{{dataBasedOnToken.data[0].vcH_COMPLIANT_LOG_TYPE}}</label>
-                    </div>
-                  </div>
-
-                  <div class="col-xl-3 col-md-6">
-                    <div class="mb-3">
-                      <label class="form-label">Name</label>
-                      <label class="form-value">{{dataBasedOnToken.data[0].nvcH_COMPLIANTANT_NAME}}</label>
-                    </div>
-                  </div>
-
-                  <div class="col-xl-3 col-md-6">
-                    <div class="mb-3">
-                      <label class="form-label">Phone No.</label>
-                      <label class="form-value">{{
-                        dataBasedOnToken?.data[0]?.vcH_CONTACT_NO}}</label>
-                    </div>
-                  </div>
-
-                  <div class="col-xl-3 col-md-6">
-                    <div class="mb-3">
-                      <label class="form-label">E-Mail</label>
-                      <label class="form-value">{{ dataBasedOnToken?.data[0]?.vcH_EMAIL}}</label>
-                    </div>
-                  </div>
-
-
-
-                  <div class="col-xl-3 col-md-6">
-                    <div class="mb-3">
-                      <label class="form-label"> Document/Photo</label>
-                      <label class="form-value">
-                        <div class="d-flex gap-1">
-                          <a href="javascript:void(0);" class="btn btn-sm btn-outline-danger"><i
-                              class="bi bi-download"></i> Download</a>
-                          <!-- <a href="javascript:void(0);" class="btn btn-sm btn-outline-danger"><i class="bi bi-download"></i></a> -->
-                        </div>
-                      </label>
-                    </div>
-                  </div>
-
-                  <div class="col-xl-3 col-md-6">
-                    <div class="mb-3">
-                      <label class="form-label">Complaint Category</label>
-                      <label class="form-value">{{
-                        dataBasedOnToken?.data[0]?.vcH_CATEGORY}}</label>
-                    </div>
-                  </div>
-
-                  <div class="col-xl-3 col-md-6">
-                    <div class="mb-3">
-                      <label class="form-label">Complaint Sub-Category</label>
-                      <label class="form-value">{{
-                        dataBasedOnToken?.data[0]?.vcH_SUB_CATEGORY}}</label>
-                    </div>
-                  </div>
-
-
-                  <div class="col-xl-9 col-md-12">
-                    <div class="mb-3">
-                      <label class="form-label">Complaint Details</label>
-                      <label class="form-value">{{
-                        dataBasedOnToken?.data[0]?.nvcH_COMPLIANT_DETAILS}}</label>
-                    </div>
-                  </div>
-
                 </div>
+
+                <div class="col-xl-3 col-md-6">
+                  <div class="mb-3">
+                    <label class="form-label">Registration Date</label>
+                    <label class="form-value">{{dataBasedOnToken.data[0].dtM_CREATED_ON |
+                      date:'dd-MM-yyyy' }}</label>
+                  </div>
+                </div>
+
+                <div class="col-xl-3 col-md-6">
+                  <div class="mb-3">
+                    <label class="form-label">Mode of Complaint</label>
+                    <label class="form-value">{{dataBasedOnToken.data[0].vcH_COMPLIANT_LOG_TYPE}}</label>
+                  </div>
+                </div>
+
+                <div class="col-xl-3 col-md-6">
+                  <div class="mb-3">
+                    <label class="form-label">Name</label>
+                    <label class="form-value">{{dataBasedOnToken.data[0].nvcH_COMPLIANTANT_NAME}}</label>
+                  </div>
+                </div>
+
+                <div class="col-xl-3 col-md-6">
+                  <div class="mb-3">
+                    <label class="form-label">Phone No.</label>
+                    <label class="form-value">{{
+                      dataBasedOnToken?.data[0]?.vcH_CONTACT_NO}}</label>
+                  </div>
+                </div>
+
+                <div class="col-xl-3 col-md-6">
+                  <div class="mb-3">
+                    <label class="form-label">E-Mail</label>
+                    <label class="form-value">{{ dataBasedOnToken?.data[0]?.vcH_EMAIL}}</label>
+                  </div>
+                </div>
+
+
+
+                <div class="col-xl-3 col-md-6">
+                  <div class="mb-3">
+                    <label class="form-label"> Document/Photo</label>
+                    <label class="form-value">
+                      <div class="d-flex gap-1">
+                        <a href="javascript:void(0);" class="btn btn-sm btn-outline-danger"><i
+                            class="bi bi-download"></i> Download</a>
+                        <!-- <a href="javascript:void(0);" class="btn btn-sm btn-outline-danger"><i class="bi bi-download"></i></a> -->
+                      </div>
+                    </label>
+                  </div>
+                </div>
+
+                <div class="col-xl-3 col-md-6">
+                  <div class="mb-3">
+                    <label class="form-label">Complaint Category</label>
+                    <label class="form-value">{{
+                      dataBasedOnToken?.data[0]?.vcH_CATEGORY}}</label>
+                  </div>
+                </div>
+
+                <div class="col-xl-3 col-md-6">
+                  <div class="mb-3">
+                    <label class="form-label">Complaint Sub-Category</label>
+                    <label class="form-value">{{
+                      dataBasedOnToken?.data[0]?.vcH_SUB_CATEGORY}}</label>
+                  </div>
+                </div>
+
+
+                <div class="col-xl-9 col-md-12">
+                  <div class="mb-3">
+                    <label class="form-label">Complaint Details</label>
+                    <label class="form-value">{{
+                      dataBasedOnToken?.data[0]?.nvcH_COMPLIANT_DETAILS}}</label>
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>
+        </div>
 
-          <div class="row">
-            <div class="col-xl-12">
-              <h5 class="page-heading">Address Details</h5>
-            </div>
-            <div class="col-xl-12">
-              <div class="view-forms">
-                <div class="row">
-                  <div class="col-xl-3 col-md-6">
-                    <div class="mb-3">
-                      <label class="form-label">District</label>
-                      <label class="form-value">{{
-                        dataBasedOnToken?.data[0]?.vcH_DISTNAME}}</label>
-                    </div>
+        <div class="row">
+          <div class="col-xl-12">
+            <h5 class="page-heading">Address Details</h5>
+          </div>
+          <div class="col-xl-12">
+            <div class="view-forms">
+              <div class="row">
+                <div class="col-xl-3 col-md-6">
+                  <div class="mb-3">
+                    <label class="form-label">District</label>
+                    <label class="form-value">{{
+                      dataBasedOnToken?.data[0]?.vcH_DISTNAME}}</label>
                   </div>
-                  <div class="col-xl-3 col-md-6">
-                    <div class="mb-3">
-                      <label class="form-label">Block</label>
-                      <label class="form-value">{{
-                        dataBasedOnToken?.data[0]?.vcH_BLOCKNAME}}</label>
-                    </div>
+                </div>
+                <div class="col-xl-3 col-md-6">
+                  <div class="mb-3">
+                    <label class="form-label">Block</label>
+                    <label class="form-value">{{
+                      dataBasedOnToken?.data[0]?.vcH_BLOCKNAME}}</label>
                   </div>
-                  <div class="col-xl-3 col-md-6">
-                    <div class="mb-3">
-                      <label class="form-label">Gram Panchayat</label>
-                      <label class="form-value">{{
-                        dataBasedOnToken?.data[0]?.vcH_PANCHAYAT}}</label>
-                    </div>
+                </div>
+                <div class="col-xl-3 col-md-6">
+                  <div class="mb-3">
+                    <label class="form-label">Gram Panchayat</label>
+                    <label class="form-value">{{
+                      dataBasedOnToken?.data[0]?.vcH_PANCHAYAT}}</label>
                   </div>
+                </div>
 
-                  <div class="col-xl-3 col-md-6">
-                    <div class="mb-3">
-                      <label class="form-label">Village</label>
-                      <label class="form-value">{{
-                        dataBasedOnToken?.data[0]?.vcH_VILLAGE}}</label>
-                    </div>
+                <div class="col-xl-3 col-md-6">
+                  <div class="mb-3">
+                    <label class="form-label">Village</label>
+                    <label class="form-value">{{
+                      dataBasedOnToken?.data[0]?.vcH_VILLAGE}}</label>
                   </div>
+                </div>
 
-                  <div class="col-xl-3 col-md-6">
-                    <div class="mb-3">
-                      <label class="form-label">Ward</label>
-                      <label class="form-value">{{ dataBasedOnToken?.data[0]?.vcH_WARD}}</label>
-                    </div>
+                <div class="col-xl-3 col-md-6">
+                  <div class="mb-3">
+                    <label class="form-label">Ward</label>
+                    <label class="form-value">{{ dataBasedOnToken?.data[0]?.vcH_WARD}}</label>
                   </div>
-                  <div class="col-xl-3 col-md-6">
-                    <div class="mb-3">
-                      <label class="form-label">Near by Location</label>
-                      <label class="form-value">{{
-                        dataBasedOnToken?.data[0]?.nvcH_LANDMARK}}</label>
-                    </div>
+                </div>
+                <div class="col-xl-3 col-md-6">
+                  <div class="mb-3">
+                    <label class="form-label">Near by Location</label>
+                    <label class="form-value">{{
+                      dataBasedOnToken?.data[0]?.nvcH_LANDMARK}}</label>
                   </div>
-                  <div class="col-xl-6 col-md-12">
-                    <div class="mb-3">
-                      <label class="form-label">Address</label>
-                      <label class="form-value">{{
-                        dataBasedOnToken?.data[0]?.nvcH_ADDRESS}}</label>
-                    </div>
+                </div>
+                <div class="col-xl-6 col-md-12">
+                  <div class="mb-3">
+                    <label class="form-label">Address</label>
+                    <label class="form-value">{{
+                      dataBasedOnToken?.data[0]?.nvcH_ADDRESS}}</label>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+        </div>
 
-          <div class="row">
-            <div class="col-xl-12">
-              <h5 class="page-heading">Intimation Sent To</h5>
-            </div>
-            <div class="col-xl-12">
-              <div class="table-responsive mb-3">
-                <table class="table mb-0 table-bordered">
-                  <thead>
-                    <tr>
-                      <th width="40px">Sl#</th>
-                      <th>Action Taken By</th>
-                      <th>Action Taken On</th>
-                      <th width="190px">Status</th>
-                    </tr>
-                  </thead>
-                  <tbody *ngFor="let intimation of intimations; let i = index">
-                    <tr>
-                      <td>{{ i + 1 }}</td>
-                      <td>{{ intimation?.actionTakenBy }}</td>
-                      <td>{{ intimation?.actionTakenOn | date:'dd-MMM-yyyy' }}</td>
-                      <td>{{ intimation?.complaintStatus }}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+        <div class="row">
+          <div class="col-xl-12">
+            <h5 class="page-heading">Intimation Sent To</h5>
+          </div>
+          <div class="col-xl-12">
+            <div class="table-responsive mb-3">
+              <table class="table mb-0">
+                <thead>
+                  <tr>
+                    <th width="40px">Sl#</th>
+                    <th>Action Taken By</th>
+                    <th>Action Taken On</th>
+                    <th width="190px">Status</th>
+                  </tr>
+                </thead>
+                <tbody *ngFor="let intimation of intimations; let i = index">
+                  <tr>
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ intimation?.actionTakenBy }}</td>
+                    <td>{{ intimation?.actionTakenOn | date:'dd-MMM-yyyy' }}</td>
+                    <td>{{ intimation?.complaintStatus }}</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
-          <div class="row">
-            <div class="col-xl-12">
-              <h5 class="page-heading">Summary Of Action Taken</h5>
-            </div>
-            <div class="col-xl-12">
-              <div class="table-responsive mb-3">
-                <table class="table mb-0 table-bordered">
-                  <thead>
-                    <tr>
-                      <th width="40px">Sl#</th>
-                      <th>Action Details</th>
-                      <th>Action Taken By</th>
-                      <th>Complaint Status</th>
-                      <th>Action Taking Authority</th>
-                      <th>Remarks</th>
-                      <th>Attached Document</th>
-                      <th>Action Taken on</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let action of actions; let i = index">
-                      <td>{{ i + 1 }}</td>
-                      <td>Action {{ i + 1}}</td>
-                      <td>{{ action?.actionTakenBy }}</td>
-                      <td>{{ action?.complaintStatus }}</td>
-                      <td>{{ action?.actionTakingAuthority }}</td>
-                      <td>{{ action?.remark }}</td>
-                      <td>{{ action?.attachedDocument || 'N/A' }}</td>
-                      <td>{{ action?.dateOfEscalation | date:'dd-MMM-yyyy' }}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+        </div>
+        <div class="row">
+          <div class="col-xl-12">
+            <h5 class="page-heading">Summary Of Action Taken</h5>
+          </div>
+          <div class="col-xl-12">
+            <div class="table-responsive mb-3">
+              <table class="table mb-0">
+                <thead>
+                  <tr>
+                    <th width="40px">Sl#</th>
+                    <th>Action Details</th>
+                    <th>Action Taken By</th>
+                    <th>Complaint Status</th>
+                    <th>Action Taking Authority</th>
+                    <th>Remarks</th>
+                    <th>Attached Document</th>
+                    <th>Action Taken on</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let action of actions; let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td>Action {{ i + 1}}</td>
+                    <td>{{ action?.actionTakenBy }}</td>
+                    <td>{{ action?.complaintStatus }}</td>
+                    <td>{{ action?.actionTakingAuthority }}</td>
+                    <td>{{ action?.remark }}</td>
+                    <td>{{ action?.attachedDocument || 'N/A' }}</td>
+                    <td>{{ action?.dateOfEscalation | date:'dd-MMM-yyyy' }}</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
-          <div class="row">
-            <div class="col-xl-12">
-              <h5 class="page-heading">Escalation Level</h5>
-            </div>
-            <div class="col-xl-12">
-              <div class="table-responsive mb-0">
-                <table class="table mb-0 table-bordered">
-                  <thead>
-                    <tr>
-                      <th width="40px">Sl#</th>
-                      <th>Escalation Level</th>
-                      <th>Designation</th>
-                      <th width="100px">Date of Escalation</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let escalation of escalations; let i = index">
-                      <td>{{ i + 1 }}</td>
-                      <td> Level {{ i + 1 }}</td>
-                      <td>{{ escalation.nvcH_DESIGNATION_NAME }}</td>
-                      <td>{{ escalation.vcH_STANDARD_DAYS }}</td>
-                    </tr>
+        </div>
+        <div class="row">
+          <div class="col-xl-12">
+            <h5 class="page-heading">Escalation Level</h5>
+          </div>
+          <div class="col-xl-12">
+            <div class="table-responsive mb-0">
+              <table class="table mb-0">
+                <thead>
+                  <tr>
+                    <th width="40px">Sl#</th>
+                    <th>Escalation Level</th>
+                    <th>Designation</th>
+                    <th width="100px">Date of Escalation</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let escalation of escalations; let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td> Level {{ i + 1 }}</td>
+                    <td>{{ escalation.nvcH_DESIGNATION_NAME }}</td>
+                    <td>{{ escalation.vcH_STANDARD_DAYS }}</td>
+                  </tr>
 
-                  </tbody>
-                </table>
-              </div>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
@@ -781,7 +779,7 @@
                       <label class="form-value">{{item.vcH_CATEGORY}} </label>
                     </div>
                   </div>
-                  <div class="col-xl-3 col-md-6">
+                  <div class="col-xl-6 col-md-6">
                     <div class="mb-3">
                       <label class="form-label">Complaint Sub-Category</label>
                       <label class="form-value">{{item.vcH_SUB_CATEGORY}}</label>
@@ -802,7 +800,9 @@
             </div>
           </div>
           <div class="col-xl-8">
+
             <div class="row">
+
               <div class="col-xl-6 col-md-6">
                 <div class="mb-3">
                   <label for="ddlDistrict" class="form-label">Status</label>
@@ -813,16 +813,43 @@
                   </select>
                 </div>
               </div>
-              <div class="col-xl-12">
+
+              <div class="col-xl-6 col-md-6">
                 <div class="mb-3">
                   <label for="ddlDistrict" class="form-label">Remarks</label>
-                  <textarea class="form-control" id="exampleFormControlTextarea1" style="height: 60px; width: 350px;"
-                    rows="2"></textarea>
+                  <textarea class="form-control" id="exampleFormControlTextarea1"
+                    rows="3"></textarea>
                   <p class="text-danger text-end  small mb-0">(Maximum <span class="fw-bold">500</span>
                     Characters)</p>
                 </div>
               </div>
             </div>
+
+           <div class="row">
+              <div class="col-xl-6 col-md-6">
+                <label for="ddlDistrict" class="form-label">Reference Document</label>
+                <div class="input-group">
+                    <input type="file" class="form-control custom-fileupload" id="doc">
+                    <label class="custom-input" for="doc">Upload</label>
+                    <label class="input-group-text custom-browse" for="doc">Browse</label>
+                </div>
+                <p class="text-danger text-end small mb-0"> Only <strong>(.jpg,
+                        .png,
+                        .doc, .xls, .pdf)</strong> files
+                    allowed</p>
+              </div>
+
+            <div class="col-xl-6 col-md-6">
+                <div class="mb-3">
+                    <label for="ddlDistrict" class="form-label">Remarks</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    <p class="text-danger text-end  small mb-0">(Maximum <span
+                            class="fw-bold">100</span>
+                        Characters)</p>
+                </div>
+            </div>
+            </div>
+
           </div>
           <div class="col-xl-12">
             <div class="row">
