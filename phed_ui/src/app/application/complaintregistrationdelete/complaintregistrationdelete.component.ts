@@ -50,6 +50,7 @@ onClickOutside(event: MouseEvent) {
   totalPages: number = 1;
   paginatedComplaints: any[] = [];
   takeactiongms: any[] = [];
+  actionhistorygms: any;
 
   formData: any = {
     ddlDistrict: '0',
@@ -197,6 +198,21 @@ onClickOutside(event: MouseEvent) {
         console.error('Error fetching Complaint status:', error);
         // Optional: Display error to the user, e.g., through a toast or alert.
         alert('Failed to fetch complaint status. Please try again.');
+      }
+    );
+  }
+
+  actionhistory(tokenno: string): void {
+    //debugger;
+    this.authService.getgmsactionhistory(tokenno).subscribe(
+      response => {
+        // Check if the response is an array or an object
+        this.actionhistorygms = response;
+        console.log('Fetched data:', this.actionhistorygms[0]);
+      },
+      error => {
+        console.error('Error fetching complaint history:', error);
+        alert('Failed to fetch complaint details.');
       }
     );
   }

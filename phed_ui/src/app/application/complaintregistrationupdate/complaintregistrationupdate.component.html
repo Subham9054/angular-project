@@ -517,11 +517,12 @@
                                 <ul class="dropdown-menu" [id]="'dropdownMenu' + i" [class.show]="activeDropdown === i">
                                     <li>
                                         <a href="javascript:void(0);" class="dropdown-item" title="Action History"
-                                            data-bs-toggle="modal" data-bs-target="#takehistrory"
-                                            (click)="actionhistory(tokenno.value)">
-                                            <i class="bi-journal-text me-1"></i> Action History
+                                           data-bs-toggle="modal" data-bs-target="#takehistrory"
+                                           (click)="actionhistory(tokenno.value)">
+                                           <i class="bi bi-journal-text me-1"></i> Action History
                                         </a>
                                     </li>
+                                    
                                     <li>
                                         <button type="button" class="dropdown-item btn btn-link" title="Take Action"
                                             data-bs-toggle="modal" data-bs-target="#details"
@@ -891,3 +892,5 @@
   </div>
 </div>
 <!-- Details Modal -->
+ <!-- Modal Start::Take Action -->
+
