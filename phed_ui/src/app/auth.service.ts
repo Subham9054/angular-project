@@ -76,6 +76,8 @@ export class AuthService {
   private getSubDivisionURL = 'http://localhost:5234/Api/CMS/GetSubDivisions'; //Base URL for getting sub-division based on division
   private getSectionURL = 'http://localhost:5234/Api/CMS/GetSections'; //Base URL for getting Section based on Sub-division
 
+  // private cmsBaseURL = 'http://localhost:5234/Api/CMS'; //Base URL for Managing CMS Master Pages
+  private cmsBaseURL = `${this.baseUrl}/gateway`;
 
 
 
@@ -92,6 +94,7 @@ export class AuthService {
   // private getBannerByNameUrl = 'http://localhost:5097/api/CMS/GetBannerByName';
   // private deleteBannerUrl = 'http://localhost:5097/api/CMS/DeleteBanner';
 
+  // private cmsBaseURL = 'http://localhost:5097/api/CMS'; //Base URL for Managing CMS Master Pages
   //private galleryUrl = 'http://localhost:5097/api/Gallery'; //Base URL for Managing Gallery
   //private faqUrl = 'http://localhost:5097/api/FAQ'; //Base URL for Managing FAQs
 

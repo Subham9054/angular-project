@@ -1,4 +1,6 @@
 using CMS.Repositories.Container;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCustomContainer(builder.Configuration);
 
 builder.Services.AddControllers();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -16,7 +19,8 @@ builder.Services.AddCors(options =>
                           .AllowAnyMethod()
                           .AllowAnyHeader());
 });
-builder.Services.AddCustomContainer(builder.Configuration);
+//builder.Services.AddCustomContainer(builder.Configuration);
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -37,11 +41,28 @@ if (app.Environment.IsStaging())
     app.UseSwaggerUI();
 }
 
+// Enable CORS
 app.UseCors("AllowAllOrigins");
+
+// Enable static files for default path
+app.UseStaticFiles();
+
+// Enable custom static file serving for assets
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(
+        Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "assets")),
+    RequestPath = "/gateway/assets"
+});
+
+// Enable HTTPS redirection
 app.UseHttpsRedirection();
 
+// Enable authorization
 app.UseAuthorization();
 
+// Map controllers to the route
 app.MapControllers();
 
+// Start the application
 app.Run();

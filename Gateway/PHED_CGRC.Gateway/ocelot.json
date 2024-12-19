@@ -1291,6 +1291,30 @@
         "PeriodTimespan": 1,
         "Limit": 1
       }
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/GetPageContents",
+      "UpstreamHttpMethod": [
+        "Get"
+      ],
+      "DownstreamPathTemplate": "/Api/CMS/GetPageContents",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7206
+        }
+      ],
+      "RateLimitOptions": {
+        "DisableRateLimitHeaders": false,
+        "QuotaExceededMessage": "<Add your message>",
+        "HttpStatusCode": 9999,
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 1
+      }
     }
   ]
 }

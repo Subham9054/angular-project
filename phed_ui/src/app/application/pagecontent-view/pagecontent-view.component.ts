@@ -9,6 +9,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./pagecontent-view.component.scss']
 })
 export class PagecontentViewComponent implements OnInit {
+  cmsBaseURL = 'https://localhost:7197/gateway'; // Declare cmsBaseURL in the component
   isDropdownOpen = false;  // Filter close btn / Dropdown control
   pageContentDetails: any[] = [];
   selectedPageContents: any = null;
@@ -35,9 +36,10 @@ export class PagecontentViewComponent implements OnInit {
         if (response && response.success) {
           // Map the response data to include the full image URL
           this.pageContentDetails = response.data.map((contentDetails: any) => ({
-            ...contentDetails,            
+            ...contentDetails,
+            featureImage: `${this.cmsBaseURL}${contentDetails.featureImage}`            
             // featureImage: `http://localhost:5234${contentDetails.featureImage}`
-            featureImage: `http://localhost:5097${contentDetails.featureImage}`
+            // featureImage: `http://localhost:5097${contentDetails.featureImage}`
           }));
           this.noRecordsFound = this.pageContentDetails.length === 0;
           if (this.noRecordsFound) {
