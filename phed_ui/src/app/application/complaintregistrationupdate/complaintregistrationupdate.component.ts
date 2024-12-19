@@ -14,6 +14,11 @@ declare let $: any;
 export class ComplaintregistrationupdateComponent implements OnInit {
 
 
+
+
+
+
+
   activeDropdown: number | null = null; // Track the active dropdown index
   Object: any;
 
@@ -80,6 +85,8 @@ export class ComplaintregistrationupdateComponent implements OnInit {
     private loadingService: LoadingService,
   ) { }
 
+
+  userid: any;
   ngOnInit(): void {
 
     // $('.datepicker').datetimepicker({
@@ -101,6 +108,8 @@ export class ComplaintregistrationupdateComponent implements OnInit {
     this.getComplaints();
     this.getComplaintstype();
     this.getgmsComplaintdelail();
+    const roleId = sessionStorage.getItem('roleid');
+    this.userid = roleId ? parseInt(roleId, 10) : null;
   }
   private initializeData(): void {
     const today = new Date();
@@ -110,6 +119,7 @@ export class ComplaintregistrationupdateComponent implements OnInit {
     this.getComplaints();
     this.getComplaintstype();
     this.getgmsComplaintdelail();
+   
 
   }
 
@@ -135,20 +145,39 @@ export class ComplaintregistrationupdateComponent implements OnInit {
 
 
   getgmsComplaintdelail() {
+    debugger;
+    alert(sessionStorage.getItem('roleid'));
     this.loadingService.startLoading();
-    this.authService.getgmsComplaintdelail().subscribe(
-      response => {
-        this.complaintdetails = response; // Assign full data
-        console.log(this.complaintdetails);
-        this.totalPages = Math.ceil(this.complaintdetails.length / this.pageSize); // Calculate total pages
-        this.updatePagination(); // Initialize pagination
+
+    const roleid = sessionStorage.getItem('roleid');
+    const userid = roleid ? parseInt(roleid, 10) : null;
+
+    if (userid === null || isNaN(userid)) {
+        console.error('Invalid or null UserID. Cannot proceed with the request.');
         this.loadingService.stopLoading();
-      },
-      error => {
-        console.error('Error fetching Complaint details', error);
-      }
+        return;
+    }
+
+    const Userdata = { userid }; // userid is now guaranteed to be a number
+    console.log('Sending Payload:', Userdata);
+
+    this.authService.getgmsComplaintdelail(Userdata).subscribe(
+        response => {
+            console.log('Response:', response);
+            this.complaintdetails = response;
+            this.totalPages = Math.ceil(this.complaintdetails.length / this.pageSize);
+            this.updatePagination();
+            this.loadingService.stopLoading();
+        },
+        error => {
+            console.error('Error fetching Complaint details', error);
+            if (error.error && error.error.errors) {
+                console.error('Validation Errors:', error.error.errors);
+            }
+            this.loadingService.stopLoading();
+        }
     );
-  }
+}
   updatePagination(): void {
     const startIndex = (this.currentPage - 1) * this.pageSize;
     const endIndex = startIndex + this.pageSize;

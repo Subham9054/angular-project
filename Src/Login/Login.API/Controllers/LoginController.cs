@@ -131,7 +131,8 @@ namespace Login.API.Controllers
                     IsMisReport=authenticatedUser.intIsMisReport,
                     Cmnmst=authenticatedUser.intIsCmnMst,
                     Gms=authenticatedUser.intIsGms,
-                    config=authenticatedUser.intIsConfig
+                    config=authenticatedUser.intIsConfig,
+                    roleid=authenticatedUser.intUserId
                 });
             }
             else

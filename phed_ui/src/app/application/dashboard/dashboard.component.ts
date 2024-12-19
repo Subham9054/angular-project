@@ -14,6 +14,7 @@ export class DashboardComponent {
   chartOptions: Highcharts.Options = {
     chart: {
       type: 'column',
+      spacing: [10, 10, 0, 10],
     },
 
     title: {
@@ -73,6 +74,8 @@ export class DashboardComponent {
     },
     chart: {
       type: 'column',
+      //marginBottom: 70,
+      spacing: [10, 10, 0, 10],
     },
     xAxis: {
       categories: [
@@ -93,24 +96,26 @@ export class DashboardComponent {
     title: {
       text: '',
     },
+
+
     series: [{
       name: 'Recieved',
       type: 'column',
       color: '#4374e7',
-      data: [5, 8, 12, 3, 28], 
-     
+      data: [5, 8, 12, 3, 28],
+
     }, {
       name: 'Pending',
       type: 'column',
       color: '#ff9f60',
-      data: [15, 20, 30, 5, 50], 
-      
+      data: [15, 20, 30, 5, 50],
+
     }, {
       name: 'Resolved',
       type: 'column',
       color: '#008000',
-      data: [10, 12, 15, 2, 40], 
-     
+      data: [10, 12, 15, 2, 40],
+
     }],
 
   }

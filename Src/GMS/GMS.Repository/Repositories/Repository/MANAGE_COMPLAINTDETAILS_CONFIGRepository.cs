@@ -64,13 +64,14 @@ namespace GMS.Repository.Repositories.Interfaces.MANAGE_COMPLAINTDETAILS_CONFIG
             }
         }
 
-        public async Task<List<gmsComplaintdetails>> getGmscomplaintdetail()
+        public async Task<List<gmsComplaintdetails>> getGmscomplaintdetail(int? userid)
         {
             try
             {
 
                 {
                     DynamicParameters dynamicParameters = new DynamicParameters();
+                    dynamicParameters.Add("p_userid", userid);
                     var districts = await Connection.QueryAsync<gmsComplaintdetails>("GetGmsComplaintDetails", dynamicParameters, commandType: CommandType.StoredProcedure);
                     return districts.ToList();
                 }

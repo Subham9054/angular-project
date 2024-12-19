@@ -71,13 +71,11 @@ export class AuthService {
   private deleteBannerUrl = 'http://localhost:5234/api/CMS/DeleteBanner';
 
   private cmsBaseURL = 'http://localhost:5234/Api/CMS'; //Base URL for Managing CMS Master Pages
+  //private cmsBaseURL = `${this.baseUrl}/gateway`; //Base URL for Managing CMS Master Pages
   private getCircleURL = 'http://localhost:5234/Api/CMS/GetCircles'; //Base URL for getting circle
   private getDivisionURL = 'http://localhost:5234/Api/CMS/GetDivisions'; //Base URL for getting division based on circle
   private getSubDivisionURL = 'http://localhost:5234/Api/CMS/GetSubDivisions'; //Base URL for getting sub-division based on division
   private getSectionURL = 'http://localhost:5234/Api/CMS/GetSections'; //Base URL for getting Section based on Sub-division
-
-
-
 
   // private getParentMenusUrl = 'http://localhost:5097/api/CMS/GetParentMenus';
   // private createOrUpdatePageUrl = 'http://localhost:5097/api/CMS/CreateOrUpdatePageLink';
@@ -92,6 +90,7 @@ export class AuthService {
   // private getBannerByNameUrl = 'http://localhost:5097/api/CMS/GetBannerByName';
   // private deleteBannerUrl = 'http://localhost:5097/api/CMS/DeleteBanner';
 
+  // private cmsBaseURL = 'http://localhost:5097/api/CMS'; //Base URL for Managing CMS Master Pages
   //private galleryUrl = 'http://localhost:5097/api/Gallery'; //Base URL for Managing Gallery
   //private faqUrl = 'http://localhost:5097/api/FAQ'; //Base URL for Managing FAQs
 
@@ -125,7 +124,6 @@ export class AuthService {
     }
     return true;
   }
-
 
   // Method to handle logout
   logout() {
@@ -343,11 +341,21 @@ export class AuthService {
     );
   }
 
-  getgmsComplaintdelail(): Observable<any> {
-    return this.http.get<any>(this.gmsComplaintdetailurl).pipe(
-      catchError(this.handleError)
-    );
+//   getgmsComplaintdelail(payload: { userid: string | null }): Observable<any> {
+//     return this.http.post<any>(this.gmsComplaintdetailurl, payload).pipe(
+//       catchError(this.handleError)
+//     );
+// }
+getgmsComplaintdelail(Userdata: { userid: number | null }): Observable<any> {
+  const apiUrl = this.gmsComplaintdetailurl;
+  if (Userdata.userid === null) {
+    console.error('User ID is null');
   }
+  return this.http.post<any>(apiUrl, Userdata).pipe(
+    catchError(this.handleError)
+  );
+}
+
 
   getgmstakeaction(token: string): Observable<any> {
     return this.http.get<any>(`${this.gmstakeactionurl}?token=${token}`).pipe(
