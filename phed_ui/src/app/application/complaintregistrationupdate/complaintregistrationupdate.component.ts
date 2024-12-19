@@ -146,7 +146,7 @@ export class ComplaintregistrationupdateComponent implements OnInit {
 
   getgmsComplaintdelail() {
     debugger;
-    alert(sessionStorage.getItem('roleid'));
+    //alert(sessionStorage.getItem('roleid'));
     this.loadingService.startLoading();
 
     const roleid = sessionStorage.getItem('roleid');
