@@ -73,7 +73,7 @@ onClickOutside(event: MouseEvent) {
 
   // closeDropdown() {
   //     this.isDropdownOpen = false;
-  // }    
+  // }
 
 
   userid: any;
@@ -187,7 +187,7 @@ onClickOutside(event: MouseEvent) {
 
   takeaction(tokenno: string): void {
     debugger;
-    alert(tokenno);
+    // alert(tokenno);
     this.authService.getgmstakeaction(tokenno).subscribe(
       response => {
         this.takeactiongms = response;

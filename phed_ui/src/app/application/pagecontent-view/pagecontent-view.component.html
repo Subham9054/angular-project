@@ -59,6 +59,7 @@
             <li><span class="bg-danger"></span> Unpublish </li>
         </ul>
     </div>
+
     <div class="content-box content-area p-0">
         <div *ngIf="noRecordsFound" class="alert alert-warning text-center mt-3">
             No Page Contents Found!!
@@ -71,6 +72,7 @@
                         <th width="40px">Sl#</th>
                         <th>Page Title</th>
                         <th>Snippet</th>
+                        <th style="text-align: center;">Feature Image Path</th>
                         <th style="text-align: center;">Feature Image</th>
                         <th width="70px" style="text-align: center;">Action</th>
                     </tr>
@@ -82,7 +84,10 @@
                         <td>{{ item.pageTitleEnglish }}</td>
                         <td>{{ item.snippetEnglish }}</td>
                         <td style="text-align: center;">
-                            <img [src]="item.featureImage" alt="Feature Image" style="max-width: 50px; height: 50px; border-radius: 5px;">
+                            {{ item.featureImage }}
+                        </td>
+                        <td style="text-align: center;">
+                            <img [src]="item.featureImage" alt="Feature Image" style="width: 60px; height: 60px; border-radius: 5px;">
                         </td>
                         <td>
                           <div class="d-flex gap-1">
@@ -160,7 +165,7 @@
                             <div class="col-xl-12 col-md-12">
                                 <div class="mb-3">
                                     <label class="form-label">Content (In English)</label>
-                                    <!-- <label [innerHTML]="selectedPageContents.contentEnglish" class="form-value"></label> -->
+                                    <label *ngIf="selectedPageContents?.contentEnglish" [innerHTML]="selectedPageContents.contentEnglish" class="form-value"></label>
                                 </div>
                             </div>
     
@@ -176,18 +181,20 @@
                             <div class="col-xl-12 col-md-12">
                                 <div class="mb-3">
                                     <label class="form-label">Content (हिंदी में)</label>
-                                    <!-- <label class="form-label" [innerHTML]="selectedPageContents.contentHindi" class="form-value"></label> -->
+                                    <label *ngIf="selectedPageContents?.contentHindi" [innerHTML]="selectedPageContents.contentHindi" class="form-value"></label>
                                 </div>
                             </div>
-                        </div>                    
+                        </div>
                     </div>
                     <div class="col-lg-4">
-                        <!-- <div class="mb-3">
+                        <div class="mb-3">
                             <label class="form-label d-block mb-2">Feature Image</label>
                             <div class="img-fluid">
-                                <img [src]="selectedPageContents.featureImage" alt="Feature Image" class="modal-banner">
+                                <label *ngIf="selectedPageContents?.featureImage" class="modal-banner">
+                                    <img [src]="selectedPageContents.featureImage" alt="Feature Image" class="modal-banner">
+                                </label>
                             </div>
-                        </div> -->
+                        </div>
                     </div>
                 </div>
             </div>

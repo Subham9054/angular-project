@@ -14,6 +14,11 @@ declare let $: any;
 export class ComplaintregistrationupdateComponent implements OnInit {
 
 
+
+
+
+
+
   activeDropdown: number | null = null; // Track the active dropdown index
   Object: any;
 

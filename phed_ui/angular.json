@@ -40,12 +40,10 @@
             "scripts": [
               "./node_modules/jquery/dist/jquery.min.js",
               "./node_modules/bootstrap/dist/js/bootstrap.bundle.js",
-              "src/assets/js/moment.min.js",
               "src/assets/js/bootstrap-datetimepicker.min.js",
-              "./node_modules/jquery/dist/jquery.min.js",
-              "./node_modules/moment/min/moment.min.js",
-              "./node_modules/bootstrap/dist/js/bootstrap.min.js",
-              "./node_modules/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"
+              "./node_modules/moment/min/moment.min.js"
+
+
             ]
           },
           "configurations": {
