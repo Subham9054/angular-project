@@ -274,7 +274,7 @@ a.sidebar-link {
   }
 
   .sidebar-link {
-    padding: 0.4rem 0.5rem 0.4rem 2.1rem;
+    padding: 0.4rem 0.5rem 0.4rem 2.5rem;
     font-weight: 400;
     border-left: 0;
     color: rgba($white, 0.6);
@@ -311,6 +311,7 @@ a.sidebar-link {
     //     background-color: rgba($sidebar-link-hover-bg, 0.3);
     //   }
     // }
+
   }
 
   .sidebar-item {
@@ -344,4 +345,10 @@ margin-bottom: 0.3rem;
   .mCSB_draggerContainer {
     right: 0.2rem;
   }
+}
+
+@media (max-width:1440px){
+  .sidebar {
+    font-size: 1rem;
+}
 }

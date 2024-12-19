@@ -383,10 +383,10 @@
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <td class="grand-total">Grand Total</td>
+                                            <td>Grand Total</td>
                                             <td class="text-end"><span class="badge text-bg-primary">52106</span></td>
-                                            <td class="text-end waring-td"><span class="badge text-bg-warning">27700</span></td>
-                                            <td class="text-end waring-td"><span class="badge text-bg-success">21223</span></td>
+                                            <td class="text-end"><span class="badge text-bg-warning">27700</span></td>
+                                            <td class="text-end"><span class="badge text-bg-success">21223</span></td>
                                         </tr>
                                     </tfoot>
                                 </table>
@@ -399,7 +399,7 @@
             </div>
         </div>
         <div class="col-xl-12 mt-3">
-            <div class="card">
+            <div class="card catagory-card">
                 <div class="card-header d-flex align-content-center">
                     <h5 class="mb-0 mt-2">Category Wise Complaint</h5>
                     <div class="custom-tab">
@@ -449,10 +449,10 @@
                         </div> -->
                         <div class="tab-pane fade active show" id="catagory-tab-pane" role="tabpanel"
                             aria-labelledby="catagory-tab" tabindex="0">
-                        <div class="graph-wrapper-catagory">
+                        <!-- <div class="graph-wrapper-catagory"> -->
                             <highcharts-chart [Highcharts]="Highcharts" [options]="container"
                                 style="width: 100%; display: block;"></highcharts-chart>
-                        </div>
+                        <!-- </div> -->
                         </div>
                         <div class="tab-pane fade" id="catagory1-tab-pane" role="tabpanel" aria-labelledby="catagory1-tab"
                             tabindex="0">
@@ -495,10 +495,10 @@
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <td class="grand-total">Grand Total</td>
+                                            <td>Grand Total</td>
                                             <td class="text-end"><span class="badge text-bg-primary">52106</span></td>
-                                            <td class="text-end waring-td"><span class="badge text-bg-warning">27700</span></td>
-                                            <td class="text-end waring-td"><span class="badge text-bg-success">21223</span></td>
+                                            <td class="text-end"><span class="badge text-bg-warning">27700</span></td>
+                                            <td class="text-end"><span class="badge text-bg-success">21223</span></td>
                                         </tr>
                                     </tfoot>
                                 </table>
@@ -978,10 +978,10 @@
                                     <!-- <td>
                                         वार्ड न० -02 में नल जल क
                                     </td> -->
-                                    <td>Registered</td>
+                                    <td class="text-primary">Registered</td>
                                     <td>28-Oct-2024</td>
                                     <td>JE Supaul</td>
-                                    <td>9955403126</td>
+                                    <td>+91-9955403126</td>
                                     <td width="70px">
                                         <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#details"
                                             class="btn btn-outline-primary btn-sm">
@@ -999,10 +999,10 @@
                                     <!-- <td>
                                         वार्ड न०-12 में मुझे हाउस
                                     </td> -->
-                                    <td>Registered</td>
+                                    <td class="text-warning">Pending</td>
                                     <td>28-Oct-2024</td>
                                     <td>JE Manjha</td>
-                                    <td>8541847378</td>
+                                    <td>+91-8541847378</td>
                                     <td width="70px">
                                         <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#details"
                                             class="btn btn-outline-primary btn-sm">
@@ -1020,10 +1020,10 @@
                                     <!-- <td>
                                         30 OCT 2024 की रात में व
                                     </td> -->
-                                    <td>Registered</td>
+                                    <td class="text-success">Resolved</td>
                                     <td>28-Oct-2024</td>
                                     <td>JE Section -I</td>
-                                    <td>9110999615</td>
+                                    <td>+91-9110999615</td>
                                     <td width="70px">
                                         <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#details"
                                             class="btn btn-outline-primary btn-sm">
@@ -1065,7 +1065,7 @@
                                     <td>Registered</td>
                                     <td>28-Oct-2024</td>
                                     <td>JE Chandi</td>
-                                    <td>9304250389</td>
+                                    <td>+91-9304250389</td>
                                     <td width="70px">
                                         <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#details"
                                             class="btn btn-outline-primary btn-sm">
@@ -1188,8 +1188,8 @@
 
                             <div class="col-xl-3 col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label">Phone No</label>
-                                    <label class="form-value">8789952814</label>
+                                    <label class="form-label">Phone No.</label>
+                                    <label class="form-value">+91-8789952814</label>
                                 </div>
                             </div>
                             <div class="col-xl-3 col-md-6">
@@ -1277,7 +1277,7 @@
                     </div>
                     <div class="col-xl-12">
                         <div class="table-responsive mb-3">
-                            <table class="table mb-0 table-bordered">
+                            <table class="table mb-0">
                                 <thead>
                                     <tr>
                                         <th>Sl#</th>
@@ -1291,7 +1291,7 @@
                                         <td>1</td>
                                         <td>JE UdaKishanganj (8544428938)</td>
                                         <td>23-Oct-2024</td>
-                                        <td>Registered</td>
+                                        <td class="text-primary">Registered</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -1304,14 +1304,14 @@
                     </div>
                     <div class="col-xl-12">
                         <div class="table-responsive mb-3">
-                            <table class="table mb-0 table-bordered">
+                            <table class="table mb-0">
                                 <thead>
                                     <tr>
                                         <th>Sl#</th>
                                         <th>Action Details</th>
                                         <th>Action Taken By</th>
                                         <th>Complaint Status</th>
-                                        <th>Action Taking Authority</th>
+                                        <!-- <th>Action Taking Authority</th> -->
                                         <th>Remarks</th>
                                         <th>Attached Document</th>
                                         <th>Action Taken on</th>
@@ -1323,9 +1323,9 @@
                                         <td>Action 1</td>
                                         <td>JE UdaKishanganj</td>
                                         <td>Registered & Open</td>
-                                        <td>JE UdaKishanganj</td>
+                                        <!-- <td>JE UdaKishanganj</td> -->
                                         <td>Complaint Received</td>
-                                        <td></td>
+                                        <td>-</td>
                                         <td>23-Oct-2024</td>
                                     </tr>
                                 </tbody>
@@ -1339,7 +1339,7 @@
                     </div>
                     <div class="col-xl-12">
                         <div class="table-responsive mb-0">
-                            <table class="table mb-0 table-bordered">
+                            <table class="table mb-0">
                                 <thead>
                                     <tr>
                                         <th>Sl#</th>
@@ -1394,19 +1394,19 @@
                             <div class="row">
                                 <div class="col-xl-3 col-md-6">
                                     <div class="mb-3">
-                                        <label class="form-label">Token No</label>
+                                        <label class="form-label">Token No.</label>
                                         <label class="form-value">202410230124</label>
                                     </div>
                                 </div>
                                 <div class="col-xl-3 col-md-6">
                                     <div class="mb-3">
-                                        <label class="form-label">Registration Date</label>
+                                        <label class="form-label"> Date</label>
                                         <label class="form-value">23-Oct-2024</label>
                                     </div>
                                 </div>
                                 <div class="col-xl-3 col-md-6">
                                     <div class="mb-3">
-                                        <label class="form-label">Complainant Name</label>
+                                        <label class="form-label"> Name</label>
                                         <label class="form-value">Krishanumar</label>
                                     </div>
                                 </div>
@@ -1418,13 +1418,13 @@
                                 </div>
                                 <div class="col-xl-3 col-md-6">
                                     <div class="mb-3">
-                                        <label class="form-label">Complaint Category</label>
+                                        <label class="form-label"> Category</label>
                                         <label class="form-value">Piped Water Supply Related </label>
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-md-6">
                                     <div class="mb-3">
-                                        <label class="form-label">Complaint Sub-Category</label>
+                                        <label class="form-label"> Sub-Category</label>
                                         <label class="form-value">Operator does not runs the motor</label>
                                     </div>
                                 </div>
@@ -1432,8 +1432,8 @@
 
                                 <div class="col-xl-3 col-md-6">
                                     <div class="mb-3">
-                                        <label class="form-label">Current Status</label>
-                                        <label class="form-value">Registered & Open</label>
+                                        <label class="form-label"> Status</label>
+                                        <label class="form-value"><span class="text-primary">Registered</span></label>
                                     </div>
                                 </div>
 
@@ -1460,8 +1460,8 @@
                                     <label class="custom-input" for="doc">Upload</label>
                                     <label class="input-group-text custom-browse" for="doc">Browse</label>
                                 </div>
-                                <p class="text-danger text-end small mb-0"> Only <span class="fw-bold">.jpeg, .jpg, .png,
-                                    .gif, .doc, .xls, .pdf</span> files
+                                <p class="text-danger text-end small mb-0"> Only <strong>.jpeg, .jpg, .png,
+                                     .doc, .xls, .pdf</strong> files
                                 allowed</p>
 
 

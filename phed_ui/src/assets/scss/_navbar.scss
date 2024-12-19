@@ -236,6 +236,11 @@
   // @media (max-width: 530px) {
   //   display: none !important;
   // }
+  &:hover{
+    span{
+      color: #000;
+    }
+  }
 }
 
 .nav-flag {
