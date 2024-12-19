@@ -93,7 +93,11 @@ export class LoginComponent implements OnInit {
                 sessionStorage.setItem('token', response.token);
                 sessionStorage.setItem('role', response.role);
                 sessionStorage.setItem('fullName', response.fullName);
-                sessionStorage.setItem('roleid',response.roleid)
+                sessionStorage.setItem('cmnmst', response.cmnmst);
+                sessionStorage.setItem('cms', response.cms);
+                sessionStorage.setItem('config', response.config);
+                sessionStorage.setItem('gms', response.gms);
+                sessionStorage.setItem('isMisReport', response.isMisReport);
 
                 // Set token expiration time (1 minute for demo)
                 const expiryTime = new Date().getTime() + (60 * 60 * 1000); // 1 minute
