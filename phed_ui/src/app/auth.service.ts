@@ -71,15 +71,11 @@ export class AuthService {
   private deleteBannerUrl = 'http://localhost:5234/api/CMS/DeleteBanner';
 
   private cmsBaseURL = 'http://localhost:5234/Api/CMS'; //Base URL for Managing CMS Master Pages
+  //private cmsBaseURL = `${this.baseUrl}/gateway`; //Base URL for Managing CMS Master Pages
   private getCircleURL = 'http://localhost:5234/Api/CMS/GetCircles'; //Base URL for getting circle
   private getDivisionURL = 'http://localhost:5234/Api/CMS/GetDivisions'; //Base URL for getting division based on circle
   private getSubDivisionURL = 'http://localhost:5234/Api/CMS/GetSubDivisions'; //Base URL for getting sub-division based on division
   private getSectionURL = 'http://localhost:5234/Api/CMS/GetSections'; //Base URL for getting Section based on Sub-division
-
-  // private cmsBaseURL = 'http://localhost:5234/Api/CMS'; //Base URL for Managing CMS Master Pages
-  private cmsBaseURL = `${this.baseUrl}/gateway`;
-
-
 
   // private getParentMenusUrl = 'http://localhost:5097/api/CMS/GetParentMenus';
   // private createOrUpdatePageUrl = 'http://localhost:5097/api/CMS/CreateOrUpdatePageLink';
@@ -128,7 +124,6 @@ export class AuthService {
     }
     return true;
   }
-
 
   // Method to handle logout
   logout() {
