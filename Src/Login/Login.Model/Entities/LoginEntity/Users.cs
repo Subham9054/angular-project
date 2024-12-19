@@ -13,5 +13,10 @@ namespace Login.Model.Entities.LoginEntity
         public string Role { get; set; }
         public int intUserId { get; set; }
         public string vchFullName { get; set; }
+        public int intIsCmnMst {  get; set; }
+        public int intIsConfig {  get; set; }
+        public int intIsGms {  get; set; }
+        public int intIsMisReport { get; set; }
+        public int intIsCms { get; set; }
     }
 }

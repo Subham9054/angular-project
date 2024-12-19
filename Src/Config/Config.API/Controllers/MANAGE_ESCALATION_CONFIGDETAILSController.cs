@@ -67,6 +67,7 @@ namespace Config.API
 
                         // Call the repository method
                         int escalationId = await _MANAGE_ESCALATION_CONFIGDETAILSRepository.InsertEscalation(escalationinsert);
+
                     }
                 }
 
