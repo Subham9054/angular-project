@@ -63,6 +63,13 @@ namespace Login.API.Controllers
                     HttpContext.Session.SetInt32("_UserId", Convert.ToInt32(_user.intUserId));
                     HttpContext.Session.SetString("_Role", Convert.ToString(_user.vchUserName));
                     HttpContext.Session.SetString("_Name", Convert.ToString(_user.vchFullName));
+
+                    HttpContext.Session.SetString("_intIsCms", Convert.ToString(_user.intIsCms));
+                    HttpContext.Session.SetString("_intIsMisReport", Convert.ToString(_user.intIsMisReport));
+                    HttpContext.Session.SetString("_intIsGms", Convert.ToString(_user.intIsGms));
+                    HttpContext.Session.SetString("_intIsConfig", Convert.ToString(_user.intIsConfig));
+                    HttpContext.Session.SetString("_intIsCmnMst", Convert.ToString(_user.intIsCmnMst));
+
                 }
                 catch(Exception ex)
                 {
@@ -85,6 +92,8 @@ namespace Login.API.Controllers
                 new Claim(JwtRegisteredClaimNames.Name, user.vchFullName),
                 new Claim(ClaimTypes.Sid, user.intUserId.ToString()),
                 new Claim(ClaimTypes.Role, user.vchUserName),
+
+
             };
 
             var token = new JwtSecurityToken(
@@ -117,7 +126,12 @@ namespace Login.API.Controllers
                     token = token,
                     message = message,
                     role = authenticatedUser.vchUserName,
-                    fullName = authenticatedUser.vchFullName
+                    fullName = authenticatedUser.vchFullName,
+                    Cms=authenticatedUser.intIsCms,
+                    IsMisReport=authenticatedUser.intIsMisReport,
+                    Cmnmst=authenticatedUser.intIsCmnMst,
+                    Gms=authenticatedUser.intIsGms,
+                    config=authenticatedUser.intIsConfig
                 });
             }
             else
