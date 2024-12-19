@@ -22,7 +22,7 @@
                 </a>
             </li> -->
 
-            <li class="sidebar-item" routerLinkActive="active">
+            <li class="sidebar-item" *ngIf="cmnmst == 1" routerLinkActive="active">
                 <a data-bs-target="#mngMaster" data-bs-toggle="collapse" class="sidebar-link collapsed"
                     (click)="$event.stopPropagation();">
                     <i class="bi bi-journal-check"></i> <span class="align-middle">Common Master</span> </a>
@@ -46,7 +46,7 @@
                 </ul>
             </li>
 
-            <li class="sidebar-item" routerLinkActive="active">
+            <li class="sidebar-item" *ngIf="config == 1" routerLinkActive="active">
                 <a data-bs-target="#mngConfig" data-bs-toggle="collapse" class="sidebar-link collapsed"
                     routerLinkActive="active" (click)="$event.stopPropagation();">
                     <i class="bi bi-gear"></i> <span class="align-middle">Config</span> </a>
@@ -59,7 +59,7 @@
                 </ul>
             </li>
 
-            <li class="sidebar-item" routerLinkActive="active">
+            <li class="sidebar-item" *ngIf="gms == 1" routerLinkActive="active">
                 <a data-bs-target="#mngGMS" data-bs-toggle="collapse" class="sidebar-link collapsed"
                     routerLinkActive="active" (click)="$event.stopPropagation();">
                     <i class="bi bi-journal-check"></i> <span class="align-middle">GMS</span> </a>
@@ -81,7 +81,7 @@
                 </ul>
             </li>
 
-            <li class="sidebar-item" routerLinkActive="active">
+            <li class="sidebar-item" *ngIf="isMisReport == 1" routerLinkActive="active">
                 <a data-bs-target="#misRept" data-bs-toggle="collapse" class="sidebar-link collapsed"
                     routerLinkActive="active" (click)="$event.stopPropagation();">
                     <i class="bi bi-list-check"></i> <span class="align-middle">MIS Reports</span> </a>
@@ -95,7 +95,7 @@
                 </ul>
             </li>
 
-            <li class="sidebar-item" routerLinkActive="active">
+            <li class="sidebar-item" *ngIf="cms == 1" routerLinkActive="active">
                 <a data-bs-target="#cms" data-bs-toggle="collapse" class="sidebar-link collapsed"
                     routerLinkActive="active" (click)="$event.stopPropagation();">
                     <i class="bi bi-alarm"></i> <span class="align-middle">CMS</span> </a>
