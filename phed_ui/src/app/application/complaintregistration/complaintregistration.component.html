@@ -66,7 +66,7 @@
 
                             <div class="col-xxl-3 col-xl-4 col-md-6">
                                 <div class="mb-3">
-                                    <label for="txtPhone" class="form-label">Phone</label>
+                                    <label for="txtPhone" class="form-label">Phone No.</label>
                                     <div class="input-group">
                                         <label class="input-group-text">+91</label>
                                         <input name="txtPhone" type="text" maxlength="10" id="txtPhone"
@@ -80,7 +80,7 @@
 
                             <div class="col-xxl-3 col-xl-4 col-md-6">
                                 <div class="mb-3">
-                                    <label for="txtPhone" class="form-label">Email</label>
+                                    <label for="txtPhone" class="form-label">Email ID</label>
                                     <div class="input-group">
                                         <input name="txtEmail" type="text" id="txtEmail"
                                         [(ngModel)]="formData.txtEmail" class="form-control" />
@@ -97,11 +97,11 @@
                                       <input type="file" [(ngModel)]="formData.txtDocument" name="FileUpload1" id="FileUpload1" (change)="handleFileInput($event)"
                                         class="form-control" multiple />
                                     </div>
-      
+
                                   <p class="mb-0 small text-danger text-end">Supported File (<span class="fw-bold">.pdf, .doc, .xls, .jpg, .png</span>)</p>
                               </div>
                           </div>
-                          
+
 
                             <!-- <div class="col-xxl-3 col-xl-4 col-md-6">
                               <div class="mb-3">
