@@ -724,7 +724,6 @@
                     <td>{{ escalation.nvcH_DESIGNATION_NAME }}</td>
                     <td>{{ escalation.vcH_STANDARD_DAYS }}</td>
                   </tr>
-
                 </tbody>
               </table>
             </div>
@@ -774,6 +773,8 @@
                       <label class="form-label"> Near by Location</label>
                       <label class="form-value">{{item.nvcH_LANDMARK}}</label>
                     </div>
+                    <input type="hidden" [value]="item.inT_COMPLIANT_ID" #complaintid />
+                    <input type="hidden" [value]="item.inT_COMPLAINT_PRIORITY" #intcomppriority />
                   </div>
                   <div class="col-xl-3 col-md-6">
                     <div class="mb-3">
@@ -805,7 +806,7 @@
 
             <div class="row">
 
-              <div class="col-xl-6 col-md-6">
+              <!-- <div class="col-xl-6 col-md-6">
                 <div class="mb-3">
                   <label for="ddlDistrict" class="form-label">Status</label>
                   <select class="form-select">
@@ -825,20 +826,17 @@
                     Characters)</p>
                 </div>
               </div>
-            </div>
+            </div> -->
 
            <div class="row">
               <div class="col-xl-6 col-md-6">
                 <label for="ddlDistrict" class="form-label">Reference Document</label>
                 <div class="input-group">
-                    <input type="file" class="form-control custom-fileupload" id="doc">
-                    <label class="custom-input" for="doc">Upload</label>
-                    <label class="input-group-text custom-browse" for="doc">Browse</label>
+                  <!-- The file input element -->
+                  <input type="file" [(ngModel)]="formData.txtDocument" name="FileUpload1" id="FileUpload1" (change)="handleFileInput($event)"
+                    class="form-control" multiple />
                 </div>
-                <p class="text-danger text-end small mb-0"> Only <strong>(.jpg,
-                        .png,
-                        .doc, .xls, .pdf)</strong> files
-                    allowed</p>
+              <p class="mb-0 small text-danger text-end">Supported File (<span class="fw-bold">.pdf, .doc, .xls, .jpg, .png</span>)</p>
               </div>
 
             <div class="col-xl-6 col-md-6">
@@ -857,7 +855,7 @@
             <div class="row">
               <div class="col-xl-5">
                 <div class="d-flex gap-1">
-                  <a href="javascript:void(0);" class="btn btn-primary">Submit</a>
+                  <a href="javascript:void(0);" class="btn btn-primary" (click)="UpdateRep()">Submit</a>
                   <a href="javascript:void(0);" class="btn btn-danger">Reset</a>
                 </div>
               </div>

@@ -51,6 +51,7 @@ onClickOutside(event: MouseEvent) {
   paginatedComplaints: any[] = [];
   takeactiongms: any[] = [];
   actionhistorygms: any;
+  filesToUpload: File[] = [];
 
   formData: any = {
     ddlDistrict: '0',
@@ -112,6 +113,16 @@ onClickOutside(event: MouseEvent) {
     this.getComplaints();
     this.getComplaintstype();
 
+  }
+  handleFileInput(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      // Convert FileList to an array and store it
+      this.filesToUpload = Array.from(input.files);
+      
+    } else {
+      this.filesToUpload = [];
+    }
   }
   GetAllDetailsagainsttokenurl(categoryId: any, subCategoryId: any, Token: any) {
 
@@ -192,7 +203,7 @@ onClickOutside(event: MouseEvent) {
     this.authService.getgmstakeaction(tokenno).subscribe(
       response => {
         this.takeactiongms = response;
-        console.log('Data fetched successfully:', response); // Optional: For debugging purposes
+        console.log('Data fetched successfully takeactiongms:', response); // Optional: For debugging purposes
       },
       error => {
         console.error('Error fetching Complaint status:', error);
@@ -215,6 +226,9 @@ onClickOutside(event: MouseEvent) {
         alert('Failed to fetch complaint details.');
       }
     );
+  }
+  UpdateRep():void{
+    alert("1");
   }
   getComplaints(): void {
     this.authService.getcomplaintstatus().subscribe(

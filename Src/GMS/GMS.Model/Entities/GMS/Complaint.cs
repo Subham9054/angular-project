@@ -272,5 +272,15 @@ namespace GMS.Model.Entities.GMS
     {
         public int? userid { get; set; } // Nullable int for handling null values
     }
+    public class ComplaintLog
+    {
+        public string? INT_COMPLIANT_ID { get; set; }
+        public string? INT_COMPLIANT_STATUS_ID { get; set; }
+        public string? VCH_FILE { get; set; }
+        public string? NVCH_REMARK { get; set; }
+        public string? INT_PENDING_WITH { get; set; }
+        public string? INT_CREATED_BY { get; set; }
+        public string? INT_DELETED_FLAG { get; set; }
+    }
 
 }

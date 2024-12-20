@@ -174,7 +174,7 @@ namespace GMS.API
             }
             try
             {
-                var result = await _MANAGE_COMPLAINTDETAILS_CONFIGRepository.Getupdatetakeaction(token);
+                    var result = await _MANAGE_COMPLAINTDETAILS_CONFIGRepository.Getupdatetakeaction(token);
 
                 if (result == null || !result.Any())
                 {
@@ -261,7 +261,108 @@ namespace GMS.API
                 });
             }
         }
+        #region Escalation
+        [HttpPost("EscalationUpdateREP")]
+        public async Task<IActionResult> EscalationUpdateREP([FromForm] ComplaintLog  complaintLog, [FromForm] List<IFormFile> files)
+        {
+            if (complaintLog == null)
+            {
+                return BadRequest(new { message = "Provide all the data" });
+            }
 
+            // Validation check
+            if (!ModelState.IsValid)
+            {
+                var errorMessages = ModelState.Values.SelectMany(v => v.Errors)
+                                                      .Select(e => e.ErrorMessage)
+                                                      .ToList();
+                return BadRequest(new { errors = errorMessages });
+            }
+
+            try
+            {
+                // Initialize the list to store uploaded file names
+                List<string> uploadedFiles = new List<string>();
+
+                // Handle file upload if files are provided
+                if (files != null && files.Count > 0)
+                {
+                    // Define the file storage path within wwwroot
+                    var webRootPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
+                    var subFolderPath = Path.Combine(webRootPath, "assets", "ComplaintDocuments");
+
+                    // Ensure directory exists
+                    Directory.CreateDirectory(subFolderPath);
+
+                    foreach (var file in files)
+                    {
+                        if (file == null || file.Length == 0)
+                        {
+                            continue;
+                        }
+
+                        // Validate file extension (only allow certain types)
+                        var allowedExtensions = new[] { ".jpg", ".jpeg", ".png", ".pdf", ".docx" };
+                        var fileExtension = Path.GetExtension(file.FileName).ToLower();
+                        if (!allowedExtensions.Contains(fileExtension))
+                        {
+                            return BadRequest(new { message = "Invalid file type. Only jpg, jpeg, png, pdf, and docx are allowed." });
+                        }
+
+                        // Validate file size (example: max 5MB)
+                        if (file.Length > 5 * 1024 * 1024)
+                        {
+                            return BadRequest(new { message = "File size exceeds the 5MB limit." });
+                        }
+
+                        // Create a unique file name
+                        var uniqueFileName = $"{DateTime.Now:yyyyMMddHHmmss}_{Path.GetFileNameWithoutExtension(file.FileName)}{Path.GetExtension(file.FileName)}";
+                        var filePath = Path.Combine(subFolderPath, uniqueFileName);
+
+                        // Save the file to the server
+                        using (var stream = new FileStream(filePath, FileMode.Create))
+                        {
+                            await file.CopyToAsync(stream);
+                        }
+
+                        // Add the file name to the list
+                        uploadedFiles.Add(uniqueFileName);
+                    }
+                }
+
+                // Save the uploaded file names in the complaint object (if any)
+                complaintLog.VCH_FILE = uploadedFiles.Any() ? string.Join(",", uploadedFiles) : null;
+
+                // Process the complaint registration
+                var result = await _MANAGE_COMPLAINTDETAILS_CONFIGRepository.UpdatecomplainRep(complaintLog);
+
+                if (result != null)
+                {
+                    return Ok(new
+                    {
+                        message = "Complaint Escalated successfully.",
+                        uploadedFiles = uploadedFiles,
+                        Data = result
+                    });
+                }
+                else
+                {
+                    return StatusCode(StatusCodes.Status500InternalServerError, new { message = "Failed to register complaint." });
+                }
+            }
+            catch (Exception ex)
+            {
+                // Optionally log the exception
+                // _logger.LogError(ex, "An error occurred during complaint registration");
+
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    message = "An error occurred while processing your request.",
+                    error = ex.Message
+                });
+            }
+        }
+        #endregion
 
 
         #region Mobile Team Api

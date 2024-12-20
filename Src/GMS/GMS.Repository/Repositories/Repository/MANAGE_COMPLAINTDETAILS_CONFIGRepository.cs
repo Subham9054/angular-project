@@ -291,7 +291,32 @@ namespace GMS.Repository.Repositories.Interfaces.MANAGE_COMPLAINTDETAILS_CONFIG
                 throw;
             }
         }
+        #region UPDATEREP
+        public async Task<int> UpdatecomplainRep(ComplaintLog complaintLog)
+        {
+            try
+            {
 
+
+                DynamicParameters parameters = new DynamicParameters();
+                parameters.Add("@p_compliant_id",complaintLog.INT_COMPLIANT_ID);
+                parameters.Add("@p_compliant_status_id", 6);
+                parameters.Add("@p_vch_file", complaintLog.VCH_FILE);
+                parameters.Add("@p_nvch_remark", complaintLog.NVCH_REMARK);
+                parameters.Add("@p_int_pending_with", complaintLog.INT_PENDING_WITH);
+                parameters.Add("@p_int_created_by", complaintLog.INT_CREATED_BY);
+                parameters.Add("@p_int_deleted_flag", 0);
+                var result = await Connection.QueryAsync<int>("USP_complaint_log_insert_REP", parameters, commandType: CommandType.StoredProcedure);
+                return result.FirstOrDefault();
+
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+        #endregion
 
         #region Codegencode
         public async Task<int> INSERT_MANAGE_COMPLAINTDETAILS_CONFIG(MANAGE_COMPLAINTDETAILS_CONFIG_Model TBL)
