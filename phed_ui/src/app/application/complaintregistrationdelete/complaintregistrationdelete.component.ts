@@ -11,6 +11,9 @@ declare let $: any;
 export class ComplaintregistrationdeleteComponent {
 
   activeDropdown: number | null = null; // Track the active dropdown index
+  complaintsId: any;
+  complaintsPriority: any;
+  designation: any;
 
   toggleDropdown(index: number) {
       this.activeDropdown = this.activeDropdown === index ? null : index;
@@ -104,6 +107,9 @@ onClickOutside(event: MouseEvent) {
     var roleId = sessionStorage.getItem('roleid');
     //alert(roleId);
     this.userid = roleId ? parseInt(roleId, 10) : null;
+    var desigid = sessionStorage.getItem('desigid');
+    //alert(roleId);
+    this.designation = desigid ? parseInt(desigid, 10) : null;
   }
 
   private initializeData(): void {
@@ -112,8 +118,13 @@ onClickOutside(event: MouseEvent) {
     this.getCategories();
     this.getComplaints();
     this.getComplaintstype();
-
   }
+  
+  formDatarep = {
+    txtDocument: null,  // Store file document
+    remarks: '',  // Store remarks
+  };
+
   handleFileInput(event: Event) {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
@@ -123,6 +134,37 @@ onClickOutside(event: MouseEvent) {
     } else {
       this.filesToUpload = [];
     }
+  }
+
+  UpdateRep() {
+    debugger;
+    // Get values from the form
+
+    const complaintid = this.complaintsId;
+    const intcomppriority = this.complaintsPriority;
+    const remark = (document.getElementById('exampleFormControlTextarea1') as HTMLTextAreaElement)?.value;
+  
+    // Prepare data to send in the request
+    const formDataToSend = new FormData();
+    formDataToSend.append('INT_COMPLIANT_ID', complaintid);
+    formDataToSend.append('INT_COMPLIANT_STATUS_ID', intcomppriority);
+    formDataToSend.append('NVCH_REMARK', remark);
+    formDataToSend.append('INT_CREATED_BY', this.userid);
+    formDataToSend.append('designation',this.designation);
+    
+    // Append the files if any
+    this.filesToUpload.forEach(file => {
+      formDataToSend.append('files', file, file.name);
+    });
+  
+    // You can send this data to your backend service via HTTP
+    this.authService.updateComplaintRep(formDataToSend).subscribe(response => {
+      console.log('Complaint updated successfully', response);
+      // Handle success (e.g., show a success message or reset the form)
+    }, error => {
+      console.error('Error updating complaint', error);
+      // Handle error (e.g., show an error message)
+    });
   }
   GetAllDetailsagainsttokenurl(categoryId: any, subCategoryId: any, Token: any) {
 
@@ -203,7 +245,9 @@ onClickOutside(event: MouseEvent) {
     this.authService.getgmstakeaction(tokenno).subscribe(
       response => {
         this.takeactiongms = response;
-        console.log('Data fetched successfully takeactiongms:', response); // Optional: For debugging purposes
+        this.complaintsId = this.takeactiongms[0].inT_COMPLIANT_ID;
+        this.complaintsPriority = this.takeactiongms[0].inT_COMPLAINT_PRIORITY;
+        console.log('Data fetched successfully takeactiongms:', response[0].inT_COMPLIANT_ID); // Optional: For debugging purposes
       },
       error => {
         console.error('Error fetching Complaint status:', error);
@@ -227,9 +271,7 @@ onClickOutside(event: MouseEvent) {
       }
     );
   }
-  UpdateRep():void{
-    alert("1");
-  }
+  
   getComplaints(): void {
     this.authService.getcomplaintstatus().subscribe(
       response => {

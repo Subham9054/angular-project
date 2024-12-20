@@ -23,5 +23,6 @@ namespace GMS.Repository.Interfaces.MANAGE_COMPLAINTDETAILS_CONFIG
         Task<bool> MarkOtpAsUsedAsync(int otpId);
         Task<List<ComplaintDetailsTokenResponse>> Getalldetailagaintstoken(string token, int catid, int subcatid);
         Task<int> UpdatecomplainRep(ComplaintLog complaintLog);
+        Task<int> UpdatecomplainCont(ComplaintLog complaintLog);
     }
 }

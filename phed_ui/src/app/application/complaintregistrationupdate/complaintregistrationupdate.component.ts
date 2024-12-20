@@ -145,7 +145,6 @@ export class ComplaintregistrationupdateComponent implements OnInit {
 
 
   getgmsComplaintdelail() {
-    debugger;
     //alert(sessionStorage.getItem('roleid'));
     this.loadingService.startLoading();
 
@@ -222,7 +221,6 @@ export class ComplaintregistrationupdateComponent implements OnInit {
 
 
   actionhistory(tokenno: string): void {
-    //debugger;
     this.authService.getgmsactionhistory(tokenno).subscribe(
       response => {
         // Check if the response is an array or an object
@@ -318,7 +316,6 @@ export class ComplaintregistrationupdateComponent implements OnInit {
   }
 
   onBlockChange(event: any) {
-    debugger;
     const blockId = event.inT_BLOCK_ID
     if (!isNaN(blockId)) {
       this.authService.getGps(blockId).subscribe(

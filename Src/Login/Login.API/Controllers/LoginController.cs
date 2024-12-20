@@ -132,7 +132,8 @@ namespace Login.API.Controllers
                     Cmnmst=authenticatedUser.intIsCmnMst,
                     Gms=authenticatedUser.intIsGms,
                     config=authenticatedUser.intIsConfig,
-                    roleid=authenticatedUser.intUserId
+                    roleid=authenticatedUser.intUserId,
+                    desigid=authenticatedUser.intDesignationId
                 });
             }
             else

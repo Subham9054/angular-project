@@ -333,15 +333,27 @@ namespace GMS.API
                 // Save the uploaded file names in the complaint object (if any)
                 complaintLog.VCH_FILE = uploadedFiles.Any() ? string.Join(",", uploadedFiles) : null;
 
-                // Process the complaint registration
+                // Ensure designation is a string or perform type conversion if necessary
+                // Declare 'result' outside of the if/else block to ensure it's accessible later
                 var result = await _MANAGE_COMPLAINTDETAILS_CONFIGRepository.UpdatecomplainRep(complaintLog);
 
+                if (complaintLog.designation == "6")
+                {
+                    result = await _MANAGE_COMPLAINTDETAILS_CONFIGRepository.UpdatecomplainCont(complaintLog);
+                   
+                }
+                else
+                {
+                    result = await _MANAGE_COMPLAINTDETAILS_CONFIGRepository.UpdatecomplainRep(complaintLog);
+                }
+
+                // Process the complaint registration
                 if (result != null)
                 {
                     return Ok(new
                     {
                         message = "Complaint Escalated successfully.",
-                        uploadedFiles = uploadedFiles,
+                        uploadedFiles = uploadedFiles, // assuming this is declared and holds file data
                         Data = result
                     });
                 }
@@ -349,6 +361,7 @@ namespace GMS.API
                 {
                     return StatusCode(StatusCodes.Status500InternalServerError, new { message = "Failed to register complaint." });
                 }
+
             }
             catch (Exception ex)
             {
@@ -362,6 +375,7 @@ namespace GMS.API
                 });
             }
         }
+
         #endregion
 
 

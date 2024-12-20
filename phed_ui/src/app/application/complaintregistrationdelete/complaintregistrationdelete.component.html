@@ -344,7 +344,7 @@
         </div>
     </div> -->
 
-  <div class="content-box content-area p-0">
+  <div class="content-box content-area p-0 custom-table">
     <div class="table-responsive mb-0">
       <table class="table mb-0">
         <thead>
@@ -398,7 +398,6 @@
             <td>{{ complaint.nvcH_LANDMARK }}</td>
             <td>{{ complaint.vchUserName }}</td>
             <td>
-              <div class="dropdown">
                 <div class="dropdown">
                   <button
                       id="dropdownToggle{{ i }}"
@@ -410,7 +409,7 @@
                       <i class="bi bi-caret-down"></i> Action
                   </button>
 
-                  <ul class="dropdown-menu" [id]="'dropdownMenu' + i" [class.show]="activeDropdown === i">
+                  <ul class="dropdown-menu"  [id]="'dropdownMenu' + i" [class.show]="activeDropdown === i">
                       <li>
                           <a
                               href="javascript:void(0);"
@@ -437,10 +436,7 @@
                           </button>
                       </li>
                   </ul>
-              </div>
-
-              </div>
-
+                 </div>
           </td>
           </tr>
         </tbody>
@@ -773,8 +769,7 @@
                       <label class="form-label"> Near by Location</label>
                       <label class="form-value">{{item.nvcH_LANDMARK}}</label>
                     </div>
-                    <input type="hidden" [value]="item.inT_COMPLIANT_ID" #complaintid />
-                    <input type="hidden" [value]="item.inT_COMPLAINT_PRIORITY" #intcomppriority />
+                    
                   </div>
                   <div class="col-xl-3 col-md-6">
                     <div class="mb-3">

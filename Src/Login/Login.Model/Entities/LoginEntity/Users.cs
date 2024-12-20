@@ -18,5 +18,6 @@ namespace Login.Model.Entities.LoginEntity
         public int intIsGms {  get; set; }
         public int intIsMisReport { get; set; }
         public int intIsCms { get; set; }
+        public int intDesignationId { get; set; }
     }
 }

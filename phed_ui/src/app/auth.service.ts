@@ -55,6 +55,7 @@ export class AuthService {
   private GetAllComplaintsurl = `${this.baseUrl}/gateway/GetAllComplaints`;
   private Otpgenerateurl = `${this.baseUrl}/gateway/Otpgenerate`;
   private ValidateOtpurl = `${this.baseUrl}/gateway/ValidateOtp`;
+  private EscalationUpdateREPurl=`${this.baseUrl}/gateway/EscalationUpdateREP`;
 
   //For Content Management URLs
   private getParentMenusUrl = 'http://localhost:5234/api/CMS/GetParentMenus';
@@ -365,6 +366,12 @@ getgmsComplaintdelail(Userdata: { userid: number | null }): Observable<any> {
 
   getgmsactionhistory(token: string): Observable<any> {
     return this.http.get<any>(`${this.gmsactionhistoryurl}?token=${token}`).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  updateComplaintRep(formData: FormData): Observable<any> {
+    return this.http.post<any>(this.EscalationUpdateREPurl, formData).pipe(
       catchError(this.handleError)
     );
   }

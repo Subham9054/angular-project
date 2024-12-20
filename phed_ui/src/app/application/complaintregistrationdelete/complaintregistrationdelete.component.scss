@@ -17,3 +17,18 @@
   .dropdown-menu {
     right: 0;
   }
+
+  .custom-table {
+    .dropdown-menu {
+      position: absolute;
+      z-index: 1050; 
+      margin-top: 5px; 
+    }
+    .dropdown {
+      position: relative;
+    }
+  }
+
+  .table-responsive {
+    overflow: visible;
+  }
