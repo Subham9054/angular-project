@@ -166,6 +166,7 @@ namespace GMS.API
 
         [HttpGet("Getgmstakeaction")]
         public async Task<IActionResult> Getgmstakeaction(string token)
+
         {
             if (token == null)
             {
