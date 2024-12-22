@@ -304,8 +304,17 @@ namespace GMS.Repository.Repositories.Interfaces.MANAGE_COMPLAINTDETAILS_CONFIG
                 // parameters.Add("@p_int_pending_with", complaintLog.INT_PENDING_WITH); // Add this parameter
                 parameters.Add("@p_int_created_by", complaintLog.INT_CREATED_BY);
                 parameters.Add("@p_int_deleted_flag", 0);
+                var QUEry = "";
+                if (complaintLog.designation == "7")
+                {
+                    QUEry = "USP_complaint_log_insert_REP";
+                }
+                else
+                {
+                    QUEry = "USP_complaint_log_insert_CONT";
+                }
                 var result = await Connection.QueryAsync<int>(
-                    "USP_complaint_log_insert_REP",
+                   QUEry,
                     parameters,
                     commandType: CommandType.StoredProcedure
                 );

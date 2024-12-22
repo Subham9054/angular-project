@@ -108,7 +108,7 @@ onClickOutside(event: MouseEvent) {
     //alert(roleId);
     this.userid = roleId ? parseInt(roleId, 10) : null;
     var desigid = sessionStorage.getItem('desigid');
-    //alert(roleId);
+    alert(desigid);
     this.designation = desigid ? parseInt(desigid, 10) : null;
   }
 
@@ -247,7 +247,7 @@ onClickOutside(event: MouseEvent) {
         this.takeactiongms = response;
         this.complaintsId = this.takeactiongms[0].inT_COMPLIANT_ID;
         this.complaintsPriority = this.takeactiongms[0].inT_COMPLAINT_PRIORITY;
-        console.log('Data fetched successfully takeactiongms:', response[0].inT_COMPLIANT_ID); // Optional: For debugging purposes
+        console.log('Data fetched successfully takeactiongms:', response); // Optional: For debugging purposes
       },
       error => {
         console.error('Error fetching Complaint status:', error);

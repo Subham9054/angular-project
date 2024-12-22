@@ -783,15 +783,33 @@
                       <label class="form-value">{{item.vcH_SUB_CATEGORY}}</label>
                     </div>
                   </div>
-
-
                   <div class="col-xl-3 col-md-6">
                     <div class="mb-3">
                       <label class="form-label">Current Status</label>
                       <label class="form-value">{{item.vcH_COMPLIANT_STATUS}}</label>
                     </div>
                   </div>
+                  <div class="col-xl-3 col-md-6" *ngIf="designation === 2">
+                    <div class="mb-3">
+                      <label class="form-label">Contractor Remark</label>
+                      <label class="form-value">{{item.vcH_COMPLIANT_STATUS}}</label>
+                    </div>
+                  </div>
+                  
+                  
+                  <div class="col-xl-3 col-md-6" *ngIf="designation === 6 || designation === 2">
+                    <div class="mb-3">
+                      <label class="form-label">REP Remark</label>
+                      <label class="form-value">{{item.nvcH_REMARK}}</label>
+                    </div>
+                  </div>
 
+                  <div class="col-xl-3 col-md-6" *ngIf="designation === 6 || designation === 2">
+                    <div class="mb-3">
+                      <label class="form-label">REP Reference Document</label>
+                      <label class="form-value">{{item.vcH_FILE}}</label>
+                    </div>
+                  </div>
                 </div>
               </div>
 

@@ -337,15 +337,12 @@ namespace GMS.API
                 // Declare 'result' outside of the if/else block to ensure it's accessible later
                 var result = await _MANAGE_COMPLAINTDETAILS_CONFIGRepository.UpdatecomplainRep(complaintLog);
 
-                if (complaintLog.designation == "6")
-                {
-                    result = await _MANAGE_COMPLAINTDETAILS_CONFIGRepository.UpdatecomplainCont(complaintLog);
+                //if (complaintLog.designation == "6")
+                //{
+                //    result = await _MANAGE_COMPLAINTDETAILS_CONFIGRepository.UpdatecomplainCont(complaintLog);
                    
-                }
-                else
-                {
-                    result = await _MANAGE_COMPLAINTDETAILS_CONFIGRepository.UpdatecomplainRep(complaintLog);
-                }
+                //}
+              
 
                 // Process the complaint registration
                 if (result != null)

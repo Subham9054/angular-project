@@ -78,6 +78,8 @@ namespace GMS.Model.Entities.GMS
         public string VCH_COMPLIANT_STATUS { get; set; }
         public string NVCH_COMPLIANT_DETAILS { get; set; }
         public string NVCH_LANDMARK { get; set; }
+        public string NVCH_REMARK { get; set; }
+        public string VCH_FILE { get; set; }
     }
     public class LocationHierarchy
     {
