@@ -88,7 +88,19 @@ namespace GMS.Repository.Repositories.Interfaces.MANAGE_COMPLAINTDETAILS_CONFIG
             {
                 var parameters = new DynamicParameters();
                 parameters.Add("token", token);
-                var result = await Connection.QueryAsync<gmsComplaintdetails>("GetGmsupdatetakeaction", parameters, commandType: CommandType.StoredProcedure);
+                var result = await Connection.QueryAsync<gmsComplaintdetails>("GetGmsupdatetakeaction", parameters, commandType: CommandType.StoredProcedure );
+                foreach (var item in result)
+                {
+                    if (!string.IsNullOrEmpty(item.VCH_FILES))
+                    {
+                        item.VCH_FILE_LIST = item.VCH_FILES.Split(",").Select(f => f.Trim()).ToList();
+                    }
+
+                    if (!string.IsNullOrEmpty(item.NVCH_REMARKS))
+                    {
+                        item.NVCH_REMARK_LIST = item.NVCH_REMARKS.Split(",").Select(r => r.Trim()).ToList();
+                    }
+                }
                 return result.ToList();
             }
             catch (Exception ex)
@@ -96,6 +108,8 @@ namespace GMS.Repository.Repositories.Interfaces.MANAGE_COMPLAINTDETAILS_CONFIG
                 throw;
             }
         }
+
+
         public async Task<List<ComplaintDetails>> Getgmsactionhistory(string token)
         {
             try
