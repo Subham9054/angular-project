@@ -162,6 +162,7 @@ namespace GMS.API
             {
 
                 return BadRequest("Error in fetching Districts");
+
             }
         }
         //dnbhdvckdjbcdhbcjhsdbcidsbc
